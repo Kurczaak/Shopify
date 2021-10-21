@@ -4,7 +4,7 @@ class EmailAddress extends Equatable {
   final String value;
 
   factory EmailAddress(String input) {
-    return EmailAddress(input);
+    return EmailAddress._(input);
   }
 
   const EmailAddress._(this.value);

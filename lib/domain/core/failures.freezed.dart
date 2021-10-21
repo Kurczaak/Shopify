@@ -14,8 +14,8 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-class _$ValueVailureTearOff {
-  const _$ValueVailureTearOff();
+class _$ValueFailureTearOff {
+  const _$ValueFailureTearOff();
 
   InvalidEmail<T> invalidEmail<T>({required T failedValue}) {
     return InvalidEmail<T>(
@@ -25,10 +25,10 @@ class _$ValueVailureTearOff {
 }
 
 /// @nodoc
-const $ValueVailure = _$ValueVailureTearOff();
+const $ValueFailure = _$ValueFailureTearOff();
 
 /// @nodoc
-mixin _$ValueVailure<T> {
+mixin _$ValueFailure<T> {
   T get failedValue => throw _privateConstructorUsedError;
 
   @optionalTypeArgs
@@ -65,26 +65,26 @@ mixin _$ValueVailure<T> {
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $ValueVailureCopyWith<T, ValueVailure<T>> get copyWith =>
+  $ValueFailureCopyWith<T, ValueFailure<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ValueVailureCopyWith<T, $Res> {
-  factory $ValueVailureCopyWith(
-          ValueVailure<T> value, $Res Function(ValueVailure<T>) then) =
-      _$ValueVailureCopyWithImpl<T, $Res>;
+abstract class $ValueFailureCopyWith<T, $Res> {
+  factory $ValueFailureCopyWith(
+          ValueFailure<T> value, $Res Function(ValueFailure<T>) then) =
+      _$ValueFailureCopyWithImpl<T, $Res>;
   $Res call({T failedValue});
 }
 
 /// @nodoc
-class _$ValueVailureCopyWithImpl<T, $Res>
-    implements $ValueVailureCopyWith<T, $Res> {
-  _$ValueVailureCopyWithImpl(this._value, this._then);
+class _$ValueFailureCopyWithImpl<T, $Res>
+    implements $ValueFailureCopyWith<T, $Res> {
+  _$ValueFailureCopyWithImpl(this._value, this._then);
 
-  final ValueVailure<T> _value;
+  final ValueFailure<T> _value;
   // ignore: unused_field
-  final $Res Function(ValueVailure<T>) _then;
+  final $Res Function(ValueFailure<T>) _then;
 
   @override
   $Res call({
@@ -101,7 +101,7 @@ class _$ValueVailureCopyWithImpl<T, $Res>
 
 /// @nodoc
 abstract class $InvalidEmailCopyWith<T, $Res>
-    implements $ValueVailureCopyWith<T, $Res> {
+    implements $ValueFailureCopyWith<T, $Res> {
   factory $InvalidEmailCopyWith(
           InvalidEmail<T> value, $Res Function(InvalidEmail<T>) then) =
       _$InvalidEmailCopyWithImpl<T, $Res>;
@@ -111,7 +111,7 @@ abstract class $InvalidEmailCopyWith<T, $Res>
 
 /// @nodoc
 class _$InvalidEmailCopyWithImpl<T, $Res>
-    extends _$ValueVailureCopyWithImpl<T, $Res>
+    extends _$ValueFailureCopyWithImpl<T, $Res>
     implements $InvalidEmailCopyWith<T, $Res> {
   _$InvalidEmailCopyWithImpl(
       InvalidEmail<T> _value, $Res Function(InvalidEmail<T>) _then)
@@ -143,7 +143,7 @@ class _$InvalidEmail<T> implements InvalidEmail<T> {
 
   @override
   String toString() {
-    return 'ValueVailure<$T>.invalidEmail(failedValue: $failedValue)';
+    return 'ValueFailure<$T>.invalidEmail(failedValue: $failedValue)';
   }
 
   @override
@@ -221,7 +221,7 @@ class _$InvalidEmail<T> implements InvalidEmail<T> {
   }
 }
 
-abstract class InvalidEmail<T> implements ValueVailure<T> {
+abstract class InvalidEmail<T> implements ValueFailure<T> {
   const factory InvalidEmail({required T failedValue}) = _$InvalidEmail<T>;
 
   @override
