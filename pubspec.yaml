@@ -29,16 +29,18 @@ environment:
 dependencies:
   bloc: ^7.2.1
   cupertino_icons: ^1.0.2
+  dartz: ^0.10.0
+  equatable: ^2.0.3
   flutter:
     sdk: flutter
 
 dev_dependencies:
-  dartz: ^0.10.0
-  equatable: ^2.0.3
   flutter_lints: ^1.0.0
   flutter_test:
     sdk: flutter
+  build_runner:
   freezed: ^0.15.0+1
+  json_serializable: ^6.0.0
   mockito: ^5.0.16
 
 # The following section is specific to Flutter.
