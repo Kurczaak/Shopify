@@ -117,7 +117,7 @@ void main() {
     );
 
     test(
-      'Password VVO should hold a short password Value Failure when the String is less than 6 characters long',
+      'Password VVO should hold a Value Failure when the String is less than 6 characters long',
       () async {
         // arrange
         String shortPasswordString = 'shrt';
@@ -126,25 +126,12 @@ void main() {
         final valueOrFailure = result.value.fold((f) => (f), (r) => r);
         // assert
         expect(valueOrFailure,
-            ValueFailure.shortPassword(failedValue: shortPasswordString));
+            ValueFailure.incorrectPassword(failedValue: shortPasswordString));
       },
     );
 
     test(
-      'Password VVO should hold an empty Value Failure when the String is empty',
-      () async {
-        // arrange
-        String emptyString = '0';
-        // act
-        final result = Password(emptyString);
-        final valueOrFailure = result.value.fold((f) => (f), (r) => r);
-        // assert
-        expect(valueOrFailure, ValueFailure.empty(failedValue: emptyString));
-      },
-    );
-
-    test(
-      'Password VVO should hold a no special character Value Failure when the String doesn\'t contain a special character',
+      'Password VVO should hold a Value Failure when the String doesn\'t contain a special character',
       () async {
         // arrange
         String noSpecialCharacterPassword = '12VaLiD';
@@ -154,13 +141,13 @@ void main() {
         // assert
         expect(
             valueOrFailure,
-            ValueFailure.noSpecialCharacterPassword(
+            ValueFailure.incorrectPassword(
                 failedValue: noSpecialCharacterPassword));
       },
     );
 
     test(
-      'Password VVO should hold a no numerical character Value Failure when the String doesn\'t contain a numerical character',
+      'Password VVO should hold a Value Failure when the String doesn\'t contain a numerical character',
       () async {
         // arrange
         String noNumericalCharacterPassword = 'ThisIsNotValid#';
@@ -170,13 +157,13 @@ void main() {
         // assert
         expect(
             valueOrFailure,
-            ValueFailure.noNumericalCharacterPassword(
+            ValueFailure.incorrectPassword(
                 failedValue: noNumericalCharacterPassword));
       },
     );
 
     test(
-      'Password VVO should hold a no capital letter Value Failure when the String doesn\'t contain a capital letter',
+      'Password VVO should hold a Value Failure when the String doesn\'t contain a capital letter',
       () async {
         // arrange
         String noCapitalLetterPassword = 'thisisinvalidpwd1#';
@@ -186,23 +173,21 @@ void main() {
         // assert
         expect(
             valueOrFailure,
-            ValueFailure.noCapitalLetterPassword(
+            ValueFailure.incorrectPassword(
                 failedValue: noCapitalLetterPassword));
       },
     );
     test(
-      'Password VVO should hold a no small letter Value Failure when the String doesn\'t contain a small letter',
+      'Password VVO should hold a Value Failure when the String doesn\'t contain a small letter',
       () async {
         // arrange
-        String noSmallLetterPassword = 'thisisinvalidpwd1#';
+        String noSmallLetterPassword = 'THISISINVALID1#';
         // act
         final result = Password(noSmallLetterPassword);
         final valueOrFailure = result.value.fold((f) => (f), (r) => r);
         // assert
-        expect(
-            valueOrFailure,
-            ValueFailure.noSmallLetterPassword(
-                failedValue: noSmallLetterPassword));
+        expect(valueOrFailure,
+            ValueFailure.incorrectPassword(failedValue: noSmallLetterPassword));
       },
     );
   });

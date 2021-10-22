@@ -59,7 +59,7 @@ void main() {
       'should pass a password containing more than 6 characters, capital letters, numerical characters, and special characters',
       () async {
         //arrange
-        String correctPassword = '12Correct#';
+        String correctPassword = '12vaL#';
         // act
         final result = validatePassword(correctPassword);
         // assert
@@ -67,20 +67,22 @@ void main() {
       },
     );
     test(
-      'should return a short password ValueFailure when the password is less than 6 characters long',
+      'should return an incorrect password ValueFailure when the password is less than 6 characters long',
       () async {
         //arrange
         String shortPasswordString = '1Sho#';
         // act
         final result = validatePassword(shortPasswordString);
         // assert
-        expect(result,
-            left(ValueFailure.shortPassword(failedValue: shortPasswordString)));
+        expect(
+            result,
+            left(ValueFailure.incorrectPassword(
+                failedValue: shortPasswordString)));
       },
     );
 
     test(
-      'should return a special character ValueFailure when the String doesn\'t contain a special character',
+      'should return an incorrect password ValueFailure when the String doesn\'t contain a special character',
       () async {
         //arrange
         String noSpecialCharacterPassword = '12VaLiD';
@@ -89,13 +91,13 @@ void main() {
         // assert
         expect(
             result,
-            left(ValueFailure.noSpecialCharacterPassword(
+            left(ValueFailure.incorrectPassword(
                 failedValue: noSpecialCharacterPassword)));
       },
     );
 
     test(
-      'should return a no numerical character Value Failure when the String doesn\'t contain a numerical character',
+      'should return an incorrect password character Value Failure when the String doesn\'t contain a numerical character',
       () async {
         // arrange
         String noNumericalCharacterPassword = 'ThisIsNotValid#';
@@ -105,13 +107,13 @@ void main() {
         // assert
         expect(
             result,
-            left(ValueFailure.noNumericalCharacterPassword(
+            left(ValueFailure.incorrectPassword(
                 failedValue: noNumericalCharacterPassword)));
       },
     );
 
     test(
-      'should return a no capital letter Value Failure when the String doesn\'t contain a capital letter',
+      'should return an incorrect password Value Failure when the String doesn\'t contain a capital letter',
       () async {
         // arrange
         String noCapitalLetterPassword = 'thisisinvalidpwd1#';
@@ -121,13 +123,13 @@ void main() {
         // assert
         expect(
             result,
-            left(ValueFailure.noCapitalLetterPassword(
+            left(ValueFailure.incorrectPassword(
                 failedValue: noCapitalLetterPassword)));
       },
     );
 
     test(
-      'should return a no small letter Value Failure when the String doesn\'t contain a small letter',
+      'should return an incorrect password Value Failure when the String doesn\'t contain a small letter',
       () async {
         // arrange
         String noSmallLetterPassword = 'THISISINVALID1#';
@@ -137,7 +139,7 @@ void main() {
         // assert
         expect(
             result,
-            left(ValueFailure.noSmallLetterPassword(
+            left(ValueFailure.incorrectPassword(
                 failedValue: noSmallLetterPassword)));
       },
     );
