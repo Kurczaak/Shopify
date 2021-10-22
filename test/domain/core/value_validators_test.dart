@@ -67,39 +67,78 @@ void main() {
       },
     );
     test(
-      'should return ValueFailure when email is missing "@"',
+      'should return a short password ValueFailure when the password is less than 6 characters long',
       () async {
         //arrange
-        String invalidEmailString = 'invalidemail.com';
+        String shortPasswordString = '1Sho#';
         // act
-        final result = validateEmailAddress(invalidEmailString);
+        final result = validatePassword(shortPasswordString);
         // assert
         expect(result,
-            left(ValueFailure.invalidEmail(failedValue: invalidEmailString)));
+            left(ValueFailure.shortPassword(failedValue: shortPasswordString)));
       },
     );
+
     test(
-      'should return ValueFailure when email is missing "."',
+      'should return a special character ValueFailure when the String doesn\'t contain a special character',
       () async {
         //arrange
-        String invalidEmailString = 'invalid@emailcom';
+        String noSpecialCharacterPassword = '12VaLiD';
         // act
-        final result = validateEmailAddress(invalidEmailString);
+        final result = validatePassword(noSpecialCharacterPassword);
         // assert
-        expect(result,
-            left(ValueFailure.invalidEmail(failedValue: invalidEmailString)));
+        expect(
+            result,
+            left(ValueFailure.noSpecialCharacterPassword(
+                failedValue: noSpecialCharacterPassword)));
       },
     );
+
     test(
-      'should return ValueFailure when email is invalid',
+      'should return a no numerical character Value Failure when the String doesn\'t contain a numerical character',
       () async {
-        //arrange
-        String invalidEmailString = 'invalidemailcom';
+        // arrange
+        String noNumericalCharacterPassword = 'ThisIsNotValid#';
         // act
-        final result = validateEmailAddress(invalidEmailString);
+        final result = validatePassword(noNumericalCharacterPassword);
+
         // assert
-        expect(result,
-            left(ValueFailure.invalidEmail(failedValue: invalidEmailString)));
+        expect(
+            result,
+            left(ValueFailure.noNumericalCharacterPassword(
+                failedValue: noNumericalCharacterPassword)));
+      },
+    );
+
+    test(
+      'should return a no capital letter Value Failure when the String doesn\'t contain a capital letter',
+      () async {
+        // arrange
+        String noCapitalLetterPassword = 'thisisinvalidpwd1#';
+        // act
+        final result = validatePassword(noCapitalLetterPassword);
+
+        // assert
+        expect(
+            result,
+            left(ValueFailure.noCapitalLetterPassword(
+                failedValue: noCapitalLetterPassword)));
+      },
+    );
+
+    test(
+      'should return a no small letter Value Failure when the String doesn\'t contain a small letter',
+      () async {
+        // arrange
+        String noSmallLetterPassword = 'THISISINVALID1#';
+        // act
+        final result = validatePassword(noSmallLetterPassword);
+
+        // assert
+        expect(
+            result,
+            left(ValueFailure.noSmallLetterPassword(
+                failedValue: noSmallLetterPassword)));
       },
     );
   });
