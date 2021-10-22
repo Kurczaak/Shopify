@@ -190,5 +190,20 @@ void main() {
                 failedValue: noCapitalLetterPassword));
       },
     );
+    test(
+      'Password VVO should hold a no small letter Value Failure when the String doesn\'t contain a small letter',
+      () async {
+        // arrange
+        String noSmallLetterPassword = 'thisisinvalidpwd1#';
+        // act
+        final result = Password(noSmallLetterPassword);
+        final valueOrFailure = result.value.fold((f) => (f), (r) => r);
+        // assert
+        expect(
+            valueOrFailure,
+            ValueFailure.noSmallLetterPassword(
+                failedValue: noSmallLetterPassword));
+      },
+    );
   });
 }

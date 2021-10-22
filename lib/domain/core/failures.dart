@@ -8,4 +8,14 @@ abstract class ValueFailure<T> with _$ValueFailure<T> {
       InvalidEmail<T>;
   const factory ValueFailure.shortPassword({required T failedValue}) =
       ShortPassword<T>;
+  const factory ValueFailure.empty({required T failedValue}) = Empty<T>;
+
+  const factory ValueFailure.noSpecialCharacterPassword(
+      {required T failedValue}) = NoSpecialCharacterPassword<T>;
+  const factory ValueFailure.noNumericalCharacterPassword(
+      {required T failedValue}) = NoNumericalCharacterPassword<T>;
+  const factory ValueFailure.noCapitalLetterPassword({required T failedValue}) =
+      NoCapitalLetterPassword<T>;
+  const factory ValueFailure.noSmallLetterPassword({required T failedValue}) =
+      NoSmallLetterPassword<T>;
 }
