@@ -22,6 +22,33 @@ void main() {
     },
   );
 
+  /// Function used for sending mocked Auth Facade calls, mocking its answers
+  /// and checking if bloc states are accordingly emitted
+  /// [mockSubmitFunction] is a mock function form the AuthFacade interface
+  /// [expectedAnswer] is the mocked function's expected answer
+  /// [event] is the BLoC event we want to dispatch
+  void _mockSubmitAndVerify({
+    required Future<Either<AuthFailure, Unit>> Function() mockSubmitFunction,
+    required Either<AuthFailure, Unit> expectedAnswer,
+    required SignInFormEvent event,
+  }) {
+    //arrange
+    when(mockSubmitFunction()).thenAnswer((_) async => expectedAnswer);
+
+    final submittingState = bloc.state.copyWith(isSubmitting: true);
+    final unsuccessfulState = submittingState.copyWith(
+        isSubmitting: false, authFailureOrSuccessOption: some(expectedAnswer));
+
+    final expectedOrder = [submittingState, unsuccessfulState];
+    // act
+    expectLater(
+      bloc.stream.asBroadcastStream(),
+      emitsInOrder(expectedOrder),
+    );
+    // assert
+    bloc.add(event);
+  }
+
   group('emailChanged Event', () {
     const tEmailStr = 'correct@email.com';
     test(
@@ -75,21 +102,11 @@ void main() {
     test(
       'should emit submitting state, and then after a successful login emit a successState ',
       () async {
-        // arrange
-        when(iAuthFacadeMock.signInWithGoogle())
-            .thenAnswer((_) async => right(unit));
-        final submittingState = bloc.state.copyWith(isSubmitting: true);
-        final successState = submittingState.copyWith(
-            isSubmitting: false, authFailureOrSuccessOption: some(right(unit)));
-
-        final expectedOrder = [submittingState, successState];
-        // act
-        expectLater(
-          bloc.stream.asBroadcastStream(),
-          emitsInOrder(expectedOrder),
+        _mockSubmitAndVerify(
+          mockSubmitFunction: iAuthFacadeMock.signInWithGoogle,
+          event: const SignInFormEvent.signInWithGooglePressed(),
+          expectedAnswer: right(unit),
         );
-        // assert
-        bloc.add(const SignInFormEvent.signInWithGooglePressed());
       },
     );
 
@@ -97,22 +114,11 @@ void main() {
       'should emit submitting state, and then after a user taps out emit a failure state ',
       () async {
         // arrange
-        when(iAuthFacadeMock.signInWithGoogle())
-            .thenAnswer((_) async => left(const AuthFailure.cancelledByUser()));
-        final submittingState = bloc.state.copyWith(isSubmitting: true);
-        final unsuccessfulState = submittingState.copyWith(
-            isSubmitting: false,
-            authFailureOrSuccessOption:
-                some(left(const AuthFailure.cancelledByUser())));
-
-        final expectedOrder = [submittingState, unsuccessfulState];
-        // act
-        expectLater(
-          bloc.stream.asBroadcastStream(),
-          emitsInOrder(expectedOrder),
+        _mockSubmitAndVerify(
+          mockSubmitFunction: iAuthFacadeMock.signInWithGoogle,
+          event: const SignInFormEvent.signInWithGooglePressed(),
+          expectedAnswer: left(const AuthFailure.cancelledByUser()),
         );
-        // assert
-        bloc.add(const SignInFormEvent.signInWithGooglePressed());
       },
     );
 
@@ -120,22 +126,11 @@ void main() {
       'should emit submitting state, and after a server failure emit a failure state ',
       () async {
         // arrange
-        when(iAuthFacadeMock.signInWithGoogle())
-            .thenAnswer((_) async => left(const AuthFailure.serverSerror()));
-        final submittingState = bloc.state.copyWith(isSubmitting: true);
-        final unsuccessfulState = submittingState.copyWith(
-            isSubmitting: false,
-            authFailureOrSuccessOption:
-                some(left(const AuthFailure.serverSerror())));
-
-        final expectedOrder = [submittingState, unsuccessfulState];
-        // act
-        expectLater(
-          bloc.stream.asBroadcastStream(),
-          emitsInOrder(expectedOrder),
+        _mockSubmitAndVerify(
+          mockSubmitFunction: iAuthFacadeMock.signInWithGoogle,
+          event: const SignInFormEvent.signInWithGooglePressed(),
+          expectedAnswer: left(const AuthFailure.serverSerror()),
         );
-        // assert
-        bloc.add(const SignInFormEvent.signInWithGooglePressed());
       },
     );
   });
