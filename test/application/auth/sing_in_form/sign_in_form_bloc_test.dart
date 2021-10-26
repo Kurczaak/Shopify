@@ -134,4 +134,29 @@ void main() {
       },
     );
   });
+
+  group('register with email and password', () {
+    test(
+      'should ', // TODO
+      () async {
+        // arrange
+        const String emailStr = 'correct@email.com';
+        const String passwordStr = '12CorrecT@#';
+        when(iAuthFacadeMock.registerWithEmailAndPassword(
+                emailAddress: EmailAddress(emailStr),
+                password: Password(passwordStr)))
+            .thenAnswer((realInvocation) async => right(unit));
+        // act
+        bloc.add(const SignInFormEvent.registerWithEmailAndPasswordPressed(
+            emailStr, passwordStr));
+        await untilCalled(iAuthFacadeMock.registerWithEmailAndPassword(
+            emailAddress: EmailAddress(emailStr),
+            password: Password(passwordStr)));
+        // assert
+        verify(iAuthFacadeMock.registerWithEmailAndPassword(
+            emailAddress: EmailAddress(emailStr),
+            password: Password(passwordStr)));
+      },
+    );
+  });
 }

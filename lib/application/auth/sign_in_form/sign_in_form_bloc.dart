@@ -32,7 +32,11 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
           authFailureOrSuccessOption: none(),
         );
       },
-      registerWithEmailAndPasswordPressed: (e) async* {},
+      registerWithEmailAndPasswordPressed: (e) async* {
+        _authFacade.registerWithEmailAndPassword(
+            emailAddress: EmailAddress(e.emailStr),
+            password: Password(e.passwordStr));
+      },
       signInWithEmailAndPasswordPressed: (e) async* {},
       signInWithGooglePressed: (e) async* {
         yield state.copyWith(
