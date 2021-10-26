@@ -8,6 +8,8 @@ import 'package:shopify_client/domain/core/failures.dart';
 abstract class ValueObject<T> extends Equatable {
   Either<ValueFailure<T>, T> get value;
 
+  bool isValid() => value.isRight();
+
   const ValueObject();
 
   @override

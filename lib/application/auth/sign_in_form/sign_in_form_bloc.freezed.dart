@@ -983,12 +983,14 @@ class _$SignInFormStateTearOff {
       {required EmailAddress emailAddress,
       required Password password,
       required bool isSubmitting,
-      required Option<Either<AuthFailure, Unit>> authFailureOrSuccessOption}) {
+      required Option<Either<AuthFailure, Unit>> authFailureOrSuccessOption,
+      required bool showErrorMessages}) {
     return _SignInFormState(
       emailAddress: emailAddress,
       password: password,
       isSubmitting: isSubmitting,
       authFailureOrSuccessOption: authFailureOrSuccessOption,
+      showErrorMessages: showErrorMessages,
     );
   }
 }
@@ -1003,6 +1005,7 @@ mixin _$SignInFormState {
   bool get isSubmitting => throw _privateConstructorUsedError;
   Option<Either<AuthFailure, Unit>> get authFailureOrSuccessOption =>
       throw _privateConstructorUsedError;
+  bool get showErrorMessages => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SignInFormStateCopyWith<SignInFormState> get copyWith =>
@@ -1018,7 +1021,8 @@ abstract class $SignInFormStateCopyWith<$Res> {
       {EmailAddress emailAddress,
       Password password,
       bool isSubmitting,
-      Option<Either<AuthFailure, Unit>> authFailureOrSuccessOption});
+      Option<Either<AuthFailure, Unit>> authFailureOrSuccessOption,
+      bool showErrorMessages});
 }
 
 /// @nodoc
@@ -1036,6 +1040,7 @@ class _$SignInFormStateCopyWithImpl<$Res>
     Object? password = freezed,
     Object? isSubmitting = freezed,
     Object? authFailureOrSuccessOption = freezed,
+    Object? showErrorMessages = freezed,
   }) {
     return _then(_value.copyWith(
       emailAddress: emailAddress == freezed
@@ -1054,6 +1059,10 @@ class _$SignInFormStateCopyWithImpl<$Res>
           ? _value.authFailureOrSuccessOption
           : authFailureOrSuccessOption // ignore: cast_nullable_to_non_nullable
               as Option<Either<AuthFailure, Unit>>,
+      showErrorMessages: showErrorMessages == freezed
+          ? _value.showErrorMessages
+          : showErrorMessages // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -1069,7 +1078,8 @@ abstract class _$SignInFormStateCopyWith<$Res>
       {EmailAddress emailAddress,
       Password password,
       bool isSubmitting,
-      Option<Either<AuthFailure, Unit>> authFailureOrSuccessOption});
+      Option<Either<AuthFailure, Unit>> authFailureOrSuccessOption,
+      bool showErrorMessages});
 }
 
 /// @nodoc
@@ -1089,6 +1099,7 @@ class __$SignInFormStateCopyWithImpl<$Res>
     Object? password = freezed,
     Object? isSubmitting = freezed,
     Object? authFailureOrSuccessOption = freezed,
+    Object? showErrorMessages = freezed,
   }) {
     return _then(_SignInFormState(
       emailAddress: emailAddress == freezed
@@ -1107,6 +1118,10 @@ class __$SignInFormStateCopyWithImpl<$Res>
           ? _value.authFailureOrSuccessOption
           : authFailureOrSuccessOption // ignore: cast_nullable_to_non_nullable
               as Option<Either<AuthFailure, Unit>>,
+      showErrorMessages: showErrorMessages == freezed
+          ? _value.showErrorMessages
+          : showErrorMessages // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -1118,7 +1133,8 @@ class _$_SignInFormState implements _SignInFormState {
       {required this.emailAddress,
       required this.password,
       required this.isSubmitting,
-      required this.authFailureOrSuccessOption});
+      required this.authFailureOrSuccessOption,
+      required this.showErrorMessages});
 
   @override
   final EmailAddress emailAddress;
@@ -1128,10 +1144,12 @@ class _$_SignInFormState implements _SignInFormState {
   final bool isSubmitting;
   @override
   final Option<Either<AuthFailure, Unit>> authFailureOrSuccessOption;
+  @override
+  final bool showErrorMessages;
 
   @override
   String toString() {
-    return 'SignInFormState(emailAddress: $emailAddress, password: $password, isSubmitting: $isSubmitting, authFailureOrSuccessOption: $authFailureOrSuccessOption)';
+    return 'SignInFormState(emailAddress: $emailAddress, password: $password, isSubmitting: $isSubmitting, authFailureOrSuccessOption: $authFailureOrSuccessOption, showErrorMessages: $showErrorMessages)';
   }
 
   @override
@@ -1148,12 +1166,14 @@ class _$_SignInFormState implements _SignInFormState {
             (identical(other.authFailureOrSuccessOption,
                     authFailureOrSuccessOption) ||
                 other.authFailureOrSuccessOption ==
-                    authFailureOrSuccessOption));
+                    authFailureOrSuccessOption) &&
+            (identical(other.showErrorMessages, showErrorMessages) ||
+                other.showErrorMessages == showErrorMessages));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, emailAddress, password,
-      isSubmitting, authFailureOrSuccessOption);
+      isSubmitting, authFailureOrSuccessOption, showErrorMessages);
 
   @JsonKey(ignore: true)
   @override
@@ -1166,8 +1186,8 @@ abstract class _SignInFormState implements SignInFormState {
       {required EmailAddress emailAddress,
       required Password password,
       required bool isSubmitting,
-      required Option<Either<AuthFailure, Unit>>
-          authFailureOrSuccessOption}) = _$_SignInFormState;
+      required Option<Either<AuthFailure, Unit>> authFailureOrSuccessOption,
+      required bool showErrorMessages}) = _$_SignInFormState;
 
   @override
   EmailAddress get emailAddress;
@@ -1177,6 +1197,8 @@ abstract class _SignInFormState implements SignInFormState {
   bool get isSubmitting;
   @override
   Option<Either<AuthFailure, Unit>> get authFailureOrSuccessOption;
+  @override
+  bool get showErrorMessages;
   @override
   @JsonKey(ignore: true)
   _$SignInFormStateCopyWith<_SignInFormState> get copyWith =>

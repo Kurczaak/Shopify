@@ -35,9 +35,14 @@ void main() {
     //arrange
     when(mockSubmitFunction()).thenAnswer((_) async => expectedAnswer);
 
-    final submittingState = bloc.state.copyWith(isSubmitting: true);
+    final submittingState = bloc.state.copyWith(
+      isSubmitting: true,
+      authFailureOrSuccessOption: none(),
+    );
     final unsuccessfulState = submittingState.copyWith(
-        isSubmitting: false, authFailureOrSuccessOption: some(expectedAnswer));
+      isSubmitting: false,
+      authFailureOrSuccessOption: some(expectedAnswer),
+    );
 
     final expectedOrder = [submittingState, unsuccessfulState];
     // act
@@ -135,9 +140,10 @@ void main() {
     );
   });
 
-  group('register with email and password', () {
+  group('register with  email and password', () {
     const String emailStr = 'correct@email.com';
     const String passwordStr = '12CorrecT@#';
+
     test(
       'should call the iAuthFacade to register with email and password',
       () async {
@@ -163,20 +169,86 @@ void main() {
     test(
       'should emit loading state and successful state after the call',
       () async {
-        // arrange
+        // ignore: prefer_function_declarations_over_variables
         final mockedCall = () async =>
             iAuthFacadeMock.registerWithEmailAndPassword(
                 emailAddress: EmailAddress(emailStr),
                 password: Password(passwordStr));
+
         _mockSubmitAndVerify(
           mockSubmitFunction: mockedCall,
           expectedAnswer: right(unit),
           event: const SignInFormEvent.registerWithEmailAndPasswordPressed(
               emailStr, passwordStr),
         );
-        // act
+      },
+    );
 
-        // assert
+    test(
+      'should emit loading state and the unsuccessful state when email already in use',
+      () async {
+        // ignore: prefer_function_declarations_over_variables
+        final mockedCall = () async =>
+            iAuthFacadeMock.registerWithEmailAndPassword(
+                emailAddress: EmailAddress(emailStr),
+                password: Password(passwordStr));
+
+        _mockSubmitAndVerify(
+          mockSubmitFunction: mockedCall,
+          expectedAnswer: left(const AuthFailure.emailAlreadyInUse()),
+          event: const SignInFormEvent.registerWithEmailAndPasswordPressed(
+              emailStr, passwordStr),
+        );
+      },
+    );
+
+    test(
+      'should emit loading state and the unsuccessful state when received a 404 response',
+      () async {
+        // ignore: prefer_function_declarations_over_variables
+        final mockedCall = () async =>
+            iAuthFacadeMock.registerWithEmailAndPassword(
+                emailAddress: EmailAddress(emailStr),
+                password: Password(passwordStr));
+
+        _mockSubmitAndVerify(
+          mockSubmitFunction: mockedCall,
+          expectedAnswer: left(const AuthFailure.serverSerror()),
+          event: const SignInFormEvent.registerWithEmailAndPasswordPressed(
+              emailStr, passwordStr),
+        );
+      },
+    );
+
+    test(
+      'should check if email and password are valid and show error messages',
+      () {
+        // New mocks in order to prevent from mixing calls from the previous tests
+        final newIAuthFacadeMock = MockIAuthFacade();
+        final newBloc = SignInFormBloc(newIAuthFacadeMock);
+        // arrange
+        const String incorrectEmailStr = 'incorrectemail.com';
+        const String incorrectPasswordStr = '12345';
+        final incorrectEmail = EmailAddress(incorrectEmailStr);
+        final incorrectPassword = Password(incorrectPasswordStr);
+        when(newIAuthFacadeMock.registerWithEmailAndPassword(
+                emailAddress: incorrectEmail, password: incorrectPassword))
+            .thenAnswer((realInvocation) async => right(unit));
+
+        // act
+        newBloc.add(const SignInFormEvent.registerWithEmailAndPasswordPressed(
+            incorrectEmailStr, incorrectPasswordStr));
+
+        final errorState = newBloc.state.copyWith(
+          showErrorMessages: true,
+          authFailureOrSuccessOption: none(),
+        );
+
+        // assert later
+        expectLater(
+          newBloc.stream.asBroadcastStream(),
+          emits(errorState),
+        );
       },
     );
   });
