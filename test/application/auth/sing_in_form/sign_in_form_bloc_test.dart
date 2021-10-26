@@ -136,12 +136,13 @@ void main() {
   });
 
   group('register with email and password', () {
+    const String emailStr = 'correct@email.com';
+    const String passwordStr = '12CorrecT@#';
     test(
-      'should ', // TODO
+      'should call the iAuthFacade to register with email and password',
       () async {
         // arrange
-        const String emailStr = 'correct@email.com';
-        const String passwordStr = '12CorrecT@#';
+
         when(iAuthFacadeMock.registerWithEmailAndPassword(
                 emailAddress: EmailAddress(emailStr),
                 password: Password(passwordStr)))
@@ -156,6 +157,26 @@ void main() {
         verify(iAuthFacadeMock.registerWithEmailAndPassword(
             emailAddress: EmailAddress(emailStr),
             password: Password(passwordStr)));
+      },
+    );
+
+    test(
+      'should emit loading state and successful state after the call',
+      () async {
+        // arrange
+        final mockedCall = () async =>
+            iAuthFacadeMock.registerWithEmailAndPassword(
+                emailAddress: EmailAddress(emailStr),
+                password: Password(passwordStr));
+        _mockSubmitAndVerify(
+          mockSubmitFunction: mockedCall,
+          expectedAnswer: right(unit),
+          event: const SignInFormEvent.registerWithEmailAndPasswordPressed(
+              emailStr, passwordStr),
+        );
+        // act
+
+        // assert
       },
     );
   });
