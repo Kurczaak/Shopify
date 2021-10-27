@@ -154,6 +154,8 @@ void main() {
                 password: Password(passwordStr)))
             .thenAnswer((realInvocation) async => right(unit));
         // act
+        bloc.add(const SignInFormEvent.emailChanged(emailStr));
+        bloc.add(const SignInFormEvent.passwordChanged(passwordStr));
         bloc.add(const SignInFormEvent.registerWithEmailAndPasswordPressed(
             emailStr, passwordStr));
         await untilCalled(iAuthFacadeMock.registerWithEmailAndPassword(
@@ -237,6 +239,103 @@ void main() {
 
         // act
         newBloc.add(const SignInFormEvent.registerWithEmailAndPasswordPressed(
+            incorrectEmailStr, incorrectPasswordStr));
+
+        final errorState = newBloc.state.copyWith(
+          showErrorMessages: true,
+          authFailureOrSuccessOption: none(),
+        );
+
+        // assert later
+        expectLater(
+          newBloc.stream.asBroadcastStream(),
+          emits(errorState),
+        );
+      },
+    );
+  });
+
+  group('sign in with  email and password', () {
+    const String emailStr = 'correct@email.com';
+    const String passwordStr = '12CorrecT@#';
+
+    test(
+      'should call the iAuthFacade to sign in with email and password',
+      () async {
+        // arrange
+
+        when(iAuthFacadeMock.signInWithEmailAndPassword(
+                emailAddress: EmailAddress(emailStr),
+                password: Password(passwordStr)))
+            .thenAnswer((realInvocation) async => right(unit));
+        // act
+        bloc.add(const SignInFormEvent.emailChanged(emailStr));
+        bloc.add(const SignInFormEvent.passwordChanged(passwordStr));
+        bloc.add(const SignInFormEvent.signInWithEmailAndPasswordPressed(
+            emailStr, passwordStr));
+        await untilCalled(iAuthFacadeMock.signInWithEmailAndPassword(
+            emailAddress: EmailAddress(emailStr),
+            password: Password(passwordStr)));
+        // assert
+        verify(iAuthFacadeMock.signInWithEmailAndPassword(
+            emailAddress: EmailAddress(emailStr),
+            password: Password(passwordStr)));
+      },
+    );
+
+    test(
+      'should emit loading state and successful state after the call',
+      () async {
+        // ignore: prefer_function_declarations_over_variables
+        final mockedCall = () async =>
+            iAuthFacadeMock.signInWithEmailAndPassword(
+                emailAddress: EmailAddress(emailStr),
+                password: Password(passwordStr));
+
+        _mockSubmitAndVerify(
+          mockSubmitFunction: mockedCall,
+          expectedAnswer: right(unit),
+          event: const SignInFormEvent.signInWithEmailAndPasswordPressed(
+              emailStr, passwordStr),
+        );
+      },
+    );
+
+    test(
+      'should emit loading state and the unsuccessful state when received a 404 response',
+      () async {
+        // ignore: prefer_function_declarations_over_variables
+        final mockedCall = () async =>
+            iAuthFacadeMock.signInWithEmailAndPassword(
+                emailAddress: EmailAddress(emailStr),
+                password: Password(passwordStr));
+
+        _mockSubmitAndVerify(
+          mockSubmitFunction: mockedCall,
+          expectedAnswer: left(const AuthFailure.serverSerror()),
+          event: const SignInFormEvent.signInWithEmailAndPasswordPressed(
+              emailStr, passwordStr),
+        );
+      },
+    );
+
+    test(
+      'should check if email and password are valid and show error messages',
+      () {
+        // New mocks in order to prevent from mixing calls from the previous tests
+        final newIAuthFacadeMock = MockIAuthFacade();
+        final newBloc = SignInFormBloc(newIAuthFacadeMock);
+        // arrange
+        const String incorrectEmailStr = 'incorrectemail.com';
+        const String incorrectPasswordStr = '12345';
+        final incorrectEmail = EmailAddress(incorrectEmailStr);
+        final incorrectPassword = Password(incorrectPasswordStr);
+        when(newIAuthFacadeMock.signInWithEmailAndPassword(
+                emailAddress: incorrectEmail, password: incorrectPassword))
+            .thenAnswer((realInvocation) async => right(unit));
+
+        // act
+        newBloc.add(const SignInFormEvent.signInWithEmailAndPasswordPressed(
             incorrectEmailStr, incorrectPasswordStr));
 
         final errorState = newBloc.state.copyWith(
