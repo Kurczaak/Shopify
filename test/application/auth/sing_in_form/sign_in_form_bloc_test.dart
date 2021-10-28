@@ -12,6 +12,12 @@ import 'sign_in_form_bloc_test.mocks.dart';
 void main() {
   MockIAuthFacade iAuthFacadeMock = MockIAuthFacade();
   SignInFormBloc bloc = SignInFormBloc(iAuthFacadeMock);
+
+  setUp(() {
+    iAuthFacadeMock = MockIAuthFacade();
+    bloc = SignInFormBloc(iAuthFacadeMock);
+  });
+
   test(
     'Initialy BLoC should contain an initial state',
     () async {
