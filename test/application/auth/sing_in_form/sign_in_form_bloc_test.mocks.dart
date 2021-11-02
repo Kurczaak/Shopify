@@ -55,6 +55,5 @@ class MockIAuthFacade extends _i1.Mock implements _i3.IAuthFacade {
                   _FakeEither_0<_i5.AuthFailure, _i2.Unit>()))
           as _i4.Future<_i2.Either<_i5.AuthFailure, _i2.Unit>>);
   @override
-  // ignore: unnecessary_overrides
   String toString() => super.toString();
 }
