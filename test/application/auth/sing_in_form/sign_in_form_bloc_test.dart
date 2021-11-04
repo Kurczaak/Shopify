@@ -11,12 +11,11 @@ import 'package:mockito/mockito.dart';
 import 'sign_in_form_bloc_test.mocks.dart';
 import 'package:bloc_test/bloc_test.dart';
 
-//class MockIAuthFacade extends Mock implements IAuthFacade {}
-
 @GenerateMocks([IAuthFacade])
 void main() {
   MockIAuthFacade mockIAuthFacade = MockIAuthFacade();
   SignInFormBloc signInFormBloc = SignInFormBloc(mockIAuthFacade);
+
   setUp(() {
     mockIAuthFacade = MockIAuthFacade();
     signInFormBloc = SignInFormBloc(mockIAuthFacade);
@@ -41,6 +40,114 @@ void main() {
     return SignInFormBloc(mockIAuthFacade);
   }
 
+  group('Email changed', () {
+    const correctEmailStr = 'correct@email.com';
+    const incorrectEmailStr = 'incorrectemail.com';
+
+    blocTest(
+      'should emit a state with correct email address',
+      build: () {
+        return SignInFormBloc(mockIAuthFacade);
+      },
+      act: (SignInFormBloc bloc) =>
+          bloc.add(const SignInFormEvent.emailChanged(correctEmailStr)),
+      expect: () {
+        return [
+          SignInFormState.initial()
+              .copyWith(emailAddress: EmailAddress(correctEmailStr))
+        ];
+      },
+    );
+
+    blocTest(
+      'should emit a state with incorrect email address',
+      build: () {
+        return SignInFormBloc(mockIAuthFacade);
+      },
+      act: (SignInFormBloc bloc) =>
+          bloc.add(const SignInFormEvent.emailChanged(incorrectEmailStr)),
+      expect: () {
+        return [
+          SignInFormState.initial()
+              .copyWith(emailAddress: EmailAddress(incorrectEmailStr))
+        ];
+      },
+    );
+
+    blocTest(
+      'should emit a state with none authFailureOrSuccessOption when email addres changes',
+      build: () {
+        return SignInFormBloc(mockIAuthFacade);
+      },
+      seed: () => SignInFormState.initial().copyWith(
+        authFailureOrSuccessOption:
+            some(left(const AuthFailure.serverSerror())),
+      ),
+      act: (SignInFormBloc bloc) =>
+          bloc.add(const SignInFormEvent.emailChanged(incorrectEmailStr)),
+      expect: () {
+        return [
+          SignInFormState.initial()
+              .copyWith(emailAddress: EmailAddress(incorrectEmailStr))
+        ];
+      },
+    );
+  });
+
+  group('Password changed', () {
+    const correctPasswordStr = '123ABcd!@#';
+    const incorrectPasswordStr = 'abcde';
+
+    blocTest(
+      'should emit a state with correct email address',
+      build: () {
+        return SignInFormBloc(mockIAuthFacade);
+      },
+      act: (SignInFormBloc bloc) =>
+          bloc.add(const SignInFormEvent.emailChanged(correctPasswordStr)),
+      expect: () {
+        return [
+          SignInFormState.initial()
+              .copyWith(emailAddress: EmailAddress(correctPasswordStr))
+        ];
+      },
+    );
+
+    blocTest(
+      'should emit a state with incorrect email address',
+      build: () {
+        return SignInFormBloc(mockIAuthFacade);
+      },
+      act: (SignInFormBloc bloc) =>
+          bloc.add(const SignInFormEvent.emailChanged(incorrectPasswordStr)),
+      expect: () {
+        return [
+          SignInFormState.initial()
+              .copyWith(emailAddress: EmailAddress(incorrectPasswordStr))
+        ];
+      },
+    );
+
+    blocTest(
+      'should emit a state with none authFailureOrSuccessOption when password changes',
+      build: () {
+        return SignInFormBloc(mockIAuthFacade);
+      },
+      seed: () => SignInFormState.initial().copyWith(
+        authFailureOrSuccessOption:
+            some(left(const AuthFailure.serverSerror())),
+      ),
+      act: (SignInFormBloc bloc) =>
+          bloc.add(const SignInFormEvent.emailChanged(incorrectPasswordStr)),
+      expect: () {
+        return [
+          SignInFormState.initial()
+              .copyWith(emailAddress: EmailAddress(incorrectPasswordStr))
+        ];
+      },
+    );
+  });
+
   group('signInWithGooglePressed Tests', () {
     test('initial state should be empty', () {
       // assert
@@ -54,7 +161,7 @@ void main() {
         mockIAuthFacade.signInWithGoogle();
 
     blocTest(
-      'emits Loading and Loaded state when successful',
+      'should emit Loading and Loaded state when successful',
       build: () => _mockAndBuild(
           call: mockIAuthFacade.signInWithGoogle,
           failureOrSuccess: right(unit)),
@@ -64,7 +171,7 @@ void main() {
     );
 
     blocTest(
-      'emits Loading and Failure state when cancelled by user',
+      'should emit Loading and Failure state when cancelled by user',
       build: () => _mockAndBuild(
           call: mockIAuthFacade.signInWithGoogle,
           failureOrSuccess: left(const AuthFailure.cancelledByUser())),
@@ -76,7 +183,7 @@ void main() {
     );
 
     blocTest(
-      'emits Loading and Failure state when server error',
+      'should emit Loading and Failure state when server error',
       build: () => _mockAndBuild(
           call: mockIAuthFacade.signInWithGoogle,
           failureOrSuccess: left(const AuthFailure.serverSerror())),
