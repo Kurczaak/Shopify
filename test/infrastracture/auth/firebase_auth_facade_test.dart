@@ -182,6 +182,26 @@ void main() async {
     );
 
     test(
+      'should return AuthFailure.invalidEmailAndPasswordCombination when user with given email address has not been found',
+      () async {
+        // arrange
+        when(mockFirebaseAuth.signInWithEmailAndPassword(
+                email: emailAddressStr, password: passwordStr))
+            .thenThrow(FirebaseAuthException(code: 'user-not-found'));
+        // act
+        final failureOrUnit =
+            await firebaseAuthFacade.signInWithEmailAndPassword(
+                emailAddress: EmailAddress(emailAddressStr),
+                password: Password(passwordStr));
+        // assert
+        verify(mockFirebaseAuth.signInWithEmailAndPassword(
+            email: emailAddressStr, password: passwordStr));
+        expect(failureOrUnit,
+            left(const AuthFailure.invalidEmailAndPasswordCombination()));
+      },
+    );
+
+    test(
       'should return AuthFailure.serverError when any other FirebaseAuthException is thrown',
       () async {
         // arrange
