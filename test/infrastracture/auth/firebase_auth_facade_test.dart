@@ -161,5 +161,24 @@ void main() async {
         expect(failureOrUnit, right(unit));
       },
     );
+    test(
+      'should return AuthFailure.invalidEmailAndPasswordCombination when entered password is correct but does not match given email address',
+      () async {
+        // arrange
+        when(mockFirebaseAuth.signInWithEmailAndPassword(
+                email: emailAddressStr, password: passwordStr))
+            .thenThrow(FirebaseAuthException(code: 'wrong-password'));
+        // act
+        final failureOrUnit =
+            await firebaseAuthFacade.signInWithEmailAndPassword(
+                emailAddress: EmailAddress(emailAddressStr),
+                password: Password(passwordStr));
+        // assert
+        verify(mockFirebaseAuth.signInWithEmailAndPassword(
+            email: emailAddressStr, password: passwordStr));
+        expect(failureOrUnit,
+            const AuthFailure.invalidEmailAndPasswordCombination());
+      },
+    );
   });
 }
