@@ -135,13 +135,29 @@ void main() async {
                 email: emailAddressStr, password: passwordStr))
             .thenAnswer((_) async => MockUserCredential());
         // act
+
+        await firebaseAuthFacade.signInWithEmailAndPassword(
+            emailAddress: EmailAddress(emailAddressStr),
+            password: Password(passwordStr));
+        // assert
+        verify(mockFirebaseAuth.signInWithEmailAndPassword(
+            email: emailAddressStr, password: passwordStr));
+      },
+    );
+
+    test(
+      'should return unit when entered a correct email and password combination',
+      () async {
+        // arrange
+        when(mockFirebaseAuth.signInWithEmailAndPassword(
+                email: emailAddressStr, password: passwordStr))
+            .thenAnswer((_) async => MockUserCredential());
+        // act
         final failureOrUnit =
             await firebaseAuthFacade.signInWithEmailAndPassword(
                 emailAddress: EmailAddress(emailAddressStr),
                 password: Password(passwordStr));
         // assert
-        verify(mockFirebaseAuth.signInWithEmailAndPassword(
-            email: emailAddressStr, password: passwordStr));
         expect(failureOrUnit, right(unit));
       },
     );

@@ -35,7 +35,13 @@ class FirebaseAuthFacade implements IAuthFacade {
   Future<Either<AuthFailure, Unit>> signInWithEmailAndPassword({
     required EmailAddress emailAddress,
     required Password password,
-  }) {
+  }) async {
+    final emailAddressString = emailAddress.getOrCrash();
+    final passwordString = password.getOrCrash();
+
+    _firebaseAuth.signInWithEmailAndPassword(
+        email: emailAddressString, password: passwordString);
+    return right(unit);
     // TODO: implement signInWithEmailAndPassword
     throw UnimplementedError();
   }
