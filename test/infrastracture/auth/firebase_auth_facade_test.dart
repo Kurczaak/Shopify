@@ -177,7 +177,7 @@ void main() async {
         verify(mockFirebaseAuth.signInWithEmailAndPassword(
             email: emailAddressStr, password: passwordStr));
         expect(failureOrUnit,
-            const AuthFailure.invalidEmailAndPasswordCombination());
+            left(const AuthFailure.invalidEmailAndPasswordCombination()));
       },
     );
   });

@@ -39,8 +39,14 @@ class FirebaseAuthFacade implements IAuthFacade {
     final emailAddressString = emailAddress.getOrCrash();
     final passwordString = password.getOrCrash();
 
-    _firebaseAuth.signInWithEmailAndPassword(
-        email: emailAddressString, password: passwordString);
+    try {
+      _firebaseAuth.signInWithEmailAndPassword(
+          email: emailAddressString, password: passwordString);
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'wrong-password') {
+        return left(const AuthFailure.invalidEmailAndPasswordCombination());
+      }
+    }
     return right(unit);
     // TODO: implement signInWithEmailAndPassword
     throw UnimplementedError();
