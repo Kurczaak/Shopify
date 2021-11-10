@@ -1,12 +1,19 @@
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:shopify_client/domain/core/errors.dart';
 
 import 'package:shopify_client/domain/core/failures.dart';
 
 @immutable
 abstract class ValueObject<T> extends Equatable {
   Either<ValueFailure<T>, T> get value;
+
+  /// Trhows [UnexpectedValueError] containing the [ValueFailure]
+  T getOrCrash() {
+    // id = identity - sam as writing (right) => right
+    return value.fold((f) => throw UnexpectedValueError(f), id);
+  }
 
   bool isValid() => value.isRight();
 
