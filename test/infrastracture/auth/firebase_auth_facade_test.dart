@@ -180,5 +180,66 @@ void main() async {
             left(const AuthFailure.invalidEmailAndPasswordCombination()));
       },
     );
+
+    test(
+      'should return AuthFailure.serverError when any other FirebaseAuthException is thrown',
+      () async {
+        // arrange
+        when(mockFirebaseAuth.signInWithEmailAndPassword(
+                email: emailAddressStr, password: passwordStr))
+            .thenThrow(FirebaseAuthException(code: 'any-exception'));
+        // act
+        final failureOrUnit =
+            await firebaseAuthFacade.signInWithEmailAndPassword(
+                emailAddress: EmailAddress(emailAddressStr),
+                password: Password(passwordStr));
+        // assert
+        verify(mockFirebaseAuth.signInWithEmailAndPassword(
+            email: emailAddressStr, password: passwordStr));
+        expect(failureOrUnit, left(const AuthFailure.serverSerror()));
+      },
+    );
+
+    test(
+      'should throw an UnexpectedValueError then trying to signIn with incorrect email address',
+      () async {
+        // arrange
+        when(mockFirebaseAuth.signInWithEmailAndPassword(
+                email: invalidEmailAddressStr, password: passwordStr))
+            .thenAnswer((_) async => MockUserCredential());
+        // act
+
+        // ignore: prefer_function_declarations_over_variables
+        final functionCall = () async =>
+            firebaseAuthFacade.signInWithEmailAndPassword(
+                emailAddress: EmailAddress(invalidEmailAddressStr),
+                password: Password(passwordStr));
+        // assert
+        verifyZeroInteractions(mockFirebaseAuth);
+        expect(() async => await functionCall(),
+            throwsA(const TypeMatcher<UnexpectedValueError>()));
+      },
+    );
+
+    test(
+      'should throw an UnexpectedValueError then trying to signIn with incorrect password',
+      () async {
+        // arrange
+        when(mockFirebaseAuth.signInWithEmailAndPassword(
+                email: emailAddressStr, password: invalidPasswordStr))
+            .thenAnswer((_) async => MockUserCredential());
+        // act
+
+        // ignore: prefer_function_declarations_over_variables
+        final functionCall = () async =>
+            firebaseAuthFacade.signInWithEmailAndPassword(
+                emailAddress: EmailAddress(emailAddressStr),
+                password: Password(invalidPasswordStr));
+        // assert
+        verifyZeroInteractions(mockFirebaseAuth);
+        expect(() async => await functionCall(),
+            throwsA(const TypeMatcher<UnexpectedValueError>()));
+      },
+    );
   });
 }
