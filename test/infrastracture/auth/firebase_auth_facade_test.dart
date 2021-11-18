@@ -35,57 +35,6 @@ void main() async {
     firebaseAuthFacade = FirebaseAuthFacade(mockFirebaseAuth, mockGoogleSignIn);
   });
 
-  /// Tests if [firebaseAuthFacadeCall] returns a certain [authFailure] when
-  /// [mockFirebaseCall] returns a FirebaseAuthException with a given [authExceptionCode]
-  /// and verifies if [mockFirebaseCall] is called within the [firebaseAuthFacadeCall]
-  Future<void> _throwFirebaseAuthExceptionAndExpectAuthFailure({
-    required String authExceptionCode,
-    required AuthFailure authFailure,
-    required Future<UserCredential> Function(
-            {required String email, required String password})
-        mockFirebaseCall,
-    required Future<Either<AuthFailure, Unit>> Function(
-            {required EmailAddress emailAddress, required Password password})
-        firebaseAuthFacadeCall,
-  }) async {
-    //arrange
-    const correctEmailStr = 'correct@email.com';
-    const correctPasswordStr = '12ABcde!@';
-    when(mockFirebaseCall(email: correctEmailStr, password: correctPasswordStr))
-        .thenThrow(FirebaseAuthException(code: authExceptionCode));
-    // act
-    final failureOrUnit = await firebaseAuthFacadeCall(
-        emailAddress: EmailAddress(correctEmailStr),
-        password: Password(correctPasswordStr));
-    // assert
-    verify(
-        mockFirebaseCall(email: correctEmailStr, password: correctPasswordStr));
-    expect(failureOrUnit, left(authFailure));
-  }
-
-  void _checkUnexpectedValueErrorAndZeroInteractionsWithFirebase({
-    required String emailAddress,
-    required String password,
-    required Future<UserCredential> Function(
-            {required String email, required String password})
-        whenCall,
-  }) {
-    //arrange
-
-    when(whenCall(email: emailAddress, password: password))
-        .thenThrow(FirebaseAuthException(code: 'invalid-credential'));
-    // act
-    // ignore: prefer_function_declarations_over_variables
-    final functionCall = () async =>
-        await firebaseAuthFacade.registerWithEmailAndPassword(
-            emailAddress: EmailAddress(emailAddress),
-            password: Password(password));
-    // assert
-    verifyZeroInteractions(mockFirebaseAuth);
-    expect(() async => await functionCall(),
-        throwsA(const TypeMatcher<UnexpectedValueError>()));
-  }
-
   group('registerWithEmailAndPassword', () {
     test(
       'should return right(unit) when succesfully registered',
@@ -135,9 +84,12 @@ void main() async {
       'should throw an UnexpectedValueError when trying to register with invalid email',
       () async {
         _checkUnexpectedValueErrorAndZeroInteractionsWithFirebase(
-            emailAddress: invalidEmailAddressStr,
-            password: passwordStr,
-            whenCall: mockFirebaseAuth.createUserWithEmailAndPassword);
+          emailAddress: invalidEmailAddressStr,
+          password: passwordStr,
+          mockFirebaseCall: mockFirebaseAuth.createUserWithEmailAndPassword,
+          firebaseAuthFacadeCall:
+              firebaseAuthFacade.registerWithEmailAndPassword,
+        );
       },
     );
 
@@ -145,9 +97,12 @@ void main() async {
       'should throw an UnexpectedValueError when trying to register with invalid password',
       () async {
         _checkUnexpectedValueErrorAndZeroInteractionsWithFirebase(
-            emailAddress: emailAddressStr,
-            password: invalidPasswordStr,
-            whenCall: mockFirebaseAuth.createUserWithEmailAndPassword);
+          emailAddress: emailAddressStr,
+          password: invalidPasswordStr,
+          mockFirebaseCall: mockFirebaseAuth.createUserWithEmailAndPassword,
+          firebaseAuthFacadeCall:
+              firebaseAuthFacade.registerWithEmailAndPassword,
+        );
       },
     );
   });
@@ -227,10 +182,11 @@ void main() async {
       'should throw an UnexpectedValueError when trying to signIn with incorrect email address',
       () async {
         _checkUnexpectedValueErrorAndZeroInteractionsWithFirebase(
-          emailAddress: invalidEmailAddressStr,
-          password: passwordStr,
-          whenCall: mockFirebaseAuth.signInWithEmailAndPassword,
-        );
+            emailAddress: invalidEmailAddressStr,
+            password: passwordStr,
+            mockFirebaseCall: mockFirebaseAuth.signInWithEmailAndPassword,
+            firebaseAuthFacadeCall:
+                firebaseAuthFacade.signInWithEmailAndPassword);
       },
     );
 
@@ -238,11 +194,67 @@ void main() async {
       'should throw an UnexpectedValueError when trying to signIn with incorrect password',
       () async {
         _checkUnexpectedValueErrorAndZeroInteractionsWithFirebase(
-          emailAddress: emailAddressStr,
-          password: invalidPasswordStr,
-          whenCall: mockFirebaseAuth.signInWithEmailAndPassword,
-        );
+            emailAddress: emailAddressStr,
+            password: invalidPasswordStr,
+            mockFirebaseCall: mockFirebaseAuth.signInWithEmailAndPassword,
+            firebaseAuthFacadeCall:
+                firebaseAuthFacade.signInWithEmailAndPassword);
       },
     );
   });
+}
+
+/// Tests if [firebaseAuthFacadeCall] returns a certain [authFailure] when
+/// [mockFirebaseCall] returns a FirebaseAuthException with a given [authExceptionCode]
+/// and verifies if [mockFirebaseCall] is called within the [firebaseAuthFacadeCall]
+/// assuring correct email and password credentials
+Future<void> _throwFirebaseAuthExceptionAndExpectAuthFailure({
+  required String authExceptionCode,
+  required AuthFailure authFailure,
+  required Future<UserCredential> Function(
+          {required String email, required String password})
+      mockFirebaseCall,
+  required Future<Either<AuthFailure, Unit>> Function(
+          {required EmailAddress emailAddress, required Password password})
+      firebaseAuthFacadeCall,
+}) async {
+  //arrange
+  const correctEmailStr = 'correct@email.com';
+  const correctPasswordStr = '12ABcde!@';
+  when(mockFirebaseCall(email: correctEmailStr, password: correctPasswordStr))
+      .thenThrow(FirebaseAuthException(code: authExceptionCode));
+  // act
+  final failureOrUnit = await firebaseAuthFacadeCall(
+      emailAddress: EmailAddress(correctEmailStr),
+      password: Password(correctPasswordStr));
+  // assert
+  verify(
+      mockFirebaseCall(email: correctEmailStr, password: correctPasswordStr));
+  expect(failureOrUnit, left(authFailure));
+}
+
+/// Tests if UnexpectedValueError is thrown when trying to execute a [firebaseAuthFacadeCall]
+/// with an incorrect [emailAddress] or an incorrect [password], and making sure
+/// that the [mockFirebaseCall] is not executed during this attempt
+void _checkUnexpectedValueErrorAndZeroInteractionsWithFirebase({
+  required String emailAddress,
+  required String password,
+  required Future<UserCredential> Function(
+          {required String email, required String password})
+      mockFirebaseCall,
+  required Future<Either<AuthFailure, Unit>> Function(
+          {required EmailAddress emailAddress, required Password password})
+      firebaseAuthFacadeCall,
+}) {
+  //arrange
+  when(mockFirebaseCall(email: emailAddress, password: password))
+      .thenThrow(FirebaseAuthException(code: 'invalid-credential'));
+  // act
+  // ignore: prefer_function_declarations_over_variables
+  final functionCall = () async => await firebaseAuthFacadeCall(
+      emailAddress: EmailAddress(emailAddress), password: Password(password));
+  // assert
+  verifyNever(mockFirebaseCall(email: emailAddress, password: password));
+  expect(() async => await functionCall(),
+      throwsA(const TypeMatcher<UnexpectedValueError>()));
 }
