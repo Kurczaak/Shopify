@@ -38,7 +38,6 @@ class FirebaseAuthFacade implements IAuthFacade {
   }) async {
     final emailAddressString = emailAddress.getOrCrash();
     final passwordString = password.getOrCrash();
-
     try {
       _firebaseAuth.signInWithEmailAndPassword(
           email: emailAddressString, password: passwordString);
@@ -53,8 +52,17 @@ class FirebaseAuthFacade implements IAuthFacade {
   }
 
   @override
-  Future<Either<AuthFailure, Unit>> signInWithGoogle() {
-    // TODO: implement signInWithGoogle
-    throw UnimplementedError();
+  Future<Either<AuthFailure, Unit>> signInWithGoogle() async {
+    final accountOrNull = await _googleSignIn.signIn();
+    if (accountOrNull != null) {
+      final authentication = await accountOrNull.authentication;
+      final authCredential = GoogleAuthProvider.credential(
+          accessToken: authentication.accessToken,
+          idToken: authentication.idToken);
+      await _firebaseAuth.signInWithCredential(authCredential);
+      return right(unit);
+    } else {
+      return left(const AuthFailure.cancelledByUser());
+    }
   }
 }

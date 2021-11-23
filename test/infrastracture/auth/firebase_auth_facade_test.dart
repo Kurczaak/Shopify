@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:google_sign_in/testing.dart';
+//import 'package:google_sign_in_mocks/google_sign_in_mocks.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -13,9 +14,42 @@ import 'package:shopify_client/infrastructure/auth/firebase_auth_facade.dart';
 
 import 'firebase_auth_facade_test.mocks.dart';
 
-@GenerateMocks([FirebaseAuth, UserCredential, GoogleSignIn])
+mixin LegacyEquality {
+  @override
+  bool operator ==(dynamic other) => throw UnimplementedError();
+
+  @override
+  int get hashCode => throw UnimplementedError();
+}
+
+class MockGoogleSignInAuthentication extends Mock
+    implements GoogleSignInAuthentication {
+  @override
+  String get accessToken => 'accessToken';
+  @override
+  String get idToken => 'id_token';
+}
+
+// class MockGoogleSignInAccount extends Mock implements GoogleSignInAccount {
+//   @override
+//   bool operator ==(dynamic other) => true;
+
+//   @override
+//   int get hashCode => super.hashCode;
+// }
+
+class FakeUserCredential extends Fake implements UserCredential {}
+
+class MockGoogleAuthProvider extends Mock implements GoogleAuthProvider {}
+
+@GenerateMocks(
+    [FirebaseAuth, UserCredential, GoogleSignIn, GoogleSignInAccount])
 void main() async {
   MockUserCredential userCredential = MockUserCredential();
+  MockGoogleSignInAccount googleSignInAccount = MockGoogleSignInAccount();
+  MockGoogleSignInAuthentication mockGoogleSignInAuthentication =
+      MockGoogleSignInAuthentication();
+  MockGoogleAuthProvider mockGoogleAuthProvider = MockGoogleAuthProvider();
 
   const emailAddressStr = 'correct@email.com';
   const passwordStr = '12ABcde!@';
@@ -33,6 +67,10 @@ void main() async {
     mockFirebaseAuth = MockFirebaseAuth();
     mockGoogleSignIn = MockGoogleSignIn();
     firebaseAuthFacade = FirebaseAuthFacade(mockFirebaseAuth, mockGoogleSignIn);
+    when(mockFirebaseAuth.signInWithCredential(any))
+        .thenAnswer((_) async => FakeUserCredential());
+    when(googleSignInAccount.authentication)
+        .thenAnswer((_) async => MockGoogleSignInAuthentication());
   });
 
   group('registerWithEmailAndPassword', () {
@@ -199,6 +237,68 @@ void main() async {
             mockFirebaseCall: mockFirebaseAuth.signInWithEmailAndPassword,
             firebaseAuthFacadeCall:
                 firebaseAuthFacade.signInWithEmailAndPassword);
+      },
+    );
+  });
+
+  group('signInWithGoogle', () {
+    test(
+      'should call googleSignInApi when signing in with google',
+      () async {
+        // arrange
+        when(mockGoogleSignIn.signIn())
+            .thenAnswer((_) async => googleSignInAccount);
+        // act
+        firebaseAuthFacade.signInWithGoogle();
+        // assert
+        verify(mockGoogleSignIn.signIn());
+      },
+    );
+
+    test(
+      'should return unit when succesfully signedIn',
+      () async {
+        // arrange
+        when(mockGoogleSignIn.signIn())
+            .thenAnswer((_) async => googleSignInAccount);
+        // act
+        final valueOrFailure = await firebaseAuthFacade.signInWithGoogle();
+        // assert
+        expect(valueOrFailure, right(unit));
+      },
+    );
+
+    test(
+      'should return AuthFailure when cancelled by user',
+      () async {
+        // arrange
+        when(mockGoogleSignIn.signIn()).thenAnswer((_) async => null);
+        // act
+        final valueOrFailure = await firebaseAuthFacade.signInWithGoogle();
+        // assert
+        expect(valueOrFailure, left(const AuthFailure.cancelledByUser()));
+      },
+    );
+
+    test(
+      'should sign in with google credentials when account is not null',
+      () async {
+        // arrange
+        when(mockGoogleSignIn.signIn())
+            .thenAnswer((_) async => googleSignInAccount);
+        when(googleSignInAccount.authentication)
+            .thenAnswer((_) async => mockGoogleSignInAuthentication);
+
+        final authCredential = GoogleAuthProvider.credential(
+            accessToken: mockGoogleSignInAuthentication.accessToken,
+            idToken: mockGoogleSignInAuthentication.idToken);
+        final userMock = MockUserCredential();
+        when(mockFirebaseAuth.signInWithCredential(authCredential))
+            .thenAnswer((_) async => userMock);
+        //act
+        await firebaseAuthFacade.signInWithGoogle();
+        // assert
+        verify(mockFirebaseAuth.signInWithCredential(any)).called(1);
       },
     );
   });
