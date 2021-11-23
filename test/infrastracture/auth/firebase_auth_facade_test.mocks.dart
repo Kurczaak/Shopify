@@ -328,19 +328,10 @@ class MockGoogleSignIn extends _i1.Mock implements _i5.GoogleSignIn {
   String toString() => super.toString();
 }
 
-mixin LegacyEquality {
-  @override
-  bool operator ==(dynamic other) => throw UnimplementedError();
-
-  @override
-  int get hashCode => throw UnimplementedError();
-}
-
 /// A class which mocks [GoogleSignInAccount].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockGoogleSignInAccount extends _i1.Mock
-    with LegacyEquality
     implements _i5.GoogleSignInAccount {
   MockGoogleSignInAccount() {
     _i1.throwOnMissingStub(this);
