@@ -29,16 +29,35 @@ class MockGoogleSignInAuthentication extends Mock
 
 class FakeUserCredential extends Fake implements UserCredential {}
 
-class MockGoogleAuthProvider extends Mock implements GoogleAuthProvider {}
+class MockGoogleSignInAccount extends Mock
+    with LegacyEquality
+    implements GoogleSignInAccount {
+  MockGoogleSignInAccount() {
+    throwOnMissingStub(this);
+  }
 
-@GenerateMocks(
-    [FirebaseAuth, UserCredential, GoogleSignIn, GoogleSignInAccount])
+  @override
+  String get email => 'email@example.com';
+  @override
+  String get id => 'id1234';
+  @override
+  Future<GoogleSignInAuthentication> get authentication =>
+      (super.noSuchMethod(Invocation.getter(#authentication),
+              returnValue: Future<GoogleSignInAuthentication>.value(
+                  MockGoogleSignInAuthentication()))
+          as Future<GoogleSignInAuthentication>);
+}
+
+@GenerateMocks([
+  FirebaseAuth,
+  UserCredential,
+  GoogleSignIn,
+])
 void main() async {
   MockUserCredential userCredential = MockUserCredential();
   MockGoogleSignInAccount googleSignInAccount = MockGoogleSignInAccount();
   MockGoogleSignInAuthentication mockGoogleSignInAuthentication =
       MockGoogleSignInAuthentication();
-  MockGoogleAuthProvider mockGoogleAuthProvider = MockGoogleAuthProvider();
 
   const emailAddressStr = 'correct@email.com';
   const passwordStr = '12ABcde!@';
