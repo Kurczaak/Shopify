@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/services.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shopify_client/domain/auth/auth_failure.dart';
 import 'package:shopify_client/domain/auth/i_auth_facade.dart';
@@ -53,16 +54,20 @@ class FirebaseAuthFacade implements IAuthFacade {
 
   @override
   Future<Either<AuthFailure, Unit>> signInWithGoogle() async {
-    final accountOrNull = await _googleSignIn.signIn();
-    if (accountOrNull != null) {
-      final authentication = await accountOrNull.authentication;
-      final authCredential = GoogleAuthProvider.credential(
-          accessToken: authentication.accessToken,
-          idToken: authentication.idToken);
-      await _firebaseAuth.signInWithCredential(authCredential);
-      return right(unit);
-    } else {
-      return left(const AuthFailure.cancelledByUser());
+    try {
+      final accountOrNull = await _googleSignIn.signIn();
+      if (accountOrNull != null) {
+        final authentication = await accountOrNull.authentication;
+        final authCredential = GoogleAuthProvider.credential(
+            accessToken: authentication.accessToken,
+            idToken: authentication.idToken);
+        await _firebaseAuth.signInWithCredential(authCredential);
+        return right(unit);
+      } else {
+        return left(const AuthFailure.cancelledByUser());
+      }
+    } on PlatformException catch (_) {
+      return left(const AuthFailure.serverSerror());
     }
   }
 }

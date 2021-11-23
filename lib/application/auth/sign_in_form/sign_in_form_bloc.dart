@@ -53,6 +53,7 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
     });
   }
 
+//TODO remove
   // @override
   // Stream<SignInFormState> mapEventToState(
   //   SignInFormEvent event,
@@ -100,6 +101,7 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
     final isEmailValid = state.emailAddress.isValid();
     final isPasswordValid = state.password.isValid();
     if (isEmailValid && isPasswordValid) {
+      // ignore: invalid_use_of_visible_for_testing_member
       emit(state.copyWith(
         isSubmitting: true,
         authFailureOrSuccessOption: none(),
@@ -110,11 +112,13 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
         password: state.password,
       );
 
+      // ignore: invalid_use_of_visible_for_testing_member
       emit(state.copyWith(
         isSubmitting: false,
         authFailureOrSuccessOption: some(valueOrFailure),
       ));
     } else {
+      // ignore: invalid_use_of_visible_for_testing_member
       emit(state.copyWith(
         showErrorMessages: true,
         authFailureOrSuccessOption: none(),

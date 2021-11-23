@@ -1,9 +1,6 @@
 import 'package:dartz/dartz.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:google_sign_in/testing.dart';
-//import 'package:google_sign_in_mocks/google_sign_in_mocks.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -29,14 +26,6 @@ class MockGoogleSignInAuthentication extends Mock
   @override
   String get idToken => 'id_token';
 }
-
-// class MockGoogleSignInAccount extends Mock implements GoogleSignInAccount {
-//   @override
-//   bool operator ==(dynamic other) => true;
-
-//   @override
-//   int get hashCode => super.hashCode;
-// }
 
 class FakeUserCredential extends Fake implements UserCredential {}
 
