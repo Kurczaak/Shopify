@@ -42,33 +42,16 @@ class SignInForm extends StatelessWidget {
                       contentPadding:
                           EdgeInsets.symmetric(vertical: 20, horizontal: 30),
                       labelText: 'Enter your email',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(100),
-                        ),
-                        borderSide: BorderSide(
-                          color: Color(0x00818181),
-                          width: 2,
-                        ),
-                      ),
                     ),
                     autocorrect: false,
                   ),
                   const SizedBox(height: 20),
                   TextFormField(
+                    obscureText: true,
                     decoration: const InputDecoration(
                       contentPadding:
                           EdgeInsets.symmetric(vertical: 20, horizontal: 30),
                       labelText: 'Enter your password',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(100),
-                        ),
-                        borderSide: BorderSide(
-                          color: Color(0x00818181),
-                          width: 2,
-                        ),
-                      ),
                     ),
                     autocorrect: false,
                   ),

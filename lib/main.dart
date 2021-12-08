@@ -12,11 +12,13 @@ const projectId = 'shopify-app-6d29d';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
-      options: const FirebaseOptions(
-          apiKey: apiKey,
-          appId: appId,
-          messagingSenderId: messagingSenderId,
-          projectId: projectId));
+    options: const FirebaseOptions(
+      apiKey: apiKey,
+      appId: appId,
+      messagingSenderId: messagingSenderId,
+      projectId: projectId,
+    ),
+  );
   configureInjection(Environment.prod);
   runApp(const AppWidget());
 }
