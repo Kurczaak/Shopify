@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -122,7 +123,7 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
     } else {
       // ignore: invalid_use_of_visible_for_testing_member
       emit(state.copyWith(
-        showErrorMessages: true,
+        showErrorMessages: AutovalidateMode.always,
         authFailureOrSuccessOption: none(),
       ));
     }

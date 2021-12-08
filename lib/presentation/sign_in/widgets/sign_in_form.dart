@@ -22,6 +22,7 @@ class SignInForm extends StatelessWidget {
             shape: BoxShape.rectangle,
           ),
           child: Form(
+            autovalidateMode: state.showErrorMessages,
             child: Center(
               child: ListView(
                 shrinkWrap: true,
@@ -44,6 +45,15 @@ class SignInForm extends StatelessWidget {
                       labelText: 'Enter your email',
                     ),
                     autocorrect: false,
+                    onChanged: (value) => context.read<SignInFormBloc>().add(
+                          SignInFormEvent.emailChanged(value),
+                        ),
+                    validator: (_) => state.emailAddress.value.fold(
+                      (f) => f.maybeMap(
+                          invalidEmail: (_) => 'Invalid Email',
+                          orElse: () => ''),
+                      (r) => null,
+                    ),
                   ),
                   const SizedBox(height: 20),
                   TextFormField(

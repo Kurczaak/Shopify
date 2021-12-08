@@ -179,12 +179,12 @@ class _$EmailChanged implements EmailChanged {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is EmailChanged &&
-            (identical(other.emailStr, emailStr) ||
-                other.emailStr == emailStr));
+            const DeepCollectionEquality().equals(other.emailStr, emailStr));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, emailStr);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(emailStr));
 
   @JsonKey(ignore: true)
   @override
@@ -338,12 +338,13 @@ class _$PasswordChanged implements PasswordChanged {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is PasswordChanged &&
-            (identical(other.passwordStr, passwordStr) ||
-                other.passwordStr == passwordStr));
+            const DeepCollectionEquality()
+                .equals(other.passwordStr, passwordStr));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, passwordStr);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(passwordStr));
 
   @JsonKey(ignore: true)
   @override
@@ -858,7 +859,7 @@ class _$SignInFormStateTearOff {
       required Password password,
       required bool isSubmitting,
       required Option<Either<AuthFailure, Unit>> authFailureOrSuccessOption,
-      required bool showErrorMessages}) {
+      required AutovalidateMode showErrorMessages}) {
     return _SignInFormState(
       emailAddress: emailAddress,
       password: password,
@@ -879,7 +880,7 @@ mixin _$SignInFormState {
   bool get isSubmitting => throw _privateConstructorUsedError;
   Option<Either<AuthFailure, Unit>> get authFailureOrSuccessOption =>
       throw _privateConstructorUsedError;
-  bool get showErrorMessages => throw _privateConstructorUsedError;
+  AutovalidateMode get showErrorMessages => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SignInFormStateCopyWith<SignInFormState> get copyWith =>
@@ -896,7 +897,7 @@ abstract class $SignInFormStateCopyWith<$Res> {
       Password password,
       bool isSubmitting,
       Option<Either<AuthFailure, Unit>> authFailureOrSuccessOption,
-      bool showErrorMessages});
+      AutovalidateMode showErrorMessages});
 }
 
 /// @nodoc
@@ -936,7 +937,7 @@ class _$SignInFormStateCopyWithImpl<$Res>
       showErrorMessages: showErrorMessages == freezed
           ? _value.showErrorMessages
           : showErrorMessages // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as AutovalidateMode,
     ));
   }
 }
@@ -953,7 +954,7 @@ abstract class _$SignInFormStateCopyWith<$Res>
       Password password,
       bool isSubmitting,
       Option<Either<AuthFailure, Unit>> authFailureOrSuccessOption,
-      bool showErrorMessages});
+      AutovalidateMode showErrorMessages});
 }
 
 /// @nodoc
@@ -995,7 +996,7 @@ class __$SignInFormStateCopyWithImpl<$Res>
       showErrorMessages: showErrorMessages == freezed
           ? _value.showErrorMessages
           : showErrorMessages // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as AutovalidateMode,
     ));
   }
 }
@@ -1019,7 +1020,7 @@ class _$_SignInFormState implements _SignInFormState {
   @override
   final Option<Either<AuthFailure, Unit>> authFailureOrSuccessOption;
   @override
-  final bool showErrorMessages;
+  final AutovalidateMode showErrorMessages;
 
   @override
   String toString() {
@@ -1031,23 +1032,25 @@ class _$_SignInFormState implements _SignInFormState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _SignInFormState &&
-            (identical(other.emailAddress, emailAddress) ||
-                other.emailAddress == emailAddress) &&
-            (identical(other.password, password) ||
-                other.password == password) &&
-            (identical(other.isSubmitting, isSubmitting) ||
-                other.isSubmitting == isSubmitting) &&
-            (identical(other.authFailureOrSuccessOption,
-                    authFailureOrSuccessOption) ||
-                other.authFailureOrSuccessOption ==
-                    authFailureOrSuccessOption) &&
-            (identical(other.showErrorMessages, showErrorMessages) ||
-                other.showErrorMessages == showErrorMessages));
+            const DeepCollectionEquality()
+                .equals(other.emailAddress, emailAddress) &&
+            const DeepCollectionEquality().equals(other.password, password) &&
+            const DeepCollectionEquality()
+                .equals(other.isSubmitting, isSubmitting) &&
+            const DeepCollectionEquality().equals(
+                other.authFailureOrSuccessOption, authFailureOrSuccessOption) &&
+            const DeepCollectionEquality()
+                .equals(other.showErrorMessages, showErrorMessages));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, emailAddress, password,
-      isSubmitting, authFailureOrSuccessOption, showErrorMessages);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(emailAddress),
+      const DeepCollectionEquality().hash(password),
+      const DeepCollectionEquality().hash(isSubmitting),
+      const DeepCollectionEquality().hash(authFailureOrSuccessOption),
+      const DeepCollectionEquality().hash(showErrorMessages));
 
   @JsonKey(ignore: true)
   @override
@@ -1061,7 +1064,7 @@ abstract class _SignInFormState implements SignInFormState {
       required Password password,
       required bool isSubmitting,
       required Option<Either<AuthFailure, Unit>> authFailureOrSuccessOption,
-      required bool showErrorMessages}) = _$_SignInFormState;
+      required AutovalidateMode showErrorMessages}) = _$_SignInFormState;
 
   @override
   EmailAddress get emailAddress;
@@ -1072,7 +1075,7 @@ abstract class _SignInFormState implements SignInFormState {
   @override
   Option<Either<AuthFailure, Unit>> get authFailureOrSuccessOption;
   @override
-  bool get showErrorMessages;
+  AutovalidateMode get showErrorMessages;
   @override
   @JsonKey(ignore: true)
   _$SignInFormStateCopyWith<_SignInFormState> get copyWith =>

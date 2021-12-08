@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shopify_client/application/auth/sign_in_form/sign_in_form_bloc.dart';
@@ -233,7 +234,7 @@ void main() {
               SignInFormState.initial().copyWith(
                   emailAddress: incorrectEmail,
                   password: correctPassword,
-                  showErrorMessages: true),
+                  showErrorMessages: AutovalidateMode.always),
             ]);
 
     blocTest(
@@ -246,7 +247,7 @@ void main() {
               SignInFormState.initial().copyWith(
                   emailAddress: correctEmail,
                   password: incorrectPassword,
-                  showErrorMessages: true),
+                  showErrorMessages: AutovalidateMode.always),
             ]);
     blocTest(
       'should verify no registerWithEmailAndPassword call when incorrect passowrd is inputted',
@@ -294,7 +295,7 @@ void main() {
               SignInFormState.initial().copyWith(
                   emailAddress: incorrectEmail,
                   password: correctPassword,
-                  showErrorMessages: true),
+                  showErrorMessages: AutovalidateMode.always),
             ]);
 
     blocTest(
@@ -307,7 +308,7 @@ void main() {
               SignInFormState.initial().copyWith(
                   emailAddress: correctEmail,
                   password: incorrectPassword,
-                  showErrorMessages: true),
+                  showErrorMessages: AutovalidateMode.always),
             ]);
     blocTest(
       'should verify no registerWithEmailAndPassword call when incorrect passowrd is inputted',
