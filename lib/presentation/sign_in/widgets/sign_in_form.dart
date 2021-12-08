@@ -48,12 +48,17 @@ class SignInForm extends StatelessWidget {
                     onChanged: (value) => context.read<SignInFormBloc>().add(
                           SignInFormEvent.emailChanged(value),
                         ),
-                    validator: (_) => state.emailAddress.value.fold(
-                      (f) => f.maybeMap(
-                          invalidEmail: (_) => 'Invalid Email',
-                          orElse: () => ''),
-                      (r) => null,
-                    ),
+                    validator: (_) => context
+                        .read<SignInFormBloc>()
+                        .state
+                        .emailAddress
+                        .value
+                        .fold(
+                          (f) => f.maybeMap(
+                              invalidEmail: (_) => 'Invalid Email',
+                              orElse: () => null),
+                          (r) => null,
+                        ),
                   ),
                   const SizedBox(height: 20),
                   TextFormField(
@@ -64,6 +69,20 @@ class SignInForm extends StatelessWidget {
                       labelText: 'Enter your password',
                     ),
                     autocorrect: false,
+                    onChanged: (value) => context.read<SignInFormBloc>().add(
+                          SignInFormEvent.passwordChanged(value),
+                        ),
+                    validator: (_) => context
+                        .read<SignInFormBloc>()
+                        .state
+                        .password
+                        .value
+                        .fold(
+                          (f) => f.maybeMap(
+                              incorrectPassword: (_) => 'Invalid Password',
+                              orElse: () => null),
+                          (r) => null,
+                        ),
                   ),
                   const SizedBox(height: 20),
                   TextButton(
@@ -71,10 +90,15 @@ class SignInForm extends StatelessWidget {
                     child: const Text('Forgot Password'),
                   ),
                   const SizedBox(height: 20),
-                  Container(
+                  SizedBox(
                     height: 60,
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        context.read<SignInFormBloc>().add(
+                              const SignInFormEvent
+                                  .signInWithEmailAndPasswordPressed(),
+                            );
+                      },
                       child: const Text('LOG IN'),
                     ),
                   ),
