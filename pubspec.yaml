@@ -33,11 +33,14 @@ dependencies:
   equatable: ^2.0.3
   firebase_auth: ^3.3.0
   firebase_core: ^1.10.2
+  #firebase_core_web: ^1.5.2
   flutter:
     sdk: flutter
   flutter_bloc: ^8.0.0
+  flutter_signin_button: ^2.0.0
   get_it: ^7.2.0
   google_sign_in: ^5.2.1
+  google_sign_in_web: ^0.10.0+3
   injectable: ^1.5.0
   json_annotation: ^4.4.0
   responsive_framework: ^0.1.5
@@ -64,16 +67,16 @@ flutter:
   assets:
     - images/corner_shape.png
     - images/undraw_gone_shopping.png
-  # An image asset can refer to one or more resolution-specific "variants", see
-  # https://flutter.dev/assets-and-images/#resolution-aware.
-  # For details regarding adding assets from package dependencies, see
-  # https://flutter.dev/assets-and-images/#from-packages
-  # To add custom fonts to your application, add a fonts section here,
-  # in this "flutter" section. Each entry in this list should have a
-  # "family" key with the font family name, and a "fonts" key with a
-  # list giving the asset and other descriptors for the font. For
-  # example:
-  # fonts:
+    # An image asset can refer to one or more resolution-specific "variants", see
+    # https://flutter.dev/assets-and-images/#resolution-aware.
+    # For details regarding adding assets from package dependencies, see
+    # https://flutter.dev/assets-and-images/#from-packages
+    # To add custom fonts to your application, add a fonts section here,
+    # in this "flutter" section. Each entry in this list should have a
+    # "family" key with the font family name, and a "fonts" key with a
+    # list giving the asset and other descriptors for the font. For
+    # example:
+    # fonts:
     # - family: Schyler
     #   fonts:
     #     - asset: fonts/Schyler-Regular.ttf
@@ -85,6 +88,5 @@ flutter:
         - asset: fonts/Poppins/Poppins-Regular.ttf
         - asset: fonts/Poppins/Poppins-Bold.ttf
           weight: 700
-  #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

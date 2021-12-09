@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopify_client/application/auth/sign_in_form/sign_in_form_bloc.dart';
+import 'package:flutter_signin_button/flutter_signin_button.dart';
 
 class SignInForm extends StatelessWidget {
   const SignInForm({Key? key}) : super(key: key);
@@ -101,6 +102,17 @@ class SignInForm extends StatelessWidget {
                       },
                       child: const Text('LOG IN'),
                     ),
+                  ),
+                  const Divider(),
+                  SignInButton(
+                    Buttons.Google,
+                    text: "Sign in with Google",
+                    onPressed: () {
+                      print('xd');
+                      context.read<SignInFormBloc>().add(
+                            const SignInFormEvent.signInWithGooglePressed(),
+                          );
+                    },
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
