@@ -11,6 +11,7 @@ const projectId = 'shopify-app-6d29d';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   await Firebase.initializeApp(
     options: const FirebaseOptions(
       apiKey: apiKey,

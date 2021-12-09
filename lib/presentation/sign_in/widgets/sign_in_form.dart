@@ -108,7 +108,6 @@ class SignInForm extends StatelessWidget {
                     Buttons.Google,
                     text: "Sign in with Google",
                     onPressed: () {
-                      print('xd');
                       context.read<SignInFormBloc>().add(
                             const SignInFormEvent.signInWithGooglePressed(),
                           );
