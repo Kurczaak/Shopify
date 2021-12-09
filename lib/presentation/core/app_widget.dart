@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shopify_client/presentation/sign_in/sign_in_page.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 
 class AppWidget extends StatelessWidget {
   const AppWidget({Key? key}) : super(key: key);
@@ -7,6 +8,15 @@ class AppWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      builder: (context, widget) => ResponsiveWrapper.builder(
+        ClampingScrollWrapper.builder(context, widget!),
+        breakpoints: const [
+          ResponsiveBreakpoint.resize(480, name: MOBILE),
+          ResponsiveBreakpoint.autoScale(800, name: TABLET),
+          ResponsiveBreakpoint.resize(1000, name: DESKTOP),
+          ResponsiveBreakpoint.autoScale(2460, name: '4K'),
+        ],
+      ),
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
