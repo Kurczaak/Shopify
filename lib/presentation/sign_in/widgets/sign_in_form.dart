@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopify_client/application/auth/sign_in_form/sign_in_form_bloc.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
+import 'package:another_flushbar/flushbar_helper.dart';
 
 class SignInForm extends StatelessWidget {
   const SignInForm({Key? key}) : super(key: key);
@@ -9,7 +10,20 @@ class SignInForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<SignInFormBloc, SignInFormState>(
-      listener: (context, state) {},
+      listener: (context, state) {
+        state.authFailureOrSuccessOption.fold(
+            () {},
+            (either) => either.fold((failure) {
+                  FlushbarHelper.createError(
+                          message: failure.map(
+                              cancelledByUser: (_) => 'Cancelled',
+                              serverSerror: (_) => 'Server error',
+                              emailAlreadyInUse: (_) => 'Email already in use',
+                              invalidEmailAndPasswordCombination: (_) =>
+                                  'Invalid email and password combination'))
+                      .show(context);
+                }, (_) {}));
+      },
       builder: (context, state) {
         return Container(
           decoration: const BoxDecoration(
@@ -106,6 +120,7 @@ class SignInForm extends StatelessWidget {
                   const Divider(),
                   SignInButton(
                     Buttons.Google,
+                    padding: const EdgeInsets.all(10),
                     text: "Sign in with Google",
                     onPressed: () {
                       context.read<SignInFormBloc>().add(
