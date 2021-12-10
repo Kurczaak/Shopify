@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopify_client/application/auth/sign_in_form/sign_in_form_bloc.dart';
 import 'package:shopify_client/injection.dart';
 import 'package:shopify_client/presentation/sign_in/widgets/sign_in_form.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 
 class SignInPage extends StatelessWidget {
   @override
@@ -21,20 +22,66 @@ class SignInPage extends StatelessWidget {
             ),
             shape: BoxShape.rectangle,
           ),
-          child: Column(
+          child: ResponsiveRowColumn(
+            rowMainAxisAlignment: MainAxisAlignment.spaceAround,
+            rowCrossAxisAlignment: CrossAxisAlignment.center,
+            columnMainAxisAlignment: MainAxisAlignment.center,
+            columnMainAxisSize: MainAxisSize.max,
+            rowPadding: const EdgeInsets.symmetric(horizontal: 30),
+            columnPadding: const EdgeInsets.symmetric(horizontal: 30),
+            columnSpacing: 0,
+            layout: ResponsiveWrapper.of(context).isSmallerThan(DESKTOP)
+                ? ResponsiveRowColumnType.COLUMN
+                : ResponsiveRowColumnType.ROW,
             children: [
-              const SizedBox(height: 40),
-              const Text(
-                'Welcome Back!',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 30,
+              const ResponsiveRowColumnItem(
+                child: SizedBox(height: 40),
+              ),
+              ResponsiveRowColumnItem(
+                rowFlex: 2,
+                columnFlex: 3,
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Flexible(
+                      flex: 1,
+                      child: FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Text(
+                          'Welcome Back!',
+                          textAlign: TextAlign.center,
+                          maxLines: 1,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 40,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Flexible(
+                      flex: 2,
+                      child: Image.asset(
+                        'images/undraw_gone_shopping.png',
+                        //fit: BoxFit.fitHeight,
+                      ),
+                    ),
+                  ],
                 ),
               ),
-              Image.asset('images/undraw_gone_shopping.png'),
-              const SizedBox(height: 40),
-              const Expanded(child: SingleChildScrollView(child: SignInForm())),
+              ResponsiveRowColumnItem(
+                  child: ResponsiveVisibility(
+                visible: ResponsiveWrapper.of(context).isSmallerThan(DESKTOP),
+                child: const Divider(
+                  height: 1,
+                ),
+              )),
+              const ResponsiveRowColumnItem(
+                rowFlex: 3,
+                columnFlex: 5,
+                child: SignInForm(),
+              ),
             ],
           ),
         ),
