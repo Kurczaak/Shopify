@@ -1,9 +1,11 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 import 'package:shopify_client/application/auth/sign_in_form/sign_in_form_bloc.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:another_flushbar/flushbar_helper.dart';
+import 'package:shopify_client/presentation/sign_in/widgets/google_sign_in_button.dart';
 
 class SignInForm extends StatelessWidget {
   const SignInForm({Key? key}) : super(key: key);
@@ -26,6 +28,14 @@ class SignInForm extends StatelessWidget {
                 }, (_) {}));
       },
       builder: (context, state) {
+        final buttonResponsiveValue = ResponsiveValue(
+          context,
+          defaultValue: 60.0,
+          valueWhen: const [
+            Condition.smallerThan(name: TABLET, value: 40.0),
+            Condition.equals(name: TABLET, value: 50.0),
+          ],
+        );
         return Form(
           autovalidateMode: state.showErrorMessages,
           child: Center(
@@ -80,28 +90,29 @@ class SignInForm extends StatelessWidget {
                   child: const Text('Forgot Password?'),
                 ),
                 const SizedBox(height: 20),
-                ElevatedButton(
-                  onPressed: () {
-                    context.read<SignInFormBloc>().add(
-                          const SignInFormEvent
-                              .signInWithEmailAndPasswordPressed(),
-                        );
-                  },
-                  child: const Padding(
-                    padding: EdgeInsets.all(15.0),
-                    child: Text('LOG IN'),
+                SizedBox(
+                  height: buttonResponsiveValue.value,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      context.read<SignInFormBloc>().add(
+                            const SignInFormEvent
+                                .signInWithEmailAndPasswordPressed(),
+                          );
+                    },
+                    child: const Padding(
+                      padding: EdgeInsets.all(10.0),
+                      child: FittedBox(
+                          child: Text(
+                        'Log In',
+                        style: TextStyle(fontSize: 30),
+                      )),
+                    ),
                   ),
                 ),
                 const SizedBox(height: 10),
-                SignInButton(
-                  Buttons.Google,
-                  padding: const EdgeInsets.all(10),
-                  text: "Sign in with Google",
-                  onPressed: () {
-                    context.read<SignInFormBloc>().add(
-                          const SignInFormEvent.signInWithGooglePressed(),
-                        );
-                  },
+                SizedBox(
+                  height: buttonResponsiveValue.value,
+                  child: const GoogleSignInButton(),
                 ),
                 Row(
                   mainAxisSize: MainAxisSize.min,

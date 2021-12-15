@@ -45,18 +45,23 @@ class SignInPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Flexible(
+                    Flexible(
                       flex: 1,
-                      child: FittedBox(
-                        fit: BoxFit.scaleDown,
-                        child: Text(
-                          'Welcome Back!',
-                          textAlign: TextAlign.center,
-                          maxLines: 1,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 40,
-                          ),
+                      child: Text(
+                        'Welcome Back!',
+                        textAlign: TextAlign.center,
+                        maxLines: 2,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: ResponsiveValue(
+                            context,
+                            defaultValue: 60.0,
+                            valueWhen: const [
+                              Condition.smallerThan(name: TABLET, value: 40.0),
+                              Condition.equals(name: TABLET, value: 60.0),
+                              Condition.largerThan(name: TABLET, value: 80.0)
+                            ],
+                          ).value,
                         ),
                       ),
                     ),
