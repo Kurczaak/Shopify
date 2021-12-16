@@ -81,6 +81,20 @@ void main() async {
         .thenAnswer((_) async => MockGoogleSignInAuthentication());
   });
 
+  group('getSignedInUser', () {
+    test(
+      'should return none() if no user is signed in',
+      () async {
+        // arrange
+        when(mockFirebaseAuth.currentUser).thenAnswer((_) => null);
+        // act
+        final result = firebaseAuthFacade.getSignedInUser();
+        // assert
+        expect(result, none());
+      },
+    );
+  });
+
   group('registerWithEmailAndPassword', () {
     test(
       'should return right(unit) when succesfully registered',
