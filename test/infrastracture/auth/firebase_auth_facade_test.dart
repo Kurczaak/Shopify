@@ -5,9 +5,12 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:shopify_client/domain/auth/auth_failure.dart';
+import 'package:shopify_client/domain/auth/user.dart';
 import 'package:shopify_client/domain/auth/value_objects.dart';
 import 'package:shopify_client/domain/core/errors.dart';
+import 'package:shopify_client/domain/core/value_objects.dart';
 import 'package:shopify_client/infrastructure/auth/firebase_auth_facade.dart';
+import 'package:shopify_client/infrastructure/auth/firebase_user_mapper.dart';
 
 import 'firebase_auth_facade_test.mocks.dart';
 
@@ -25,6 +28,13 @@ class MockGoogleSignInAuthentication extends Mock
   String get accessToken => 'accessToken';
   @override
   String get idToken => 'id_token';
+}
+
+class MockUser extends Mock implements User {
+  @override
+  String get uid => 'uniqueId';
+
+  toDomain();
 }
 
 class FakeUserCredential extends Fake implements UserCredential {}
@@ -86,11 +96,37 @@ void main() async {
       'should return none() if no user is signed in',
       () async {
         // arrange
-        when(mockFirebaseAuth.currentUser).thenAnswer((_) => null);
+        when(mockFirebaseAuth.currentUser).thenReturn(null);
         // act
-        final result = firebaseAuthFacade.getSignedInUser();
+        final result = await firebaseAuthFacade.getSignedInUser();
         // assert
         expect(result, none());
+      },
+    );
+    test(
+      'should return a ShopifyUser entity if user is signed in',
+      () async {
+        // arrange
+        when(mockFirebaseAuth.currentUser).thenReturn(MockUser());
+        // act
+        final result = await firebaseAuthFacade.getSignedInUser();
+        final userOrNone = result.getOrElse(() => throw UnexpectedValueError);
+        // assert
+        expect(userOrNone, isA<ShopifyUser>());
+      },
+    );
+
+    test(
+      'should return a ShopifyUser instance with the same uid',
+      () async {
+        // arrange
+        when(mockFirebaseAuth.currentUser).thenReturn(MockUser());
+        // act
+        final result = await firebaseAuthFacade.getSignedInUser();
+        final userOrNone = result.getOrElse(() => throw UnexpectedValueError);
+        // assert
+        expect(userOrNone,
+            ShopifyUser(id: UniqueId.fromUniqueString(MockUser().uid)));
       },
     );
   });

@@ -5,7 +5,9 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shopify_client/domain/auth/auth_failure.dart';
 import 'package:shopify_client/domain/auth/i_auth_facade.dart';
+import 'package:shopify_client/domain/auth/user.dart';
 import 'package:shopify_client/domain/auth/value_objects.dart';
+import 'package:shopify_client/infrastructure/auth/firebase_user_mapper.dart';
 
 @LazySingleton(as: IAuthFacade)
 class FirebaseAuthFacade implements IAuthFacade {
@@ -13,6 +15,21 @@ class FirebaseAuthFacade implements IAuthFacade {
   final GoogleSignIn _googleSignIn;
 
   FirebaseAuthFacade(this._firebaseAuth, this._googleSignIn);
+
+  @override
+  Future<Option<ShopifyUser>> getSignedInUser() async {
+    final firebaseUser = _firebaseAuth.currentUser;
+    // print(firebaseUser);
+    // return optionOf(ShopifyUser(id: UniqueId()));
+    //TODO remove
+    // if (firebaseUser != null) {
+    //   return some(ShopifyUser(id: UniqueId.fromUniqueString(firebaseUser.uid)));
+    // }
+    // return none();
+
+    firebaseUser?.toDomain();
+    return optionOf(firebaseUser?.toDomain());
+  }
 
   @override
   Future<Either<AuthFailure, Unit>> registerWithEmailAndPassword({
@@ -72,5 +89,11 @@ class FirebaseAuthFacade implements IAuthFacade {
     } on PlatformException catch (_) {
       return left(const AuthFailure.serverSerror());
     }
+  }
+
+  @override
+  Future<void> singOut() {
+    // TODO: implement singOut
+    throw UnimplementedError();
   }
 }

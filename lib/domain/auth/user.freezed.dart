@@ -14,41 +14,43 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-class _$UserTearOff {
-  const _$UserTearOff();
+class _$ShopifyUserTearOff {
+  const _$ShopifyUserTearOff();
 
-  _User call({required String id}) {
-    return _User(
+  _ShopifyUser call({required UniqueId id}) {
+    return _ShopifyUser(
       id: id,
     );
   }
 }
 
 /// @nodoc
-const $User = _$UserTearOff();
+const $ShopifyUser = _$ShopifyUserTearOff();
 
 /// @nodoc
-mixin _$User {
-  String get id => throw _privateConstructorUsedError;
+mixin _$ShopifyUser {
+  UniqueId get id => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $UserCopyWith<User> get copyWith => throw _privateConstructorUsedError;
+  $ShopifyUserCopyWith<ShopifyUser> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $UserCopyWith<$Res> {
-  factory $UserCopyWith(User value, $Res Function(User) then) =
-      _$UserCopyWithImpl<$Res>;
-  $Res call({String id});
+abstract class $ShopifyUserCopyWith<$Res> {
+  factory $ShopifyUserCopyWith(
+          ShopifyUser value, $Res Function(ShopifyUser) then) =
+      _$ShopifyUserCopyWithImpl<$Res>;
+  $Res call({UniqueId id});
 }
 
 /// @nodoc
-class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
-  _$UserCopyWithImpl(this._value, this._then);
+class _$ShopifyUserCopyWithImpl<$Res> implements $ShopifyUserCopyWith<$Res> {
+  _$ShopifyUserCopyWithImpl(this._value, this._then);
 
-  final User _value;
+  final ShopifyUser _value;
   // ignore: unused_field
-  final $Res Function(User) _then;
+  final $Res Function(ShopifyUser) _then;
 
   @override
   $Res call({
@@ -58,59 +60,62 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as UniqueId,
     ));
   }
 }
 
 /// @nodoc
-abstract class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
-  factory _$UserCopyWith(_User value, $Res Function(_User) then) =
-      __$UserCopyWithImpl<$Res>;
+abstract class _$ShopifyUserCopyWith<$Res>
+    implements $ShopifyUserCopyWith<$Res> {
+  factory _$ShopifyUserCopyWith(
+          _ShopifyUser value, $Res Function(_ShopifyUser) then) =
+      __$ShopifyUserCopyWithImpl<$Res>;
   @override
-  $Res call({String id});
+  $Res call({UniqueId id});
 }
 
 /// @nodoc
-class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
-    implements _$UserCopyWith<$Res> {
-  __$UserCopyWithImpl(_User _value, $Res Function(_User) _then)
-      : super(_value, (v) => _then(v as _User));
+class __$ShopifyUserCopyWithImpl<$Res> extends _$ShopifyUserCopyWithImpl<$Res>
+    implements _$ShopifyUserCopyWith<$Res> {
+  __$ShopifyUserCopyWithImpl(
+      _ShopifyUser _value, $Res Function(_ShopifyUser) _then)
+      : super(_value, (v) => _then(v as _ShopifyUser));
 
   @override
-  _User get _value => super._value as _User;
+  _ShopifyUser get _value => super._value as _ShopifyUser;
 
   @override
   $Res call({
     Object? id = freezed,
   }) {
-    return _then(_User(
+    return _then(_ShopifyUser(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as UniqueId,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_User implements _User {
-  const _$_User({required this.id});
+class _$_ShopifyUser implements _ShopifyUser {
+  const _$_ShopifyUser({required this.id});
 
   @override
-  final String id;
+  final UniqueId id;
 
   @override
   String toString() {
-    return 'User(id: $id)';
+    return 'ShopifyUser(id: $id)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _User &&
+            other is _ShopifyUser &&
             const DeepCollectionEquality().equals(other.id, id));
   }
 
@@ -120,16 +125,17 @@ class _$_User implements _User {
 
   @JsonKey(ignore: true)
   @override
-  _$UserCopyWith<_User> get copyWith =>
-      __$UserCopyWithImpl<_User>(this, _$identity);
+  _$ShopifyUserCopyWith<_ShopifyUser> get copyWith =>
+      __$ShopifyUserCopyWithImpl<_ShopifyUser>(this, _$identity);
 }
 
-abstract class _User implements User {
-  const factory _User({required String id}) = _$_User;
+abstract class _ShopifyUser implements ShopifyUser {
+  const factory _ShopifyUser({required UniqueId id}) = _$_ShopifyUser;
 
   @override
-  String get id;
+  UniqueId get id;
   @override
   @JsonKey(ignore: true)
-  _$UserCopyWith<_User> get copyWith => throw _privateConstructorUsedError;
+  _$ShopifyUserCopyWith<_ShopifyUser> get copyWith =>
+      throw _privateConstructorUsedError;
 }
