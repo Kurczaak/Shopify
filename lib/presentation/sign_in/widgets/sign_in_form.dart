@@ -112,8 +112,15 @@ class SignInForm extends StatelessWidget {
                 const SizedBox(height: 10),
                 SizedBox(
                   height: buttonResponsiveValue.value,
-                  child: const GoogleSignInButton(),
+                  child: GoogleSignInButton(
+                    onPressed: () {
+                      context.read<SignInFormBloc>().add(
+                            const SignInFormEvent.signInWithGooglePressed(),
+                          );
+                    },
+                  ),
                 ),
+                const SizedBox(height: 10),
                 Row(
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.center,

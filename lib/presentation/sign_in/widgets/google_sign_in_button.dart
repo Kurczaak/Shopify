@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class GoogleSignInButton extends StatelessWidget {
-  const GoogleSignInButton({Key? key}) : super(key: key);
+  final void Function() onPressed;
+  const GoogleSignInButton({Key? key, required Function() this.onPressed})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -9,7 +11,7 @@ class GoogleSignInButton extends StatelessWidget {
       style: ElevatedButton.styleFrom(
         primary: const Color(0xFFFFFFFF),
       ),
-      onPressed: () {},
+      onPressed: onPressed,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.stretch,
