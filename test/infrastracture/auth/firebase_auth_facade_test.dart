@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:mockito/annotations.dart';
@@ -357,6 +358,25 @@ void main() async {
         await firebaseAuthFacade.signInWithGoogle();
         // assert
         verify(mockFirebaseAuth.signInWithCredential(any)).called(1);
+      },
+    );
+  });
+
+  group('signOut', () {
+    test(
+      'should call Firebase and GoogleSignIn logOut methods ',
+      () async {
+        //arrange
+
+        when(mockFirebaseAuth.signOut())
+            .thenAnswer((_) async => await Future.value());
+        when(mockGoogleSignIn.signOut())
+            .thenAnswer((_) async => MockGoogleSignInAccount());
+        // act
+        await firebaseAuthFacade.singOut();
+        // assert
+        verify(mockFirebaseAuth.signOut());
+        verify(mockGoogleSignIn.signOut());
       },
     );
   });
