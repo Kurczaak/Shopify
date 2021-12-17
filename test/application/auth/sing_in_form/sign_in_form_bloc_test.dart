@@ -161,8 +161,9 @@ void main() {
     dynamic actFunction(SignInFormBloc bloc) =>
         bloc.add((const SignInFormEvent.signInWithGooglePressed()));
 
-    dynamic verifyCallignSignInWithGoogle(_) =>
-        mockIAuthFacade.signInWithGoogle();
+    dynamic verifyCallignSignInWithGoogle(_) {
+      verify(mockIAuthFacade.signInWithGoogle());
+    }
 
     blocTest(
       'should emit Loading and Loaded state when successful',

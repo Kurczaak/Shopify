@@ -19,54 +19,58 @@ void main() {
     authBloc = AuthBloc(mockIAuthFacade);
   });
 
-  blocTest(
-    'should return the Authenticated state when a user is signed in',
-    build: () {
-      return AuthBloc(mockIAuthFacade);
-    },
-    setUp: () {
-      final user = ShopifyUser(id: UniqueId());
-      when(mockIAuthFacade.getSignedInUser())
-          .thenAnswer((_) async => some(user));
-    },
-    act: (AuthBloc bloc) => bloc.add(const AuthEvent.authCheckRequested()),
-    expect: () {
-      return [const AuthState.authenticated()];
-    },
-  );
+  group('authCheckRequested', () {
+    blocTest(
+      'should return the Authenticated state when a user is signed in',
+      build: () {
+        return AuthBloc(mockIAuthFacade);
+      },
+      setUp: () {
+        final user = ShopifyUser(id: UniqueId());
+        when(mockIAuthFacade.getSignedInUser())
+            .thenAnswer((_) async => some(user));
+      },
+      act: (AuthBloc bloc) => bloc.add(const AuthEvent.authCheckRequested()),
+      expect: () {
+        return [const AuthState.authenticated()];
+      },
+    );
 
-  blocTest(
-    'should return the Unauthenticated state when a user is not signed in',
-    build: () {
-      return AuthBloc(mockIAuthFacade);
-    },
-    setUp: () {
-      when(mockIAuthFacade.getSignedInUser()).thenAnswer((_) async => none());
-    },
-    act: (AuthBloc bloc) => bloc.add(const AuthEvent.authCheckRequested()),
-    expect: () {
-      return [const AuthState.unauthenticated()];
-    },
-  );
+    blocTest(
+      'should return the Unauthenticated state when a user is not signed in',
+      build: () {
+        return AuthBloc(mockIAuthFacade);
+      },
+      setUp: () {
+        when(mockIAuthFacade.getSignedInUser()).thenAnswer((_) async => none());
+      },
+      act: (AuthBloc bloc) => bloc.add(const AuthEvent.authCheckRequested()),
+      expect: () {
+        return [const AuthState.unauthenticated()];
+      },
+    );
+  });
 
-  blocTest(
-    'should call _authFacade.signOut when signing out xd',
-    build: () {
-      return AuthBloc(mockIAuthFacade);
-    },
-    act: (AuthBloc bloc) => bloc.add(const AuthEvent.signedOut()),
-    verify: (_) {
-      verify(mockIAuthFacade.signOut());
-    },
-  );
-  blocTest(
-    'should emit Unauthenticated state when signing out',
-    build: () {
-      return AuthBloc(mockIAuthFacade);
-    },
-    act: (AuthBloc bloc) => bloc.add(const AuthEvent.signedOut()),
-    expect: () {
-      return [const AuthState.unauthenticated()];
-    },
-  );
+  group('signedOut', () {
+    blocTest(
+      'should call _authFacade.signOut when signing out xd',
+      build: () {
+        return AuthBloc(mockIAuthFacade);
+      },
+      act: (AuthBloc bloc) => bloc.add(const AuthEvent.signedOut()),
+      verify: (_) {
+        verify(mockIAuthFacade.signOut());
+      },
+    );
+    blocTest(
+      'should emit Unauthenticated state when signing out',
+      build: () {
+        return AuthBloc(mockIAuthFacade);
+      },
+      act: (AuthBloc bloc) => bloc.add(const AuthEvent.signedOut()),
+      expect: () {
+        return [const AuthState.unauthenticated()];
+      },
+    );
+  });
 }
