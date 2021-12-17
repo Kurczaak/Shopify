@@ -50,6 +50,7 @@ class FirebaseAuthFacade implements IAuthFacade {
     final emailAddressString = emailAddress.getOrCrash();
     final passwordString = password.getOrCrash();
     try {
+      //TODO check behaviour
       UserCredential userCredential =
           await _firebaseAuth.signInWithEmailAndPassword(
               email: emailAddressString, password: passwordString);

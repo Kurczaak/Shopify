@@ -7,6 +7,7 @@ import 'package:shopify_client/presentation/sign_in/sign_in_page.dart';
     AutoRoute(
       page: SignInPage,
       initial: true,
+      children: [],
     ),
   ],
 )
