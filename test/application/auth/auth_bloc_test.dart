@@ -12,19 +12,11 @@ import 'package:bloc_test/bloc_test.dart';
 @GenerateMocks([IAuthFacade])
 void main() {
   MockIAuthFacade mockIAuthFacade = MockIAuthFacade();
-  AuthBloc authBloc = AuthBloc(mockIAuthFacade);
-
-  setUp(() {
-    mockIAuthFacade = MockIAuthFacade();
-    authBloc = AuthBloc(mockIAuthFacade);
-  });
 
   group('authCheckRequested', () {
     blocTest(
       'should return the Authenticated state when a user is signed in',
-      build: () {
-        return AuthBloc(mockIAuthFacade);
-      },
+      build: () => AuthBloc(mockIAuthFacade),
       setUp: () {
         final user = ShopifyUser(id: UniqueId());
         when(mockIAuthFacade.getSignedInUser())
@@ -38,9 +30,7 @@ void main() {
 
     blocTest(
       'should return the Unauthenticated state when a user is not signed in',
-      build: () {
-        return AuthBloc(mockIAuthFacade);
-      },
+      build: () => AuthBloc(mockIAuthFacade),
       setUp: () {
         when(mockIAuthFacade.getSignedInUser()).thenAnswer((_) async => none());
       },
@@ -54,9 +44,7 @@ void main() {
   group('signedOut', () {
     blocTest(
       'should call _authFacade.signOut when signing out xd',
-      build: () {
-        return AuthBloc(mockIAuthFacade);
-      },
+      build: () => AuthBloc(mockIAuthFacade),
       act: (AuthBloc bloc) => bloc.add(const AuthEvent.signedOut()),
       verify: (_) {
         verify(mockIAuthFacade.signOut());
@@ -64,9 +52,7 @@ void main() {
     );
     blocTest(
       'should emit Unauthenticated state when signing out',
-      build: () {
-        return AuthBloc(mockIAuthFacade);
-      },
+      build: () => AuthBloc(mockIAuthFacade),
       act: (AuthBloc bloc) => bloc.add(const AuthEvent.signedOut()),
       expect: () {
         return [const AuthState.unauthenticated()];
