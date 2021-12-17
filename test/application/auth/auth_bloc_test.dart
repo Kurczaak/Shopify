@@ -48,4 +48,25 @@ void main() {
       return [const AuthState.unauthenticated()];
     },
   );
+
+  blocTest(
+    'should call _authFacade.signOut when signing out xd',
+    build: () {
+      return AuthBloc(mockIAuthFacade);
+    },
+    act: (AuthBloc bloc) => bloc.add(const AuthEvent.signedOut()),
+    verify: (_) {
+      verify(mockIAuthFacade.signOut());
+    },
+  );
+  blocTest(
+    'should emit Unauthenticated state when signing out',
+    build: () {
+      return AuthBloc(mockIAuthFacade);
+    },
+    act: (AuthBloc bloc) => bloc.add(const AuthEvent.signedOut()),
+    expect: () {
+      return [const AuthState.unauthenticated()];
+    },
+  );
 }
