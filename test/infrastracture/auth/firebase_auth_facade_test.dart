@@ -1,5 +1,4 @@
 import 'package:dartz/dartz.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:mockito/annotations.dart';
@@ -11,7 +10,6 @@ import 'package:shopify_client/domain/auth/value_objects.dart';
 import 'package:shopify_client/domain/core/errors.dart';
 import 'package:shopify_client/domain/core/value_objects.dart';
 import 'package:shopify_client/infrastructure/auth/firebase_auth_facade.dart';
-import 'package:shopify_client/infrastructure/auth/firebase_user_mapper.dart';
 
 import 'firebase_auth_facade_test.mocks.dart';
 
@@ -373,7 +371,7 @@ void main() async {
         when(mockGoogleSignIn.signOut())
             .thenAnswer((_) async => MockGoogleSignInAccount());
         // act
-        await firebaseAuthFacade.singOut();
+        await firebaseAuthFacade.signOut();
         // assert
         verify(mockFirebaseAuth.signOut());
         verify(mockGoogleSignIn.signOut());

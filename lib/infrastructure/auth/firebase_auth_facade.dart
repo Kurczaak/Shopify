@@ -19,15 +19,6 @@ class FirebaseAuthFacade implements IAuthFacade {
   @override
   Future<Option<ShopifyUser>> getSignedInUser() async {
     final firebaseUser = _firebaseAuth.currentUser;
-    // print(firebaseUser);
-    // return optionOf(ShopifyUser(id: UniqueId()));
-    //TODO remove
-    // if (firebaseUser != null) {
-    //   return some(ShopifyUser(id: UniqueId.fromUniqueString(firebaseUser.uid)));
-    // }
-    // return none();
-
-    firebaseUser?.toDomain();
     return optionOf(firebaseUser?.toDomain());
   }
 
@@ -92,6 +83,6 @@ class FirebaseAuthFacade implements IAuthFacade {
   }
 
   @override
-  Future<void> singOut() =>
+  Future<void> signOut() =>
       Future.wait([_firebaseAuth.signOut(), _googleSignIn.signOut()]);
 }

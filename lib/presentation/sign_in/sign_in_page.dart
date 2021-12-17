@@ -6,6 +6,8 @@ import 'package:shopify_client/presentation/sign_in/widgets/sign_in_form.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
 class SignInPage extends StatelessWidget {
+  const SignInPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

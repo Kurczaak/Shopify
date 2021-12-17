@@ -1,9 +1,7 @@
-import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:shopify_client/application/auth/sign_in_form/sign_in_form_bloc.dart';
-import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:another_flushbar/flushbar_helper.dart';
 import 'package:shopify_client/presentation/sign_in/widgets/google_sign_in_button.dart';
 

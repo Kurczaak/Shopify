@@ -34,7 +34,7 @@ class AppWidget extends StatelessWidget {
           ),
         ),
       ),
-      home: SignInPage(),
+      home: const SignInPage(),
     );
   }
 }

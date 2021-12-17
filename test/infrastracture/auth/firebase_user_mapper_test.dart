@@ -1,8 +1,4 @@
-import 'dart:math';
-
-import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:mockito/mockito.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:shopify_client/domain/auth/user.dart';
@@ -16,7 +12,6 @@ class MockUser extends Mock implements User {
   String get uid => uniqueId;
 }
 
-// @GenerateMocks([User])
 void main() async {
   final firebaseUser = MockUser();
   final shopifyUser = ShopifyUser(id: UniqueId.fromUniqueString(uniqueId));
