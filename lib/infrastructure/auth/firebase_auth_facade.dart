@@ -50,10 +50,8 @@ class FirebaseAuthFacade implements IAuthFacade {
     final emailAddressString = emailAddress.getOrCrash();
     final passwordString = password.getOrCrash();
     try {
-      //TODO check behaviour
-      UserCredential userCredential =
-          await _firebaseAuth.signInWithEmailAndPassword(
-              email: emailAddressString, password: passwordString);
+      await _firebaseAuth.signInWithEmailAndPassword(
+          email: emailAddressString, password: passwordString);
       return right(unit);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'wrong-password' || e.code == 'user-not-found') {
@@ -73,12 +71,13 @@ class FirebaseAuthFacade implements IAuthFacade {
         final authCredential = GoogleAuthProvider.credential(
             accessToken: authentication.accessToken,
             idToken: authentication.idToken);
+
         await _firebaseAuth.signInWithCredential(authCredential);
         return right(unit);
       } else {
         return left(const AuthFailure.cancelledByUser());
       }
-    } on PlatformException catch (_) {
+    } on FirebaseAuthException catch (_) {
       return left(const AuthFailure.serverSerror());
     }
   }

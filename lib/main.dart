@@ -21,5 +21,5 @@ void main() async {
     ),
   );
   configureInjection(Environment.prod);
-  runApp(const AppWidget());
+  runApp(AppWidget());
 }
