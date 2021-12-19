@@ -42,7 +42,7 @@ class AppWidget extends StatelessWidget {
             displayColor: const Color.fromRGBO(73, 72, 72, 1),
           ),
           backgroundColor: const Color(0x00F4F5F7),
-          secondaryHeaderColor: const Color(0x00F4F5F7),
+          secondaryHeaderColor: const Color.fromRGBO(81, 81, 81, 1),
           brightness: Brightness.light,
           fontFamily: 'Poppins',
           primarySwatch: MaterialColor(0xFF337331, color),

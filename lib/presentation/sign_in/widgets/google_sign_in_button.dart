@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 
 class GoogleSignInButton extends StatelessWidget {
   final void Function() onPressed;
-  const GoogleSignInButton({Key? key, required Function() this.onPressed})
+  final String text;
+  const GoogleSignInButton(
+      {Key? key,
+      required Function() this.onPressed,
+      this.text = 'Sign in with Google'})
       : super(key: key);
 
   @override
@@ -15,8 +19,8 @@ class GoogleSignInButton extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: const [
-          Image(
+        children: [
+          const Image(
             fit: BoxFit.fitHeight,
             image: AssetImage(
               'assets/logos/google_light.png',
@@ -25,10 +29,10 @@ class GoogleSignInButton extends StatelessWidget {
           ),
           FittedBox(
             child: Padding(
-              padding: EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(8.0),
               child: Text(
-                'Sign in with Google',
-                style: TextStyle(
+                text,
+                style: const TextStyle(
                   color: Color.fromRGBO(0, 0, 0, 0.54),
                 ),
               ),

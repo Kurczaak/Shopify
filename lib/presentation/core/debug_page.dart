@@ -7,6 +7,7 @@ import 'package:shopify_client/presentation/core/widgets/green_corner_background
 import 'package:shopify_client/presentation/sign_in/widgets/sign_in_form.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:loading_overlay/loading_overlay.dart';
+import 'package:shopify_client/presentation/sign_in/widgets/sign_up_form.dart';
 
 class DebugPage extends StatelessWidget {
   const DebugPage({Key? key}) : super(key: key);
@@ -32,32 +33,48 @@ class DebugPage extends StatelessWidget {
             ),
             ResponsiveRowColumnItem(
               rowFlex: 2,
-              columnFlex: 3,
+              columnFlex: 2,
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment:
+                    ResponsiveWrapper.of(context).isSmallerThan(DESKTOP)
+                        ? MainAxisAlignment.end
+                        : MainAxisAlignment.center,
                 children: [
-                  Flexible(
-                    flex: 1,
-                    child: FittedBox(
-                      child: Text(
-                        'Welcome Back!',
-                        textAlign: TextAlign.center,
-                        maxLines: 2,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: ResponsiveValue(
-                            context,
-                            defaultValue: 60.0,
-                            valueWhen: const [
-                              Condition.smallerThan(name: TABLET, value: 40.0),
-                              Condition.equals(name: TABLET, value: 60.0),
-                              Condition.largerThan(name: TABLET, value: 80.0)
-                            ],
-                          ).value,
-                        ),
-                      ),
+                  Text(
+                    'Welcome Onboard!',
+                    textAlign: TextAlign.center,
+                    maxLines: 2,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: ResponsiveValue(
+                        context,
+                        defaultValue: 30.0,
+                        valueWhen: const [
+                          Condition.smallerThan(name: TABLET, value: 30.0),
+                          Condition.equals(name: TABLET, value: 40.0),
+                          Condition.largerThan(name: TABLET, value: 50.0)
+                        ],
+                      ).value,
+                    ),
+                  ),
+                  Text(
+                    'Let’s make shopping easier together!',
+                    textAlign: TextAlign.center,
+                    maxLines: 2,
+                    style: TextStyle(
+                      fontWeight: FontWeight.normal,
+                      color: Theme.of(context).secondaryHeaderColor,
+                      fontSize: ResponsiveValue(
+                        context,
+                        defaultValue: 20.0,
+                        valueWhen: const [
+                          Condition.smallerThan(name: TABLET, value: 15.0),
+                          Condition.equals(name: TABLET, value: 25.0),
+                          Condition.largerThan(name: TABLET, value: 35.0)
+                        ],
+                      ).value,
                     ),
                   ),
                 ],
@@ -70,10 +87,10 @@ class DebugPage extends StatelessWidget {
                 height: 1,
               ),
             )),
-            const ResponsiveRowColumnItem(
+            ResponsiveRowColumnItem(
               rowFlex: 3,
               columnFlex: 5,
-              child: Placeholder(),
+              child: SignUpForm(),
             ),
           ],
         ),
