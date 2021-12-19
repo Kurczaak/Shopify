@@ -39,104 +39,117 @@ class SignInForm extends StatelessWidget {
         return Form(
           autovalidateMode: state.showErrorMessages,
           child: Center(
-            child: ListView(
-              shrinkWrap: true,
-              padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
-              children: [
-                TextFormField(
-                  decoration: const InputDecoration(
-                    contentPadding:
-                        EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                    labelText: 'Enter your email',
+            child: AutofillGroup(
+              child: ListView(
+                shrinkWrap: true,
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
+                children: [
+                  TextFormField(
+                    autofillHints: const [
+                      AutofillHints.email,
+                    ],
+                    keyboardType: TextInputType.emailAddress,
+                    decoration: const InputDecoration(
+                      contentPadding: EdgeInsets.fromLTRB(20, 5, 5, 5),
+                      labelText: 'Enter your email',
+                    ),
+                    autocorrect: false,
+                    onChanged: (value) => context.read<SignInFormBloc>().add(
+                          SignInFormEvent.emailChanged(value),
+                        ),
+                    validator: (_) => context
+                        .read<SignInFormBloc>()
+                        .state
+                        .emailAddress
+                        .value
+                        .fold(
+                          (f) => f.maybeMap(
+                              invalidEmail: (_) => 'Invalid Email',
+                              orElse: () => null),
+                          (r) => null,
+                        ),
                   ),
-                  autocorrect: false,
-                  onChanged: (value) => context.read<SignInFormBloc>().add(
-                        SignInFormEvent.emailChanged(value),
-                      ),
-                  validator: (_) => context
-                      .read<SignInFormBloc>()
-                      .state
-                      .emailAddress
-                      .value
-                      .fold(
-                        (f) => f.maybeMap(
-                            invalidEmail: (_) => 'Invalid Email',
-                            orElse: () => null),
-                        (r) => null,
-                      ),
-                ),
-                const SizedBox(height: 20),
-                TextFormField(
-                  obscureText: true,
-                  decoration: const InputDecoration(
-                    contentPadding: EdgeInsets.fromLTRB(20, 5, 5, 5),
-                    labelText: 'Enter your password',
+                  const SizedBox(height: 20),
+                  TextFormField(
+                    autofillHints: const [
+                      AutofillHints.password,
+                    ],
+                    obscureText: true,
+                    decoration: const InputDecoration(
+                      contentPadding: EdgeInsets.fromLTRB(20, 5, 5, 5),
+                      labelText: 'Enter your password',
+                    ),
+                    autocorrect: false,
+                    onChanged: (value) => context.read<SignInFormBloc>().add(
+                          SignInFormEvent.passwordChanged(value),
+                        ),
+                    validator: (_) => context
+                        .read<SignInFormBloc>()
+                        .state
+                        .password
+                        .value
+                        .fold(
+                          (f) => f.maybeMap(
+                              incorrectPassword: (_) => 'Invalid Password',
+                              orElse: () => null),
+                          (r) => null,
+                        ),
                   ),
-                  autocorrect: false,
-                  onChanged: (value) => context.read<SignInFormBloc>().add(
-                        SignInFormEvent.passwordChanged(value),
+                  const SizedBox(height: 20),
+                  TextButton(
+                    onPressed: () {},
+                    child: const Text('Forgot Password?'),
+                  ),
+                  const SizedBox(height: 20),
+                  SizedBox(
+                    height: buttonResponsiveValue.value,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        context.read<SignInFormBloc>().add(
+                              const SignInFormEvent
+                                  .signInWithEmailAndPasswordPressed(),
+                            );
+                      },
+                      child: const Padding(
+                        padding: EdgeInsets.all(10.0),
+                        child: FittedBox(
+                            child: Text(
+                          'Log In',
+                          style: TextStyle(fontSize: 30),
+                        )),
                       ),
-                  validator: (_) =>
-                      context.read<SignInFormBloc>().state.password.value.fold(
-                            (f) => f.maybeMap(
-                                incorrectPassword: (_) => 'Invalid Password',
-                                orElse: () => null),
-                            (r) => null,
-                          ),
-                ),
-                const SizedBox(height: 20),
-                TextButton(
-                  onPressed: () {},
-                  child: const Text('Forgot Password?'),
-                ),
-                const SizedBox(height: 20),
-                SizedBox(
-                  height: buttonResponsiveValue.value,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      context.read<SignInFormBloc>().add(
-                            const SignInFormEvent
-                                .signInWithEmailAndPasswordPressed(),
-                          );
-                    },
-                    child: const Padding(
-                      padding: EdgeInsets.all(10.0),
-                      child: FittedBox(
-                          child: Text(
-                        'Log In',
-                        style: TextStyle(fontSize: 30),
-                      )),
                     ),
                   ),
-                ),
-                const SizedBox(height: 10),
-                SizedBox(
-                  height: buttonResponsiveValue.value,
-                  child: GoogleSignInButton(
-                    onPressed: () {
-                      context.read<SignInFormBloc>().add(
-                            const SignInFormEvent.signInWithGooglePressed(),
-                          );
-                    },
-                  ),
-                ),
-                const SizedBox(height: 10),
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text('Don\'t have an account? '),
-                    TextButton(
-                      onPressed: () =>
-                          context.router.replace(const SignUpRoute()),
-                      child: const Text(
-                        'Sign Up',
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
+                  const SizedBox(height: 10),
+                  SizedBox(
+                    height: buttonResponsiveValue.value,
+                    child: GoogleSignInButton(
+                      onPressed: () {
+                        context.read<SignInFormBloc>().add(
+                              const SignInFormEvent.signInWithGooglePressed(),
+                            );
+                      },
                     ),
-                  ],
-                ),
-              ],
+                  ),
+                  const SizedBox(height: 10),
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text('Don\'t have an account? '),
+                      TextButton(
+                        onPressed: () =>
+                            context.router.replace(const SignUpRoute()),
+                        child: const Text(
+                          'Sign Up',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         );

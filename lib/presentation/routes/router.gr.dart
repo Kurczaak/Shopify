@@ -48,10 +48,10 @@ class AppRouter extends _i6.RootStackRouter {
   @override
   List<_i6.RouteConfig> get routes => [
         _i6.RouteConfig(DebugRoute.name, path: '/debug-page'),
-        _i6.RouteConfig(SplashRoute.name, path: '/splash-page'),
+        _i6.RouteConfig(SplashRoute.name, path: '/'),
         _i6.RouteConfig(SignInRoute.name, path: '/sign-in-page'),
         _i6.RouteConfig(HomeRoute.name, path: '/home-page'),
-        _i6.RouteConfig(SignUpRoute.name, path: '/')
+        _i6.RouteConfig(SignUpRoute.name, path: '/sign-up-page')
       ];
 }
 
@@ -66,7 +66,7 @@ class DebugRoute extends _i6.PageRouteInfo<void> {
 /// generated route for
 /// [_i2.SplashPage]
 class SplashRoute extends _i6.PageRouteInfo<void> {
-  const SplashRoute() : super(SplashRoute.name, path: '/splash-page');
+  const SplashRoute() : super(SplashRoute.name, path: '/');
 
   static const String name = 'SplashRoute';
 }
@@ -90,7 +90,7 @@ class HomeRoute extends _i6.PageRouteInfo<void> {
 /// generated route for
 /// [_i5.SignUpPage]
 class SignUpRoute extends _i6.PageRouteInfo<void> {
-  const SignUpRoute() : super(SignUpRoute.name, path: '/');
+  const SignUpRoute() : super(SignUpRoute.name, path: '/sign-up-page');
 
   static const String name = 'SignUpRoute';
 }

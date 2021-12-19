@@ -49,41 +49,47 @@ class SignUpPage extends StatelessWidget {
                               ? MainAxisAlignment.end
                               : MainAxisAlignment.center,
                       children: [
-                        Text(
-                          'Welcome Onboard!',
-                          textAlign: TextAlign.center,
-                          maxLines: 2,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: ResponsiveValue(
-                              context,
-                              defaultValue: 30.0,
-                              valueWhen: const [
-                                Condition.smallerThan(
-                                    name: TABLET, value: 30.0),
-                                Condition.equals(name: TABLET, value: 40.0),
-                                Condition.largerThan(name: TABLET, value: 50.0)
-                              ],
-                            ).value,
+                        FittedBox(
+                          child: Text(
+                            'Welcome Onboard!',
+                            textAlign: TextAlign.center,
+                            maxLines: 2,
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: ResponsiveValue(
+                                context,
+                                defaultValue: 30.0,
+                                valueWhen: const [
+                                  Condition.smallerThan(
+                                      name: TABLET, value: 30.0),
+                                  Condition.equals(name: TABLET, value: 40.0),
+                                  Condition.largerThan(
+                                      name: TABLET, value: 50.0)
+                                ],
+                              ).value,
+                            ),
                           ),
                         ),
-                        Text(
-                          'Let’s make shopping easier together!',
-                          textAlign: TextAlign.center,
-                          maxLines: 2,
-                          style: TextStyle(
-                            fontWeight: FontWeight.normal,
-                            color: Theme.of(context).secondaryHeaderColor,
-                            fontSize: ResponsiveValue(
-                              context,
-                              defaultValue: 20.0,
-                              valueWhen: const [
-                                Condition.smallerThan(
-                                    name: TABLET, value: 15.0),
-                                Condition.equals(name: TABLET, value: 25.0),
-                                Condition.largerThan(name: TABLET, value: 35.0)
-                              ],
-                            ).value,
+                        FittedBox(
+                          child: Text(
+                            'Let’s make shopping easier together!',
+                            textAlign: TextAlign.center,
+                            maxLines: 2,
+                            style: TextStyle(
+                              fontWeight: FontWeight.normal,
+                              color: Theme.of(context).secondaryHeaderColor,
+                              fontSize: ResponsiveValue(
+                                context,
+                                defaultValue: 20.0,
+                                valueWhen: const [
+                                  Condition.smallerThan(
+                                      name: TABLET, value: 15.0),
+                                  Condition.equals(name: TABLET, value: 25.0),
+                                  Condition.largerThan(
+                                      name: TABLET, value: 35.0)
+                                ],
+                              ).value,
+                            ),
                           ),
                         ),
                       ],

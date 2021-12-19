@@ -39,91 +39,103 @@ class SignUpForm extends StatelessWidget {
         return Form(
           child: Center(
             child: AutofillGroup(
-              child: ListView(
-                shrinkWrap: true,
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
-                children: [
-                  TextFormField(
-                    autofillHints: const <String>[AutofillHints.name],
-                    autocorrect: false,
-                    keyboardType: TextInputType.emailAddress,
-                    decoration: const InputDecoration(
-                      contentPadding:
-                          EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                      labelText: 'name and surname',
-                    ),
-                    onChanged: (value) {},
-                    validator: (_) {},
-                  ),
-                  const SizedBox(height: 20),
-                  TextFormField(
-                    autofillHints: const [
-                      AutofillHints.email,
-                    ],
-                    keyboardType: TextInputType.emailAddress,
-                    decoration: const InputDecoration(
-                      contentPadding:
-                          EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                      labelText: 'e-mail adress',
-                    ),
-                    //autocorrect: false,
-                    onChanged: (value) {},
-                    validator: (_) {},
-                  ),
-                  const SizedBox(height: 20),
-                  TextFormField(
-                    obscureText: true,
-                    decoration: const InputDecoration(
-                      contentPadding: EdgeInsets.fromLTRB(20, 5, 5, 5),
-                      labelText: 'password',
-                    ),
-                    autocorrect: false,
-                    onChanged: (value) {},
-                    validator: (_) {},
-                  ),
-                  const SizedBox(height: 20),
-                  SizedBox(
-                    height: buttonResponsiveValue.value,
-                    child: ElevatedButton(
-                      onPressed: () {},
-                      child: const Padding(
-                        padding: EdgeInsets.all(10.0),
-                        child: FittedBox(
-                            child: Text(
-                          'Register Now',
-                          style: TextStyle(fontSize: 30),
-                        )),
+              child: AutofillGroup(
+                child: ListView(
+                  shrinkWrap: true,
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
+                  children: [
+                    TextFormField(
+                      autofillHints: const <String>[AutofillHints.name],
+                      autocorrect: false,
+                      keyboardType: TextInputType.emailAddress,
+                      decoration: const InputDecoration(
+                        contentPadding: EdgeInsets.fromLTRB(20, 5, 5, 5),
+                        labelText: 'name and surname',
                       ),
+                      onChanged: (value) {},
+                      validator: (_) {},
                     ),
-                  ),
-                  const SizedBox(height: 10),
-                  SizedBox(
-                    height: buttonResponsiveValue.value,
-                    child: GoogleSignInButton(
-                      onPressed: () {},
-                      text: 'Sign up with Google',
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  Row(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text('Already have an account? '),
-                      TextButton(
-                        onPressed: () =>
-                            context.router.replace(const SignInRoute()),
-                        child: const Text(
-                          'Sign In',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
+                    const SizedBox(height: 20),
+                    TextFormField(
+                      autofillHints: const [
+                        AutofillHints.email,
+                      ],
+                      keyboardType: TextInputType.emailAddress,
+                      decoration: const InputDecoration(
+                        contentPadding: EdgeInsets.fromLTRB(20, 5, 5, 5),
+                        labelText: 'e-mail adress',
+                      ),
+                      autocorrect: false,
+                      onChanged: (value) => context.read<SignInFormBloc>().add(
+                            SignInFormEvent.emailChanged(value),
                           ),
+                      validator: (_) {},
+                    ),
+                    const SizedBox(height: 20),
+                    TextFormField(
+                      autofillHints: const [
+                        AutofillHints.password,
+                      ],
+                      obscureText: true,
+                      decoration: const InputDecoration(
+                        contentPadding: EdgeInsets.fromLTRB(20, 5, 5, 5),
+                        labelText: 'password',
+                      ),
+                      autocorrect: false,
+                      onChanged: (value) => context.read<SignInFormBloc>().add(
+                            SignInFormEvent.passwordChanged(value),
+                          ),
+                      validator: (_) {},
+                    ),
+                    const SizedBox(height: 20),
+                    SizedBox(
+                      height: buttonResponsiveValue.value,
+                      child: ElevatedButton(
+                        onPressed: () => context.read<SignInFormBloc>().add(
+                              const SignInFormEvent
+                                  .registerWithEmailAndPasswordPressed(),
+                            ),
+                        child: const Padding(
+                          padding: EdgeInsets.all(10.0),
+                          child: FittedBox(
+                              child: Text(
+                            'Register Now',
+                            style: TextStyle(fontSize: 30),
+                          )),
                         ),
                       ),
-                    ],
-                  ),
-                ],
+                    ),
+                    const SizedBox(height: 10),
+                    SizedBox(
+                      height: buttonResponsiveValue.value,
+                      child: GoogleSignInButton(
+                        onPressed: () => context.read<SignInFormBloc>().add(
+                              const SignInFormEvent.signInWithGooglePressed(),
+                            ),
+                        text: 'Sign up with Google',
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text('Already have an account? '),
+                        TextButton(
+                          onPressed: () =>
+                              context.router.replace(const SignInRoute()),
+                          child: const Text(
+                            'Sign In',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
