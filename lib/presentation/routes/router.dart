@@ -13,6 +13,7 @@ import 'package:shopify_client/presentation/splash/splash_page.dart';
     ),
     AutoRoute(
       page: SplashPage,
+      initial: true,
     ),
     AutoRoute(
       page: SignInPage,
@@ -22,7 +23,6 @@ import 'package:shopify_client/presentation/splash/splash_page.dart';
     ),
     AutoRoute(
       page: SignUpPage,
-      initial: true,
     )
   ],
 )

@@ -4,6 +4,8 @@ import 'package:responsive_framework/responsive_framework.dart';
 import 'package:shopify_client/application/auth/sign_in_form/sign_in_form_bloc.dart';
 import 'package:another_flushbar/flushbar_helper.dart';
 import 'package:shopify_client/presentation/sign_in/widgets/google_sign_in_button.dart';
+import 'package:auto_route/auto_route.dart';
+import 'package:shopify_client/presentation/routes/router.gr.dart';
 
 class SignUpForm extends StatelessWidget {
   const SignUpForm({Key? key}) : super(key: key);
@@ -110,7 +112,8 @@ class SignUpForm extends StatelessWidget {
                     children: [
                       const Text('Already have an account? '),
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () =>
+                            context.router.replace(const SignInRoute()),
                         child: const Text(
                           'Sign In',
                           style: TextStyle(

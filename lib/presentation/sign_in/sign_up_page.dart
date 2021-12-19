@@ -97,7 +97,7 @@ class SignUpPage extends StatelessWidget {
                       height: 1,
                     ),
                   )),
-                  ResponsiveRowColumnItem(
+                  const ResponsiveRowColumnItem(
                     rowFlex: 3,
                     columnFlex: 5,
                     child: SignUpForm(),
