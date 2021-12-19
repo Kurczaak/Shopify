@@ -18,6 +18,7 @@ class SignInPage extends StatelessWidget {
         child: BlocConsumer<SignInFormBloc, SignInFormState>(
           listener: (context, state) {},
           builder: (context, state) => LoadingOverlay(
+            opacity: .3,
             color: Colors.black,
             isLoading: state.isSubmitting,
             child: GreenCornerBackground(

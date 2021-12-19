@@ -22,7 +22,7 @@ class SplashPage extends StatelessWidget {
             },
             unauthenticated: (_) async {
               //TODO remove artificial delay
-              // await Future.delayed(const Duration(seconds: 4));
+              await Future.delayed(const Duration(seconds: 4));
               context.router.replace(const SignInRoute());
             });
       },

@@ -8,60 +8,74 @@
 // AutoRouteGenerator
 // **************************************************************************
 
-import 'package:auto_route/auto_route.dart' as _i4;
-import 'package:flutter/material.dart' as _i5;
+import 'package:auto_route/auto_route.dart' as _i5;
+import 'package:flutter/material.dart' as _i6;
 
-import '../home_page.dart' as _i3;
-import '../sign_in/sign_in_page.dart' as _i2;
-import '../splash/splash_page.dart' as _i1;
+import '../core/debug_page.dart' as _i1;
+import '../home_page.dart' as _i4;
+import '../sign_in/sign_in_page.dart' as _i3;
+import '../splash/splash_page.dart' as _i2;
 
-class AppRouter extends _i4.RootStackRouter {
-  AppRouter([_i5.GlobalKey<_i5.NavigatorState>? navigatorKey])
+class AppRouter extends _i5.RootStackRouter {
+  AppRouter([_i6.GlobalKey<_i6.NavigatorState>? navigatorKey])
       : super(navigatorKey);
 
   @override
-  final Map<String, _i4.PageFactory> pagesMap = {
+  final Map<String, _i5.PageFactory> pagesMap = {
+    DebugRoute.name: (routeData) {
+      return _i5.MaterialPageX<dynamic>(
+          routeData: routeData, child: const _i1.DebugPage());
+    },
     SplashRoute.name: (routeData) {
-      return _i4.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i1.SplashPage());
+      return _i5.MaterialPageX<dynamic>(
+          routeData: routeData, child: const _i2.SplashPage());
     },
     SignInRoute.name: (routeData) {
-      return _i4.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i2.SignInPage());
+      return _i5.MaterialPageX<dynamic>(
+          routeData: routeData, child: const _i3.SignInPage());
     },
     HomeRoute.name: (routeData) {
-      return _i4.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i3.HomePage());
+      return _i5.MaterialPageX<dynamic>(
+          routeData: routeData, child: const _i4.HomePage());
     }
   };
 
   @override
-  List<_i4.RouteConfig> get routes => [
-        _i4.RouteConfig(SplashRoute.name, path: '/'),
-        _i4.RouteConfig(SignInRoute.name, path: '/sign-in-page'),
-        _i4.RouteConfig(HomeRoute.name, path: '/home-page')
+  List<_i5.RouteConfig> get routes => [
+        _i5.RouteConfig(DebugRoute.name, path: '/'),
+        _i5.RouteConfig(SplashRoute.name, path: '/splash-page'),
+        _i5.RouteConfig(SignInRoute.name, path: '/sign-in-page'),
+        _i5.RouteConfig(HomeRoute.name, path: '/home-page')
       ];
 }
 
 /// generated route for
-/// [_i1.SplashPage]
-class SplashRoute extends _i4.PageRouteInfo<void> {
-  const SplashRoute() : super(SplashRoute.name, path: '/');
+/// [_i1.DebugPage]
+class DebugRoute extends _i5.PageRouteInfo<void> {
+  const DebugRoute() : super(DebugRoute.name, path: '/');
+
+  static const String name = 'DebugRoute';
+}
+
+/// generated route for
+/// [_i2.SplashPage]
+class SplashRoute extends _i5.PageRouteInfo<void> {
+  const SplashRoute() : super(SplashRoute.name, path: '/splash-page');
 
   static const String name = 'SplashRoute';
 }
 
 /// generated route for
-/// [_i2.SignInPage]
-class SignInRoute extends _i4.PageRouteInfo<void> {
+/// [_i3.SignInPage]
+class SignInRoute extends _i5.PageRouteInfo<void> {
   const SignInRoute() : super(SignInRoute.name, path: '/sign-in-page');
 
   static const String name = 'SignInRoute';
 }
 
 /// generated route for
-/// [_i3.HomePage]
-class HomeRoute extends _i4.PageRouteInfo<void> {
+/// [_i4.HomePage]
+class HomeRoute extends _i5.PageRouteInfo<void> {
   const HomeRoute() : super(HomeRoute.name, path: '/home-page');
 
   static const String name = 'HomeRoute';

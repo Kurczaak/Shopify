@@ -7,11 +7,9 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: TextButton(
-        child: Text('Sign Out'),
-        onPressed: () async => await getIt<IAuthFacade>().signOut(),
-      ),
+    return TextButton(
+      child: const Text('Sign Out'),
+      onPressed: () async => await getIt<IAuthFacade>().signOut(),
     );
   }
 }
