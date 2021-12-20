@@ -24,8 +24,10 @@ void main() {
         // act
         final result = validateEmailAddress(invalidEmailString);
         // assert
-        expect(result,
-            left(ValueFailure.invalidEmail(failedValue: invalidEmailString)));
+        expect(
+            result,
+            left(ValueFailure.auth(AuthValueFailure.invalidEmail(
+                failedValue: invalidEmailString))));
       },
     );
     test(
@@ -36,8 +38,10 @@ void main() {
         // act
         final result = validateEmailAddress(invalidEmailString);
         // assert
-        expect(result,
-            left(ValueFailure.invalidEmail(failedValue: invalidEmailString)));
+        expect(
+            result,
+            left(ValueFailure.auth(AuthValueFailure.invalidEmail(
+                failedValue: invalidEmailString))));
       },
     );
     test(
@@ -48,8 +52,10 @@ void main() {
         // act
         final result = validateEmailAddress(invalidEmailString);
         // assert
-        expect(result,
-            left(ValueFailure.invalidEmail(failedValue: invalidEmailString)));
+        expect(
+            result,
+            left(ValueFailure.auth(AuthValueFailure.invalidEmail(
+                failedValue: invalidEmailString))));
       },
     );
   });
@@ -76,8 +82,8 @@ void main() {
         // assert
         expect(
             result,
-            left(ValueFailure.incorrectPassword(
-                failedValue: shortPasswordString)));
+            left(ValueFailure.auth(AuthValueFailure.incorrectPassword(
+                failedValue: shortPasswordString))));
       },
     );
 
@@ -91,8 +97,8 @@ void main() {
         // assert
         expect(
             result,
-            left(ValueFailure.incorrectPassword(
-                failedValue: noSpecialCharacterPassword)));
+            left(ValueFailure.auth(AuthValueFailure.incorrectPassword(
+                failedValue: noSpecialCharacterPassword))));
       },
     );
 
@@ -107,8 +113,8 @@ void main() {
         // assert
         expect(
             result,
-            left(ValueFailure.incorrectPassword(
-                failedValue: noNumericalCharacterPassword)));
+            left(ValueFailure.auth(AuthValueFailure.incorrectPassword(
+                failedValue: noNumericalCharacterPassword))));
       },
     );
 
@@ -123,8 +129,8 @@ void main() {
         // assert
         expect(
             result,
-            left(ValueFailure.incorrectPassword(
-                failedValue: noCapitalLetterPassword)));
+            left(ValueFailure.auth(AuthValueFailure.incorrectPassword(
+                failedValue: noCapitalLetterPassword))));
       },
     );
 
@@ -139,8 +145,8 @@ void main() {
         // assert
         expect(
             result,
-            left(ValueFailure.incorrectPassword(
-                failedValue: noSmallLetterPassword)));
+            left(ValueFailure.auth(AuthValueFailure.incorrectPassword(
+                failedValue: noSmallLetterPassword))));
       },
     );
   });

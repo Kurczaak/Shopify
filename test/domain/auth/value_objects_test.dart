@@ -61,8 +61,10 @@ void main() {
         final result = EmailAddress(incorrectEmailString);
         final valueOrFailure = result.value.fold((f) => (f), (r) => r);
         // assert
-        expect(valueOrFailure,
-            ValueFailure.invalidEmail(failedValue: incorrectEmailString));
+        expect(
+            valueOrFailure,
+            ValueFailure.auth(AuthValueFailure.invalidEmail(
+                failedValue: incorrectEmailString)));
       },
     );
   });
@@ -125,8 +127,10 @@ void main() {
         final result = Password(shortPasswordString);
         final valueOrFailure = result.value.fold((f) => (f), (r) => r);
         // assert
-        expect(valueOrFailure,
-            ValueFailure.incorrectPassword(failedValue: shortPasswordString));
+        expect(
+            valueOrFailure,
+            ValueFailure.auth(AuthValueFailure.incorrectPassword(
+                failedValue: shortPasswordString)));
       },
     );
 
@@ -141,8 +145,8 @@ void main() {
         // assert
         expect(
             valueOrFailure,
-            ValueFailure.incorrectPassword(
-                failedValue: noSpecialCharacterPassword));
+            ValueFailure.auth(AuthValueFailure.incorrectPassword(
+                failedValue: noSpecialCharacterPassword)));
       },
     );
 
@@ -157,8 +161,8 @@ void main() {
         // assert
         expect(
             valueOrFailure,
-            ValueFailure.incorrectPassword(
-                failedValue: noNumericalCharacterPassword));
+            ValueFailure.auth(AuthValueFailure.incorrectPassword(
+                failedValue: noNumericalCharacterPassword)));
       },
     );
 
@@ -173,8 +177,8 @@ void main() {
         // assert
         expect(
             valueOrFailure,
-            ValueFailure.incorrectPassword(
-                failedValue: noCapitalLetterPassword));
+            ValueFailure.auth(AuthValueFailure.incorrectPassword(
+                failedValue: noCapitalLetterPassword)));
       },
     );
     test(
@@ -186,8 +190,10 @@ void main() {
         final result = Password(noSmallLetterPassword);
         final valueOrFailure = result.value.fold((f) => (f), (r) => r);
         // assert
-        expect(valueOrFailure,
-            ValueFailure.incorrectPassword(failedValue: noSmallLetterPassword));
+        expect(
+            valueOrFailure,
+            ValueFailure.auth(AuthValueFailure.incorrectPassword(
+                failedValue: noSmallLetterPassword)));
       },
     );
   });

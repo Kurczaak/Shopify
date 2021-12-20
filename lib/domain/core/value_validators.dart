@@ -9,7 +9,8 @@ Either<ValueFailure<String>, String> validateEmailAddress(String input) {
   if (isValid) {
     return right(input);
   } else {
-    return left(ValueFailure.invalidEmail(failedValue: input));
+    return left(
+        ValueFailure.auth(AuthValueFailure.invalidEmail(failedValue: input)));
   }
 }
 
@@ -18,7 +19,8 @@ Either<ValueFailure<String>, String> validatePassword(String input) {
       '^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@\$%^&*-]).{6,}\$');
 
   if (!regExp.hasMatch(input)) {
-    return left(ValueFailure.incorrectPassword(failedValue: input));
+    return left(ValueFailure.auth(
+        AuthValueFailure.incorrectPassword(failedValue: input)));
   }
 
   return right(input);

@@ -1,9 +1,9 @@
-import 'package:auto_route/src/router/auto_router_x.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:shopify_client/application/auth/sign_in_form/sign_in_form_bloc.dart';
 import 'package:another_flushbar/flushbar_helper.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:shopify_client/presentation/routes/router.gr.dart';
 import 'package:shopify_client/presentation/sign_in/widgets/google_sign_in_button.dart';
 
@@ -65,8 +65,14 @@ class SignInForm extends StatelessWidget {
                         .value
                         .fold(
                           (f) => f.maybeMap(
-                              invalidEmail: (_) => 'Invalid Email',
-                              orElse: () => null),
+                            auth: (value) {
+                              value.f.maybeMap(
+                                invalidEmail: (_) => 'Invalid Email',
+                                orElse: () => null,
+                              );
+                            },
+                            orElse: () => null,
+                          ),
                           (r) => null,
                         ),
                   ),
@@ -91,7 +97,12 @@ class SignInForm extends StatelessWidget {
                         .value
                         .fold(
                           (f) => f.maybeMap(
-                              incorrectPassword: (_) => 'Invalid Password',
+                              auth: (value) {
+                                value.f.maybeMap(
+                                    incorrectPassword: (_) =>
+                                        'Invalid Password',
+                                    orElse: () => null);
+                              },
                               orElse: () => null),
                           (r) => null,
                         ),
