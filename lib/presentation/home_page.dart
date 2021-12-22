@@ -23,38 +23,36 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Column(
-          children: [
-            TextButton(
-              child: const Text('Sign Out'),
-              onPressed: () async => await getIt<IAuthFacade>().signOut(),
-            ),
-            Expanded(
-              child: GoogleMap(
-                myLocationEnabled: true,
-                myLocationButtonEnabled: true,
-                mapType: MapType.normal,
-                initialCameraPosition: _kGooglePlex,
-                onMapCreated: (GoogleMapController controller) async {
-                  Future<void> requestPermission() async {
-                    await Permission.location.request();
-                  }
+      body: Column(
+        children: [
+          SizedBox(height: 50),
+          TextButton(
+            child: const Text('Sign Out'),
+            onPressed: () async => await getIt<IAuthFacade>().signOut(),
+          ),
+          Expanded(
+            child: Placeholder(),
+          ),
+          Expanded(
+            child: GoogleMap(
+              myLocationEnabled: true,
+              myLocationButtonEnabled: true,
+              mapType: MapType.normal,
+              initialCameraPosition: _kGooglePlex,
+              onMapCreated: (GoogleMapController controller) async {
+                await Permission.location.request();
 
-                  if (defaultTargetPlatform == TargetPlatform.android) {
-                    AndroidGoogleMapsFlutter.useAndroidViewSurface = true;
-                  }
+                if (defaultTargetPlatform == TargetPlatform.android) {
+                  AndroidGoogleMapsFlutter.useAndroidViewSurface = true;
+                }
 
-                  _controller.complete(controller);
-                },
-              ),
+                _controller.complete(controller);
+              },
             ),
-          ],
-        ),
-        floatingActionButton: FloatingActionButton.extended(
-          onPressed: _goToTheLake,
-          label: Text('To the lake!'),
-          icon: Icon(Icons.directions_boat),
-        ));
+          ),
+        ],
+      ),
+    );
   }
 
   Future<void> _goToTheLake() async {
