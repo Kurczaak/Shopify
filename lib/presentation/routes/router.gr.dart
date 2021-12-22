@@ -37,7 +37,7 @@ class AppRouter extends _i6.RootStackRouter {
     },
     HomeRoute.name: (routeData) {
       return _i6.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i4.HomePage());
+          routeData: routeData, child: _i4.HomePage());
     },
     SignUpRoute.name: (routeData) {
       return _i6.MaterialPageX<dynamic>(
