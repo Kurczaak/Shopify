@@ -23,7 +23,7 @@ class _$ValueFailureTearOff {
     );
   }
 
-  _Product<T> product<T>(AuthValueFailure<T> f) {
+  _Product<T> product<T>(ProductValueFailure<T> f) {
     return _Product<T>(
       f,
     );
@@ -35,24 +35,22 @@ const $ValueFailure = _$ValueFailureTearOff();
 
 /// @nodoc
 mixin _$ValueFailure<T> {
-  AuthValueFailure<T> get f => throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(AuthValueFailure<T> f) auth,
-    required TResult Function(AuthValueFailure<T> f) product,
+    required TResult Function(ProductValueFailure<T> f) product,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(AuthValueFailure<T> f)? auth,
-    TResult Function(AuthValueFailure<T> f)? product,
+    TResult Function(ProductValueFailure<T> f)? product,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(AuthValueFailure<T> f)? auth,
-    TResult Function(AuthValueFailure<T> f)? product,
+    TResult Function(ProductValueFailure<T> f)? product,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -75,10 +73,6 @@ mixin _$ValueFailure<T> {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $ValueFailureCopyWith<T, ValueFailure<T>> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -86,9 +80,6 @@ abstract class $ValueFailureCopyWith<T, $Res> {
   factory $ValueFailureCopyWith(
           ValueFailure<T> value, $Res Function(ValueFailure<T>) then) =
       _$ValueFailureCopyWithImpl<T, $Res>;
-  $Res call({AuthValueFailure<T> f});
-
-  $AuthValueFailureCopyWith<T, $Res> get f;
 }
 
 /// @nodoc
@@ -99,36 +90,14 @@ class _$ValueFailureCopyWithImpl<T, $Res>
   final ValueFailure<T> _value;
   // ignore: unused_field
   final $Res Function(ValueFailure<T>) _then;
-
-  @override
-  $Res call({
-    Object? f = freezed,
-  }) {
-    return _then(_value.copyWith(
-      f: f == freezed
-          ? _value.f
-          : f // ignore: cast_nullable_to_non_nullable
-              as AuthValueFailure<T>,
-    ));
-  }
-
-  @override
-  $AuthValueFailureCopyWith<T, $Res> get f {
-    return $AuthValueFailureCopyWith<T, $Res>(_value.f, (value) {
-      return _then(_value.copyWith(f: value));
-    });
-  }
 }
 
 /// @nodoc
-abstract class _$AuthCopyWith<T, $Res>
-    implements $ValueFailureCopyWith<T, $Res> {
+abstract class _$AuthCopyWith<T, $Res> {
   factory _$AuthCopyWith(_Auth<T> value, $Res Function(_Auth<T>) then) =
       __$AuthCopyWithImpl<T, $Res>;
-  @override
   $Res call({AuthValueFailure<T> f});
 
-  @override
   $AuthValueFailureCopyWith<T, $Res> get f;
 }
 
@@ -151,6 +120,13 @@ class __$AuthCopyWithImpl<T, $Res> extends _$ValueFailureCopyWithImpl<T, $Res>
           : f // ignore: cast_nullable_to_non_nullable
               as AuthValueFailure<T>,
     ));
+  }
+
+  @override
+  $AuthValueFailureCopyWith<T, $Res> get f {
+    return $AuthValueFailureCopyWith<T, $Res>(_value.f, (value) {
+      return _then(_value.copyWith(f: value));
+    });
   }
 }
 
@@ -188,7 +164,7 @@ class _$_Auth<T> implements _Auth<T> {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(AuthValueFailure<T> f) auth,
-    required TResult Function(AuthValueFailure<T> f) product,
+    required TResult Function(ProductValueFailure<T> f) product,
   }) {
     return auth(f);
   }
@@ -197,7 +173,7 @@ class _$_Auth<T> implements _Auth<T> {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(AuthValueFailure<T> f)? auth,
-    TResult Function(AuthValueFailure<T> f)? product,
+    TResult Function(ProductValueFailure<T> f)? product,
   }) {
     return auth?.call(f);
   }
@@ -206,7 +182,7 @@ class _$_Auth<T> implements _Auth<T> {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(AuthValueFailure<T> f)? auth,
-    TResult Function(AuthValueFailure<T> f)? product,
+    TResult Function(ProductValueFailure<T> f)? product,
     required TResult orElse(),
   }) {
     if (auth != null) {
@@ -250,25 +226,20 @@ class _$_Auth<T> implements _Auth<T> {
 abstract class _Auth<T> implements ValueFailure<T> {
   const factory _Auth(AuthValueFailure<T> f) = _$_Auth<T>;
 
-  @override
   AuthValueFailure<T> get f;
-  @override
   @JsonKey(ignore: true)
   _$AuthCopyWith<T, _Auth<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$ProductCopyWith<T, $Res>
-    implements $ValueFailureCopyWith<T, $Res> {
+abstract class _$ProductCopyWith<T, $Res> {
   factory _$ProductCopyWith(
           _Product<T> value, $Res Function(_Product<T>) then) =
       __$ProductCopyWithImpl<T, $Res>;
-  @override
-  $Res call({AuthValueFailure<T> f});
+  $Res call({ProductValueFailure<T> f});
 
-  @override
-  $AuthValueFailureCopyWith<T, $Res> get f;
+  $ProductValueFailureCopyWith<T, $Res> get f;
 }
 
 /// @nodoc
@@ -289,8 +260,15 @@ class __$ProductCopyWithImpl<T, $Res>
       f == freezed
           ? _value.f
           : f // ignore: cast_nullable_to_non_nullable
-              as AuthValueFailure<T>,
+              as ProductValueFailure<T>,
     ));
+  }
+
+  @override
+  $ProductValueFailureCopyWith<T, $Res> get f {
+    return $ProductValueFailureCopyWith<T, $Res>(_value.f, (value) {
+      return _then(_value.copyWith(f: value));
+    });
   }
 }
 
@@ -300,7 +278,7 @@ class _$_Product<T> implements _Product<T> {
   const _$_Product(this.f);
 
   @override
-  final AuthValueFailure<T> f;
+  final ProductValueFailure<T> f;
 
   @override
   String toString() {
@@ -328,7 +306,7 @@ class _$_Product<T> implements _Product<T> {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(AuthValueFailure<T> f) auth,
-    required TResult Function(AuthValueFailure<T> f) product,
+    required TResult Function(ProductValueFailure<T> f) product,
   }) {
     return product(f);
   }
@@ -337,7 +315,7 @@ class _$_Product<T> implements _Product<T> {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(AuthValueFailure<T> f)? auth,
-    TResult Function(AuthValueFailure<T> f)? product,
+    TResult Function(ProductValueFailure<T> f)? product,
   }) {
     return product?.call(f);
   }
@@ -346,7 +324,7 @@ class _$_Product<T> implements _Product<T> {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(AuthValueFailure<T> f)? auth,
-    TResult Function(AuthValueFailure<T> f)? product,
+    TResult Function(ProductValueFailure<T> f)? product,
     required TResult orElse(),
   }) {
     if (product != null) {
@@ -388,11 +366,9 @@ class _$_Product<T> implements _Product<T> {
 }
 
 abstract class _Product<T> implements ValueFailure<T> {
-  const factory _Product(AuthValueFailure<T> f) = _$_Product<T>;
+  const factory _Product(ProductValueFailure<T> f) = _$_Product<T>;
 
-  @override
-  AuthValueFailure<T> get f;
-  @override
+  ProductValueFailure<T> get f;
   @JsonKey(ignore: true)
   _$ProductCopyWith<T, _Product<T>> get copyWith =>
       throw _privateConstructorUsedError;
