@@ -1,5 +1,5 @@
 import 'package:shopify_client/domain/core/failures.dart';
-import 'package:shopify_client/domain/core/value_validators.dart';
+import 'package:shopify_client/domain/auth/value_validators.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:dartz/dartz.dart';
 

@@ -7,7 +7,8 @@ class ProductDescription extends ValueObject<String> {
   final Either<ValueFailure<String>, String> value;
   factory ProductDescription(String input) {
     return ProductDescription._(left(ValueFailure.product(
-        ProductValueFailure.exceedingLength(failedValue: input, maxLen: 1))));
+        ProductValueFailure.exceedingLength(StringValueFailure.stringTooLong(
+            failedValue: input, maxLength: 12)))));
   }
   const ProductDescription._(this.value);
 }

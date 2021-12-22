@@ -2,7 +2,7 @@
 
 import 'package:dartz/dartz.dart';
 import 'package:email_validator/email_validator.dart';
-import './failures.dart';
+import '../core/failures.dart';
 
 Either<ValueFailure<String>, String> validateEmailAddress(String input) {
   final bool isValid = EmailValidator.validate(input);
@@ -22,6 +22,5 @@ Either<ValueFailure<String>, String> validatePassword(String input) {
     return left(ValueFailure.auth(
         AuthValueFailure.incorrectPassword(failedValue: input)));
   }
-
   return right(input);
 }

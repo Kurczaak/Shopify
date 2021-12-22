@@ -754,11 +754,17 @@ abstract class ShortPassword<T> implements AuthValueFailure<T> {
 class _$ProductValueFailureTearOff {
   const _$ProductValueFailureTearOff();
 
-  ExceedingLength<T> exceedingLength<T>(
-      {required T failedValue, required int maxLen}) {
+  ExceedingLength<T> exceedingLength<T>(StringValueFailure f) {
     return ExceedingLength<T>(
+      f,
+    );
+  }
+
+  BodyTooLong<T> bodyTooLong<T>(
+      {required T failedValue, required int maxLength}) {
+    return BodyTooLong<T>(
       failedValue: failedValue,
-      maxLen: maxLen,
+      maxLength: maxLength,
     );
   }
 
@@ -786,7 +792,8 @@ const $ProductValueFailure = _$ProductValueFailureTearOff();
 mixin _$ProductValueFailure<T> {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(T failedValue, int maxLen) exceedingLength,
+    required TResult Function(StringValueFailure f) exceedingLength,
+    required TResult Function(T failedValue, int maxLength) bodyTooLong,
     required TResult Function() empty,
     required TResult Function(T failedValue) multiline,
     required TResult Function(T failedValue) nonPositivePrice,
@@ -794,7 +801,8 @@ mixin _$ProductValueFailure<T> {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(T failedValue, int maxLen)? exceedingLength,
+    TResult Function(StringValueFailure f)? exceedingLength,
+    TResult Function(T failedValue, int maxLength)? bodyTooLong,
     TResult Function()? empty,
     TResult Function(T failedValue)? multiline,
     TResult Function(T failedValue)? nonPositivePrice,
@@ -802,7 +810,8 @@ mixin _$ProductValueFailure<T> {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(T failedValue, int maxLen)? exceedingLength,
+    TResult Function(StringValueFailure f)? exceedingLength,
+    TResult Function(T failedValue, int maxLength)? bodyTooLong,
     TResult Function()? empty,
     TResult Function(T failedValue)? multiline,
     TResult Function(T failedValue)? nonPositivePrice,
@@ -812,6 +821,7 @@ mixin _$ProductValueFailure<T> {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(ExceedingLength<T> value) exceedingLength,
+    required TResult Function(BodyTooLong<T> value) bodyTooLong,
     required TResult Function(Empty<T> value) empty,
     required TResult Function(Multiline<T> value) multiline,
     required TResult Function(NonPositivePrice<T> value) nonPositivePrice,
@@ -820,6 +830,7 @@ mixin _$ProductValueFailure<T> {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(ExceedingLength<T> value)? exceedingLength,
+    TResult Function(BodyTooLong<T> value)? bodyTooLong,
     TResult Function(Empty<T> value)? empty,
     TResult Function(Multiline<T> value)? multiline,
     TResult Function(NonPositivePrice<T> value)? nonPositivePrice,
@@ -828,6 +839,7 @@ mixin _$ProductValueFailure<T> {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ExceedingLength<T> value)? exceedingLength,
+    TResult Function(BodyTooLong<T> value)? bodyTooLong,
     TResult Function(Empty<T> value)? empty,
     TResult Function(Multiline<T> value)? multiline,
     TResult Function(NonPositivePrice<T> value)? nonPositivePrice,
@@ -858,7 +870,9 @@ abstract class $ExceedingLengthCopyWith<T, $Res> {
   factory $ExceedingLengthCopyWith(
           ExceedingLength<T> value, $Res Function(ExceedingLength<T>) then) =
       _$ExceedingLengthCopyWithImpl<T, $Res>;
-  $Res call({T failedValue, int maxLen});
+  $Res call({StringValueFailure f});
+
+  $StringValueFailureCopyWith<$Res> get f;
 }
 
 /// @nodoc
@@ -874,35 +888,35 @@ class _$ExceedingLengthCopyWithImpl<T, $Res>
 
   @override
   $Res call({
-    Object? failedValue = freezed,
-    Object? maxLen = freezed,
+    Object? f = freezed,
   }) {
     return _then(ExceedingLength<T>(
-      failedValue: failedValue == freezed
-          ? _value.failedValue
-          : failedValue // ignore: cast_nullable_to_non_nullable
-              as T,
-      maxLen: maxLen == freezed
-          ? _value.maxLen
-          : maxLen // ignore: cast_nullable_to_non_nullable
-              as int,
+      f == freezed
+          ? _value.f
+          : f // ignore: cast_nullable_to_non_nullable
+              as StringValueFailure,
     ));
+  }
+
+  @override
+  $StringValueFailureCopyWith<$Res> get f {
+    return $StringValueFailureCopyWith<$Res>(_value.f, (value) {
+      return _then(_value.copyWith(f: value));
+    });
   }
 }
 
 /// @nodoc
 
 class _$ExceedingLength<T> implements ExceedingLength<T> {
-  const _$ExceedingLength({required this.failedValue, required this.maxLen});
+  const _$ExceedingLength(this.f);
 
   @override
-  final T failedValue;
-  @override
-  final int maxLen;
+  final StringValueFailure f;
 
   @override
   String toString() {
-    return 'ProductValueFailure<$T>.exceedingLength(failedValue: $failedValue, maxLen: $maxLen)';
+    return 'ProductValueFailure<$T>.exceedingLength(f: $f)';
   }
 
   @override
@@ -910,16 +924,12 @@ class _$ExceedingLength<T> implements ExceedingLength<T> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is ExceedingLength<T> &&
-            const DeepCollectionEquality()
-                .equals(other.failedValue, failedValue) &&
-            const DeepCollectionEquality().equals(other.maxLen, maxLen));
+            const DeepCollectionEquality().equals(other.f, f));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(failedValue),
-      const DeepCollectionEquality().hash(maxLen));
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(f));
 
   @JsonKey(ignore: true)
   @override
@@ -929,36 +939,39 @@ class _$ExceedingLength<T> implements ExceedingLength<T> {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(T failedValue, int maxLen) exceedingLength,
+    required TResult Function(StringValueFailure f) exceedingLength,
+    required TResult Function(T failedValue, int maxLength) bodyTooLong,
     required TResult Function() empty,
     required TResult Function(T failedValue) multiline,
     required TResult Function(T failedValue) nonPositivePrice,
   }) {
-    return exceedingLength(failedValue, maxLen);
+    return exceedingLength(f);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(T failedValue, int maxLen)? exceedingLength,
+    TResult Function(StringValueFailure f)? exceedingLength,
+    TResult Function(T failedValue, int maxLength)? bodyTooLong,
     TResult Function()? empty,
     TResult Function(T failedValue)? multiline,
     TResult Function(T failedValue)? nonPositivePrice,
   }) {
-    return exceedingLength?.call(failedValue, maxLen);
+    return exceedingLength?.call(f);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(T failedValue, int maxLen)? exceedingLength,
+    TResult Function(StringValueFailure f)? exceedingLength,
+    TResult Function(T failedValue, int maxLength)? bodyTooLong,
     TResult Function()? empty,
     TResult Function(T failedValue)? multiline,
     TResult Function(T failedValue)? nonPositivePrice,
     required TResult orElse(),
   }) {
     if (exceedingLength != null) {
-      return exceedingLength(failedValue, maxLen);
+      return exceedingLength(f);
     }
     return orElse();
   }
@@ -967,6 +980,7 @@ class _$ExceedingLength<T> implements ExceedingLength<T> {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(ExceedingLength<T> value) exceedingLength,
+    required TResult Function(BodyTooLong<T> value) bodyTooLong,
     required TResult Function(Empty<T> value) empty,
     required TResult Function(Multiline<T> value) multiline,
     required TResult Function(NonPositivePrice<T> value) nonPositivePrice,
@@ -978,6 +992,7 @@ class _$ExceedingLength<T> implements ExceedingLength<T> {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(ExceedingLength<T> value)? exceedingLength,
+    TResult Function(BodyTooLong<T> value)? bodyTooLong,
     TResult Function(Empty<T> value)? empty,
     TResult Function(Multiline<T> value)? multiline,
     TResult Function(NonPositivePrice<T> value)? nonPositivePrice,
@@ -989,6 +1004,7 @@ class _$ExceedingLength<T> implements ExceedingLength<T> {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ExceedingLength<T> value)? exceedingLength,
+    TResult Function(BodyTooLong<T> value)? bodyTooLong,
     TResult Function(Empty<T> value)? empty,
     TResult Function(Multiline<T> value)? multiline,
     TResult Function(NonPositivePrice<T> value)? nonPositivePrice,
@@ -1002,13 +1018,176 @@ class _$ExceedingLength<T> implements ExceedingLength<T> {
 }
 
 abstract class ExceedingLength<T> implements ProductValueFailure<T> {
-  const factory ExceedingLength({required T failedValue, required int maxLen}) =
-      _$ExceedingLength<T>;
+  const factory ExceedingLength(StringValueFailure f) = _$ExceedingLength<T>;
 
-  T get failedValue;
-  int get maxLen;
+  StringValueFailure get f;
   @JsonKey(ignore: true)
   $ExceedingLengthCopyWith<T, ExceedingLength<T>> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $BodyTooLongCopyWith<T, $Res> {
+  factory $BodyTooLongCopyWith(
+          BodyTooLong<T> value, $Res Function(BodyTooLong<T>) then) =
+      _$BodyTooLongCopyWithImpl<T, $Res>;
+  $Res call({T failedValue, int maxLength});
+}
+
+/// @nodoc
+class _$BodyTooLongCopyWithImpl<T, $Res>
+    extends _$ProductValueFailureCopyWithImpl<T, $Res>
+    implements $BodyTooLongCopyWith<T, $Res> {
+  _$BodyTooLongCopyWithImpl(
+      BodyTooLong<T> _value, $Res Function(BodyTooLong<T>) _then)
+      : super(_value, (v) => _then(v as BodyTooLong<T>));
+
+  @override
+  BodyTooLong<T> get _value => super._value as BodyTooLong<T>;
+
+  @override
+  $Res call({
+    Object? failedValue = freezed,
+    Object? maxLength = freezed,
+  }) {
+    return _then(BodyTooLong<T>(
+      failedValue: failedValue == freezed
+          ? _value.failedValue
+          : failedValue // ignore: cast_nullable_to_non_nullable
+              as T,
+      maxLength: maxLength == freezed
+          ? _value.maxLength
+          : maxLength // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$BodyTooLong<T> implements BodyTooLong<T> {
+  const _$BodyTooLong({required this.failedValue, required this.maxLength});
+
+  @override
+  final T failedValue;
+  @override
+  final int maxLength;
+
+  @override
+  String toString() {
+    return 'ProductValueFailure<$T>.bodyTooLong(failedValue: $failedValue, maxLength: $maxLength)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is BodyTooLong<T> &&
+            const DeepCollectionEquality()
+                .equals(other.failedValue, failedValue) &&
+            const DeepCollectionEquality().equals(other.maxLength, maxLength));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(failedValue),
+      const DeepCollectionEquality().hash(maxLength));
+
+  @JsonKey(ignore: true)
+  @override
+  $BodyTooLongCopyWith<T, BodyTooLong<T>> get copyWith =>
+      _$BodyTooLongCopyWithImpl<T, BodyTooLong<T>>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(StringValueFailure f) exceedingLength,
+    required TResult Function(T failedValue, int maxLength) bodyTooLong,
+    required TResult Function() empty,
+    required TResult Function(T failedValue) multiline,
+    required TResult Function(T failedValue) nonPositivePrice,
+  }) {
+    return bodyTooLong(failedValue, maxLength);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(StringValueFailure f)? exceedingLength,
+    TResult Function(T failedValue, int maxLength)? bodyTooLong,
+    TResult Function()? empty,
+    TResult Function(T failedValue)? multiline,
+    TResult Function(T failedValue)? nonPositivePrice,
+  }) {
+    return bodyTooLong?.call(failedValue, maxLength);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(StringValueFailure f)? exceedingLength,
+    TResult Function(T failedValue, int maxLength)? bodyTooLong,
+    TResult Function()? empty,
+    TResult Function(T failedValue)? multiline,
+    TResult Function(T failedValue)? nonPositivePrice,
+    required TResult orElse(),
+  }) {
+    if (bodyTooLong != null) {
+      return bodyTooLong(failedValue, maxLength);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ExceedingLength<T> value) exceedingLength,
+    required TResult Function(BodyTooLong<T> value) bodyTooLong,
+    required TResult Function(Empty<T> value) empty,
+    required TResult Function(Multiline<T> value) multiline,
+    required TResult Function(NonPositivePrice<T> value) nonPositivePrice,
+  }) {
+    return bodyTooLong(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(ExceedingLength<T> value)? exceedingLength,
+    TResult Function(BodyTooLong<T> value)? bodyTooLong,
+    TResult Function(Empty<T> value)? empty,
+    TResult Function(Multiline<T> value)? multiline,
+    TResult Function(NonPositivePrice<T> value)? nonPositivePrice,
+  }) {
+    return bodyTooLong?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ExceedingLength<T> value)? exceedingLength,
+    TResult Function(BodyTooLong<T> value)? bodyTooLong,
+    TResult Function(Empty<T> value)? empty,
+    TResult Function(Multiline<T> value)? multiline,
+    TResult Function(NonPositivePrice<T> value)? nonPositivePrice,
+    required TResult orElse(),
+  }) {
+    if (bodyTooLong != null) {
+      return bodyTooLong(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class BodyTooLong<T> implements ProductValueFailure<T> {
+  const factory BodyTooLong({required T failedValue, required int maxLength}) =
+      _$BodyTooLong<T>;
+
+  T get failedValue;
+  int get maxLength;
+  @JsonKey(ignore: true)
+  $BodyTooLongCopyWith<T, BodyTooLong<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -1051,7 +1230,8 @@ class _$Empty<T> implements Empty<T> {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(T failedValue, int maxLen) exceedingLength,
+    required TResult Function(StringValueFailure f) exceedingLength,
+    required TResult Function(T failedValue, int maxLength) bodyTooLong,
     required TResult Function() empty,
     required TResult Function(T failedValue) multiline,
     required TResult Function(T failedValue) nonPositivePrice,
@@ -1062,7 +1242,8 @@ class _$Empty<T> implements Empty<T> {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(T failedValue, int maxLen)? exceedingLength,
+    TResult Function(StringValueFailure f)? exceedingLength,
+    TResult Function(T failedValue, int maxLength)? bodyTooLong,
     TResult Function()? empty,
     TResult Function(T failedValue)? multiline,
     TResult Function(T failedValue)? nonPositivePrice,
@@ -1073,7 +1254,8 @@ class _$Empty<T> implements Empty<T> {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(T failedValue, int maxLen)? exceedingLength,
+    TResult Function(StringValueFailure f)? exceedingLength,
+    TResult Function(T failedValue, int maxLength)? bodyTooLong,
     TResult Function()? empty,
     TResult Function(T failedValue)? multiline,
     TResult Function(T failedValue)? nonPositivePrice,
@@ -1089,6 +1271,7 @@ class _$Empty<T> implements Empty<T> {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(ExceedingLength<T> value) exceedingLength,
+    required TResult Function(BodyTooLong<T> value) bodyTooLong,
     required TResult Function(Empty<T> value) empty,
     required TResult Function(Multiline<T> value) multiline,
     required TResult Function(NonPositivePrice<T> value) nonPositivePrice,
@@ -1100,6 +1283,7 @@ class _$Empty<T> implements Empty<T> {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(ExceedingLength<T> value)? exceedingLength,
+    TResult Function(BodyTooLong<T> value)? bodyTooLong,
     TResult Function(Empty<T> value)? empty,
     TResult Function(Multiline<T> value)? multiline,
     TResult Function(NonPositivePrice<T> value)? nonPositivePrice,
@@ -1111,6 +1295,7 @@ class _$Empty<T> implements Empty<T> {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ExceedingLength<T> value)? exceedingLength,
+    TResult Function(BodyTooLong<T> value)? bodyTooLong,
     TResult Function(Empty<T> value)? empty,
     TResult Function(Multiline<T> value)? multiline,
     TResult Function(NonPositivePrice<T> value)? nonPositivePrice,
@@ -1193,7 +1378,8 @@ class _$Multiline<T> implements Multiline<T> {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(T failedValue, int maxLen) exceedingLength,
+    required TResult Function(StringValueFailure f) exceedingLength,
+    required TResult Function(T failedValue, int maxLength) bodyTooLong,
     required TResult Function() empty,
     required TResult Function(T failedValue) multiline,
     required TResult Function(T failedValue) nonPositivePrice,
@@ -1204,7 +1390,8 @@ class _$Multiline<T> implements Multiline<T> {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(T failedValue, int maxLen)? exceedingLength,
+    TResult Function(StringValueFailure f)? exceedingLength,
+    TResult Function(T failedValue, int maxLength)? bodyTooLong,
     TResult Function()? empty,
     TResult Function(T failedValue)? multiline,
     TResult Function(T failedValue)? nonPositivePrice,
@@ -1215,7 +1402,8 @@ class _$Multiline<T> implements Multiline<T> {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(T failedValue, int maxLen)? exceedingLength,
+    TResult Function(StringValueFailure f)? exceedingLength,
+    TResult Function(T failedValue, int maxLength)? bodyTooLong,
     TResult Function()? empty,
     TResult Function(T failedValue)? multiline,
     TResult Function(T failedValue)? nonPositivePrice,
@@ -1231,6 +1419,7 @@ class _$Multiline<T> implements Multiline<T> {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(ExceedingLength<T> value) exceedingLength,
+    required TResult Function(BodyTooLong<T> value) bodyTooLong,
     required TResult Function(Empty<T> value) empty,
     required TResult Function(Multiline<T> value) multiline,
     required TResult Function(NonPositivePrice<T> value) nonPositivePrice,
@@ -1242,6 +1431,7 @@ class _$Multiline<T> implements Multiline<T> {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(ExceedingLength<T> value)? exceedingLength,
+    TResult Function(BodyTooLong<T> value)? bodyTooLong,
     TResult Function(Empty<T> value)? empty,
     TResult Function(Multiline<T> value)? multiline,
     TResult Function(NonPositivePrice<T> value)? nonPositivePrice,
@@ -1253,6 +1443,7 @@ class _$Multiline<T> implements Multiline<T> {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ExceedingLength<T> value)? exceedingLength,
+    TResult Function(BodyTooLong<T> value)? bodyTooLong,
     TResult Function(Empty<T> value)? empty,
     TResult Function(Multiline<T> value)? multiline,
     TResult Function(NonPositivePrice<T> value)? nonPositivePrice,
@@ -1340,7 +1531,8 @@ class _$NonPositivePrice<T> implements NonPositivePrice<T> {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(T failedValue, int maxLen) exceedingLength,
+    required TResult Function(StringValueFailure f) exceedingLength,
+    required TResult Function(T failedValue, int maxLength) bodyTooLong,
     required TResult Function() empty,
     required TResult Function(T failedValue) multiline,
     required TResult Function(T failedValue) nonPositivePrice,
@@ -1351,7 +1543,8 @@ class _$NonPositivePrice<T> implements NonPositivePrice<T> {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(T failedValue, int maxLen)? exceedingLength,
+    TResult Function(StringValueFailure f)? exceedingLength,
+    TResult Function(T failedValue, int maxLength)? bodyTooLong,
     TResult Function()? empty,
     TResult Function(T failedValue)? multiline,
     TResult Function(T failedValue)? nonPositivePrice,
@@ -1362,7 +1555,8 @@ class _$NonPositivePrice<T> implements NonPositivePrice<T> {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(T failedValue, int maxLen)? exceedingLength,
+    TResult Function(StringValueFailure f)? exceedingLength,
+    TResult Function(T failedValue, int maxLength)? bodyTooLong,
     TResult Function()? empty,
     TResult Function(T failedValue)? multiline,
     TResult Function(T failedValue)? nonPositivePrice,
@@ -1378,6 +1572,7 @@ class _$NonPositivePrice<T> implements NonPositivePrice<T> {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(ExceedingLength<T> value) exceedingLength,
+    required TResult Function(BodyTooLong<T> value) bodyTooLong,
     required TResult Function(Empty<T> value) empty,
     required TResult Function(Multiline<T> value) multiline,
     required TResult Function(NonPositivePrice<T> value) nonPositivePrice,
@@ -1389,6 +1584,7 @@ class _$NonPositivePrice<T> implements NonPositivePrice<T> {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(ExceedingLength<T> value)? exceedingLength,
+    TResult Function(BodyTooLong<T> value)? bodyTooLong,
     TResult Function(Empty<T> value)? empty,
     TResult Function(Multiline<T> value)? multiline,
     TResult Function(NonPositivePrice<T> value)? nonPositivePrice,
@@ -1400,6 +1596,7 @@ class _$NonPositivePrice<T> implements NonPositivePrice<T> {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ExceedingLength<T> value)? exceedingLength,
+    TResult Function(BodyTooLong<T> value)? bodyTooLong,
     TResult Function(Empty<T> value)? empty,
     TResult Function(Multiline<T> value)? multiline,
     TResult Function(NonPositivePrice<T> value)? nonPositivePrice,
@@ -1419,5 +1616,245 @@ abstract class NonPositivePrice<T> implements ProductValueFailure<T> {
   T get failedValue;
   @JsonKey(ignore: true)
   $NonPositivePriceCopyWith<T, NonPositivePrice<T>> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+class _$StringValueFailureTearOff {
+  const _$StringValueFailureTearOff();
+
+  StringTooLong stringTooLong(
+      {required String failedValue, required int maxLength}) {
+    return StringTooLong(
+      failedValue: failedValue,
+      maxLength: maxLength,
+    );
+  }
+}
+
+/// @nodoc
+const $StringValueFailure = _$StringValueFailureTearOff();
+
+/// @nodoc
+mixin _$StringValueFailure {
+  String get failedValue => throw _privateConstructorUsedError;
+  int get maxLength => throw _privateConstructorUsedError;
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String failedValue, int maxLength) stringTooLong,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String failedValue, int maxLength)? stringTooLong,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String failedValue, int maxLength)? stringTooLong,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(StringTooLong value) stringTooLong,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(StringTooLong value)? stringTooLong,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(StringTooLong value)? stringTooLong,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $StringValueFailureCopyWith<StringValueFailure> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $StringValueFailureCopyWith<$Res> {
+  factory $StringValueFailureCopyWith(
+          StringValueFailure value, $Res Function(StringValueFailure) then) =
+      _$StringValueFailureCopyWithImpl<$Res>;
+  $Res call({String failedValue, int maxLength});
+}
+
+/// @nodoc
+class _$StringValueFailureCopyWithImpl<$Res>
+    implements $StringValueFailureCopyWith<$Res> {
+  _$StringValueFailureCopyWithImpl(this._value, this._then);
+
+  final StringValueFailure _value;
+  // ignore: unused_field
+  final $Res Function(StringValueFailure) _then;
+
+  @override
+  $Res call({
+    Object? failedValue = freezed,
+    Object? maxLength = freezed,
+  }) {
+    return _then(_value.copyWith(
+      failedValue: failedValue == freezed
+          ? _value.failedValue
+          : failedValue // ignore: cast_nullable_to_non_nullable
+              as String,
+      maxLength: maxLength == freezed
+          ? _value.maxLength
+          : maxLength // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class $StringTooLongCopyWith<$Res>
+    implements $StringValueFailureCopyWith<$Res> {
+  factory $StringTooLongCopyWith(
+          StringTooLong value, $Res Function(StringTooLong) then) =
+      _$StringTooLongCopyWithImpl<$Res>;
+  @override
+  $Res call({String failedValue, int maxLength});
+}
+
+/// @nodoc
+class _$StringTooLongCopyWithImpl<$Res>
+    extends _$StringValueFailureCopyWithImpl<$Res>
+    implements $StringTooLongCopyWith<$Res> {
+  _$StringTooLongCopyWithImpl(
+      StringTooLong _value, $Res Function(StringTooLong) _then)
+      : super(_value, (v) => _then(v as StringTooLong));
+
+  @override
+  StringTooLong get _value => super._value as StringTooLong;
+
+  @override
+  $Res call({
+    Object? failedValue = freezed,
+    Object? maxLength = freezed,
+  }) {
+    return _then(StringTooLong(
+      failedValue: failedValue == freezed
+          ? _value.failedValue
+          : failedValue // ignore: cast_nullable_to_non_nullable
+              as String,
+      maxLength: maxLength == freezed
+          ? _value.maxLength
+          : maxLength // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$StringTooLong implements StringTooLong {
+  const _$StringTooLong({required this.failedValue, required this.maxLength});
+
+  @override
+  final String failedValue;
+  @override
+  final int maxLength;
+
+  @override
+  String toString() {
+    return 'StringValueFailure.stringTooLong(failedValue: $failedValue, maxLength: $maxLength)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is StringTooLong &&
+            const DeepCollectionEquality()
+                .equals(other.failedValue, failedValue) &&
+            const DeepCollectionEquality().equals(other.maxLength, maxLength));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(failedValue),
+      const DeepCollectionEquality().hash(maxLength));
+
+  @JsonKey(ignore: true)
+  @override
+  $StringTooLongCopyWith<StringTooLong> get copyWith =>
+      _$StringTooLongCopyWithImpl<StringTooLong>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String failedValue, int maxLength) stringTooLong,
+  }) {
+    return stringTooLong(failedValue, maxLength);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String failedValue, int maxLength)? stringTooLong,
+  }) {
+    return stringTooLong?.call(failedValue, maxLength);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String failedValue, int maxLength)? stringTooLong,
+    required TResult orElse(),
+  }) {
+    if (stringTooLong != null) {
+      return stringTooLong(failedValue, maxLength);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(StringTooLong value) stringTooLong,
+  }) {
+    return stringTooLong(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(StringTooLong value)? stringTooLong,
+  }) {
+    return stringTooLong?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(StringTooLong value)? stringTooLong,
+    required TResult orElse(),
+  }) {
+    if (stringTooLong != null) {
+      return stringTooLong(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class StringTooLong implements StringValueFailure {
+  const factory StringTooLong(
+      {required String failedValue, required int maxLength}) = _$StringTooLong;
+
+  @override
+  String get failedValue;
+  @override
+  int get maxLength;
+  @override
+  @JsonKey(ignore: true)
+  $StringTooLongCopyWith<StringTooLong> get copyWith =>
       throw _privateConstructorUsedError;
 }
