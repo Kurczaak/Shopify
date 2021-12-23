@@ -23,3 +23,4 @@ void main() async {
   configureInjection(Environment.prod);
   runApp(AppWidget());
 }
+

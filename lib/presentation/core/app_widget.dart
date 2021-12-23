@@ -36,6 +36,7 @@ class AppWidget extends StatelessWidget {
             bodyText1: TextStyle(),
             bodyText2: TextStyle(
               fontWeight: FontWeight.bold,
+              fontSize: 15,
             ),
           ).apply(
             bodyColor: const Color.fromRGBO(73, 72, 72, 1),
