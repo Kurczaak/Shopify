@@ -786,6 +786,12 @@ class _$ShoppingValueFailureTearOff {
     );
   }
 
+  NoPhotoSelected<T> noPhotoSelected<T>({required T failedValue}) {
+    return NoPhotoSelected<T>(
+      failedValue: failedValue,
+    );
+  }
+
   NonPositivePrice<T> nonPositivePrice<T>({required T failedValue}) {
     return NonPositivePrice<T>(
       failedValue: failedValue,
@@ -807,6 +813,7 @@ mixin _$ShoppingValueFailure<T> {
     required TResult Function(T failedValue) multiline,
     required TResult Function(T failedValue) incorrectPostalCode,
     required TResult Function(T failedValue) shopClosedAllWeekLong,
+    required TResult Function(T failedValue) noPhotoSelected,
     required TResult Function(T failedValue) nonPositivePrice,
   }) =>
       throw _privateConstructorUsedError;
@@ -817,6 +824,7 @@ mixin _$ShoppingValueFailure<T> {
     TResult Function(T failedValue)? multiline,
     TResult Function(T failedValue)? incorrectPostalCode,
     TResult Function(T failedValue)? shopClosedAllWeekLong,
+    TResult Function(T failedValue)? noPhotoSelected,
     TResult Function(T failedValue)? nonPositivePrice,
   }) =>
       throw _privateConstructorUsedError;
@@ -827,6 +835,7 @@ mixin _$ShoppingValueFailure<T> {
     TResult Function(T failedValue)? multiline,
     TResult Function(T failedValue)? incorrectPostalCode,
     TResult Function(T failedValue)? shopClosedAllWeekLong,
+    TResult Function(T failedValue)? noPhotoSelected,
     TResult Function(T failedValue)? nonPositivePrice,
     required TResult orElse(),
   }) =>
@@ -839,6 +848,7 @@ mixin _$ShoppingValueFailure<T> {
     required TResult Function(IncorrectPostalCode<T> value) incorrectPostalCode,
     required TResult Function(ShopClosedAllWeekLong<T> value)
         shopClosedAllWeekLong,
+    required TResult Function(NoPhotoSelected<T> value) noPhotoSelected,
     required TResult Function(NonPositivePrice<T> value) nonPositivePrice,
   }) =>
       throw _privateConstructorUsedError;
@@ -849,6 +859,7 @@ mixin _$ShoppingValueFailure<T> {
     TResult Function(Multiline<T> value)? multiline,
     TResult Function(IncorrectPostalCode<T> value)? incorrectPostalCode,
     TResult Function(ShopClosedAllWeekLong<T> value)? shopClosedAllWeekLong,
+    TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
     TResult Function(NonPositivePrice<T> value)? nonPositivePrice,
   }) =>
       throw _privateConstructorUsedError;
@@ -859,6 +870,7 @@ mixin _$ShoppingValueFailure<T> {
     TResult Function(Multiline<T> value)? multiline,
     TResult Function(IncorrectPostalCode<T> value)? incorrectPostalCode,
     TResult Function(ShopClosedAllWeekLong<T> value)? shopClosedAllWeekLong,
+    TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
     TResult Function(NonPositivePrice<T> value)? nonPositivePrice,
     required TResult orElse(),
   }) =>
@@ -982,6 +994,7 @@ class _$ExceedingLength<T> implements ExceedingLength<T> {
     required TResult Function(T failedValue) multiline,
     required TResult Function(T failedValue) incorrectPostalCode,
     required TResult Function(T failedValue) shopClosedAllWeekLong,
+    required TResult Function(T failedValue) noPhotoSelected,
     required TResult Function(T failedValue) nonPositivePrice,
   }) {
     return exceedingLength(failedValue, maxLength);
@@ -995,6 +1008,7 @@ class _$ExceedingLength<T> implements ExceedingLength<T> {
     TResult Function(T failedValue)? multiline,
     TResult Function(T failedValue)? incorrectPostalCode,
     TResult Function(T failedValue)? shopClosedAllWeekLong,
+    TResult Function(T failedValue)? noPhotoSelected,
     TResult Function(T failedValue)? nonPositivePrice,
   }) {
     return exceedingLength?.call(failedValue, maxLength);
@@ -1008,6 +1022,7 @@ class _$ExceedingLength<T> implements ExceedingLength<T> {
     TResult Function(T failedValue)? multiline,
     TResult Function(T failedValue)? incorrectPostalCode,
     TResult Function(T failedValue)? shopClosedAllWeekLong,
+    TResult Function(T failedValue)? noPhotoSelected,
     TResult Function(T failedValue)? nonPositivePrice,
     required TResult orElse(),
   }) {
@@ -1026,6 +1041,7 @@ class _$ExceedingLength<T> implements ExceedingLength<T> {
     required TResult Function(IncorrectPostalCode<T> value) incorrectPostalCode,
     required TResult Function(ShopClosedAllWeekLong<T> value)
         shopClosedAllWeekLong,
+    required TResult Function(NoPhotoSelected<T> value) noPhotoSelected,
     required TResult Function(NonPositivePrice<T> value) nonPositivePrice,
   }) {
     return exceedingLength(this);
@@ -1039,6 +1055,7 @@ class _$ExceedingLength<T> implements ExceedingLength<T> {
     TResult Function(Multiline<T> value)? multiline,
     TResult Function(IncorrectPostalCode<T> value)? incorrectPostalCode,
     TResult Function(ShopClosedAllWeekLong<T> value)? shopClosedAllWeekLong,
+    TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
     TResult Function(NonPositivePrice<T> value)? nonPositivePrice,
   }) {
     return exceedingLength?.call(this);
@@ -1052,6 +1069,7 @@ class _$ExceedingLength<T> implements ExceedingLength<T> {
     TResult Function(Multiline<T> value)? multiline,
     TResult Function(IncorrectPostalCode<T> value)? incorrectPostalCode,
     TResult Function(ShopClosedAllWeekLong<T> value)? shopClosedAllWeekLong,
+    TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
     TResult Function(NonPositivePrice<T> value)? nonPositivePrice,
     required TResult orElse(),
   }) {
@@ -1146,6 +1164,7 @@ class _$Empty<T> implements Empty<T> {
     required TResult Function(T failedValue) multiline,
     required TResult Function(T failedValue) incorrectPostalCode,
     required TResult Function(T failedValue) shopClosedAllWeekLong,
+    required TResult Function(T failedValue) noPhotoSelected,
     required TResult Function(T failedValue) nonPositivePrice,
   }) {
     return empty(failedValue);
@@ -1159,6 +1178,7 @@ class _$Empty<T> implements Empty<T> {
     TResult Function(T failedValue)? multiline,
     TResult Function(T failedValue)? incorrectPostalCode,
     TResult Function(T failedValue)? shopClosedAllWeekLong,
+    TResult Function(T failedValue)? noPhotoSelected,
     TResult Function(T failedValue)? nonPositivePrice,
   }) {
     return empty?.call(failedValue);
@@ -1172,6 +1192,7 @@ class _$Empty<T> implements Empty<T> {
     TResult Function(T failedValue)? multiline,
     TResult Function(T failedValue)? incorrectPostalCode,
     TResult Function(T failedValue)? shopClosedAllWeekLong,
+    TResult Function(T failedValue)? noPhotoSelected,
     TResult Function(T failedValue)? nonPositivePrice,
     required TResult orElse(),
   }) {
@@ -1190,6 +1211,7 @@ class _$Empty<T> implements Empty<T> {
     required TResult Function(IncorrectPostalCode<T> value) incorrectPostalCode,
     required TResult Function(ShopClosedAllWeekLong<T> value)
         shopClosedAllWeekLong,
+    required TResult Function(NoPhotoSelected<T> value) noPhotoSelected,
     required TResult Function(NonPositivePrice<T> value) nonPositivePrice,
   }) {
     return empty(this);
@@ -1203,6 +1225,7 @@ class _$Empty<T> implements Empty<T> {
     TResult Function(Multiline<T> value)? multiline,
     TResult Function(IncorrectPostalCode<T> value)? incorrectPostalCode,
     TResult Function(ShopClosedAllWeekLong<T> value)? shopClosedAllWeekLong,
+    TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
     TResult Function(NonPositivePrice<T> value)? nonPositivePrice,
   }) {
     return empty?.call(this);
@@ -1216,6 +1239,7 @@ class _$Empty<T> implements Empty<T> {
     TResult Function(Multiline<T> value)? multiline,
     TResult Function(IncorrectPostalCode<T> value)? incorrectPostalCode,
     TResult Function(ShopClosedAllWeekLong<T> value)? shopClosedAllWeekLong,
+    TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
     TResult Function(NonPositivePrice<T> value)? nonPositivePrice,
     required TResult orElse(),
   }) {
@@ -1310,6 +1334,7 @@ class _$Multiline<T> implements Multiline<T> {
     required TResult Function(T failedValue) multiline,
     required TResult Function(T failedValue) incorrectPostalCode,
     required TResult Function(T failedValue) shopClosedAllWeekLong,
+    required TResult Function(T failedValue) noPhotoSelected,
     required TResult Function(T failedValue) nonPositivePrice,
   }) {
     return multiline(failedValue);
@@ -1323,6 +1348,7 @@ class _$Multiline<T> implements Multiline<T> {
     TResult Function(T failedValue)? multiline,
     TResult Function(T failedValue)? incorrectPostalCode,
     TResult Function(T failedValue)? shopClosedAllWeekLong,
+    TResult Function(T failedValue)? noPhotoSelected,
     TResult Function(T failedValue)? nonPositivePrice,
   }) {
     return multiline?.call(failedValue);
@@ -1336,6 +1362,7 @@ class _$Multiline<T> implements Multiline<T> {
     TResult Function(T failedValue)? multiline,
     TResult Function(T failedValue)? incorrectPostalCode,
     TResult Function(T failedValue)? shopClosedAllWeekLong,
+    TResult Function(T failedValue)? noPhotoSelected,
     TResult Function(T failedValue)? nonPositivePrice,
     required TResult orElse(),
   }) {
@@ -1354,6 +1381,7 @@ class _$Multiline<T> implements Multiline<T> {
     required TResult Function(IncorrectPostalCode<T> value) incorrectPostalCode,
     required TResult Function(ShopClosedAllWeekLong<T> value)
         shopClosedAllWeekLong,
+    required TResult Function(NoPhotoSelected<T> value) noPhotoSelected,
     required TResult Function(NonPositivePrice<T> value) nonPositivePrice,
   }) {
     return multiline(this);
@@ -1367,6 +1395,7 @@ class _$Multiline<T> implements Multiline<T> {
     TResult Function(Multiline<T> value)? multiline,
     TResult Function(IncorrectPostalCode<T> value)? incorrectPostalCode,
     TResult Function(ShopClosedAllWeekLong<T> value)? shopClosedAllWeekLong,
+    TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
     TResult Function(NonPositivePrice<T> value)? nonPositivePrice,
   }) {
     return multiline?.call(this);
@@ -1380,6 +1409,7 @@ class _$Multiline<T> implements Multiline<T> {
     TResult Function(Multiline<T> value)? multiline,
     TResult Function(IncorrectPostalCode<T> value)? incorrectPostalCode,
     TResult Function(ShopClosedAllWeekLong<T> value)? shopClosedAllWeekLong,
+    TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
     TResult Function(NonPositivePrice<T> value)? nonPositivePrice,
     required TResult orElse(),
   }) {
@@ -1475,6 +1505,7 @@ class _$IncorrectPostalCode<T> implements IncorrectPostalCode<T> {
     required TResult Function(T failedValue) multiline,
     required TResult Function(T failedValue) incorrectPostalCode,
     required TResult Function(T failedValue) shopClosedAllWeekLong,
+    required TResult Function(T failedValue) noPhotoSelected,
     required TResult Function(T failedValue) nonPositivePrice,
   }) {
     return incorrectPostalCode(failedValue);
@@ -1488,6 +1519,7 @@ class _$IncorrectPostalCode<T> implements IncorrectPostalCode<T> {
     TResult Function(T failedValue)? multiline,
     TResult Function(T failedValue)? incorrectPostalCode,
     TResult Function(T failedValue)? shopClosedAllWeekLong,
+    TResult Function(T failedValue)? noPhotoSelected,
     TResult Function(T failedValue)? nonPositivePrice,
   }) {
     return incorrectPostalCode?.call(failedValue);
@@ -1501,6 +1533,7 @@ class _$IncorrectPostalCode<T> implements IncorrectPostalCode<T> {
     TResult Function(T failedValue)? multiline,
     TResult Function(T failedValue)? incorrectPostalCode,
     TResult Function(T failedValue)? shopClosedAllWeekLong,
+    TResult Function(T failedValue)? noPhotoSelected,
     TResult Function(T failedValue)? nonPositivePrice,
     required TResult orElse(),
   }) {
@@ -1519,6 +1552,7 @@ class _$IncorrectPostalCode<T> implements IncorrectPostalCode<T> {
     required TResult Function(IncorrectPostalCode<T> value) incorrectPostalCode,
     required TResult Function(ShopClosedAllWeekLong<T> value)
         shopClosedAllWeekLong,
+    required TResult Function(NoPhotoSelected<T> value) noPhotoSelected,
     required TResult Function(NonPositivePrice<T> value) nonPositivePrice,
   }) {
     return incorrectPostalCode(this);
@@ -1532,6 +1566,7 @@ class _$IncorrectPostalCode<T> implements IncorrectPostalCode<T> {
     TResult Function(Multiline<T> value)? multiline,
     TResult Function(IncorrectPostalCode<T> value)? incorrectPostalCode,
     TResult Function(ShopClosedAllWeekLong<T> value)? shopClosedAllWeekLong,
+    TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
     TResult Function(NonPositivePrice<T> value)? nonPositivePrice,
   }) {
     return incorrectPostalCode?.call(this);
@@ -1545,6 +1580,7 @@ class _$IncorrectPostalCode<T> implements IncorrectPostalCode<T> {
     TResult Function(Multiline<T> value)? multiline,
     TResult Function(IncorrectPostalCode<T> value)? incorrectPostalCode,
     TResult Function(ShopClosedAllWeekLong<T> value)? shopClosedAllWeekLong,
+    TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
     TResult Function(NonPositivePrice<T> value)? nonPositivePrice,
     required TResult orElse(),
   }) {
@@ -1642,6 +1678,7 @@ class _$ShopClosedAllWeekLong<T> implements ShopClosedAllWeekLong<T> {
     required TResult Function(T failedValue) multiline,
     required TResult Function(T failedValue) incorrectPostalCode,
     required TResult Function(T failedValue) shopClosedAllWeekLong,
+    required TResult Function(T failedValue) noPhotoSelected,
     required TResult Function(T failedValue) nonPositivePrice,
   }) {
     return shopClosedAllWeekLong(failedValue);
@@ -1655,6 +1692,7 @@ class _$ShopClosedAllWeekLong<T> implements ShopClosedAllWeekLong<T> {
     TResult Function(T failedValue)? multiline,
     TResult Function(T failedValue)? incorrectPostalCode,
     TResult Function(T failedValue)? shopClosedAllWeekLong,
+    TResult Function(T failedValue)? noPhotoSelected,
     TResult Function(T failedValue)? nonPositivePrice,
   }) {
     return shopClosedAllWeekLong?.call(failedValue);
@@ -1668,6 +1706,7 @@ class _$ShopClosedAllWeekLong<T> implements ShopClosedAllWeekLong<T> {
     TResult Function(T failedValue)? multiline,
     TResult Function(T failedValue)? incorrectPostalCode,
     TResult Function(T failedValue)? shopClosedAllWeekLong,
+    TResult Function(T failedValue)? noPhotoSelected,
     TResult Function(T failedValue)? nonPositivePrice,
     required TResult orElse(),
   }) {
@@ -1686,6 +1725,7 @@ class _$ShopClosedAllWeekLong<T> implements ShopClosedAllWeekLong<T> {
     required TResult Function(IncorrectPostalCode<T> value) incorrectPostalCode,
     required TResult Function(ShopClosedAllWeekLong<T> value)
         shopClosedAllWeekLong,
+    required TResult Function(NoPhotoSelected<T> value) noPhotoSelected,
     required TResult Function(NonPositivePrice<T> value) nonPositivePrice,
   }) {
     return shopClosedAllWeekLong(this);
@@ -1699,6 +1739,7 @@ class _$ShopClosedAllWeekLong<T> implements ShopClosedAllWeekLong<T> {
     TResult Function(Multiline<T> value)? multiline,
     TResult Function(IncorrectPostalCode<T> value)? incorrectPostalCode,
     TResult Function(ShopClosedAllWeekLong<T> value)? shopClosedAllWeekLong,
+    TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
     TResult Function(NonPositivePrice<T> value)? nonPositivePrice,
   }) {
     return shopClosedAllWeekLong?.call(this);
@@ -1712,6 +1753,7 @@ class _$ShopClosedAllWeekLong<T> implements ShopClosedAllWeekLong<T> {
     TResult Function(Multiline<T> value)? multiline,
     TResult Function(IncorrectPostalCode<T> value)? incorrectPostalCode,
     TResult Function(ShopClosedAllWeekLong<T> value)? shopClosedAllWeekLong,
+    TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
     TResult Function(NonPositivePrice<T> value)? nonPositivePrice,
     required TResult orElse(),
   }) {
@@ -1731,6 +1773,177 @@ abstract class ShopClosedAllWeekLong<T> implements ShoppingValueFailure<T> {
   @override
   @JsonKey(ignore: true)
   $ShopClosedAllWeekLongCopyWith<T, ShopClosedAllWeekLong<T>> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $NoPhotoSelectedCopyWith<T, $Res>
+    implements $ShoppingValueFailureCopyWith<T, $Res> {
+  factory $NoPhotoSelectedCopyWith(
+          NoPhotoSelected<T> value, $Res Function(NoPhotoSelected<T>) then) =
+      _$NoPhotoSelectedCopyWithImpl<T, $Res>;
+  @override
+  $Res call({T failedValue});
+}
+
+/// @nodoc
+class _$NoPhotoSelectedCopyWithImpl<T, $Res>
+    extends _$ShoppingValueFailureCopyWithImpl<T, $Res>
+    implements $NoPhotoSelectedCopyWith<T, $Res> {
+  _$NoPhotoSelectedCopyWithImpl(
+      NoPhotoSelected<T> _value, $Res Function(NoPhotoSelected<T>) _then)
+      : super(_value, (v) => _then(v as NoPhotoSelected<T>));
+
+  @override
+  NoPhotoSelected<T> get _value => super._value as NoPhotoSelected<T>;
+
+  @override
+  $Res call({
+    Object? failedValue = freezed,
+  }) {
+    return _then(NoPhotoSelected<T>(
+      failedValue: failedValue == freezed
+          ? _value.failedValue
+          : failedValue // ignore: cast_nullable_to_non_nullable
+              as T,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$NoPhotoSelected<T> implements NoPhotoSelected<T> {
+  const _$NoPhotoSelected({required this.failedValue});
+
+  @override
+  final T failedValue;
+
+  @override
+  String toString() {
+    return 'ShoppingValueFailure<$T>.noPhotoSelected(failedValue: $failedValue)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is NoPhotoSelected<T> &&
+            const DeepCollectionEquality()
+                .equals(other.failedValue, failedValue));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(failedValue));
+
+  @JsonKey(ignore: true)
+  @override
+  $NoPhotoSelectedCopyWith<T, NoPhotoSelected<T>> get copyWith =>
+      _$NoPhotoSelectedCopyWithImpl<T, NoPhotoSelected<T>>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(T failedValue, int maxLength) exceedingLength,
+    required TResult Function(T failedValue) empty,
+    required TResult Function(T failedValue) multiline,
+    required TResult Function(T failedValue) incorrectPostalCode,
+    required TResult Function(T failedValue) shopClosedAllWeekLong,
+    required TResult Function(T failedValue) noPhotoSelected,
+    required TResult Function(T failedValue) nonPositivePrice,
+  }) {
+    return noPhotoSelected(failedValue);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(T failedValue, int maxLength)? exceedingLength,
+    TResult Function(T failedValue)? empty,
+    TResult Function(T failedValue)? multiline,
+    TResult Function(T failedValue)? incorrectPostalCode,
+    TResult Function(T failedValue)? shopClosedAllWeekLong,
+    TResult Function(T failedValue)? noPhotoSelected,
+    TResult Function(T failedValue)? nonPositivePrice,
+  }) {
+    return noPhotoSelected?.call(failedValue);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(T failedValue, int maxLength)? exceedingLength,
+    TResult Function(T failedValue)? empty,
+    TResult Function(T failedValue)? multiline,
+    TResult Function(T failedValue)? incorrectPostalCode,
+    TResult Function(T failedValue)? shopClosedAllWeekLong,
+    TResult Function(T failedValue)? noPhotoSelected,
+    TResult Function(T failedValue)? nonPositivePrice,
+    required TResult orElse(),
+  }) {
+    if (noPhotoSelected != null) {
+      return noPhotoSelected(failedValue);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ExceedingLength<T> value) exceedingLength,
+    required TResult Function(Empty<T> value) empty,
+    required TResult Function(Multiline<T> value) multiline,
+    required TResult Function(IncorrectPostalCode<T> value) incorrectPostalCode,
+    required TResult Function(ShopClosedAllWeekLong<T> value)
+        shopClosedAllWeekLong,
+    required TResult Function(NoPhotoSelected<T> value) noPhotoSelected,
+    required TResult Function(NonPositivePrice<T> value) nonPositivePrice,
+  }) {
+    return noPhotoSelected(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(ExceedingLength<T> value)? exceedingLength,
+    TResult Function(Empty<T> value)? empty,
+    TResult Function(Multiline<T> value)? multiline,
+    TResult Function(IncorrectPostalCode<T> value)? incorrectPostalCode,
+    TResult Function(ShopClosedAllWeekLong<T> value)? shopClosedAllWeekLong,
+    TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
+    TResult Function(NonPositivePrice<T> value)? nonPositivePrice,
+  }) {
+    return noPhotoSelected?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ExceedingLength<T> value)? exceedingLength,
+    TResult Function(Empty<T> value)? empty,
+    TResult Function(Multiline<T> value)? multiline,
+    TResult Function(IncorrectPostalCode<T> value)? incorrectPostalCode,
+    TResult Function(ShopClosedAllWeekLong<T> value)? shopClosedAllWeekLong,
+    TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
+    TResult Function(NonPositivePrice<T> value)? nonPositivePrice,
+    required TResult orElse(),
+  }) {
+    if (noPhotoSelected != null) {
+      return noPhotoSelected(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class NoPhotoSelected<T> implements ShoppingValueFailure<T> {
+  const factory NoPhotoSelected({required T failedValue}) =
+      _$NoPhotoSelected<T>;
+
+  @override
+  T get failedValue;
+  @override
+  @JsonKey(ignore: true)
+  $NoPhotoSelectedCopyWith<T, NoPhotoSelected<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -1807,6 +2020,7 @@ class _$NonPositivePrice<T> implements NonPositivePrice<T> {
     required TResult Function(T failedValue) multiline,
     required TResult Function(T failedValue) incorrectPostalCode,
     required TResult Function(T failedValue) shopClosedAllWeekLong,
+    required TResult Function(T failedValue) noPhotoSelected,
     required TResult Function(T failedValue) nonPositivePrice,
   }) {
     return nonPositivePrice(failedValue);
@@ -1820,6 +2034,7 @@ class _$NonPositivePrice<T> implements NonPositivePrice<T> {
     TResult Function(T failedValue)? multiline,
     TResult Function(T failedValue)? incorrectPostalCode,
     TResult Function(T failedValue)? shopClosedAllWeekLong,
+    TResult Function(T failedValue)? noPhotoSelected,
     TResult Function(T failedValue)? nonPositivePrice,
   }) {
     return nonPositivePrice?.call(failedValue);
@@ -1833,6 +2048,7 @@ class _$NonPositivePrice<T> implements NonPositivePrice<T> {
     TResult Function(T failedValue)? multiline,
     TResult Function(T failedValue)? incorrectPostalCode,
     TResult Function(T failedValue)? shopClosedAllWeekLong,
+    TResult Function(T failedValue)? noPhotoSelected,
     TResult Function(T failedValue)? nonPositivePrice,
     required TResult orElse(),
   }) {
@@ -1851,6 +2067,7 @@ class _$NonPositivePrice<T> implements NonPositivePrice<T> {
     required TResult Function(IncorrectPostalCode<T> value) incorrectPostalCode,
     required TResult Function(ShopClosedAllWeekLong<T> value)
         shopClosedAllWeekLong,
+    required TResult Function(NoPhotoSelected<T> value) noPhotoSelected,
     required TResult Function(NonPositivePrice<T> value) nonPositivePrice,
   }) {
     return nonPositivePrice(this);
@@ -1864,6 +2081,7 @@ class _$NonPositivePrice<T> implements NonPositivePrice<T> {
     TResult Function(Multiline<T> value)? multiline,
     TResult Function(IncorrectPostalCode<T> value)? incorrectPostalCode,
     TResult Function(ShopClosedAllWeekLong<T> value)? shopClosedAllWeekLong,
+    TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
     TResult Function(NonPositivePrice<T> value)? nonPositivePrice,
   }) {
     return nonPositivePrice?.call(this);
@@ -1877,6 +2095,7 @@ class _$NonPositivePrice<T> implements NonPositivePrice<T> {
     TResult Function(Multiline<T> value)? multiline,
     TResult Function(IncorrectPostalCode<T> value)? incorrectPostalCode,
     TResult Function(ShopClosedAllWeekLong<T> value)? shopClosedAllWeekLong,
+    TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
     TResult Function(NonPositivePrice<T> value)? nonPositivePrice,
     required TResult orElse(),
   }) {

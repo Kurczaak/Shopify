@@ -30,6 +30,8 @@ class ShoppingValueFailure<T> with _$ShoppingValueFailure<T> {
       {required T failedValue}) = IncorrectPostalCode<T>;
   const factory ShoppingValueFailure.shopClosedAllWeekLong(
       {required T failedValue}) = ShopClosedAllWeekLong<T>;
+  const factory ShoppingValueFailure.noPhotoSelected({required T failedValue}) =
+      NoPhotoSelected<T>;
   const factory ShoppingValueFailure.nonPositivePrice(
       {required T failedValue}) = NonPositivePrice<T>;
 }
