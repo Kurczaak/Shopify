@@ -5,7 +5,7 @@ part 'failures.freezed.dart';
 @freezed
 class ValueFailure<T> with _$ValueFailure<T> {
   const factory ValueFailure.auth(AuthValueFailure<T> f) = _Auth<T>;
-  const factory ValueFailure.product(ProductValueFailure<T> f) = _Product<T>;
+  const factory ValueFailure.product(ShoppingValueFailure<T> f) = _Product<T>;
 }
 
 @freezed
@@ -19,23 +19,17 @@ class AuthValueFailure<T> with _$AuthValueFailure<T> {
 }
 
 @freezed
-class ProductValueFailure<T> with _$ProductValueFailure<T> {
-  const factory ProductValueFailure.exceedingLength(StringValueFailure f) =
-      ExceedingLength<T>;
+class ShoppingValueFailure<T> with _$ShoppingValueFailure<T> {
+  const factory ShoppingValueFailure.exceedingLength(
+      {required T failedValue, required int maxLength}) = ExceedingLength<T>;
 
-  const factory ProductValueFailure.bodyTooLong(
-      {required T failedValue, required int maxLength}) = BodyTooLong<T>;
-  const factory ProductValueFailure.empty() = Empty<T>;
-  const factory ProductValueFailure.multiline({required T failedValue}) =
+  const factory ShoppingValueFailure.empty({required T failedValue}) = Empty<T>;
+  const factory ShoppingValueFailure.multiline({required T failedValue}) =
       Multiline<T>;
-  const factory ProductValueFailure.nonPositivePrice({required T failedValue}) =
-      NonPositivePrice<T>;
-}
-
-@freezed
-class StringValueFailure with _$StringValueFailure {
-  const factory StringValueFailure.stringTooLong({
-    required String failedValue,
-    required int maxLength,
-  }) = StringTooLong;
+  const factory ShoppingValueFailure.incorrectPostalCode(
+      {required T failedValue}) = IncorrectPostalCode<T>;
+  const factory ShoppingValueFailure.shopClosedAllWeekLong(
+      {required T failedValue}) = ShopClosedAllWeekLong<T>;
+  const factory ShoppingValueFailure.nonPositivePrice(
+      {required T failedValue}) = NonPositivePrice<T>;
 }

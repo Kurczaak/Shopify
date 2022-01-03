@@ -11,8 +11,8 @@ import 'package:geocoding/geocoding.dart';
 import 'package:google_place/google_place.dart' as gp;
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class HomePage extends StatelessWidget {
-  HomePage({Key? key}) : super(key: key);
+class ShopDetailsPage extends StatelessWidget {
+  ShopDetailsPage({Key? key}) : super(key: key);
   final _postalCodeController = TextEditingController();
 
   @override
@@ -103,8 +103,10 @@ class HomePage extends StatelessWidget {
                           }
                         },
                         controller: _postalCodeController,
-                        decoration:
-                            const InputDecoration(labelText: 'Postal Code'),
+                        decoration: const InputDecoration(
+                          labelText: 'Postal Code',
+                          counterText: '',
+                        ),
                         keyboardType: TextInputType.number,
                       ),
                       const SizedBox(height: 20),

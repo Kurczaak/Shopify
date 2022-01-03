@@ -8,7 +8,8 @@ Either<ValueFailure<String>, String> validateProductBody(
   if (body.length <= maxLength) return right(body);
   return left(
     ValueFailure.product(
-      ProductValueFailure.bodyTooLong(failedValue: body, maxLength: maxLength),
+      ShoppingValueFailure.exceedingLength(
+          failedValue: body, maxLength: maxLength),
     ),
   );
 }
