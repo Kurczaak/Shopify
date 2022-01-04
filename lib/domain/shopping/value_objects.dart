@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:shopify_manager/domain/core/failures.dart';
 import 'package:shopify_manager/domain/core/value_objects.dart';
+import 'package:shopify_manager/domain/shopping/failures.dart';
 
 class ProductDescription extends ValueObject<String> {
   @override
@@ -8,7 +9,7 @@ class ProductDescription extends ValueObject<String> {
   factory ProductDescription(String input) {
     return ProductDescription._(
       left(
-        ValueFailure.product(
+        ValueFailure.shopping(
           ShoppingValueFailure.exceedingLength(
               failedValue: input, maxLength: 12),
         ),

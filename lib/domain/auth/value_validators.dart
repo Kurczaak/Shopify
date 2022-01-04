@@ -3,6 +3,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:email_validator/email_validator.dart';
 import '../core/failures.dart';
+import '../auth/value_failures.dart';
 
 Either<ValueFailure<String>, String> validateEmailAddress(String input) {
   final bool isValid = EmailValidator.validate(input);

@@ -1,3 +1,4 @@
+import 'package:shopify_manager/domain/auth/value_failures.dart';
 import 'package:shopify_manager/domain/core/failures.dart';
 import 'package:shopify_manager/domain/auth/value_objects.dart';
 import 'package:flutter_test/flutter_test.dart';
