@@ -1,0 +1,94 @@
+// ignore_for_file: import_of_legacy_library_into_null_safe
+
+import 'package:dartz/dartz.dart';
+import 'package:shopify_manager/domain/core/errors.dart';
+import '../core/failures.dart';
+import '../shopping/failures.dart';
+
+Either<ValueFailure<String>, String> validateMaxStringLength(
+    String input, int maxLength) {
+  if (input.length > maxLength) {
+    return left(
+      ValueFailure.shopping(
+        ShoppingValueFailure.exceedingLength(
+            failedValue: input, maxLength: maxLength),
+      ),
+    );
+  } else {
+    return right(input);
+  }
+}
+
+Either<ValueFailure<String>, String> validateStringNotEmpty(String input) {
+  if (input.isEmpty) {
+    return left(ValueFailure.shopping(
+      ShoppingValueFailure.empty(failedValue: input),
+    ));
+  } else {
+    return right(input);
+  }
+}
+
+Either<ValueFailure<String>, String> validateSingleLine(String input) {
+  if (input.contains('\n')) {
+    return left(
+      ValueFailure.shopping(
+        ShoppingValueFailure.multiline(failedValue: input),
+      ),
+    );
+  } else {
+    return right(input);
+  }
+}
+
+Either<ValueFailure<String>, String> validatePostalCode(String input) {
+  if (input.length != 6 ||
+      !input[0].isInt ||
+      !input[1].isInt ||
+      input[2] != '-' ||
+      !input[3].isInt ||
+      !input[4].isInt ||
+      !input[5].isInt) {
+    return left(
+      ValueFailure.shopping(
+        ShoppingValueFailure.incorrectPostalCode(failedValue: input),
+      ),
+    );
+  } else {
+    return right(input);
+  }
+}
+
+Either<ValueFailure<String>, String> validateShopOpen(String input) {
+  throw UnexpectedValueError(
+    ValueFailure.shopping(
+      ShoppingValueFailure.shopClosedAllWeekLong(failedValue: input),
+    ),
+  );
+}
+
+//TODO
+//Think of implementation
+Either<ValueFailure<String>, String> validatePohtoSelected(String input) {
+  throw UnexpectedValueError(
+    ValueFailure.shopping(
+      ShoppingValueFailure.noPhotoSelected(failedValue: input),
+    ),
+  );
+}
+
+Either<ValueFailure<double>, double> validatePositiveValue(double input) {
+  if (input <= 0) {
+    return left(
+      ValueFailure.shopping(
+        ShoppingValueFailure.nonPositiveValue(failedValue: input),
+      ),
+    );
+  } else {
+    return right(input);
+  }
+}
+
+extension IntegerValidator on String {
+  bool get isInt => int.tryParse(this) != null;
+}
