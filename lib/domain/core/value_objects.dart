@@ -18,6 +18,10 @@ abstract class ValueObject<T> extends Equatable {
 
   bool isValid() => value.isRight();
 
+  Either<ValueFailure<dynamic>, Unit> get failureOrUnit {
+    return value.fold((l) => left(l), (_) => right(unit));
+  }
+
   const ValueObject();
 
   @override
