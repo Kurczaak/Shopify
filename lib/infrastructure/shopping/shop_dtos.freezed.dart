@@ -22,12 +22,13 @@ class _$ShopDtoTearOff {
   const _$ShopDtoTearOff();
 
   _ShopItemDto call(
-      {required String id,
+      {@JsonKey(ignore: true) String id = '',
       required String shopName,
       required String streetName,
       required int streetNumber,
       required String postalCode,
-      required String city}) {
+      required String city,
+      @ServerTimestampConverter() required FieldValue serverTimeStamp}) {
     return _ShopItemDto(
       id: id,
       shopName: shopName,
@@ -35,6 +36,7 @@ class _$ShopDtoTearOff {
       streetNumber: streetNumber,
       postalCode: postalCode,
       city: city,
+      serverTimeStamp: serverTimeStamp,
     );
   }
 
@@ -48,12 +50,15 @@ const $ShopDto = _$ShopDtoTearOff();
 
 /// @nodoc
 mixin _$ShopDto {
+  @JsonKey(ignore: true)
   String get id => throw _privateConstructorUsedError;
   String get shopName => throw _privateConstructorUsedError;
   String get streetName => throw _privateConstructorUsedError;
   int get streetNumber => throw _privateConstructorUsedError;
   String get postalCode => throw _privateConstructorUsedError;
   String get city => throw _privateConstructorUsedError;
+  @ServerTimestampConverter()
+  FieldValue get serverTimeStamp => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -65,12 +70,13 @@ abstract class $ShopDtoCopyWith<$Res> {
   factory $ShopDtoCopyWith(ShopDto value, $Res Function(ShopDto) then) =
       _$ShopDtoCopyWithImpl<$Res>;
   $Res call(
-      {String id,
+      {@JsonKey(ignore: true) String id,
       String shopName,
       String streetName,
       int streetNumber,
       String postalCode,
-      String city});
+      String city,
+      @ServerTimestampConverter() FieldValue serverTimeStamp});
 }
 
 /// @nodoc
@@ -89,6 +95,7 @@ class _$ShopDtoCopyWithImpl<$Res> implements $ShopDtoCopyWith<$Res> {
     Object? streetNumber = freezed,
     Object? postalCode = freezed,
     Object? city = freezed,
+    Object? serverTimeStamp = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -115,6 +122,10 @@ class _$ShopDtoCopyWithImpl<$Res> implements $ShopDtoCopyWith<$Res> {
           ? _value.city
           : city // ignore: cast_nullable_to_non_nullable
               as String,
+      serverTimeStamp: serverTimeStamp == freezed
+          ? _value.serverTimeStamp
+          : serverTimeStamp // ignore: cast_nullable_to_non_nullable
+              as FieldValue,
     ));
   }
 }
@@ -126,12 +137,13 @@ abstract class _$ShopItemDtoCopyWith<$Res> implements $ShopDtoCopyWith<$Res> {
       __$ShopItemDtoCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String id,
+      {@JsonKey(ignore: true) String id,
       String shopName,
       String streetName,
       int streetNumber,
       String postalCode,
-      String city});
+      String city,
+      @ServerTimestampConverter() FieldValue serverTimeStamp});
 }
 
 /// @nodoc
@@ -152,6 +164,7 @@ class __$ShopItemDtoCopyWithImpl<$Res> extends _$ShopDtoCopyWithImpl<$Res>
     Object? streetNumber = freezed,
     Object? postalCode = freezed,
     Object? city = freezed,
+    Object? serverTimeStamp = freezed,
   }) {
     return _then(_ShopItemDto(
       id: id == freezed
@@ -178,6 +191,10 @@ class __$ShopItemDtoCopyWithImpl<$Res> extends _$ShopDtoCopyWithImpl<$Res>
           ? _value.city
           : city // ignore: cast_nullable_to_non_nullable
               as String,
+      serverTimeStamp: serverTimeStamp == freezed
+          ? _value.serverTimeStamp
+          : serverTimeStamp // ignore: cast_nullable_to_non_nullable
+              as FieldValue,
     ));
   }
 }
@@ -186,18 +203,20 @@ class __$ShopItemDtoCopyWithImpl<$Res> extends _$ShopDtoCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_ShopItemDto extends _ShopItemDto {
   const _$_ShopItemDto(
-      {required this.id,
+      {@JsonKey(ignore: true) this.id = '',
       required this.shopName,
       required this.streetName,
       required this.streetNumber,
       required this.postalCode,
-      required this.city})
+      required this.city,
+      @ServerTimestampConverter() required this.serverTimeStamp})
       : super._();
 
   factory _$_ShopItemDto.fromJson(Map<String, dynamic> json) =>
       _$$_ShopItemDtoFromJson(json);
 
   @override
+  @JsonKey(ignore: true)
   final String id;
   @override
   final String shopName;
@@ -209,10 +228,13 @@ class _$_ShopItemDto extends _ShopItemDto {
   final String postalCode;
   @override
   final String city;
+  @override
+  @ServerTimestampConverter()
+  final FieldValue serverTimeStamp;
 
   @override
   String toString() {
-    return 'ShopDto(id: $id, shopName: $shopName, streetName: $streetName, streetNumber: $streetNumber, postalCode: $postalCode, city: $city)';
+    return 'ShopDto(id: $id, shopName: $shopName, streetName: $streetName, streetNumber: $streetNumber, postalCode: $postalCode, city: $city, serverTimeStamp: $serverTimeStamp)';
   }
 
   @override
@@ -228,7 +250,9 @@ class _$_ShopItemDto extends _ShopItemDto {
                 .equals(other.streetNumber, streetNumber) &&
             const DeepCollectionEquality()
                 .equals(other.postalCode, postalCode) &&
-            const DeepCollectionEquality().equals(other.city, city));
+            const DeepCollectionEquality().equals(other.city, city) &&
+            const DeepCollectionEquality()
+                .equals(other.serverTimeStamp, serverTimeStamp));
   }
 
   @override
@@ -239,7 +263,8 @@ class _$_ShopItemDto extends _ShopItemDto {
       const DeepCollectionEquality().hash(streetName),
       const DeepCollectionEquality().hash(streetNumber),
       const DeepCollectionEquality().hash(postalCode),
-      const DeepCollectionEquality().hash(city));
+      const DeepCollectionEquality().hash(city),
+      const DeepCollectionEquality().hash(serverTimeStamp));
 
   @JsonKey(ignore: true)
   @override
@@ -254,18 +279,21 @@ class _$_ShopItemDto extends _ShopItemDto {
 
 abstract class _ShopItemDto extends ShopDto {
   const factory _ShopItemDto(
-      {required String id,
-      required String shopName,
-      required String streetName,
-      required int streetNumber,
-      required String postalCode,
-      required String city}) = _$_ShopItemDto;
+          {@JsonKey(ignore: true) String id,
+          required String shopName,
+          required String streetName,
+          required int streetNumber,
+          required String postalCode,
+          required String city,
+          @ServerTimestampConverter() required FieldValue serverTimeStamp}) =
+      _$_ShopItemDto;
   const _ShopItemDto._() : super._();
 
   factory _ShopItemDto.fromJson(Map<String, dynamic> json) =
       _$_ShopItemDto.fromJson;
 
   @override
+  @JsonKey(ignore: true)
   String get id;
   @override
   String get shopName;
@@ -277,6 +305,9 @@ abstract class _ShopItemDto extends ShopDto {
   String get postalCode;
   @override
   String get city;
+  @override
+  @ServerTimestampConverter()
+  FieldValue get serverTimeStamp;
   @override
   @JsonKey(ignore: true)
   _$ShopItemDtoCopyWith<_ShopItemDto> get copyWith =>
