@@ -1,8 +1,6 @@
 part of 'shopping_actor_bloc.dart';
 
-abstract class ShoppingActorEvent extends Equatable {
-  const ShoppingActorEvent();
-
-  @override
-  List<Object> get props => [];
+@freezed
+abstract class ShoppingActorEvent with _$ShoppingActorEvent {
+  const factory ShoppingActorEvent.deleted(Shop shop) = _Deleted;
 }

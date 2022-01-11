@@ -1,10 +1,10 @@
 part of 'shopping_actor_bloc.dart';
 
-abstract class ShoppingActorState extends Equatable {
-  const ShoppingActorState();
-  
-  @override
-  List<Object> get props => [];
+@freezed
+abstract class ShoppingActorState with _$ShoppingActorState {
+  const factory ShoppingActorState.inital() = _Initial;
+  const factory ShoppingActorState.actionInProgress() = _ActionInProgress;
+  const factory ShoppingActorState.deleteFailure(ShopFailure shopFailure) =
+      _DeleteFailure;
+  const factory ShoppingActorState.deleteSuccess() = _DeleteSuccess;
 }
-
-class ShoppingActorInitial extends ShoppingActorState {}
