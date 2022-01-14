@@ -9,6 +9,7 @@ import 'package:shopify_manager/presentation/splash/splash_page.dart';
 @MaterialAutoRouter(
   replaceInRouteName: 'Page,Route',
   routes: <AutoRoute>[
+    //TODO IMPLEMENT DEBUG PAGE LOL
     AutoRoute(
       page: DebugPage,
     ),
