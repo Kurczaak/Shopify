@@ -37,10 +37,10 @@ abstract class ShopDto implements _$ShopDto {
   Shop toDomain() {
     return Shop(
       id: UniqueId.fromUniqueString(id),
-      shopName: Name(shopName),
-      streetName: Name(streetName),
+      shopName: ShopName(shopName),
+      streetName: StreetName(streetName),
       postalCode: PostalCode(postalCode),
-      city: Name(city),
+      city: CityName(city),
     );
   }
 
