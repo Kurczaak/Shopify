@@ -1,17 +1,9 @@
-import 'package:flutter/material.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:shopify_manager/application/auth/sign_in_form/sign_in_form_bloc.dart';
 import 'package:shopify_manager/application/shopping/shop_form/shop_form_bloc.dart';
-import 'package:shopify_manager/domain/auth/auth_failure.dart';
-import 'package:shopify_manager/domain/auth/i_auth_facade.dart';
-import 'package:shopify_manager/domain/auth/value_objects.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:bloc_test/bloc_test.dart';
-import 'package:shopify_manager/domain/core/failures.dart';
-import 'package:shopify_manager/domain/core/value_objects.dart';
-import 'package:shopify_manager/domain/shopping/failures.dart';
 import 'package:shopify_manager/domain/shopping/i_shop_repository.dart';
 import 'package:shopify_manager/domain/shopping/shop.dart';
 import 'package:shopify_manager/domain/shopping/shop_failure.dart';
