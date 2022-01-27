@@ -19,10 +19,10 @@ class _$ShopTearOff {
 
   _Shop call(
       {required UniqueId id,
-      required Name shopName,
-      required Name streetName,
+      required ShopName shopName,
+      required StreetName streetName,
       required PostalCode postalCode,
-      required Name city}) {
+      required CityName city}) {
     return _Shop(
       id: id,
       shopName: shopName,
@@ -39,10 +39,10 @@ const $Shop = _$ShopTearOff();
 /// @nodoc
 mixin _$Shop {
   UniqueId get id => throw _privateConstructorUsedError;
-  Name get shopName => throw _privateConstructorUsedError;
-  Name get streetName => throw _privateConstructorUsedError;
+  ShopName get shopName => throw _privateConstructorUsedError;
+  StreetName get streetName => throw _privateConstructorUsedError;
   PostalCode get postalCode => throw _privateConstructorUsedError;
-  Name get city => throw _privateConstructorUsedError;
+  CityName get city => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ShopCopyWith<Shop> get copyWith => throw _privateConstructorUsedError;
@@ -54,10 +54,10 @@ abstract class $ShopCopyWith<$Res> {
       _$ShopCopyWithImpl<$Res>;
   $Res call(
       {UniqueId id,
-      Name shopName,
-      Name streetName,
+      ShopName shopName,
+      StreetName streetName,
       PostalCode postalCode,
-      Name city});
+      CityName city});
 }
 
 /// @nodoc
@@ -84,11 +84,11 @@ class _$ShopCopyWithImpl<$Res> implements $ShopCopyWith<$Res> {
       shopName: shopName == freezed
           ? _value.shopName
           : shopName // ignore: cast_nullable_to_non_nullable
-              as Name,
+              as ShopName,
       streetName: streetName == freezed
           ? _value.streetName
           : streetName // ignore: cast_nullable_to_non_nullable
-              as Name,
+              as StreetName,
       postalCode: postalCode == freezed
           ? _value.postalCode
           : postalCode // ignore: cast_nullable_to_non_nullable
@@ -96,7 +96,7 @@ class _$ShopCopyWithImpl<$Res> implements $ShopCopyWith<$Res> {
       city: city == freezed
           ? _value.city
           : city // ignore: cast_nullable_to_non_nullable
-              as Name,
+              as CityName,
     ));
   }
 }
@@ -108,10 +108,10 @@ abstract class _$ShopCopyWith<$Res> implements $ShopCopyWith<$Res> {
   @override
   $Res call(
       {UniqueId id,
-      Name shopName,
-      Name streetName,
+      ShopName shopName,
+      StreetName streetName,
       PostalCode postalCode,
-      Name city});
+      CityName city});
 }
 
 /// @nodoc
@@ -139,11 +139,11 @@ class __$ShopCopyWithImpl<$Res> extends _$ShopCopyWithImpl<$Res>
       shopName: shopName == freezed
           ? _value.shopName
           : shopName // ignore: cast_nullable_to_non_nullable
-              as Name,
+              as ShopName,
       streetName: streetName == freezed
           ? _value.streetName
           : streetName // ignore: cast_nullable_to_non_nullable
-              as Name,
+              as StreetName,
       postalCode: postalCode == freezed
           ? _value.postalCode
           : postalCode // ignore: cast_nullable_to_non_nullable
@@ -151,7 +151,7 @@ class __$ShopCopyWithImpl<$Res> extends _$ShopCopyWithImpl<$Res>
       city: city == freezed
           ? _value.city
           : city // ignore: cast_nullable_to_non_nullable
-              as Name,
+              as CityName,
     ));
   }
 }
@@ -170,13 +170,13 @@ class _$_Shop extends _Shop {
   @override
   final UniqueId id;
   @override
-  final Name shopName;
+  final ShopName shopName;
   @override
-  final Name streetName;
+  final StreetName streetName;
   @override
   final PostalCode postalCode;
   @override
-  final Name city;
+  final CityName city;
 
   @override
   String toString() {
@@ -215,22 +215,22 @@ class _$_Shop extends _Shop {
 abstract class _Shop extends Shop {
   const factory _Shop(
       {required UniqueId id,
-      required Name shopName,
-      required Name streetName,
+      required ShopName shopName,
+      required StreetName streetName,
       required PostalCode postalCode,
-      required Name city}) = _$_Shop;
+      required CityName city}) = _$_Shop;
   const _Shop._() : super._();
 
   @override
   UniqueId get id;
   @override
-  Name get shopName;
+  ShopName get shopName;
   @override
-  Name get streetName;
+  StreetName get streetName;
   @override
   PostalCode get postalCode;
   @override
-  Name get city;
+  CityName get city;
   @override
   @JsonKey(ignore: true)
   _$ShopCopyWith<_Shop> get copyWith => throw _privateConstructorUsedError;

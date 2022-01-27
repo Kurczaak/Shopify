@@ -13,11 +13,19 @@ abstract class Shop implements _$Shop {
 
   const factory Shop({
     required UniqueId id,
-    required Name shopName,
-    required Name streetName,
+    required ShopName shopName,
+    required StreetName streetName,
     required PostalCode postalCode,
-    required Name city,
+    required CityName city,
   }) = _Shop;
+
+  factory Shop.empty() => Shop(
+        id: UniqueId(),
+        shopName: ShopName(''),
+        streetName: StreetName(''),
+        postalCode: PostalCode(''),
+        city: CityName(''),
+      );
 
 //TODO might need to change value to failureOrUnit
   Option<ValueFailure<dynamic>> get failureOption {
