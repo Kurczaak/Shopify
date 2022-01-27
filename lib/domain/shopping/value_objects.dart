@@ -22,18 +22,53 @@ import 'package:shopify_manager/main.dart';
 //   const ProductDescription._(this.value);
 // }
 
-class Name extends ValueObject<String> {
-  static const maxLength = 100;
+abstract class Name extends ValueObject<String> {
+  static const maxLength = 10;
+  @override
+  Either<ValueFailure<String>, String> get value;
+  const Name();
+}
+
+class ShopName extends Name {
+  static const maxLength = 40;
   @override
   final Either<ValueFailure<String>, String> value;
-  factory Name(String input) {
-    return Name._(
+  factory ShopName(String input) {
+    return ShopName._(
       validateMaxStringLength(input, maxLength)
           .flatMap(validateSingleLine)
           .flatMap(validateStringNotEmpty),
     );
   }
-  const Name._(this.value);
+  const ShopName._(this.value);
+}
+
+class StreetName extends Name {
+  static const maxLength = 50;
+  @override
+  final Either<ValueFailure<String>, String> value;
+  factory StreetName(String input) {
+    return StreetName._(
+      validateMaxStringLength(input, maxLength)
+          .flatMap(validateSingleLine)
+          .flatMap(validateStringNotEmpty),
+    );
+  }
+  const StreetName._(this.value);
+}
+
+class CityName extends Name {
+  static const maxLength = 80;
+  @override
+  final Either<ValueFailure<String>, String> value;
+  factory CityName(String input) {
+    return CityName._(
+      validateMaxStringLength(input, maxLength)
+          .flatMap(validateSingleLine)
+          .flatMap(validateStringNotEmpty),
+    );
+  }
+  const CityName._(this.value);
 }
 
 class PostalCode extends ValueObject<String> {
