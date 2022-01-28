@@ -7,6 +7,8 @@ class ShoppingValueFailure<T> with _$ShoppingValueFailure<T> {
   const factory ShoppingValueFailure.exceedingLength(
       {required T failedValue, required int maxLength}) = ExceedingLength<T>;
 
+  const factory ShoppingValueFailure.stringTooShort(
+      {required T failedValue, required int minLength}) = StringTooShort<T>;
   const factory ShoppingValueFailure.empty({required T failedValue}) = Empty<T>;
   const factory ShoppingValueFailure.multiline({required T failedValue}) =
       Multiline<T>;

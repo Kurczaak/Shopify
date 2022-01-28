@@ -52,6 +52,50 @@ void main() {
   );
 
   group(
+    'validateMinStringLength',
+    () {
+      const tooShortString = '12345';
+      const longEnoughString = '123456';
+      const minLength = 6;
+      test(
+        'should return string that exceeds min length',
+        () async {
+          // act
+          final result = validateMinStringLength(longEnoughString, minLength);
+          // assert
+          expect(result, right(longEnoughString));
+        },
+      );
+      test(
+        'should return ValueFailure<String> when string is shorter than minLength',
+        () async {
+          // act
+          final result = validateMinStringLength(tooShortString, minLength);
+          // assert
+          expect(result, isA<Left<ValueFailure, String>>());
+        },
+      );
+      test(
+        'should return tooShortString ValueFailure when string exceeds max length',
+        () async {
+          // act
+          final result = validateMinStringLength(tooShortString, minLength);
+          // assert
+          expect(
+            result,
+            left(
+              const ValueFailure.shopping(
+                ShoppingValueFailure.stringTooShort(
+                    failedValue: tooShortString, minLength: minLength),
+              ),
+            ),
+          );
+        },
+      );
+    },
+  );
+
+  group(
     'validateStringNotEmpty',
     () {
       const emptyString = '';

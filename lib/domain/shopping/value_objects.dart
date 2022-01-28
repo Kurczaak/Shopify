@@ -21,6 +21,21 @@ import 'package:shopify_manager/main.dart';
 //   }
 //   const ProductDescription._(this.value);
 // }
+class AddressNumber extends ValueObject<String> {
+  static const maxNumber = 999;
+  static const maxLength = 5;
+
+  @override
+  // TODO: implement value
+  final Either<ValueFailure<String>, String> value;
+  factory AddressNumber(String input) {
+    return AddressNumber._(validateMaxStringLength(input, maxLength)
+        .flatMap(validateSingleLine)
+        .flatMap(validateStringNotEmpty));
+  }
+
+  const AddressNumber._(this.value);
+}
 
 abstract class Name extends ValueObject<String> {
   static const maxLength = 10;

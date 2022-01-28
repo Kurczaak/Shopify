@@ -19,6 +19,20 @@ Either<ValueFailure<String>, String> validateMaxStringLength(
   }
 }
 
+Either<ValueFailure<String>, String> validateMinStringLength(
+    String input, int minLength) {
+  if (input.length < minLength) {
+    return left(
+      ValueFailure.shopping(
+        ShoppingValueFailure.stringTooShort(
+            failedValue: input, minLength: minLength),
+      ),
+    );
+  } else {
+    return right(input);
+  }
+}
+
 Either<ValueFailure<String>, String> validateStringNotEmpty(String input) {
   if (input.isEmpty) {
     return left(ValueFailure.shopping(

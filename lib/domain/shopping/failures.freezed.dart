@@ -25,6 +25,14 @@ class _$ShoppingValueFailureTearOff {
     );
   }
 
+  StringTooShort<T> stringTooShort<T>(
+      {required T failedValue, required int minLength}) {
+    return StringTooShort<T>(
+      failedValue: failedValue,
+      minLength: minLength,
+    );
+  }
+
   Empty<T> empty<T>({required T failedValue}) {
     return Empty<T>(
       failedValue: failedValue,
@@ -72,6 +80,7 @@ mixin _$ShoppingValueFailure<T> {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(T failedValue, int maxLength) exceedingLength,
+    required TResult Function(T failedValue, int minLength) stringTooShort,
     required TResult Function(T failedValue) empty,
     required TResult Function(T failedValue) multiline,
     required TResult Function(T failedValue) incorrectPostalCode,
@@ -83,6 +92,7 @@ mixin _$ShoppingValueFailure<T> {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(T failedValue, int maxLength)? exceedingLength,
+    TResult Function(T failedValue, int minLength)? stringTooShort,
     TResult Function(T failedValue)? empty,
     TResult Function(T failedValue)? multiline,
     TResult Function(T failedValue)? incorrectPostalCode,
@@ -94,6 +104,7 @@ mixin _$ShoppingValueFailure<T> {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(T failedValue, int maxLength)? exceedingLength,
+    TResult Function(T failedValue, int minLength)? stringTooShort,
     TResult Function(T failedValue)? empty,
     TResult Function(T failedValue)? multiline,
     TResult Function(T failedValue)? incorrectPostalCode,
@@ -106,6 +117,7 @@ mixin _$ShoppingValueFailure<T> {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(ExceedingLength<T> value) exceedingLength,
+    required TResult Function(StringTooShort<T> value) stringTooShort,
     required TResult Function(Empty<T> value) empty,
     required TResult Function(Multiline<T> value) multiline,
     required TResult Function(IncorrectPostalCode<T> value) incorrectPostalCode,
@@ -118,6 +130,7 @@ mixin _$ShoppingValueFailure<T> {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(ExceedingLength<T> value)? exceedingLength,
+    TResult Function(StringTooShort<T> value)? stringTooShort,
     TResult Function(Empty<T> value)? empty,
     TResult Function(Multiline<T> value)? multiline,
     TResult Function(IncorrectPostalCode<T> value)? incorrectPostalCode,
@@ -129,6 +142,7 @@ mixin _$ShoppingValueFailure<T> {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ExceedingLength<T> value)? exceedingLength,
+    TResult Function(StringTooShort<T> value)? stringTooShort,
     TResult Function(Empty<T> value)? empty,
     TResult Function(Multiline<T> value)? multiline,
     TResult Function(IncorrectPostalCode<T> value)? incorrectPostalCode,
@@ -253,6 +267,7 @@ class _$ExceedingLength<T> implements ExceedingLength<T> {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(T failedValue, int maxLength) exceedingLength,
+    required TResult Function(T failedValue, int minLength) stringTooShort,
     required TResult Function(T failedValue) empty,
     required TResult Function(T failedValue) multiline,
     required TResult Function(T failedValue) incorrectPostalCode,
@@ -267,6 +282,7 @@ class _$ExceedingLength<T> implements ExceedingLength<T> {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(T failedValue, int maxLength)? exceedingLength,
+    TResult Function(T failedValue, int minLength)? stringTooShort,
     TResult Function(T failedValue)? empty,
     TResult Function(T failedValue)? multiline,
     TResult Function(T failedValue)? incorrectPostalCode,
@@ -281,6 +297,7 @@ class _$ExceedingLength<T> implements ExceedingLength<T> {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(T failedValue, int maxLength)? exceedingLength,
+    TResult Function(T failedValue, int minLength)? stringTooShort,
     TResult Function(T failedValue)? empty,
     TResult Function(T failedValue)? multiline,
     TResult Function(T failedValue)? incorrectPostalCode,
@@ -299,6 +316,7 @@ class _$ExceedingLength<T> implements ExceedingLength<T> {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(ExceedingLength<T> value) exceedingLength,
+    required TResult Function(StringTooShort<T> value) stringTooShort,
     required TResult Function(Empty<T> value) empty,
     required TResult Function(Multiline<T> value) multiline,
     required TResult Function(IncorrectPostalCode<T> value) incorrectPostalCode,
@@ -314,6 +332,7 @@ class _$ExceedingLength<T> implements ExceedingLength<T> {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(ExceedingLength<T> value)? exceedingLength,
+    TResult Function(StringTooShort<T> value)? stringTooShort,
     TResult Function(Empty<T> value)? empty,
     TResult Function(Multiline<T> value)? multiline,
     TResult Function(IncorrectPostalCode<T> value)? incorrectPostalCode,
@@ -328,6 +347,7 @@ class _$ExceedingLength<T> implements ExceedingLength<T> {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ExceedingLength<T> value)? exceedingLength,
+    TResult Function(StringTooShort<T> value)? stringTooShort,
     TResult Function(Empty<T> value)? empty,
     TResult Function(Multiline<T> value)? multiline,
     TResult Function(IncorrectPostalCode<T> value)? incorrectPostalCode,
@@ -353,6 +373,194 @@ abstract class ExceedingLength<T> implements ShoppingValueFailure<T> {
   @override
   @JsonKey(ignore: true)
   $ExceedingLengthCopyWith<T, ExceedingLength<T>> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $StringTooShortCopyWith<T, $Res>
+    implements $ShoppingValueFailureCopyWith<T, $Res> {
+  factory $StringTooShortCopyWith(
+          StringTooShort<T> value, $Res Function(StringTooShort<T>) then) =
+      _$StringTooShortCopyWithImpl<T, $Res>;
+  @override
+  $Res call({T failedValue, int minLength});
+}
+
+/// @nodoc
+class _$StringTooShortCopyWithImpl<T, $Res>
+    extends _$ShoppingValueFailureCopyWithImpl<T, $Res>
+    implements $StringTooShortCopyWith<T, $Res> {
+  _$StringTooShortCopyWithImpl(
+      StringTooShort<T> _value, $Res Function(StringTooShort<T>) _then)
+      : super(_value, (v) => _then(v as StringTooShort<T>));
+
+  @override
+  StringTooShort<T> get _value => super._value as StringTooShort<T>;
+
+  @override
+  $Res call({
+    Object? failedValue = freezed,
+    Object? minLength = freezed,
+  }) {
+    return _then(StringTooShort<T>(
+      failedValue: failedValue == freezed
+          ? _value.failedValue
+          : failedValue // ignore: cast_nullable_to_non_nullable
+              as T,
+      minLength: minLength == freezed
+          ? _value.minLength
+          : minLength // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$StringTooShort<T> implements StringTooShort<T> {
+  const _$StringTooShort({required this.failedValue, required this.minLength});
+
+  @override
+  final T failedValue;
+  @override
+  final int minLength;
+
+  @override
+  String toString() {
+    return 'ShoppingValueFailure<$T>.stringTooShort(failedValue: $failedValue, minLength: $minLength)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is StringTooShort<T> &&
+            const DeepCollectionEquality()
+                .equals(other.failedValue, failedValue) &&
+            const DeepCollectionEquality().equals(other.minLength, minLength));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(failedValue),
+      const DeepCollectionEquality().hash(minLength));
+
+  @JsonKey(ignore: true)
+  @override
+  $StringTooShortCopyWith<T, StringTooShort<T>> get copyWith =>
+      _$StringTooShortCopyWithImpl<T, StringTooShort<T>>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(T failedValue, int maxLength) exceedingLength,
+    required TResult Function(T failedValue, int minLength) stringTooShort,
+    required TResult Function(T failedValue) empty,
+    required TResult Function(T failedValue) multiline,
+    required TResult Function(T failedValue) incorrectPostalCode,
+    required TResult Function(T failedValue) shopClosedAllWeekLong,
+    required TResult Function(T failedValue) noPhotoSelected,
+    required TResult Function(T failedValue) nonPositiveValue,
+  }) {
+    return stringTooShort(failedValue, minLength);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(T failedValue, int maxLength)? exceedingLength,
+    TResult Function(T failedValue, int minLength)? stringTooShort,
+    TResult Function(T failedValue)? empty,
+    TResult Function(T failedValue)? multiline,
+    TResult Function(T failedValue)? incorrectPostalCode,
+    TResult Function(T failedValue)? shopClosedAllWeekLong,
+    TResult Function(T failedValue)? noPhotoSelected,
+    TResult Function(T failedValue)? nonPositiveValue,
+  }) {
+    return stringTooShort?.call(failedValue, minLength);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(T failedValue, int maxLength)? exceedingLength,
+    TResult Function(T failedValue, int minLength)? stringTooShort,
+    TResult Function(T failedValue)? empty,
+    TResult Function(T failedValue)? multiline,
+    TResult Function(T failedValue)? incorrectPostalCode,
+    TResult Function(T failedValue)? shopClosedAllWeekLong,
+    TResult Function(T failedValue)? noPhotoSelected,
+    TResult Function(T failedValue)? nonPositiveValue,
+    required TResult orElse(),
+  }) {
+    if (stringTooShort != null) {
+      return stringTooShort(failedValue, minLength);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ExceedingLength<T> value) exceedingLength,
+    required TResult Function(StringTooShort<T> value) stringTooShort,
+    required TResult Function(Empty<T> value) empty,
+    required TResult Function(Multiline<T> value) multiline,
+    required TResult Function(IncorrectPostalCode<T> value) incorrectPostalCode,
+    required TResult Function(ShopClosedAllWeekLong<T> value)
+        shopClosedAllWeekLong,
+    required TResult Function(NoPhotoSelected<T> value) noPhotoSelected,
+    required TResult Function(NonPositivePrice<T> value) nonPositiveValue,
+  }) {
+    return stringTooShort(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(ExceedingLength<T> value)? exceedingLength,
+    TResult Function(StringTooShort<T> value)? stringTooShort,
+    TResult Function(Empty<T> value)? empty,
+    TResult Function(Multiline<T> value)? multiline,
+    TResult Function(IncorrectPostalCode<T> value)? incorrectPostalCode,
+    TResult Function(ShopClosedAllWeekLong<T> value)? shopClosedAllWeekLong,
+    TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
+    TResult Function(NonPositivePrice<T> value)? nonPositiveValue,
+  }) {
+    return stringTooShort?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ExceedingLength<T> value)? exceedingLength,
+    TResult Function(StringTooShort<T> value)? stringTooShort,
+    TResult Function(Empty<T> value)? empty,
+    TResult Function(Multiline<T> value)? multiline,
+    TResult Function(IncorrectPostalCode<T> value)? incorrectPostalCode,
+    TResult Function(ShopClosedAllWeekLong<T> value)? shopClosedAllWeekLong,
+    TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
+    TResult Function(NonPositivePrice<T> value)? nonPositiveValue,
+    required TResult orElse(),
+  }) {
+    if (stringTooShort != null) {
+      return stringTooShort(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class StringTooShort<T> implements ShoppingValueFailure<T> {
+  const factory StringTooShort(
+      {required T failedValue, required int minLength}) = _$StringTooShort<T>;
+
+  @override
+  T get failedValue;
+  int get minLength;
+  @override
+  @JsonKey(ignore: true)
+  $StringTooShortCopyWith<T, StringTooShort<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -423,6 +631,7 @@ class _$Empty<T> implements Empty<T> {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(T failedValue, int maxLength) exceedingLength,
+    required TResult Function(T failedValue, int minLength) stringTooShort,
     required TResult Function(T failedValue) empty,
     required TResult Function(T failedValue) multiline,
     required TResult Function(T failedValue) incorrectPostalCode,
@@ -437,6 +646,7 @@ class _$Empty<T> implements Empty<T> {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(T failedValue, int maxLength)? exceedingLength,
+    TResult Function(T failedValue, int minLength)? stringTooShort,
     TResult Function(T failedValue)? empty,
     TResult Function(T failedValue)? multiline,
     TResult Function(T failedValue)? incorrectPostalCode,
@@ -451,6 +661,7 @@ class _$Empty<T> implements Empty<T> {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(T failedValue, int maxLength)? exceedingLength,
+    TResult Function(T failedValue, int minLength)? stringTooShort,
     TResult Function(T failedValue)? empty,
     TResult Function(T failedValue)? multiline,
     TResult Function(T failedValue)? incorrectPostalCode,
@@ -469,6 +680,7 @@ class _$Empty<T> implements Empty<T> {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(ExceedingLength<T> value) exceedingLength,
+    required TResult Function(StringTooShort<T> value) stringTooShort,
     required TResult Function(Empty<T> value) empty,
     required TResult Function(Multiline<T> value) multiline,
     required TResult Function(IncorrectPostalCode<T> value) incorrectPostalCode,
@@ -484,6 +696,7 @@ class _$Empty<T> implements Empty<T> {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(ExceedingLength<T> value)? exceedingLength,
+    TResult Function(StringTooShort<T> value)? stringTooShort,
     TResult Function(Empty<T> value)? empty,
     TResult Function(Multiline<T> value)? multiline,
     TResult Function(IncorrectPostalCode<T> value)? incorrectPostalCode,
@@ -498,6 +711,7 @@ class _$Empty<T> implements Empty<T> {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ExceedingLength<T> value)? exceedingLength,
+    TResult Function(StringTooShort<T> value)? stringTooShort,
     TResult Function(Empty<T> value)? empty,
     TResult Function(Multiline<T> value)? multiline,
     TResult Function(IncorrectPostalCode<T> value)? incorrectPostalCode,
@@ -593,6 +807,7 @@ class _$Multiline<T> implements Multiline<T> {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(T failedValue, int maxLength) exceedingLength,
+    required TResult Function(T failedValue, int minLength) stringTooShort,
     required TResult Function(T failedValue) empty,
     required TResult Function(T failedValue) multiline,
     required TResult Function(T failedValue) incorrectPostalCode,
@@ -607,6 +822,7 @@ class _$Multiline<T> implements Multiline<T> {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(T failedValue, int maxLength)? exceedingLength,
+    TResult Function(T failedValue, int minLength)? stringTooShort,
     TResult Function(T failedValue)? empty,
     TResult Function(T failedValue)? multiline,
     TResult Function(T failedValue)? incorrectPostalCode,
@@ -621,6 +837,7 @@ class _$Multiline<T> implements Multiline<T> {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(T failedValue, int maxLength)? exceedingLength,
+    TResult Function(T failedValue, int minLength)? stringTooShort,
     TResult Function(T failedValue)? empty,
     TResult Function(T failedValue)? multiline,
     TResult Function(T failedValue)? incorrectPostalCode,
@@ -639,6 +856,7 @@ class _$Multiline<T> implements Multiline<T> {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(ExceedingLength<T> value) exceedingLength,
+    required TResult Function(StringTooShort<T> value) stringTooShort,
     required TResult Function(Empty<T> value) empty,
     required TResult Function(Multiline<T> value) multiline,
     required TResult Function(IncorrectPostalCode<T> value) incorrectPostalCode,
@@ -654,6 +872,7 @@ class _$Multiline<T> implements Multiline<T> {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(ExceedingLength<T> value)? exceedingLength,
+    TResult Function(StringTooShort<T> value)? stringTooShort,
     TResult Function(Empty<T> value)? empty,
     TResult Function(Multiline<T> value)? multiline,
     TResult Function(IncorrectPostalCode<T> value)? incorrectPostalCode,
@@ -668,6 +887,7 @@ class _$Multiline<T> implements Multiline<T> {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ExceedingLength<T> value)? exceedingLength,
+    TResult Function(StringTooShort<T> value)? stringTooShort,
     TResult Function(Empty<T> value)? empty,
     TResult Function(Multiline<T> value)? multiline,
     TResult Function(IncorrectPostalCode<T> value)? incorrectPostalCode,
@@ -764,6 +984,7 @@ class _$IncorrectPostalCode<T> implements IncorrectPostalCode<T> {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(T failedValue, int maxLength) exceedingLength,
+    required TResult Function(T failedValue, int minLength) stringTooShort,
     required TResult Function(T failedValue) empty,
     required TResult Function(T failedValue) multiline,
     required TResult Function(T failedValue) incorrectPostalCode,
@@ -778,6 +999,7 @@ class _$IncorrectPostalCode<T> implements IncorrectPostalCode<T> {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(T failedValue, int maxLength)? exceedingLength,
+    TResult Function(T failedValue, int minLength)? stringTooShort,
     TResult Function(T failedValue)? empty,
     TResult Function(T failedValue)? multiline,
     TResult Function(T failedValue)? incorrectPostalCode,
@@ -792,6 +1014,7 @@ class _$IncorrectPostalCode<T> implements IncorrectPostalCode<T> {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(T failedValue, int maxLength)? exceedingLength,
+    TResult Function(T failedValue, int minLength)? stringTooShort,
     TResult Function(T failedValue)? empty,
     TResult Function(T failedValue)? multiline,
     TResult Function(T failedValue)? incorrectPostalCode,
@@ -810,6 +1033,7 @@ class _$IncorrectPostalCode<T> implements IncorrectPostalCode<T> {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(ExceedingLength<T> value) exceedingLength,
+    required TResult Function(StringTooShort<T> value) stringTooShort,
     required TResult Function(Empty<T> value) empty,
     required TResult Function(Multiline<T> value) multiline,
     required TResult Function(IncorrectPostalCode<T> value) incorrectPostalCode,
@@ -825,6 +1049,7 @@ class _$IncorrectPostalCode<T> implements IncorrectPostalCode<T> {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(ExceedingLength<T> value)? exceedingLength,
+    TResult Function(StringTooShort<T> value)? stringTooShort,
     TResult Function(Empty<T> value)? empty,
     TResult Function(Multiline<T> value)? multiline,
     TResult Function(IncorrectPostalCode<T> value)? incorrectPostalCode,
@@ -839,6 +1064,7 @@ class _$IncorrectPostalCode<T> implements IncorrectPostalCode<T> {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ExceedingLength<T> value)? exceedingLength,
+    TResult Function(StringTooShort<T> value)? stringTooShort,
     TResult Function(Empty<T> value)? empty,
     TResult Function(Multiline<T> value)? multiline,
     TResult Function(IncorrectPostalCode<T> value)? incorrectPostalCode,
@@ -937,6 +1163,7 @@ class _$ShopClosedAllWeekLong<T> implements ShopClosedAllWeekLong<T> {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(T failedValue, int maxLength) exceedingLength,
+    required TResult Function(T failedValue, int minLength) stringTooShort,
     required TResult Function(T failedValue) empty,
     required TResult Function(T failedValue) multiline,
     required TResult Function(T failedValue) incorrectPostalCode,
@@ -951,6 +1178,7 @@ class _$ShopClosedAllWeekLong<T> implements ShopClosedAllWeekLong<T> {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(T failedValue, int maxLength)? exceedingLength,
+    TResult Function(T failedValue, int minLength)? stringTooShort,
     TResult Function(T failedValue)? empty,
     TResult Function(T failedValue)? multiline,
     TResult Function(T failedValue)? incorrectPostalCode,
@@ -965,6 +1193,7 @@ class _$ShopClosedAllWeekLong<T> implements ShopClosedAllWeekLong<T> {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(T failedValue, int maxLength)? exceedingLength,
+    TResult Function(T failedValue, int minLength)? stringTooShort,
     TResult Function(T failedValue)? empty,
     TResult Function(T failedValue)? multiline,
     TResult Function(T failedValue)? incorrectPostalCode,
@@ -983,6 +1212,7 @@ class _$ShopClosedAllWeekLong<T> implements ShopClosedAllWeekLong<T> {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(ExceedingLength<T> value) exceedingLength,
+    required TResult Function(StringTooShort<T> value) stringTooShort,
     required TResult Function(Empty<T> value) empty,
     required TResult Function(Multiline<T> value) multiline,
     required TResult Function(IncorrectPostalCode<T> value) incorrectPostalCode,
@@ -998,6 +1228,7 @@ class _$ShopClosedAllWeekLong<T> implements ShopClosedAllWeekLong<T> {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(ExceedingLength<T> value)? exceedingLength,
+    TResult Function(StringTooShort<T> value)? stringTooShort,
     TResult Function(Empty<T> value)? empty,
     TResult Function(Multiline<T> value)? multiline,
     TResult Function(IncorrectPostalCode<T> value)? incorrectPostalCode,
@@ -1012,6 +1243,7 @@ class _$ShopClosedAllWeekLong<T> implements ShopClosedAllWeekLong<T> {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ExceedingLength<T> value)? exceedingLength,
+    TResult Function(StringTooShort<T> value)? stringTooShort,
     TResult Function(Empty<T> value)? empty,
     TResult Function(Multiline<T> value)? multiline,
     TResult Function(IncorrectPostalCode<T> value)? incorrectPostalCode,
@@ -1108,6 +1340,7 @@ class _$NoPhotoSelected<T> implements NoPhotoSelected<T> {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(T failedValue, int maxLength) exceedingLength,
+    required TResult Function(T failedValue, int minLength) stringTooShort,
     required TResult Function(T failedValue) empty,
     required TResult Function(T failedValue) multiline,
     required TResult Function(T failedValue) incorrectPostalCode,
@@ -1122,6 +1355,7 @@ class _$NoPhotoSelected<T> implements NoPhotoSelected<T> {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(T failedValue, int maxLength)? exceedingLength,
+    TResult Function(T failedValue, int minLength)? stringTooShort,
     TResult Function(T failedValue)? empty,
     TResult Function(T failedValue)? multiline,
     TResult Function(T failedValue)? incorrectPostalCode,
@@ -1136,6 +1370,7 @@ class _$NoPhotoSelected<T> implements NoPhotoSelected<T> {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(T failedValue, int maxLength)? exceedingLength,
+    TResult Function(T failedValue, int minLength)? stringTooShort,
     TResult Function(T failedValue)? empty,
     TResult Function(T failedValue)? multiline,
     TResult Function(T failedValue)? incorrectPostalCode,
@@ -1154,6 +1389,7 @@ class _$NoPhotoSelected<T> implements NoPhotoSelected<T> {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(ExceedingLength<T> value) exceedingLength,
+    required TResult Function(StringTooShort<T> value) stringTooShort,
     required TResult Function(Empty<T> value) empty,
     required TResult Function(Multiline<T> value) multiline,
     required TResult Function(IncorrectPostalCode<T> value) incorrectPostalCode,
@@ -1169,6 +1405,7 @@ class _$NoPhotoSelected<T> implements NoPhotoSelected<T> {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(ExceedingLength<T> value)? exceedingLength,
+    TResult Function(StringTooShort<T> value)? stringTooShort,
     TResult Function(Empty<T> value)? empty,
     TResult Function(Multiline<T> value)? multiline,
     TResult Function(IncorrectPostalCode<T> value)? incorrectPostalCode,
@@ -1183,6 +1420,7 @@ class _$NoPhotoSelected<T> implements NoPhotoSelected<T> {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ExceedingLength<T> value)? exceedingLength,
+    TResult Function(StringTooShort<T> value)? stringTooShort,
     TResult Function(Empty<T> value)? empty,
     TResult Function(Multiline<T> value)? multiline,
     TResult Function(IncorrectPostalCode<T> value)? incorrectPostalCode,
@@ -1279,6 +1517,7 @@ class _$NonPositivePrice<T> implements NonPositivePrice<T> {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(T failedValue, int maxLength) exceedingLength,
+    required TResult Function(T failedValue, int minLength) stringTooShort,
     required TResult Function(T failedValue) empty,
     required TResult Function(T failedValue) multiline,
     required TResult Function(T failedValue) incorrectPostalCode,
@@ -1293,6 +1532,7 @@ class _$NonPositivePrice<T> implements NonPositivePrice<T> {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(T failedValue, int maxLength)? exceedingLength,
+    TResult Function(T failedValue, int minLength)? stringTooShort,
     TResult Function(T failedValue)? empty,
     TResult Function(T failedValue)? multiline,
     TResult Function(T failedValue)? incorrectPostalCode,
@@ -1307,6 +1547,7 @@ class _$NonPositivePrice<T> implements NonPositivePrice<T> {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(T failedValue, int maxLength)? exceedingLength,
+    TResult Function(T failedValue, int minLength)? stringTooShort,
     TResult Function(T failedValue)? empty,
     TResult Function(T failedValue)? multiline,
     TResult Function(T failedValue)? incorrectPostalCode,
@@ -1325,6 +1566,7 @@ class _$NonPositivePrice<T> implements NonPositivePrice<T> {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(ExceedingLength<T> value) exceedingLength,
+    required TResult Function(StringTooShort<T> value) stringTooShort,
     required TResult Function(Empty<T> value) empty,
     required TResult Function(Multiline<T> value) multiline,
     required TResult Function(IncorrectPostalCode<T> value) incorrectPostalCode,
@@ -1340,6 +1582,7 @@ class _$NonPositivePrice<T> implements NonPositivePrice<T> {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(ExceedingLength<T> value)? exceedingLength,
+    TResult Function(StringTooShort<T> value)? stringTooShort,
     TResult Function(Empty<T> value)? empty,
     TResult Function(Multiline<T> value)? multiline,
     TResult Function(IncorrectPostalCode<T> value)? incorrectPostalCode,
@@ -1354,6 +1597,7 @@ class _$NonPositivePrice<T> implements NonPositivePrice<T> {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ExceedingLength<T> value)? exceedingLength,
+    TResult Function(StringTooShort<T> value)? stringTooShort,
     TResult Function(Empty<T> value)? empty,
     TResult Function(Multiline<T> value)? multiline,
     TResult Function(IncorrectPostalCode<T> value)? incorrectPostalCode,
