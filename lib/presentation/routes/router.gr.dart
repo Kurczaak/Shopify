@@ -59,11 +59,11 @@ class AppRouter extends _i7.RootStackRouter {
   @override
   List<_i7.RouteConfig> get routes => [
         _i7.RouteConfig(DebugRoute.name, path: '/debug-page'),
-        _i7.RouteConfig(SplashRoute.name, path: '/splash-page'),
+        _i7.RouteConfig(SplashRoute.name, path: '/'),
         _i7.RouteConfig(SignInRoute.name, path: '/sign-in-page'),
         _i7.RouteConfig(ShopDetailsRoute.name, path: '/shop-details-page'),
         _i7.RouteConfig(SignUpRoute.name, path: '/sign-up-page'),
-        _i7.RouteConfig(OpeningHoursRoute.name, path: '/')
+        _i7.RouteConfig(OpeningHoursRoute.name, path: '/opening-hours-page')
       ];
 }
 
@@ -78,7 +78,7 @@ class DebugRoute extends _i7.PageRouteInfo<void> {
 /// generated route for
 /// [_i2.SplashPage]
 class SplashRoute extends _i7.PageRouteInfo<void> {
-  const SplashRoute() : super(SplashRoute.name, path: '/splash-page');
+  const SplashRoute() : super(SplashRoute.name, path: '/');
 
   static const String name = 'SplashRoute';
 }
@@ -125,7 +125,7 @@ class SignUpRoute extends _i7.PageRouteInfo<void> {
 class OpeningHoursRoute extends _i7.PageRouteInfo<OpeningHoursRouteArgs> {
   OpeningHoursRoute({_i8.Key? key})
       : super(OpeningHoursRoute.name,
-            path: '/', args: OpeningHoursRouteArgs(key: key));
+            path: '/opening-hours-page', args: OpeningHoursRouteArgs(key: key));
 
   static const String name = 'OpeningHoursRoute';
 }

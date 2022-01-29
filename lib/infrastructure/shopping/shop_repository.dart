@@ -2,7 +2,6 @@ import 'package:flutter/services.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:injectable/injectable.dart';
 import 'package:dartz/dartz.dart';
 import 'package:shopify_manager/domain/shopping/i_shop_repository.dart';
 import 'package:shopify_manager/domain/shopping/shop_failure.dart';
@@ -22,7 +21,6 @@ class ShopRepository implements IShopRepository {
     try {
       final userDoc = await _firestore.userDocument();
       final shopDto = ShopDto.fromDomain(shop);
-
       await userDoc.shopCollection.doc(shopDto.id).set(shopDto.toJson());
       return right(unit);
     } on PlatformException catch (e) {

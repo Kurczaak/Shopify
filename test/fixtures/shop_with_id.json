@@ -1,5 +1,6 @@
 {
     "shopName": "Shop Name",
+    "id": "wrong_id",
     "address": {
         "streetName": "Street Name",
         "streetNumber": "12A",
@@ -9,6 +10,4 @@
     },
     "serverTimeStamp": "January 18, 2022 at 10:51:38 AM UTC+1"
 }
-
-
 

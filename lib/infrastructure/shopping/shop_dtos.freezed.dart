@@ -24,18 +24,12 @@ class _$ShopDtoTearOff {
   _ShopItemDto call(
       {@JsonKey(ignore: true) String id = '',
       required String shopName,
-      required String streetName,
-      required int streetNumber,
-      required String postalCode,
-      required String city,
+      required AddressDto address,
       @ServerTimestampConverter() required FieldValue serverTimeStamp}) {
     return _ShopItemDto(
       id: id,
       shopName: shopName,
-      streetName: streetName,
-      streetNumber: streetNumber,
-      postalCode: postalCode,
-      city: city,
+      address: address,
       serverTimeStamp: serverTimeStamp,
     );
   }
@@ -53,10 +47,7 @@ mixin _$ShopDto {
   @JsonKey(ignore: true)
   String get id => throw _privateConstructorUsedError;
   String get shopName => throw _privateConstructorUsedError;
-  String get streetName => throw _privateConstructorUsedError;
-  int get streetNumber => throw _privateConstructorUsedError;
-  String get postalCode => throw _privateConstructorUsedError;
-  String get city => throw _privateConstructorUsedError;
+  AddressDto get address => throw _privateConstructorUsedError;
   @ServerTimestampConverter()
   FieldValue get serverTimeStamp => throw _privateConstructorUsedError;
 
@@ -72,11 +63,10 @@ abstract class $ShopDtoCopyWith<$Res> {
   $Res call(
       {@JsonKey(ignore: true) String id,
       String shopName,
-      String streetName,
-      int streetNumber,
-      String postalCode,
-      String city,
+      AddressDto address,
       @ServerTimestampConverter() FieldValue serverTimeStamp});
+
+  $AddressDtoCopyWith<$Res> get address;
 }
 
 /// @nodoc
@@ -91,10 +81,7 @@ class _$ShopDtoCopyWithImpl<$Res> implements $ShopDtoCopyWith<$Res> {
   $Res call({
     Object? id = freezed,
     Object? shopName = freezed,
-    Object? streetName = freezed,
-    Object? streetNumber = freezed,
-    Object? postalCode = freezed,
-    Object? city = freezed,
+    Object? address = freezed,
     Object? serverTimeStamp = freezed,
   }) {
     return _then(_value.copyWith(
@@ -106,27 +93,22 @@ class _$ShopDtoCopyWithImpl<$Res> implements $ShopDtoCopyWith<$Res> {
           ? _value.shopName
           : shopName // ignore: cast_nullable_to_non_nullable
               as String,
-      streetName: streetName == freezed
-          ? _value.streetName
-          : streetName // ignore: cast_nullable_to_non_nullable
-              as String,
-      streetNumber: streetNumber == freezed
-          ? _value.streetNumber
-          : streetNumber // ignore: cast_nullable_to_non_nullable
-              as int,
-      postalCode: postalCode == freezed
-          ? _value.postalCode
-          : postalCode // ignore: cast_nullable_to_non_nullable
-              as String,
-      city: city == freezed
-          ? _value.city
-          : city // ignore: cast_nullable_to_non_nullable
-              as String,
+      address: address == freezed
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as AddressDto,
       serverTimeStamp: serverTimeStamp == freezed
           ? _value.serverTimeStamp
           : serverTimeStamp // ignore: cast_nullable_to_non_nullable
               as FieldValue,
     ));
+  }
+
+  @override
+  $AddressDtoCopyWith<$Res> get address {
+    return $AddressDtoCopyWith<$Res>(_value.address, (value) {
+      return _then(_value.copyWith(address: value));
+    });
   }
 }
 
@@ -139,11 +121,11 @@ abstract class _$ShopItemDtoCopyWith<$Res> implements $ShopDtoCopyWith<$Res> {
   $Res call(
       {@JsonKey(ignore: true) String id,
       String shopName,
-      String streetName,
-      int streetNumber,
-      String postalCode,
-      String city,
+      AddressDto address,
       @ServerTimestampConverter() FieldValue serverTimeStamp});
+
+  @override
+  $AddressDtoCopyWith<$Res> get address;
 }
 
 /// @nodoc
@@ -160,10 +142,7 @@ class __$ShopItemDtoCopyWithImpl<$Res> extends _$ShopDtoCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? shopName = freezed,
-    Object? streetName = freezed,
-    Object? streetNumber = freezed,
-    Object? postalCode = freezed,
-    Object? city = freezed,
+    Object? address = freezed,
     Object? serverTimeStamp = freezed,
   }) {
     return _then(_ShopItemDto(
@@ -175,22 +154,10 @@ class __$ShopItemDtoCopyWithImpl<$Res> extends _$ShopDtoCopyWithImpl<$Res>
           ? _value.shopName
           : shopName // ignore: cast_nullable_to_non_nullable
               as String,
-      streetName: streetName == freezed
-          ? _value.streetName
-          : streetName // ignore: cast_nullable_to_non_nullable
-              as String,
-      streetNumber: streetNumber == freezed
-          ? _value.streetNumber
-          : streetNumber // ignore: cast_nullable_to_non_nullable
-              as int,
-      postalCode: postalCode == freezed
-          ? _value.postalCode
-          : postalCode // ignore: cast_nullable_to_non_nullable
-              as String,
-      city: city == freezed
-          ? _value.city
-          : city // ignore: cast_nullable_to_non_nullable
-              as String,
+      address: address == freezed
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as AddressDto,
       serverTimeStamp: serverTimeStamp == freezed
           ? _value.serverTimeStamp
           : serverTimeStamp // ignore: cast_nullable_to_non_nullable
@@ -205,10 +172,7 @@ class _$_ShopItemDto extends _ShopItemDto {
   const _$_ShopItemDto(
       {@JsonKey(ignore: true) this.id = '',
       required this.shopName,
-      required this.streetName,
-      required this.streetNumber,
-      required this.postalCode,
-      required this.city,
+      required this.address,
       @ServerTimestampConverter() required this.serverTimeStamp})
       : super._();
 
@@ -221,20 +185,14 @@ class _$_ShopItemDto extends _ShopItemDto {
   @override
   final String shopName;
   @override
-  final String streetName;
-  @override
-  final int streetNumber;
-  @override
-  final String postalCode;
-  @override
-  final String city;
+  final AddressDto address;
   @override
   @ServerTimestampConverter()
   final FieldValue serverTimeStamp;
 
   @override
   String toString() {
-    return 'ShopDto(id: $id, shopName: $shopName, streetName: $streetName, streetNumber: $streetNumber, postalCode: $postalCode, city: $city, serverTimeStamp: $serverTimeStamp)';
+    return 'ShopDto(id: $id, shopName: $shopName, address: $address, serverTimeStamp: $serverTimeStamp)';
   }
 
   @override
@@ -244,13 +202,7 @@ class _$_ShopItemDto extends _ShopItemDto {
             other is _ShopItemDto &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.shopName, shopName) &&
-            const DeepCollectionEquality()
-                .equals(other.streetName, streetName) &&
-            const DeepCollectionEquality()
-                .equals(other.streetNumber, streetNumber) &&
-            const DeepCollectionEquality()
-                .equals(other.postalCode, postalCode) &&
-            const DeepCollectionEquality().equals(other.city, city) &&
+            const DeepCollectionEquality().equals(other.address, address) &&
             const DeepCollectionEquality()
                 .equals(other.serverTimeStamp, serverTimeStamp));
   }
@@ -260,10 +212,7 @@ class _$_ShopItemDto extends _ShopItemDto {
       runtimeType,
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(shopName),
-      const DeepCollectionEquality().hash(streetName),
-      const DeepCollectionEquality().hash(streetNumber),
-      const DeepCollectionEquality().hash(postalCode),
-      const DeepCollectionEquality().hash(city),
+      const DeepCollectionEquality().hash(address),
       const DeepCollectionEquality().hash(serverTimeStamp));
 
   @JsonKey(ignore: true)
@@ -281,10 +230,7 @@ abstract class _ShopItemDto extends ShopDto {
   const factory _ShopItemDto(
           {@JsonKey(ignore: true) String id,
           required String shopName,
-          required String streetName,
-          required int streetNumber,
-          required String postalCode,
-          required String city,
+          required AddressDto address,
           @ServerTimestampConverter() required FieldValue serverTimeStamp}) =
       _$_ShopItemDto;
   const _ShopItemDto._() : super._();
@@ -298,13 +244,7 @@ abstract class _ShopItemDto extends ShopDto {
   @override
   String get shopName;
   @override
-  String get streetName;
-  @override
-  int get streetNumber;
-  @override
-  String get postalCode;
-  @override
-  String get city;
+  AddressDto get address;
   @override
   @ServerTimestampConverter()
   FieldValue get serverTimeStamp;

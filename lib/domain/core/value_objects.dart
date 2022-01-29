@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:shopify_manager/domain/shopping/value_validators.dart';
 import 'package:uuid/uuid.dart';
 import 'package:shopify_manager/domain/core/errors.dart';
 
@@ -42,4 +43,69 @@ class UniqueId extends ValueObject<String> {
     return UniqueId._(right(uniqueId));
   }
   const UniqueId._(this.value);
+}
+
+abstract class Name extends ValueObject<String> {
+  static const maxLength = 10;
+  @override
+  Either<ValueFailure<String>, String> get value;
+  const Name();
+}
+
+class AddressNumber extends ValueObject<String> {
+  static const maxNumber = 999;
+  static const maxLength = 5;
+
+  @override
+  final Either<ValueFailure<String>, String> value;
+  factory AddressNumber(String input) {
+    return AddressNumber._(
+        validateMaxStringLength(input, maxLength).flatMap(validateSingleLine));
+  }
+  const AddressNumber._(this.value);
+}
+
+class StreetNumber extends AddressNumber {
+  factory StreetNumber(String input) {
+    return StreetNumber._(validateStringNotEmpty(input));
+  }
+  const StreetNumber._(Either<ValueFailure<String>, String> value)
+      : super._(value);
+}
+
+class StreetName extends Name {
+  static const maxLength = 50;
+  @override
+  final Either<ValueFailure<String>, String> value;
+  factory StreetName(String input) {
+    return StreetName._(
+      validateMaxStringLength(input, maxLength)
+          .flatMap(validateSingleLine)
+          .flatMap(validateStringNotEmpty),
+    );
+  }
+  const StreetName._(this.value);
+}
+
+class CityName extends Name {
+  static const maxLength = 80;
+  @override
+  final Either<ValueFailure<String>, String> value;
+  factory CityName(String input) {
+    return CityName._(
+      validateMaxStringLength(input, maxLength)
+          .flatMap(validateSingleLine)
+          .flatMap(validateStringNotEmpty),
+    );
+  }
+  const CityName._(this.value);
+}
+
+class PostalCode extends ValueObject<String> {
+  @override
+  final Either<ValueFailure<String>, String> value;
+  factory PostalCode(String input) {
+    return PostalCode._(validatePostalCode(input));
+  }
+  const PostalCode._(this.value);
 }

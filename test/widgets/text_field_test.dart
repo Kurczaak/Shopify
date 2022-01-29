@@ -10,7 +10,7 @@ void main() {
     final FocusNode focusNode = FocusNode();
 
     final instance1 = [AutofillHints.email];
-    final instance2 = [AutofillHints.email];
+    //final instance2 = [AutofillHints.email];
     await tester.pumpWidget(
       MaterialApp(
         home: Material(

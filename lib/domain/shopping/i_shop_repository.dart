@@ -3,7 +3,6 @@ import 'package:shopify_manager/domain/shopping/shop.dart';
 
 import 'package:kt_dart/kt.dart';
 import 'package:shopify_manager/domain/shopping/shop_failure.dart';
-import 'package:shopify_manager/domain/shopping/shop.dart';
 
 abstract class IShopRepository {
   // watch Shops

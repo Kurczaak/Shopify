@@ -5,6 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:dartz/dartz.dart';
 
 void main() {
+  group('validateContainsNumber', () {});
   group(
     'validateMaxStringLength',
     () {

@@ -23,9 +23,21 @@ class _$ShopFormEventTearOff {
     );
   }
 
-  _StreetChanged streetChanged(String streetStr) {
-    return _StreetChanged(
-      streetStr,
+  _StreetNameChanged streetNameChanged(String streetNameStr) {
+    return _StreetNameChanged(
+      streetNameStr,
+    );
+  }
+
+  _StreetNumberChanged streetNumberChanged(String streetNumberStr) {
+    return _StreetNumberChanged(
+      streetNumberStr,
+    );
+  }
+
+  _ApartmentNumberChanged apartmentNumberChanged(String apartmentNumberStr) {
+    return _ApartmentNumberChanged(
+      apartmentNumberStr,
     );
   }
 
@@ -54,7 +66,9 @@ mixin _$ShopFormEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String nameStr) nameChanged,
-    required TResult Function(String streetStr) streetChanged,
+    required TResult Function(String streetNameStr) streetNameChanged,
+    required TResult Function(String streetNumberStr) streetNumberChanged,
+    required TResult Function(String apartmentNumberStr) apartmentNumberChanged,
     required TResult Function(String postalCodeStr) postalCodeChanged,
     required TResult Function(String cityStr) cityChanged,
     required TResult Function() saved,
@@ -63,7 +77,9 @@ mixin _$ShopFormEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String nameStr)? nameChanged,
-    TResult Function(String streetStr)? streetChanged,
+    TResult Function(String streetNameStr)? streetNameChanged,
+    TResult Function(String streetNumberStr)? streetNumberChanged,
+    TResult Function(String apartmentNumberStr)? apartmentNumberChanged,
     TResult Function(String postalCodeStr)? postalCodeChanged,
     TResult Function(String cityStr)? cityChanged,
     TResult Function()? saved,
@@ -72,7 +88,9 @@ mixin _$ShopFormEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String nameStr)? nameChanged,
-    TResult Function(String streetStr)? streetChanged,
+    TResult Function(String streetNameStr)? streetNameChanged,
+    TResult Function(String streetNumberStr)? streetNumberChanged,
+    TResult Function(String apartmentNumberStr)? apartmentNumberChanged,
     TResult Function(String postalCodeStr)? postalCodeChanged,
     TResult Function(String cityStr)? cityChanged,
     TResult Function()? saved,
@@ -82,7 +100,10 @@ mixin _$ShopFormEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_NameChanged value) nameChanged,
-    required TResult Function(_StreetChanged value) streetChanged,
+    required TResult Function(_StreetNameChanged value) streetNameChanged,
+    required TResult Function(_StreetNumberChanged value) streetNumberChanged,
+    required TResult Function(_ApartmentNumberChanged value)
+        apartmentNumberChanged,
     required TResult Function(_PostalCodeChanged value) postalCodeChanged,
     required TResult Function(_CityChanged value) cityChanged,
     required TResult Function(_Saved value) saved,
@@ -91,7 +112,9 @@ mixin _$ShopFormEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_NameChanged value)? nameChanged,
-    TResult Function(_StreetChanged value)? streetChanged,
+    TResult Function(_StreetNameChanged value)? streetNameChanged,
+    TResult Function(_StreetNumberChanged value)? streetNumberChanged,
+    TResult Function(_ApartmentNumberChanged value)? apartmentNumberChanged,
     TResult Function(_PostalCodeChanged value)? postalCodeChanged,
     TResult Function(_CityChanged value)? cityChanged,
     TResult Function(_Saved value)? saved,
@@ -100,7 +123,9 @@ mixin _$ShopFormEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_NameChanged value)? nameChanged,
-    TResult Function(_StreetChanged value)? streetChanged,
+    TResult Function(_StreetNameChanged value)? streetNameChanged,
+    TResult Function(_StreetNumberChanged value)? streetNumberChanged,
+    TResult Function(_ApartmentNumberChanged value)? apartmentNumberChanged,
     TResult Function(_PostalCodeChanged value)? postalCodeChanged,
     TResult Function(_CityChanged value)? cityChanged,
     TResult Function(_Saved value)? saved,
@@ -191,7 +216,9 @@ class _$_NameChanged implements _NameChanged {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String nameStr) nameChanged,
-    required TResult Function(String streetStr) streetChanged,
+    required TResult Function(String streetNameStr) streetNameChanged,
+    required TResult Function(String streetNumberStr) streetNumberChanged,
+    required TResult Function(String apartmentNumberStr) apartmentNumberChanged,
     required TResult Function(String postalCodeStr) postalCodeChanged,
     required TResult Function(String cityStr) cityChanged,
     required TResult Function() saved,
@@ -203,7 +230,9 @@ class _$_NameChanged implements _NameChanged {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String nameStr)? nameChanged,
-    TResult Function(String streetStr)? streetChanged,
+    TResult Function(String streetNameStr)? streetNameChanged,
+    TResult Function(String streetNumberStr)? streetNumberChanged,
+    TResult Function(String apartmentNumberStr)? apartmentNumberChanged,
     TResult Function(String postalCodeStr)? postalCodeChanged,
     TResult Function(String cityStr)? cityChanged,
     TResult Function()? saved,
@@ -215,7 +244,9 @@ class _$_NameChanged implements _NameChanged {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String nameStr)? nameChanged,
-    TResult Function(String streetStr)? streetChanged,
+    TResult Function(String streetNameStr)? streetNameChanged,
+    TResult Function(String streetNumberStr)? streetNumberChanged,
+    TResult Function(String apartmentNumberStr)? apartmentNumberChanged,
     TResult Function(String postalCodeStr)? postalCodeChanged,
     TResult Function(String cityStr)? cityChanged,
     TResult Function()? saved,
@@ -231,7 +262,10 @@ class _$_NameChanged implements _NameChanged {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_NameChanged value) nameChanged,
-    required TResult Function(_StreetChanged value) streetChanged,
+    required TResult Function(_StreetNameChanged value) streetNameChanged,
+    required TResult Function(_StreetNumberChanged value) streetNumberChanged,
+    required TResult Function(_ApartmentNumberChanged value)
+        apartmentNumberChanged,
     required TResult Function(_PostalCodeChanged value) postalCodeChanged,
     required TResult Function(_CityChanged value) cityChanged,
     required TResult Function(_Saved value) saved,
@@ -243,7 +277,9 @@ class _$_NameChanged implements _NameChanged {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_NameChanged value)? nameChanged,
-    TResult Function(_StreetChanged value)? streetChanged,
+    TResult Function(_StreetNameChanged value)? streetNameChanged,
+    TResult Function(_StreetNumberChanged value)? streetNumberChanged,
+    TResult Function(_ApartmentNumberChanged value)? apartmentNumberChanged,
     TResult Function(_PostalCodeChanged value)? postalCodeChanged,
     TResult Function(_CityChanged value)? cityChanged,
     TResult Function(_Saved value)? saved,
@@ -255,7 +291,9 @@ class _$_NameChanged implements _NameChanged {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_NameChanged value)? nameChanged,
-    TResult Function(_StreetChanged value)? streetChanged,
+    TResult Function(_StreetNameChanged value)? streetNameChanged,
+    TResult Function(_StreetNumberChanged value)? streetNumberChanged,
+    TResult Function(_ApartmentNumberChanged value)? apartmentNumberChanged,
     TResult Function(_PostalCodeChanged value)? postalCodeChanged,
     TResult Function(_CityChanged value)? cityChanged,
     TResult Function(_Saved value)? saved,
@@ -278,32 +316,32 @@ abstract class _NameChanged implements ShopFormEvent {
 }
 
 /// @nodoc
-abstract class _$StreetChangedCopyWith<$Res> {
-  factory _$StreetChangedCopyWith(
-          _StreetChanged value, $Res Function(_StreetChanged) then) =
-      __$StreetChangedCopyWithImpl<$Res>;
-  $Res call({String streetStr});
+abstract class _$StreetNameChangedCopyWith<$Res> {
+  factory _$StreetNameChangedCopyWith(
+          _StreetNameChanged value, $Res Function(_StreetNameChanged) then) =
+      __$StreetNameChangedCopyWithImpl<$Res>;
+  $Res call({String streetNameStr});
 }
 
 /// @nodoc
-class __$StreetChangedCopyWithImpl<$Res>
+class __$StreetNameChangedCopyWithImpl<$Res>
     extends _$ShopFormEventCopyWithImpl<$Res>
-    implements _$StreetChangedCopyWith<$Res> {
-  __$StreetChangedCopyWithImpl(
-      _StreetChanged _value, $Res Function(_StreetChanged) _then)
-      : super(_value, (v) => _then(v as _StreetChanged));
+    implements _$StreetNameChangedCopyWith<$Res> {
+  __$StreetNameChangedCopyWithImpl(
+      _StreetNameChanged _value, $Res Function(_StreetNameChanged) _then)
+      : super(_value, (v) => _then(v as _StreetNameChanged));
 
   @override
-  _StreetChanged get _value => super._value as _StreetChanged;
+  _StreetNameChanged get _value => super._value as _StreetNameChanged;
 
   @override
   $Res call({
-    Object? streetStr = freezed,
+    Object? streetNameStr = freezed,
   }) {
-    return _then(_StreetChanged(
-      streetStr == freezed
-          ? _value.streetStr
-          : streetStr // ignore: cast_nullable_to_non_nullable
+    return _then(_StreetNameChanged(
+      streetNameStr == freezed
+          ? _value.streetNameStr
+          : streetNameStr // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -311,70 +349,77 @@ class __$StreetChangedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_StreetChanged implements _StreetChanged {
-  const _$_StreetChanged(this.streetStr);
+class _$_StreetNameChanged implements _StreetNameChanged {
+  const _$_StreetNameChanged(this.streetNameStr);
 
   @override
-  final String streetStr;
+  final String streetNameStr;
 
   @override
   String toString() {
-    return 'ShopFormEvent.streetChanged(streetStr: $streetStr)';
+    return 'ShopFormEvent.streetNameChanged(streetNameStr: $streetNameStr)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _StreetChanged &&
-            const DeepCollectionEquality().equals(other.streetStr, streetStr));
+            other is _StreetNameChanged &&
+            const DeepCollectionEquality()
+                .equals(other.streetNameStr, streetNameStr));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(streetStr));
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(streetNameStr));
 
   @JsonKey(ignore: true)
   @override
-  _$StreetChangedCopyWith<_StreetChanged> get copyWith =>
-      __$StreetChangedCopyWithImpl<_StreetChanged>(this, _$identity);
+  _$StreetNameChangedCopyWith<_StreetNameChanged> get copyWith =>
+      __$StreetNameChangedCopyWithImpl<_StreetNameChanged>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String nameStr) nameChanged,
-    required TResult Function(String streetStr) streetChanged,
+    required TResult Function(String streetNameStr) streetNameChanged,
+    required TResult Function(String streetNumberStr) streetNumberChanged,
+    required TResult Function(String apartmentNumberStr) apartmentNumberChanged,
     required TResult Function(String postalCodeStr) postalCodeChanged,
     required TResult Function(String cityStr) cityChanged,
     required TResult Function() saved,
   }) {
-    return streetChanged(streetStr);
+    return streetNameChanged(streetNameStr);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String nameStr)? nameChanged,
-    TResult Function(String streetStr)? streetChanged,
+    TResult Function(String streetNameStr)? streetNameChanged,
+    TResult Function(String streetNumberStr)? streetNumberChanged,
+    TResult Function(String apartmentNumberStr)? apartmentNumberChanged,
     TResult Function(String postalCodeStr)? postalCodeChanged,
     TResult Function(String cityStr)? cityChanged,
     TResult Function()? saved,
   }) {
-    return streetChanged?.call(streetStr);
+    return streetNameChanged?.call(streetNameStr);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String nameStr)? nameChanged,
-    TResult Function(String streetStr)? streetChanged,
+    TResult Function(String streetNameStr)? streetNameChanged,
+    TResult Function(String streetNumberStr)? streetNumberChanged,
+    TResult Function(String apartmentNumberStr)? apartmentNumberChanged,
     TResult Function(String postalCodeStr)? postalCodeChanged,
     TResult Function(String cityStr)? cityChanged,
     TResult Function()? saved,
     required TResult orElse(),
   }) {
-    if (streetChanged != null) {
-      return streetChanged(streetStr);
+    if (streetNameChanged != null) {
+      return streetNameChanged(streetNameStr);
     }
     return orElse();
   }
@@ -383,49 +428,392 @@ class _$_StreetChanged implements _StreetChanged {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_NameChanged value) nameChanged,
-    required TResult Function(_StreetChanged value) streetChanged,
+    required TResult Function(_StreetNameChanged value) streetNameChanged,
+    required TResult Function(_StreetNumberChanged value) streetNumberChanged,
+    required TResult Function(_ApartmentNumberChanged value)
+        apartmentNumberChanged,
     required TResult Function(_PostalCodeChanged value) postalCodeChanged,
     required TResult Function(_CityChanged value) cityChanged,
     required TResult Function(_Saved value) saved,
   }) {
-    return streetChanged(this);
+    return streetNameChanged(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_NameChanged value)? nameChanged,
-    TResult Function(_StreetChanged value)? streetChanged,
+    TResult Function(_StreetNameChanged value)? streetNameChanged,
+    TResult Function(_StreetNumberChanged value)? streetNumberChanged,
+    TResult Function(_ApartmentNumberChanged value)? apartmentNumberChanged,
     TResult Function(_PostalCodeChanged value)? postalCodeChanged,
     TResult Function(_CityChanged value)? cityChanged,
     TResult Function(_Saved value)? saved,
   }) {
-    return streetChanged?.call(this);
+    return streetNameChanged?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_NameChanged value)? nameChanged,
-    TResult Function(_StreetChanged value)? streetChanged,
+    TResult Function(_StreetNameChanged value)? streetNameChanged,
+    TResult Function(_StreetNumberChanged value)? streetNumberChanged,
+    TResult Function(_ApartmentNumberChanged value)? apartmentNumberChanged,
     TResult Function(_PostalCodeChanged value)? postalCodeChanged,
     TResult Function(_CityChanged value)? cityChanged,
     TResult Function(_Saved value)? saved,
     required TResult orElse(),
   }) {
-    if (streetChanged != null) {
-      return streetChanged(this);
+    if (streetNameChanged != null) {
+      return streetNameChanged(this);
     }
     return orElse();
   }
 }
 
-abstract class _StreetChanged implements ShopFormEvent {
-  const factory _StreetChanged(String streetStr) = _$_StreetChanged;
+abstract class _StreetNameChanged implements ShopFormEvent {
+  const factory _StreetNameChanged(String streetNameStr) = _$_StreetNameChanged;
 
-  String get streetStr;
+  String get streetNameStr;
   @JsonKey(ignore: true)
-  _$StreetChangedCopyWith<_StreetChanged> get copyWith =>
+  _$StreetNameChangedCopyWith<_StreetNameChanged> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$StreetNumberChangedCopyWith<$Res> {
+  factory _$StreetNumberChangedCopyWith(_StreetNumberChanged value,
+          $Res Function(_StreetNumberChanged) then) =
+      __$StreetNumberChangedCopyWithImpl<$Res>;
+  $Res call({String streetNumberStr});
+}
+
+/// @nodoc
+class __$StreetNumberChangedCopyWithImpl<$Res>
+    extends _$ShopFormEventCopyWithImpl<$Res>
+    implements _$StreetNumberChangedCopyWith<$Res> {
+  __$StreetNumberChangedCopyWithImpl(
+      _StreetNumberChanged _value, $Res Function(_StreetNumberChanged) _then)
+      : super(_value, (v) => _then(v as _StreetNumberChanged));
+
+  @override
+  _StreetNumberChanged get _value => super._value as _StreetNumberChanged;
+
+  @override
+  $Res call({
+    Object? streetNumberStr = freezed,
+  }) {
+    return _then(_StreetNumberChanged(
+      streetNumberStr == freezed
+          ? _value.streetNumberStr
+          : streetNumberStr // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_StreetNumberChanged implements _StreetNumberChanged {
+  const _$_StreetNumberChanged(this.streetNumberStr);
+
+  @override
+  final String streetNumberStr;
+
+  @override
+  String toString() {
+    return 'ShopFormEvent.streetNumberChanged(streetNumberStr: $streetNumberStr)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _StreetNumberChanged &&
+            const DeepCollectionEquality()
+                .equals(other.streetNumberStr, streetNumberStr));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(streetNumberStr));
+
+  @JsonKey(ignore: true)
+  @override
+  _$StreetNumberChangedCopyWith<_StreetNumberChanged> get copyWith =>
+      __$StreetNumberChangedCopyWithImpl<_StreetNumberChanged>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String nameStr) nameChanged,
+    required TResult Function(String streetNameStr) streetNameChanged,
+    required TResult Function(String streetNumberStr) streetNumberChanged,
+    required TResult Function(String apartmentNumberStr) apartmentNumberChanged,
+    required TResult Function(String postalCodeStr) postalCodeChanged,
+    required TResult Function(String cityStr) cityChanged,
+    required TResult Function() saved,
+  }) {
+    return streetNumberChanged(streetNumberStr);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String nameStr)? nameChanged,
+    TResult Function(String streetNameStr)? streetNameChanged,
+    TResult Function(String streetNumberStr)? streetNumberChanged,
+    TResult Function(String apartmentNumberStr)? apartmentNumberChanged,
+    TResult Function(String postalCodeStr)? postalCodeChanged,
+    TResult Function(String cityStr)? cityChanged,
+    TResult Function()? saved,
+  }) {
+    return streetNumberChanged?.call(streetNumberStr);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String nameStr)? nameChanged,
+    TResult Function(String streetNameStr)? streetNameChanged,
+    TResult Function(String streetNumberStr)? streetNumberChanged,
+    TResult Function(String apartmentNumberStr)? apartmentNumberChanged,
+    TResult Function(String postalCodeStr)? postalCodeChanged,
+    TResult Function(String cityStr)? cityChanged,
+    TResult Function()? saved,
+    required TResult orElse(),
+  }) {
+    if (streetNumberChanged != null) {
+      return streetNumberChanged(streetNumberStr);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_NameChanged value) nameChanged,
+    required TResult Function(_StreetNameChanged value) streetNameChanged,
+    required TResult Function(_StreetNumberChanged value) streetNumberChanged,
+    required TResult Function(_ApartmentNumberChanged value)
+        apartmentNumberChanged,
+    required TResult Function(_PostalCodeChanged value) postalCodeChanged,
+    required TResult Function(_CityChanged value) cityChanged,
+    required TResult Function(_Saved value) saved,
+  }) {
+    return streetNumberChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_NameChanged value)? nameChanged,
+    TResult Function(_StreetNameChanged value)? streetNameChanged,
+    TResult Function(_StreetNumberChanged value)? streetNumberChanged,
+    TResult Function(_ApartmentNumberChanged value)? apartmentNumberChanged,
+    TResult Function(_PostalCodeChanged value)? postalCodeChanged,
+    TResult Function(_CityChanged value)? cityChanged,
+    TResult Function(_Saved value)? saved,
+  }) {
+    return streetNumberChanged?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_NameChanged value)? nameChanged,
+    TResult Function(_StreetNameChanged value)? streetNameChanged,
+    TResult Function(_StreetNumberChanged value)? streetNumberChanged,
+    TResult Function(_ApartmentNumberChanged value)? apartmentNumberChanged,
+    TResult Function(_PostalCodeChanged value)? postalCodeChanged,
+    TResult Function(_CityChanged value)? cityChanged,
+    TResult Function(_Saved value)? saved,
+    required TResult orElse(),
+  }) {
+    if (streetNumberChanged != null) {
+      return streetNumberChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _StreetNumberChanged implements ShopFormEvent {
+  const factory _StreetNumberChanged(String streetNumberStr) =
+      _$_StreetNumberChanged;
+
+  String get streetNumberStr;
+  @JsonKey(ignore: true)
+  _$StreetNumberChangedCopyWith<_StreetNumberChanged> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$ApartmentNumberChangedCopyWith<$Res> {
+  factory _$ApartmentNumberChangedCopyWith(_ApartmentNumberChanged value,
+          $Res Function(_ApartmentNumberChanged) then) =
+      __$ApartmentNumberChangedCopyWithImpl<$Res>;
+  $Res call({String apartmentNumberStr});
+}
+
+/// @nodoc
+class __$ApartmentNumberChangedCopyWithImpl<$Res>
+    extends _$ShopFormEventCopyWithImpl<$Res>
+    implements _$ApartmentNumberChangedCopyWith<$Res> {
+  __$ApartmentNumberChangedCopyWithImpl(_ApartmentNumberChanged _value,
+      $Res Function(_ApartmentNumberChanged) _then)
+      : super(_value, (v) => _then(v as _ApartmentNumberChanged));
+
+  @override
+  _ApartmentNumberChanged get _value => super._value as _ApartmentNumberChanged;
+
+  @override
+  $Res call({
+    Object? apartmentNumberStr = freezed,
+  }) {
+    return _then(_ApartmentNumberChanged(
+      apartmentNumberStr == freezed
+          ? _value.apartmentNumberStr
+          : apartmentNumberStr // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_ApartmentNumberChanged implements _ApartmentNumberChanged {
+  const _$_ApartmentNumberChanged(this.apartmentNumberStr);
+
+  @override
+  final String apartmentNumberStr;
+
+  @override
+  String toString() {
+    return 'ShopFormEvent.apartmentNumberChanged(apartmentNumberStr: $apartmentNumberStr)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _ApartmentNumberChanged &&
+            const DeepCollectionEquality()
+                .equals(other.apartmentNumberStr, apartmentNumberStr));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(apartmentNumberStr));
+
+  @JsonKey(ignore: true)
+  @override
+  _$ApartmentNumberChangedCopyWith<_ApartmentNumberChanged> get copyWith =>
+      __$ApartmentNumberChangedCopyWithImpl<_ApartmentNumberChanged>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String nameStr) nameChanged,
+    required TResult Function(String streetNameStr) streetNameChanged,
+    required TResult Function(String streetNumberStr) streetNumberChanged,
+    required TResult Function(String apartmentNumberStr) apartmentNumberChanged,
+    required TResult Function(String postalCodeStr) postalCodeChanged,
+    required TResult Function(String cityStr) cityChanged,
+    required TResult Function() saved,
+  }) {
+    return apartmentNumberChanged(apartmentNumberStr);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String nameStr)? nameChanged,
+    TResult Function(String streetNameStr)? streetNameChanged,
+    TResult Function(String streetNumberStr)? streetNumberChanged,
+    TResult Function(String apartmentNumberStr)? apartmentNumberChanged,
+    TResult Function(String postalCodeStr)? postalCodeChanged,
+    TResult Function(String cityStr)? cityChanged,
+    TResult Function()? saved,
+  }) {
+    return apartmentNumberChanged?.call(apartmentNumberStr);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String nameStr)? nameChanged,
+    TResult Function(String streetNameStr)? streetNameChanged,
+    TResult Function(String streetNumberStr)? streetNumberChanged,
+    TResult Function(String apartmentNumberStr)? apartmentNumberChanged,
+    TResult Function(String postalCodeStr)? postalCodeChanged,
+    TResult Function(String cityStr)? cityChanged,
+    TResult Function()? saved,
+    required TResult orElse(),
+  }) {
+    if (apartmentNumberChanged != null) {
+      return apartmentNumberChanged(apartmentNumberStr);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_NameChanged value) nameChanged,
+    required TResult Function(_StreetNameChanged value) streetNameChanged,
+    required TResult Function(_StreetNumberChanged value) streetNumberChanged,
+    required TResult Function(_ApartmentNumberChanged value)
+        apartmentNumberChanged,
+    required TResult Function(_PostalCodeChanged value) postalCodeChanged,
+    required TResult Function(_CityChanged value) cityChanged,
+    required TResult Function(_Saved value) saved,
+  }) {
+    return apartmentNumberChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_NameChanged value)? nameChanged,
+    TResult Function(_StreetNameChanged value)? streetNameChanged,
+    TResult Function(_StreetNumberChanged value)? streetNumberChanged,
+    TResult Function(_ApartmentNumberChanged value)? apartmentNumberChanged,
+    TResult Function(_PostalCodeChanged value)? postalCodeChanged,
+    TResult Function(_CityChanged value)? cityChanged,
+    TResult Function(_Saved value)? saved,
+  }) {
+    return apartmentNumberChanged?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_NameChanged value)? nameChanged,
+    TResult Function(_StreetNameChanged value)? streetNameChanged,
+    TResult Function(_StreetNumberChanged value)? streetNumberChanged,
+    TResult Function(_ApartmentNumberChanged value)? apartmentNumberChanged,
+    TResult Function(_PostalCodeChanged value)? postalCodeChanged,
+    TResult Function(_CityChanged value)? cityChanged,
+    TResult Function(_Saved value)? saved,
+    required TResult orElse(),
+  }) {
+    if (apartmentNumberChanged != null) {
+      return apartmentNumberChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ApartmentNumberChanged implements ShopFormEvent {
+  const factory _ApartmentNumberChanged(String apartmentNumberStr) =
+      _$_ApartmentNumberChanged;
+
+  String get apartmentNumberStr;
+  @JsonKey(ignore: true)
+  _$ApartmentNumberChangedCopyWith<_ApartmentNumberChanged> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -496,7 +884,9 @@ class _$_PostalCodeChanged implements _PostalCodeChanged {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String nameStr) nameChanged,
-    required TResult Function(String streetStr) streetChanged,
+    required TResult Function(String streetNameStr) streetNameChanged,
+    required TResult Function(String streetNumberStr) streetNumberChanged,
+    required TResult Function(String apartmentNumberStr) apartmentNumberChanged,
     required TResult Function(String postalCodeStr) postalCodeChanged,
     required TResult Function(String cityStr) cityChanged,
     required TResult Function() saved,
@@ -508,7 +898,9 @@ class _$_PostalCodeChanged implements _PostalCodeChanged {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String nameStr)? nameChanged,
-    TResult Function(String streetStr)? streetChanged,
+    TResult Function(String streetNameStr)? streetNameChanged,
+    TResult Function(String streetNumberStr)? streetNumberChanged,
+    TResult Function(String apartmentNumberStr)? apartmentNumberChanged,
     TResult Function(String postalCodeStr)? postalCodeChanged,
     TResult Function(String cityStr)? cityChanged,
     TResult Function()? saved,
@@ -520,7 +912,9 @@ class _$_PostalCodeChanged implements _PostalCodeChanged {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String nameStr)? nameChanged,
-    TResult Function(String streetStr)? streetChanged,
+    TResult Function(String streetNameStr)? streetNameChanged,
+    TResult Function(String streetNumberStr)? streetNumberChanged,
+    TResult Function(String apartmentNumberStr)? apartmentNumberChanged,
     TResult Function(String postalCodeStr)? postalCodeChanged,
     TResult Function(String cityStr)? cityChanged,
     TResult Function()? saved,
@@ -536,7 +930,10 @@ class _$_PostalCodeChanged implements _PostalCodeChanged {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_NameChanged value) nameChanged,
-    required TResult Function(_StreetChanged value) streetChanged,
+    required TResult Function(_StreetNameChanged value) streetNameChanged,
+    required TResult Function(_StreetNumberChanged value) streetNumberChanged,
+    required TResult Function(_ApartmentNumberChanged value)
+        apartmentNumberChanged,
     required TResult Function(_PostalCodeChanged value) postalCodeChanged,
     required TResult Function(_CityChanged value) cityChanged,
     required TResult Function(_Saved value) saved,
@@ -548,7 +945,9 @@ class _$_PostalCodeChanged implements _PostalCodeChanged {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_NameChanged value)? nameChanged,
-    TResult Function(_StreetChanged value)? streetChanged,
+    TResult Function(_StreetNameChanged value)? streetNameChanged,
+    TResult Function(_StreetNumberChanged value)? streetNumberChanged,
+    TResult Function(_ApartmentNumberChanged value)? apartmentNumberChanged,
     TResult Function(_PostalCodeChanged value)? postalCodeChanged,
     TResult Function(_CityChanged value)? cityChanged,
     TResult Function(_Saved value)? saved,
@@ -560,7 +959,9 @@ class _$_PostalCodeChanged implements _PostalCodeChanged {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_NameChanged value)? nameChanged,
-    TResult Function(_StreetChanged value)? streetChanged,
+    TResult Function(_StreetNameChanged value)? streetNameChanged,
+    TResult Function(_StreetNumberChanged value)? streetNumberChanged,
+    TResult Function(_ApartmentNumberChanged value)? apartmentNumberChanged,
     TResult Function(_PostalCodeChanged value)? postalCodeChanged,
     TResult Function(_CityChanged value)? cityChanged,
     TResult Function(_Saved value)? saved,
@@ -647,7 +1048,9 @@ class _$_CityChanged implements _CityChanged {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String nameStr) nameChanged,
-    required TResult Function(String streetStr) streetChanged,
+    required TResult Function(String streetNameStr) streetNameChanged,
+    required TResult Function(String streetNumberStr) streetNumberChanged,
+    required TResult Function(String apartmentNumberStr) apartmentNumberChanged,
     required TResult Function(String postalCodeStr) postalCodeChanged,
     required TResult Function(String cityStr) cityChanged,
     required TResult Function() saved,
@@ -659,7 +1062,9 @@ class _$_CityChanged implements _CityChanged {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String nameStr)? nameChanged,
-    TResult Function(String streetStr)? streetChanged,
+    TResult Function(String streetNameStr)? streetNameChanged,
+    TResult Function(String streetNumberStr)? streetNumberChanged,
+    TResult Function(String apartmentNumberStr)? apartmentNumberChanged,
     TResult Function(String postalCodeStr)? postalCodeChanged,
     TResult Function(String cityStr)? cityChanged,
     TResult Function()? saved,
@@ -671,7 +1076,9 @@ class _$_CityChanged implements _CityChanged {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String nameStr)? nameChanged,
-    TResult Function(String streetStr)? streetChanged,
+    TResult Function(String streetNameStr)? streetNameChanged,
+    TResult Function(String streetNumberStr)? streetNumberChanged,
+    TResult Function(String apartmentNumberStr)? apartmentNumberChanged,
     TResult Function(String postalCodeStr)? postalCodeChanged,
     TResult Function(String cityStr)? cityChanged,
     TResult Function()? saved,
@@ -687,7 +1094,10 @@ class _$_CityChanged implements _CityChanged {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_NameChanged value) nameChanged,
-    required TResult Function(_StreetChanged value) streetChanged,
+    required TResult Function(_StreetNameChanged value) streetNameChanged,
+    required TResult Function(_StreetNumberChanged value) streetNumberChanged,
+    required TResult Function(_ApartmentNumberChanged value)
+        apartmentNumberChanged,
     required TResult Function(_PostalCodeChanged value) postalCodeChanged,
     required TResult Function(_CityChanged value) cityChanged,
     required TResult Function(_Saved value) saved,
@@ -699,7 +1109,9 @@ class _$_CityChanged implements _CityChanged {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_NameChanged value)? nameChanged,
-    TResult Function(_StreetChanged value)? streetChanged,
+    TResult Function(_StreetNameChanged value)? streetNameChanged,
+    TResult Function(_StreetNumberChanged value)? streetNumberChanged,
+    TResult Function(_ApartmentNumberChanged value)? apartmentNumberChanged,
     TResult Function(_PostalCodeChanged value)? postalCodeChanged,
     TResult Function(_CityChanged value)? cityChanged,
     TResult Function(_Saved value)? saved,
@@ -711,7 +1123,9 @@ class _$_CityChanged implements _CityChanged {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_NameChanged value)? nameChanged,
-    TResult Function(_StreetChanged value)? streetChanged,
+    TResult Function(_StreetNameChanged value)? streetNameChanged,
+    TResult Function(_StreetNumberChanged value)? streetNumberChanged,
+    TResult Function(_ApartmentNumberChanged value)? apartmentNumberChanged,
     TResult Function(_PostalCodeChanged value)? postalCodeChanged,
     TResult Function(_CityChanged value)? cityChanged,
     TResult Function(_Saved value)? saved,
@@ -772,7 +1186,9 @@ class _$_Saved implements _Saved {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String nameStr) nameChanged,
-    required TResult Function(String streetStr) streetChanged,
+    required TResult Function(String streetNameStr) streetNameChanged,
+    required TResult Function(String streetNumberStr) streetNumberChanged,
+    required TResult Function(String apartmentNumberStr) apartmentNumberChanged,
     required TResult Function(String postalCodeStr) postalCodeChanged,
     required TResult Function(String cityStr) cityChanged,
     required TResult Function() saved,
@@ -784,7 +1200,9 @@ class _$_Saved implements _Saved {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String nameStr)? nameChanged,
-    TResult Function(String streetStr)? streetChanged,
+    TResult Function(String streetNameStr)? streetNameChanged,
+    TResult Function(String streetNumberStr)? streetNumberChanged,
+    TResult Function(String apartmentNumberStr)? apartmentNumberChanged,
     TResult Function(String postalCodeStr)? postalCodeChanged,
     TResult Function(String cityStr)? cityChanged,
     TResult Function()? saved,
@@ -796,7 +1214,9 @@ class _$_Saved implements _Saved {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String nameStr)? nameChanged,
-    TResult Function(String streetStr)? streetChanged,
+    TResult Function(String streetNameStr)? streetNameChanged,
+    TResult Function(String streetNumberStr)? streetNumberChanged,
+    TResult Function(String apartmentNumberStr)? apartmentNumberChanged,
     TResult Function(String postalCodeStr)? postalCodeChanged,
     TResult Function(String cityStr)? cityChanged,
     TResult Function()? saved,
@@ -812,7 +1232,10 @@ class _$_Saved implements _Saved {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_NameChanged value) nameChanged,
-    required TResult Function(_StreetChanged value) streetChanged,
+    required TResult Function(_StreetNameChanged value) streetNameChanged,
+    required TResult Function(_StreetNumberChanged value) streetNumberChanged,
+    required TResult Function(_ApartmentNumberChanged value)
+        apartmentNumberChanged,
     required TResult Function(_PostalCodeChanged value) postalCodeChanged,
     required TResult Function(_CityChanged value) cityChanged,
     required TResult Function(_Saved value) saved,
@@ -824,7 +1247,9 @@ class _$_Saved implements _Saved {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_NameChanged value)? nameChanged,
-    TResult Function(_StreetChanged value)? streetChanged,
+    TResult Function(_StreetNameChanged value)? streetNameChanged,
+    TResult Function(_StreetNumberChanged value)? streetNumberChanged,
+    TResult Function(_ApartmentNumberChanged value)? apartmentNumberChanged,
     TResult Function(_PostalCodeChanged value)? postalCodeChanged,
     TResult Function(_CityChanged value)? cityChanged,
     TResult Function(_Saved value)? saved,
@@ -836,7 +1261,9 @@ class _$_Saved implements _Saved {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_NameChanged value)? nameChanged,
-    TResult Function(_StreetChanged value)? streetChanged,
+    TResult Function(_StreetNameChanged value)? streetNameChanged,
+    TResult Function(_StreetNumberChanged value)? streetNumberChanged,
+    TResult Function(_ApartmentNumberChanged value)? apartmentNumberChanged,
     TResult Function(_PostalCodeChanged value)? postalCodeChanged,
     TResult Function(_CityChanged value)? cityChanged,
     TResult Function(_Saved value)? saved,

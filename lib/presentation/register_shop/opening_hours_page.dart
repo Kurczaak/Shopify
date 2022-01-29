@@ -1,21 +1,10 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:shopify_manager/domain/auth/i_auth_facade.dart';
-import 'package:shopify_manager/injection.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:flutter/foundation.dart';
-import 'package:permission_handler/permission_handler.dart';
-import 'package:geolocator/geolocator.dart';
-import 'package:geocoding/geocoding.dart';
-import 'package:google_place/google_place.dart' as gp;
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shopify_manager/presentation/register_shop/widgets/day_adjuster.dart';
-import 'package:shopify_manager/presentation/register_shop/widgets/hour_dropdown_picker.dart';
 
 class OpeningHoursPage extends StatelessWidget {
   OpeningHoursPage({Key? key}) : super(key: key);
-  final _postalCodeController = TextEditingController();
+  // TODO final _postalCodeController = TextEditingController();
   final mondayController = DayAdjusterController();
 
   @override
@@ -100,7 +89,7 @@ class OpeningHoursPage extends StatelessWidget {
                 day: 'Sun',
                 controller: mondayController,
               ),
-              Spacer(),
+              const Spacer(),
               SizedBox(
                 height: 50,
                 child: ElevatedButton(

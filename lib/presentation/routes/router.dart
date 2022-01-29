@@ -15,20 +15,20 @@ import 'package:shopify_manager/presentation/splash/splash_page.dart';
     ),
     AutoRoute(
       page: SplashPage,
-      //initial: true,
+      initial: true,
     ),
     AutoRoute(
       page: SignInPage,
     ),
     AutoRoute(
       page: ShopDetailsPage,
+      // initial: true,
     ),
     AutoRoute(
       page: SignUpPage,
     ),
     AutoRoute(
       page: OpeningHoursPage,
-      initial: true,
     )
   ],
 )

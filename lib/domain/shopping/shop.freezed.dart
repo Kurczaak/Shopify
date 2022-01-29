@@ -20,15 +20,11 @@ class _$ShopTearOff {
   _Shop call(
       {required UniqueId id,
       required ShopName shopName,
-      required StreetName streetName,
-      required PostalCode postalCode,
-      required CityName city}) {
+      required Address address}) {
     return _Shop(
       id: id,
       shopName: shopName,
-      streetName: streetName,
-      postalCode: postalCode,
-      city: city,
+      address: address,
     );
   }
 }
@@ -40,9 +36,7 @@ const $Shop = _$ShopTearOff();
 mixin _$Shop {
   UniqueId get id => throw _privateConstructorUsedError;
   ShopName get shopName => throw _privateConstructorUsedError;
-  StreetName get streetName => throw _privateConstructorUsedError;
-  PostalCode get postalCode => throw _privateConstructorUsedError;
-  CityName get city => throw _privateConstructorUsedError;
+  Address get address => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ShopCopyWith<Shop> get copyWith => throw _privateConstructorUsedError;
@@ -52,12 +46,9 @@ mixin _$Shop {
 abstract class $ShopCopyWith<$Res> {
   factory $ShopCopyWith(Shop value, $Res Function(Shop) then) =
       _$ShopCopyWithImpl<$Res>;
-  $Res call(
-      {UniqueId id,
-      ShopName shopName,
-      StreetName streetName,
-      PostalCode postalCode,
-      CityName city});
+  $Res call({UniqueId id, ShopName shopName, Address address});
+
+  $AddressCopyWith<$Res> get address;
 }
 
 /// @nodoc
@@ -72,9 +63,7 @@ class _$ShopCopyWithImpl<$Res> implements $ShopCopyWith<$Res> {
   $Res call({
     Object? id = freezed,
     Object? shopName = freezed,
-    Object? streetName = freezed,
-    Object? postalCode = freezed,
-    Object? city = freezed,
+    Object? address = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -85,19 +74,18 @@ class _$ShopCopyWithImpl<$Res> implements $ShopCopyWith<$Res> {
           ? _value.shopName
           : shopName // ignore: cast_nullable_to_non_nullable
               as ShopName,
-      streetName: streetName == freezed
-          ? _value.streetName
-          : streetName // ignore: cast_nullable_to_non_nullable
-              as StreetName,
-      postalCode: postalCode == freezed
-          ? _value.postalCode
-          : postalCode // ignore: cast_nullable_to_non_nullable
-              as PostalCode,
-      city: city == freezed
-          ? _value.city
-          : city // ignore: cast_nullable_to_non_nullable
-              as CityName,
+      address: address == freezed
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as Address,
     ));
+  }
+
+  @override
+  $AddressCopyWith<$Res> get address {
+    return $AddressCopyWith<$Res>(_value.address, (value) {
+      return _then(_value.copyWith(address: value));
+    });
   }
 }
 
@@ -106,12 +94,10 @@ abstract class _$ShopCopyWith<$Res> implements $ShopCopyWith<$Res> {
   factory _$ShopCopyWith(_Shop value, $Res Function(_Shop) then) =
       __$ShopCopyWithImpl<$Res>;
   @override
-  $Res call(
-      {UniqueId id,
-      ShopName shopName,
-      StreetName streetName,
-      PostalCode postalCode,
-      CityName city});
+  $Res call({UniqueId id, ShopName shopName, Address address});
+
+  @override
+  $AddressCopyWith<$Res> get address;
 }
 
 /// @nodoc
@@ -127,9 +113,7 @@ class __$ShopCopyWithImpl<$Res> extends _$ShopCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? shopName = freezed,
-    Object? streetName = freezed,
-    Object? postalCode = freezed,
-    Object? city = freezed,
+    Object? address = freezed,
   }) {
     return _then(_Shop(
       id: id == freezed
@@ -140,18 +124,10 @@ class __$ShopCopyWithImpl<$Res> extends _$ShopCopyWithImpl<$Res>
           ? _value.shopName
           : shopName // ignore: cast_nullable_to_non_nullable
               as ShopName,
-      streetName: streetName == freezed
-          ? _value.streetName
-          : streetName // ignore: cast_nullable_to_non_nullable
-              as StreetName,
-      postalCode: postalCode == freezed
-          ? _value.postalCode
-          : postalCode // ignore: cast_nullable_to_non_nullable
-              as PostalCode,
-      city: city == freezed
-          ? _value.city
-          : city // ignore: cast_nullable_to_non_nullable
-              as CityName,
+      address: address == freezed
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as Address,
     ));
   }
 }
@@ -160,11 +136,7 @@ class __$ShopCopyWithImpl<$Res> extends _$ShopCopyWithImpl<$Res>
 
 class _$_Shop extends _Shop {
   const _$_Shop(
-      {required this.id,
-      required this.shopName,
-      required this.streetName,
-      required this.postalCode,
-      required this.city})
+      {required this.id, required this.shopName, required this.address})
       : super._();
 
   @override
@@ -172,15 +144,11 @@ class _$_Shop extends _Shop {
   @override
   final ShopName shopName;
   @override
-  final StreetName streetName;
-  @override
-  final PostalCode postalCode;
-  @override
-  final CityName city;
+  final Address address;
 
   @override
   String toString() {
-    return 'Shop(id: $id, shopName: $shopName, streetName: $streetName, postalCode: $postalCode, city: $city)';
+    return 'Shop(id: $id, shopName: $shopName, address: $address)';
   }
 
   @override
@@ -190,11 +158,7 @@ class _$_Shop extends _Shop {
             other is _Shop &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.shopName, shopName) &&
-            const DeepCollectionEquality()
-                .equals(other.streetName, streetName) &&
-            const DeepCollectionEquality()
-                .equals(other.postalCode, postalCode) &&
-            const DeepCollectionEquality().equals(other.city, city));
+            const DeepCollectionEquality().equals(other.address, address));
   }
 
   @override
@@ -202,9 +166,7 @@ class _$_Shop extends _Shop {
       runtimeType,
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(shopName),
-      const DeepCollectionEquality().hash(streetName),
-      const DeepCollectionEquality().hash(postalCode),
-      const DeepCollectionEquality().hash(city));
+      const DeepCollectionEquality().hash(address));
 
   @JsonKey(ignore: true)
   @override
@@ -216,9 +178,7 @@ abstract class _Shop extends Shop {
   const factory _Shop(
       {required UniqueId id,
       required ShopName shopName,
-      required StreetName streetName,
-      required PostalCode postalCode,
-      required CityName city}) = _$_Shop;
+      required Address address}) = _$_Shop;
   const _Shop._() : super._();
 
   @override
@@ -226,11 +186,7 @@ abstract class _Shop extends Shop {
   @override
   ShopName get shopName;
   @override
-  StreetName get streetName;
-  @override
-  PostalCode get postalCode;
-  @override
-  CityName get city;
+  Address get address;
   @override
   @JsonKey(ignore: true)
   _$ShopCopyWith<_Shop> get copyWith => throw _privateConstructorUsedError;

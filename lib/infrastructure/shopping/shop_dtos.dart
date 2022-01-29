@@ -1,8 +1,10 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:shopify_manager/domain/core/address.dart';
 import 'package:shopify_manager/domain/core/value_objects.dart';
 import 'package:shopify_manager/domain/shopping/shop.dart';
 import 'package:shopify_manager/domain/shopping/value_objects.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:shopify_manager/infrastructure/core/address_dto.dart';
 
 part 'shop_dtos.freezed.dart';
 part 'shop_dtos.g.dart';
@@ -14,22 +16,15 @@ abstract class ShopDto implements _$ShopDto {
   const factory ShopDto({
     @Default('') @JsonKey(ignore: true) String id,
     required String shopName,
-    required String streetName,
-    required int streetNumber,
-    required String postalCode,
-    required String city,
+    required AddressDto address,
     @ServerTimestampConverter() required FieldValue serverTimeStamp,
   }) = _ShopItemDto;
 
   factory ShopDto.fromDomain(Shop shop) {
     return ShopDto(
       id: shop.id.getOrCrash(),
-      city: shop.city.getOrCrash(),
-      postalCode: shop.postalCode.getOrCrash(),
       shopName: shop.shopName.getOrCrash(),
-      streetName: shop.streetName.getOrCrash(),
-      //TODO CHANGE THAT!
-      streetNumber: 21,
+      address: AddressDto.fromDomain(shop.address),
       serverTimeStamp: FieldValue.serverTimestamp(),
     );
   }
@@ -38,9 +33,13 @@ abstract class ShopDto implements _$ShopDto {
     return Shop(
       id: UniqueId.fromUniqueString(id),
       shopName: ShopName(shopName),
-      streetName: StreetName(streetName),
-      postalCode: PostalCode(postalCode),
-      city: CityName(city),
+      address: Address(
+        apartmentNumber: AddressNumber(address.apartmentNumber),
+        streetNumber: StreetNumber(address.streetNumber),
+        city: CityName(address.city),
+        postalCode: PostalCode(address.postalCode),
+        streetName: StreetName(address.streetName),
+      ),
     );
   }
 

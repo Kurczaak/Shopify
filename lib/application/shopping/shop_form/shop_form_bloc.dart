@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+import 'package:shopify_manager/domain/core/value_objects.dart';
 import 'package:shopify_manager/domain/shopping/i_shop_repository.dart';
 import 'package:shopify_manager/domain/shopping/shop.dart';
 import 'package:shopify_manager/domain/shopping/shop_failure.dart';
@@ -25,11 +26,32 @@ class ShopFormBloc extends Bloc<ShopFormEvent, ShopFormState> {
             saveFailureOrSuccessOption: none(),
           ),
         );
-      }, streetChanged: (e) {
+      }, streetNameChanged: (e) {
         emit(
           state.copyWith(
             shop: state.shop.copyWith(
-              streetName: StreetName(e.streetStr),
+              address: state.shop.address
+                  .copyWith(streetName: StreetName(e.streetNameStr)),
+            ),
+            saveFailureOrSuccessOption: none(),
+          ),
+        );
+      }, streetNumberChanged: (e) {
+        emit(
+          state.copyWith(
+            shop: state.shop.copyWith(
+              address: state.shop.address
+                  .copyWith(streetNumber: StreetNumber(e.streetNumberStr)),
+            ),
+            saveFailureOrSuccessOption: none(),
+          ),
+        );
+      }, apartmentNumberChanged: (e) {
+        emit(
+          state.copyWith(
+            shop: state.shop.copyWith(
+              address: state.shop.address.copyWith(
+                  apartmentNumber: AddressNumber(e.apartmentNumberStr)),
             ),
             saveFailureOrSuccessOption: none(),
           ),
@@ -38,7 +60,8 @@ class ShopFormBloc extends Bloc<ShopFormEvent, ShopFormState> {
         emit(
           state.copyWith(
             shop: state.shop.copyWith(
-              postalCode: PostalCode(e.postalCodeStr),
+              address: state.shop.address
+                  .copyWith(postalCode: PostalCode(e.postalCodeStr)),
             ),
             saveFailureOrSuccessOption: none(),
           ),
@@ -47,7 +70,7 @@ class ShopFormBloc extends Bloc<ShopFormEvent, ShopFormState> {
         emit(
           state.copyWith(
             shop: state.shop.copyWith(
-              city: CityName(e.cityStr),
+              address: state.shop.address.copyWith(city: CityName(e.cityStr)),
             ),
             saveFailureOrSuccessOption: none(),
           ),

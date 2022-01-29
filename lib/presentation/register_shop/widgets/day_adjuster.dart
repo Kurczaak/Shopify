@@ -35,7 +35,7 @@ class _DayAdjusterState extends State<DayAdjuster> {
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        SizedBox(
+        const SizedBox(
           height: 60,
         ),
         SizedBox(
@@ -47,7 +47,7 @@ class _DayAdjusterState extends State<DayAdjuster> {
             onChanged: (_) => setState(() {
                   _isOpen = !_isOpen;
                 })),
-        SizedBox(width: 20),
+        const SizedBox(width: 20),
         if (_isOpen)
           Expanded(
             child: Row(

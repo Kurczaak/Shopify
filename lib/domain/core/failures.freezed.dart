@@ -373,3 +373,221 @@ abstract class _Product<T> implements ValueFailure<T> {
   _$ProductCopyWith<T, _Product<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+/// @nodoc
+class _$CoreValueFailureTearOff {
+  const _$CoreValueFailureTearOff();
+
+  IncorrectAddress<T> incorrectAddress<T>({required T input}) {
+    return IncorrectAddress<T>(
+      input: input,
+    );
+  }
+}
+
+/// @nodoc
+const $CoreValueFailure = _$CoreValueFailureTearOff();
+
+/// @nodoc
+mixin _$CoreValueFailure<T> {
+  T get input => throw _privateConstructorUsedError;
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(T input) incorrectAddress,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(T input)? incorrectAddress,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(T input)? incorrectAddress,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(IncorrectAddress<T> value) incorrectAddress,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(IncorrectAddress<T> value)? incorrectAddress,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(IncorrectAddress<T> value)? incorrectAddress,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $CoreValueFailureCopyWith<T, CoreValueFailure<T>> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $CoreValueFailureCopyWith<T, $Res> {
+  factory $CoreValueFailureCopyWith(
+          CoreValueFailure<T> value, $Res Function(CoreValueFailure<T>) then) =
+      _$CoreValueFailureCopyWithImpl<T, $Res>;
+  $Res call({T input});
+}
+
+/// @nodoc
+class _$CoreValueFailureCopyWithImpl<T, $Res>
+    implements $CoreValueFailureCopyWith<T, $Res> {
+  _$CoreValueFailureCopyWithImpl(this._value, this._then);
+
+  final CoreValueFailure<T> _value;
+  // ignore: unused_field
+  final $Res Function(CoreValueFailure<T>) _then;
+
+  @override
+  $Res call({
+    Object? input = freezed,
+  }) {
+    return _then(_value.copyWith(
+      input: input == freezed
+          ? _value.input
+          : input // ignore: cast_nullable_to_non_nullable
+              as T,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class $IncorrectAddressCopyWith<T, $Res>
+    implements $CoreValueFailureCopyWith<T, $Res> {
+  factory $IncorrectAddressCopyWith(
+          IncorrectAddress<T> value, $Res Function(IncorrectAddress<T>) then) =
+      _$IncorrectAddressCopyWithImpl<T, $Res>;
+  @override
+  $Res call({T input});
+}
+
+/// @nodoc
+class _$IncorrectAddressCopyWithImpl<T, $Res>
+    extends _$CoreValueFailureCopyWithImpl<T, $Res>
+    implements $IncorrectAddressCopyWith<T, $Res> {
+  _$IncorrectAddressCopyWithImpl(
+      IncorrectAddress<T> _value, $Res Function(IncorrectAddress<T>) _then)
+      : super(_value, (v) => _then(v as IncorrectAddress<T>));
+
+  @override
+  IncorrectAddress<T> get _value => super._value as IncorrectAddress<T>;
+
+  @override
+  $Res call({
+    Object? input = freezed,
+  }) {
+    return _then(IncorrectAddress<T>(
+      input: input == freezed
+          ? _value.input
+          : input // ignore: cast_nullable_to_non_nullable
+              as T,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$IncorrectAddress<T> implements IncorrectAddress<T> {
+  const _$IncorrectAddress({required this.input});
+
+  @override
+  final T input;
+
+  @override
+  String toString() {
+    return 'CoreValueFailure<$T>.incorrectAddress(input: $input)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is IncorrectAddress<T> &&
+            const DeepCollectionEquality().equals(other.input, input));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(input));
+
+  @JsonKey(ignore: true)
+  @override
+  $IncorrectAddressCopyWith<T, IncorrectAddress<T>> get copyWith =>
+      _$IncorrectAddressCopyWithImpl<T, IncorrectAddress<T>>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(T input) incorrectAddress,
+  }) {
+    return incorrectAddress(input);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(T input)? incorrectAddress,
+  }) {
+    return incorrectAddress?.call(input);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(T input)? incorrectAddress,
+    required TResult orElse(),
+  }) {
+    if (incorrectAddress != null) {
+      return incorrectAddress(input);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(IncorrectAddress<T> value) incorrectAddress,
+  }) {
+    return incorrectAddress(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(IncorrectAddress<T> value)? incorrectAddress,
+  }) {
+    return incorrectAddress?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(IncorrectAddress<T> value)? incorrectAddress,
+    required TResult orElse(),
+  }) {
+    if (incorrectAddress != null) {
+      return incorrectAddress(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class IncorrectAddress<T> implements CoreValueFailure<T> {
+  const factory IncorrectAddress({required T input}) = _$IncorrectAddress<T>;
+
+  @override
+  T get input;
+  @override
+  @JsonKey(ignore: true)
+  $IncorrectAddressCopyWith<T, IncorrectAddress<T>> get copyWith =>
+      throw _privateConstructorUsedError;
+}

@@ -1,11 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shopify_manager/application/auth/sign_in_form/sign_in_form_bloc.dart';
-import 'package:shopify_manager/injection.dart';
-import 'package:shopify_manager/presentation/sign_in/widgets/sign_in_form.dart';
 import 'package:responsive_framework/responsive_framework.dart';
-import 'package:loading_overlay/loading_overlay.dart';
 import 'package:shopify_manager/presentation/sign_in/widgets/sign_up_form.dart';
 
 class DebugPage extends StatelessWidget {
@@ -85,7 +79,7 @@ class DebugPage extends StatelessWidget {
               height: 1,
             ),
           )),
-          ResponsiveRowColumnItem(
+          const ResponsiveRowColumnItem(
             rowFlex: 3,
             columnFlex: 5,
             child: SignUpForm(),
