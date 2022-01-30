@@ -32,7 +32,7 @@ void main() {
     );
 
     test(
-      'should return some failure when a shop contains an incorrect address',
+      'should return some failure when a shop contains incorrect data',
       () async {
         // arrange
         const invalidPostalCode = "99400";
