@@ -5,6 +5,7 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:shopify_manager/domain/core/address.dart';
+import 'package:shopify_manager/domain/core/failures.dart';
 import 'package:shopify_manager/domain/core/value_objects.dart';
 import 'package:shopify_manager/domain/shopping/i_shop_repository.dart';
 import 'package:shopify_manager/domain/shopping/shop.dart';
@@ -25,6 +26,18 @@ void main() {
   const postalCodeStr = "99-400";
   const apartmentNumberStr = '';
   const streetNumberStr = '12A';
+  const shopNameStr = 'Sklep Spożywczy ABC';
+
+  final tShop = Shop(
+      shopName: ShopName(shopNameStr),
+      address: Address(
+        apartmentNumber: AddressNumber(apartmentNumberStr),
+        streetNumber: StreetNumber(streetNumberStr),
+        city: CityName(cityNameStr),
+        postalCode: PostalCode(postalCodeStr),
+        streetName: StreetName(streetNameStr),
+      ),
+      id: initialState.shop.id);
 
   setUp(() {
     mockIShopRepository = MockIShopRepository();
@@ -153,56 +166,109 @@ void main() {
     MockIShopRepository mockIShopRepository = MockIShopRepository();
     ShopFormBloc shopFormBloc = ShopFormBloc(mockIShopRepository);
     ShopFormState initialState = shopFormBloc.state;
-    blocTest(
-      'should emit saving and failure states when trying to save a shop with incorrect data',
-      build: () {
-        return shopFormBloc;
-      },
-      act: (ShopFormBloc bloc) => bloc.add(const ShopFormEvent.saved()),
-      expect: () => [
-        initialState.copyWith(
-            isSaving: true,
-            showErrorMessages: false,
-            saveFailureOrSuccessOption: none()),
-        initialState.copyWith(
-            isSaving: false,
-            showErrorMessages: true,
-            saveFailureOrSuccessOption: none()),
-      ],
-    );
+    testEmptyFormField(
+        'should emit saving and failure states when trying to save a shop with an empty shopName field',
+        bloc: ShopFormBloc(mockIShopRepository),
+        seed: initialState.copyWith(
+            shop: tShop.copyWith(shopName: ShopName(''))));
+    testEmptyFormField(
+        'should emit saving and failure states when trying to save a shop with an empty cityName field',
+        bloc: ShopFormBloc(mockIShopRepository),
+        seed: initialState.copyWith(
+            shop: tShop.copyWith(
+                address: tShop.address.copyWith(city: CityName('')))));
 
-    ShopFormBloc shopFormBloc2 = ShopFormBloc(mockIShopRepository);
-    ShopFormState initialState2 = shopFormBloc.state;
-    final shop = Shop(
-        shopName: ShopName('Sklep Spożywczy ABC'),
-        address: Address(
-          apartmentNumber: AddressNumber(apartmentNumberStr),
-          streetNumber: StreetNumber(streetNumberStr),
-          city: CityName(cityNameStr),
-          postalCode: PostalCode(postalCodeStr),
-          streetName: StreetName(streetNameStr),
-        ),
-        id: initialState.shop.id);
+    testEmptyFormField(
+        'should emit saving and failure states when trying to save a shop with an empty streetName field',
+        bloc: ShopFormBloc(mockIShopRepository),
+        seed: initialState.copyWith(
+            shop: tShop.copyWith(
+                address: tShop.address.copyWith(streetName: StreetName('')))));
+    testEmptyFormField(
+        'should emit saving and failure states when trying to save a shop with an empty streetNumber field',
+        bloc: ShopFormBloc(mockIShopRepository),
+        seed: initialState.copyWith(
+            shop: tShop.copyWith(
+                address:
+                    tShop.address.copyWith(streetNumber: StreetNumber('')))));
+    testEmptyFormField(
+        'should emit saving and failure states when trying to save a shop with an empty postalCode field',
+        bloc: ShopFormBloc(mockIShopRepository),
+        seed: initialState.copyWith(
+            shop: tShop.copyWith(
+                address: tShop.address.copyWith(postalCode: PostalCode('')))));
+
+    ShopFormState emptyApartmentNumberState = initialState.copyWith(
+        shop: tShop.copyWith(
+            address:
+                tShop.address.copyWith(apartmentNumber: AddressNumber(''))));
     blocTest(
-      'should emit saving and saved states when saving a shop with correct data',
+      'should emit saving and saved states when saving a shop with an empty apartmentNumber field',
       build: () {
-        return shopFormBloc2;
+        return ShopFormBloc(mockIShopRepository);
       },
       setUp: () => when(mockIShopRepository.create(any))
           .thenAnswer((_) async => right(unit)),
       act: (ShopFormBloc bloc) => bloc.add(const ShopFormEvent.saved()),
-      seed: () => initialState2.copyWith(shop: shop),
+      seed: () => emptyApartmentNumberState,
       expect: () => [
-        initialState2.copyWith(
-            shop: shop,
+        emptyApartmentNumberState.copyWith(
+            shop: tShop,
             isSaving: true,
             showErrorMessages: false,
             saveFailureOrSuccessOption: none()),
-        initialState2.copyWith(
-            shop: shop,
+        emptyApartmentNumberState.copyWith(
+            shop: tShop,
             isSaving: false,
             showErrorMessages: false,
             saveFailureOrSuccessOption: some(right(unit))),
+      ],
+    );
+
+    blocTest(
+      'should emit saving and saved states when saving a shop with correct data',
+      build: () {
+        return ShopFormBloc(mockIShopRepository);
+      },
+      setUp: () => when(mockIShopRepository.create(any))
+          .thenAnswer((_) async => right(unit)),
+      act: (ShopFormBloc bloc) => bloc.add(const ShopFormEvent.saved()),
+      seed: () => initialState.copyWith(shop: tShop),
+      expect: () => [
+        initialState.copyWith(
+            shop: tShop,
+            isSaving: true,
+            showErrorMessages: false,
+            saveFailureOrSuccessOption: none()),
+        initialState.copyWith(
+            shop: tShop,
+            isSaving: false,
+            showErrorMessages: false,
+            saveFailureOrSuccessOption: some(right(unit))),
+      ],
+    );
+
+    blocTest(
+      'should emit state with failure option when saving a shop has not succeeded',
+      build: () {
+        return ShopFormBloc(mockIShopRepository);
+      },
+      setUp: () => when(mockIShopRepository.create(any))
+          .thenAnswer((_) async => left(const ShopFailure.unableToUpdate())),
+      act: (ShopFormBloc bloc) => bloc.add(const ShopFormEvent.saved()),
+      seed: () => initialState.copyWith(shop: tShop),
+      expect: () => [
+        initialState.copyWith(
+            shop: tShop,
+            isSaving: true,
+            showErrorMessages: false,
+            saveFailureOrSuccessOption: none()),
+        initialState.copyWith(
+            shop: tShop,
+            isSaving: false,
+            showErrorMessages: false,
+            saveFailureOrSuccessOption:
+                some(left(const ShopFailure.unableToUpdate()))),
       ],
     );
     blocTest(
@@ -213,10 +279,36 @@ void main() {
       setUp: () => when(mockIShopRepository.create(any))
           .thenAnswer((_) async => right(unit)),
       act: (ShopFormBloc bloc) => bloc.add(const ShopFormEvent.saved()),
-      seed: () => initialState2.copyWith(shop: shop),
+      seed: () => initialState.copyWith(shop: tShop),
       verify: (bloc) => verify(mockIShopRepository.create(any)),
     );
   });
+}
+
+@isTest
+void testEmptyFormField(
+  String description, {
+  required ShopFormBloc bloc,
+  required ShopFormState seed,
+}) {
+  blocTest(
+    description,
+    build: () {
+      return bloc;
+    },
+    seed: () => seed,
+    act: (ShopFormBloc bloc) => bloc.add(const ShopFormEvent.saved()),
+    expect: () => [
+      seed.copyWith(
+          isSaving: true,
+          showErrorMessages: false,
+          saveFailureOrSuccessOption: none()),
+      seed.copyWith(
+          isSaving: false,
+          showErrorMessages: true,
+          saveFailureOrSuccessOption: none()),
+    ],
+  );
 }
 
 @isTest
