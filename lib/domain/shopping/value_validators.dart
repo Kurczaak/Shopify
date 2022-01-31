@@ -73,6 +73,16 @@ Either<ValueFailure<String>, String> validatePostalCode(String input) {
   }
 }
 
+Either<ValueFailure<String>, String> validateContainsNumber(String input) {
+  if (input.containsNum) {
+    return right(input);
+  } else {
+    return left(ValueFailure.shopping(
+        ShoppingValueFailure.noAddressNumber(failedValue: input)));
+  }
+}
+
+//TODO
 Either<ValueFailure<String>, String> validateShopOpen(String input) {
   throw UnexpectedValueError(
     ValueFailure.shopping(
@@ -105,4 +115,14 @@ Either<ValueFailure<double>, double> validatePositiveValue(double input) {
 
 extension IntegerValidator on String {
   bool get isInt => int.tryParse(this) != null;
+}
+
+extension SubstringNumberChecker on String {
+  bool get containsNum {
+    for (var i = 0; i < length; i++) {
+      bool found = this[i].contains(RegExp(r'[0-9]'));
+      if (found) return true;
+    }
+    return false;
+  }
 }

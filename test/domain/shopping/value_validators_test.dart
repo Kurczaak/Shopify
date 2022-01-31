@@ -326,4 +326,34 @@ void main() {
       },
     );
   });
+
+  group('validateContainsNumber', () {
+    test(
+      'should return address containing a number',
+      () async {
+        // arrange
+        const address = '43A';
+        // act
+        final result = validateContainsNumber(address);
+        // assert
+        expect(result, right(address));
+      },
+    );
+
+    test(
+      'should return noAddressNumber ValueFailure when an address doesnt contain a number',
+      () async {
+        // arrange
+        const noNumberAddress = 'BCA';
+        // act
+        final result = validateContainsNumber(noNumberAddress);
+        // assert
+        expect(
+            result,
+            left(const ValueFailure.shopping(
+                ShoppingValueFailure.noAddressNumber(
+                    failedValue: noNumberAddress))));
+      },
+    );
+  });
 }

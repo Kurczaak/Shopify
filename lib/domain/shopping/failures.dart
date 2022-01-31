@@ -19,4 +19,6 @@ class ShoppingValueFailure<T> with _$ShoppingValueFailure<T> {
       NoPhotoSelected<T>;
   const factory ShoppingValueFailure.nonPositiveValue(
       {required T failedValue}) = NonPositivePrice<T>;
+  const factory ShoppingValueFailure.noAddressNumber({required T failedValue}) =
+      NoAddressNumber<T>;
 }
