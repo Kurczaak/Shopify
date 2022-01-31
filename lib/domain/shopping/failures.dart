@@ -21,4 +21,7 @@ class ShoppingValueFailure<T> with _$ShoppingValueFailure<T> {
       {required T failedValue}) = NonPositivePrice<T>;
   const factory ShoppingValueFailure.noAddressNumber({required T failedValue}) =
       NoAddressNumber<T>;
+  const factory ShoppingValueFailure.incorrectHour(
+      {required T failedValue,
+      required bool twelveHourFormat}) = IncorrectHour<T>;
 }

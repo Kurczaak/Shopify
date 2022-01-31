@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:shopify_manager/domain/shopping/failures.dart';
 import 'package:shopify_manager/domain/core/failures.dart';
 import 'package:shopify_manager/domain/shopping/value_validators.dart';
@@ -353,6 +355,75 @@ void main() {
             left(const ValueFailure.shopping(
                 ShoppingValueFailure.noAddressNumber(
                     failedValue: noNumberAddress))));
+      },
+    );
+  });
+
+  group('validateHour', () {
+    test(
+      'should return hours if they match the 12-hour format',
+      () async {
+        // arrange
+        final twelveHourFormatHours = [for (var i = 0; i <= 12; i++) i];
+        // act
+        final results = [
+          for (final hour in twelveHourFormatHours) validateHour(hour)
+        ];
+        // assert
+        for (var i = 0; i <= twelveHourFormatHours.length - 1; i++) {
+          expect(results[i], equals(right(twelveHourFormatHours[i])));
+        }
+      },
+    );
+
+    test(
+      'should return hours if they matche the 24-hour format',
+      () async {
+        // arrange
+        final twentyFourHourFormatHours = [for (var i = 0; i <= 24; i++) i];
+        // act
+        final results = [
+          for (final hour in twentyFourHourFormatHours)
+            validateHour(hour, twelveHourFormat: false)
+        ];
+        // assert
+        for (var i = 0; i <= twentyFourHourFormatHours.length - 1; i++) {
+          expect(results[i], equals(right(twentyFourHourFormatHours[i])));
+        }
+      },
+    );
+
+    test(
+      'should return a value failure when hour doesn\'t match 12-hour format',
+      () async {
+        // arrange
+        const incorrectHour = 13;
+        // act
+        final result = validateHour(incorrectHour);
+        // assert
+        expect(
+          result,
+          equals(left(const ValueFailure.shopping(
+              ShoppingValueFailure.incorrectHour(
+                  failedValue: incorrectHour, twelveHourFormat: true)))),
+        );
+      },
+    );
+
+    test(
+      'should return a value failure when hour doesn\'t match 24-hour format',
+      () async {
+        // arrange
+        const incorrectHour = 25;
+        // act
+        final result = validateHour(incorrectHour, twelveHourFormat: false);
+        // assert
+        expect(
+          result,
+          equals(left(const ValueFailure.shopping(
+              ShoppingValueFailure.incorrectHour(
+                  failedValue: incorrectHour, twelveHourFormat: false)))),
+        );
       },
     );
   });

@@ -113,6 +113,25 @@ Either<ValueFailure<double>, double> validatePositiveValue(double input) {
   }
 }
 
+Either<ValueFailure<int>, int> validateHour(int input,
+    {bool twelveHourFormat = true}) {
+  if (twelveHourFormat) {
+    if (input >= 0 && input <= 12) {
+      return right(input);
+    } else {
+      return left(ValueFailure.shopping(ShoppingValueFailure.incorrectHour(
+          failedValue: input, twelveHourFormat: twelveHourFormat)));
+    }
+  } else {
+    if (input >= 0 && input <= 24) {
+      return right(input);
+    } else {
+      return left(ValueFailure.shopping(ShoppingValueFailure.incorrectHour(
+          failedValue: input, twelveHourFormat: twelveHourFormat)));
+    }
+  }
+}
+
 extension IntegerValidator on String {
   bool get isInt => int.tryParse(this) != null;
 }

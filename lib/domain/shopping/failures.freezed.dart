@@ -74,6 +74,14 @@ class _$ShoppingValueFailureTearOff {
       failedValue: failedValue,
     );
   }
+
+  IncorrectHour<T> incorrectHour<T>(
+      {required T failedValue, required bool twelveHourFormat}) {
+    return IncorrectHour<T>(
+      failedValue: failedValue,
+      twelveHourFormat: twelveHourFormat,
+    );
+  }
 }
 
 /// @nodoc
@@ -94,6 +102,8 @@ mixin _$ShoppingValueFailure<T> {
     required TResult Function(T failedValue) noPhotoSelected,
     required TResult Function(T failedValue) nonPositiveValue,
     required TResult Function(T failedValue) noAddressNumber,
+    required TResult Function(T failedValue, bool twelveHourFormat)
+        incorrectHour,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -107,6 +117,7 @@ mixin _$ShoppingValueFailure<T> {
     TResult Function(T failedValue)? noPhotoSelected,
     TResult Function(T failedValue)? nonPositiveValue,
     TResult Function(T failedValue)? noAddressNumber,
+    TResult Function(T failedValue, bool twelveHourFormat)? incorrectHour,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -120,6 +131,7 @@ mixin _$ShoppingValueFailure<T> {
     TResult Function(T failedValue)? noPhotoSelected,
     TResult Function(T failedValue)? nonPositiveValue,
     TResult Function(T failedValue)? noAddressNumber,
+    TResult Function(T failedValue, bool twelveHourFormat)? incorrectHour,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -135,6 +147,7 @@ mixin _$ShoppingValueFailure<T> {
     required TResult Function(NoPhotoSelected<T> value) noPhotoSelected,
     required TResult Function(NonPositivePrice<T> value) nonPositiveValue,
     required TResult Function(NoAddressNumber<T> value) noAddressNumber,
+    required TResult Function(IncorrectHour<T> value) incorrectHour,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -148,6 +161,7 @@ mixin _$ShoppingValueFailure<T> {
     TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
     TResult Function(NonPositivePrice<T> value)? nonPositiveValue,
     TResult Function(NoAddressNumber<T> value)? noAddressNumber,
+    TResult Function(IncorrectHour<T> value)? incorrectHour,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -161,6 +175,7 @@ mixin _$ShoppingValueFailure<T> {
     TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
     TResult Function(NonPositivePrice<T> value)? nonPositiveValue,
     TResult Function(NoAddressNumber<T> value)? noAddressNumber,
+    TResult Function(IncorrectHour<T> value)? incorrectHour,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -287,6 +302,8 @@ class _$ExceedingLength<T> implements ExceedingLength<T> {
     required TResult Function(T failedValue) noPhotoSelected,
     required TResult Function(T failedValue) nonPositiveValue,
     required TResult Function(T failedValue) noAddressNumber,
+    required TResult Function(T failedValue, bool twelveHourFormat)
+        incorrectHour,
   }) {
     return exceedingLength(failedValue, maxLength);
   }
@@ -303,6 +320,7 @@ class _$ExceedingLength<T> implements ExceedingLength<T> {
     TResult Function(T failedValue)? noPhotoSelected,
     TResult Function(T failedValue)? nonPositiveValue,
     TResult Function(T failedValue)? noAddressNumber,
+    TResult Function(T failedValue, bool twelveHourFormat)? incorrectHour,
   }) {
     return exceedingLength?.call(failedValue, maxLength);
   }
@@ -319,6 +337,7 @@ class _$ExceedingLength<T> implements ExceedingLength<T> {
     TResult Function(T failedValue)? noPhotoSelected,
     TResult Function(T failedValue)? nonPositiveValue,
     TResult Function(T failedValue)? noAddressNumber,
+    TResult Function(T failedValue, bool twelveHourFormat)? incorrectHour,
     required TResult orElse(),
   }) {
     if (exceedingLength != null) {
@@ -340,6 +359,7 @@ class _$ExceedingLength<T> implements ExceedingLength<T> {
     required TResult Function(NoPhotoSelected<T> value) noPhotoSelected,
     required TResult Function(NonPositivePrice<T> value) nonPositiveValue,
     required TResult Function(NoAddressNumber<T> value) noAddressNumber,
+    required TResult Function(IncorrectHour<T> value) incorrectHour,
   }) {
     return exceedingLength(this);
   }
@@ -356,6 +376,7 @@ class _$ExceedingLength<T> implements ExceedingLength<T> {
     TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
     TResult Function(NonPositivePrice<T> value)? nonPositiveValue,
     TResult Function(NoAddressNumber<T> value)? noAddressNumber,
+    TResult Function(IncorrectHour<T> value)? incorrectHour,
   }) {
     return exceedingLength?.call(this);
   }
@@ -372,6 +393,7 @@ class _$ExceedingLength<T> implements ExceedingLength<T> {
     TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
     TResult Function(NonPositivePrice<T> value)? nonPositiveValue,
     TResult Function(NoAddressNumber<T> value)? noAddressNumber,
+    TResult Function(IncorrectHour<T> value)? incorrectHour,
     required TResult orElse(),
   }) {
     if (exceedingLength != null) {
@@ -481,6 +503,8 @@ class _$StringTooShort<T> implements StringTooShort<T> {
     required TResult Function(T failedValue) noPhotoSelected,
     required TResult Function(T failedValue) nonPositiveValue,
     required TResult Function(T failedValue) noAddressNumber,
+    required TResult Function(T failedValue, bool twelveHourFormat)
+        incorrectHour,
   }) {
     return stringTooShort(failedValue, minLength);
   }
@@ -497,6 +521,7 @@ class _$StringTooShort<T> implements StringTooShort<T> {
     TResult Function(T failedValue)? noPhotoSelected,
     TResult Function(T failedValue)? nonPositiveValue,
     TResult Function(T failedValue)? noAddressNumber,
+    TResult Function(T failedValue, bool twelveHourFormat)? incorrectHour,
   }) {
     return stringTooShort?.call(failedValue, minLength);
   }
@@ -513,6 +538,7 @@ class _$StringTooShort<T> implements StringTooShort<T> {
     TResult Function(T failedValue)? noPhotoSelected,
     TResult Function(T failedValue)? nonPositiveValue,
     TResult Function(T failedValue)? noAddressNumber,
+    TResult Function(T failedValue, bool twelveHourFormat)? incorrectHour,
     required TResult orElse(),
   }) {
     if (stringTooShort != null) {
@@ -534,6 +560,7 @@ class _$StringTooShort<T> implements StringTooShort<T> {
     required TResult Function(NoPhotoSelected<T> value) noPhotoSelected,
     required TResult Function(NonPositivePrice<T> value) nonPositiveValue,
     required TResult Function(NoAddressNumber<T> value) noAddressNumber,
+    required TResult Function(IncorrectHour<T> value) incorrectHour,
   }) {
     return stringTooShort(this);
   }
@@ -550,6 +577,7 @@ class _$StringTooShort<T> implements StringTooShort<T> {
     TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
     TResult Function(NonPositivePrice<T> value)? nonPositiveValue,
     TResult Function(NoAddressNumber<T> value)? noAddressNumber,
+    TResult Function(IncorrectHour<T> value)? incorrectHour,
   }) {
     return stringTooShort?.call(this);
   }
@@ -566,6 +594,7 @@ class _$StringTooShort<T> implements StringTooShort<T> {
     TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
     TResult Function(NonPositivePrice<T> value)? nonPositiveValue,
     TResult Function(NoAddressNumber<T> value)? noAddressNumber,
+    TResult Function(IncorrectHour<T> value)? incorrectHour,
     required TResult orElse(),
   }) {
     if (stringTooShort != null) {
@@ -663,6 +692,8 @@ class _$Empty<T> implements Empty<T> {
     required TResult Function(T failedValue) noPhotoSelected,
     required TResult Function(T failedValue) nonPositiveValue,
     required TResult Function(T failedValue) noAddressNumber,
+    required TResult Function(T failedValue, bool twelveHourFormat)
+        incorrectHour,
   }) {
     return empty(failedValue);
   }
@@ -679,6 +710,7 @@ class _$Empty<T> implements Empty<T> {
     TResult Function(T failedValue)? noPhotoSelected,
     TResult Function(T failedValue)? nonPositiveValue,
     TResult Function(T failedValue)? noAddressNumber,
+    TResult Function(T failedValue, bool twelveHourFormat)? incorrectHour,
   }) {
     return empty?.call(failedValue);
   }
@@ -695,6 +727,7 @@ class _$Empty<T> implements Empty<T> {
     TResult Function(T failedValue)? noPhotoSelected,
     TResult Function(T failedValue)? nonPositiveValue,
     TResult Function(T failedValue)? noAddressNumber,
+    TResult Function(T failedValue, bool twelveHourFormat)? incorrectHour,
     required TResult orElse(),
   }) {
     if (empty != null) {
@@ -716,6 +749,7 @@ class _$Empty<T> implements Empty<T> {
     required TResult Function(NoPhotoSelected<T> value) noPhotoSelected,
     required TResult Function(NonPositivePrice<T> value) nonPositiveValue,
     required TResult Function(NoAddressNumber<T> value) noAddressNumber,
+    required TResult Function(IncorrectHour<T> value) incorrectHour,
   }) {
     return empty(this);
   }
@@ -732,6 +766,7 @@ class _$Empty<T> implements Empty<T> {
     TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
     TResult Function(NonPositivePrice<T> value)? nonPositiveValue,
     TResult Function(NoAddressNumber<T> value)? noAddressNumber,
+    TResult Function(IncorrectHour<T> value)? incorrectHour,
   }) {
     return empty?.call(this);
   }
@@ -748,6 +783,7 @@ class _$Empty<T> implements Empty<T> {
     TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
     TResult Function(NonPositivePrice<T> value)? nonPositiveValue,
     TResult Function(NoAddressNumber<T> value)? noAddressNumber,
+    TResult Function(IncorrectHour<T> value)? incorrectHour,
     required TResult orElse(),
   }) {
     if (empty != null) {
@@ -845,6 +881,8 @@ class _$Multiline<T> implements Multiline<T> {
     required TResult Function(T failedValue) noPhotoSelected,
     required TResult Function(T failedValue) nonPositiveValue,
     required TResult Function(T failedValue) noAddressNumber,
+    required TResult Function(T failedValue, bool twelveHourFormat)
+        incorrectHour,
   }) {
     return multiline(failedValue);
   }
@@ -861,6 +899,7 @@ class _$Multiline<T> implements Multiline<T> {
     TResult Function(T failedValue)? noPhotoSelected,
     TResult Function(T failedValue)? nonPositiveValue,
     TResult Function(T failedValue)? noAddressNumber,
+    TResult Function(T failedValue, bool twelveHourFormat)? incorrectHour,
   }) {
     return multiline?.call(failedValue);
   }
@@ -877,6 +916,7 @@ class _$Multiline<T> implements Multiline<T> {
     TResult Function(T failedValue)? noPhotoSelected,
     TResult Function(T failedValue)? nonPositiveValue,
     TResult Function(T failedValue)? noAddressNumber,
+    TResult Function(T failedValue, bool twelveHourFormat)? incorrectHour,
     required TResult orElse(),
   }) {
     if (multiline != null) {
@@ -898,6 +938,7 @@ class _$Multiline<T> implements Multiline<T> {
     required TResult Function(NoPhotoSelected<T> value) noPhotoSelected,
     required TResult Function(NonPositivePrice<T> value) nonPositiveValue,
     required TResult Function(NoAddressNumber<T> value) noAddressNumber,
+    required TResult Function(IncorrectHour<T> value) incorrectHour,
   }) {
     return multiline(this);
   }
@@ -914,6 +955,7 @@ class _$Multiline<T> implements Multiline<T> {
     TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
     TResult Function(NonPositivePrice<T> value)? nonPositiveValue,
     TResult Function(NoAddressNumber<T> value)? noAddressNumber,
+    TResult Function(IncorrectHour<T> value)? incorrectHour,
   }) {
     return multiline?.call(this);
   }
@@ -930,6 +972,7 @@ class _$Multiline<T> implements Multiline<T> {
     TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
     TResult Function(NonPositivePrice<T> value)? nonPositiveValue,
     TResult Function(NoAddressNumber<T> value)? noAddressNumber,
+    TResult Function(IncorrectHour<T> value)? incorrectHour,
     required TResult orElse(),
   }) {
     if (multiline != null) {
@@ -1028,6 +1071,8 @@ class _$IncorrectPostalCode<T> implements IncorrectPostalCode<T> {
     required TResult Function(T failedValue) noPhotoSelected,
     required TResult Function(T failedValue) nonPositiveValue,
     required TResult Function(T failedValue) noAddressNumber,
+    required TResult Function(T failedValue, bool twelveHourFormat)
+        incorrectHour,
   }) {
     return incorrectPostalCode(failedValue);
   }
@@ -1044,6 +1089,7 @@ class _$IncorrectPostalCode<T> implements IncorrectPostalCode<T> {
     TResult Function(T failedValue)? noPhotoSelected,
     TResult Function(T failedValue)? nonPositiveValue,
     TResult Function(T failedValue)? noAddressNumber,
+    TResult Function(T failedValue, bool twelveHourFormat)? incorrectHour,
   }) {
     return incorrectPostalCode?.call(failedValue);
   }
@@ -1060,6 +1106,7 @@ class _$IncorrectPostalCode<T> implements IncorrectPostalCode<T> {
     TResult Function(T failedValue)? noPhotoSelected,
     TResult Function(T failedValue)? nonPositiveValue,
     TResult Function(T failedValue)? noAddressNumber,
+    TResult Function(T failedValue, bool twelveHourFormat)? incorrectHour,
     required TResult orElse(),
   }) {
     if (incorrectPostalCode != null) {
@@ -1081,6 +1128,7 @@ class _$IncorrectPostalCode<T> implements IncorrectPostalCode<T> {
     required TResult Function(NoPhotoSelected<T> value) noPhotoSelected,
     required TResult Function(NonPositivePrice<T> value) nonPositiveValue,
     required TResult Function(NoAddressNumber<T> value) noAddressNumber,
+    required TResult Function(IncorrectHour<T> value) incorrectHour,
   }) {
     return incorrectPostalCode(this);
   }
@@ -1097,6 +1145,7 @@ class _$IncorrectPostalCode<T> implements IncorrectPostalCode<T> {
     TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
     TResult Function(NonPositivePrice<T> value)? nonPositiveValue,
     TResult Function(NoAddressNumber<T> value)? noAddressNumber,
+    TResult Function(IncorrectHour<T> value)? incorrectHour,
   }) {
     return incorrectPostalCode?.call(this);
   }
@@ -1113,6 +1162,7 @@ class _$IncorrectPostalCode<T> implements IncorrectPostalCode<T> {
     TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
     TResult Function(NonPositivePrice<T> value)? nonPositiveValue,
     TResult Function(NoAddressNumber<T> value)? noAddressNumber,
+    TResult Function(IncorrectHour<T> value)? incorrectHour,
     required TResult orElse(),
   }) {
     if (incorrectPostalCode != null) {
@@ -1213,6 +1263,8 @@ class _$ShopClosedAllWeekLong<T> implements ShopClosedAllWeekLong<T> {
     required TResult Function(T failedValue) noPhotoSelected,
     required TResult Function(T failedValue) nonPositiveValue,
     required TResult Function(T failedValue) noAddressNumber,
+    required TResult Function(T failedValue, bool twelveHourFormat)
+        incorrectHour,
   }) {
     return shopClosedAllWeekLong(failedValue);
   }
@@ -1229,6 +1281,7 @@ class _$ShopClosedAllWeekLong<T> implements ShopClosedAllWeekLong<T> {
     TResult Function(T failedValue)? noPhotoSelected,
     TResult Function(T failedValue)? nonPositiveValue,
     TResult Function(T failedValue)? noAddressNumber,
+    TResult Function(T failedValue, bool twelveHourFormat)? incorrectHour,
   }) {
     return shopClosedAllWeekLong?.call(failedValue);
   }
@@ -1245,6 +1298,7 @@ class _$ShopClosedAllWeekLong<T> implements ShopClosedAllWeekLong<T> {
     TResult Function(T failedValue)? noPhotoSelected,
     TResult Function(T failedValue)? nonPositiveValue,
     TResult Function(T failedValue)? noAddressNumber,
+    TResult Function(T failedValue, bool twelveHourFormat)? incorrectHour,
     required TResult orElse(),
   }) {
     if (shopClosedAllWeekLong != null) {
@@ -1266,6 +1320,7 @@ class _$ShopClosedAllWeekLong<T> implements ShopClosedAllWeekLong<T> {
     required TResult Function(NoPhotoSelected<T> value) noPhotoSelected,
     required TResult Function(NonPositivePrice<T> value) nonPositiveValue,
     required TResult Function(NoAddressNumber<T> value) noAddressNumber,
+    required TResult Function(IncorrectHour<T> value) incorrectHour,
   }) {
     return shopClosedAllWeekLong(this);
   }
@@ -1282,6 +1337,7 @@ class _$ShopClosedAllWeekLong<T> implements ShopClosedAllWeekLong<T> {
     TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
     TResult Function(NonPositivePrice<T> value)? nonPositiveValue,
     TResult Function(NoAddressNumber<T> value)? noAddressNumber,
+    TResult Function(IncorrectHour<T> value)? incorrectHour,
   }) {
     return shopClosedAllWeekLong?.call(this);
   }
@@ -1298,6 +1354,7 @@ class _$ShopClosedAllWeekLong<T> implements ShopClosedAllWeekLong<T> {
     TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
     TResult Function(NonPositivePrice<T> value)? nonPositiveValue,
     TResult Function(NoAddressNumber<T> value)? noAddressNumber,
+    TResult Function(IncorrectHour<T> value)? incorrectHour,
     required TResult orElse(),
   }) {
     if (shopClosedAllWeekLong != null) {
@@ -1396,6 +1453,8 @@ class _$NoPhotoSelected<T> implements NoPhotoSelected<T> {
     required TResult Function(T failedValue) noPhotoSelected,
     required TResult Function(T failedValue) nonPositiveValue,
     required TResult Function(T failedValue) noAddressNumber,
+    required TResult Function(T failedValue, bool twelveHourFormat)
+        incorrectHour,
   }) {
     return noPhotoSelected(failedValue);
   }
@@ -1412,6 +1471,7 @@ class _$NoPhotoSelected<T> implements NoPhotoSelected<T> {
     TResult Function(T failedValue)? noPhotoSelected,
     TResult Function(T failedValue)? nonPositiveValue,
     TResult Function(T failedValue)? noAddressNumber,
+    TResult Function(T failedValue, bool twelveHourFormat)? incorrectHour,
   }) {
     return noPhotoSelected?.call(failedValue);
   }
@@ -1428,6 +1488,7 @@ class _$NoPhotoSelected<T> implements NoPhotoSelected<T> {
     TResult Function(T failedValue)? noPhotoSelected,
     TResult Function(T failedValue)? nonPositiveValue,
     TResult Function(T failedValue)? noAddressNumber,
+    TResult Function(T failedValue, bool twelveHourFormat)? incorrectHour,
     required TResult orElse(),
   }) {
     if (noPhotoSelected != null) {
@@ -1449,6 +1510,7 @@ class _$NoPhotoSelected<T> implements NoPhotoSelected<T> {
     required TResult Function(NoPhotoSelected<T> value) noPhotoSelected,
     required TResult Function(NonPositivePrice<T> value) nonPositiveValue,
     required TResult Function(NoAddressNumber<T> value) noAddressNumber,
+    required TResult Function(IncorrectHour<T> value) incorrectHour,
   }) {
     return noPhotoSelected(this);
   }
@@ -1465,6 +1527,7 @@ class _$NoPhotoSelected<T> implements NoPhotoSelected<T> {
     TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
     TResult Function(NonPositivePrice<T> value)? nonPositiveValue,
     TResult Function(NoAddressNumber<T> value)? noAddressNumber,
+    TResult Function(IncorrectHour<T> value)? incorrectHour,
   }) {
     return noPhotoSelected?.call(this);
   }
@@ -1481,6 +1544,7 @@ class _$NoPhotoSelected<T> implements NoPhotoSelected<T> {
     TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
     TResult Function(NonPositivePrice<T> value)? nonPositiveValue,
     TResult Function(NoAddressNumber<T> value)? noAddressNumber,
+    TResult Function(IncorrectHour<T> value)? incorrectHour,
     required TResult orElse(),
   }) {
     if (noPhotoSelected != null) {
@@ -1579,6 +1643,8 @@ class _$NonPositivePrice<T> implements NonPositivePrice<T> {
     required TResult Function(T failedValue) noPhotoSelected,
     required TResult Function(T failedValue) nonPositiveValue,
     required TResult Function(T failedValue) noAddressNumber,
+    required TResult Function(T failedValue, bool twelveHourFormat)
+        incorrectHour,
   }) {
     return nonPositiveValue(failedValue);
   }
@@ -1595,6 +1661,7 @@ class _$NonPositivePrice<T> implements NonPositivePrice<T> {
     TResult Function(T failedValue)? noPhotoSelected,
     TResult Function(T failedValue)? nonPositiveValue,
     TResult Function(T failedValue)? noAddressNumber,
+    TResult Function(T failedValue, bool twelveHourFormat)? incorrectHour,
   }) {
     return nonPositiveValue?.call(failedValue);
   }
@@ -1611,6 +1678,7 @@ class _$NonPositivePrice<T> implements NonPositivePrice<T> {
     TResult Function(T failedValue)? noPhotoSelected,
     TResult Function(T failedValue)? nonPositiveValue,
     TResult Function(T failedValue)? noAddressNumber,
+    TResult Function(T failedValue, bool twelveHourFormat)? incorrectHour,
     required TResult orElse(),
   }) {
     if (nonPositiveValue != null) {
@@ -1632,6 +1700,7 @@ class _$NonPositivePrice<T> implements NonPositivePrice<T> {
     required TResult Function(NoPhotoSelected<T> value) noPhotoSelected,
     required TResult Function(NonPositivePrice<T> value) nonPositiveValue,
     required TResult Function(NoAddressNumber<T> value) noAddressNumber,
+    required TResult Function(IncorrectHour<T> value) incorrectHour,
   }) {
     return nonPositiveValue(this);
   }
@@ -1648,6 +1717,7 @@ class _$NonPositivePrice<T> implements NonPositivePrice<T> {
     TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
     TResult Function(NonPositivePrice<T> value)? nonPositiveValue,
     TResult Function(NoAddressNumber<T> value)? noAddressNumber,
+    TResult Function(IncorrectHour<T> value)? incorrectHour,
   }) {
     return nonPositiveValue?.call(this);
   }
@@ -1664,6 +1734,7 @@ class _$NonPositivePrice<T> implements NonPositivePrice<T> {
     TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
     TResult Function(NonPositivePrice<T> value)? nonPositiveValue,
     TResult Function(NoAddressNumber<T> value)? noAddressNumber,
+    TResult Function(IncorrectHour<T> value)? incorrectHour,
     required TResult orElse(),
   }) {
     if (nonPositiveValue != null) {
@@ -1762,6 +1833,8 @@ class _$NoAddressNumber<T> implements NoAddressNumber<T> {
     required TResult Function(T failedValue) noPhotoSelected,
     required TResult Function(T failedValue) nonPositiveValue,
     required TResult Function(T failedValue) noAddressNumber,
+    required TResult Function(T failedValue, bool twelveHourFormat)
+        incorrectHour,
   }) {
     return noAddressNumber(failedValue);
   }
@@ -1778,6 +1851,7 @@ class _$NoAddressNumber<T> implements NoAddressNumber<T> {
     TResult Function(T failedValue)? noPhotoSelected,
     TResult Function(T failedValue)? nonPositiveValue,
     TResult Function(T failedValue)? noAddressNumber,
+    TResult Function(T failedValue, bool twelveHourFormat)? incorrectHour,
   }) {
     return noAddressNumber?.call(failedValue);
   }
@@ -1794,6 +1868,7 @@ class _$NoAddressNumber<T> implements NoAddressNumber<T> {
     TResult Function(T failedValue)? noPhotoSelected,
     TResult Function(T failedValue)? nonPositiveValue,
     TResult Function(T failedValue)? noAddressNumber,
+    TResult Function(T failedValue, bool twelveHourFormat)? incorrectHour,
     required TResult orElse(),
   }) {
     if (noAddressNumber != null) {
@@ -1815,6 +1890,7 @@ class _$NoAddressNumber<T> implements NoAddressNumber<T> {
     required TResult Function(NoPhotoSelected<T> value) noPhotoSelected,
     required TResult Function(NonPositivePrice<T> value) nonPositiveValue,
     required TResult Function(NoAddressNumber<T> value) noAddressNumber,
+    required TResult Function(IncorrectHour<T> value) incorrectHour,
   }) {
     return noAddressNumber(this);
   }
@@ -1831,6 +1907,7 @@ class _$NoAddressNumber<T> implements NoAddressNumber<T> {
     TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
     TResult Function(NonPositivePrice<T> value)? nonPositiveValue,
     TResult Function(NoAddressNumber<T> value)? noAddressNumber,
+    TResult Function(IncorrectHour<T> value)? incorrectHour,
   }) {
     return noAddressNumber?.call(this);
   }
@@ -1847,6 +1924,7 @@ class _$NoAddressNumber<T> implements NoAddressNumber<T> {
     TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
     TResult Function(NonPositivePrice<T> value)? nonPositiveValue,
     TResult Function(NoAddressNumber<T> value)? noAddressNumber,
+    TResult Function(IncorrectHour<T> value)? incorrectHour,
     required TResult orElse(),
   }) {
     if (noAddressNumber != null) {
@@ -1865,5 +1943,209 @@ abstract class NoAddressNumber<T> implements ShoppingValueFailure<T> {
   @override
   @JsonKey(ignore: true)
   $NoAddressNumberCopyWith<T, NoAddressNumber<T>> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $IncorrectHourCopyWith<T, $Res>
+    implements $ShoppingValueFailureCopyWith<T, $Res> {
+  factory $IncorrectHourCopyWith(
+          IncorrectHour<T> value, $Res Function(IncorrectHour<T>) then) =
+      _$IncorrectHourCopyWithImpl<T, $Res>;
+  @override
+  $Res call({T failedValue, bool twelveHourFormat});
+}
+
+/// @nodoc
+class _$IncorrectHourCopyWithImpl<T, $Res>
+    extends _$ShoppingValueFailureCopyWithImpl<T, $Res>
+    implements $IncorrectHourCopyWith<T, $Res> {
+  _$IncorrectHourCopyWithImpl(
+      IncorrectHour<T> _value, $Res Function(IncorrectHour<T>) _then)
+      : super(_value, (v) => _then(v as IncorrectHour<T>));
+
+  @override
+  IncorrectHour<T> get _value => super._value as IncorrectHour<T>;
+
+  @override
+  $Res call({
+    Object? failedValue = freezed,
+    Object? twelveHourFormat = freezed,
+  }) {
+    return _then(IncorrectHour<T>(
+      failedValue: failedValue == freezed
+          ? _value.failedValue
+          : failedValue // ignore: cast_nullable_to_non_nullable
+              as T,
+      twelveHourFormat: twelveHourFormat == freezed
+          ? _value.twelveHourFormat
+          : twelveHourFormat // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$IncorrectHour<T> implements IncorrectHour<T> {
+  const _$IncorrectHour(
+      {required this.failedValue, required this.twelveHourFormat});
+
+  @override
+  final T failedValue;
+  @override
+  final bool twelveHourFormat;
+
+  @override
+  String toString() {
+    return 'ShoppingValueFailure<$T>.incorrectHour(failedValue: $failedValue, twelveHourFormat: $twelveHourFormat)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is IncorrectHour<T> &&
+            const DeepCollectionEquality()
+                .equals(other.failedValue, failedValue) &&
+            const DeepCollectionEquality()
+                .equals(other.twelveHourFormat, twelveHourFormat));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(failedValue),
+      const DeepCollectionEquality().hash(twelveHourFormat));
+
+  @JsonKey(ignore: true)
+  @override
+  $IncorrectHourCopyWith<T, IncorrectHour<T>> get copyWith =>
+      _$IncorrectHourCopyWithImpl<T, IncorrectHour<T>>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(T failedValue, int maxLength) exceedingLength,
+    required TResult Function(T failedValue, int minLength) stringTooShort,
+    required TResult Function(T failedValue) empty,
+    required TResult Function(T failedValue) multiline,
+    required TResult Function(T failedValue) incorrectPostalCode,
+    required TResult Function(T failedValue) shopClosedAllWeekLong,
+    required TResult Function(T failedValue) noPhotoSelected,
+    required TResult Function(T failedValue) nonPositiveValue,
+    required TResult Function(T failedValue) noAddressNumber,
+    required TResult Function(T failedValue, bool twelveHourFormat)
+        incorrectHour,
+  }) {
+    return incorrectHour(failedValue, twelveHourFormat);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(T failedValue, int maxLength)? exceedingLength,
+    TResult Function(T failedValue, int minLength)? stringTooShort,
+    TResult Function(T failedValue)? empty,
+    TResult Function(T failedValue)? multiline,
+    TResult Function(T failedValue)? incorrectPostalCode,
+    TResult Function(T failedValue)? shopClosedAllWeekLong,
+    TResult Function(T failedValue)? noPhotoSelected,
+    TResult Function(T failedValue)? nonPositiveValue,
+    TResult Function(T failedValue)? noAddressNumber,
+    TResult Function(T failedValue, bool twelveHourFormat)? incorrectHour,
+  }) {
+    return incorrectHour?.call(failedValue, twelveHourFormat);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(T failedValue, int maxLength)? exceedingLength,
+    TResult Function(T failedValue, int minLength)? stringTooShort,
+    TResult Function(T failedValue)? empty,
+    TResult Function(T failedValue)? multiline,
+    TResult Function(T failedValue)? incorrectPostalCode,
+    TResult Function(T failedValue)? shopClosedAllWeekLong,
+    TResult Function(T failedValue)? noPhotoSelected,
+    TResult Function(T failedValue)? nonPositiveValue,
+    TResult Function(T failedValue)? noAddressNumber,
+    TResult Function(T failedValue, bool twelveHourFormat)? incorrectHour,
+    required TResult orElse(),
+  }) {
+    if (incorrectHour != null) {
+      return incorrectHour(failedValue, twelveHourFormat);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ExceedingLength<T> value) exceedingLength,
+    required TResult Function(StringTooShort<T> value) stringTooShort,
+    required TResult Function(Empty<T> value) empty,
+    required TResult Function(Multiline<T> value) multiline,
+    required TResult Function(IncorrectPostalCode<T> value) incorrectPostalCode,
+    required TResult Function(ShopClosedAllWeekLong<T> value)
+        shopClosedAllWeekLong,
+    required TResult Function(NoPhotoSelected<T> value) noPhotoSelected,
+    required TResult Function(NonPositivePrice<T> value) nonPositiveValue,
+    required TResult Function(NoAddressNumber<T> value) noAddressNumber,
+    required TResult Function(IncorrectHour<T> value) incorrectHour,
+  }) {
+    return incorrectHour(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(ExceedingLength<T> value)? exceedingLength,
+    TResult Function(StringTooShort<T> value)? stringTooShort,
+    TResult Function(Empty<T> value)? empty,
+    TResult Function(Multiline<T> value)? multiline,
+    TResult Function(IncorrectPostalCode<T> value)? incorrectPostalCode,
+    TResult Function(ShopClosedAllWeekLong<T> value)? shopClosedAllWeekLong,
+    TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
+    TResult Function(NonPositivePrice<T> value)? nonPositiveValue,
+    TResult Function(NoAddressNumber<T> value)? noAddressNumber,
+    TResult Function(IncorrectHour<T> value)? incorrectHour,
+  }) {
+    return incorrectHour?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ExceedingLength<T> value)? exceedingLength,
+    TResult Function(StringTooShort<T> value)? stringTooShort,
+    TResult Function(Empty<T> value)? empty,
+    TResult Function(Multiline<T> value)? multiline,
+    TResult Function(IncorrectPostalCode<T> value)? incorrectPostalCode,
+    TResult Function(ShopClosedAllWeekLong<T> value)? shopClosedAllWeekLong,
+    TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
+    TResult Function(NonPositivePrice<T> value)? nonPositiveValue,
+    TResult Function(NoAddressNumber<T> value)? noAddressNumber,
+    TResult Function(IncorrectHour<T> value)? incorrectHour,
+    required TResult orElse(),
+  }) {
+    if (incorrectHour != null) {
+      return incorrectHour(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class IncorrectHour<T> implements ShoppingValueFailure<T> {
+  const factory IncorrectHour(
+      {required T failedValue,
+      required bool twelveHourFormat}) = _$IncorrectHour<T>;
+
+  @override
+  T get failedValue;
+  bool get twelveHourFormat;
+  @override
+  @JsonKey(ignore: true)
+  $IncorrectHourCopyWith<T, IncorrectHour<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
