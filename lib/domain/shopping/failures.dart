@@ -24,4 +24,6 @@ class ShoppingValueFailure<T> with _$ShoppingValueFailure<T> {
   const factory ShoppingValueFailure.incorrectHour(
       {required T failedValue,
       required bool twelveHourFormat}) = IncorrectHour<T>;
+  const factory ShoppingValueFailure.incorrectMinutes(
+      {required T failedValue}) = IncorrectMinutes<T>;
 }
