@@ -132,6 +132,18 @@ Either<ValueFailure<int>, int> validateHour(int input,
   }
 }
 
+Either<ValueFailure<int>, int> validateMinutes(int input) {
+  if (input >= 0 && input <= 59) {
+    return right(input);
+  } else {
+    return left(
+      ValueFailure.shopping(
+        ShoppingValueFailure.incorrectMinutes(failedValue: input),
+      ),
+    );
+  }
+}
+
 extension IntegerValidator on String {
   bool get isInt => int.tryParse(this) != null;
 }
