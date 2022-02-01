@@ -447,7 +447,7 @@ void main() {
         // arrange
         const incorrectMinutes = 60;
         // act
-        final result = validateHour(incorrectMinutes);
+        final result = validateMinutes(incorrectMinutes);
         // assert
         expect(
           result,
@@ -464,7 +464,7 @@ void main() {
         // arrange
         const incorrectMinutes = -1;
         // act
-        final result = validateHour(incorrectMinutes, twelveHourFormat: false);
+        final result = validateMinutes(incorrectMinutes);
         // assert
         expect(
           result,
