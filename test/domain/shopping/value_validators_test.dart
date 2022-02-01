@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:shopify_manager/domain/shopping/failures.dart';
 import 'package:shopify_manager/domain/core/failures.dart';
 import 'package:shopify_manager/domain/shopping/value_validators.dart';
@@ -423,6 +421,56 @@ void main() {
           equals(left(const ValueFailure.shopping(
               ShoppingValueFailure.incorrectHour(
                   failedValue: incorrectHour, twelveHourFormat: false)))),
+        );
+      },
+    );
+  });
+
+  group('validateMinutes', () {
+    test(
+      'should return minutes if their value falls between 0 and 59 inclusive',
+      () async {
+        // arrange
+        final minutes = [for (var i = 0; i < 60; i++) i];
+        // act
+        final results = [for (final minute in minutes) validateMinutes(minute)];
+        // assert
+        for (var i = 0; i <= minutes.length - 1; i++) {
+          expect(results[i], equals(right(minutes[i])));
+        }
+      },
+    );
+
+    test(
+      'should return a value failure when a minute exceeds the value of 59',
+      () async {
+        // arrange
+        const incorrectMinutes = 60;
+        // act
+        final result = validateHour(incorrectMinutes);
+        // assert
+        expect(
+          result,
+          equals(left(const ValueFailure.shopping(
+              ShoppingValueFailure.incorrectMinutes(
+                  failedValue: incorrectMinutes)))),
+        );
+      },
+    );
+
+    test(
+      'should return a value failure when a minute is a negative value',
+      () async {
+        // arrange
+        const incorrectMinutes = -1;
+        // act
+        final result = validateHour(incorrectMinutes, twelveHourFormat: false);
+        // assert
+        expect(
+          result,
+          equals(left(const ValueFailure.shopping(
+              ShoppingValueFailure.incorrectMinutes(
+                  failedValue: incorrectMinutes)))),
         );
       },
     );
