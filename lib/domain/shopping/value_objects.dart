@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:shopify_manager/domain/core/failures.dart';
 import 'package:shopify_manager/domain/core/value_objects.dart';
 import 'package:shopify_manager/domain/shopping/value_validators.dart';
+import 'package:shopify_manager/domain/shopping/working_hour.dart';
 
 class ShopName extends Name {
   static const maxLength = 40;
@@ -30,4 +31,15 @@ class Hour extends ValueObject<int> {
   }
 
   const Hour._(this.value, this.twelveHourFormat);
+}
+
+class Minute extends ValueObject<int> {
+  @override
+  final Either<ValueFailure<int>, int> value;
+
+  factory Minute(int input) {
+    return Minute._(validateMinutes(input));
+  }
+
+  const Minute._(this.value);
 }
