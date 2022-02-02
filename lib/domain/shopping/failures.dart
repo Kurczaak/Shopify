@@ -30,4 +30,10 @@ class ShoppingValueFailure<T> with _$ShoppingValueFailure<T> {
       required num max}) = NumberOutsideInterval<T>;
   const factory ShoppingValueFailure.invalidTimeInterval(
       {required T failedValue}) = InvalidTimeInterval<T>;
+  const factory ShoppingValueFailure.listTooLong(
+      {required T failedValue, required int maxLength}) = ListTooLong<T>;
+  const factory ShoppingValueFailure.listTooShort(
+      {required T failedValue, required int minLength}) = ListTooShort<T>;
+  const factory ShoppingValueFailure.emptyList(
+      {required T failedValue, required int minLength}) = EmptyList<T>;
 }

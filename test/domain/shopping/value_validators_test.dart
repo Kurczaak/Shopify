@@ -1,3 +1,4 @@
+import 'package:kt_dart/kt.dart';
 import 'package:shopify_manager/domain/shopping/failures.dart';
 import 'package:shopify_manager/domain/core/failures.dart';
 import 'package:shopify_manager/domain/shopping/value_validators.dart';
@@ -395,6 +396,62 @@ void main() {
                     failedValue: invalidNumber,
                     min: minNumber,
                     max: maxNumber))));
+      },
+    );
+  });
+
+  group('validateListLength', () {
+    test(
+      'should return the list if it doesn\'t exceed maxLength',
+      () async {
+        // arrange
+        final list = KtList.from([1, 2, 3, 4]);
+        // act
+        final result = validateListLength(list, 4);
+        // assert
+        expect(result, right(list));
+      },
+    );
+
+    test(
+      'should return ValueFailure when the list exceeds maxLength',
+      () async {
+        // arrange
+        final list = KtList.from([1, 2, 3, 4]);
+        const maxLength = 3;
+        // act
+        final result = validateListLength(list, maxLength);
+        // assert
+        expect(
+            result,
+            left(ValueFailure.shopping(ShoppingValueFailure.listTooLong(
+                failedValue: list, maxLength: maxLength))));
+      },
+    );
+    test(
+      'should return the list if it exceeds minLength',
+      () async {
+        // arrange
+        final list = KtList.from([1, 2, 3, 4]);
+        // act
+        final result = validateListLength(list, 4, minLength: 4);
+        // assert
+        expect(result, right(list));
+      },
+    );
+    test(
+      'should return ValueFailure when the list is shorter than minLength',
+      () async {
+        // arrange
+        final list = KtList.from([1, 2, 3, 4]);
+        const minLength = 5;
+        // act
+        final result = validateListLength(list, 10, minLength: minLength);
+        // assert
+        expect(
+            result,
+            left(ValueFailure.shopping(ShoppingValueFailure.listTooShort(
+                failedValue: list, minLength: minLength))));
       },
     );
   });

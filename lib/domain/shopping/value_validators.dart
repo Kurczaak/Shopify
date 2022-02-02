@@ -1,6 +1,7 @@
 // ignore_for_file: import_of_legacy_library_into_null_safe
 
 import 'package:dartz/dartz.dart';
+import 'package:kt_dart/kt.dart';
 import 'package:shopify_manager/domain/core/errors.dart';
 import '../core/failures.dart';
 import '../shopping/failures.dart';
@@ -121,6 +122,20 @@ Either<ValueFailure<int>, int> validateIntegerRange(
     return left(ValueFailure.shopping(
         ShoppingValueFailure.numberOutsideInterval(
             failedValue: input, min: minInclusive, max: maxInclusive)));
+  }
+}
+
+Either<ValueFailure<KtList<T>>, KtList<T>> validateListLength<T>(
+    KtList<T> input, int maxLength,
+    {int minLength = 0}) {
+  if (input.size <= maxLength && input.size >= minLength) {
+    return right(input);
+  } else {
+    return left(ValueFailure.shopping(input.size > maxLength
+        ? ShoppingValueFailure.listTooLong(
+            failedValue: input, maxLength: maxLength)
+        : ShoppingValueFailure.listTooShort(
+            failedValue: input, minLength: minLength)));
   }
 }
 
