@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:kt_dart/kt.dart';
 import 'package:shopify_manager/domain/core/failures.dart';
 import 'package:shopify_manager/domain/shopping/failures.dart';
 import 'package:shopify_manager/domain/shopping/time/primitive_hour.dart';
@@ -30,6 +31,39 @@ void main() {
             hour.value,
             left(ValueFailure.shopping(ShoppingValueFailure.incorrectHour(
                 failedValue: tInvalidHour, twelveHourFormat: true))));
+      },
+    );
+  });
+
+  group('TimeInterval', () {
+    test(
+      'should return a correct TimeInterval',
+      () async {
+        // arrange
+        final openingHour = Hour.am(8, 0);
+        final closingHour = Hour.pm(8, 0);
+        final list = KtList<Hour>.from([openingHour, closingHour]);
+        // act
+        final result = TimeInterval(openingHour, closingHour);
+        // assert
+        expect(result.value, right(list));
+      },
+    );
+
+    test(
+      'should return a value failure given incorrect intervals',
+      () async {
+        // arrange
+        final openingHour = Hour.am(8, 0);
+        final closingHour = Hour.pm(8, 0);
+        final list = KtList<Hour>.from([closingHour, openingHour]);
+        // act
+        final result = TimeInterval(closingHour, openingHour);
+        // assert
+        expect(
+            result.value,
+            left(ValueFailure.shopping(
+                ShoppingValueFailure.invalidTimeInterval(failedValue: list))));
       },
     );
   });
