@@ -70,63 +70,63 @@ void main() {
     );
   });
 
-  group('Hour', () {
-    test(
-      'should return an Hour entity when a correct hour input is given',
-      () async {
-        // arrange
-        const hourInput = 8;
-        // act
-        final result = Hour(hourInput);
-        // assert
-        expect(result.value, equals(right(hourInput)));
-      },
-    );
+  // group('Hour', () {
+  //   test(
+  //     'should return an Hour entity when a correct hour input is given',
+  //     () async {
+  //       // arrange
+  //       const hourInput = 8;
+  //       // act
+  //       final result = Hour(hourInput);
+  //       // assert
+  //       expect(result.value, equals(right(hourInput)));
+  //     },
+  //   );
 
-    test(
-      'should return a ValueFailure when given an incorrect hour',
-      () async {
-        // arrange
-        const incorrectHour = 13;
-        // act
-        final result = Hour(incorrectHour, twelveHourFormat: true);
-        // assert
-        expect(
-            result.value,
-            equals(left(const ValueFailure.shopping(
-                ShoppingValueFailure.incorrectHour(
-                    failedValue: incorrectHour, twelveHourFormat: true)))));
-      },
-    );
-  });
+  //   test(
+  //     'should return a ValueFailure when given an incorrect hour',
+  //     () async {
+  //       // arrange
+  //       const incorrectHour = 13;
+  //       // act
+  //       final result = Hour(incorrectHour, twelveHourFormat: true);
+  //       // assert
+  //       expect(
+  //           result.value,
+  //           equals(left(const ValueFailure.shopping(
+  //               ShoppingValueFailure.incorrectHour(
+  //                   failedValue: incorrectHour, twelveHourFormat: true)))));
+  //     },
+  //   );
+  // });
 
-  group('Minutes', () {
-    test(
-      'should return a Minute entity when a correct minutes input is given',
-      () async {
-        // arrange
-        const minutesInput = 45;
-        // act
-        final result = Minute(minutesInput);
-        // assert
-        expect(result.value, equals(right(minutesInput)));
-      },
-    );
+  // group('Minutes', () {
+  //   test(
+  //     'should return a Minute entity when a correct minutes input is given',
+  //     () async {
+  //       // arrange
+  //       const minutesInput = 45;
+  //       // act
+  //       final result = Minute(minutesInput);
+  //       // assert
+  //       expect(result.value, equals(right(minutesInput)));
+  //     },
+  //   );
 
-    test(
-      'should return a ValueFailure when given an incorrect minutes input',
-      () async {
-        // arrange
-        const incorrectMinutes = 60;
-        // act
-        final result = Minute(incorrectMinutes);
-        // assert
-        expect(
-            result.value,
-            equals(left(const ValueFailure.shopping(
-                ShoppingValueFailure.incorrectMinutes(
-                    failedValue: incorrectMinutes)))));
-      },
-    );
-  });
+  //   test(
+  //     'should return a ValueFailure when given an incorrect minutes input',
+  //     () async {
+  //       // arrange
+  //       const incorrectMinutes = 60;
+  //       // act
+  //       final result = Minute(incorrectMinutes);
+  //       // assert
+  //       expect(
+  //           result.value,
+  //           equals(left(const ValueFailure.shopping(
+  //               ShoppingValueFailure.incorrectMinutes(
+  //                   failedValue: incorrectMinutes)))));
+  //     },
+  //   );
+  // });
 }

@@ -113,34 +113,14 @@ Either<ValueFailure<double>, double> validatePositiveValue(double input) {
   }
 }
 
-Either<ValueFailure<int>, int> validateHour(int input,
-    {bool twelveHourFormat = true}) {
-  if (twelveHourFormat) {
-    if (input >= 0 && input <= 12) {
-      return right(input);
-    } else {
-      return left(ValueFailure.shopping(ShoppingValueFailure.incorrectHour(
-          failedValue: input, twelveHourFormat: twelveHourFormat)));
-    }
-  } else {
-    if (input >= 0 && input <= 24) {
-      return right(input);
-    } else {
-      return left(ValueFailure.shopping(ShoppingValueFailure.incorrectHour(
-          failedValue: input, twelveHourFormat: twelveHourFormat)));
-    }
-  }
-}
-
-Either<ValueFailure<int>, int> validateMinutes(int input) {
-  if (input >= 0 && input <= 59) {
+Either<ValueFailure<int>, int> validateIntegerRange(
+    int input, int minInclusive, int maxInclusive) {
+  if (input >= minInclusive && input <= maxInclusive) {
     return right(input);
   } else {
-    return left(
-      ValueFailure.shopping(
-        ShoppingValueFailure.incorrectMinutes(failedValue: input),
-      ),
-    );
+    return left(ValueFailure.shopping(
+        ShoppingValueFailure.numberOutsideInterval(
+            failedValue: input, min: minInclusive, max: maxInclusive)));
   }
 }
 

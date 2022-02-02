@@ -24,6 +24,10 @@ class ShoppingValueFailure<T> with _$ShoppingValueFailure<T> {
   const factory ShoppingValueFailure.incorrectHour(
       {required T failedValue,
       required bool twelveHourFormat}) = IncorrectHour<T>;
-  const factory ShoppingValueFailure.incorrectMinutes(
-      {required T failedValue}) = IncorrectMinutes<T>;
+  const factory ShoppingValueFailure.numberOutsideInterval(
+      {required T failedValue,
+      required num min,
+      required num max}) = NumberOutsideInterval<T>;
+  const factory ShoppingValueFailure.invalidTimeInterval(
+      {required T failedValue}) = InvalidTimeInterval<T>;
 }

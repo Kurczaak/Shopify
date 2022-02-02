@@ -357,121 +357,44 @@ void main() {
     );
   });
 
-  group('validateHour', () {
+  group('validateIntegerRange', () {
+    const minNumber = 0;
+    const maxNumber = 59;
     test(
-      'should return hours if they match the 12-hour format',
+      'should return number when it falls within the bottom threshold',
       () async {
-        // arrange
-        final twelveHourFormatHours = [for (var i = 0; i <= 12; i++) i];
         // act
-        final results = [
-          for (final hour in twelveHourFormatHours) validateHour(hour)
-        ];
+        final result = validateIntegerRange(minNumber, minNumber, maxNumber);
         // assert
-        for (var i = 0; i <= twelveHourFormatHours.length - 1; i++) {
-          expect(results[i], equals(right(twelveHourFormatHours[i])));
-        }
+        expect(result, right(minNumber));
+      },
+    );
+    test(
+      'should return number when it falls within the top threshold',
+      () async {
+        // act
+        final result = validateIntegerRange(maxNumber, minNumber, maxNumber);
+        // assert
+        expect(result, right(maxNumber));
       },
     );
 
     test(
-      'should return hours if they matche the 24-hour format',
+      'should return a value failure when it falls outside the interval boundaries',
       () async {
-        // arrange
-        final twentyFourHourFormatHours = [for (var i = 0; i <= 24; i++) i];
+        //arrange
+        const invalidNumber = 60;
         // act
-        final results = [
-          for (final hour in twentyFourHourFormatHours)
-            validateHour(hour, twelveHourFormat: false)
-        ];
-        // assert
-        for (var i = 0; i <= twentyFourHourFormatHours.length - 1; i++) {
-          expect(results[i], equals(right(twentyFourHourFormatHours[i])));
-        }
-      },
-    );
-
-    test(
-      'should return a value failure when hour doesn\'t match 12-hour format',
-      () async {
-        // arrange
-        const incorrectHour = 13;
-        // act
-        final result = validateHour(incorrectHour);
+        final result =
+            validateIntegerRange(invalidNumber, minNumber, maxNumber);
         // assert
         expect(
-          result,
-          equals(left(const ValueFailure.shopping(
-              ShoppingValueFailure.incorrectHour(
-                  failedValue: incorrectHour, twelveHourFormat: true)))),
-        );
-      },
-    );
-
-    test(
-      'should return a value failure when hour doesn\'t match 24-hour format',
-      () async {
-        // arrange
-        const incorrectHour = 25;
-        // act
-        final result = validateHour(incorrectHour, twelveHourFormat: false);
-        // assert
-        expect(
-          result,
-          equals(left(const ValueFailure.shopping(
-              ShoppingValueFailure.incorrectHour(
-                  failedValue: incorrectHour, twelveHourFormat: false)))),
-        );
-      },
-    );
-  });
-
-  group('validateMinutes', () {
-    test(
-      'should return minutes if their value falls between 0 and 59 inclusive',
-      () async {
-        // arrange
-        final minutes = [for (var i = 0; i < 60; i++) i];
-        // act
-        final results = [for (final minute in minutes) validateMinutes(minute)];
-        // assert
-        for (var i = 0; i <= minutes.length - 1; i++) {
-          expect(results[i], equals(right(minutes[i])));
-        }
-      },
-    );
-
-    test(
-      'should return a value failure when a minute exceeds the value of 59',
-      () async {
-        // arrange
-        const incorrectMinutes = 60;
-        // act
-        final result = validateMinutes(incorrectMinutes);
-        // assert
-        expect(
-          result,
-          equals(left(const ValueFailure.shopping(
-              ShoppingValueFailure.incorrectMinutes(
-                  failedValue: incorrectMinutes)))),
-        );
-      },
-    );
-
-    test(
-      'should return a value failure when a minute is a negative value',
-      () async {
-        // arrange
-        const incorrectMinutes = -1;
-        // act
-        final result = validateMinutes(incorrectMinutes);
-        // assert
-        expect(
-          result,
-          equals(left(const ValueFailure.shopping(
-              ShoppingValueFailure.incorrectMinutes(
-                  failedValue: incorrectMinutes)))),
-        );
+            result,
+            left(const ValueFailure.shopping(
+                ShoppingValueFailure.numberOutsideInterval(
+                    failedValue: invalidNumber,
+                    min: minNumber,
+                    max: maxNumber))));
       },
     );
   });
