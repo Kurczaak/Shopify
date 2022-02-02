@@ -13,6 +13,15 @@ class Hour extends ValueObject<PrimitiveHour> {
     return Hour._(hourValidator(input));
   }
 
+  factory Hour.am(int hours, int minutes) {
+    return Hour._(
+        hourValidator(PrimitiveHour(hours: hours, minutes: minutes, am: true)));
+  }
+  factory Hour.pm(int hours, int minutes) {
+    return Hour._(hourValidator(
+        PrimitiveHour(hours: hours, minutes: minutes, am: false)));
+  }
+
   const Hour._(this.value);
 }
 
@@ -20,7 +29,8 @@ class TimeInterval extends ValueObject<KtList<Hour>> {
   @override
   final Either<ValueFailure<KtList<Hour>>, KtList<Hour>> value;
   factory TimeInterval(Hour openingHour, Hour closingHour) {
-    return TimeInterval._(right(KtList<Hour>.from([openingHour, closingHour])));
+    return TimeInterval._(
+        timeIntervalValidator(KtList<Hour>.from([openingHour, closingHour])));
   }
 
   const TimeInterval._(this.value);
