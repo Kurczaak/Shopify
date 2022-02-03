@@ -36,3 +36,47 @@ abstract class Day with _$Day {
     return openingInterval.failureOrUnit.fold((f) => some(f), (_) => none());
   }
 }
+
+extension Stringify on DayName {
+  String get name {
+    switch (this) {
+      case DayName.monday:
+        return 'monday';
+      case DayName.tuesday:
+        return 'tuesday';
+      case DayName.wednesday:
+        return 'wednesday';
+      case DayName.thursday:
+        return 'thursday';
+      case DayName.friday:
+        return 'friday';
+      case DayName.saturday:
+        return 'saturday';
+      case DayName.sunday:
+        return 'sunday';
+      default:
+        return 'monday';
+    }
+  }
+}
+
+DayName dayFromString(String nameStr) {
+  switch (nameStr) {
+    case 'monday':
+      return DayName.monday;
+    case 'tuesday':
+      return DayName.tuesday;
+    case 'wednesday':
+      return DayName.wednesday;
+    case 'thursday':
+      return DayName.thursday;
+    case 'friday':
+      return DayName.friday;
+    case 'saturday':
+      return DayName.saturday;
+    case 'sunday':
+      return DayName.sunday;
+    default:
+      return DayName.monday;
+  }
+}
