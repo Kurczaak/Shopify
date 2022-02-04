@@ -15,7 +15,6 @@ import 'package:shopify_manager/presentation/splash/splash_page.dart';
     ),
     AutoRoute(
       page: SplashPage,
-      initial: true,
     ),
     AutoRoute(
       page: SignInPage,
@@ -29,6 +28,7 @@ import 'package:shopify_manager/presentation/splash/splash_page.dart';
     ),
     AutoRoute(
       page: OpeningHoursPage,
+      initial: true,
     )
   ],
 )

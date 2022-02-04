@@ -5,6 +5,7 @@ import 'package:loading_overlay/loading_overlay.dart';
 import 'package:shopify_manager/application/shopping/shop_form/shop_form_bloc.dart';
 import 'package:shopify_manager/injection.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:shopify_manager/presentation/core/widgets/process_appbar.dart';
 
 class ShopDetailsPage extends StatelessWidget {
   ShopDetailsPage({Key? key}) : super(key: key);
@@ -13,25 +14,9 @@ class ShopDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        toolbarHeight: 80,
-        title: const Text(
-          'Register Shop',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        centerTitle: true,
-        actions: [Image.asset('images/logo.png')],
-        leading: const Padding(
-          padding: EdgeInsets.all(8.0),
-          child: FittedBox(
-            fit: BoxFit.contain,
-            child: FaIcon(
-              FontAwesomeIcons.arrowCircleLeft,
-            ),
-          ),
-        ),
+      appBar: ProcessAppBar(
+        title: 'Register Shop',
+        appBar: AppBar(),
       ),
       body: BlocProvider(
         create: (context) => getIt<ShopFormBloc>(),
