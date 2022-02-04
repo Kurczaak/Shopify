@@ -68,11 +68,14 @@ class OpeningHoursPage extends StatelessWidget {
               DayRow(day: 'Sat', hours: hours),
               DayRow(day: 'Sun', hours: hours),
               const Spacer(),
-              SizedBox(
-                height: 50,
-                child: ElevatedButton(
-                  onPressed: () {},
-                  child: const Text('Next'),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: SizedBox(
+                  height: 50,
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    child: const Text('Next'),
+                  ),
                 ),
               ),
             ],

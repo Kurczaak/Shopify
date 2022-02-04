@@ -32,7 +32,7 @@ class _DayRowState extends State<DayRow> {
   Widget build(BuildContext context) {
     return Row(
       mainAxisSize: MainAxisSize.max,
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
         SizedBox(
           width: 50,
