@@ -889,6 +889,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.0"
+  super_enum_sealed_annotations:
+    dependency: "direct main"
+    description:
+      name: super_enum_sealed_annotations
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.4.0"
   term_glyph:
     dependency: transitive
     description:
