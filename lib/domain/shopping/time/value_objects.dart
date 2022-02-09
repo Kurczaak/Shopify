@@ -27,5 +27,11 @@ class TimeInterval extends ValueObject<KtList<Hour>> {
         timeIntervalValidator(KtList<Hour>.from([openingHour, closingHour])));
   }
 
+  factory TimeInterval.fullHours(int opening, int closing) {
+    final openingHour = Hour.fromInt(opening, 0);
+    final closingHour = Hour.fromInt(closing, 0);
+    return TimeInterval(openingHour, closingHour);
+  }
+
   const TimeInterval._(this.value);
 }

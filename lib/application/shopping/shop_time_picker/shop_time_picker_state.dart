@@ -4,11 +4,11 @@ part of 'shop_time_picker_bloc.dart';
 abstract class ShopTimePickerState with _$ShopTimePickerState {
   const factory ShopTimePickerState({
     required Week week,
-    required AutovalidateMode autovalidateMode,
+    required bool showErrors,
   }) = _ShopTimePickerState;
 
   factory ShopTimePickerState.initial() => ShopTimePickerState(
         week: Week.empty(),
-        autovalidateMode: AutovalidateMode.disabled,
+        showErrors: false,
       );
 }

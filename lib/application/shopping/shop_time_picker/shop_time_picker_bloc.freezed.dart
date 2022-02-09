@@ -158,6 +158,8 @@ abstract class _$MondayChangedCopyWith<$Res> {
           _MondayChanged value, $Res Function(_MondayChanged) then) =
       __$MondayChangedCopyWithImpl<$Res>;
   $Res call({DayPrimitive monday});
+
+  $DayPrimitiveCopyWith<$Res> get monday;
 }
 
 /// @nodoc
@@ -181,6 +183,13 @@ class __$MondayChangedCopyWithImpl<$Res>
           : monday // ignore: cast_nullable_to_non_nullable
               as DayPrimitive,
     ));
+  }
+
+  @override
+  $DayPrimitiveCopyWith<$Res> get monday {
+    return $DayPrimitiveCopyWith<$Res>(_value.monday, (value) {
+      return _then(_value.copyWith(monday: value));
+    });
   }
 }
 
@@ -322,6 +331,8 @@ abstract class _$TuesdayChangedCopyWith<$Res> {
           _TuesdayChanged value, $Res Function(_TuesdayChanged) then) =
       __$TuesdayChangedCopyWithImpl<$Res>;
   $Res call({DayPrimitive tuesday});
+
+  $DayPrimitiveCopyWith<$Res> get tuesday;
 }
 
 /// @nodoc
@@ -345,6 +356,13 @@ class __$TuesdayChangedCopyWithImpl<$Res>
           : tuesday // ignore: cast_nullable_to_non_nullable
               as DayPrimitive,
     ));
+  }
+
+  @override
+  $DayPrimitiveCopyWith<$Res> get tuesday {
+    return $DayPrimitiveCopyWith<$Res>(_value.tuesday, (value) {
+      return _then(_value.copyWith(tuesday: value));
+    });
   }
 }
 
@@ -486,6 +504,8 @@ abstract class _$WednesdayChangedCopyWith<$Res> {
           _WednesdayChanged value, $Res Function(_WednesdayChanged) then) =
       __$WednesdayChangedCopyWithImpl<$Res>;
   $Res call({DayPrimitive wednesday});
+
+  $DayPrimitiveCopyWith<$Res> get wednesday;
 }
 
 /// @nodoc
@@ -509,6 +529,13 @@ class __$WednesdayChangedCopyWithImpl<$Res>
           : wednesday // ignore: cast_nullable_to_non_nullable
               as DayPrimitive,
     ));
+  }
+
+  @override
+  $DayPrimitiveCopyWith<$Res> get wednesday {
+    return $DayPrimitiveCopyWith<$Res>(_value.wednesday, (value) {
+      return _then(_value.copyWith(wednesday: value));
+    });
   }
 }
 
@@ -650,6 +677,8 @@ abstract class _$ThursdayChangedCopyWith<$Res> {
           _ThursdayChanged value, $Res Function(_ThursdayChanged) then) =
       __$ThursdayChangedCopyWithImpl<$Res>;
   $Res call({DayPrimitive thursday});
+
+  $DayPrimitiveCopyWith<$Res> get thursday;
 }
 
 /// @nodoc
@@ -673,6 +702,13 @@ class __$ThursdayChangedCopyWithImpl<$Res>
           : thursday // ignore: cast_nullable_to_non_nullable
               as DayPrimitive,
     ));
+  }
+
+  @override
+  $DayPrimitiveCopyWith<$Res> get thursday {
+    return $DayPrimitiveCopyWith<$Res>(_value.thursday, (value) {
+      return _then(_value.copyWith(thursday: value));
+    });
   }
 }
 
@@ -814,6 +850,8 @@ abstract class _$FridayChangedCopyWith<$Res> {
           _FridayChanged value, $Res Function(_FridayChanged) then) =
       __$FridayChangedCopyWithImpl<$Res>;
   $Res call({DayPrimitive friday});
+
+  $DayPrimitiveCopyWith<$Res> get friday;
 }
 
 /// @nodoc
@@ -837,6 +875,13 @@ class __$FridayChangedCopyWithImpl<$Res>
           : friday // ignore: cast_nullable_to_non_nullable
               as DayPrimitive,
     ));
+  }
+
+  @override
+  $DayPrimitiveCopyWith<$Res> get friday {
+    return $DayPrimitiveCopyWith<$Res>(_value.friday, (value) {
+      return _then(_value.copyWith(friday: value));
+    });
   }
 }
 
@@ -978,6 +1023,8 @@ abstract class _$SaturdayChangedCopyWith<$Res> {
           _SaturdayChanged value, $Res Function(_SaturdayChanged) then) =
       __$SaturdayChangedCopyWithImpl<$Res>;
   $Res call({DayPrimitive saturday});
+
+  $DayPrimitiveCopyWith<$Res> get saturday;
 }
 
 /// @nodoc
@@ -1001,6 +1048,13 @@ class __$SaturdayChangedCopyWithImpl<$Res>
           : saturday // ignore: cast_nullable_to_non_nullable
               as DayPrimitive,
     ));
+  }
+
+  @override
+  $DayPrimitiveCopyWith<$Res> get saturday {
+    return $DayPrimitiveCopyWith<$Res>(_value.saturday, (value) {
+      return _then(_value.copyWith(saturday: value));
+    });
   }
 }
 
@@ -1142,6 +1196,8 @@ abstract class _$SundayChangedCopyWith<$Res> {
           _SundayChanged value, $Res Function(_SundayChanged) then) =
       __$SundayChangedCopyWithImpl<$Res>;
   $Res call({DayPrimitive sunday});
+
+  $DayPrimitiveCopyWith<$Res> get sunday;
 }
 
 /// @nodoc
@@ -1165,6 +1221,13 @@ class __$SundayChangedCopyWithImpl<$Res>
           : sunday // ignore: cast_nullable_to_non_nullable
               as DayPrimitive,
     ));
+  }
+
+  @override
+  $DayPrimitiveCopyWith<$Res> get sunday {
+    return $DayPrimitiveCopyWith<$Res>(_value.sunday, (value) {
+      return _then(_value.copyWith(sunday: value));
+    });
   }
 }
 
@@ -1304,11 +1367,10 @@ abstract class _SundayChanged implements ShopTimePickerEvent {
 class _$ShopTimePickerStateTearOff {
   const _$ShopTimePickerStateTearOff();
 
-  _ShopTimePickerState call(
-      {required Week week, required AutovalidateMode autovalidateMode}) {
+  _ShopTimePickerState call({required Week week, required bool showErrors}) {
     return _ShopTimePickerState(
       week: week,
-      autovalidateMode: autovalidateMode,
+      showErrors: showErrors,
     );
   }
 }
@@ -1319,7 +1381,7 @@ const $ShopTimePickerState = _$ShopTimePickerStateTearOff();
 /// @nodoc
 mixin _$ShopTimePickerState {
   Week get week => throw _privateConstructorUsedError;
-  AutovalidateMode get autovalidateMode => throw _privateConstructorUsedError;
+  bool get showErrors => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ShopTimePickerStateCopyWith<ShopTimePickerState> get copyWith =>
@@ -1331,7 +1393,9 @@ abstract class $ShopTimePickerStateCopyWith<$Res> {
   factory $ShopTimePickerStateCopyWith(
           ShopTimePickerState value, $Res Function(ShopTimePickerState) then) =
       _$ShopTimePickerStateCopyWithImpl<$Res>;
-  $Res call({Week week, AutovalidateMode autovalidateMode});
+  $Res call({Week week, bool showErrors});
+
+  $WeekCopyWith<$Res> get week;
 }
 
 /// @nodoc
@@ -1346,18 +1410,25 @@ class _$ShopTimePickerStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? week = freezed,
-    Object? autovalidateMode = freezed,
+    Object? showErrors = freezed,
   }) {
     return _then(_value.copyWith(
       week: week == freezed
           ? _value.week
           : week // ignore: cast_nullable_to_non_nullable
               as Week,
-      autovalidateMode: autovalidateMode == freezed
-          ? _value.autovalidateMode
-          : autovalidateMode // ignore: cast_nullable_to_non_nullable
-              as AutovalidateMode,
+      showErrors: showErrors == freezed
+          ? _value.showErrors
+          : showErrors // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
+  }
+
+  @override
+  $WeekCopyWith<$Res> get week {
+    return $WeekCopyWith<$Res>(_value.week, (value) {
+      return _then(_value.copyWith(week: value));
+    });
   }
 }
 
@@ -1368,7 +1439,10 @@ abstract class _$ShopTimePickerStateCopyWith<$Res>
           $Res Function(_ShopTimePickerState) then) =
       __$ShopTimePickerStateCopyWithImpl<$Res>;
   @override
-  $Res call({Week week, AutovalidateMode autovalidateMode});
+  $Res call({Week week, bool showErrors});
+
+  @override
+  $WeekCopyWith<$Res> get week;
 }
 
 /// @nodoc
@@ -1385,17 +1459,17 @@ class __$ShopTimePickerStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? week = freezed,
-    Object? autovalidateMode = freezed,
+    Object? showErrors = freezed,
   }) {
     return _then(_ShopTimePickerState(
       week: week == freezed
           ? _value.week
           : week // ignore: cast_nullable_to_non_nullable
               as Week,
-      autovalidateMode: autovalidateMode == freezed
-          ? _value.autovalidateMode
-          : autovalidateMode // ignore: cast_nullable_to_non_nullable
-              as AutovalidateMode,
+      showErrors: showErrors == freezed
+          ? _value.showErrors
+          : showErrors // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -1403,17 +1477,16 @@ class __$ShopTimePickerStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_ShopTimePickerState implements _ShopTimePickerState {
-  const _$_ShopTimePickerState(
-      {required this.week, required this.autovalidateMode});
+  const _$_ShopTimePickerState({required this.week, required this.showErrors});
 
   @override
   final Week week;
   @override
-  final AutovalidateMode autovalidateMode;
+  final bool showErrors;
 
   @override
   String toString() {
-    return 'ShopTimePickerState(week: $week, autovalidateMode: $autovalidateMode)';
+    return 'ShopTimePickerState(week: $week, showErrors: $showErrors)';
   }
 
   @override
@@ -1423,14 +1496,14 @@ class _$_ShopTimePickerState implements _ShopTimePickerState {
             other is _ShopTimePickerState &&
             const DeepCollectionEquality().equals(other.week, week) &&
             const DeepCollectionEquality()
-                .equals(other.autovalidateMode, autovalidateMode));
+                .equals(other.showErrors, showErrors));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(week),
-      const DeepCollectionEquality().hash(autovalidateMode));
+      const DeepCollectionEquality().hash(showErrors));
 
   @JsonKey(ignore: true)
   @override
@@ -1441,13 +1514,12 @@ class _$_ShopTimePickerState implements _ShopTimePickerState {
 
 abstract class _ShopTimePickerState implements ShopTimePickerState {
   const factory _ShopTimePickerState(
-      {required Week week,
-      required AutovalidateMode autovalidateMode}) = _$_ShopTimePickerState;
+      {required Week week, required bool showErrors}) = _$_ShopTimePickerState;
 
   @override
   Week get week;
   @override
-  AutovalidateMode get autovalidateMode;
+  bool get showErrors;
   @override
   @JsonKey(ignore: true)
   _$ShopTimePickerStateCopyWith<_ShopTimePickerState> get copyWith =>
