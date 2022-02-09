@@ -336,12 +336,13 @@ class __$TimeIntervalPrimitiveCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_TimeIntervalPrimitive implements _TimeIntervalPrimitive {
+class _$_TimeIntervalPrimitive extends _TimeIntervalPrimitive {
   const _$_TimeIntervalPrimitive(
       {required this.openingHour,
       required this.openingMinutes,
       required this.closingHour,
-      required this.closingMinutes});
+      required this.closingMinutes})
+      : super._();
 
   @override
   final int openingHour;
@@ -387,12 +388,13 @@ class _$_TimeIntervalPrimitive implements _TimeIntervalPrimitive {
           this, _$identity);
 }
 
-abstract class _TimeIntervalPrimitive implements TimeIntervalPrimitive {
+abstract class _TimeIntervalPrimitive extends TimeIntervalPrimitive {
   const factory _TimeIntervalPrimitive(
       {required int openingHour,
       required int openingMinutes,
       required int closingHour,
       required int closingMinutes}) = _$_TimeIntervalPrimitive;
+  const _TimeIntervalPrimitive._() : super._();
 
   @override
   int get openingHour;

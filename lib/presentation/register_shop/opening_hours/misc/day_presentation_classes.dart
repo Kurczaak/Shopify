@@ -36,10 +36,19 @@ abstract class DayPrimitive implements _$DayPrimitive {
         isOpen: day.isOpen,
         timeInterval: TimeIntervalPrimitive.fromDomain(day.openingInterval));
   }
+
+  Day toDomain() {
+    return Day(
+        day: dayFromString(day),
+        isOpen: isOpen,
+        openingInterval: timeInterval.toDomain());
+  }
 }
 
 @freezed
 abstract class TimeIntervalPrimitive implements _$TimeIntervalPrimitive {
+  const TimeIntervalPrimitive._();
+
   const factory TimeIntervalPrimitive({
     required int openingHour,
     required int openingMinutes,
@@ -69,5 +78,10 @@ abstract class TimeIntervalPrimitive implements _$TimeIntervalPrimitive {
       closingHour: timeInterval.getOrCrash()[1].getOrCrash().hours,
       closingMinutes: timeInterval.getOrCrash()[1].getOrCrash().minutes,
     );
+  }
+
+  TimeInterval toDomain() {
+    return TimeInterval(Hour.fromInt(openingHour, openingMinutes),
+        Hour.fromInt(closingHour, closingMinutes));
   }
 }
