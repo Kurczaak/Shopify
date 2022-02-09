@@ -17,12 +17,10 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$PrimitiveHourTearOff {
   const _$PrimitiveHourTearOff();
 
-  _PrimitiveHour call(
-      {required int hours, required int minutes, required bool am}) {
+  _PrimitiveHour call({required int hours, required int minutes}) {
     return _PrimitiveHour(
       hours: hours,
       minutes: minutes,
-      am: am,
     );
   }
 }
@@ -34,7 +32,6 @@ const $PrimitiveHour = _$PrimitiveHourTearOff();
 mixin _$PrimitiveHour {
   int get hours => throw _privateConstructorUsedError;
   int get minutes => throw _privateConstructorUsedError;
-  bool get am => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $PrimitiveHourCopyWith<PrimitiveHour> get copyWith =>
@@ -46,7 +43,7 @@ abstract class $PrimitiveHourCopyWith<$Res> {
   factory $PrimitiveHourCopyWith(
           PrimitiveHour value, $Res Function(PrimitiveHour) then) =
       _$PrimitiveHourCopyWithImpl<$Res>;
-  $Res call({int hours, int minutes, bool am});
+  $Res call({int hours, int minutes});
 }
 
 /// @nodoc
@@ -62,7 +59,6 @@ class _$PrimitiveHourCopyWithImpl<$Res>
   $Res call({
     Object? hours = freezed,
     Object? minutes = freezed,
-    Object? am = freezed,
   }) {
     return _then(_value.copyWith(
       hours: hours == freezed
@@ -73,10 +69,6 @@ class _$PrimitiveHourCopyWithImpl<$Res>
           ? _value.minutes
           : minutes // ignore: cast_nullable_to_non_nullable
               as int,
-      am: am == freezed
-          ? _value.am
-          : am // ignore: cast_nullable_to_non_nullable
-              as bool,
     ));
   }
 }
@@ -88,7 +80,7 @@ abstract class _$PrimitiveHourCopyWith<$Res>
           _PrimitiveHour value, $Res Function(_PrimitiveHour) then) =
       __$PrimitiveHourCopyWithImpl<$Res>;
   @override
-  $Res call({int hours, int minutes, bool am});
+  $Res call({int hours, int minutes});
 }
 
 /// @nodoc
@@ -106,7 +98,6 @@ class __$PrimitiveHourCopyWithImpl<$Res>
   $Res call({
     Object? hours = freezed,
     Object? minutes = freezed,
-    Object? am = freezed,
   }) {
     return _then(_PrimitiveHour(
       hours: hours == freezed
@@ -117,10 +108,6 @@ class __$PrimitiveHourCopyWithImpl<$Res>
           ? _value.minutes
           : minutes // ignore: cast_nullable_to_non_nullable
               as int,
-      am: am == freezed
-          ? _value.am
-          : am // ignore: cast_nullable_to_non_nullable
-              as bool,
     ));
   }
 }
@@ -128,16 +115,13 @@ class __$PrimitiveHourCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_PrimitiveHour extends _PrimitiveHour {
-  const _$_PrimitiveHour(
-      {required this.hours, required this.minutes, required this.am})
+  const _$_PrimitiveHour({required this.hours, required this.minutes})
       : super._();
 
   @override
   final int hours;
   @override
   final int minutes;
-  @override
-  final bool am;
 
   @override
   bool operator ==(dynamic other) {
@@ -145,16 +129,14 @@ class _$_PrimitiveHour extends _PrimitiveHour {
         (other.runtimeType == runtimeType &&
             other is _PrimitiveHour &&
             const DeepCollectionEquality().equals(other.hours, hours) &&
-            const DeepCollectionEquality().equals(other.minutes, minutes) &&
-            const DeepCollectionEquality().equals(other.am, am));
+            const DeepCollectionEquality().equals(other.minutes, minutes));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(hours),
-      const DeepCollectionEquality().hash(minutes),
-      const DeepCollectionEquality().hash(am));
+      const DeepCollectionEquality().hash(minutes));
 
   @JsonKey(ignore: true)
   @override
@@ -163,18 +145,14 @@ class _$_PrimitiveHour extends _PrimitiveHour {
 }
 
 abstract class _PrimitiveHour extends PrimitiveHour {
-  const factory _PrimitiveHour(
-      {required int hours,
-      required int minutes,
-      required bool am}) = _$_PrimitiveHour;
+  const factory _PrimitiveHour({required int hours, required int minutes}) =
+      _$_PrimitiveHour;
   const _PrimitiveHour._() : super._();
 
   @override
   int get hours;
   @override
   int get minutes;
-  @override
-  bool get am;
   @override
   @JsonKey(ignore: true)
   _$PrimitiveHourCopyWith<_PrimitiveHour> get copyWith =>

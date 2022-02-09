@@ -9,9 +9,11 @@ void main() {
     'should return none when calling failureOption if opening interval is valid',
     () async {
       // arrange
-      final invalidInterval = TimeInterval(Hour.am(8, 0), Hour.pm(8, 0));
+      final validInterval =
+          TimeInterval(Hour.fromInt(8, 0), Hour.fromInt(22, 0));
       // act
-      final day = Day.empty().copyWith(openingInterval: invalidInterval);
+      final day =
+          Day.empty(DayName.monday).copyWith(openingInterval: validInterval);
       // assert
       expect(day.failureOption, equals(none()));
     },
@@ -20,9 +22,11 @@ void main() {
     'should return some(failure) when calling failureOption if opening interval is invalid',
     () async {
       // arrange
-      final invalidInterval = TimeInterval(Hour.pm(8, 0), Hour.am(8, 0));
+      final invalidInterval =
+          TimeInterval(Hour.fromInt(10, 0), Hour.fromInt(8, 0));
       // act
-      final day = Day.empty().copyWith(openingInterval: invalidInterval);
+      final day =
+          Day.empty(DayName.monday).copyWith(openingInterval: invalidInterval);
       // assert
       expect(day.failureOption, isA<Some<ValueFailure>>());
     },

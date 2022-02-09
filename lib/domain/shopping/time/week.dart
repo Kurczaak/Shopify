@@ -8,15 +8,25 @@ part 'week.freezed.dart';
 @freezed
 abstract class Week with _$Week {
   const Week._();
-  const factory Week(
-    Day monday,
-    Day tuesday,
-    Day wednesday,
-    Day thursday,
-    Day friday,
-    Day saturday,
-    Day sunday,
-  ) = _Week;
+  const factory Week({
+    required Day monday,
+    required Day tuesday,
+    required Day wednesday,
+    required Day thursday,
+    required Day friday,
+    required Day saturday,
+    required Day sunday,
+  }) = _Week;
+
+  factory Week.empty() => Week(
+        monday: Day.empty(DayName.monday),
+        tuesday: Day.empty(DayName.tuesday),
+        wednesday: Day.empty(DayName.wednesday),
+        thursday: Day.empty(DayName.thursday),
+        friday: Day.empty(DayName.friday),
+        saturday: Day.empty(DayName.saturday),
+        sunday: Day.empty(DayName.sunday),
+      );
 
   Option<ValueFailure<dynamic>> get failureOption {
     return monday.failureOption.fold(

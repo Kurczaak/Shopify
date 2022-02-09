@@ -33,13 +33,13 @@ abstract class WeekDto with _$WeekDto {
 
   Week toDomain() {
     return Week(
-        monday.toDomain(),
-        tuesday.toDomain(),
-        wednesday.toDomain(),
-        thursday.toDomain(),
-        friday.toDomain(),
-        saturday.toDomain(),
-        sunday.toDomain());
+        monday: monday.toDomain(),
+        tuesday: tuesday.toDomain(),
+        wednesday: wednesday.toDomain(),
+        thursday: thursday.toDomain(),
+        friday: friday.toDomain(),
+        saturday: saturday.toDomain(),
+        sunday: sunday.toDomain());
   }
 }
 
@@ -75,10 +75,8 @@ abstract class TimeIntervalDto with _$TimeIntervalDto {
   const factory TimeIntervalDto({
     required int openingHour,
     required int openingMinutes,
-    required bool openingAm,
     required int closingHour,
     required int closingMinutes,
-    required bool closingAm,
   }) = _TimeIntervalDto;
 
   factory TimeIntervalDto.fromDomain(TimeInterval timeInterval) {
@@ -87,18 +85,14 @@ abstract class TimeIntervalDto with _$TimeIntervalDto {
     return TimeIntervalDto(
       openingHour: opening.hours,
       openingMinutes: opening.minutes,
-      openingAm: opening.am,
       closingHour: closing.hours,
       closingMinutes: closing.minutes,
-      closingAm: closing.am,
     );
   }
 
   TimeInterval toDomain() {
     return TimeInterval(
-        Hour(PrimitiveHour(
-            hours: openingHour, minutes: openingMinutes, am: openingAm)),
-        (Hour(PrimitiveHour(
-            hours: closingHour, minutes: closingMinutes, am: closingAm))));
+        Hour(PrimitiveHour(hours: openingHour, minutes: openingMinutes)),
+        (Hour(PrimitiveHour(hours: closingHour, minutes: closingMinutes))));
   }
 }

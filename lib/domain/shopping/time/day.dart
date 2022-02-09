@@ -25,11 +25,11 @@ abstract class Day with _$Day {
     required TimeInterval openingInterval,
   }) = _Day;
 
-  factory Day.empty() {
+  factory Day.empty(DayName day) {
     return Day(
-        day: DayName.monday,
+        day: day,
         isOpen: true,
-        openingInterval: TimeInterval(Hour.am(8, 0), Hour.pm(10, 0)));
+        openingInterval: TimeInterval(Hour.fromInt(8, 0), Hour.fromInt(10, 0)));
   }
 
   Option<ValueFailure<dynamic>> get failureOption {

@@ -8,7 +8,7 @@ import 'package:shopify_manager/domain/shopping/time/value_objects.dart';
 
 void main() {
   group('Hour', () {
-    final tPrimitiveHour = PrimitiveHour.am(hours: 11, minutes: 30);
+    const tPrimitiveHour = PrimitiveHour(hours: 11, minutes: 30);
     test(
       'should return a valid Hour when given correct data',
       () async {
@@ -40,8 +40,8 @@ void main() {
       'should return a correct TimeInterval',
       () async {
         // arrange
-        final openingHour = Hour.am(8, 0);
-        final closingHour = Hour.pm(8, 0);
+        final openingHour = Hour.fromInt(8, 0);
+        final closingHour = Hour.fromInt(22, 0);
         final list = KtList<Hour>.from([openingHour, closingHour]);
         // act
         final result = TimeInterval(openingHour, closingHour);
@@ -54,11 +54,11 @@ void main() {
       'should return a value failure given incorrect intervals',
       () async {
         // arrange
-        final openingHour = Hour.am(8, 0);
-        final closingHour = Hour.pm(8, 0);
-        final list = KtList<Hour>.from([closingHour, openingHour]);
+        final openingHour = Hour.fromInt(22, 0);
+        final closingHour = Hour.fromInt(8, 0);
+        final list = KtList<Hour>.from([openingHour, closingHour]);
         // act
-        final result = TimeInterval(closingHour, openingHour);
+        final result = TimeInterval(openingHour, closingHour);
         // assert
         expect(
             result.value,

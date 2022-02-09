@@ -13,14 +13,8 @@ class Hour extends ValueObject<PrimitiveHour> {
     return Hour._(hourValidator(input));
   }
 
-  factory Hour.am(int hours, int minutes) {
-    return Hour._(
-        hourValidator(PrimitiveHour(hours: hours, minutes: minutes, am: true)));
-  }
-  factory Hour.pm(int hours, int minutes) {
-    return Hour._(hourValidator(
-        PrimitiveHour(hours: hours, minutes: minutes, am: false)));
-  }
+  factory Hour.fromInt(int hours, int minutes) =>
+      Hour(PrimitiveHour(hours: hours, minutes: minutes));
 
   const Hour._(this.value);
 }

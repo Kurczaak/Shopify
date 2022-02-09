@@ -9,19 +9,26 @@ import 'package:shopify_manager/domain/shopping/time/value_objects.dart';
 import 'package:shopify_manager/domain/shopping/time/week.dart';
 
 void main() {
-  final monday = Day.empty().copyWith(day: DayName.monday);
-  final tuesday = Day.empty().copyWith(day: DayName.tuesday);
-  final wednesday = Day.empty().copyWith(day: DayName.wednesday);
-  final thursday = Day.empty().copyWith(day: DayName.thursday);
-  final friday = Day.empty().copyWith(day: DayName.friday);
-  final saturday = Day.empty().copyWith(day: DayName.saturday);
-  final sunday = Day.empty().copyWith(day: DayName.sunday);
+  final monday = Day.empty(DayName.monday);
+  final tuesday = Day.empty(DayName.tuesday);
+  final wednesday = Day.empty(DayName.wednesday);
+  final thursday = Day.empty(DayName.thursday);
+  final friday = Day.empty(DayName.friday);
+  final saturday = Day.empty(DayName.saturday);
+  final sunday = Day.empty(DayName.sunday);
   test(
     'should return none when calling failureOption with correct data',
     () async {
       // arrange
-      final week =
-          Week(monday, tuesday, wednesday, thursday, friday, saturday, sunday);
+      final week = Week(
+        monday: monday,
+        tuesday: tuesday,
+        wednesday: wednesday,
+        thursday: thursday,
+        friday: friday,
+        saturday: saturday,
+        sunday: sunday,
+      );
       // act
       final result = week.failureOption;
       // assert
@@ -31,8 +38,8 @@ void main() {
 
   group('failureOption failures', () {
     // arrange
-    final openingHour = Hour.pm(9, 0);
-    final closingHour = Hour.am(9, 0);
+    final openingHour = Hour.fromInt(22, 0);
+    final closingHour = Hour.fromInt(9, 0);
     final invalidIntervalList = KtList<Hour>.from([openingHour, closingHour]);
     final invalidInterval = TimeInterval(openingHour, closingHour);
     test(
@@ -40,13 +47,13 @@ void main() {
       () async {
         // arrange
         final week = Week(
-          monday.copyWith(openingInterval: invalidInterval),
-          tuesday,
-          wednesday,
-          thursday,
-          friday,
-          saturday,
-          sunday,
+          monday: monday.copyWith(openingInterval: invalidInterval),
+          tuesday: tuesday,
+          wednesday: wednesday,
+          thursday: thursday,
+          friday: friday,
+          saturday: saturday,
+          sunday: sunday,
         );
         // act
         final result = week.failureOption;
@@ -63,13 +70,13 @@ void main() {
       () async {
         // arrange
         final week = Week(
-          monday,
-          tuesday.copyWith(openingInterval: invalidInterval),
-          wednesday,
-          thursday,
-          friday,
-          saturday,
-          sunday,
+          monday: monday,
+          tuesday: tuesday.copyWith(openingInterval: invalidInterval),
+          wednesday: wednesday,
+          thursday: thursday,
+          friday: friday,
+          saturday: saturday,
+          sunday: sunday,
         );
         // act
         final result = week.failureOption;
@@ -85,13 +92,13 @@ void main() {
       () async {
         // arrange
         final week = Week(
-          monday,
-          tuesday,
-          wednesday.copyWith(openingInterval: invalidInterval),
-          thursday,
-          friday,
-          saturday,
-          sunday,
+          monday: monday,
+          tuesday: tuesday,
+          wednesday: wednesday.copyWith(openingInterval: invalidInterval),
+          thursday: thursday,
+          friday: friday,
+          saturday: saturday,
+          sunday: sunday,
         );
         // act
         final result = week.failureOption;
@@ -107,13 +114,13 @@ void main() {
       () async {
         // arrange
         final week = Week(
-          monday,
-          tuesday,
-          wednesday,
-          thursday.copyWith(openingInterval: invalidInterval),
-          friday,
-          saturday,
-          sunday,
+          monday: monday,
+          tuesday: tuesday,
+          wednesday: wednesday,
+          thursday: thursday.copyWith(openingInterval: invalidInterval),
+          friday: friday,
+          saturday: saturday,
+          sunday: sunday,
         );
         // act
         final result = week.failureOption;
@@ -129,13 +136,13 @@ void main() {
       () async {
         // arrange
         final week = Week(
-          monday,
-          tuesday,
-          wednesday,
-          thursday,
-          friday.copyWith(openingInterval: invalidInterval),
-          saturday,
-          sunday,
+          monday: monday,
+          tuesday: tuesday,
+          wednesday: wednesday,
+          thursday: thursday,
+          friday: friday.copyWith(openingInterval: invalidInterval),
+          saturday: saturday,
+          sunday: sunday,
         );
         // act
         final result = week.failureOption;
@@ -151,13 +158,13 @@ void main() {
       () async {
         // arrange
         final week = Week(
-          monday,
-          tuesday,
-          wednesday,
-          thursday,
-          friday,
-          saturday.copyWith(openingInterval: invalidInterval),
-          sunday,
+          monday: monday,
+          tuesday: tuesday,
+          wednesday: wednesday,
+          thursday: thursday,
+          friday: friday,
+          saturday: saturday.copyWith(openingInterval: invalidInterval),
+          sunday: sunday,
         );
         // act
         final result = week.failureOption;
@@ -174,13 +181,13 @@ void main() {
       () async {
         // arrange
         final week = Week(
-            monday,
-            tuesday,
-            wednesday,
-            thursday,
-            friday,
-            saturday,
-            sunday.copyWith(
+            monday: monday,
+            tuesday: tuesday,
+            wednesday: wednesday,
+            thursday: thursday,
+            friday: friday,
+            saturday: saturday,
+            sunday: sunday.copyWith(
               openingInterval: invalidInterval,
             ));
         // act

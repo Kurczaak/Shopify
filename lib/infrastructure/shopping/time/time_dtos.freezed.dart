@@ -540,17 +540,13 @@ class _$TimeIntervalDtoTearOff {
   _TimeIntervalDto call(
       {required int openingHour,
       required int openingMinutes,
-      required bool openingAm,
       required int closingHour,
-      required int closingMinutes,
-      required bool closingAm}) {
+      required int closingMinutes}) {
     return _TimeIntervalDto(
       openingHour: openingHour,
       openingMinutes: openingMinutes,
-      openingAm: openingAm,
       closingHour: closingHour,
       closingMinutes: closingMinutes,
-      closingAm: closingAm,
     );
   }
 }
@@ -562,10 +558,8 @@ const $TimeIntervalDto = _$TimeIntervalDtoTearOff();
 mixin _$TimeIntervalDto {
   int get openingHour => throw _privateConstructorUsedError;
   int get openingMinutes => throw _privateConstructorUsedError;
-  bool get openingAm => throw _privateConstructorUsedError;
   int get closingHour => throw _privateConstructorUsedError;
   int get closingMinutes => throw _privateConstructorUsedError;
-  bool get closingAm => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $TimeIntervalDtoCopyWith<TimeIntervalDto> get copyWith =>
@@ -580,10 +574,8 @@ abstract class $TimeIntervalDtoCopyWith<$Res> {
   $Res call(
       {int openingHour,
       int openingMinutes,
-      bool openingAm,
       int closingHour,
-      int closingMinutes,
-      bool closingAm});
+      int closingMinutes});
 }
 
 /// @nodoc
@@ -599,10 +591,8 @@ class _$TimeIntervalDtoCopyWithImpl<$Res>
   $Res call({
     Object? openingHour = freezed,
     Object? openingMinutes = freezed,
-    Object? openingAm = freezed,
     Object? closingHour = freezed,
     Object? closingMinutes = freezed,
-    Object? closingAm = freezed,
   }) {
     return _then(_value.copyWith(
       openingHour: openingHour == freezed
@@ -613,10 +603,6 @@ class _$TimeIntervalDtoCopyWithImpl<$Res>
           ? _value.openingMinutes
           : openingMinutes // ignore: cast_nullable_to_non_nullable
               as int,
-      openingAm: openingAm == freezed
-          ? _value.openingAm
-          : openingAm // ignore: cast_nullable_to_non_nullable
-              as bool,
       closingHour: closingHour == freezed
           ? _value.closingHour
           : closingHour // ignore: cast_nullable_to_non_nullable
@@ -625,10 +611,6 @@ class _$TimeIntervalDtoCopyWithImpl<$Res>
           ? _value.closingMinutes
           : closingMinutes // ignore: cast_nullable_to_non_nullable
               as int,
-      closingAm: closingAm == freezed
-          ? _value.closingAm
-          : closingAm // ignore: cast_nullable_to_non_nullable
-              as bool,
     ));
   }
 }
@@ -643,10 +625,8 @@ abstract class _$TimeIntervalDtoCopyWith<$Res>
   $Res call(
       {int openingHour,
       int openingMinutes,
-      bool openingAm,
       int closingHour,
-      int closingMinutes,
-      bool closingAm});
+      int closingMinutes});
 }
 
 /// @nodoc
@@ -664,10 +644,8 @@ class __$TimeIntervalDtoCopyWithImpl<$Res>
   $Res call({
     Object? openingHour = freezed,
     Object? openingMinutes = freezed,
-    Object? openingAm = freezed,
     Object? closingHour = freezed,
     Object? closingMinutes = freezed,
-    Object? closingAm = freezed,
   }) {
     return _then(_TimeIntervalDto(
       openingHour: openingHour == freezed
@@ -678,10 +656,6 @@ class __$TimeIntervalDtoCopyWithImpl<$Res>
           ? _value.openingMinutes
           : openingMinutes // ignore: cast_nullable_to_non_nullable
               as int,
-      openingAm: openingAm == freezed
-          ? _value.openingAm
-          : openingAm // ignore: cast_nullable_to_non_nullable
-              as bool,
       closingHour: closingHour == freezed
           ? _value.closingHour
           : closingHour // ignore: cast_nullable_to_non_nullable
@@ -690,10 +664,6 @@ class __$TimeIntervalDtoCopyWithImpl<$Res>
           ? _value.closingMinutes
           : closingMinutes // ignore: cast_nullable_to_non_nullable
               as int,
-      closingAm: closingAm == freezed
-          ? _value.closingAm
-          : closingAm // ignore: cast_nullable_to_non_nullable
-              as bool,
     ));
   }
 }
@@ -704,10 +674,8 @@ class _$_TimeIntervalDto extends _TimeIntervalDto {
   const _$_TimeIntervalDto(
       {required this.openingHour,
       required this.openingMinutes,
-      required this.openingAm,
       required this.closingHour,
-      required this.closingMinutes,
-      required this.closingAm})
+      required this.closingMinutes})
       : super._();
 
   @override
@@ -715,17 +683,13 @@ class _$_TimeIntervalDto extends _TimeIntervalDto {
   @override
   final int openingMinutes;
   @override
-  final bool openingAm;
-  @override
   final int closingHour;
   @override
   final int closingMinutes;
-  @override
-  final bool closingAm;
 
   @override
   String toString() {
-    return 'TimeIntervalDto(openingHour: $openingHour, openingMinutes: $openingMinutes, openingAm: $openingAm, closingHour: $closingHour, closingMinutes: $closingMinutes, closingAm: $closingAm)';
+    return 'TimeIntervalDto(openingHour: $openingHour, openingMinutes: $openingMinutes, closingHour: $closingHour, closingMinutes: $closingMinutes)';
   }
 
   @override
@@ -737,12 +701,10 @@ class _$_TimeIntervalDto extends _TimeIntervalDto {
                 .equals(other.openingHour, openingHour) &&
             const DeepCollectionEquality()
                 .equals(other.openingMinutes, openingMinutes) &&
-            const DeepCollectionEquality().equals(other.openingAm, openingAm) &&
             const DeepCollectionEquality()
                 .equals(other.closingHour, closingHour) &&
             const DeepCollectionEquality()
-                .equals(other.closingMinutes, closingMinutes) &&
-            const DeepCollectionEquality().equals(other.closingAm, closingAm));
+                .equals(other.closingMinutes, closingMinutes));
   }
 
   @override
@@ -750,10 +712,8 @@ class _$_TimeIntervalDto extends _TimeIntervalDto {
       runtimeType,
       const DeepCollectionEquality().hash(openingHour),
       const DeepCollectionEquality().hash(openingMinutes),
-      const DeepCollectionEquality().hash(openingAm),
       const DeepCollectionEquality().hash(closingHour),
-      const DeepCollectionEquality().hash(closingMinutes),
-      const DeepCollectionEquality().hash(closingAm));
+      const DeepCollectionEquality().hash(closingMinutes));
 
   @JsonKey(ignore: true)
   @override
@@ -765,10 +725,8 @@ abstract class _TimeIntervalDto extends TimeIntervalDto {
   const factory _TimeIntervalDto(
       {required int openingHour,
       required int openingMinutes,
-      required bool openingAm,
       required int closingHour,
-      required int closingMinutes,
-      required bool closingAm}) = _$_TimeIntervalDto;
+      required int closingMinutes}) = _$_TimeIntervalDto;
   const _TimeIntervalDto._() : super._();
 
   @override
@@ -776,13 +734,9 @@ abstract class _TimeIntervalDto extends TimeIntervalDto {
   @override
   int get openingMinutes;
   @override
-  bool get openingAm;
-  @override
   int get closingHour;
   @override
   int get closingMinutes;
-  @override
-  bool get closingAm;
   @override
   @JsonKey(ignore: true)
   _$TimeIntervalDtoCopyWith<_TimeIntervalDto> get copyWith =>

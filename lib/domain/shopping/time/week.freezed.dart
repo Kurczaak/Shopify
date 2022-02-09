@@ -17,16 +17,22 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$WeekTearOff {
   const _$WeekTearOff();
 
-  _Week call(Day monday, Day tuesday, Day wednesday, Day thursday, Day friday,
-      Day saturday, Day sunday) {
+  _Week call(
+      {required Day monday,
+      required Day tuesday,
+      required Day wednesday,
+      required Day thursday,
+      required Day friday,
+      required Day saturday,
+      required Day sunday}) {
     return _Week(
-      monday,
-      tuesday,
-      wednesday,
-      thursday,
-      friday,
-      saturday,
-      sunday,
+      monday: monday,
+      tuesday: tuesday,
+      wednesday: wednesday,
+      thursday: thursday,
+      friday: friday,
+      saturday: saturday,
+      sunday: sunday,
     );
   }
 }
@@ -220,31 +226,31 @@ class __$WeekCopyWithImpl<$Res> extends _$WeekCopyWithImpl<$Res>
     Object? sunday = freezed,
   }) {
     return _then(_Week(
-      monday == freezed
+      monday: monday == freezed
           ? _value.monday
           : monday // ignore: cast_nullable_to_non_nullable
               as Day,
-      tuesday == freezed
+      tuesday: tuesday == freezed
           ? _value.tuesday
           : tuesday // ignore: cast_nullable_to_non_nullable
               as Day,
-      wednesday == freezed
+      wednesday: wednesday == freezed
           ? _value.wednesday
           : wednesday // ignore: cast_nullable_to_non_nullable
               as Day,
-      thursday == freezed
+      thursday: thursday == freezed
           ? _value.thursday
           : thursday // ignore: cast_nullable_to_non_nullable
               as Day,
-      friday == freezed
+      friday: friday == freezed
           ? _value.friday
           : friday // ignore: cast_nullable_to_non_nullable
               as Day,
-      saturday == freezed
+      saturday: saturday == freezed
           ? _value.saturday
           : saturday // ignore: cast_nullable_to_non_nullable
               as Day,
-      sunday == freezed
+      sunday: sunday == freezed
           ? _value.sunday
           : sunday // ignore: cast_nullable_to_non_nullable
               as Day,
@@ -255,8 +261,14 @@ class __$WeekCopyWithImpl<$Res> extends _$WeekCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Week extends _Week {
-  const _$_Week(this.monday, this.tuesday, this.wednesday, this.thursday,
-      this.friday, this.saturday, this.sunday)
+  const _$_Week(
+      {required this.monday,
+      required this.tuesday,
+      required this.wednesday,
+      required this.thursday,
+      required this.friday,
+      required this.saturday,
+      required this.sunday})
       : super._();
 
   @override
@@ -311,8 +323,14 @@ class _$_Week extends _Week {
 }
 
 abstract class _Week extends Week {
-  const factory _Week(Day monday, Day tuesday, Day wednesday, Day thursday,
-      Day friday, Day saturday, Day sunday) = _$_Week;
+  const factory _Week(
+      {required Day monday,
+      required Day tuesday,
+      required Day wednesday,
+      required Day thursday,
+      required Day friday,
+      required Day saturday,
+      required Day sunday}) = _$_Week;
   const _Week._() : super._();
 
   @override
