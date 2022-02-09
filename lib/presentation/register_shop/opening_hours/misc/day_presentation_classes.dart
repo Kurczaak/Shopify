@@ -1,4 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:shopify_manager/domain/core/errors.dart';
+import 'package:shopify_manager/domain/core/failures.dart';
+import 'package:shopify_manager/domain/shopping/time/day.dart';
+import 'package:shopify_manager/domain/shopping/time/value_objects.dart';
 
 part 'day_presentation_classes.freezed.dart';
 
@@ -25,6 +29,13 @@ abstract class DayPrimitive implements _$DayPrimitive {
   factory DayPrimitive.friday() => DayPrimitive.empty('Friday');
   factory DayPrimitive.saturday() => DayPrimitive.empty('Saturday');
   factory DayPrimitive.sunday() => DayPrimitive.empty('Sunday');
+
+  factory DayPrimitive.fromDomain(Day day) {
+    return DayPrimitive(
+        day: day.day.name,
+        isOpen: day.isOpen,
+        timeInterval: TimeIntervalPrimitive.fromDomain(day.openingInterval));
+  }
 }
 
 @freezed
@@ -51,4 +62,12 @@ abstract class TimeIntervalPrimitive implements _$TimeIntervalPrimitive {
         closingHour: closingHour,
         closingMinutes: 0,
       );
+  factory TimeIntervalPrimitive.fromDomain(TimeInterval timeInterval) {
+    return TimeIntervalPrimitive(
+      openingHour: timeInterval.getOrCrash()[0].getOrCrash().hours,
+      openingMinutes: timeInterval.getOrCrash()[0].getOrCrash().minutes,
+      closingHour: timeInterval.getOrCrash()[1].getOrCrash().hours,
+      closingMinutes: timeInterval.getOrCrash()[1].getOrCrash().minutes,
+    );
+  }
 }

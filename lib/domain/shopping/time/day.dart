@@ -41,40 +41,40 @@ extension Stringify on DayName {
   String get name {
     switch (this) {
       case DayName.monday:
-        return 'monday';
+        return 'Monday';
       case DayName.tuesday:
-        return 'tuesday';
+        return 'Tuesday';
       case DayName.wednesday:
-        return 'wednesday';
+        return 'Wednesday';
       case DayName.thursday:
-        return 'thursday';
+        return 'Thursday';
       case DayName.friday:
-        return 'friday';
+        return 'Friday';
       case DayName.saturday:
-        return 'saturday';
+        return 'Saturday';
       case DayName.sunday:
-        return 'sunday';
+        return 'Sunday';
       default:
-        return 'monday';
+        return 'Monday';
     }
   }
 }
 
 DayName dayFromString(String nameStr) {
   switch (nameStr) {
-    case 'monday':
+    case 'Monday':
       return DayName.monday;
-    case 'tuesday':
+    case 'Tuesday':
       return DayName.tuesday;
-    case 'wednesday':
+    case 'Wednesday':
       return DayName.wednesday;
-    case 'thursday':
+    case 'Thursday':
       return DayName.thursday;
-    case 'friday':
+    case 'Friday':
       return DayName.friday;
-    case 'saturday':
+    case 'Saturday':
       return DayName.saturday;
-    case 'sunday':
+    case 'Sunday':
       return DayName.sunday;
     default:
       return DayName.monday;
