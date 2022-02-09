@@ -1,10 +1,14 @@
 part of 'shop_time_picker_bloc.dart';
 
-abstract class ShopTimePickerState extends Equatable {
-  const ShopTimePickerState();
-  
-  @override
-  List<Object> get props => [];
-}
+@freezed
+abstract class ShopTimePickerState with _$ShopTimePickerState {
+  const factory ShopTimePickerState({
+    required Week week,
+    required AutovalidateMode autovalidateMode,
+  }) = _ShopTimePickerState;
 
-class ShopTimePickerInitial extends ShopTimePickerState {}
+  factory ShopTimePickerState.initial() => ShopTimePickerState(
+        week: Week.empty(),
+        autovalidateMode: AutovalidateMode.disabled,
+      );
+}
