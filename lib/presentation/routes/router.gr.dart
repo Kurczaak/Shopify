@@ -14,7 +14,7 @@ import 'package:auto_route/auto_route.dart' as _i7;
 import 'package:flutter/material.dart' as _i8;
 
 import '../core/debug_page.dart' as _i1;
-import '../register_shop/opening_hours_page.dart' as _i6;
+import '../register_shop/opening_hours/opening_hours_page.dart' as _i6;
 import '../register_shop/shop_details_page.dart' as _i4;
 import '../sign_in/sign_in_page.dart' as _i3;
 import '../sign_in/sign_up_page.dart' as _i5;
