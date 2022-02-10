@@ -59,6 +59,7 @@ dependencies:
   responsive_framework: ^0.1.5
   rxdart: ^0.27.3
   uuid: ^3.0.5
+  dart_geohash: ^2.0.2
 
 dev_dependencies:
   auto_route_generator: ^3.2.1
