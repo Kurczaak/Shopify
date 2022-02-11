@@ -57,7 +57,8 @@ void main() async {
 
   final shopDoc =
       await instance.collection('shops').doc(shopDocumentIdStr).get();
-  final shopDto = ShopDto.fromFirestore(shopDoc);
+  //TODO Maybe remove
+  //final shopDto = ShopDto.fromFirestore(shopDoc);
 
   group('fromDomain', () {
     test(

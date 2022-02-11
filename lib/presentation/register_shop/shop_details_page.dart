@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loading_overlay/loading_overlay.dart';
 import 'package:shopify_manager/application/shopping/shop_form/shop_form_bloc.dart';
 import 'package:shopify_manager/injection.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shopify_manager/presentation/core/widgets/process_appbar.dart';
 
 class ShopDetailsPage extends StatelessWidget {

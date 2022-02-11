@@ -1,7 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:kt_dart/kt.dart';
-import 'package:meta/meta.dart';
 import 'package:shopify_manager/domain/core/failures.dart';
 import 'package:shopify_manager/domain/shopping/failures.dart';
 import 'package:shopify_manager/domain/shopping/time/day.dart';

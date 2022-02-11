@@ -3,7 +3,6 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:meta/meta.dart';
 
 import 'package:shopify_manager/application/shopping/shop_time_picker/shop_time_picker_bloc.dart';
-import 'package:bloc_test/bloc_test.dart';
 import 'package:shopify_manager/domain/shopping/time/day.dart';
 import 'package:shopify_manager/domain/shopping/time/value_objects.dart';
 import 'package:shopify_manager/domain/shopping/time/week.dart';

@@ -43,6 +43,6 @@ abstract class Address with _$Address {
     }
     final cityStr = city.getOrCrash();
     final postalCodeStr = postalCode.getOrCrash();
-    return '$streetStr $streetNumberStr$apartmentNumberStr, $postalCode $cityStr';
+    return '$streetStr $streetNumberStr$apartmentNumberStr, $postalCodeStr $cityStr';
   }
 }

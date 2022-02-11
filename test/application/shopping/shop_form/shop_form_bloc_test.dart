@@ -5,7 +5,6 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:shopify_manager/domain/core/address.dart';
-import 'package:shopify_manager/domain/core/failures.dart';
 import 'package:shopify_manager/domain/core/value_objects.dart';
 import 'package:shopify_manager/domain/shopping/i_shop_repository.dart';
 import 'package:shopify_manager/domain/shopping/shop.dart';
