@@ -32,4 +32,17 @@ abstract class Address with _$Address {
             .andThen(city.value.andThen(postalCode.value))))
         .fold((f) => some(f), (_) => none());
   }
+
+  @override
+  String toString() {
+    final streetStr = streetName.getOrCrash();
+    final streetNumberStr = streetNumber.getOrCrash();
+    String apartmentNumberStr = apartmentNumber.getOrCrash();
+    if (apartmentNumberStr != '') {
+      apartmentNumberStr = "\\" + apartmentNumberStr;
+    }
+    final cityStr = city.getOrCrash();
+    final postalCodeStr = postalCode.getOrCrash();
+    return '$streetStr $streetNumberStr$apartmentNumberStr, $postalCode $cityStr';
+  }
 }

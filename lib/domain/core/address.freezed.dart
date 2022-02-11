@@ -179,11 +179,6 @@ class _$_Address extends _Address {
   final PostalCode postalCode;
 
   @override
-  String toString() {
-    return 'Address(streetName: $streetName, streetNumber: $streetNumber, apartmentNumber: $apartmentNumber, city: $city, postalCode: $postalCode)';
-  }
-
-  @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
