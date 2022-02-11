@@ -37,7 +37,7 @@ class ShopDetailsPage extends StatelessWidget {
             opacity: .3,
             color: Colors.black,
             isLoading: state.isSaving,
-            child: (Padding(
+            child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 28),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -145,7 +145,7 @@ class ShopDetailsPage extends StatelessWidget {
                   ),
                 ],
               ),
-            )),
+            ),
           ),
         ),
       ),

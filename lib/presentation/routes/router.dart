@@ -12,6 +12,7 @@ import 'package:shopify_manager/presentation/splash/splash_page.dart';
     //TODO IMPLEMENT DEBUG PAGE LOL
     AutoRoute(
       page: DebugPage,
+      initial: true,
     ),
     AutoRoute(
       page: SplashPage,
@@ -28,7 +29,6 @@ import 'package:shopify_manager/presentation/splash/splash_page.dart';
     ),
     AutoRoute(
       page: OpeningHoursPage,
-      initial: true,
     )
   ],
 )

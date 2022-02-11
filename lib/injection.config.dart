@@ -10,16 +10,18 @@ import 'package:get_it/get_it.dart' as _i1;
 import 'package:google_sign_in/google_sign_in.dart' as _i5;
 import 'package:injectable/injectable.dart' as _i2;
 
-import 'application/auth/auth_bloc.dart' as _i14;
-import 'application/auth/sign_in_form/sign_in_form_bloc.dart' as _i13;
+import 'application/auth/auth_bloc.dart' as _i15;
+import 'application/auth/sign_in_form/sign_in_form_bloc.dart' as _i14;
 import 'application/shopping/shop_form/shop_form_bloc.dart' as _i10;
-import 'application/shopping/shopping_actor/shopping_actor_bloc.dart' as _i11;
+import 'application/shopping/shop_location_picker/shop_location_picker_bloc.dart'
+    as _i11;
+import 'application/shopping/shopping_actor/shopping_actor_bloc.dart' as _i12;
 import 'application/shopping/shopping_watcher/shopping_watcher_bloc.dart'
-    as _i12;
+    as _i13;
 import 'domain/auth/i_auth_facade.dart' as _i6;
 import 'domain/shopping/i_shop_repository.dart' as _i8;
 import 'infrastructure/auth/firebase_auth_facade.dart' as _i7;
-import 'infrastructure/core/firebase_injectable_module.dart' as _i15;
+import 'infrastructure/core/firebase_injectable_module.dart' as _i16;
 import 'infrastructure/shopping/shop_repository.dart'
     as _i9; // ignore_for_file: unnecessary_lambdas
 
@@ -41,14 +43,15 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => _i9.ShopRepository(get<_i4.FirebaseFirestore>()));
   gh.factory<_i10.ShopFormBloc>(
       () => _i10.ShopFormBloc(get<_i8.IShopRepository>()));
-  gh.factory<_i11.ShoppingActorBloc>(
-      () => _i11.ShoppingActorBloc(get<_i8.IShopRepository>()));
-  gh.factory<_i12.ShoppingWatcherBloc>(
-      () => _i12.ShoppingWatcherBloc(get<_i8.IShopRepository>()));
-  gh.factory<_i13.SignInFormBloc>(
-      () => _i13.SignInFormBloc(get<_i6.IAuthFacade>()));
-  gh.factory<_i14.AuthBloc>(() => _i14.AuthBloc(get<_i6.IAuthFacade>()));
+  gh.factory<_i11.ShopLocationPickerBloc>(() => _i11.ShopLocationPickerBloc());
+  gh.factory<_i12.ShoppingActorBloc>(
+      () => _i12.ShoppingActorBloc(get<_i8.IShopRepository>()));
+  gh.factory<_i13.ShoppingWatcherBloc>(
+      () => _i13.ShoppingWatcherBloc(get<_i8.IShopRepository>()));
+  gh.factory<_i14.SignInFormBloc>(
+      () => _i14.SignInFormBloc(get<_i6.IAuthFacade>()));
+  gh.factory<_i15.AuthBloc>(() => _i15.AuthBloc(get<_i6.IAuthFacade>()));
   return get;
 }
 
-class _$FirebaseInjectableModule extends _i15.FirebaseInjectableModule {}
+class _$FirebaseInjectableModule extends _i16.FirebaseInjectableModule {}

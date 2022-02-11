@@ -123,9 +123,10 @@ class __$LocationCopyWithImpl<$Res> extends _$LocationCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Location implements _Location {
+class _$_Location extends _Location {
   const _$_Location(
-      {required this.latitude, required this.longitude, required this.geoHash});
+      {required this.latitude, required this.longitude, required this.geoHash})
+      : super._();
 
   @override
   final double latitude;
@@ -162,11 +163,12 @@ class _$_Location implements _Location {
       __$LocationCopyWithImpl<_Location>(this, _$identity);
 }
 
-abstract class _Location implements Location {
+abstract class _Location extends Location {
   const factory _Location(
       {required double latitude,
       required double longitude,
       required String geoHash}) = _$_Location;
+  const _Location._() : super._();
 
   @override
   double get latitude;

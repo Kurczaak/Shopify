@@ -4,7 +4,9 @@ import 'package:shopify_manager/domain/core/value_transformers.dart';
 part 'location.freezed.dart';
 
 @freezed
-abstract class Location with _$Location {
+abstract class Location implements _$Location {
+  const Location._();
+
   const factory Location({
     required double latitude,
     required double longitude,
