@@ -31,6 +31,10 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>This app needs access to location when registering a new shop.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Needs permission to photo library when registering a new shop to add its logo and when registering new products</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Needs permission to camera when registering new products in order to add their photos</string>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
