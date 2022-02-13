@@ -8,7 +8,7 @@ import 'package:shopify_manager/domain/shopping/shop.dart';
 import 'package:shopify_manager/domain/shopping/value_objects.dart';
 import 'package:shopify_manager/infrastructure/core/address_dto.dart';
 import 'package:shopify_manager/infrastructure/shopping/shop_dtos.dart';
-import 'fixture_reader.dart';
+import '../../utils/fixture_reader.dart';
 import 'dart:convert';
 import 'package:fake_cloud_firestore/fake_cloud_firestore.dart';
 
