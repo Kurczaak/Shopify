@@ -52,6 +52,7 @@ dependencies:
   google_sign_in: ^5.2.1
   google_sign_in_web: ^0.10.0+3
   image_picker: ^0.8.4+8
+  image_size_getter: ^1.0.0
   injectable: ^1.5.3
   json_annotation: ^4.4.0
   kt_dart: ^0.10.0
@@ -89,6 +90,8 @@ flutter:
     - images/undraw_gone_shopping.png
     - images/logo.png
     - images/test/test_logo.jpg
+    - images/test/too_small_logo.jpg
+    - images/test/too_big_logo.jpg
     # An image asset can refer to one or more resolution-specific "variants", see
     # https://flutter.dev/assets-and-images/#resolution-aware.
     # For details regarding adding assets from package dependencies, see

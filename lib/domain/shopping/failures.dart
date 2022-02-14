@@ -36,4 +36,13 @@ class ShoppingValueFailure<T> with _$ShoppingValueFailure<T> {
       {required T failedValue, required int minLength}) = ListTooShort<T>;
   const factory ShoppingValueFailure.emptyList(
       {required T failedValue, required int minLength}) = EmptyList<T>;
+  const factory ShoppingValueFailure.imageTooBig(
+      {required T failedValue,
+      required int maxHeight,
+      required int maxWidth}) = ImageTooBig<T>;
+
+  const factory ShoppingValueFailure.imageTooSmall(
+      {required T failedValue,
+      required int minHeight,
+      required int minWidth}) = ImageTooSmall<T>;
 }

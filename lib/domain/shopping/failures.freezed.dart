@@ -120,6 +120,24 @@ class _$ShoppingValueFailureTearOff {
       minLength: minLength,
     );
   }
+
+  ImageTooBig<T> imageTooBig<T>(
+      {required T failedValue, required int maxHeight, required int maxWidth}) {
+    return ImageTooBig<T>(
+      failedValue: failedValue,
+      maxHeight: maxHeight,
+      maxWidth: maxWidth,
+    );
+  }
+
+  ImageTooSmall<T> imageTooSmall<T>(
+      {required T failedValue, required int minHeight, required int minWidth}) {
+    return ImageTooSmall<T>(
+      failedValue: failedValue,
+      minHeight: minHeight,
+      minWidth: minWidth,
+    );
+  }
 }
 
 /// @nodoc
@@ -148,6 +166,10 @@ mixin _$ShoppingValueFailure<T> {
     required TResult Function(T failedValue, int maxLength) listTooLong,
     required TResult Function(T failedValue, int minLength) listTooShort,
     required TResult Function(T failedValue, int minLength) emptyList,
+    required TResult Function(T failedValue, int maxHeight, int maxWidth)
+        imageTooBig,
+    required TResult Function(T failedValue, int minHeight, int minWidth)
+        imageTooSmall,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -167,6 +189,8 @@ mixin _$ShoppingValueFailure<T> {
     TResult Function(T failedValue, int maxLength)? listTooLong,
     TResult Function(T failedValue, int minLength)? listTooShort,
     TResult Function(T failedValue, int minLength)? emptyList,
+    TResult Function(T failedValue, int maxHeight, int maxWidth)? imageTooBig,
+    TResult Function(T failedValue, int minHeight, int minWidth)? imageTooSmall,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -186,6 +210,8 @@ mixin _$ShoppingValueFailure<T> {
     TResult Function(T failedValue, int maxLength)? listTooLong,
     TResult Function(T failedValue, int minLength)? listTooShort,
     TResult Function(T failedValue, int minLength)? emptyList,
+    TResult Function(T failedValue, int maxHeight, int maxWidth)? imageTooBig,
+    TResult Function(T failedValue, int minHeight, int minWidth)? imageTooSmall,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -208,6 +234,8 @@ mixin _$ShoppingValueFailure<T> {
     required TResult Function(ListTooLong<T> value) listTooLong,
     required TResult Function(ListTooShort<T> value) listTooShort,
     required TResult Function(EmptyList<T> value) emptyList,
+    required TResult Function(ImageTooBig<T> value) imageTooBig,
+    required TResult Function(ImageTooSmall<T> value) imageTooSmall,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -227,6 +255,8 @@ mixin _$ShoppingValueFailure<T> {
     TResult Function(ListTooLong<T> value)? listTooLong,
     TResult Function(ListTooShort<T> value)? listTooShort,
     TResult Function(EmptyList<T> value)? emptyList,
+    TResult Function(ImageTooBig<T> value)? imageTooBig,
+    TResult Function(ImageTooSmall<T> value)? imageTooSmall,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -246,6 +276,8 @@ mixin _$ShoppingValueFailure<T> {
     TResult Function(ListTooLong<T> value)? listTooLong,
     TResult Function(ListTooShort<T> value)? listTooShort,
     TResult Function(EmptyList<T> value)? emptyList,
+    TResult Function(ImageTooBig<T> value)? imageTooBig,
+    TResult Function(ImageTooSmall<T> value)? imageTooSmall,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -380,6 +412,10 @@ class _$ExceedingLength<T> implements ExceedingLength<T> {
     required TResult Function(T failedValue, int maxLength) listTooLong,
     required TResult Function(T failedValue, int minLength) listTooShort,
     required TResult Function(T failedValue, int minLength) emptyList,
+    required TResult Function(T failedValue, int maxHeight, int maxWidth)
+        imageTooBig,
+    required TResult Function(T failedValue, int minHeight, int minWidth)
+        imageTooSmall,
   }) {
     return exceedingLength(failedValue, maxLength);
   }
@@ -402,6 +438,8 @@ class _$ExceedingLength<T> implements ExceedingLength<T> {
     TResult Function(T failedValue, int maxLength)? listTooLong,
     TResult Function(T failedValue, int minLength)? listTooShort,
     TResult Function(T failedValue, int minLength)? emptyList,
+    TResult Function(T failedValue, int maxHeight, int maxWidth)? imageTooBig,
+    TResult Function(T failedValue, int minHeight, int minWidth)? imageTooSmall,
   }) {
     return exceedingLength?.call(failedValue, maxLength);
   }
@@ -424,6 +462,8 @@ class _$ExceedingLength<T> implements ExceedingLength<T> {
     TResult Function(T failedValue, int maxLength)? listTooLong,
     TResult Function(T failedValue, int minLength)? listTooShort,
     TResult Function(T failedValue, int minLength)? emptyList,
+    TResult Function(T failedValue, int maxHeight, int maxWidth)? imageTooBig,
+    TResult Function(T failedValue, int minHeight, int minWidth)? imageTooSmall,
     required TResult orElse(),
   }) {
     if (exceedingLength != null) {
@@ -452,6 +492,8 @@ class _$ExceedingLength<T> implements ExceedingLength<T> {
     required TResult Function(ListTooLong<T> value) listTooLong,
     required TResult Function(ListTooShort<T> value) listTooShort,
     required TResult Function(EmptyList<T> value) emptyList,
+    required TResult Function(ImageTooBig<T> value) imageTooBig,
+    required TResult Function(ImageTooSmall<T> value) imageTooSmall,
   }) {
     return exceedingLength(this);
   }
@@ -474,6 +516,8 @@ class _$ExceedingLength<T> implements ExceedingLength<T> {
     TResult Function(ListTooLong<T> value)? listTooLong,
     TResult Function(ListTooShort<T> value)? listTooShort,
     TResult Function(EmptyList<T> value)? emptyList,
+    TResult Function(ImageTooBig<T> value)? imageTooBig,
+    TResult Function(ImageTooSmall<T> value)? imageTooSmall,
   }) {
     return exceedingLength?.call(this);
   }
@@ -496,6 +540,8 @@ class _$ExceedingLength<T> implements ExceedingLength<T> {
     TResult Function(ListTooLong<T> value)? listTooLong,
     TResult Function(ListTooShort<T> value)? listTooShort,
     TResult Function(EmptyList<T> value)? emptyList,
+    TResult Function(ImageTooBig<T> value)? imageTooBig,
+    TResult Function(ImageTooSmall<T> value)? imageTooSmall,
     required TResult orElse(),
   }) {
     if (exceedingLength != null) {
@@ -613,6 +659,10 @@ class _$StringTooShort<T> implements StringTooShort<T> {
     required TResult Function(T failedValue, int maxLength) listTooLong,
     required TResult Function(T failedValue, int minLength) listTooShort,
     required TResult Function(T failedValue, int minLength) emptyList,
+    required TResult Function(T failedValue, int maxHeight, int maxWidth)
+        imageTooBig,
+    required TResult Function(T failedValue, int minHeight, int minWidth)
+        imageTooSmall,
   }) {
     return stringTooShort(failedValue, minLength);
   }
@@ -635,6 +685,8 @@ class _$StringTooShort<T> implements StringTooShort<T> {
     TResult Function(T failedValue, int maxLength)? listTooLong,
     TResult Function(T failedValue, int minLength)? listTooShort,
     TResult Function(T failedValue, int minLength)? emptyList,
+    TResult Function(T failedValue, int maxHeight, int maxWidth)? imageTooBig,
+    TResult Function(T failedValue, int minHeight, int minWidth)? imageTooSmall,
   }) {
     return stringTooShort?.call(failedValue, minLength);
   }
@@ -657,6 +709,8 @@ class _$StringTooShort<T> implements StringTooShort<T> {
     TResult Function(T failedValue, int maxLength)? listTooLong,
     TResult Function(T failedValue, int minLength)? listTooShort,
     TResult Function(T failedValue, int minLength)? emptyList,
+    TResult Function(T failedValue, int maxHeight, int maxWidth)? imageTooBig,
+    TResult Function(T failedValue, int minHeight, int minWidth)? imageTooSmall,
     required TResult orElse(),
   }) {
     if (stringTooShort != null) {
@@ -685,6 +739,8 @@ class _$StringTooShort<T> implements StringTooShort<T> {
     required TResult Function(ListTooLong<T> value) listTooLong,
     required TResult Function(ListTooShort<T> value) listTooShort,
     required TResult Function(EmptyList<T> value) emptyList,
+    required TResult Function(ImageTooBig<T> value) imageTooBig,
+    required TResult Function(ImageTooSmall<T> value) imageTooSmall,
   }) {
     return stringTooShort(this);
   }
@@ -707,6 +763,8 @@ class _$StringTooShort<T> implements StringTooShort<T> {
     TResult Function(ListTooLong<T> value)? listTooLong,
     TResult Function(ListTooShort<T> value)? listTooShort,
     TResult Function(EmptyList<T> value)? emptyList,
+    TResult Function(ImageTooBig<T> value)? imageTooBig,
+    TResult Function(ImageTooSmall<T> value)? imageTooSmall,
   }) {
     return stringTooShort?.call(this);
   }
@@ -729,6 +787,8 @@ class _$StringTooShort<T> implements StringTooShort<T> {
     TResult Function(ListTooLong<T> value)? listTooLong,
     TResult Function(ListTooShort<T> value)? listTooShort,
     TResult Function(EmptyList<T> value)? emptyList,
+    TResult Function(ImageTooBig<T> value)? imageTooBig,
+    TResult Function(ImageTooSmall<T> value)? imageTooSmall,
     required TResult orElse(),
   }) {
     if (stringTooShort != null) {
@@ -834,6 +894,10 @@ class _$Empty<T> implements Empty<T> {
     required TResult Function(T failedValue, int maxLength) listTooLong,
     required TResult Function(T failedValue, int minLength) listTooShort,
     required TResult Function(T failedValue, int minLength) emptyList,
+    required TResult Function(T failedValue, int maxHeight, int maxWidth)
+        imageTooBig,
+    required TResult Function(T failedValue, int minHeight, int minWidth)
+        imageTooSmall,
   }) {
     return empty(failedValue);
   }
@@ -856,6 +920,8 @@ class _$Empty<T> implements Empty<T> {
     TResult Function(T failedValue, int maxLength)? listTooLong,
     TResult Function(T failedValue, int minLength)? listTooShort,
     TResult Function(T failedValue, int minLength)? emptyList,
+    TResult Function(T failedValue, int maxHeight, int maxWidth)? imageTooBig,
+    TResult Function(T failedValue, int minHeight, int minWidth)? imageTooSmall,
   }) {
     return empty?.call(failedValue);
   }
@@ -878,6 +944,8 @@ class _$Empty<T> implements Empty<T> {
     TResult Function(T failedValue, int maxLength)? listTooLong,
     TResult Function(T failedValue, int minLength)? listTooShort,
     TResult Function(T failedValue, int minLength)? emptyList,
+    TResult Function(T failedValue, int maxHeight, int maxWidth)? imageTooBig,
+    TResult Function(T failedValue, int minHeight, int minWidth)? imageTooSmall,
     required TResult orElse(),
   }) {
     if (empty != null) {
@@ -906,6 +974,8 @@ class _$Empty<T> implements Empty<T> {
     required TResult Function(ListTooLong<T> value) listTooLong,
     required TResult Function(ListTooShort<T> value) listTooShort,
     required TResult Function(EmptyList<T> value) emptyList,
+    required TResult Function(ImageTooBig<T> value) imageTooBig,
+    required TResult Function(ImageTooSmall<T> value) imageTooSmall,
   }) {
     return empty(this);
   }
@@ -928,6 +998,8 @@ class _$Empty<T> implements Empty<T> {
     TResult Function(ListTooLong<T> value)? listTooLong,
     TResult Function(ListTooShort<T> value)? listTooShort,
     TResult Function(EmptyList<T> value)? emptyList,
+    TResult Function(ImageTooBig<T> value)? imageTooBig,
+    TResult Function(ImageTooSmall<T> value)? imageTooSmall,
   }) {
     return empty?.call(this);
   }
@@ -950,6 +1022,8 @@ class _$Empty<T> implements Empty<T> {
     TResult Function(ListTooLong<T> value)? listTooLong,
     TResult Function(ListTooShort<T> value)? listTooShort,
     TResult Function(EmptyList<T> value)? emptyList,
+    TResult Function(ImageTooBig<T> value)? imageTooBig,
+    TResult Function(ImageTooSmall<T> value)? imageTooSmall,
     required TResult orElse(),
   }) {
     if (empty != null) {
@@ -1055,6 +1129,10 @@ class _$Multiline<T> implements Multiline<T> {
     required TResult Function(T failedValue, int maxLength) listTooLong,
     required TResult Function(T failedValue, int minLength) listTooShort,
     required TResult Function(T failedValue, int minLength) emptyList,
+    required TResult Function(T failedValue, int maxHeight, int maxWidth)
+        imageTooBig,
+    required TResult Function(T failedValue, int minHeight, int minWidth)
+        imageTooSmall,
   }) {
     return multiline(failedValue);
   }
@@ -1077,6 +1155,8 @@ class _$Multiline<T> implements Multiline<T> {
     TResult Function(T failedValue, int maxLength)? listTooLong,
     TResult Function(T failedValue, int minLength)? listTooShort,
     TResult Function(T failedValue, int minLength)? emptyList,
+    TResult Function(T failedValue, int maxHeight, int maxWidth)? imageTooBig,
+    TResult Function(T failedValue, int minHeight, int minWidth)? imageTooSmall,
   }) {
     return multiline?.call(failedValue);
   }
@@ -1099,6 +1179,8 @@ class _$Multiline<T> implements Multiline<T> {
     TResult Function(T failedValue, int maxLength)? listTooLong,
     TResult Function(T failedValue, int minLength)? listTooShort,
     TResult Function(T failedValue, int minLength)? emptyList,
+    TResult Function(T failedValue, int maxHeight, int maxWidth)? imageTooBig,
+    TResult Function(T failedValue, int minHeight, int minWidth)? imageTooSmall,
     required TResult orElse(),
   }) {
     if (multiline != null) {
@@ -1127,6 +1209,8 @@ class _$Multiline<T> implements Multiline<T> {
     required TResult Function(ListTooLong<T> value) listTooLong,
     required TResult Function(ListTooShort<T> value) listTooShort,
     required TResult Function(EmptyList<T> value) emptyList,
+    required TResult Function(ImageTooBig<T> value) imageTooBig,
+    required TResult Function(ImageTooSmall<T> value) imageTooSmall,
   }) {
     return multiline(this);
   }
@@ -1149,6 +1233,8 @@ class _$Multiline<T> implements Multiline<T> {
     TResult Function(ListTooLong<T> value)? listTooLong,
     TResult Function(ListTooShort<T> value)? listTooShort,
     TResult Function(EmptyList<T> value)? emptyList,
+    TResult Function(ImageTooBig<T> value)? imageTooBig,
+    TResult Function(ImageTooSmall<T> value)? imageTooSmall,
   }) {
     return multiline?.call(this);
   }
@@ -1171,6 +1257,8 @@ class _$Multiline<T> implements Multiline<T> {
     TResult Function(ListTooLong<T> value)? listTooLong,
     TResult Function(ListTooShort<T> value)? listTooShort,
     TResult Function(EmptyList<T> value)? emptyList,
+    TResult Function(ImageTooBig<T> value)? imageTooBig,
+    TResult Function(ImageTooSmall<T> value)? imageTooSmall,
     required TResult orElse(),
   }) {
     if (multiline != null) {
@@ -1277,6 +1365,10 @@ class _$IncorrectPostalCode<T> implements IncorrectPostalCode<T> {
     required TResult Function(T failedValue, int maxLength) listTooLong,
     required TResult Function(T failedValue, int minLength) listTooShort,
     required TResult Function(T failedValue, int minLength) emptyList,
+    required TResult Function(T failedValue, int maxHeight, int maxWidth)
+        imageTooBig,
+    required TResult Function(T failedValue, int minHeight, int minWidth)
+        imageTooSmall,
   }) {
     return incorrectPostalCode(failedValue);
   }
@@ -1299,6 +1391,8 @@ class _$IncorrectPostalCode<T> implements IncorrectPostalCode<T> {
     TResult Function(T failedValue, int maxLength)? listTooLong,
     TResult Function(T failedValue, int minLength)? listTooShort,
     TResult Function(T failedValue, int minLength)? emptyList,
+    TResult Function(T failedValue, int maxHeight, int maxWidth)? imageTooBig,
+    TResult Function(T failedValue, int minHeight, int minWidth)? imageTooSmall,
   }) {
     return incorrectPostalCode?.call(failedValue);
   }
@@ -1321,6 +1415,8 @@ class _$IncorrectPostalCode<T> implements IncorrectPostalCode<T> {
     TResult Function(T failedValue, int maxLength)? listTooLong,
     TResult Function(T failedValue, int minLength)? listTooShort,
     TResult Function(T failedValue, int minLength)? emptyList,
+    TResult Function(T failedValue, int maxHeight, int maxWidth)? imageTooBig,
+    TResult Function(T failedValue, int minHeight, int minWidth)? imageTooSmall,
     required TResult orElse(),
   }) {
     if (incorrectPostalCode != null) {
@@ -1349,6 +1445,8 @@ class _$IncorrectPostalCode<T> implements IncorrectPostalCode<T> {
     required TResult Function(ListTooLong<T> value) listTooLong,
     required TResult Function(ListTooShort<T> value) listTooShort,
     required TResult Function(EmptyList<T> value) emptyList,
+    required TResult Function(ImageTooBig<T> value) imageTooBig,
+    required TResult Function(ImageTooSmall<T> value) imageTooSmall,
   }) {
     return incorrectPostalCode(this);
   }
@@ -1371,6 +1469,8 @@ class _$IncorrectPostalCode<T> implements IncorrectPostalCode<T> {
     TResult Function(ListTooLong<T> value)? listTooLong,
     TResult Function(ListTooShort<T> value)? listTooShort,
     TResult Function(EmptyList<T> value)? emptyList,
+    TResult Function(ImageTooBig<T> value)? imageTooBig,
+    TResult Function(ImageTooSmall<T> value)? imageTooSmall,
   }) {
     return incorrectPostalCode?.call(this);
   }
@@ -1393,6 +1493,8 @@ class _$IncorrectPostalCode<T> implements IncorrectPostalCode<T> {
     TResult Function(ListTooLong<T> value)? listTooLong,
     TResult Function(ListTooShort<T> value)? listTooShort,
     TResult Function(EmptyList<T> value)? emptyList,
+    TResult Function(ImageTooBig<T> value)? imageTooBig,
+    TResult Function(ImageTooSmall<T> value)? imageTooSmall,
     required TResult orElse(),
   }) {
     if (incorrectPostalCode != null) {
@@ -1501,6 +1603,10 @@ class _$ShopClosedAllWeekLong<T> implements ShopClosedAllWeekLong<T> {
     required TResult Function(T failedValue, int maxLength) listTooLong,
     required TResult Function(T failedValue, int minLength) listTooShort,
     required TResult Function(T failedValue, int minLength) emptyList,
+    required TResult Function(T failedValue, int maxHeight, int maxWidth)
+        imageTooBig,
+    required TResult Function(T failedValue, int minHeight, int minWidth)
+        imageTooSmall,
   }) {
     return shopClosedAllWeekLong(failedValue);
   }
@@ -1523,6 +1629,8 @@ class _$ShopClosedAllWeekLong<T> implements ShopClosedAllWeekLong<T> {
     TResult Function(T failedValue, int maxLength)? listTooLong,
     TResult Function(T failedValue, int minLength)? listTooShort,
     TResult Function(T failedValue, int minLength)? emptyList,
+    TResult Function(T failedValue, int maxHeight, int maxWidth)? imageTooBig,
+    TResult Function(T failedValue, int minHeight, int minWidth)? imageTooSmall,
   }) {
     return shopClosedAllWeekLong?.call(failedValue);
   }
@@ -1545,6 +1653,8 @@ class _$ShopClosedAllWeekLong<T> implements ShopClosedAllWeekLong<T> {
     TResult Function(T failedValue, int maxLength)? listTooLong,
     TResult Function(T failedValue, int minLength)? listTooShort,
     TResult Function(T failedValue, int minLength)? emptyList,
+    TResult Function(T failedValue, int maxHeight, int maxWidth)? imageTooBig,
+    TResult Function(T failedValue, int minHeight, int minWidth)? imageTooSmall,
     required TResult orElse(),
   }) {
     if (shopClosedAllWeekLong != null) {
@@ -1573,6 +1683,8 @@ class _$ShopClosedAllWeekLong<T> implements ShopClosedAllWeekLong<T> {
     required TResult Function(ListTooLong<T> value) listTooLong,
     required TResult Function(ListTooShort<T> value) listTooShort,
     required TResult Function(EmptyList<T> value) emptyList,
+    required TResult Function(ImageTooBig<T> value) imageTooBig,
+    required TResult Function(ImageTooSmall<T> value) imageTooSmall,
   }) {
     return shopClosedAllWeekLong(this);
   }
@@ -1595,6 +1707,8 @@ class _$ShopClosedAllWeekLong<T> implements ShopClosedAllWeekLong<T> {
     TResult Function(ListTooLong<T> value)? listTooLong,
     TResult Function(ListTooShort<T> value)? listTooShort,
     TResult Function(EmptyList<T> value)? emptyList,
+    TResult Function(ImageTooBig<T> value)? imageTooBig,
+    TResult Function(ImageTooSmall<T> value)? imageTooSmall,
   }) {
     return shopClosedAllWeekLong?.call(this);
   }
@@ -1617,6 +1731,8 @@ class _$ShopClosedAllWeekLong<T> implements ShopClosedAllWeekLong<T> {
     TResult Function(ListTooLong<T> value)? listTooLong,
     TResult Function(ListTooShort<T> value)? listTooShort,
     TResult Function(EmptyList<T> value)? emptyList,
+    TResult Function(ImageTooBig<T> value)? imageTooBig,
+    TResult Function(ImageTooSmall<T> value)? imageTooSmall,
     required TResult orElse(),
   }) {
     if (shopClosedAllWeekLong != null) {
@@ -1723,6 +1839,10 @@ class _$NoPhotoSelected<T> implements NoPhotoSelected<T> {
     required TResult Function(T failedValue, int maxLength) listTooLong,
     required TResult Function(T failedValue, int minLength) listTooShort,
     required TResult Function(T failedValue, int minLength) emptyList,
+    required TResult Function(T failedValue, int maxHeight, int maxWidth)
+        imageTooBig,
+    required TResult Function(T failedValue, int minHeight, int minWidth)
+        imageTooSmall,
   }) {
     return noPhotoSelected(failedValue);
   }
@@ -1745,6 +1865,8 @@ class _$NoPhotoSelected<T> implements NoPhotoSelected<T> {
     TResult Function(T failedValue, int maxLength)? listTooLong,
     TResult Function(T failedValue, int minLength)? listTooShort,
     TResult Function(T failedValue, int minLength)? emptyList,
+    TResult Function(T failedValue, int maxHeight, int maxWidth)? imageTooBig,
+    TResult Function(T failedValue, int minHeight, int minWidth)? imageTooSmall,
   }) {
     return noPhotoSelected?.call(failedValue);
   }
@@ -1767,6 +1889,8 @@ class _$NoPhotoSelected<T> implements NoPhotoSelected<T> {
     TResult Function(T failedValue, int maxLength)? listTooLong,
     TResult Function(T failedValue, int minLength)? listTooShort,
     TResult Function(T failedValue, int minLength)? emptyList,
+    TResult Function(T failedValue, int maxHeight, int maxWidth)? imageTooBig,
+    TResult Function(T failedValue, int minHeight, int minWidth)? imageTooSmall,
     required TResult orElse(),
   }) {
     if (noPhotoSelected != null) {
@@ -1795,6 +1919,8 @@ class _$NoPhotoSelected<T> implements NoPhotoSelected<T> {
     required TResult Function(ListTooLong<T> value) listTooLong,
     required TResult Function(ListTooShort<T> value) listTooShort,
     required TResult Function(EmptyList<T> value) emptyList,
+    required TResult Function(ImageTooBig<T> value) imageTooBig,
+    required TResult Function(ImageTooSmall<T> value) imageTooSmall,
   }) {
     return noPhotoSelected(this);
   }
@@ -1817,6 +1943,8 @@ class _$NoPhotoSelected<T> implements NoPhotoSelected<T> {
     TResult Function(ListTooLong<T> value)? listTooLong,
     TResult Function(ListTooShort<T> value)? listTooShort,
     TResult Function(EmptyList<T> value)? emptyList,
+    TResult Function(ImageTooBig<T> value)? imageTooBig,
+    TResult Function(ImageTooSmall<T> value)? imageTooSmall,
   }) {
     return noPhotoSelected?.call(this);
   }
@@ -1839,6 +1967,8 @@ class _$NoPhotoSelected<T> implements NoPhotoSelected<T> {
     TResult Function(ListTooLong<T> value)? listTooLong,
     TResult Function(ListTooShort<T> value)? listTooShort,
     TResult Function(EmptyList<T> value)? emptyList,
+    TResult Function(ImageTooBig<T> value)? imageTooBig,
+    TResult Function(ImageTooSmall<T> value)? imageTooSmall,
     required TResult orElse(),
   }) {
     if (noPhotoSelected != null) {
@@ -1945,6 +2075,10 @@ class _$NonPositivePrice<T> implements NonPositivePrice<T> {
     required TResult Function(T failedValue, int maxLength) listTooLong,
     required TResult Function(T failedValue, int minLength) listTooShort,
     required TResult Function(T failedValue, int minLength) emptyList,
+    required TResult Function(T failedValue, int maxHeight, int maxWidth)
+        imageTooBig,
+    required TResult Function(T failedValue, int minHeight, int minWidth)
+        imageTooSmall,
   }) {
     return nonPositiveValue(failedValue);
   }
@@ -1967,6 +2101,8 @@ class _$NonPositivePrice<T> implements NonPositivePrice<T> {
     TResult Function(T failedValue, int maxLength)? listTooLong,
     TResult Function(T failedValue, int minLength)? listTooShort,
     TResult Function(T failedValue, int minLength)? emptyList,
+    TResult Function(T failedValue, int maxHeight, int maxWidth)? imageTooBig,
+    TResult Function(T failedValue, int minHeight, int minWidth)? imageTooSmall,
   }) {
     return nonPositiveValue?.call(failedValue);
   }
@@ -1989,6 +2125,8 @@ class _$NonPositivePrice<T> implements NonPositivePrice<T> {
     TResult Function(T failedValue, int maxLength)? listTooLong,
     TResult Function(T failedValue, int minLength)? listTooShort,
     TResult Function(T failedValue, int minLength)? emptyList,
+    TResult Function(T failedValue, int maxHeight, int maxWidth)? imageTooBig,
+    TResult Function(T failedValue, int minHeight, int minWidth)? imageTooSmall,
     required TResult orElse(),
   }) {
     if (nonPositiveValue != null) {
@@ -2017,6 +2155,8 @@ class _$NonPositivePrice<T> implements NonPositivePrice<T> {
     required TResult Function(ListTooLong<T> value) listTooLong,
     required TResult Function(ListTooShort<T> value) listTooShort,
     required TResult Function(EmptyList<T> value) emptyList,
+    required TResult Function(ImageTooBig<T> value) imageTooBig,
+    required TResult Function(ImageTooSmall<T> value) imageTooSmall,
   }) {
     return nonPositiveValue(this);
   }
@@ -2039,6 +2179,8 @@ class _$NonPositivePrice<T> implements NonPositivePrice<T> {
     TResult Function(ListTooLong<T> value)? listTooLong,
     TResult Function(ListTooShort<T> value)? listTooShort,
     TResult Function(EmptyList<T> value)? emptyList,
+    TResult Function(ImageTooBig<T> value)? imageTooBig,
+    TResult Function(ImageTooSmall<T> value)? imageTooSmall,
   }) {
     return nonPositiveValue?.call(this);
   }
@@ -2061,6 +2203,8 @@ class _$NonPositivePrice<T> implements NonPositivePrice<T> {
     TResult Function(ListTooLong<T> value)? listTooLong,
     TResult Function(ListTooShort<T> value)? listTooShort,
     TResult Function(EmptyList<T> value)? emptyList,
+    TResult Function(ImageTooBig<T> value)? imageTooBig,
+    TResult Function(ImageTooSmall<T> value)? imageTooSmall,
     required TResult orElse(),
   }) {
     if (nonPositiveValue != null) {
@@ -2167,6 +2311,10 @@ class _$NoAddressNumber<T> implements NoAddressNumber<T> {
     required TResult Function(T failedValue, int maxLength) listTooLong,
     required TResult Function(T failedValue, int minLength) listTooShort,
     required TResult Function(T failedValue, int minLength) emptyList,
+    required TResult Function(T failedValue, int maxHeight, int maxWidth)
+        imageTooBig,
+    required TResult Function(T failedValue, int minHeight, int minWidth)
+        imageTooSmall,
   }) {
     return noAddressNumber(failedValue);
   }
@@ -2189,6 +2337,8 @@ class _$NoAddressNumber<T> implements NoAddressNumber<T> {
     TResult Function(T failedValue, int maxLength)? listTooLong,
     TResult Function(T failedValue, int minLength)? listTooShort,
     TResult Function(T failedValue, int minLength)? emptyList,
+    TResult Function(T failedValue, int maxHeight, int maxWidth)? imageTooBig,
+    TResult Function(T failedValue, int minHeight, int minWidth)? imageTooSmall,
   }) {
     return noAddressNumber?.call(failedValue);
   }
@@ -2211,6 +2361,8 @@ class _$NoAddressNumber<T> implements NoAddressNumber<T> {
     TResult Function(T failedValue, int maxLength)? listTooLong,
     TResult Function(T failedValue, int minLength)? listTooShort,
     TResult Function(T failedValue, int minLength)? emptyList,
+    TResult Function(T failedValue, int maxHeight, int maxWidth)? imageTooBig,
+    TResult Function(T failedValue, int minHeight, int minWidth)? imageTooSmall,
     required TResult orElse(),
   }) {
     if (noAddressNumber != null) {
@@ -2239,6 +2391,8 @@ class _$NoAddressNumber<T> implements NoAddressNumber<T> {
     required TResult Function(ListTooLong<T> value) listTooLong,
     required TResult Function(ListTooShort<T> value) listTooShort,
     required TResult Function(EmptyList<T> value) emptyList,
+    required TResult Function(ImageTooBig<T> value) imageTooBig,
+    required TResult Function(ImageTooSmall<T> value) imageTooSmall,
   }) {
     return noAddressNumber(this);
   }
@@ -2261,6 +2415,8 @@ class _$NoAddressNumber<T> implements NoAddressNumber<T> {
     TResult Function(ListTooLong<T> value)? listTooLong,
     TResult Function(ListTooShort<T> value)? listTooShort,
     TResult Function(EmptyList<T> value)? emptyList,
+    TResult Function(ImageTooBig<T> value)? imageTooBig,
+    TResult Function(ImageTooSmall<T> value)? imageTooSmall,
   }) {
     return noAddressNumber?.call(this);
   }
@@ -2283,6 +2439,8 @@ class _$NoAddressNumber<T> implements NoAddressNumber<T> {
     TResult Function(ListTooLong<T> value)? listTooLong,
     TResult Function(ListTooShort<T> value)? listTooShort,
     TResult Function(EmptyList<T> value)? emptyList,
+    TResult Function(ImageTooBig<T> value)? imageTooBig,
+    TResult Function(ImageTooSmall<T> value)? imageTooSmall,
     required TResult orElse(),
   }) {
     if (noAddressNumber != null) {
@@ -2401,6 +2559,10 @@ class _$IncorrectHour<T> implements IncorrectHour<T> {
     required TResult Function(T failedValue, int maxLength) listTooLong,
     required TResult Function(T failedValue, int minLength) listTooShort,
     required TResult Function(T failedValue, int minLength) emptyList,
+    required TResult Function(T failedValue, int maxHeight, int maxWidth)
+        imageTooBig,
+    required TResult Function(T failedValue, int minHeight, int minWidth)
+        imageTooSmall,
   }) {
     return incorrectHour(failedValue, twelveHourFormat);
   }
@@ -2423,6 +2585,8 @@ class _$IncorrectHour<T> implements IncorrectHour<T> {
     TResult Function(T failedValue, int maxLength)? listTooLong,
     TResult Function(T failedValue, int minLength)? listTooShort,
     TResult Function(T failedValue, int minLength)? emptyList,
+    TResult Function(T failedValue, int maxHeight, int maxWidth)? imageTooBig,
+    TResult Function(T failedValue, int minHeight, int minWidth)? imageTooSmall,
   }) {
     return incorrectHour?.call(failedValue, twelveHourFormat);
   }
@@ -2445,6 +2609,8 @@ class _$IncorrectHour<T> implements IncorrectHour<T> {
     TResult Function(T failedValue, int maxLength)? listTooLong,
     TResult Function(T failedValue, int minLength)? listTooShort,
     TResult Function(T failedValue, int minLength)? emptyList,
+    TResult Function(T failedValue, int maxHeight, int maxWidth)? imageTooBig,
+    TResult Function(T failedValue, int minHeight, int minWidth)? imageTooSmall,
     required TResult orElse(),
   }) {
     if (incorrectHour != null) {
@@ -2473,6 +2639,8 @@ class _$IncorrectHour<T> implements IncorrectHour<T> {
     required TResult Function(ListTooLong<T> value) listTooLong,
     required TResult Function(ListTooShort<T> value) listTooShort,
     required TResult Function(EmptyList<T> value) emptyList,
+    required TResult Function(ImageTooBig<T> value) imageTooBig,
+    required TResult Function(ImageTooSmall<T> value) imageTooSmall,
   }) {
     return incorrectHour(this);
   }
@@ -2495,6 +2663,8 @@ class _$IncorrectHour<T> implements IncorrectHour<T> {
     TResult Function(ListTooLong<T> value)? listTooLong,
     TResult Function(ListTooShort<T> value)? listTooShort,
     TResult Function(EmptyList<T> value)? emptyList,
+    TResult Function(ImageTooBig<T> value)? imageTooBig,
+    TResult Function(ImageTooSmall<T> value)? imageTooSmall,
   }) {
     return incorrectHour?.call(this);
   }
@@ -2517,6 +2687,8 @@ class _$IncorrectHour<T> implements IncorrectHour<T> {
     TResult Function(ListTooLong<T> value)? listTooLong,
     TResult Function(ListTooShort<T> value)? listTooShort,
     TResult Function(EmptyList<T> value)? emptyList,
+    TResult Function(ImageTooBig<T> value)? imageTooBig,
+    TResult Function(ImageTooSmall<T> value)? imageTooSmall,
     required TResult orElse(),
   }) {
     if (incorrectHour != null) {
@@ -2647,6 +2819,10 @@ class _$NumberOutsideInterval<T> implements NumberOutsideInterval<T> {
     required TResult Function(T failedValue, int maxLength) listTooLong,
     required TResult Function(T failedValue, int minLength) listTooShort,
     required TResult Function(T failedValue, int minLength) emptyList,
+    required TResult Function(T failedValue, int maxHeight, int maxWidth)
+        imageTooBig,
+    required TResult Function(T failedValue, int minHeight, int minWidth)
+        imageTooSmall,
   }) {
     return numberOutsideInterval(failedValue, min, max);
   }
@@ -2669,6 +2845,8 @@ class _$NumberOutsideInterval<T> implements NumberOutsideInterval<T> {
     TResult Function(T failedValue, int maxLength)? listTooLong,
     TResult Function(T failedValue, int minLength)? listTooShort,
     TResult Function(T failedValue, int minLength)? emptyList,
+    TResult Function(T failedValue, int maxHeight, int maxWidth)? imageTooBig,
+    TResult Function(T failedValue, int minHeight, int minWidth)? imageTooSmall,
   }) {
     return numberOutsideInterval?.call(failedValue, min, max);
   }
@@ -2691,6 +2869,8 @@ class _$NumberOutsideInterval<T> implements NumberOutsideInterval<T> {
     TResult Function(T failedValue, int maxLength)? listTooLong,
     TResult Function(T failedValue, int minLength)? listTooShort,
     TResult Function(T failedValue, int minLength)? emptyList,
+    TResult Function(T failedValue, int maxHeight, int maxWidth)? imageTooBig,
+    TResult Function(T failedValue, int minHeight, int minWidth)? imageTooSmall,
     required TResult orElse(),
   }) {
     if (numberOutsideInterval != null) {
@@ -2719,6 +2899,8 @@ class _$NumberOutsideInterval<T> implements NumberOutsideInterval<T> {
     required TResult Function(ListTooLong<T> value) listTooLong,
     required TResult Function(ListTooShort<T> value) listTooShort,
     required TResult Function(EmptyList<T> value) emptyList,
+    required TResult Function(ImageTooBig<T> value) imageTooBig,
+    required TResult Function(ImageTooSmall<T> value) imageTooSmall,
   }) {
     return numberOutsideInterval(this);
   }
@@ -2741,6 +2923,8 @@ class _$NumberOutsideInterval<T> implements NumberOutsideInterval<T> {
     TResult Function(ListTooLong<T> value)? listTooLong,
     TResult Function(ListTooShort<T> value)? listTooShort,
     TResult Function(EmptyList<T> value)? emptyList,
+    TResult Function(ImageTooBig<T> value)? imageTooBig,
+    TResult Function(ImageTooSmall<T> value)? imageTooSmall,
   }) {
     return numberOutsideInterval?.call(this);
   }
@@ -2763,6 +2947,8 @@ class _$NumberOutsideInterval<T> implements NumberOutsideInterval<T> {
     TResult Function(ListTooLong<T> value)? listTooLong,
     TResult Function(ListTooShort<T> value)? listTooShort,
     TResult Function(EmptyList<T> value)? emptyList,
+    TResult Function(ImageTooBig<T> value)? imageTooBig,
+    TResult Function(ImageTooSmall<T> value)? imageTooSmall,
     required TResult orElse(),
   }) {
     if (numberOutsideInterval != null) {
@@ -2874,6 +3060,10 @@ class _$InvalidTimeInterval<T> implements InvalidTimeInterval<T> {
     required TResult Function(T failedValue, int maxLength) listTooLong,
     required TResult Function(T failedValue, int minLength) listTooShort,
     required TResult Function(T failedValue, int minLength) emptyList,
+    required TResult Function(T failedValue, int maxHeight, int maxWidth)
+        imageTooBig,
+    required TResult Function(T failedValue, int minHeight, int minWidth)
+        imageTooSmall,
   }) {
     return invalidTimeInterval(failedValue);
   }
@@ -2896,6 +3086,8 @@ class _$InvalidTimeInterval<T> implements InvalidTimeInterval<T> {
     TResult Function(T failedValue, int maxLength)? listTooLong,
     TResult Function(T failedValue, int minLength)? listTooShort,
     TResult Function(T failedValue, int minLength)? emptyList,
+    TResult Function(T failedValue, int maxHeight, int maxWidth)? imageTooBig,
+    TResult Function(T failedValue, int minHeight, int minWidth)? imageTooSmall,
   }) {
     return invalidTimeInterval?.call(failedValue);
   }
@@ -2918,6 +3110,8 @@ class _$InvalidTimeInterval<T> implements InvalidTimeInterval<T> {
     TResult Function(T failedValue, int maxLength)? listTooLong,
     TResult Function(T failedValue, int minLength)? listTooShort,
     TResult Function(T failedValue, int minLength)? emptyList,
+    TResult Function(T failedValue, int maxHeight, int maxWidth)? imageTooBig,
+    TResult Function(T failedValue, int minHeight, int minWidth)? imageTooSmall,
     required TResult orElse(),
   }) {
     if (invalidTimeInterval != null) {
@@ -2946,6 +3140,8 @@ class _$InvalidTimeInterval<T> implements InvalidTimeInterval<T> {
     required TResult Function(ListTooLong<T> value) listTooLong,
     required TResult Function(ListTooShort<T> value) listTooShort,
     required TResult Function(EmptyList<T> value) emptyList,
+    required TResult Function(ImageTooBig<T> value) imageTooBig,
+    required TResult Function(ImageTooSmall<T> value) imageTooSmall,
   }) {
     return invalidTimeInterval(this);
   }
@@ -2968,6 +3164,8 @@ class _$InvalidTimeInterval<T> implements InvalidTimeInterval<T> {
     TResult Function(ListTooLong<T> value)? listTooLong,
     TResult Function(ListTooShort<T> value)? listTooShort,
     TResult Function(EmptyList<T> value)? emptyList,
+    TResult Function(ImageTooBig<T> value)? imageTooBig,
+    TResult Function(ImageTooSmall<T> value)? imageTooSmall,
   }) {
     return invalidTimeInterval?.call(this);
   }
@@ -2990,6 +3188,8 @@ class _$InvalidTimeInterval<T> implements InvalidTimeInterval<T> {
     TResult Function(ListTooLong<T> value)? listTooLong,
     TResult Function(ListTooShort<T> value)? listTooShort,
     TResult Function(EmptyList<T> value)? emptyList,
+    TResult Function(ImageTooBig<T> value)? imageTooBig,
+    TResult Function(ImageTooSmall<T> value)? imageTooSmall,
     required TResult orElse(),
   }) {
     if (invalidTimeInterval != null) {
@@ -3106,6 +3306,10 @@ class _$ListTooLong<T> implements ListTooLong<T> {
     required TResult Function(T failedValue, int maxLength) listTooLong,
     required TResult Function(T failedValue, int minLength) listTooShort,
     required TResult Function(T failedValue, int minLength) emptyList,
+    required TResult Function(T failedValue, int maxHeight, int maxWidth)
+        imageTooBig,
+    required TResult Function(T failedValue, int minHeight, int minWidth)
+        imageTooSmall,
   }) {
     return listTooLong(failedValue, maxLength);
   }
@@ -3128,6 +3332,8 @@ class _$ListTooLong<T> implements ListTooLong<T> {
     TResult Function(T failedValue, int maxLength)? listTooLong,
     TResult Function(T failedValue, int minLength)? listTooShort,
     TResult Function(T failedValue, int minLength)? emptyList,
+    TResult Function(T failedValue, int maxHeight, int maxWidth)? imageTooBig,
+    TResult Function(T failedValue, int minHeight, int minWidth)? imageTooSmall,
   }) {
     return listTooLong?.call(failedValue, maxLength);
   }
@@ -3150,6 +3356,8 @@ class _$ListTooLong<T> implements ListTooLong<T> {
     TResult Function(T failedValue, int maxLength)? listTooLong,
     TResult Function(T failedValue, int minLength)? listTooShort,
     TResult Function(T failedValue, int minLength)? emptyList,
+    TResult Function(T failedValue, int maxHeight, int maxWidth)? imageTooBig,
+    TResult Function(T failedValue, int minHeight, int minWidth)? imageTooSmall,
     required TResult orElse(),
   }) {
     if (listTooLong != null) {
@@ -3178,6 +3386,8 @@ class _$ListTooLong<T> implements ListTooLong<T> {
     required TResult Function(ListTooLong<T> value) listTooLong,
     required TResult Function(ListTooShort<T> value) listTooShort,
     required TResult Function(EmptyList<T> value) emptyList,
+    required TResult Function(ImageTooBig<T> value) imageTooBig,
+    required TResult Function(ImageTooSmall<T> value) imageTooSmall,
   }) {
     return listTooLong(this);
   }
@@ -3200,6 +3410,8 @@ class _$ListTooLong<T> implements ListTooLong<T> {
     TResult Function(ListTooLong<T> value)? listTooLong,
     TResult Function(ListTooShort<T> value)? listTooShort,
     TResult Function(EmptyList<T> value)? emptyList,
+    TResult Function(ImageTooBig<T> value)? imageTooBig,
+    TResult Function(ImageTooSmall<T> value)? imageTooSmall,
   }) {
     return listTooLong?.call(this);
   }
@@ -3222,6 +3434,8 @@ class _$ListTooLong<T> implements ListTooLong<T> {
     TResult Function(ListTooLong<T> value)? listTooLong,
     TResult Function(ListTooShort<T> value)? listTooShort,
     TResult Function(EmptyList<T> value)? emptyList,
+    TResult Function(ImageTooBig<T> value)? imageTooBig,
+    TResult Function(ImageTooSmall<T> value)? imageTooSmall,
     required TResult orElse(),
   }) {
     if (listTooLong != null) {
@@ -3339,6 +3553,10 @@ class _$ListTooShort<T> implements ListTooShort<T> {
     required TResult Function(T failedValue, int maxLength) listTooLong,
     required TResult Function(T failedValue, int minLength) listTooShort,
     required TResult Function(T failedValue, int minLength) emptyList,
+    required TResult Function(T failedValue, int maxHeight, int maxWidth)
+        imageTooBig,
+    required TResult Function(T failedValue, int minHeight, int minWidth)
+        imageTooSmall,
   }) {
     return listTooShort(failedValue, minLength);
   }
@@ -3361,6 +3579,8 @@ class _$ListTooShort<T> implements ListTooShort<T> {
     TResult Function(T failedValue, int maxLength)? listTooLong,
     TResult Function(T failedValue, int minLength)? listTooShort,
     TResult Function(T failedValue, int minLength)? emptyList,
+    TResult Function(T failedValue, int maxHeight, int maxWidth)? imageTooBig,
+    TResult Function(T failedValue, int minHeight, int minWidth)? imageTooSmall,
   }) {
     return listTooShort?.call(failedValue, minLength);
   }
@@ -3383,6 +3603,8 @@ class _$ListTooShort<T> implements ListTooShort<T> {
     TResult Function(T failedValue, int maxLength)? listTooLong,
     TResult Function(T failedValue, int minLength)? listTooShort,
     TResult Function(T failedValue, int minLength)? emptyList,
+    TResult Function(T failedValue, int maxHeight, int maxWidth)? imageTooBig,
+    TResult Function(T failedValue, int minHeight, int minWidth)? imageTooSmall,
     required TResult orElse(),
   }) {
     if (listTooShort != null) {
@@ -3411,6 +3633,8 @@ class _$ListTooShort<T> implements ListTooShort<T> {
     required TResult Function(ListTooLong<T> value) listTooLong,
     required TResult Function(ListTooShort<T> value) listTooShort,
     required TResult Function(EmptyList<T> value) emptyList,
+    required TResult Function(ImageTooBig<T> value) imageTooBig,
+    required TResult Function(ImageTooSmall<T> value) imageTooSmall,
   }) {
     return listTooShort(this);
   }
@@ -3433,6 +3657,8 @@ class _$ListTooShort<T> implements ListTooShort<T> {
     TResult Function(ListTooLong<T> value)? listTooLong,
     TResult Function(ListTooShort<T> value)? listTooShort,
     TResult Function(EmptyList<T> value)? emptyList,
+    TResult Function(ImageTooBig<T> value)? imageTooBig,
+    TResult Function(ImageTooSmall<T> value)? imageTooSmall,
   }) {
     return listTooShort?.call(this);
   }
@@ -3455,6 +3681,8 @@ class _$ListTooShort<T> implements ListTooShort<T> {
     TResult Function(ListTooLong<T> value)? listTooLong,
     TResult Function(ListTooShort<T> value)? listTooShort,
     TResult Function(EmptyList<T> value)? emptyList,
+    TResult Function(ImageTooBig<T> value)? imageTooBig,
+    TResult Function(ImageTooSmall<T> value)? imageTooSmall,
     required TResult orElse(),
   }) {
     if (listTooShort != null) {
@@ -3572,6 +3800,10 @@ class _$EmptyList<T> implements EmptyList<T> {
     required TResult Function(T failedValue, int maxLength) listTooLong,
     required TResult Function(T failedValue, int minLength) listTooShort,
     required TResult Function(T failedValue, int minLength) emptyList,
+    required TResult Function(T failedValue, int maxHeight, int maxWidth)
+        imageTooBig,
+    required TResult Function(T failedValue, int minHeight, int minWidth)
+        imageTooSmall,
   }) {
     return emptyList(failedValue, minLength);
   }
@@ -3594,6 +3826,8 @@ class _$EmptyList<T> implements EmptyList<T> {
     TResult Function(T failedValue, int maxLength)? listTooLong,
     TResult Function(T failedValue, int minLength)? listTooShort,
     TResult Function(T failedValue, int minLength)? emptyList,
+    TResult Function(T failedValue, int maxHeight, int maxWidth)? imageTooBig,
+    TResult Function(T failedValue, int minHeight, int minWidth)? imageTooSmall,
   }) {
     return emptyList?.call(failedValue, minLength);
   }
@@ -3616,6 +3850,8 @@ class _$EmptyList<T> implements EmptyList<T> {
     TResult Function(T failedValue, int maxLength)? listTooLong,
     TResult Function(T failedValue, int minLength)? listTooShort,
     TResult Function(T failedValue, int minLength)? emptyList,
+    TResult Function(T failedValue, int maxHeight, int maxWidth)? imageTooBig,
+    TResult Function(T failedValue, int minHeight, int minWidth)? imageTooSmall,
     required TResult orElse(),
   }) {
     if (emptyList != null) {
@@ -3644,6 +3880,8 @@ class _$EmptyList<T> implements EmptyList<T> {
     required TResult Function(ListTooLong<T> value) listTooLong,
     required TResult Function(ListTooShort<T> value) listTooShort,
     required TResult Function(EmptyList<T> value) emptyList,
+    required TResult Function(ImageTooBig<T> value) imageTooBig,
+    required TResult Function(ImageTooSmall<T> value) imageTooSmall,
   }) {
     return emptyList(this);
   }
@@ -3666,6 +3904,8 @@ class _$EmptyList<T> implements EmptyList<T> {
     TResult Function(ListTooLong<T> value)? listTooLong,
     TResult Function(ListTooShort<T> value)? listTooShort,
     TResult Function(EmptyList<T> value)? emptyList,
+    TResult Function(ImageTooBig<T> value)? imageTooBig,
+    TResult Function(ImageTooSmall<T> value)? imageTooSmall,
   }) {
     return emptyList?.call(this);
   }
@@ -3688,6 +3928,8 @@ class _$EmptyList<T> implements EmptyList<T> {
     TResult Function(ListTooLong<T> value)? listTooLong,
     TResult Function(ListTooShort<T> value)? listTooShort,
     TResult Function(EmptyList<T> value)? emptyList,
+    TResult Function(ImageTooBig<T> value)? imageTooBig,
+    TResult Function(ImageTooSmall<T> value)? imageTooSmall,
     required TResult orElse(),
   }) {
     if (emptyList != null) {
@@ -3707,5 +3949,529 @@ abstract class EmptyList<T> implements ShoppingValueFailure<T> {
   @override
   @JsonKey(ignore: true)
   $EmptyListCopyWith<T, EmptyList<T>> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ImageTooBigCopyWith<T, $Res>
+    implements $ShoppingValueFailureCopyWith<T, $Res> {
+  factory $ImageTooBigCopyWith(
+          ImageTooBig<T> value, $Res Function(ImageTooBig<T>) then) =
+      _$ImageTooBigCopyWithImpl<T, $Res>;
+  @override
+  $Res call({T failedValue, int maxHeight, int maxWidth});
+}
+
+/// @nodoc
+class _$ImageTooBigCopyWithImpl<T, $Res>
+    extends _$ShoppingValueFailureCopyWithImpl<T, $Res>
+    implements $ImageTooBigCopyWith<T, $Res> {
+  _$ImageTooBigCopyWithImpl(
+      ImageTooBig<T> _value, $Res Function(ImageTooBig<T>) _then)
+      : super(_value, (v) => _then(v as ImageTooBig<T>));
+
+  @override
+  ImageTooBig<T> get _value => super._value as ImageTooBig<T>;
+
+  @override
+  $Res call({
+    Object? failedValue = freezed,
+    Object? maxHeight = freezed,
+    Object? maxWidth = freezed,
+  }) {
+    return _then(ImageTooBig<T>(
+      failedValue: failedValue == freezed
+          ? _value.failedValue
+          : failedValue // ignore: cast_nullable_to_non_nullable
+              as T,
+      maxHeight: maxHeight == freezed
+          ? _value.maxHeight
+          : maxHeight // ignore: cast_nullable_to_non_nullable
+              as int,
+      maxWidth: maxWidth == freezed
+          ? _value.maxWidth
+          : maxWidth // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ImageTooBig<T> implements ImageTooBig<T> {
+  const _$ImageTooBig(
+      {required this.failedValue,
+      required this.maxHeight,
+      required this.maxWidth});
+
+  @override
+  final T failedValue;
+  @override
+  final int maxHeight;
+  @override
+  final int maxWidth;
+
+  @override
+  String toString() {
+    return 'ShoppingValueFailure<$T>.imageTooBig(failedValue: $failedValue, maxHeight: $maxHeight, maxWidth: $maxWidth)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is ImageTooBig<T> &&
+            const DeepCollectionEquality()
+                .equals(other.failedValue, failedValue) &&
+            const DeepCollectionEquality().equals(other.maxHeight, maxHeight) &&
+            const DeepCollectionEquality().equals(other.maxWidth, maxWidth));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(failedValue),
+      const DeepCollectionEquality().hash(maxHeight),
+      const DeepCollectionEquality().hash(maxWidth));
+
+  @JsonKey(ignore: true)
+  @override
+  $ImageTooBigCopyWith<T, ImageTooBig<T>> get copyWith =>
+      _$ImageTooBigCopyWithImpl<T, ImageTooBig<T>>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(T failedValue, int maxLength) exceedingLength,
+    required TResult Function(T failedValue, int minLength) stringTooShort,
+    required TResult Function(T failedValue) empty,
+    required TResult Function(T failedValue) multiline,
+    required TResult Function(T failedValue) incorrectPostalCode,
+    required TResult Function(T failedValue) shopClosedAllWeekLong,
+    required TResult Function(T failedValue) noPhotoSelected,
+    required TResult Function(T failedValue) nonPositiveValue,
+    required TResult Function(T failedValue) noAddressNumber,
+    required TResult Function(T failedValue, bool twelveHourFormat)
+        incorrectHour,
+    required TResult Function(T failedValue, num min, num max)
+        numberOutsideInterval,
+    required TResult Function(T failedValue) invalidTimeInterval,
+    required TResult Function(T failedValue, int maxLength) listTooLong,
+    required TResult Function(T failedValue, int minLength) listTooShort,
+    required TResult Function(T failedValue, int minLength) emptyList,
+    required TResult Function(T failedValue, int maxHeight, int maxWidth)
+        imageTooBig,
+    required TResult Function(T failedValue, int minHeight, int minWidth)
+        imageTooSmall,
+  }) {
+    return imageTooBig(failedValue, maxHeight, maxWidth);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(T failedValue, int maxLength)? exceedingLength,
+    TResult Function(T failedValue, int minLength)? stringTooShort,
+    TResult Function(T failedValue)? empty,
+    TResult Function(T failedValue)? multiline,
+    TResult Function(T failedValue)? incorrectPostalCode,
+    TResult Function(T failedValue)? shopClosedAllWeekLong,
+    TResult Function(T failedValue)? noPhotoSelected,
+    TResult Function(T failedValue)? nonPositiveValue,
+    TResult Function(T failedValue)? noAddressNumber,
+    TResult Function(T failedValue, bool twelveHourFormat)? incorrectHour,
+    TResult Function(T failedValue, num min, num max)? numberOutsideInterval,
+    TResult Function(T failedValue)? invalidTimeInterval,
+    TResult Function(T failedValue, int maxLength)? listTooLong,
+    TResult Function(T failedValue, int minLength)? listTooShort,
+    TResult Function(T failedValue, int minLength)? emptyList,
+    TResult Function(T failedValue, int maxHeight, int maxWidth)? imageTooBig,
+    TResult Function(T failedValue, int minHeight, int minWidth)? imageTooSmall,
+  }) {
+    return imageTooBig?.call(failedValue, maxHeight, maxWidth);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(T failedValue, int maxLength)? exceedingLength,
+    TResult Function(T failedValue, int minLength)? stringTooShort,
+    TResult Function(T failedValue)? empty,
+    TResult Function(T failedValue)? multiline,
+    TResult Function(T failedValue)? incorrectPostalCode,
+    TResult Function(T failedValue)? shopClosedAllWeekLong,
+    TResult Function(T failedValue)? noPhotoSelected,
+    TResult Function(T failedValue)? nonPositiveValue,
+    TResult Function(T failedValue)? noAddressNumber,
+    TResult Function(T failedValue, bool twelveHourFormat)? incorrectHour,
+    TResult Function(T failedValue, num min, num max)? numberOutsideInterval,
+    TResult Function(T failedValue)? invalidTimeInterval,
+    TResult Function(T failedValue, int maxLength)? listTooLong,
+    TResult Function(T failedValue, int minLength)? listTooShort,
+    TResult Function(T failedValue, int minLength)? emptyList,
+    TResult Function(T failedValue, int maxHeight, int maxWidth)? imageTooBig,
+    TResult Function(T failedValue, int minHeight, int minWidth)? imageTooSmall,
+    required TResult orElse(),
+  }) {
+    if (imageTooBig != null) {
+      return imageTooBig(failedValue, maxHeight, maxWidth);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ExceedingLength<T> value) exceedingLength,
+    required TResult Function(StringTooShort<T> value) stringTooShort,
+    required TResult Function(Empty<T> value) empty,
+    required TResult Function(Multiline<T> value) multiline,
+    required TResult Function(IncorrectPostalCode<T> value) incorrectPostalCode,
+    required TResult Function(ShopClosedAllWeekLong<T> value)
+        shopClosedAllWeekLong,
+    required TResult Function(NoPhotoSelected<T> value) noPhotoSelected,
+    required TResult Function(NonPositivePrice<T> value) nonPositiveValue,
+    required TResult Function(NoAddressNumber<T> value) noAddressNumber,
+    required TResult Function(IncorrectHour<T> value) incorrectHour,
+    required TResult Function(NumberOutsideInterval<T> value)
+        numberOutsideInterval,
+    required TResult Function(InvalidTimeInterval<T> value) invalidTimeInterval,
+    required TResult Function(ListTooLong<T> value) listTooLong,
+    required TResult Function(ListTooShort<T> value) listTooShort,
+    required TResult Function(EmptyList<T> value) emptyList,
+    required TResult Function(ImageTooBig<T> value) imageTooBig,
+    required TResult Function(ImageTooSmall<T> value) imageTooSmall,
+  }) {
+    return imageTooBig(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(ExceedingLength<T> value)? exceedingLength,
+    TResult Function(StringTooShort<T> value)? stringTooShort,
+    TResult Function(Empty<T> value)? empty,
+    TResult Function(Multiline<T> value)? multiline,
+    TResult Function(IncorrectPostalCode<T> value)? incorrectPostalCode,
+    TResult Function(ShopClosedAllWeekLong<T> value)? shopClosedAllWeekLong,
+    TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
+    TResult Function(NonPositivePrice<T> value)? nonPositiveValue,
+    TResult Function(NoAddressNumber<T> value)? noAddressNumber,
+    TResult Function(IncorrectHour<T> value)? incorrectHour,
+    TResult Function(NumberOutsideInterval<T> value)? numberOutsideInterval,
+    TResult Function(InvalidTimeInterval<T> value)? invalidTimeInterval,
+    TResult Function(ListTooLong<T> value)? listTooLong,
+    TResult Function(ListTooShort<T> value)? listTooShort,
+    TResult Function(EmptyList<T> value)? emptyList,
+    TResult Function(ImageTooBig<T> value)? imageTooBig,
+    TResult Function(ImageTooSmall<T> value)? imageTooSmall,
+  }) {
+    return imageTooBig?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ExceedingLength<T> value)? exceedingLength,
+    TResult Function(StringTooShort<T> value)? stringTooShort,
+    TResult Function(Empty<T> value)? empty,
+    TResult Function(Multiline<T> value)? multiline,
+    TResult Function(IncorrectPostalCode<T> value)? incorrectPostalCode,
+    TResult Function(ShopClosedAllWeekLong<T> value)? shopClosedAllWeekLong,
+    TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
+    TResult Function(NonPositivePrice<T> value)? nonPositiveValue,
+    TResult Function(NoAddressNumber<T> value)? noAddressNumber,
+    TResult Function(IncorrectHour<T> value)? incorrectHour,
+    TResult Function(NumberOutsideInterval<T> value)? numberOutsideInterval,
+    TResult Function(InvalidTimeInterval<T> value)? invalidTimeInterval,
+    TResult Function(ListTooLong<T> value)? listTooLong,
+    TResult Function(ListTooShort<T> value)? listTooShort,
+    TResult Function(EmptyList<T> value)? emptyList,
+    TResult Function(ImageTooBig<T> value)? imageTooBig,
+    TResult Function(ImageTooSmall<T> value)? imageTooSmall,
+    required TResult orElse(),
+  }) {
+    if (imageTooBig != null) {
+      return imageTooBig(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ImageTooBig<T> implements ShoppingValueFailure<T> {
+  const factory ImageTooBig(
+      {required T failedValue,
+      required int maxHeight,
+      required int maxWidth}) = _$ImageTooBig<T>;
+
+  @override
+  T get failedValue;
+  int get maxHeight;
+  int get maxWidth;
+  @override
+  @JsonKey(ignore: true)
+  $ImageTooBigCopyWith<T, ImageTooBig<T>> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ImageTooSmallCopyWith<T, $Res>
+    implements $ShoppingValueFailureCopyWith<T, $Res> {
+  factory $ImageTooSmallCopyWith(
+          ImageTooSmall<T> value, $Res Function(ImageTooSmall<T>) then) =
+      _$ImageTooSmallCopyWithImpl<T, $Res>;
+  @override
+  $Res call({T failedValue, int minHeight, int minWidth});
+}
+
+/// @nodoc
+class _$ImageTooSmallCopyWithImpl<T, $Res>
+    extends _$ShoppingValueFailureCopyWithImpl<T, $Res>
+    implements $ImageTooSmallCopyWith<T, $Res> {
+  _$ImageTooSmallCopyWithImpl(
+      ImageTooSmall<T> _value, $Res Function(ImageTooSmall<T>) _then)
+      : super(_value, (v) => _then(v as ImageTooSmall<T>));
+
+  @override
+  ImageTooSmall<T> get _value => super._value as ImageTooSmall<T>;
+
+  @override
+  $Res call({
+    Object? failedValue = freezed,
+    Object? minHeight = freezed,
+    Object? minWidth = freezed,
+  }) {
+    return _then(ImageTooSmall<T>(
+      failedValue: failedValue == freezed
+          ? _value.failedValue
+          : failedValue // ignore: cast_nullable_to_non_nullable
+              as T,
+      minHeight: minHeight == freezed
+          ? _value.minHeight
+          : minHeight // ignore: cast_nullable_to_non_nullable
+              as int,
+      minWidth: minWidth == freezed
+          ? _value.minWidth
+          : minWidth // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ImageTooSmall<T> implements ImageTooSmall<T> {
+  const _$ImageTooSmall(
+      {required this.failedValue,
+      required this.minHeight,
+      required this.minWidth});
+
+  @override
+  final T failedValue;
+  @override
+  final int minHeight;
+  @override
+  final int minWidth;
+
+  @override
+  String toString() {
+    return 'ShoppingValueFailure<$T>.imageTooSmall(failedValue: $failedValue, minHeight: $minHeight, minWidth: $minWidth)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is ImageTooSmall<T> &&
+            const DeepCollectionEquality()
+                .equals(other.failedValue, failedValue) &&
+            const DeepCollectionEquality().equals(other.minHeight, minHeight) &&
+            const DeepCollectionEquality().equals(other.minWidth, minWidth));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(failedValue),
+      const DeepCollectionEquality().hash(minHeight),
+      const DeepCollectionEquality().hash(minWidth));
+
+  @JsonKey(ignore: true)
+  @override
+  $ImageTooSmallCopyWith<T, ImageTooSmall<T>> get copyWith =>
+      _$ImageTooSmallCopyWithImpl<T, ImageTooSmall<T>>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(T failedValue, int maxLength) exceedingLength,
+    required TResult Function(T failedValue, int minLength) stringTooShort,
+    required TResult Function(T failedValue) empty,
+    required TResult Function(T failedValue) multiline,
+    required TResult Function(T failedValue) incorrectPostalCode,
+    required TResult Function(T failedValue) shopClosedAllWeekLong,
+    required TResult Function(T failedValue) noPhotoSelected,
+    required TResult Function(T failedValue) nonPositiveValue,
+    required TResult Function(T failedValue) noAddressNumber,
+    required TResult Function(T failedValue, bool twelveHourFormat)
+        incorrectHour,
+    required TResult Function(T failedValue, num min, num max)
+        numberOutsideInterval,
+    required TResult Function(T failedValue) invalidTimeInterval,
+    required TResult Function(T failedValue, int maxLength) listTooLong,
+    required TResult Function(T failedValue, int minLength) listTooShort,
+    required TResult Function(T failedValue, int minLength) emptyList,
+    required TResult Function(T failedValue, int maxHeight, int maxWidth)
+        imageTooBig,
+    required TResult Function(T failedValue, int minHeight, int minWidth)
+        imageTooSmall,
+  }) {
+    return imageTooSmall(failedValue, minHeight, minWidth);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(T failedValue, int maxLength)? exceedingLength,
+    TResult Function(T failedValue, int minLength)? stringTooShort,
+    TResult Function(T failedValue)? empty,
+    TResult Function(T failedValue)? multiline,
+    TResult Function(T failedValue)? incorrectPostalCode,
+    TResult Function(T failedValue)? shopClosedAllWeekLong,
+    TResult Function(T failedValue)? noPhotoSelected,
+    TResult Function(T failedValue)? nonPositiveValue,
+    TResult Function(T failedValue)? noAddressNumber,
+    TResult Function(T failedValue, bool twelveHourFormat)? incorrectHour,
+    TResult Function(T failedValue, num min, num max)? numberOutsideInterval,
+    TResult Function(T failedValue)? invalidTimeInterval,
+    TResult Function(T failedValue, int maxLength)? listTooLong,
+    TResult Function(T failedValue, int minLength)? listTooShort,
+    TResult Function(T failedValue, int minLength)? emptyList,
+    TResult Function(T failedValue, int maxHeight, int maxWidth)? imageTooBig,
+    TResult Function(T failedValue, int minHeight, int minWidth)? imageTooSmall,
+  }) {
+    return imageTooSmall?.call(failedValue, minHeight, minWidth);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(T failedValue, int maxLength)? exceedingLength,
+    TResult Function(T failedValue, int minLength)? stringTooShort,
+    TResult Function(T failedValue)? empty,
+    TResult Function(T failedValue)? multiline,
+    TResult Function(T failedValue)? incorrectPostalCode,
+    TResult Function(T failedValue)? shopClosedAllWeekLong,
+    TResult Function(T failedValue)? noPhotoSelected,
+    TResult Function(T failedValue)? nonPositiveValue,
+    TResult Function(T failedValue)? noAddressNumber,
+    TResult Function(T failedValue, bool twelveHourFormat)? incorrectHour,
+    TResult Function(T failedValue, num min, num max)? numberOutsideInterval,
+    TResult Function(T failedValue)? invalidTimeInterval,
+    TResult Function(T failedValue, int maxLength)? listTooLong,
+    TResult Function(T failedValue, int minLength)? listTooShort,
+    TResult Function(T failedValue, int minLength)? emptyList,
+    TResult Function(T failedValue, int maxHeight, int maxWidth)? imageTooBig,
+    TResult Function(T failedValue, int minHeight, int minWidth)? imageTooSmall,
+    required TResult orElse(),
+  }) {
+    if (imageTooSmall != null) {
+      return imageTooSmall(failedValue, minHeight, minWidth);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ExceedingLength<T> value) exceedingLength,
+    required TResult Function(StringTooShort<T> value) stringTooShort,
+    required TResult Function(Empty<T> value) empty,
+    required TResult Function(Multiline<T> value) multiline,
+    required TResult Function(IncorrectPostalCode<T> value) incorrectPostalCode,
+    required TResult Function(ShopClosedAllWeekLong<T> value)
+        shopClosedAllWeekLong,
+    required TResult Function(NoPhotoSelected<T> value) noPhotoSelected,
+    required TResult Function(NonPositivePrice<T> value) nonPositiveValue,
+    required TResult Function(NoAddressNumber<T> value) noAddressNumber,
+    required TResult Function(IncorrectHour<T> value) incorrectHour,
+    required TResult Function(NumberOutsideInterval<T> value)
+        numberOutsideInterval,
+    required TResult Function(InvalidTimeInterval<T> value) invalidTimeInterval,
+    required TResult Function(ListTooLong<T> value) listTooLong,
+    required TResult Function(ListTooShort<T> value) listTooShort,
+    required TResult Function(EmptyList<T> value) emptyList,
+    required TResult Function(ImageTooBig<T> value) imageTooBig,
+    required TResult Function(ImageTooSmall<T> value) imageTooSmall,
+  }) {
+    return imageTooSmall(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(ExceedingLength<T> value)? exceedingLength,
+    TResult Function(StringTooShort<T> value)? stringTooShort,
+    TResult Function(Empty<T> value)? empty,
+    TResult Function(Multiline<T> value)? multiline,
+    TResult Function(IncorrectPostalCode<T> value)? incorrectPostalCode,
+    TResult Function(ShopClosedAllWeekLong<T> value)? shopClosedAllWeekLong,
+    TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
+    TResult Function(NonPositivePrice<T> value)? nonPositiveValue,
+    TResult Function(NoAddressNumber<T> value)? noAddressNumber,
+    TResult Function(IncorrectHour<T> value)? incorrectHour,
+    TResult Function(NumberOutsideInterval<T> value)? numberOutsideInterval,
+    TResult Function(InvalidTimeInterval<T> value)? invalidTimeInterval,
+    TResult Function(ListTooLong<T> value)? listTooLong,
+    TResult Function(ListTooShort<T> value)? listTooShort,
+    TResult Function(EmptyList<T> value)? emptyList,
+    TResult Function(ImageTooBig<T> value)? imageTooBig,
+    TResult Function(ImageTooSmall<T> value)? imageTooSmall,
+  }) {
+    return imageTooSmall?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ExceedingLength<T> value)? exceedingLength,
+    TResult Function(StringTooShort<T> value)? stringTooShort,
+    TResult Function(Empty<T> value)? empty,
+    TResult Function(Multiline<T> value)? multiline,
+    TResult Function(IncorrectPostalCode<T> value)? incorrectPostalCode,
+    TResult Function(ShopClosedAllWeekLong<T> value)? shopClosedAllWeekLong,
+    TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
+    TResult Function(NonPositivePrice<T> value)? nonPositiveValue,
+    TResult Function(NoAddressNumber<T> value)? noAddressNumber,
+    TResult Function(IncorrectHour<T> value)? incorrectHour,
+    TResult Function(NumberOutsideInterval<T> value)? numberOutsideInterval,
+    TResult Function(InvalidTimeInterval<T> value)? invalidTimeInterval,
+    TResult Function(ListTooLong<T> value)? listTooLong,
+    TResult Function(ListTooShort<T> value)? listTooShort,
+    TResult Function(EmptyList<T> value)? emptyList,
+    TResult Function(ImageTooBig<T> value)? imageTooBig,
+    TResult Function(ImageTooSmall<T> value)? imageTooSmall,
+    required TResult orElse(),
+  }) {
+    if (imageTooSmall != null) {
+      return imageTooSmall(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ImageTooSmall<T> implements ShoppingValueFailure<T> {
+  const factory ImageTooSmall(
+      {required T failedValue,
+      required int minHeight,
+      required int minWidth}) = _$ImageTooSmall<T>;
+
+  @override
+  T get failedValue;
+  int get minHeight;
+  int get minWidth;
+  @override
+  @JsonKey(ignore: true)
+  $ImageTooSmallCopyWith<T, ImageTooSmall<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
