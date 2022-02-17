@@ -18,6 +18,9 @@ class Photo extends ValueObject<File> {
           .andThen(validatePhotoTooSmall(file,
               minWidth: minWidth, minHeight: minHeight)));
   const Photo._(this.value);
+
+  @override
+  List<Object> get props => [value.fold((l) => l, (r) => r.readAsBytesSync())];
 }
 
 class ShopLogo extends Photo {
