@@ -1,10 +1,15 @@
 part of 'shop_logo_picker_bloc.dart';
 
-abstract class ShopLogoPickerState extends Equatable {
-  const ShopLogoPickerState();
-  
-  @override
-  List<Object> get props => [];
+@superEnum
+enum _ShopLogoPickerState {
+  @object
+  Initial,
+  @object
+  Loading,
+  @Data(fields: [
+    DataField<ShopLogo>('logo'),
+  ])
+  Loaded,
+  @object
+  Error
 }
-
-class ShopLogoPickerInitial extends ShopLogoPickerState {}
