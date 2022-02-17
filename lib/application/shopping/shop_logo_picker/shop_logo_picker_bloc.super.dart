@@ -26,23 +26,22 @@ part of 'shop_logo_picker_bloc.dart';
 // @Sealed()
 // abstract class _ShopLogoPickerEvent
 // {
+// @WithWrap()
 // @WithEquality(Equality.data)
 // @WithName('GetShopLogo')
-// void getShopLogo(ShopLogo shopLogo);
+// void getShopLogo();
 // }
 
 /// [ShopLogoPickerEvent] {
 ///
-/// ([GetShopLogo] getShopLogo){[ShopLogo] shopLogo} with data equality
+/// ([GetShopLogo] getShopLogo){} with data equality with wrap
 ///
 /// }
 @immutable
 abstract class ShopLogoPickerEvent {
   const ShopLogoPickerEvent._internal();
 
-  const factory ShopLogoPickerEvent.getShopLogo({
-    required ShopLogo shopLogo,
-  }) = GetShopLogo;
+  const factory ShopLogoPickerEvent.getShopLogo() = GetShopLogo;
 
   bool isGetShopLogo() => this is GetShopLogo;
 
@@ -54,94 +53,88 @@ abstract class ShopLogoPickerEvent {
   }
 
   R when<R extends Object?>({
-    required R Function(GetShopLogo getShopLogo) getShopLogo,
+    required R Function() getShopLogo,
   }) {
     final shopLogoPickerEvent = this;
     if (shopLogoPickerEvent is GetShopLogo) {
-      return getShopLogo(shopLogoPickerEvent);
+      return getShopLogo();
     } else {
       throw AssertionError();
     }
   }
 
   R whenOrElse<R extends Object?>({
-    R Function(GetShopLogo getShopLogo)? getShopLogo,
+    R Function()? getShopLogo,
     required R Function(ShopLogoPickerEvent shopLogoPickerEvent) orElse,
   }) {
     final shopLogoPickerEvent = this;
     if (shopLogoPickerEvent is GetShopLogo) {
-      return getShopLogo != null
-          ? getShopLogo(shopLogoPickerEvent)
-          : orElse(shopLogoPickerEvent);
+      return getShopLogo != null ? getShopLogo() : orElse(shopLogoPickerEvent);
     } else {
       throw AssertionError();
     }
   }
 
   R whenOrDefault<R extends Object?>({
-    R Function(GetShopLogo getShopLogo)? getShopLogo,
+    R Function()? getShopLogo,
     required R orDefault,
   }) {
     final shopLogoPickerEvent = this;
     if (shopLogoPickerEvent is GetShopLogo) {
-      return getShopLogo != null ? getShopLogo(shopLogoPickerEvent) : orDefault;
+      return getShopLogo != null ? getShopLogo() : orDefault;
     } else {
       throw AssertionError();
     }
   }
 
   R? whenOrNull<R extends Object?>({
-    R Function(GetShopLogo getShopLogo)? getShopLogo,
+    R Function()? getShopLogo,
   }) {
     final shopLogoPickerEvent = this;
     if (shopLogoPickerEvent is GetShopLogo) {
-      return getShopLogo?.call(shopLogoPickerEvent);
+      return getShopLogo?.call();
     } else {
       throw AssertionError();
     }
   }
 
   R whenOrThrow<R extends Object?>({
-    R Function(GetShopLogo getShopLogo)? getShopLogo,
+    R Function()? getShopLogo,
   }) {
     final shopLogoPickerEvent = this;
     if (shopLogoPickerEvent is GetShopLogo && getShopLogo != null) {
-      return getShopLogo(shopLogoPickerEvent);
+      return getShopLogo();
     } else {
       throw AssertionError();
     }
   }
 
   void whenPartial({
-    void Function(GetShopLogo getShopLogo)? getShopLogo,
+    void Function()? getShopLogo,
   }) {
     final shopLogoPickerEvent = this;
     if (shopLogoPickerEvent is GetShopLogo) {
-      getShopLogo?.call(shopLogoPickerEvent);
+      getShopLogo?.call();
     } else {
       throw AssertionError();
     }
   }
 }
 
-/// (([GetShopLogo] : [ShopLogoPickerEvent]) getShopLogo){[ShopLogo] shopLogo}
+/// (([GetShopLogo] : [ShopLogoPickerEvent]) getShopLogo){}
 ///
 /// with data equality
+///
+/// with wrap
 @immutable
 class GetShopLogo extends ShopLogoPickerEvent with EquatableMixin {
-  const GetShopLogo({
-    required this.shopLogo,
-  }) : super._internal();
-
-  final ShopLogo shopLogo;
+  const GetShopLogo() : super._internal();
 
   @override
-  String toString() => 'ShopLogoPickerEvent.getShopLogo(shopLogo: $shopLogo)';
+  String toString() => 'ShopLogoPickerEvent.getShopLogo()';
 
   @override
-  List<Object?> get props => [
-        shopLogo,
-      ];
+  List<Object?> get props => [];
 }
 
 // ignore_for_file: unused_element, unused_field
@@ -178,10 +171,9 @@ class GetShopLogo extends ShopLogoPickerEvent with EquatableMixin {
 // @WithName('Loaded')
 // void loaded(ShopLogo logo);
 //
-// @WithWrap()
 // @WithEquality(Equality.data)
 // @WithName('Error')
-// void error();
+// void error(ImageFailure failure);
 // }
 
 /// [ShopLogoPickerState] {
@@ -192,7 +184,7 @@ class GetShopLogo extends ShopLogoPickerEvent with EquatableMixin {
 ///
 /// ([Loaded] loaded){[ShopLogo] logo} with data equality
 ///
-/// ([Error] error){} with data equality with wrap
+/// ([Error] error){[ImageFailure] failure} with data equality
 ///
 /// }
 @immutable
@@ -207,7 +199,9 @@ abstract class ShopLogoPickerState {
     required ShopLogo logo,
   }) = Loaded;
 
-  const factory ShopLogoPickerState.error() = Error;
+  const factory ShopLogoPickerState.error({
+    required ImageFailure failure,
+  }) = Error;
 
   bool isInitial() => this is Initial;
 
@@ -249,7 +243,7 @@ abstract class ShopLogoPickerState {
     required R Function() initial,
     required R Function() loading,
     required R Function(Loaded loaded) loaded,
-    required R Function() error,
+    required R Function(Error error) error,
   }) {
     final shopLogoPickerState = this;
     if (shopLogoPickerState is Initial) {
@@ -259,7 +253,7 @@ abstract class ShopLogoPickerState {
     } else if (shopLogoPickerState is Loaded) {
       return loaded(shopLogoPickerState);
     } else if (shopLogoPickerState is Error) {
-      return error();
+      return error(shopLogoPickerState);
     } else {
       throw AssertionError();
     }
@@ -269,7 +263,7 @@ abstract class ShopLogoPickerState {
     R Function()? initial,
     R Function()? loading,
     R Function(Loaded loaded)? loaded,
-    R Function()? error,
+    R Function(Error error)? error,
     required R Function(ShopLogoPickerState shopLogoPickerState) orElse,
   }) {
     final shopLogoPickerState = this;
@@ -282,7 +276,9 @@ abstract class ShopLogoPickerState {
           ? loaded(shopLogoPickerState)
           : orElse(shopLogoPickerState);
     } else if (shopLogoPickerState is Error) {
-      return error != null ? error() : orElse(shopLogoPickerState);
+      return error != null
+          ? error(shopLogoPickerState)
+          : orElse(shopLogoPickerState);
     } else {
       throw AssertionError();
     }
@@ -292,7 +288,7 @@ abstract class ShopLogoPickerState {
     R Function()? initial,
     R Function()? loading,
     R Function(Loaded loaded)? loaded,
-    R Function()? error,
+    R Function(Error error)? error,
     required R orDefault,
   }) {
     final shopLogoPickerState = this;
@@ -303,7 +299,7 @@ abstract class ShopLogoPickerState {
     } else if (shopLogoPickerState is Loaded) {
       return loaded != null ? loaded(shopLogoPickerState) : orDefault;
     } else if (shopLogoPickerState is Error) {
-      return error != null ? error() : orDefault;
+      return error != null ? error(shopLogoPickerState) : orDefault;
     } else {
       throw AssertionError();
     }
@@ -313,7 +309,7 @@ abstract class ShopLogoPickerState {
     R Function()? initial,
     R Function()? loading,
     R Function(Loaded loaded)? loaded,
-    R Function()? error,
+    R Function(Error error)? error,
   }) {
     final shopLogoPickerState = this;
     if (shopLogoPickerState is Initial) {
@@ -323,7 +319,7 @@ abstract class ShopLogoPickerState {
     } else if (shopLogoPickerState is Loaded) {
       return loaded?.call(shopLogoPickerState);
     } else if (shopLogoPickerState is Error) {
-      return error?.call();
+      return error?.call(shopLogoPickerState);
     } else {
       throw AssertionError();
     }
@@ -333,7 +329,7 @@ abstract class ShopLogoPickerState {
     R Function()? initial,
     R Function()? loading,
     R Function(Loaded loaded)? loaded,
-    R Function()? error,
+    R Function(Error error)? error,
   }) {
     final shopLogoPickerState = this;
     if (shopLogoPickerState is Initial && initial != null) {
@@ -343,7 +339,7 @@ abstract class ShopLogoPickerState {
     } else if (shopLogoPickerState is Loaded && loaded != null) {
       return loaded(shopLogoPickerState);
     } else if (shopLogoPickerState is Error && error != null) {
-      return error();
+      return error(shopLogoPickerState);
     } else {
       throw AssertionError();
     }
@@ -353,7 +349,7 @@ abstract class ShopLogoPickerState {
     void Function()? initial,
     void Function()? loading,
     void Function(Loaded loaded)? loaded,
-    void Function()? error,
+    void Function(Error error)? error,
   }) {
     final shopLogoPickerState = this;
     if (shopLogoPickerState is Initial) {
@@ -363,7 +359,7 @@ abstract class ShopLogoPickerState {
     } else if (shopLogoPickerState is Loaded) {
       loaded?.call(shopLogoPickerState);
     } else if (shopLogoPickerState is Error) {
-      error?.call();
+      error?.call(shopLogoPickerState);
     } else {
       throw AssertionError();
     }
@@ -422,18 +418,22 @@ class Loaded extends ShopLogoPickerState with EquatableMixin {
       ];
 }
 
-/// (([Error] : [ShopLogoPickerState]) error){}
+/// (([Error] : [ShopLogoPickerState]) error){[ImageFailure] failure}
 ///
 /// with data equality
-///
-/// with wrap
 @immutable
 class Error extends ShopLogoPickerState with EquatableMixin {
-  const Error() : super._internal();
+  const Error({
+    required this.failure,
+  }) : super._internal();
+
+  final ImageFailure failure;
 
   @override
-  String toString() => 'ShopLogoPickerState.error()';
+  String toString() => 'ShopLogoPickerState.error(failure: $failure)';
 
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [
+        failure,
+      ];
 }

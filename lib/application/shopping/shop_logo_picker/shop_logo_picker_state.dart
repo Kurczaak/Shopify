@@ -10,6 +10,8 @@ enum _ShopLogoPickerState {
     DataField<ShopLogo>('logo'),
   ])
   Loaded,
-  @object
-  Error
+  @Data(fields: [
+    DataField<ImageFailure>('failure'),
+  ])
+  Error,
 }
