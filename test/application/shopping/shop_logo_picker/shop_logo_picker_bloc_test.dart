@@ -81,7 +81,8 @@ void main() async {
       setUp: () => when(() => mockImageFacade.getShopLogo())
           .thenAnswer((_) async => right(tTooSmallShopLogo)),
       act: (ShopLogoPickerBloc bloc) => bloc.add(const GetShopLogo()),
-      expect: () => const [Loading(), Error(failure: InvalidImageSize)],
+      expect: () =>
+          const [Loading(), Error(failure: ImageFailure.invalidImageSize())],
     );
 
     blocTest(

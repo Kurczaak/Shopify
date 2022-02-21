@@ -47,10 +47,10 @@ class ShopLogoPickerBloc
                       orElse: () {},
                       shopping: (shoppingFialure) {
                         shoppingFialure.f.maybeMap(
-                            imageTooBig: (_) =>
-                                emit(const Error(failure: InvalidImageSize)),
-                            imageTooSmall: (_) =>
-                                emit(const Error(failure: InvalidImageSize)),
+                            imageTooBig: (_) => emit(const Error(
+                                failure: ImageFailure.invalidImageSize())),
+                            imageTooSmall: (_) => emit(const Error(
+                                failure: ImageFailure.invalidImageSize())),
                             orElse: () {
                               throw UnexpectedValueError(shoppingFialure);
                             });

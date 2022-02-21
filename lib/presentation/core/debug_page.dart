@@ -3,6 +3,7 @@ import 'package:responsive_framework/responsive_framework.dart';
 import 'package:shopify_manager/application/shopping/shop_location_picker/shop_location_picker_bloc.dart';
 import 'package:shopify_manager/application/shopping/shop_logo_picker/shop_logo_picker_bloc.dart';
 import 'package:shopify_manager/application/shopping/shop_time_picker/shop_time_picker_bloc.dart';
+import 'package:shopify_manager/domain/core/images/image_failure.dart';
 import 'package:shopify_manager/domain/shopping/failures.dart';
 import 'package:shopify_manager/presentation/core/widgets/process_appbar.dart';
 import 'package:shopify_manager/presentation/register_shop/widgets/hour_dropdown_picker.dart';
@@ -30,7 +31,18 @@ class DebugPage extends StatelessWidget {
       body: BlocProvider(
         create: (context) => getIt<ShopLogoPickerBloc>(),
         child: BlocConsumer<ShopLogoPickerBloc, ShopLogoPickerState>(
-          listener: (context, state) {},
+          listener: (context, state) {
+            state.whenPartial(error: (Error error) {
+              final ImageFailure failure = error.failure as ImageFailure;
+
+              FlushbarHelper.createError(
+                      message: failure.when(
+                          unexpected: () => 'Unexpected Failure',
+                          noImageSelected: () => 'No Image has been selected',
+                          invalidImageSize: () => 'Invalid Image Size'))
+                  .show(context);
+            });
+          },
           builder: (context, state) => Padding(
             padding: const EdgeInsets.all(28.0),
             child: Column(
@@ -59,6 +71,7 @@ class DebugPage extends StatelessWidget {
                     const Text('4/4'),
                   ],
                 ),
+                const SizedBox(height: 24),
                 OutlinedButton(
                   onPressed: () {
                     context.read<ShopLogoPickerBloc>().add(const GetShopLogo());
@@ -97,7 +110,9 @@ class DebugPage extends StatelessWidget {
                             vertical: 10,
                           ),
                           decoration: BoxDecoration(
-                              color: Theme.of(context).primaryColor,
+                              color: state.isError()
+                                  ? Theme.of(context).errorColor
+                                  : Theme.of(context).primaryColor,
                               borderRadius: const BorderRadius.horizontal(
                                   left: Radius.zero,
                                   right: Radius.circular(8))),
@@ -121,11 +136,21 @@ class DebugPage extends StatelessWidget {
                     ),
                   ),
                 ),
+                const SizedBox(height: 40),
                 state.when(
-                    initial: () => Text('initial'),
-                    loading: () => Text('loading'),
-                    loaded: (loaded) => Image.file(loaded.logo.getOrCrash()),
-                    error: (error) => Text(error.failure.toString()))
+                  initial: () => Icon(
+                    Icons.image,
+                    color: Theme.of(context).primaryColor,
+                    size: 100,
+                  ),
+                  loading: () => Center(child: CircularProgressIndicator()),
+                  loaded: (loaded) => Image.file(loaded.logo.getOrCrash()),
+                  error: (error) => Icon(
+                    Icons.image,
+                    color: Theme.of(context).errorColor,
+                    size: 100,
+                  ),
+                )
               ],
             ),
           ),
