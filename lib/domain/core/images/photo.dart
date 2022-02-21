@@ -24,8 +24,8 @@ class Photo extends ValueObject<File> {
 }
 
 class ShopLogo extends Photo {
-  static const int maxHeight = 100;
-  static const int maxWidth = 320;
+  static const int maxHeight = 400;
+  static const int maxWidth = 900;
   static const int minHeight = Photo.minHeight;
   static const int minWidth = Photo.minWidth;
 

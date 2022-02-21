@@ -23,8 +23,8 @@ class _$ValueFailureTearOff {
     );
   }
 
-  _Product<T> shopping<T>(ShoppingValueFailure<T> f) {
-    return _Product<T>(
+  _Shopping<T> shopping<T>(ShoppingValueFailure<T> f) {
+    return _Shopping<T>(
       f,
     );
   }
@@ -57,19 +57,19 @@ mixin _$ValueFailure<T> {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Auth<T> value) auth,
-    required TResult Function(_Product<T> value) shopping,
+    required TResult Function(_Shopping<T> value) shopping,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Auth<T> value)? auth,
-    TResult Function(_Product<T> value)? shopping,
+    TResult Function(_Shopping<T> value)? shopping,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Auth<T> value)? auth,
-    TResult Function(_Product<T> value)? shopping,
+    TResult Function(_Shopping<T> value)? shopping,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -195,7 +195,7 @@ class _$_Auth<T> implements _Auth<T> {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Auth<T> value) auth,
-    required TResult Function(_Product<T> value) shopping,
+    required TResult Function(_Shopping<T> value) shopping,
   }) {
     return auth(this);
   }
@@ -204,7 +204,7 @@ class _$_Auth<T> implements _Auth<T> {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Auth<T> value)? auth,
-    TResult Function(_Product<T> value)? shopping,
+    TResult Function(_Shopping<T> value)? shopping,
   }) {
     return auth?.call(this);
   }
@@ -213,7 +213,7 @@ class _$_Auth<T> implements _Auth<T> {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Auth<T> value)? auth,
-    TResult Function(_Product<T> value)? shopping,
+    TResult Function(_Shopping<T> value)? shopping,
     required TResult orElse(),
   }) {
     if (auth != null) {
@@ -233,30 +233,31 @@ abstract class _Auth<T> implements ValueFailure<T> {
 }
 
 /// @nodoc
-abstract class _$ProductCopyWith<T, $Res> {
-  factory _$ProductCopyWith(
-          _Product<T> value, $Res Function(_Product<T>) then) =
-      __$ProductCopyWithImpl<T, $Res>;
+abstract class _$ShoppingCopyWith<T, $Res> {
+  factory _$ShoppingCopyWith(
+          _Shopping<T> value, $Res Function(_Shopping<T>) then) =
+      __$ShoppingCopyWithImpl<T, $Res>;
   $Res call({ShoppingValueFailure<T> f});
 
   $ShoppingValueFailureCopyWith<T, $Res> get f;
 }
 
 /// @nodoc
-class __$ProductCopyWithImpl<T, $Res>
+class __$ShoppingCopyWithImpl<T, $Res>
     extends _$ValueFailureCopyWithImpl<T, $Res>
-    implements _$ProductCopyWith<T, $Res> {
-  __$ProductCopyWithImpl(_Product<T> _value, $Res Function(_Product<T>) _then)
-      : super(_value, (v) => _then(v as _Product<T>));
+    implements _$ShoppingCopyWith<T, $Res> {
+  __$ShoppingCopyWithImpl(
+      _Shopping<T> _value, $Res Function(_Shopping<T>) _then)
+      : super(_value, (v) => _then(v as _Shopping<T>));
 
   @override
-  _Product<T> get _value => super._value as _Product<T>;
+  _Shopping<T> get _value => super._value as _Shopping<T>;
 
   @override
   $Res call({
     Object? f = freezed,
   }) {
-    return _then(_Product<T>(
+    return _then(_Shopping<T>(
       f == freezed
           ? _value.f
           : f // ignore: cast_nullable_to_non_nullable
@@ -274,8 +275,8 @@ class __$ProductCopyWithImpl<T, $Res>
 
 /// @nodoc
 
-class _$_Product<T> implements _Product<T> {
-  const _$_Product(this.f);
+class _$_Shopping<T> implements _Shopping<T> {
+  const _$_Shopping(this.f);
 
   @override
   final ShoppingValueFailure<T> f;
@@ -289,7 +290,7 @@ class _$_Product<T> implements _Product<T> {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _Product<T> &&
+            other is _Shopping<T> &&
             const DeepCollectionEquality().equals(other.f, f));
   }
 
@@ -299,8 +300,8 @@ class _$_Product<T> implements _Product<T> {
 
   @JsonKey(ignore: true)
   @override
-  _$ProductCopyWith<T, _Product<T>> get copyWith =>
-      __$ProductCopyWithImpl<T, _Product<T>>(this, _$identity);
+  _$ShoppingCopyWith<T, _Shopping<T>> get copyWith =>
+      __$ShoppingCopyWithImpl<T, _Shopping<T>>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -337,7 +338,7 @@ class _$_Product<T> implements _Product<T> {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Auth<T> value) auth,
-    required TResult Function(_Product<T> value) shopping,
+    required TResult Function(_Shopping<T> value) shopping,
   }) {
     return shopping(this);
   }
@@ -346,7 +347,7 @@ class _$_Product<T> implements _Product<T> {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Auth<T> value)? auth,
-    TResult Function(_Product<T> value)? shopping,
+    TResult Function(_Shopping<T> value)? shopping,
   }) {
     return shopping?.call(this);
   }
@@ -355,7 +356,7 @@ class _$_Product<T> implements _Product<T> {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Auth<T> value)? auth,
-    TResult Function(_Product<T> value)? shopping,
+    TResult Function(_Shopping<T> value)? shopping,
     required TResult orElse(),
   }) {
     if (shopping != null) {
@@ -365,12 +366,12 @@ class _$_Product<T> implements _Product<T> {
   }
 }
 
-abstract class _Product<T> implements ValueFailure<T> {
-  const factory _Product(ShoppingValueFailure<T> f) = _$_Product<T>;
+abstract class _Shopping<T> implements ValueFailure<T> {
+  const factory _Shopping(ShoppingValueFailure<T> f) = _$_Shopping<T>;
 
   ShoppingValueFailure<T> get f;
   @JsonKey(ignore: true)
-  _$ProductCopyWith<T, _Product<T>> get copyWith =>
+  _$ShoppingCopyWith<T, _Shopping<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

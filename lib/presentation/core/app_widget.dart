@@ -48,6 +48,23 @@ class AppWidget extends StatelessWidget {
           brightness: Brightness.light,
           fontFamily: 'Poppins',
           primarySwatch: MaterialColor(0xFF337331, color),
+          iconTheme: const IconThemeData(
+            color: Colors.white,
+            opacity: 1,
+            size: 30,
+          ),
+          outlinedButtonTheme: OutlinedButtonThemeData(
+            style: OutlinedButton.styleFrom(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8.0),
+              ),
+              padding: const EdgeInsets.all(5),
+              side: const BorderSide(
+                width: 1,
+                color: Color.fromRGBO(73, 72, 72, 1),
+              ),
+            ),
+          ),
           inputDecorationTheme: InputDecorationTheme(
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(100),

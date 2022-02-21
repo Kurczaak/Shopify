@@ -1,8 +1,13 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:super_enum_sealed_annotations/super_enum_sealed_annotations.dart';
 
-part 'image_failure.freezed.dart';
+part 'image_failure.super.dart';
 
-@freezed
-abstract class ImageFailure with _$ImageFailure {
-  const factory ImageFailure.unexpected() = _Unexpected;
+@superEnum
+enum _ImageFailure {
+  @object
+  Unexpected,
+  @object
+  NoImageSelected,
+  @object
+  InvalidImageSize
 }

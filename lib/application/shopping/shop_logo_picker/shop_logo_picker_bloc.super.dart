@@ -173,7 +173,7 @@ class GetShopLogo extends ShopLogoPickerEvent with EquatableMixin {
 //
 // @WithEquality(Equality.data)
 // @WithName('Error')
-// void error(ImageFailure failure);
+// void error(dynamic failure);
 // }
 
 /// [ShopLogoPickerState] {
@@ -184,7 +184,7 @@ class GetShopLogo extends ShopLogoPickerEvent with EquatableMixin {
 ///
 /// ([Loaded] loaded){[ShopLogo] logo} with data equality
 ///
-/// ([Error] error){[ImageFailure] failure} with data equality
+/// ([Error] error){[dynamic] failure} with data equality
 ///
 /// }
 @immutable
@@ -200,7 +200,7 @@ abstract class ShopLogoPickerState {
   }) = Loaded;
 
   const factory ShopLogoPickerState.error({
-    required ImageFailure failure,
+    required dynamic failure,
   }) = Error;
 
   bool isInitial() => this is Initial;
@@ -418,7 +418,7 @@ class Loaded extends ShopLogoPickerState with EquatableMixin {
       ];
 }
 
-/// (([Error] : [ShopLogoPickerState]) error){[ImageFailure] failure}
+/// (([Error] : [ShopLogoPickerState]) error){[dynamic] failure}
 ///
 /// with data equality
 @immutable
@@ -427,7 +427,7 @@ class Error extends ShopLogoPickerState with EquatableMixin {
     required this.failure,
   }) : super._internal();
 
-  final ImageFailure failure;
+  final dynamic failure;
 
   @override
   String toString() => 'ShopLogoPickerState.error(failure: $failure)';
