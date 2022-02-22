@@ -9,6 +9,8 @@ import '../../../utils/image_reader.dart';
 
 void main() async {
   final image320x100 = await getImageFileFromAssets('test_logo.jpg');
+  final tooSmallImage = await getImageFileFromAssets('too_small_logo.jpg');
+  final tooBigImage = await getImageFileFromAssets('too_big_logo.jpg');
   const logoWidth = 320;
   const logoHeight = 100;
 
@@ -26,14 +28,14 @@ void main() async {
     'should return a failure when logo is too big',
     () async {
       // act
-      final result = validatePhotoTooBig(image320x100,
-          maxHeight: logoHeight - 1, maxWidth: logoWidth);
+      final result = validatePhotoTooBig(tooBigImage,
+          maxHeight: ShopLogo.maxHeight, maxWidth: ShopLogo.maxWidth);
       // assert
       expect(
           result,
           left(ValueFailure.shopping(ShoppingValueFailure.imageTooBig(
-              failedValue: image320x100,
-              maxHeight: ShopLogo.maxHeight - 1,
+              failedValue: tooBigImage,
+              maxHeight: ShopLogo.maxHeight,
               maxWidth: ShopLogo.maxWidth))));
     },
   );
@@ -42,15 +44,15 @@ void main() async {
     'should return a failure when logo is too small',
     () async {
       // act
-      final result = validatePhotoTooSmall(image320x100,
-          minHeight: logoHeight + 1, minWidth: logoWidth);
+      final result = validatePhotoTooSmall(tooSmallImage,
+          minHeight: ShopLogo.minHeight, minWidth: ShopLogo.minWidth);
       // assert
       expect(
           result,
           left(ValueFailure.shopping(ShoppingValueFailure.imageTooSmall(
-              failedValue: image320x100,
-              minHeight: ShopLogo.maxHeight + 1,
-              minWidth: ShopLogo.maxWidth))));
+              failedValue: tooSmallImage,
+              minHeight: ShopLogo.minHeight,
+              minWidth: ShopLogo.minWidth))));
     },
   );
 }

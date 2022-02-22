@@ -5,10 +5,12 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:shopify_manager/domain/core/address.dart';
+import 'package:shopify_manager/domain/core/location.dart';
 import 'package:shopify_manager/domain/core/value_objects.dart';
 import 'package:shopify_manager/domain/shopping/i_shop_repository.dart';
 import 'package:shopify_manager/domain/shopping/shop.dart';
 import 'package:shopify_manager/domain/shopping/shop_failure.dart';
+import 'package:shopify_manager/domain/shopping/time/week.dart';
 import 'package:shopify_manager/domain/shopping/value_objects.dart';
 import 'shop_form_bloc_test.mocks.dart';
 import 'package:meta/meta.dart';
@@ -28,15 +30,19 @@ void main() {
   const shopNameStr = 'Sklep Spożywczy ABC';
 
   final tShop = Shop(
-      shopName: ShopName(shopNameStr),
-      address: Address(
-        apartmentNumber: AddressNumber(apartmentNumberStr),
-        streetNumber: StreetNumber(streetNumberStr),
-        city: CityName(cityNameStr),
-        postalCode: PostalCode(postalCodeStr),
-        streetName: StreetName(streetNameStr),
-      ),
-      id: initialState.shop.id);
+    shopName: ShopName(shopNameStr),
+    address: Address(
+      apartmentNumber: AddressNumber(apartmentNumberStr),
+      streetNumber: StreetNumber(streetNumberStr),
+      city: CityName(cityNameStr),
+      postalCode: PostalCode(postalCodeStr),
+      streetName: StreetName(streetNameStr),
+    ),
+    id: initialState.shop.id,
+    workingWeek: Week.empty(),
+    location: Location.empty(),
+    logoUrl: 'https://www.example.com',
+  );
 
   setUp(() {
     mockIShopRepository = MockIShopRepository();

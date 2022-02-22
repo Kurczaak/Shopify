@@ -35,7 +35,7 @@ void main() async {
     },
   );
   test(
-    'should return a value failure when logo is too small',
+    'should return a value failure when logo is too big',
     () async {
       // act
       final result = ShopLogo(tTooBigLogo);
