@@ -5,12 +5,11 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:shopify_manager/domain/core/address.dart';
-import 'package:shopify_manager/domain/core/location.dart';
 import 'package:shopify_manager/domain/core/value_objects.dart';
 import 'package:shopify_manager/domain/shopping/i_shop_repository.dart';
 import 'package:shopify_manager/domain/shopping/shop.dart';
 import 'package:shopify_manager/domain/shopping/shop_failure.dart';
-import 'package:shopify_manager/domain/shopping/time/week.dart';
+import 'package:shopify_manager/domain/shopping/shop_form.dart';
 import 'package:shopify_manager/domain/shopping/value_objects.dart';
 import 'shop_form_bloc_test.mocks.dart';
 import 'package:meta/meta.dart';
@@ -29,7 +28,7 @@ void main() {
   const streetNumberStr = '12A';
   const shopNameStr = 'Sklep Spożywczy ABC';
 
-  final tShop = Shop(
+  final tShop = ShopForm(
     shopName: ShopName(shopNameStr),
     address: Address(
       apartmentNumber: AddressNumber(apartmentNumberStr),
@@ -38,10 +37,6 @@ void main() {
       postalCode: PostalCode(postalCodeStr),
       streetName: StreetName(streetNameStr),
     ),
-    id: initialState.shop.id,
-    workingWeek: Week.empty(),
-    location: Location.empty(),
-    logoUrl: 'https://www.example.com',
   );
 
   setUp(() {
@@ -59,13 +54,6 @@ void main() {
       updatedShop:
           initialState.shop.copyWith(shopName: ShopName(correctShopNameStr)),
     );
-
-    testSettingSaveFailureOrSuccessOptionToNone(
-      'should set saveFailureOrSuccessOption back to none()',
-      event: ShopFormEvent.nameChanged(correctShopNameStr),
-      updatedShop:
-          initialState.shop.copyWith(shopName: ShopName(correctShopNameStr)),
-    );
   });
 
   group('streetNameChanged', () {
@@ -73,14 +61,6 @@ void main() {
 
     testStateDataIntegrity(
       'should return a state with changed street name',
-      event: ShopFormEvent.streetNameChanged(correctStreetNameStr),
-      updatedShop: initialState.shop.copyWith(
-          address: initialState.shop.address
-              .copyWith(streetName: StreetName(correctStreetNameStr))),
-    );
-
-    testSettingSaveFailureOrSuccessOptionToNone(
-      'should set saveFailureOrSuccessOption back to none()',
       event: ShopFormEvent.streetNameChanged(correctStreetNameStr),
       updatedShop: initialState.shop.copyWith(
           address: initialState.shop.address
@@ -98,28 +78,12 @@ void main() {
           address: initialState.shop.address
               .copyWith(streetNumber: StreetNumber(correctStreetNumberStr))),
     );
-
-    testSettingSaveFailureOrSuccessOptionToNone(
-      'should set saveFailureOrSuccessOption back to none()',
-      event: ShopFormEvent.streetNumberChanged(correctStreetNumberStr),
-      updatedShop: initialState.shop.copyWith(
-          address: initialState.shop.address
-              .copyWith(streetNumber: StreetNumber(correctStreetNumberStr))),
-    );
   });
   group('apartmentNumberChanged', () {
     String correctApartmentNumberStr = '11A';
 
     testStateDataIntegrity(
       'should return a state with changed apartment number',
-      event: ShopFormEvent.apartmentNumberChanged(correctApartmentNumberStr),
-      updatedShop: initialState.shop.copyWith(
-          address: initialState.shop.address.copyWith(
-              apartmentNumber: AddressNumber(correctApartmentNumberStr))),
-    );
-
-    testSettingSaveFailureOrSuccessOptionToNone(
-      'should set saveFailureOrSuccessOption back to none()',
       event: ShopFormEvent.apartmentNumberChanged(correctApartmentNumberStr),
       updatedShop: initialState.shop.copyWith(
           address: initialState.shop.address.copyWith(
@@ -137,14 +101,6 @@ void main() {
           address: initialState.shop.address
               .copyWith(city: CityName(correctCityNameStr))),
     );
-
-    testSettingSaveFailureOrSuccessOptionToNone(
-      'should set saveFailureOrSuccessOption back to none()',
-      event: ShopFormEvent.cityChanged(correctCityNameStr),
-      updatedShop: initialState.shop.copyWith(
-          address: initialState.shop.address
-              .copyWith(city: CityName(correctCityNameStr))),
-    );
   });
 
   group('postalCodeChanged', () {
@@ -157,17 +113,9 @@ void main() {
           address: initialState.shop.address
               .copyWith(postalCode: PostalCode(correctPostalCodeStr))),
     );
-
-    testSettingSaveFailureOrSuccessOptionToNone(
-      'should set saveFailureOrSuccessOption back to none()',
-      event: ShopFormEvent.postalCodeChanged(correctPostalCodeStr),
-      updatedShop: initialState.shop.copyWith(
-          address: initialState.shop.address
-              .copyWith(postalCode: PostalCode(correctPostalCodeStr))),
-    );
   });
 
-  group('saved ', () {
+  group('proceeded ', () {
     MockIShopRepository mockIShopRepository = MockIShopRepository();
     ShopFormBloc shopFormBloc = ShopFormBloc(mockIShopRepository);
     ShopFormState initialState = shopFormBloc.state;
@@ -207,86 +155,6 @@ void main() {
         shop: tShop.copyWith(
             address:
                 tShop.address.copyWith(apartmentNumber: AddressNumber(''))));
-    blocTest(
-      'should emit saving and saved states when saving a shop with an empty apartmentNumber field',
-      build: () {
-        return ShopFormBloc(mockIShopRepository);
-      },
-      setUp: () => when(mockIShopRepository.create(any))
-          .thenAnswer((_) async => right(unit)),
-      act: (ShopFormBloc bloc) => bloc.add(const ShopFormEvent.saved()),
-      seed: () => emptyApartmentNumberState,
-      expect: () => [
-        emptyApartmentNumberState.copyWith(
-            shop: tShop,
-            isSaving: true,
-            showErrorMessages: false,
-            saveFailureOrSuccessOption: none()),
-        emptyApartmentNumberState.copyWith(
-            shop: tShop,
-            isSaving: false,
-            showErrorMessages: false,
-            saveFailureOrSuccessOption: some(right(unit))),
-      ],
-    );
-
-    blocTest(
-      'should emit saving and saved states when saving a shop with correct data',
-      build: () {
-        return ShopFormBloc(mockIShopRepository);
-      },
-      setUp: () => when(mockIShopRepository.create(any))
-          .thenAnswer((_) async => right(unit)),
-      act: (ShopFormBloc bloc) => bloc.add(const ShopFormEvent.saved()),
-      seed: () => initialState.copyWith(shop: tShop),
-      expect: () => [
-        initialState.copyWith(
-            shop: tShop,
-            isSaving: true,
-            showErrorMessages: false,
-            saveFailureOrSuccessOption: none()),
-        initialState.copyWith(
-            shop: tShop,
-            isSaving: false,
-            showErrorMessages: false,
-            saveFailureOrSuccessOption: some(right(unit))),
-      ],
-    );
-
-    blocTest(
-      'should emit state with failure option when saving a shop has not succeeded',
-      build: () {
-        return ShopFormBloc(mockIShopRepository);
-      },
-      setUp: () => when(mockIShopRepository.create(any))
-          .thenAnswer((_) async => left(const ShopFailure.unableToUpdate())),
-      act: (ShopFormBloc bloc) => bloc.add(const ShopFormEvent.saved()),
-      seed: () => initialState.copyWith(shop: tShop),
-      expect: () => [
-        initialState.copyWith(
-            shop: tShop,
-            isSaving: true,
-            showErrorMessages: false,
-            saveFailureOrSuccessOption: none()),
-        initialState.copyWith(
-            shop: tShop,
-            isSaving: false,
-            showErrorMessages: false,
-            saveFailureOrSuccessOption:
-                some(left(const ShopFailure.unableToUpdate()))),
-      ],
-    );
-    blocTest(
-      'should call IShopRepository.create',
-      build: () {
-        return ShopFormBloc(mockIShopRepository);
-      },
-      setUp: () => when(mockIShopRepository.create(any))
-          .thenAnswer((_) async => right(unit)),
-      act: (ShopFormBloc bloc) => bloc.add(const ShopFormEvent.saved()),
-      seed: () => initialState.copyWith(shop: tShop),
-      verify: (bloc) => verify(mockIShopRepository.create(any)),
-    );
   });
 }
 
@@ -302,16 +170,11 @@ void testEmptyFormField(
       return bloc;
     },
     seed: () => seed,
-    act: (ShopFormBloc bloc) => bloc.add(const ShopFormEvent.saved()),
+    act: (ShopFormBloc bloc) => bloc.add(const ShopFormEvent.proceeded()),
     expect: () => [
       seed.copyWith(
-          isSaving: true,
-          showErrorMessages: false,
-          saveFailureOrSuccessOption: none()),
-      seed.copyWith(
-          isSaving: false,
-          showErrorMessages: true,
-          saveFailureOrSuccessOption: none()),
+        showErrorMessages: true,
+      ),
     ],
   );
 }
@@ -320,7 +183,7 @@ void testEmptyFormField(
 void testStateDataIntegrity(
   description, {
   required ShopFormEvent event,
-  required Shop updatedShop,
+  required ShopForm updatedShop,
 }) {
   MockIShopRepository mockIShopRepository = MockIShopRepository();
   ShopFormBloc shopFormBloc = ShopFormBloc(mockIShopRepository);
@@ -333,34 +196,8 @@ void testStateDataIntegrity(
     act: (ShopFormBloc bloc) => bloc.add(event),
     expect: () => [
       initialState.copyWith(
-        isSaving: false,
-        shop: updatedShop.copyWith(id: initialState.shop.id),
+        shop: updatedShop,
       )
-    ],
-  );
-}
-
-@isTest
-void testSettingSaveFailureOrSuccessOptionToNone(
-  String description, {
-  required ShopFormEvent event,
-  required Shop updatedShop,
-}) {
-  MockIShopRepository mockIShopRepository = MockIShopRepository();
-  ShopFormBloc shopFormBloc = ShopFormBloc(mockIShopRepository);
-  ShopFormState initialState = shopFormBloc.state;
-  blocTest(
-    description,
-    build: () {
-      return shopFormBloc;
-    },
-    seed: () => initialState.copyWith(
-        saveFailureOrSuccessOption: some(left(const ShopFailure.unexpected()))),
-    act: (ShopFormBloc bloc) => bloc.add(event),
-    expect: () => [
-      initialState.copyWith(
-          shop: updatedShop.copyWith(id: initialState.shop.id),
-          saveFailureOrSuccessOption: none())
     ],
   );
 }

@@ -12,5 +12,5 @@ abstract class ShopFormEvent with _$ShopFormEvent {
   const factory ShopFormEvent.postalCodeChanged(String postalCodeStr) =
       _PostalCodeChanged;
   const factory ShopFormEvent.cityChanged(String cityStr) = _CityChanged;
-  const factory ShopFormEvent.saved() = _Saved;
+  const factory ShopFormEvent.proceeded() = _Proceeded;
 }

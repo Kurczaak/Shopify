@@ -9,32 +9,24 @@ import 'package:shopify_manager/domain/shopping/value_objects.dart';
 
 import '../core/value_objects.dart';
 
-part 'shop.freezed.dart';
+part 'shop_form.freezed.dart';
 
 @freezed
-abstract class Shop implements _$Shop {
-  const Shop._();
+abstract class ShopForm implements _$ShopForm {
+  const ShopForm._();
 
-  const factory Shop(
-      {required UniqueId id,
-      required ShopName shopName,
-      required Address address,
-      required Location location,
-      required Week workingWeek,
-      required String logoUrl}) = _Shop;
+  const factory ShopForm({
+    required ShopName shopName,
+    required Address address,
+  }) = _ShopForm;
 
-  factory Shop.empty() => Shop(
-        id: UniqueId(),
+  factory ShopForm.empty() => _ShopForm(
         shopName: ShopName(''),
         address: Address.empty(),
-        location: Location.empty(),
-        workingWeek: Week.empty(),
-        logoUrl: '',
       );
 
 //TODO might need to change value to failureOrUnit
   Option<ValueFailure<dynamic>> get failureOption {
-    //TODO UPDATE!!!!
     return shopName.failureOrUnit
         .andThen(address.failureOrOption
             .fold(() => right(unit), (failure) => left(failure)))

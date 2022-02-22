@@ -53,8 +53,8 @@ class _$ShopFormEventTearOff {
     );
   }
 
-  _Saved saved() {
-    return const _Saved();
+  _Proceeded proceeded() {
+    return const _Proceeded();
   }
 }
 
@@ -71,7 +71,7 @@ mixin _$ShopFormEvent {
     required TResult Function(String apartmentNumberStr) apartmentNumberChanged,
     required TResult Function(String postalCodeStr) postalCodeChanged,
     required TResult Function(String cityStr) cityChanged,
-    required TResult Function() saved,
+    required TResult Function() proceeded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -82,7 +82,7 @@ mixin _$ShopFormEvent {
     TResult Function(String apartmentNumberStr)? apartmentNumberChanged,
     TResult Function(String postalCodeStr)? postalCodeChanged,
     TResult Function(String cityStr)? cityChanged,
-    TResult Function()? saved,
+    TResult Function()? proceeded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -93,7 +93,7 @@ mixin _$ShopFormEvent {
     TResult Function(String apartmentNumberStr)? apartmentNumberChanged,
     TResult Function(String postalCodeStr)? postalCodeChanged,
     TResult Function(String cityStr)? cityChanged,
-    TResult Function()? saved,
+    TResult Function()? proceeded,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -106,7 +106,7 @@ mixin _$ShopFormEvent {
         apartmentNumberChanged,
     required TResult Function(_PostalCodeChanged value) postalCodeChanged,
     required TResult Function(_CityChanged value) cityChanged,
-    required TResult Function(_Saved value) saved,
+    required TResult Function(_Proceeded value) proceeded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -117,7 +117,7 @@ mixin _$ShopFormEvent {
     TResult Function(_ApartmentNumberChanged value)? apartmentNumberChanged,
     TResult Function(_PostalCodeChanged value)? postalCodeChanged,
     TResult Function(_CityChanged value)? cityChanged,
-    TResult Function(_Saved value)? saved,
+    TResult Function(_Proceeded value)? proceeded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -128,7 +128,7 @@ mixin _$ShopFormEvent {
     TResult Function(_ApartmentNumberChanged value)? apartmentNumberChanged,
     TResult Function(_PostalCodeChanged value)? postalCodeChanged,
     TResult Function(_CityChanged value)? cityChanged,
-    TResult Function(_Saved value)? saved,
+    TResult Function(_Proceeded value)? proceeded,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -221,7 +221,7 @@ class _$_NameChanged implements _NameChanged {
     required TResult Function(String apartmentNumberStr) apartmentNumberChanged,
     required TResult Function(String postalCodeStr) postalCodeChanged,
     required TResult Function(String cityStr) cityChanged,
-    required TResult Function() saved,
+    required TResult Function() proceeded,
   }) {
     return nameChanged(nameStr);
   }
@@ -235,7 +235,7 @@ class _$_NameChanged implements _NameChanged {
     TResult Function(String apartmentNumberStr)? apartmentNumberChanged,
     TResult Function(String postalCodeStr)? postalCodeChanged,
     TResult Function(String cityStr)? cityChanged,
-    TResult Function()? saved,
+    TResult Function()? proceeded,
   }) {
     return nameChanged?.call(nameStr);
   }
@@ -249,7 +249,7 @@ class _$_NameChanged implements _NameChanged {
     TResult Function(String apartmentNumberStr)? apartmentNumberChanged,
     TResult Function(String postalCodeStr)? postalCodeChanged,
     TResult Function(String cityStr)? cityChanged,
-    TResult Function()? saved,
+    TResult Function()? proceeded,
     required TResult orElse(),
   }) {
     if (nameChanged != null) {
@@ -268,7 +268,7 @@ class _$_NameChanged implements _NameChanged {
         apartmentNumberChanged,
     required TResult Function(_PostalCodeChanged value) postalCodeChanged,
     required TResult Function(_CityChanged value) cityChanged,
-    required TResult Function(_Saved value) saved,
+    required TResult Function(_Proceeded value) proceeded,
   }) {
     return nameChanged(this);
   }
@@ -282,7 +282,7 @@ class _$_NameChanged implements _NameChanged {
     TResult Function(_ApartmentNumberChanged value)? apartmentNumberChanged,
     TResult Function(_PostalCodeChanged value)? postalCodeChanged,
     TResult Function(_CityChanged value)? cityChanged,
-    TResult Function(_Saved value)? saved,
+    TResult Function(_Proceeded value)? proceeded,
   }) {
     return nameChanged?.call(this);
   }
@@ -296,7 +296,7 @@ class _$_NameChanged implements _NameChanged {
     TResult Function(_ApartmentNumberChanged value)? apartmentNumberChanged,
     TResult Function(_PostalCodeChanged value)? postalCodeChanged,
     TResult Function(_CityChanged value)? cityChanged,
-    TResult Function(_Saved value)? saved,
+    TResult Function(_Proceeded value)? proceeded,
     required TResult orElse(),
   }) {
     if (nameChanged != null) {
@@ -387,7 +387,7 @@ class _$_StreetNameChanged implements _StreetNameChanged {
     required TResult Function(String apartmentNumberStr) apartmentNumberChanged,
     required TResult Function(String postalCodeStr) postalCodeChanged,
     required TResult Function(String cityStr) cityChanged,
-    required TResult Function() saved,
+    required TResult Function() proceeded,
   }) {
     return streetNameChanged(streetNameStr);
   }
@@ -401,7 +401,7 @@ class _$_StreetNameChanged implements _StreetNameChanged {
     TResult Function(String apartmentNumberStr)? apartmentNumberChanged,
     TResult Function(String postalCodeStr)? postalCodeChanged,
     TResult Function(String cityStr)? cityChanged,
-    TResult Function()? saved,
+    TResult Function()? proceeded,
   }) {
     return streetNameChanged?.call(streetNameStr);
   }
@@ -415,7 +415,7 @@ class _$_StreetNameChanged implements _StreetNameChanged {
     TResult Function(String apartmentNumberStr)? apartmentNumberChanged,
     TResult Function(String postalCodeStr)? postalCodeChanged,
     TResult Function(String cityStr)? cityChanged,
-    TResult Function()? saved,
+    TResult Function()? proceeded,
     required TResult orElse(),
   }) {
     if (streetNameChanged != null) {
@@ -434,7 +434,7 @@ class _$_StreetNameChanged implements _StreetNameChanged {
         apartmentNumberChanged,
     required TResult Function(_PostalCodeChanged value) postalCodeChanged,
     required TResult Function(_CityChanged value) cityChanged,
-    required TResult Function(_Saved value) saved,
+    required TResult Function(_Proceeded value) proceeded,
   }) {
     return streetNameChanged(this);
   }
@@ -448,7 +448,7 @@ class _$_StreetNameChanged implements _StreetNameChanged {
     TResult Function(_ApartmentNumberChanged value)? apartmentNumberChanged,
     TResult Function(_PostalCodeChanged value)? postalCodeChanged,
     TResult Function(_CityChanged value)? cityChanged,
-    TResult Function(_Saved value)? saved,
+    TResult Function(_Proceeded value)? proceeded,
   }) {
     return streetNameChanged?.call(this);
   }
@@ -462,7 +462,7 @@ class _$_StreetNameChanged implements _StreetNameChanged {
     TResult Function(_ApartmentNumberChanged value)? apartmentNumberChanged,
     TResult Function(_PostalCodeChanged value)? postalCodeChanged,
     TResult Function(_CityChanged value)? cityChanged,
-    TResult Function(_Saved value)? saved,
+    TResult Function(_Proceeded value)? proceeded,
     required TResult orElse(),
   }) {
     if (streetNameChanged != null) {
@@ -554,7 +554,7 @@ class _$_StreetNumberChanged implements _StreetNumberChanged {
     required TResult Function(String apartmentNumberStr) apartmentNumberChanged,
     required TResult Function(String postalCodeStr) postalCodeChanged,
     required TResult Function(String cityStr) cityChanged,
-    required TResult Function() saved,
+    required TResult Function() proceeded,
   }) {
     return streetNumberChanged(streetNumberStr);
   }
@@ -568,7 +568,7 @@ class _$_StreetNumberChanged implements _StreetNumberChanged {
     TResult Function(String apartmentNumberStr)? apartmentNumberChanged,
     TResult Function(String postalCodeStr)? postalCodeChanged,
     TResult Function(String cityStr)? cityChanged,
-    TResult Function()? saved,
+    TResult Function()? proceeded,
   }) {
     return streetNumberChanged?.call(streetNumberStr);
   }
@@ -582,7 +582,7 @@ class _$_StreetNumberChanged implements _StreetNumberChanged {
     TResult Function(String apartmentNumberStr)? apartmentNumberChanged,
     TResult Function(String postalCodeStr)? postalCodeChanged,
     TResult Function(String cityStr)? cityChanged,
-    TResult Function()? saved,
+    TResult Function()? proceeded,
     required TResult orElse(),
   }) {
     if (streetNumberChanged != null) {
@@ -601,7 +601,7 @@ class _$_StreetNumberChanged implements _StreetNumberChanged {
         apartmentNumberChanged,
     required TResult Function(_PostalCodeChanged value) postalCodeChanged,
     required TResult Function(_CityChanged value) cityChanged,
-    required TResult Function(_Saved value) saved,
+    required TResult Function(_Proceeded value) proceeded,
   }) {
     return streetNumberChanged(this);
   }
@@ -615,7 +615,7 @@ class _$_StreetNumberChanged implements _StreetNumberChanged {
     TResult Function(_ApartmentNumberChanged value)? apartmentNumberChanged,
     TResult Function(_PostalCodeChanged value)? postalCodeChanged,
     TResult Function(_CityChanged value)? cityChanged,
-    TResult Function(_Saved value)? saved,
+    TResult Function(_Proceeded value)? proceeded,
   }) {
     return streetNumberChanged?.call(this);
   }
@@ -629,7 +629,7 @@ class _$_StreetNumberChanged implements _StreetNumberChanged {
     TResult Function(_ApartmentNumberChanged value)? apartmentNumberChanged,
     TResult Function(_PostalCodeChanged value)? postalCodeChanged,
     TResult Function(_CityChanged value)? cityChanged,
-    TResult Function(_Saved value)? saved,
+    TResult Function(_Proceeded value)? proceeded,
     required TResult orElse(),
   }) {
     if (streetNumberChanged != null) {
@@ -722,7 +722,7 @@ class _$_ApartmentNumberChanged implements _ApartmentNumberChanged {
     required TResult Function(String apartmentNumberStr) apartmentNumberChanged,
     required TResult Function(String postalCodeStr) postalCodeChanged,
     required TResult Function(String cityStr) cityChanged,
-    required TResult Function() saved,
+    required TResult Function() proceeded,
   }) {
     return apartmentNumberChanged(apartmentNumberStr);
   }
@@ -736,7 +736,7 @@ class _$_ApartmentNumberChanged implements _ApartmentNumberChanged {
     TResult Function(String apartmentNumberStr)? apartmentNumberChanged,
     TResult Function(String postalCodeStr)? postalCodeChanged,
     TResult Function(String cityStr)? cityChanged,
-    TResult Function()? saved,
+    TResult Function()? proceeded,
   }) {
     return apartmentNumberChanged?.call(apartmentNumberStr);
   }
@@ -750,7 +750,7 @@ class _$_ApartmentNumberChanged implements _ApartmentNumberChanged {
     TResult Function(String apartmentNumberStr)? apartmentNumberChanged,
     TResult Function(String postalCodeStr)? postalCodeChanged,
     TResult Function(String cityStr)? cityChanged,
-    TResult Function()? saved,
+    TResult Function()? proceeded,
     required TResult orElse(),
   }) {
     if (apartmentNumberChanged != null) {
@@ -769,7 +769,7 @@ class _$_ApartmentNumberChanged implements _ApartmentNumberChanged {
         apartmentNumberChanged,
     required TResult Function(_PostalCodeChanged value) postalCodeChanged,
     required TResult Function(_CityChanged value) cityChanged,
-    required TResult Function(_Saved value) saved,
+    required TResult Function(_Proceeded value) proceeded,
   }) {
     return apartmentNumberChanged(this);
   }
@@ -783,7 +783,7 @@ class _$_ApartmentNumberChanged implements _ApartmentNumberChanged {
     TResult Function(_ApartmentNumberChanged value)? apartmentNumberChanged,
     TResult Function(_PostalCodeChanged value)? postalCodeChanged,
     TResult Function(_CityChanged value)? cityChanged,
-    TResult Function(_Saved value)? saved,
+    TResult Function(_Proceeded value)? proceeded,
   }) {
     return apartmentNumberChanged?.call(this);
   }
@@ -797,7 +797,7 @@ class _$_ApartmentNumberChanged implements _ApartmentNumberChanged {
     TResult Function(_ApartmentNumberChanged value)? apartmentNumberChanged,
     TResult Function(_PostalCodeChanged value)? postalCodeChanged,
     TResult Function(_CityChanged value)? cityChanged,
-    TResult Function(_Saved value)? saved,
+    TResult Function(_Proceeded value)? proceeded,
     required TResult orElse(),
   }) {
     if (apartmentNumberChanged != null) {
@@ -889,7 +889,7 @@ class _$_PostalCodeChanged implements _PostalCodeChanged {
     required TResult Function(String apartmentNumberStr) apartmentNumberChanged,
     required TResult Function(String postalCodeStr) postalCodeChanged,
     required TResult Function(String cityStr) cityChanged,
-    required TResult Function() saved,
+    required TResult Function() proceeded,
   }) {
     return postalCodeChanged(postalCodeStr);
   }
@@ -903,7 +903,7 @@ class _$_PostalCodeChanged implements _PostalCodeChanged {
     TResult Function(String apartmentNumberStr)? apartmentNumberChanged,
     TResult Function(String postalCodeStr)? postalCodeChanged,
     TResult Function(String cityStr)? cityChanged,
-    TResult Function()? saved,
+    TResult Function()? proceeded,
   }) {
     return postalCodeChanged?.call(postalCodeStr);
   }
@@ -917,7 +917,7 @@ class _$_PostalCodeChanged implements _PostalCodeChanged {
     TResult Function(String apartmentNumberStr)? apartmentNumberChanged,
     TResult Function(String postalCodeStr)? postalCodeChanged,
     TResult Function(String cityStr)? cityChanged,
-    TResult Function()? saved,
+    TResult Function()? proceeded,
     required TResult orElse(),
   }) {
     if (postalCodeChanged != null) {
@@ -936,7 +936,7 @@ class _$_PostalCodeChanged implements _PostalCodeChanged {
         apartmentNumberChanged,
     required TResult Function(_PostalCodeChanged value) postalCodeChanged,
     required TResult Function(_CityChanged value) cityChanged,
-    required TResult Function(_Saved value) saved,
+    required TResult Function(_Proceeded value) proceeded,
   }) {
     return postalCodeChanged(this);
   }
@@ -950,7 +950,7 @@ class _$_PostalCodeChanged implements _PostalCodeChanged {
     TResult Function(_ApartmentNumberChanged value)? apartmentNumberChanged,
     TResult Function(_PostalCodeChanged value)? postalCodeChanged,
     TResult Function(_CityChanged value)? cityChanged,
-    TResult Function(_Saved value)? saved,
+    TResult Function(_Proceeded value)? proceeded,
   }) {
     return postalCodeChanged?.call(this);
   }
@@ -964,7 +964,7 @@ class _$_PostalCodeChanged implements _PostalCodeChanged {
     TResult Function(_ApartmentNumberChanged value)? apartmentNumberChanged,
     TResult Function(_PostalCodeChanged value)? postalCodeChanged,
     TResult Function(_CityChanged value)? cityChanged,
-    TResult Function(_Saved value)? saved,
+    TResult Function(_Proceeded value)? proceeded,
     required TResult orElse(),
   }) {
     if (postalCodeChanged != null) {
@@ -1053,7 +1053,7 @@ class _$_CityChanged implements _CityChanged {
     required TResult Function(String apartmentNumberStr) apartmentNumberChanged,
     required TResult Function(String postalCodeStr) postalCodeChanged,
     required TResult Function(String cityStr) cityChanged,
-    required TResult Function() saved,
+    required TResult Function() proceeded,
   }) {
     return cityChanged(cityStr);
   }
@@ -1067,7 +1067,7 @@ class _$_CityChanged implements _CityChanged {
     TResult Function(String apartmentNumberStr)? apartmentNumberChanged,
     TResult Function(String postalCodeStr)? postalCodeChanged,
     TResult Function(String cityStr)? cityChanged,
-    TResult Function()? saved,
+    TResult Function()? proceeded,
   }) {
     return cityChanged?.call(cityStr);
   }
@@ -1081,7 +1081,7 @@ class _$_CityChanged implements _CityChanged {
     TResult Function(String apartmentNumberStr)? apartmentNumberChanged,
     TResult Function(String postalCodeStr)? postalCodeChanged,
     TResult Function(String cityStr)? cityChanged,
-    TResult Function()? saved,
+    TResult Function()? proceeded,
     required TResult orElse(),
   }) {
     if (cityChanged != null) {
@@ -1100,7 +1100,7 @@ class _$_CityChanged implements _CityChanged {
         apartmentNumberChanged,
     required TResult Function(_PostalCodeChanged value) postalCodeChanged,
     required TResult Function(_CityChanged value) cityChanged,
-    required TResult Function(_Saved value) saved,
+    required TResult Function(_Proceeded value) proceeded,
   }) {
     return cityChanged(this);
   }
@@ -1114,7 +1114,7 @@ class _$_CityChanged implements _CityChanged {
     TResult Function(_ApartmentNumberChanged value)? apartmentNumberChanged,
     TResult Function(_PostalCodeChanged value)? postalCodeChanged,
     TResult Function(_CityChanged value)? cityChanged,
-    TResult Function(_Saved value)? saved,
+    TResult Function(_Proceeded value)? proceeded,
   }) {
     return cityChanged?.call(this);
   }
@@ -1128,7 +1128,7 @@ class _$_CityChanged implements _CityChanged {
     TResult Function(_ApartmentNumberChanged value)? apartmentNumberChanged,
     TResult Function(_PostalCodeChanged value)? postalCodeChanged,
     TResult Function(_CityChanged value)? cityChanged,
-    TResult Function(_Saved value)? saved,
+    TResult Function(_Proceeded value)? proceeded,
     required TResult orElse(),
   }) {
     if (cityChanged != null) {
@@ -1148,35 +1148,36 @@ abstract class _CityChanged implements ShopFormEvent {
 }
 
 /// @nodoc
-abstract class _$SavedCopyWith<$Res> {
-  factory _$SavedCopyWith(_Saved value, $Res Function(_Saved) then) =
-      __$SavedCopyWithImpl<$Res>;
+abstract class _$ProceededCopyWith<$Res> {
+  factory _$ProceededCopyWith(
+          _Proceeded value, $Res Function(_Proceeded) then) =
+      __$ProceededCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$SavedCopyWithImpl<$Res> extends _$ShopFormEventCopyWithImpl<$Res>
-    implements _$SavedCopyWith<$Res> {
-  __$SavedCopyWithImpl(_Saved _value, $Res Function(_Saved) _then)
-      : super(_value, (v) => _then(v as _Saved));
+class __$ProceededCopyWithImpl<$Res> extends _$ShopFormEventCopyWithImpl<$Res>
+    implements _$ProceededCopyWith<$Res> {
+  __$ProceededCopyWithImpl(_Proceeded _value, $Res Function(_Proceeded) _then)
+      : super(_value, (v) => _then(v as _Proceeded));
 
   @override
-  _Saved get _value => super._value as _Saved;
+  _Proceeded get _value => super._value as _Proceeded;
 }
 
 /// @nodoc
 
-class _$_Saved implements _Saved {
-  const _$_Saved();
+class _$_Proceeded implements _Proceeded {
+  const _$_Proceeded();
 
   @override
   String toString() {
-    return 'ShopFormEvent.saved()';
+    return 'ShopFormEvent.proceeded()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _Saved);
+        (other.runtimeType == runtimeType && other is _Proceeded);
   }
 
   @override
@@ -1191,9 +1192,9 @@ class _$_Saved implements _Saved {
     required TResult Function(String apartmentNumberStr) apartmentNumberChanged,
     required TResult Function(String postalCodeStr) postalCodeChanged,
     required TResult Function(String cityStr) cityChanged,
-    required TResult Function() saved,
+    required TResult Function() proceeded,
   }) {
-    return saved();
+    return proceeded();
   }
 
   @override
@@ -1205,9 +1206,9 @@ class _$_Saved implements _Saved {
     TResult Function(String apartmentNumberStr)? apartmentNumberChanged,
     TResult Function(String postalCodeStr)? postalCodeChanged,
     TResult Function(String cityStr)? cityChanged,
-    TResult Function()? saved,
+    TResult Function()? proceeded,
   }) {
-    return saved?.call();
+    return proceeded?.call();
   }
 
   @override
@@ -1219,11 +1220,11 @@ class _$_Saved implements _Saved {
     TResult Function(String apartmentNumberStr)? apartmentNumberChanged,
     TResult Function(String postalCodeStr)? postalCodeChanged,
     TResult Function(String cityStr)? cityChanged,
-    TResult Function()? saved,
+    TResult Function()? proceeded,
     required TResult orElse(),
   }) {
-    if (saved != null) {
-      return saved();
+    if (proceeded != null) {
+      return proceeded();
     }
     return orElse();
   }
@@ -1238,9 +1239,9 @@ class _$_Saved implements _Saved {
         apartmentNumberChanged,
     required TResult Function(_PostalCodeChanged value) postalCodeChanged,
     required TResult Function(_CityChanged value) cityChanged,
-    required TResult Function(_Saved value) saved,
+    required TResult Function(_Proceeded value) proceeded,
   }) {
-    return saved(this);
+    return proceeded(this);
   }
 
   @override
@@ -1252,9 +1253,9 @@ class _$_Saved implements _Saved {
     TResult Function(_ApartmentNumberChanged value)? apartmentNumberChanged,
     TResult Function(_PostalCodeChanged value)? postalCodeChanged,
     TResult Function(_CityChanged value)? cityChanged,
-    TResult Function(_Saved value)? saved,
+    TResult Function(_Proceeded value)? proceeded,
   }) {
-    return saved?.call(this);
+    return proceeded?.call(this);
   }
 
   @override
@@ -1266,18 +1267,18 @@ class _$_Saved implements _Saved {
     TResult Function(_ApartmentNumberChanged value)? apartmentNumberChanged,
     TResult Function(_PostalCodeChanged value)? postalCodeChanged,
     TResult Function(_CityChanged value)? cityChanged,
-    TResult Function(_Saved value)? saved,
+    TResult Function(_Proceeded value)? proceeded,
     required TResult orElse(),
   }) {
-    if (saved != null) {
-      return saved(this);
+    if (proceeded != null) {
+      return proceeded(this);
     }
     return orElse();
   }
 }
 
-abstract class _Saved implements ShopFormEvent {
-  const factory _Saved() = _$_Saved;
+abstract class _Proceeded implements ShopFormEvent {
+  const factory _Proceeded() = _$_Proceeded;
 }
 
 /// @nodoc
@@ -1285,15 +1286,10 @@ class _$ShopFormStateTearOff {
   const _$ShopFormStateTearOff();
 
   _ShopFormState call(
-      {required Shop shop,
-      required bool showErrorMessages,
-      required bool isSaving,
-      required Option<Either<ShopFailure, Unit>> saveFailureOrSuccessOption}) {
+      {required ShopForm shop, required bool showErrorMessages}) {
     return _ShopFormState(
       shop: shop,
       showErrorMessages: showErrorMessages,
-      isSaving: isSaving,
-      saveFailureOrSuccessOption: saveFailureOrSuccessOption,
     );
   }
 }
@@ -1303,11 +1299,8 @@ const $ShopFormState = _$ShopFormStateTearOff();
 
 /// @nodoc
 mixin _$ShopFormState {
-  Shop get shop => throw _privateConstructorUsedError;
+  ShopForm get shop => throw _privateConstructorUsedError;
   bool get showErrorMessages => throw _privateConstructorUsedError;
-  bool get isSaving => throw _privateConstructorUsedError;
-  Option<Either<ShopFailure, Unit>> get saveFailureOrSuccessOption =>
-      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ShopFormStateCopyWith<ShopFormState> get copyWith =>
@@ -1319,13 +1312,9 @@ abstract class $ShopFormStateCopyWith<$Res> {
   factory $ShopFormStateCopyWith(
           ShopFormState value, $Res Function(ShopFormState) then) =
       _$ShopFormStateCopyWithImpl<$Res>;
-  $Res call(
-      {Shop shop,
-      bool showErrorMessages,
-      bool isSaving,
-      Option<Either<ShopFailure, Unit>> saveFailureOrSuccessOption});
+  $Res call({ShopForm shop, bool showErrorMessages});
 
-  $ShopCopyWith<$Res> get shop;
+  $ShopFormCopyWith<$Res> get shop;
 }
 
 /// @nodoc
@@ -1341,32 +1330,22 @@ class _$ShopFormStateCopyWithImpl<$Res>
   $Res call({
     Object? shop = freezed,
     Object? showErrorMessages = freezed,
-    Object? isSaving = freezed,
-    Object? saveFailureOrSuccessOption = freezed,
   }) {
     return _then(_value.copyWith(
       shop: shop == freezed
           ? _value.shop
           : shop // ignore: cast_nullable_to_non_nullable
-              as Shop,
+              as ShopForm,
       showErrorMessages: showErrorMessages == freezed
           ? _value.showErrorMessages
           : showErrorMessages // ignore: cast_nullable_to_non_nullable
               as bool,
-      isSaving: isSaving == freezed
-          ? _value.isSaving
-          : isSaving // ignore: cast_nullable_to_non_nullable
-              as bool,
-      saveFailureOrSuccessOption: saveFailureOrSuccessOption == freezed
-          ? _value.saveFailureOrSuccessOption
-          : saveFailureOrSuccessOption // ignore: cast_nullable_to_non_nullable
-              as Option<Either<ShopFailure, Unit>>,
     ));
   }
 
   @override
-  $ShopCopyWith<$Res> get shop {
-    return $ShopCopyWith<$Res>(_value.shop, (value) {
+  $ShopFormCopyWith<$Res> get shop {
+    return $ShopFormCopyWith<$Res>(_value.shop, (value) {
       return _then(_value.copyWith(shop: value));
     });
   }
@@ -1379,14 +1358,10 @@ abstract class _$ShopFormStateCopyWith<$Res>
           _ShopFormState value, $Res Function(_ShopFormState) then) =
       __$ShopFormStateCopyWithImpl<$Res>;
   @override
-  $Res call(
-      {Shop shop,
-      bool showErrorMessages,
-      bool isSaving,
-      Option<Either<ShopFailure, Unit>> saveFailureOrSuccessOption});
+  $Res call({ShopForm shop, bool showErrorMessages});
 
   @override
-  $ShopCopyWith<$Res> get shop;
+  $ShopFormCopyWith<$Res> get shop;
 }
 
 /// @nodoc
@@ -1404,26 +1379,16 @@ class __$ShopFormStateCopyWithImpl<$Res>
   $Res call({
     Object? shop = freezed,
     Object? showErrorMessages = freezed,
-    Object? isSaving = freezed,
-    Object? saveFailureOrSuccessOption = freezed,
   }) {
     return _then(_ShopFormState(
       shop: shop == freezed
           ? _value.shop
           : shop // ignore: cast_nullable_to_non_nullable
-              as Shop,
+              as ShopForm,
       showErrorMessages: showErrorMessages == freezed
           ? _value.showErrorMessages
           : showErrorMessages // ignore: cast_nullable_to_non_nullable
               as bool,
-      isSaving: isSaving == freezed
-          ? _value.isSaving
-          : isSaving // ignore: cast_nullable_to_non_nullable
-              as bool,
-      saveFailureOrSuccessOption: saveFailureOrSuccessOption == freezed
-          ? _value.saveFailureOrSuccessOption
-          : saveFailureOrSuccessOption // ignore: cast_nullable_to_non_nullable
-              as Option<Either<ShopFailure, Unit>>,
     ));
   }
 }
@@ -1431,24 +1396,16 @@ class __$ShopFormStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_ShopFormState implements _ShopFormState {
-  const _$_ShopFormState(
-      {required this.shop,
-      required this.showErrorMessages,
-      required this.isSaving,
-      required this.saveFailureOrSuccessOption});
+  const _$_ShopFormState({required this.shop, required this.showErrorMessages});
 
   @override
-  final Shop shop;
+  final ShopForm shop;
   @override
   final bool showErrorMessages;
-  @override
-  final bool isSaving;
-  @override
-  final Option<Either<ShopFailure, Unit>> saveFailureOrSuccessOption;
 
   @override
   String toString() {
-    return 'ShopFormState(shop: $shop, showErrorMessages: $showErrorMessages, isSaving: $isSaving, saveFailureOrSuccessOption: $saveFailureOrSuccessOption)';
+    return 'ShopFormState(shop: $shop, showErrorMessages: $showErrorMessages)';
   }
 
   @override
@@ -1458,19 +1415,14 @@ class _$_ShopFormState implements _ShopFormState {
             other is _ShopFormState &&
             const DeepCollectionEquality().equals(other.shop, shop) &&
             const DeepCollectionEquality()
-                .equals(other.showErrorMessages, showErrorMessages) &&
-            const DeepCollectionEquality().equals(other.isSaving, isSaving) &&
-            const DeepCollectionEquality().equals(
-                other.saveFailureOrSuccessOption, saveFailureOrSuccessOption));
+                .equals(other.showErrorMessages, showErrorMessages));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(shop),
-      const DeepCollectionEquality().hash(showErrorMessages),
-      const DeepCollectionEquality().hash(isSaving),
-      const DeepCollectionEquality().hash(saveFailureOrSuccessOption));
+      const DeepCollectionEquality().hash(showErrorMessages));
 
   @JsonKey(ignore: true)
   @override
@@ -1480,20 +1432,13 @@ class _$_ShopFormState implements _ShopFormState {
 
 abstract class _ShopFormState implements ShopFormState {
   const factory _ShopFormState(
-      {required Shop shop,
-      required bool showErrorMessages,
-      required bool isSaving,
-      required Option<Either<ShopFailure, Unit>>
-          saveFailureOrSuccessOption}) = _$_ShopFormState;
+      {required ShopForm shop,
+      required bool showErrorMessages}) = _$_ShopFormState;
 
   @override
-  Shop get shop;
+  ShopForm get shop;
   @override
   bool get showErrorMessages;
-  @override
-  bool get isSaving;
-  @override
-  Option<Either<ShopFailure, Unit>> get saveFailureOrSuccessOption;
   @override
   @JsonKey(ignore: true)
   _$ShopFormStateCopyWith<_ShopFormState> get copyWith =>

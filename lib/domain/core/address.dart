@@ -35,14 +35,14 @@ abstract class Address with _$Address {
 
   @override
   String toString() {
-    final streetStr = streetName.getOrCrash();
-    final streetNumberStr = streetNumber.getOrCrash();
-    String apartmentNumberStr = apartmentNumber.getOrCrash();
+    final streetStr = streetName.value.toString();
+    final streetNumberStr = streetNumber.value.toString();
+    String apartmentNumberStr = apartmentNumber.value.toString();
     if (apartmentNumberStr != '') {
       apartmentNumberStr = "\\" + apartmentNumberStr;
     }
-    final cityStr = city.getOrCrash();
-    final postalCodeStr = postalCode.getOrCrash();
+    final cityStr = city.value.toString();
+    final postalCodeStr = postalCode.value.toString();
     return '$streetStr $streetNumberStr$apartmentNumberStr, $postalCodeStr $cityStr';
   }
 }
