@@ -38,6 +38,12 @@ void main() {
   group('nameChanged', () {
     String correctShopNameStr = 'Sklep Spożywczy ABC';
 
+    testIsSavedFalse(
+      'should set saved to false',
+      event: ShopFormEvent.nameChanged(correctShopNameStr),
+      updatedShop:
+          initialState.shop.copyWith(shopName: ShopName(correctShopNameStr)),
+    );
     testStateDataIntegrity(
       'should return a state with changed shop name',
       event: ShopFormEvent.nameChanged(correctShopNameStr),
@@ -49,18 +55,34 @@ void main() {
   group('streetNameChanged', () {
     String correctStreetNameStr = 'Chełmońskiego';
 
+    testIsSavedFalse(
+      'should set saved to false',
+      event: ShopFormEvent.streetNameChanged(correctStreetNameStr),
+      updatedShop: initialState.shop.copyWith(
+        address: initialState.shop.address
+            .copyWith(streetName: StreetName(correctStreetNameStr)),
+      ),
+    );
     testStateDataIntegrity(
       'should return a state with changed street name',
       event: ShopFormEvent.streetNameChanged(correctStreetNameStr),
       updatedShop: initialState.shop.copyWith(
-          address: initialState.shop.address
-              .copyWith(streetName: StreetName(correctStreetNameStr))),
+        address: initialState.shop.address
+            .copyWith(streetName: StreetName(correctStreetNameStr)),
+      ),
     );
   });
 
   group('streetNumberChanged', () {
     String correctStreetNumberStr = '11A';
 
+    testIsSavedFalse(
+      'should set saved to false',
+      event: ShopFormEvent.streetNumberChanged(correctStreetNumberStr),
+      updatedShop: initialState.shop.copyWith(
+          address: initialState.shop.address
+              .copyWith(streetNumber: StreetNumber(correctStreetNumberStr))),
+    );
     testStateDataIntegrity(
       'should return a state with changed street number',
       event: ShopFormEvent.streetNumberChanged(correctStreetNumberStr),
@@ -71,6 +93,14 @@ void main() {
   });
   group('apartmentNumberChanged', () {
     String correctApartmentNumberStr = '11A';
+
+    testIsSavedFalse(
+      'should set saved to false',
+      event: ShopFormEvent.apartmentNumberChanged(correctApartmentNumberStr),
+      updatedShop: initialState.shop.copyWith(
+          address: initialState.shop.address.copyWith(
+              apartmentNumber: AddressNumber(correctApartmentNumberStr))),
+    );
 
     testStateDataIntegrity(
       'should return a state with changed apartment number',
@@ -84,6 +114,13 @@ void main() {
   group('cityChanged', () {
     String correctCityNameStr = 'Łowicz';
 
+    testIsSavedFalse(
+      'should set saved to false',
+      event: ShopFormEvent.cityChanged(correctCityNameStr),
+      updatedShop: initialState.shop.copyWith(
+          address: initialState.shop.address
+              .copyWith(city: CityName(correctCityNameStr))),
+    );
     testStateDataIntegrity(
       'should return a state with changed city name',
       event: ShopFormEvent.cityChanged(correctCityNameStr),
@@ -96,6 +133,13 @@ void main() {
   group('postalCodeChanged', () {
     String correctPostalCodeStr = '99-400';
 
+    testIsSavedFalse(
+      'should set saved to false',
+      event: ShopFormEvent.postalCodeChanged(correctPostalCodeStr),
+      updatedShop: initialState.shop.copyWith(
+          address: initialState.shop.address
+              .copyWith(postalCode: PostalCode(correctPostalCodeStr))),
+    );
     testStateDataIntegrity(
       'should return a state with changed postal code',
       event: ShopFormEvent.postalCodeChanged(correctPostalCodeStr),
@@ -108,6 +152,26 @@ void main() {
   group('proceeded ', () {
     ShopFormBloc shopFormBloc = ShopFormBloc();
     ShopFormState initialState = shopFormBloc.state;
+
+    blocTest(
+      'should set saved to true when saving valid form',
+      build: () {
+        return ShopFormBloc();
+      },
+      seed: () => ShopFormState.initial().copyWith(
+        saved: false,
+        shop: tShop,
+      ),
+      act: (ShopFormBloc bloc) => bloc.add(const ShopFormEvent.proceeded()),
+      verify: (ShopFormBloc bloc) {
+        expectLater(
+            bloc.state,
+            ShopFormState.initial().copyWith(
+              shop: tShop,
+              saved: true,
+            ));
+      },
+    );
     testEmptyFormField(
         'should emit saving and failure states when trying to save a shop with an empty shopName field',
         bloc: ShopFormBloc(),
@@ -145,6 +209,28 @@ void main() {
             address:
                 tShop.address.copyWith(apartmentNumber: AddressNumber(''))));
   });
+}
+
+@isTest
+void testIsSavedFalse(
+  String description, {
+  required ShopFormEvent event,
+  required ShopForm updatedShop,
+}) {
+  blocTest(
+    description,
+    build: () {
+      return ShopFormBloc();
+    },
+    seed: () => ShopFormState.initial().copyWith(saved: true),
+    act: (ShopFormBloc bloc) => bloc.add(event),
+    expect: () => [
+      ShopFormState.initial().copyWith(
+        shop: updatedShop,
+        saved: false,
+      )
+    ],
+  );
 }
 
 @isTest

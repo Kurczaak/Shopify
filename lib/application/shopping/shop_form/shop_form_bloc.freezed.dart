@@ -1286,10 +1286,13 @@ class _$ShopFormStateTearOff {
   const _$ShopFormStateTearOff();
 
   _ShopFormState call(
-      {required ShopForm shop, required bool showErrorMessages}) {
+      {required ShopForm shop,
+      required bool showErrorMessages,
+      required bool saved}) {
     return _ShopFormState(
       shop: shop,
       showErrorMessages: showErrorMessages,
+      saved: saved,
     );
   }
 }
@@ -1301,6 +1304,7 @@ const $ShopFormState = _$ShopFormStateTearOff();
 mixin _$ShopFormState {
   ShopForm get shop => throw _privateConstructorUsedError;
   bool get showErrorMessages => throw _privateConstructorUsedError;
+  bool get saved => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ShopFormStateCopyWith<ShopFormState> get copyWith =>
@@ -1312,7 +1316,7 @@ abstract class $ShopFormStateCopyWith<$Res> {
   factory $ShopFormStateCopyWith(
           ShopFormState value, $Res Function(ShopFormState) then) =
       _$ShopFormStateCopyWithImpl<$Res>;
-  $Res call({ShopForm shop, bool showErrorMessages});
+  $Res call({ShopForm shop, bool showErrorMessages, bool saved});
 
   $ShopFormCopyWith<$Res> get shop;
 }
@@ -1330,6 +1334,7 @@ class _$ShopFormStateCopyWithImpl<$Res>
   $Res call({
     Object? shop = freezed,
     Object? showErrorMessages = freezed,
+    Object? saved = freezed,
   }) {
     return _then(_value.copyWith(
       shop: shop == freezed
@@ -1339,6 +1344,10 @@ class _$ShopFormStateCopyWithImpl<$Res>
       showErrorMessages: showErrorMessages == freezed
           ? _value.showErrorMessages
           : showErrorMessages // ignore: cast_nullable_to_non_nullable
+              as bool,
+      saved: saved == freezed
+          ? _value.saved
+          : saved // ignore: cast_nullable_to_non_nullable
               as bool,
     ));
   }
@@ -1358,7 +1367,7 @@ abstract class _$ShopFormStateCopyWith<$Res>
           _ShopFormState value, $Res Function(_ShopFormState) then) =
       __$ShopFormStateCopyWithImpl<$Res>;
   @override
-  $Res call({ShopForm shop, bool showErrorMessages});
+  $Res call({ShopForm shop, bool showErrorMessages, bool saved});
 
   @override
   $ShopFormCopyWith<$Res> get shop;
@@ -1379,6 +1388,7 @@ class __$ShopFormStateCopyWithImpl<$Res>
   $Res call({
     Object? shop = freezed,
     Object? showErrorMessages = freezed,
+    Object? saved = freezed,
   }) {
     return _then(_ShopFormState(
       shop: shop == freezed
@@ -1389,6 +1399,10 @@ class __$ShopFormStateCopyWithImpl<$Res>
           ? _value.showErrorMessages
           : showErrorMessages // ignore: cast_nullable_to_non_nullable
               as bool,
+      saved: saved == freezed
+          ? _value.saved
+          : saved // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -1396,16 +1410,21 @@ class __$ShopFormStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_ShopFormState implements _ShopFormState {
-  const _$_ShopFormState({required this.shop, required this.showErrorMessages});
+  const _$_ShopFormState(
+      {required this.shop,
+      required this.showErrorMessages,
+      required this.saved});
 
   @override
   final ShopForm shop;
   @override
   final bool showErrorMessages;
+  @override
+  final bool saved;
 
   @override
   String toString() {
-    return 'ShopFormState(shop: $shop, showErrorMessages: $showErrorMessages)';
+    return 'ShopFormState(shop: $shop, showErrorMessages: $showErrorMessages, saved: $saved)';
   }
 
   @override
@@ -1415,14 +1434,16 @@ class _$_ShopFormState implements _ShopFormState {
             other is _ShopFormState &&
             const DeepCollectionEquality().equals(other.shop, shop) &&
             const DeepCollectionEquality()
-                .equals(other.showErrorMessages, showErrorMessages));
+                .equals(other.showErrorMessages, showErrorMessages) &&
+            const DeepCollectionEquality().equals(other.saved, saved));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(shop),
-      const DeepCollectionEquality().hash(showErrorMessages));
+      const DeepCollectionEquality().hash(showErrorMessages),
+      const DeepCollectionEquality().hash(saved));
 
   @JsonKey(ignore: true)
   @override
@@ -1433,12 +1454,15 @@ class _$_ShopFormState implements _ShopFormState {
 abstract class _ShopFormState implements ShopFormState {
   const factory _ShopFormState(
       {required ShopForm shop,
-      required bool showErrorMessages}) = _$_ShopFormState;
+      required bool showErrorMessages,
+      required bool saved}) = _$_ShopFormState;
 
   @override
   ShopForm get shop;
   @override
   bool get showErrorMessages;
+  @override
+  bool get saved;
   @override
   @JsonKey(ignore: true)
   _$ShopFormStateCopyWith<_ShopFormState> get copyWith =>

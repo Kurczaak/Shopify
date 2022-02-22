@@ -15,13 +15,14 @@ part 'shop_form_bloc.freezed.dart';
 @injectable
 class ShopFormBloc extends Bloc<ShopFormEvent, ShopFormState> {
   ShopFormBloc() : super(ShopFormState.initial()) {
-    on<ShopFormEvent>((event, emit) async {
-      await event.map(nameChanged: (e) {
+    on<ShopFormEvent>((event, emit) {
+      event.map(nameChanged: (e) {
         emit(
           state.copyWith(
             shop: state.shop.copyWith(
               shopName: ShopName(e.nameStr),
             ),
+            saved: false,
           ),
         );
       }, streetNameChanged: (e) {
@@ -31,6 +32,7 @@ class ShopFormBloc extends Bloc<ShopFormEvent, ShopFormState> {
               address: state.shop.address
                   .copyWith(streetName: StreetName(e.streetNameStr)),
             ),
+            saved: false,
           ),
         );
       }, streetNumberChanged: (e) {
@@ -40,6 +42,7 @@ class ShopFormBloc extends Bloc<ShopFormEvent, ShopFormState> {
               address: state.shop.address
                   .copyWith(streetNumber: StreetNumber(e.streetNumberStr)),
             ),
+            saved: false,
           ),
         );
       }, apartmentNumberChanged: (e) {
@@ -49,6 +52,7 @@ class ShopFormBloc extends Bloc<ShopFormEvent, ShopFormState> {
               address: state.shop.address.copyWith(
                   apartmentNumber: AddressNumber(e.apartmentNumberStr)),
             ),
+            saved: false,
           ),
         );
       }, postalCodeChanged: (e) {
@@ -58,6 +62,7 @@ class ShopFormBloc extends Bloc<ShopFormEvent, ShopFormState> {
               address: state.shop.address
                   .copyWith(postalCode: PostalCode(e.postalCodeStr)),
             ),
+            saved: false,
           ),
         );
       }, cityChanged: (e) {
@@ -66,17 +71,15 @@ class ShopFormBloc extends Bloc<ShopFormEvent, ShopFormState> {
             shop: state.shop.copyWith(
               address: state.shop.address.copyWith(city: CityName(e.cityStr)),
             ),
+            saved: false,
           ),
         );
       }, proceeded: (e) {
-        emit(
-          state.copyWith(),
-        );
-
         if (state.shop.failureOption.isNone()) {
           emit(
             state.copyWith(
               showErrorMessages: false,
+              saved: true,
             ),
           );
         } else {
