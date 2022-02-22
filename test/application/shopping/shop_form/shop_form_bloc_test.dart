@@ -1,23 +1,14 @@
-import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shopify_manager/application/shopping/shop_form/shop_form_bloc.dart';
-import 'package:mockito/annotations.dart';
-import 'package:mockito/mockito.dart';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:shopify_manager/domain/core/address.dart';
 import 'package:shopify_manager/domain/core/value_objects.dart';
-import 'package:shopify_manager/domain/shopping/i_shop_repository.dart';
-import 'package:shopify_manager/domain/shopping/shop.dart';
-import 'package:shopify_manager/domain/shopping/shop_failure.dart';
 import 'package:shopify_manager/domain/shopping/shop_form.dart';
 import 'package:shopify_manager/domain/shopping/value_objects.dart';
-import 'shop_form_bloc_test.mocks.dart';
 import 'package:meta/meta.dart';
 
-@GenerateMocks([IShopRepository])
 void main() {
-  MockIShopRepository mockIShopRepository = MockIShopRepository();
-  ShopFormBloc shopFormBloc = ShopFormBloc(mockIShopRepository);
+  ShopFormBloc shopFormBloc = ShopFormBloc();
   ShopFormState initialState = shopFormBloc.state;
 
   // Address strings
@@ -40,8 +31,7 @@ void main() {
   );
 
   setUp(() {
-    mockIShopRepository = MockIShopRepository();
-    shopFormBloc = ShopFormBloc(mockIShopRepository);
+    shopFormBloc = ShopFormBloc();
     initialState = shopFormBloc.state;
   });
 
@@ -116,37 +106,36 @@ void main() {
   });
 
   group('proceeded ', () {
-    MockIShopRepository mockIShopRepository = MockIShopRepository();
-    ShopFormBloc shopFormBloc = ShopFormBloc(mockIShopRepository);
+    ShopFormBloc shopFormBloc = ShopFormBloc();
     ShopFormState initialState = shopFormBloc.state;
     testEmptyFormField(
         'should emit saving and failure states when trying to save a shop with an empty shopName field',
-        bloc: ShopFormBloc(mockIShopRepository),
+        bloc: ShopFormBloc(),
         seed: initialState.copyWith(
             shop: tShop.copyWith(shopName: ShopName(''))));
     testEmptyFormField(
         'should emit saving and failure states when trying to save a shop with an empty cityName field',
-        bloc: ShopFormBloc(mockIShopRepository),
+        bloc: ShopFormBloc(),
         seed: initialState.copyWith(
             shop: tShop.copyWith(
                 address: tShop.address.copyWith(city: CityName('')))));
 
     testEmptyFormField(
         'should emit saving and failure states when trying to save a shop with an empty streetName field',
-        bloc: ShopFormBloc(mockIShopRepository),
+        bloc: ShopFormBloc(),
         seed: initialState.copyWith(
             shop: tShop.copyWith(
                 address: tShop.address.copyWith(streetName: StreetName('')))));
     testEmptyFormField(
         'should emit saving and failure states when trying to save a shop with an empty streetNumber field',
-        bloc: ShopFormBloc(mockIShopRepository),
+        bloc: ShopFormBloc(),
         seed: initialState.copyWith(
             shop: tShop.copyWith(
                 address:
                     tShop.address.copyWith(streetNumber: StreetNumber('')))));
     testEmptyFormField(
         'should emit saving and failure states when trying to save a shop with an empty postalCode field',
-        bloc: ShopFormBloc(mockIShopRepository),
+        bloc: ShopFormBloc(),
         seed: initialState.copyWith(
             shop: tShop.copyWith(
                 address: tShop.address.copyWith(postalCode: PostalCode('')))));
@@ -185,8 +174,7 @@ void testStateDataIntegrity(
   required ShopFormEvent event,
   required ShopForm updatedShop,
 }) {
-  MockIShopRepository mockIShopRepository = MockIShopRepository();
-  ShopFormBloc shopFormBloc = ShopFormBloc(mockIShopRepository);
+  ShopFormBloc shopFormBloc = ShopFormBloc();
   ShopFormState initialState = shopFormBloc.state;
   blocTest(
     description,

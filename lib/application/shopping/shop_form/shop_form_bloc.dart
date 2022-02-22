@@ -14,8 +14,7 @@ part 'shop_form_bloc.freezed.dart';
 
 @injectable
 class ShopFormBloc extends Bloc<ShopFormEvent, ShopFormState> {
-  final IShopRepository _shopRepository;
-  ShopFormBloc(this._shopRepository) : super(ShopFormState.initial()) {
+  ShopFormBloc() : super(ShopFormState.initial()) {
     on<ShopFormEvent>((event, emit) async {
       await event.map(nameChanged: (e) {
         emit(
