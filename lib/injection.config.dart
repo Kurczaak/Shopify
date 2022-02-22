@@ -18,6 +18,8 @@ import 'application/shopping/shop_location_picker/shop_location_picker_bloc.dart
     as _i12;
 import 'application/shopping/shop_logo_picker/shop_logo_picker_bloc.dart'
     as _i20;
+import 'application/shopping/shop_registration/shop_registration_bloc.dart'
+    as _i21;
 import 'application/shopping/shop_time_picker/shop_time_picker_bloc.dart'
     as _i13;
 import 'application/shopping/shopping_actor/shopping_actor_bloc.dart' as _i14;
@@ -27,9 +29,9 @@ import 'domain/auth/i_auth_facade.dart' as _i6;
 import 'domain/core/images/i_image_facade.dart' as _i18;
 import 'domain/shopping/i_shop_repository.dart' as _i8;
 import 'infrastructure/auth/firebase_auth_facade.dart' as _i7;
-import 'infrastructure/core/firebase_injectable_module.dart' as _i21;
+import 'infrastructure/core/firebase_injectable_module.dart' as _i22;
 import 'infrastructure/core/images/image_picker_image_facade.dart' as _i19;
-import 'infrastructure/core/images/image_picker_injectable_module.dart' as _i22;
+import 'infrastructure/core/images/image_picker_injectable_module.dart' as _i23;
 import 'infrastructure/shopping/shop_repository.dart'
     as _i9; // ignore_for_file: unnecessary_lambdas
 
@@ -66,9 +68,14 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => _i19.ImagePickerImageFacade(get<_i10.ImagePicker>()));
   gh.factory<_i20.ShopLogoPickerBloc>(
       () => _i20.ShopLogoPickerBloc(get<_i18.IImageFacade>()));
+  gh.factory<_i21.ShopRegistrationBloc>(() => _i21.ShopRegistrationBloc(
+      get<_i11.ShopFormBloc>(),
+      get<_i12.ShopLocationPickerBloc>(),
+      get<_i13.ShopTimePickerBloc>(),
+      get<_i20.ShopLogoPickerBloc>()));
   return get;
 }
 
-class _$FirebaseInjectableModule extends _i21.FirebaseInjectableModule {}
+class _$FirebaseInjectableModule extends _i22.FirebaseInjectableModule {}
 
-class _$ImagePikcerInjectableModule extends _i22.ImagePikcerInjectableModule {}
+class _$ImagePikcerInjectableModule extends _i23.ImagePikcerInjectableModule {}

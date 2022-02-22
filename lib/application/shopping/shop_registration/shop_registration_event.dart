@@ -1,8 +1,9 @@
 part of 'shop_registration_bloc.dart';
 
-abstract class ShopRegistrationEvent extends Equatable {
-  const ShopRegistrationEvent();
-
-  @override
-  List<Object> get props => [];
+@superEnum
+enum _ShopRegistrationEvent {
+  @object
+  Initial,
+  @object
+  FormSaved,
 }
