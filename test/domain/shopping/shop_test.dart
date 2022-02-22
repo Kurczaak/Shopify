@@ -2,9 +2,11 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shopify_manager/domain/core/address.dart';
 import 'package:shopify_manager/domain/core/failures.dart';
+import 'package:shopify_manager/domain/core/location.dart';
 import 'package:shopify_manager/domain/core/value_objects.dart';
 import 'package:shopify_manager/domain/shopping/failures.dart';
 import 'package:shopify_manager/domain/shopping/shop.dart';
+import 'package:shopify_manager/domain/shopping/time/week.dart';
 import 'package:shopify_manager/domain/shopping/value_objects.dart';
 
 void main() {
@@ -18,6 +20,9 @@ void main() {
       postalCode: PostalCode('99-400'),
       streetNumber: StreetNumber('43'),
     ),
+    location: Location.empty(),
+    logoUrl: 'https://www.example.com',
+    workingWeek: Week.empty(),
   );
 
   group('failureOption', () {

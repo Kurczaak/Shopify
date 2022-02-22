@@ -13,6 +13,10 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+WeekDto _$WeekDtoFromJson(Map<String, dynamic> json) {
+  return _WeekDto.fromJson(json);
+}
+
 /// @nodoc
 class _$WeekDtoTearOff {
   const _$WeekDtoTearOff();
@@ -35,6 +39,10 @@ class _$WeekDtoTearOff {
       sunday: sunday,
     );
   }
+
+  WeekDto fromJson(Map<String, Object?> json) {
+    return WeekDto.fromJson(json);
+  }
 }
 
 /// @nodoc
@@ -50,6 +58,7 @@ mixin _$WeekDto {
   DayDto get saturday => throw _privateConstructorUsedError;
   DayDto get sunday => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $WeekDtoCopyWith<WeekDto> get copyWith => throw _privateConstructorUsedError;
 }
@@ -259,7 +268,7 @@ class __$WeekDtoCopyWithImpl<$Res> extends _$WeekDtoCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$_WeekDto extends _WeekDto {
   const _$_WeekDto(
       {required this.monday,
@@ -270,6 +279,9 @@ class _$_WeekDto extends _WeekDto {
       required this.saturday,
       required this.sunday})
       : super._();
+
+  factory _$_WeekDto.fromJson(Map<String, dynamic> json) =>
+      _$$_WeekDtoFromJson(json);
 
   @override
   final DayDto monday;
@@ -320,6 +332,11 @@ class _$_WeekDto extends _WeekDto {
   @override
   _$WeekDtoCopyWith<_WeekDto> get copyWith =>
       __$WeekDtoCopyWithImpl<_WeekDto>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_WeekDtoToJson(this);
+  }
 }
 
 abstract class _WeekDto extends WeekDto {
@@ -332,6 +349,8 @@ abstract class _WeekDto extends WeekDto {
       required DayDto saturday,
       required DayDto sunday}) = _$_WeekDto;
   const _WeekDto._() : super._();
+
+  factory _WeekDto.fromJson(Map<String, dynamic> json) = _$_WeekDto.fromJson;
 
   @override
   DayDto get monday;
@@ -353,6 +372,10 @@ abstract class _WeekDto extends WeekDto {
       throw _privateConstructorUsedError;
 }
 
+DayDto _$DayDtoFromJson(Map<String, dynamic> json) {
+  return _DayDto.fromJson(json);
+}
+
 /// @nodoc
 class _$DayDtoTearOff {
   const _$DayDtoTearOff();
@@ -367,6 +390,10 @@ class _$DayDtoTearOff {
       timeInterval: timeInterval,
     );
   }
+
+  DayDto fromJson(Map<String, Object?> json) {
+    return DayDto.fromJson(json);
+  }
 }
 
 /// @nodoc
@@ -378,6 +405,7 @@ mixin _$DayDto {
   bool get isOpen => throw _privateConstructorUsedError;
   TimeIntervalDto get timeInterval => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $DayDtoCopyWith<DayDto> get copyWith => throw _privateConstructorUsedError;
 }
@@ -473,11 +501,14 @@ class __$DayDtoCopyWithImpl<$Res> extends _$DayDtoCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$_DayDto extends _DayDto {
   const _$_DayDto(
       {required this.day, required this.isOpen, required this.timeInterval})
       : super._();
+
+  factory _$_DayDto.fromJson(Map<String, dynamic> json) =>
+      _$$_DayDtoFromJson(json);
 
   @override
   final String day;
@@ -513,6 +544,11 @@ class _$_DayDto extends _DayDto {
   @override
   _$DayDtoCopyWith<_DayDto> get copyWith =>
       __$DayDtoCopyWithImpl<_DayDto>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_DayDtoToJson(this);
+  }
 }
 
 abstract class _DayDto extends DayDto {
@@ -521,6 +557,8 @@ abstract class _DayDto extends DayDto {
       required bool isOpen,
       required TimeIntervalDto timeInterval}) = _$_DayDto;
   const _DayDto._() : super._();
+
+  factory _DayDto.fromJson(Map<String, dynamic> json) = _$_DayDto.fromJson;
 
   @override
   String get day;
@@ -531,6 +569,10 @@ abstract class _DayDto extends DayDto {
   @override
   @JsonKey(ignore: true)
   _$DayDtoCopyWith<_DayDto> get copyWith => throw _privateConstructorUsedError;
+}
+
+TimeIntervalDto _$TimeIntervalDtoFromJson(Map<String, dynamic> json) {
+  return _TimeIntervalDto.fromJson(json);
 }
 
 /// @nodoc
@@ -549,6 +591,10 @@ class _$TimeIntervalDtoTearOff {
       closingMinutes: closingMinutes,
     );
   }
+
+  TimeIntervalDto fromJson(Map<String, Object?> json) {
+    return TimeIntervalDto.fromJson(json);
+  }
 }
 
 /// @nodoc
@@ -561,6 +607,7 @@ mixin _$TimeIntervalDto {
   int get closingHour => throw _privateConstructorUsedError;
   int get closingMinutes => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $TimeIntervalDtoCopyWith<TimeIntervalDto> get copyWith =>
       throw _privateConstructorUsedError;
@@ -669,7 +716,7 @@ class __$TimeIntervalDtoCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$_TimeIntervalDto extends _TimeIntervalDto {
   const _$_TimeIntervalDto(
       {required this.openingHour,
@@ -677,6 +724,9 @@ class _$_TimeIntervalDto extends _TimeIntervalDto {
       required this.closingHour,
       required this.closingMinutes})
       : super._();
+
+  factory _$_TimeIntervalDto.fromJson(Map<String, dynamic> json) =>
+      _$$_TimeIntervalDtoFromJson(json);
 
   @override
   final int openingHour;
@@ -719,6 +769,11 @@ class _$_TimeIntervalDto extends _TimeIntervalDto {
   @override
   _$TimeIntervalDtoCopyWith<_TimeIntervalDto> get copyWith =>
       __$TimeIntervalDtoCopyWithImpl<_TimeIntervalDto>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_TimeIntervalDtoToJson(this);
+  }
 }
 
 abstract class _TimeIntervalDto extends TimeIntervalDto {
@@ -728,6 +783,9 @@ abstract class _TimeIntervalDto extends TimeIntervalDto {
       required int closingHour,
       required int closingMinutes}) = _$_TimeIntervalDto;
   const _TimeIntervalDto._() : super._();
+
+  factory _TimeIntervalDto.fromJson(Map<String, dynamic> json) =
+      _$_TimeIntervalDto.fromJson;
 
   @override
   int get openingHour;

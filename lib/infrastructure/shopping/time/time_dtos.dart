@@ -5,6 +5,7 @@ import 'package:shopify_manager/domain/shopping/time/day.dart';
 import 'package:shopify_manager/domain/shopping/time/primitive_hour.dart';
 
 part 'time_dtos.freezed.dart';
+part 'time_dtos.g.dart';
 
 @freezed
 abstract class WeekDto with _$WeekDto {
@@ -41,6 +42,9 @@ abstract class WeekDto with _$WeekDto {
         saturday: saturday.toDomain(),
         sunday: sunday.toDomain());
   }
+
+  factory WeekDto.fromJson(Map<String, dynamic> json) =>
+      _$WeekDtoFromJson(json);
 }
 
 @freezed
@@ -67,6 +71,8 @@ abstract class DayDto with _$DayDto {
       openingInterval: timeInterval.toDomain(),
     );
   }
+
+  factory DayDto.fromJson(Map<String, dynamic> json) => _$DayDtoFromJson(json);
 }
 
 @freezed
@@ -95,4 +101,7 @@ abstract class TimeIntervalDto with _$TimeIntervalDto {
         Hour(PrimitiveHour(hours: openingHour, minutes: openingMinutes)),
         (Hour(PrimitiveHour(hours: closingHour, minutes: closingMinutes))));
   }
+
+  factory TimeIntervalDto.fromJson(Map<String, dynamic> json) =>
+      _$TimeIntervalDtoFromJson(json);
 }

@@ -3,11 +3,15 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shopify_manager/domain/core/address.dart';
 import 'package:shopify_manager/domain/core/errors.dart';
+import 'package:shopify_manager/domain/core/location.dart';
 import 'package:shopify_manager/domain/core/value_objects.dart';
 import 'package:shopify_manager/domain/shopping/shop.dart';
+import 'package:shopify_manager/domain/shopping/time/week.dart';
 import 'package:shopify_manager/domain/shopping/value_objects.dart';
 import 'package:shopify_manager/infrastructure/core/address_dto.dart';
+import 'package:shopify_manager/infrastructure/core/location/location_dtos.dart';
 import 'package:shopify_manager/infrastructure/shopping/shop_dtos.dart';
+import 'package:shopify_manager/infrastructure/shopping/time/time_dtos.dart';
 import '../../utils/fixture_reader.dart';
 import 'dart:convert';
 import 'package:fake_cloud_firestore/fake_cloud_firestore.dart';
@@ -23,12 +27,14 @@ void main() async {
   const postalCodeStr = "99-400";
   const apartmentNumberStr = '';
   const streetNumberStr = '12A';
+  const logoUrlStr = 'https://www.example.com';
 
   final Map<String, dynamic> jsonShop = json.decode(fixture('shop.json'));
   final Map<String, dynamic> jsonShopWithId =
       json.decode(fixture('shop_with_id.json'));
 
   await instance.collectionGroup('shops').doc(shopDocumentIdStr).set(jsonShop);
+  print(instance.dump());
 
   final tShop = Shop(
     id: UniqueId.fromUniqueString(shopDocumentIdStr),
@@ -40,6 +46,9 @@ void main() async {
       postalCode: PostalCode(postalCodeStr),
       streetName: StreetName(streetNameStr),
     ),
+    location: Location.empty(),
+    logoUrl: logoUrlStr,
+    workingWeek: Week.empty(),
   );
 
   final tShopDto = ShopDto(
@@ -53,6 +62,9 @@ void main() async {
       streetName: streetNameStr,
     ),
     serverTimeStamp: FieldValue.serverTimestamp(),
+    location: LocationDto.fromDomain(Location.empty()),
+    logoUrl: logoUrlStr,
+    week: WeekDto.fromDomain(Week.empty()),
   );
 
   final shopDoc =

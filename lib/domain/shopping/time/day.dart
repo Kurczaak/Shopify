@@ -29,7 +29,7 @@ abstract class Day with _$Day {
     return Day(
         day: day,
         isOpen: true,
-        openingInterval: TimeInterval(Hour.fromInt(8, 0), Hour.fromInt(10, 0)));
+        openingInterval: TimeInterval(Hour.fromInt(8, 0), Hour.fromInt(22, 0)));
   }
 
   Option<ValueFailure<dynamic>> get failureOption {
@@ -61,20 +61,21 @@ extension Stringify on DayName {
 }
 
 DayName dayFromString(String nameStr) {
-  switch (nameStr) {
-    case 'Monday':
+  final caseInsensitiveStr = nameStr.toLowerCase();
+  switch (caseInsensitiveStr) {
+    case 'monday':
       return DayName.monday;
-    case 'Tuesday':
+    case 'tuesday':
       return DayName.tuesday;
-    case 'Wednesday':
+    case 'wednesday':
       return DayName.wednesday;
-    case 'Thursday':
+    case 'thursday':
       return DayName.thursday;
-    case 'Friday':
+    case 'friday':
       return DayName.friday;
-    case 'Saturday':
+    case 'saturday':
       return DayName.saturday;
-    case 'Sunday':
+    case 'sunday':
       return DayName.sunday;
     default:
       return DayName.monday;

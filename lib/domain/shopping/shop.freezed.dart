@@ -20,11 +20,17 @@ class _$ShopTearOff {
   _Shop call(
       {required UniqueId id,
       required ShopName shopName,
-      required Address address}) {
+      required Address address,
+      required Location location,
+      required Week workingWeek,
+      required String logoUrl}) {
     return _Shop(
       id: id,
       shopName: shopName,
       address: address,
+      location: location,
+      workingWeek: workingWeek,
+      logoUrl: logoUrl,
     );
   }
 }
@@ -37,6 +43,9 @@ mixin _$Shop {
   UniqueId get id => throw _privateConstructorUsedError;
   ShopName get shopName => throw _privateConstructorUsedError;
   Address get address => throw _privateConstructorUsedError;
+  Location get location => throw _privateConstructorUsedError;
+  Week get workingWeek => throw _privateConstructorUsedError;
+  String get logoUrl => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ShopCopyWith<Shop> get copyWith => throw _privateConstructorUsedError;
@@ -46,9 +55,17 @@ mixin _$Shop {
 abstract class $ShopCopyWith<$Res> {
   factory $ShopCopyWith(Shop value, $Res Function(Shop) then) =
       _$ShopCopyWithImpl<$Res>;
-  $Res call({UniqueId id, ShopName shopName, Address address});
+  $Res call(
+      {UniqueId id,
+      ShopName shopName,
+      Address address,
+      Location location,
+      Week workingWeek,
+      String logoUrl});
 
   $AddressCopyWith<$Res> get address;
+  $LocationCopyWith<$Res> get location;
+  $WeekCopyWith<$Res> get workingWeek;
 }
 
 /// @nodoc
@@ -64,6 +81,9 @@ class _$ShopCopyWithImpl<$Res> implements $ShopCopyWith<$Res> {
     Object? id = freezed,
     Object? shopName = freezed,
     Object? address = freezed,
+    Object? location = freezed,
+    Object? workingWeek = freezed,
+    Object? logoUrl = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -78,6 +98,18 @@ class _$ShopCopyWithImpl<$Res> implements $ShopCopyWith<$Res> {
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
               as Address,
+      location: location == freezed
+          ? _value.location
+          : location // ignore: cast_nullable_to_non_nullable
+              as Location,
+      workingWeek: workingWeek == freezed
+          ? _value.workingWeek
+          : workingWeek // ignore: cast_nullable_to_non_nullable
+              as Week,
+      logoUrl: logoUrl == freezed
+          ? _value.logoUrl
+          : logoUrl // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 
@@ -87,6 +119,20 @@ class _$ShopCopyWithImpl<$Res> implements $ShopCopyWith<$Res> {
       return _then(_value.copyWith(address: value));
     });
   }
+
+  @override
+  $LocationCopyWith<$Res> get location {
+    return $LocationCopyWith<$Res>(_value.location, (value) {
+      return _then(_value.copyWith(location: value));
+    });
+  }
+
+  @override
+  $WeekCopyWith<$Res> get workingWeek {
+    return $WeekCopyWith<$Res>(_value.workingWeek, (value) {
+      return _then(_value.copyWith(workingWeek: value));
+    });
+  }
 }
 
 /// @nodoc
@@ -94,10 +140,20 @@ abstract class _$ShopCopyWith<$Res> implements $ShopCopyWith<$Res> {
   factory _$ShopCopyWith(_Shop value, $Res Function(_Shop) then) =
       __$ShopCopyWithImpl<$Res>;
   @override
-  $Res call({UniqueId id, ShopName shopName, Address address});
+  $Res call(
+      {UniqueId id,
+      ShopName shopName,
+      Address address,
+      Location location,
+      Week workingWeek,
+      String logoUrl});
 
   @override
   $AddressCopyWith<$Res> get address;
+  @override
+  $LocationCopyWith<$Res> get location;
+  @override
+  $WeekCopyWith<$Res> get workingWeek;
 }
 
 /// @nodoc
@@ -114,6 +170,9 @@ class __$ShopCopyWithImpl<$Res> extends _$ShopCopyWithImpl<$Res>
     Object? id = freezed,
     Object? shopName = freezed,
     Object? address = freezed,
+    Object? location = freezed,
+    Object? workingWeek = freezed,
+    Object? logoUrl = freezed,
   }) {
     return _then(_Shop(
       id: id == freezed
@@ -128,6 +187,18 @@ class __$ShopCopyWithImpl<$Res> extends _$ShopCopyWithImpl<$Res>
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
               as Address,
+      location: location == freezed
+          ? _value.location
+          : location // ignore: cast_nullable_to_non_nullable
+              as Location,
+      workingWeek: workingWeek == freezed
+          ? _value.workingWeek
+          : workingWeek // ignore: cast_nullable_to_non_nullable
+              as Week,
+      logoUrl: logoUrl == freezed
+          ? _value.logoUrl
+          : logoUrl // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -136,7 +207,12 @@ class __$ShopCopyWithImpl<$Res> extends _$ShopCopyWithImpl<$Res>
 
 class _$_Shop extends _Shop {
   const _$_Shop(
-      {required this.id, required this.shopName, required this.address})
+      {required this.id,
+      required this.shopName,
+      required this.address,
+      required this.location,
+      required this.workingWeek,
+      required this.logoUrl})
       : super._();
 
   @override
@@ -145,10 +221,16 @@ class _$_Shop extends _Shop {
   final ShopName shopName;
   @override
   final Address address;
+  @override
+  final Location location;
+  @override
+  final Week workingWeek;
+  @override
+  final String logoUrl;
 
   @override
   String toString() {
-    return 'Shop(id: $id, shopName: $shopName, address: $address)';
+    return 'Shop(id: $id, shopName: $shopName, address: $address, location: $location, workingWeek: $workingWeek, logoUrl: $logoUrl)';
   }
 
   @override
@@ -158,7 +240,11 @@ class _$_Shop extends _Shop {
             other is _Shop &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.shopName, shopName) &&
-            const DeepCollectionEquality().equals(other.address, address));
+            const DeepCollectionEquality().equals(other.address, address) &&
+            const DeepCollectionEquality().equals(other.location, location) &&
+            const DeepCollectionEquality()
+                .equals(other.workingWeek, workingWeek) &&
+            const DeepCollectionEquality().equals(other.logoUrl, logoUrl));
   }
 
   @override
@@ -166,7 +252,10 @@ class _$_Shop extends _Shop {
       runtimeType,
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(shopName),
-      const DeepCollectionEquality().hash(address));
+      const DeepCollectionEquality().hash(address),
+      const DeepCollectionEquality().hash(location),
+      const DeepCollectionEquality().hash(workingWeek),
+      const DeepCollectionEquality().hash(logoUrl));
 
   @JsonKey(ignore: true)
   @override
@@ -178,7 +267,10 @@ abstract class _Shop extends Shop {
   const factory _Shop(
       {required UniqueId id,
       required ShopName shopName,
-      required Address address}) = _$_Shop;
+      required Address address,
+      required Location location,
+      required Week workingWeek,
+      required String logoUrl}) = _$_Shop;
   const _Shop._() : super._();
 
   @override
@@ -187,6 +279,12 @@ abstract class _Shop extends Shop {
   ShopName get shopName;
   @override
   Address get address;
+  @override
+  Location get location;
+  @override
+  Week get workingWeek;
+  @override
+  String get logoUrl;
   @override
   @JsonKey(ignore: true)
   _$ShopCopyWith<_Shop> get copyWith => throw _privateConstructorUsedError;

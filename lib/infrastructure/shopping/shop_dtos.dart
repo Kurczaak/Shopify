@@ -1,10 +1,13 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:shopify_manager/domain/core/address.dart';
+import 'package:shopify_manager/domain/core/location.dart';
 import 'package:shopify_manager/domain/core/value_objects.dart';
 import 'package:shopify_manager/domain/shopping/shop.dart';
 import 'package:shopify_manager/domain/shopping/value_objects.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:shopify_manager/infrastructure/core/address_dto.dart';
+import 'package:shopify_manager/infrastructure/core/location/location_dtos.dart';
+import 'package:shopify_manager/infrastructure/shopping/time/time_dtos.dart';
 
 part 'shop_dtos.freezed.dart';
 part 'shop_dtos.g.dart';
@@ -17,6 +20,9 @@ abstract class ShopDto implements _$ShopDto {
     @Default('') @JsonKey(ignore: true) String id,
     required String shopName,
     required AddressDto address,
+    required WeekDto week,
+    required LocationDto location,
+    required String logoUrl,
     @ServerTimestampConverter() required FieldValue serverTimeStamp,
   }) = _ShopItemDto;
 
@@ -26,6 +32,9 @@ abstract class ShopDto implements _$ShopDto {
       shopName: shop.shopName.getOrCrash(),
       address: AddressDto.fromDomain(shop.address),
       serverTimeStamp: FieldValue.serverTimestamp(),
+      location: LocationDto.fromDomain(shop.location),
+      week: WeekDto.fromDomain(shop.workingWeek),
+      logoUrl: shop.logoUrl,
     );
   }
 
@@ -40,6 +49,9 @@ abstract class ShopDto implements _$ShopDto {
         postalCode: PostalCode(address.postalCode),
         streetName: StreetName(address.streetName),
       ),
+      location: location.toDomain(),
+      logoUrl: logoUrl,
+      workingWeek: week.toDomain(),
     );
   }
 
