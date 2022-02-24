@@ -55,7 +55,7 @@ abstract class TimeIntervalPrimitive implements _$TimeIntervalPrimitive {
   }) = _TimeIntervalPrimitive;
 
   factory TimeIntervalPrimitive.initial() => TimeIntervalPrimitive.fullHours(
-        openingHour: 6,
+        openingHour: 8,
         closingHour: 22,
       );
 

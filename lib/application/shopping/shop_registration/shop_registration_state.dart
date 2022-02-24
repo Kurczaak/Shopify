@@ -1,10 +1,18 @@
 part of 'shop_registration_bloc.dart';
 
-abstract class ShopRegistrationState extends Equatable {
-  const ShopRegistrationState();
-  
-  @override
-  List<Object> get props => [];
-}
+@freezed
+class ShopRegistrationState with _$ShopRegistrationState {
+  const factory ShopRegistrationState({
+    required Shop shop,
+    required Option<ShopLogo> shopLogo,
+    required bool isSaving,
+    required Option<Either<ShopFailure, Unit>> saveFailureOrSuccessOption,
+  }) = _ShopRegistrationState;
 
-class ShopRegistrationInitial extends ShopRegistrationState {}
+  factory ShopRegistrationState.initial() => ShopRegistrationState(
+        shop: Shop.empty(),
+        isSaving: false,
+        saveFailureOrSuccessOption: none(),
+        shopLogo: none(),
+      );
+}

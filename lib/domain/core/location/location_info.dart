@@ -13,6 +13,7 @@ class LocationInfoImpl implements LocationInfo {
 
   @override
   Future<Location> getLocationFromAddress(Address address) async {
+    //TODO WHAT IF LOCATIONS LIST IS EMPTY????
     final locations =
         await geocodingPlatform.locationFromAddress(address.toString());
     final location = locations.first;
