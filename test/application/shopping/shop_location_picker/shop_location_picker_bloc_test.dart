@@ -26,4 +26,24 @@ void main() {
     expect: () =>
         [ShopLocationPickerState.initial().copyWith(location: some(tLocation))],
   );
+
+  blocTest(
+    'should emit saved state when location is correct',
+    build: () => ShopLocationPickerBloc(),
+    seed: () =>
+        ShopLocationPickerState(location: some(tLocation), saved: false),
+    act: (ShopLocationPickerBloc bloc) =>
+        bloc.add(ShopLocationPickerEvent.saved()),
+    expect: () =>
+        [ShopLocationPickerState(location: some(tLocation), saved: true)],
+  );
+
+  blocTest(
+    'saved should not emit any state when location is incorrect',
+    build: () => ShopLocationPickerBloc(),
+    seed: () => ShopLocationPickerState(location: none(), saved: false),
+    act: (ShopLocationPickerBloc bloc) =>
+        bloc.add(ShopLocationPickerEvent.saved()),
+    expect: () => [],
+  );
 }

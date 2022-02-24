@@ -24,6 +24,10 @@ class _$ShopLocationPickerEventTearOff {
       longitude: longitude,
     );
   }
+
+  _Saved saved() {
+    return _Saved();
+  }
 }
 
 /// @nodoc
@@ -31,45 +35,44 @@ const $ShopLocationPickerEvent = _$ShopLocationPickerEventTearOff();
 
 /// @nodoc
 mixin _$ShopLocationPickerEvent {
-  double get latitude => throw _privateConstructorUsedError;
-  double get longitude => throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(double latitude, double longitude)
         locationChanged,
+    required TResult Function() saved,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(double latitude, double longitude)? locationChanged,
+    TResult Function()? saved,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(double latitude, double longitude)? locationChanged,
+    TResult Function()? saved,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_LocationChanged value) locationChanged,
+    required TResult Function(_Saved value) saved,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_LocationChanged value)? locationChanged,
+    TResult Function(_Saved value)? saved,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_LocationChanged value)? locationChanged,
+    TResult Function(_Saved value)? saved,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $ShopLocationPickerEventCopyWith<ShopLocationPickerEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -78,7 +81,6 @@ abstract class $ShopLocationPickerEventCopyWith<$Res> {
   factory $ShopLocationPickerEventCopyWith(ShopLocationPickerEvent value,
           $Res Function(ShopLocationPickerEvent) then) =
       _$ShopLocationPickerEventCopyWithImpl<$Res>;
-  $Res call({double latitude, double longitude});
 }
 
 /// @nodoc
@@ -89,32 +91,13 @@ class _$ShopLocationPickerEventCopyWithImpl<$Res>
   final ShopLocationPickerEvent _value;
   // ignore: unused_field
   final $Res Function(ShopLocationPickerEvent) _then;
-
-  @override
-  $Res call({
-    Object? latitude = freezed,
-    Object? longitude = freezed,
-  }) {
-    return _then(_value.copyWith(
-      latitude: latitude == freezed
-          ? _value.latitude
-          : latitude // ignore: cast_nullable_to_non_nullable
-              as double,
-      longitude: longitude == freezed
-          ? _value.longitude
-          : longitude // ignore: cast_nullable_to_non_nullable
-              as double,
-    ));
-  }
 }
 
 /// @nodoc
-abstract class _$LocationChangedCopyWith<$Res>
-    implements $ShopLocationPickerEventCopyWith<$Res> {
+abstract class _$LocationChangedCopyWith<$Res> {
   factory _$LocationChangedCopyWith(
           _LocationChanged value, $Res Function(_LocationChanged) then) =
       __$LocationChangedCopyWithImpl<$Res>;
-  @override
   $Res call({double latitude, double longitude});
 }
 
@@ -187,6 +170,7 @@ class _$_LocationChanged implements _LocationChanged {
   TResult when<TResult extends Object?>({
     required TResult Function(double latitude, double longitude)
         locationChanged,
+    required TResult Function() saved,
   }) {
     return locationChanged(latitude, longitude);
   }
@@ -195,6 +179,7 @@ class _$_LocationChanged implements _LocationChanged {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(double latitude, double longitude)? locationChanged,
+    TResult Function()? saved,
   }) {
     return locationChanged?.call(latitude, longitude);
   }
@@ -203,6 +188,7 @@ class _$_LocationChanged implements _LocationChanged {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(double latitude, double longitude)? locationChanged,
+    TResult Function()? saved,
     required TResult orElse(),
   }) {
     if (locationChanged != null) {
@@ -215,6 +201,7 @@ class _$_LocationChanged implements _LocationChanged {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_LocationChanged value) locationChanged,
+    required TResult Function(_Saved value) saved,
   }) {
     return locationChanged(this);
   }
@@ -223,6 +210,7 @@ class _$_LocationChanged implements _LocationChanged {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_LocationChanged value)? locationChanged,
+    TResult Function(_Saved value)? saved,
   }) {
     return locationChanged?.call(this);
   }
@@ -231,6 +219,7 @@ class _$_LocationChanged implements _LocationChanged {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_LocationChanged value)? locationChanged,
+    TResult Function(_Saved value)? saved,
     required TResult orElse(),
   }) {
     if (locationChanged != null) {
@@ -245,23 +234,126 @@ abstract class _LocationChanged implements ShopLocationPickerEvent {
       {required double latitude,
       required double longitude}) = _$_LocationChanged;
 
-  @override
   double get latitude;
-  @override
   double get longitude;
-  @override
   @JsonKey(ignore: true)
   _$LocationChangedCopyWith<_LocationChanged> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
+abstract class _$SavedCopyWith<$Res> {
+  factory _$SavedCopyWith(_Saved value, $Res Function(_Saved) then) =
+      __$SavedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$SavedCopyWithImpl<$Res>
+    extends _$ShopLocationPickerEventCopyWithImpl<$Res>
+    implements _$SavedCopyWith<$Res> {
+  __$SavedCopyWithImpl(_Saved _value, $Res Function(_Saved) _then)
+      : super(_value, (v) => _then(v as _Saved));
+
+  @override
+  _Saved get _value => super._value as _Saved;
+}
+
+/// @nodoc
+
+class _$_Saved implements _Saved {
+  _$_Saved();
+
+  @override
+  String toString() {
+    return 'ShopLocationPickerEvent.saved()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _Saved);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(double latitude, double longitude)
+        locationChanged,
+    required TResult Function() saved,
+  }) {
+    return saved();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(double latitude, double longitude)? locationChanged,
+    TResult Function()? saved,
+  }) {
+    return saved?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(double latitude, double longitude)? locationChanged,
+    TResult Function()? saved,
+    required TResult orElse(),
+  }) {
+    if (saved != null) {
+      return saved();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_LocationChanged value) locationChanged,
+    required TResult Function(_Saved value) saved,
+  }) {
+    return saved(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_LocationChanged value)? locationChanged,
+    TResult Function(_Saved value)? saved,
+  }) {
+    return saved?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_LocationChanged value)? locationChanged,
+    TResult Function(_Saved value)? saved,
+    required TResult orElse(),
+  }) {
+    if (saved != null) {
+      return saved(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Saved implements ShopLocationPickerEvent {
+  factory _Saved() = _$_Saved;
+}
+
+/// @nodoc
 class _$ShopLocationPickerStateTearOff {
   const _$ShopLocationPickerStateTearOff();
 
-  _ShopLocationPickerState call({required Option<Location> location}) {
+  _ShopLocationPickerState call(
+      {required Option<Location> location, required bool saved}) {
     return _ShopLocationPickerState(
       location: location,
+      saved: saved,
     );
   }
 }
@@ -272,6 +364,7 @@ const $ShopLocationPickerState = _$ShopLocationPickerStateTearOff();
 /// @nodoc
 mixin _$ShopLocationPickerState {
   Option<Location> get location => throw _privateConstructorUsedError;
+  bool get saved => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ShopLocationPickerStateCopyWith<ShopLocationPickerState> get copyWith =>
@@ -283,7 +376,7 @@ abstract class $ShopLocationPickerStateCopyWith<$Res> {
   factory $ShopLocationPickerStateCopyWith(ShopLocationPickerState value,
           $Res Function(ShopLocationPickerState) then) =
       _$ShopLocationPickerStateCopyWithImpl<$Res>;
-  $Res call({Option<Location> location});
+  $Res call({Option<Location> location, bool saved});
 }
 
 /// @nodoc
@@ -298,12 +391,17 @@ class _$ShopLocationPickerStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? location = freezed,
+    Object? saved = freezed,
   }) {
     return _then(_value.copyWith(
       location: location == freezed
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
               as Option<Location>,
+      saved: saved == freezed
+          ? _value.saved
+          : saved // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -315,7 +413,7 @@ abstract class _$ShopLocationPickerStateCopyWith<$Res>
           $Res Function(_ShopLocationPickerState) then) =
       __$ShopLocationPickerStateCopyWithImpl<$Res>;
   @override
-  $Res call({Option<Location> location});
+  $Res call({Option<Location> location, bool saved});
 }
 
 /// @nodoc
@@ -333,12 +431,17 @@ class __$ShopLocationPickerStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? location = freezed,
+    Object? saved = freezed,
   }) {
     return _then(_ShopLocationPickerState(
       location: location == freezed
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
               as Option<Location>,
+      saved: saved == freezed
+          ? _value.saved
+          : saved // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -346,14 +449,17 @@ class __$ShopLocationPickerStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_ShopLocationPickerState implements _ShopLocationPickerState {
-  const _$_ShopLocationPickerState({required this.location});
+  const _$_ShopLocationPickerState(
+      {required this.location, required this.saved});
 
   @override
   final Option<Location> location;
+  @override
+  final bool saved;
 
   @override
   String toString() {
-    return 'ShopLocationPickerState(location: $location)';
+    return 'ShopLocationPickerState(location: $location, saved: $saved)';
   }
 
   @override
@@ -361,12 +467,15 @@ class _$_ShopLocationPickerState implements _ShopLocationPickerState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _ShopLocationPickerState &&
-            const DeepCollectionEquality().equals(other.location, location));
+            const DeepCollectionEquality().equals(other.location, location) &&
+            const DeepCollectionEquality().equals(other.saved, saved));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(location));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(location),
+      const DeepCollectionEquality().hash(saved));
 
   @JsonKey(ignore: true)
   @override
@@ -376,11 +485,14 @@ class _$_ShopLocationPickerState implements _ShopLocationPickerState {
 }
 
 abstract class _ShopLocationPickerState implements ShopLocationPickerState {
-  const factory _ShopLocationPickerState({required Option<Location> location}) =
-      _$_ShopLocationPickerState;
+  const factory _ShopLocationPickerState(
+      {required Option<Location> location,
+      required bool saved}) = _$_ShopLocationPickerState;
 
   @override
   Option<Location> get location;
+  @override
+  bool get saved;
   @override
   @JsonKey(ignore: true)
   _$ShopLocationPickerStateCopyWith<_ShopLocationPickerState> get copyWith =>

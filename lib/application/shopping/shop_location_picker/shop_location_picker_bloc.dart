@@ -13,13 +13,15 @@ class ShopLocationPickerBloc
     extends Bloc<ShopLocationPickerEvent, ShopLocationPickerState> {
   ShopLocationPickerBloc() : super(ShopLocationPickerState.initial()) {
     on<ShopLocationPickerEvent>((event, emit) {
-      event.map(
-        locationChanged: (e) {
-          emit(state.copyWith(
-              location: some(Location.fromLatLang(
-                  latitude: e.latitude, longitude: e.longitude))));
-        },
-      );
+      event.map(locationChanged: (e) {
+        emit(state.copyWith(
+            location: some(Location.fromLatLang(
+                latitude: e.latitude, longitude: e.longitude))));
+      }, saved: (e) {
+        if (state.location.isSome()) {
+          emit(state.copyWith(saved: true));
+        }
+      });
     });
   }
 }
