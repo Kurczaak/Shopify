@@ -16,4 +16,5 @@ abstract class ShopTimePickerEvent with _$ShopTimePickerEvent {
       _SaturdayChanged;
   const factory ShopTimePickerEvent.sundayChanged(DayPrimitive sunday) =
       _SundayChanged;
+  const factory ShopTimePickerEvent.proceeded() = _Proceeded;
 }

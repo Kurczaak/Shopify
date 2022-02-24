@@ -63,6 +63,14 @@ class ShopTimePickerBloc
               week: state.week.copyWith(sunday: domain),
               showErrors: updatedWeek.failureOption.isSome()));
         },
+        proceeded: (_) {
+          final failureOption = state.week.failureOption;
+          failureOption.fold(() {
+            emit(ShopTimePickerState.saved(week: state.week));
+          }, (_) {
+            emit(state.copyWith(showErrors: true));
+          });
+        },
       );
     });
   }

@@ -58,6 +58,10 @@ class _$ShopTimePickerEventTearOff {
       sunday,
     );
   }
+
+  _Proceeded proceeded() {
+    return const _Proceeded();
+  }
 }
 
 /// @nodoc
@@ -74,6 +78,7 @@ mixin _$ShopTimePickerEvent {
     required TResult Function(DayPrimitive friday) fridayChanged,
     required TResult Function(DayPrimitive saturday) saturdayChanged,
     required TResult Function(DayPrimitive sunday) sundayChanged,
+    required TResult Function() proceeded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -85,6 +90,7 @@ mixin _$ShopTimePickerEvent {
     TResult Function(DayPrimitive friday)? fridayChanged,
     TResult Function(DayPrimitive saturday)? saturdayChanged,
     TResult Function(DayPrimitive sunday)? sundayChanged,
+    TResult Function()? proceeded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -96,6 +102,7 @@ mixin _$ShopTimePickerEvent {
     TResult Function(DayPrimitive friday)? fridayChanged,
     TResult Function(DayPrimitive saturday)? saturdayChanged,
     TResult Function(DayPrimitive sunday)? sundayChanged,
+    TResult Function()? proceeded,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -108,6 +115,7 @@ mixin _$ShopTimePickerEvent {
     required TResult Function(_FridayChanged value) fridayChanged,
     required TResult Function(_SaturdayChanged value) saturdayChanged,
     required TResult Function(_SundayChanged value) sundayChanged,
+    required TResult Function(_Proceeded value) proceeded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -119,6 +127,7 @@ mixin _$ShopTimePickerEvent {
     TResult Function(_FridayChanged value)? fridayChanged,
     TResult Function(_SaturdayChanged value)? saturdayChanged,
     TResult Function(_SundayChanged value)? sundayChanged,
+    TResult Function(_Proceeded value)? proceeded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -130,6 +139,7 @@ mixin _$ShopTimePickerEvent {
     TResult Function(_FridayChanged value)? fridayChanged,
     TResult Function(_SaturdayChanged value)? saturdayChanged,
     TResult Function(_SundayChanged value)? sundayChanged,
+    TResult Function(_Proceeded value)? proceeded,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -233,6 +243,7 @@ class _$_MondayChanged implements _MondayChanged {
     required TResult Function(DayPrimitive friday) fridayChanged,
     required TResult Function(DayPrimitive saturday) saturdayChanged,
     required TResult Function(DayPrimitive sunday) sundayChanged,
+    required TResult Function() proceeded,
   }) {
     return mondayChanged(monday);
   }
@@ -247,6 +258,7 @@ class _$_MondayChanged implements _MondayChanged {
     TResult Function(DayPrimitive friday)? fridayChanged,
     TResult Function(DayPrimitive saturday)? saturdayChanged,
     TResult Function(DayPrimitive sunday)? sundayChanged,
+    TResult Function()? proceeded,
   }) {
     return mondayChanged?.call(monday);
   }
@@ -261,6 +273,7 @@ class _$_MondayChanged implements _MondayChanged {
     TResult Function(DayPrimitive friday)? fridayChanged,
     TResult Function(DayPrimitive saturday)? saturdayChanged,
     TResult Function(DayPrimitive sunday)? sundayChanged,
+    TResult Function()? proceeded,
     required TResult orElse(),
   }) {
     if (mondayChanged != null) {
@@ -279,6 +292,7 @@ class _$_MondayChanged implements _MondayChanged {
     required TResult Function(_FridayChanged value) fridayChanged,
     required TResult Function(_SaturdayChanged value) saturdayChanged,
     required TResult Function(_SundayChanged value) sundayChanged,
+    required TResult Function(_Proceeded value) proceeded,
   }) {
     return mondayChanged(this);
   }
@@ -293,6 +307,7 @@ class _$_MondayChanged implements _MondayChanged {
     TResult Function(_FridayChanged value)? fridayChanged,
     TResult Function(_SaturdayChanged value)? saturdayChanged,
     TResult Function(_SundayChanged value)? sundayChanged,
+    TResult Function(_Proceeded value)? proceeded,
   }) {
     return mondayChanged?.call(this);
   }
@@ -307,6 +322,7 @@ class _$_MondayChanged implements _MondayChanged {
     TResult Function(_FridayChanged value)? fridayChanged,
     TResult Function(_SaturdayChanged value)? saturdayChanged,
     TResult Function(_SundayChanged value)? sundayChanged,
+    TResult Function(_Proceeded value)? proceeded,
     required TResult orElse(),
   }) {
     if (mondayChanged != null) {
@@ -406,6 +422,7 @@ class _$_TuesdayChanged implements _TuesdayChanged {
     required TResult Function(DayPrimitive friday) fridayChanged,
     required TResult Function(DayPrimitive saturday) saturdayChanged,
     required TResult Function(DayPrimitive sunday) sundayChanged,
+    required TResult Function() proceeded,
   }) {
     return tuesdayChanged(tuesday);
   }
@@ -420,6 +437,7 @@ class _$_TuesdayChanged implements _TuesdayChanged {
     TResult Function(DayPrimitive friday)? fridayChanged,
     TResult Function(DayPrimitive saturday)? saturdayChanged,
     TResult Function(DayPrimitive sunday)? sundayChanged,
+    TResult Function()? proceeded,
   }) {
     return tuesdayChanged?.call(tuesday);
   }
@@ -434,6 +452,7 @@ class _$_TuesdayChanged implements _TuesdayChanged {
     TResult Function(DayPrimitive friday)? fridayChanged,
     TResult Function(DayPrimitive saturday)? saturdayChanged,
     TResult Function(DayPrimitive sunday)? sundayChanged,
+    TResult Function()? proceeded,
     required TResult orElse(),
   }) {
     if (tuesdayChanged != null) {
@@ -452,6 +471,7 @@ class _$_TuesdayChanged implements _TuesdayChanged {
     required TResult Function(_FridayChanged value) fridayChanged,
     required TResult Function(_SaturdayChanged value) saturdayChanged,
     required TResult Function(_SundayChanged value) sundayChanged,
+    required TResult Function(_Proceeded value) proceeded,
   }) {
     return tuesdayChanged(this);
   }
@@ -466,6 +486,7 @@ class _$_TuesdayChanged implements _TuesdayChanged {
     TResult Function(_FridayChanged value)? fridayChanged,
     TResult Function(_SaturdayChanged value)? saturdayChanged,
     TResult Function(_SundayChanged value)? sundayChanged,
+    TResult Function(_Proceeded value)? proceeded,
   }) {
     return tuesdayChanged?.call(this);
   }
@@ -480,6 +501,7 @@ class _$_TuesdayChanged implements _TuesdayChanged {
     TResult Function(_FridayChanged value)? fridayChanged,
     TResult Function(_SaturdayChanged value)? saturdayChanged,
     TResult Function(_SundayChanged value)? sundayChanged,
+    TResult Function(_Proceeded value)? proceeded,
     required TResult orElse(),
   }) {
     if (tuesdayChanged != null) {
@@ -579,6 +601,7 @@ class _$_WednesdayChanged implements _WednesdayChanged {
     required TResult Function(DayPrimitive friday) fridayChanged,
     required TResult Function(DayPrimitive saturday) saturdayChanged,
     required TResult Function(DayPrimitive sunday) sundayChanged,
+    required TResult Function() proceeded,
   }) {
     return wednesdayChanged(wednesday);
   }
@@ -593,6 +616,7 @@ class _$_WednesdayChanged implements _WednesdayChanged {
     TResult Function(DayPrimitive friday)? fridayChanged,
     TResult Function(DayPrimitive saturday)? saturdayChanged,
     TResult Function(DayPrimitive sunday)? sundayChanged,
+    TResult Function()? proceeded,
   }) {
     return wednesdayChanged?.call(wednesday);
   }
@@ -607,6 +631,7 @@ class _$_WednesdayChanged implements _WednesdayChanged {
     TResult Function(DayPrimitive friday)? fridayChanged,
     TResult Function(DayPrimitive saturday)? saturdayChanged,
     TResult Function(DayPrimitive sunday)? sundayChanged,
+    TResult Function()? proceeded,
     required TResult orElse(),
   }) {
     if (wednesdayChanged != null) {
@@ -625,6 +650,7 @@ class _$_WednesdayChanged implements _WednesdayChanged {
     required TResult Function(_FridayChanged value) fridayChanged,
     required TResult Function(_SaturdayChanged value) saturdayChanged,
     required TResult Function(_SundayChanged value) sundayChanged,
+    required TResult Function(_Proceeded value) proceeded,
   }) {
     return wednesdayChanged(this);
   }
@@ -639,6 +665,7 @@ class _$_WednesdayChanged implements _WednesdayChanged {
     TResult Function(_FridayChanged value)? fridayChanged,
     TResult Function(_SaturdayChanged value)? saturdayChanged,
     TResult Function(_SundayChanged value)? sundayChanged,
+    TResult Function(_Proceeded value)? proceeded,
   }) {
     return wednesdayChanged?.call(this);
   }
@@ -653,6 +680,7 @@ class _$_WednesdayChanged implements _WednesdayChanged {
     TResult Function(_FridayChanged value)? fridayChanged,
     TResult Function(_SaturdayChanged value)? saturdayChanged,
     TResult Function(_SundayChanged value)? sundayChanged,
+    TResult Function(_Proceeded value)? proceeded,
     required TResult orElse(),
   }) {
     if (wednesdayChanged != null) {
@@ -752,6 +780,7 @@ class _$_ThursdayChanged implements _ThursdayChanged {
     required TResult Function(DayPrimitive friday) fridayChanged,
     required TResult Function(DayPrimitive saturday) saturdayChanged,
     required TResult Function(DayPrimitive sunday) sundayChanged,
+    required TResult Function() proceeded,
   }) {
     return thursdayChanged(thursday);
   }
@@ -766,6 +795,7 @@ class _$_ThursdayChanged implements _ThursdayChanged {
     TResult Function(DayPrimitive friday)? fridayChanged,
     TResult Function(DayPrimitive saturday)? saturdayChanged,
     TResult Function(DayPrimitive sunday)? sundayChanged,
+    TResult Function()? proceeded,
   }) {
     return thursdayChanged?.call(thursday);
   }
@@ -780,6 +810,7 @@ class _$_ThursdayChanged implements _ThursdayChanged {
     TResult Function(DayPrimitive friday)? fridayChanged,
     TResult Function(DayPrimitive saturday)? saturdayChanged,
     TResult Function(DayPrimitive sunday)? sundayChanged,
+    TResult Function()? proceeded,
     required TResult orElse(),
   }) {
     if (thursdayChanged != null) {
@@ -798,6 +829,7 @@ class _$_ThursdayChanged implements _ThursdayChanged {
     required TResult Function(_FridayChanged value) fridayChanged,
     required TResult Function(_SaturdayChanged value) saturdayChanged,
     required TResult Function(_SundayChanged value) sundayChanged,
+    required TResult Function(_Proceeded value) proceeded,
   }) {
     return thursdayChanged(this);
   }
@@ -812,6 +844,7 @@ class _$_ThursdayChanged implements _ThursdayChanged {
     TResult Function(_FridayChanged value)? fridayChanged,
     TResult Function(_SaturdayChanged value)? saturdayChanged,
     TResult Function(_SundayChanged value)? sundayChanged,
+    TResult Function(_Proceeded value)? proceeded,
   }) {
     return thursdayChanged?.call(this);
   }
@@ -826,6 +859,7 @@ class _$_ThursdayChanged implements _ThursdayChanged {
     TResult Function(_FridayChanged value)? fridayChanged,
     TResult Function(_SaturdayChanged value)? saturdayChanged,
     TResult Function(_SundayChanged value)? sundayChanged,
+    TResult Function(_Proceeded value)? proceeded,
     required TResult orElse(),
   }) {
     if (thursdayChanged != null) {
@@ -925,6 +959,7 @@ class _$_FridayChanged implements _FridayChanged {
     required TResult Function(DayPrimitive friday) fridayChanged,
     required TResult Function(DayPrimitive saturday) saturdayChanged,
     required TResult Function(DayPrimitive sunday) sundayChanged,
+    required TResult Function() proceeded,
   }) {
     return fridayChanged(friday);
   }
@@ -939,6 +974,7 @@ class _$_FridayChanged implements _FridayChanged {
     TResult Function(DayPrimitive friday)? fridayChanged,
     TResult Function(DayPrimitive saturday)? saturdayChanged,
     TResult Function(DayPrimitive sunday)? sundayChanged,
+    TResult Function()? proceeded,
   }) {
     return fridayChanged?.call(friday);
   }
@@ -953,6 +989,7 @@ class _$_FridayChanged implements _FridayChanged {
     TResult Function(DayPrimitive friday)? fridayChanged,
     TResult Function(DayPrimitive saturday)? saturdayChanged,
     TResult Function(DayPrimitive sunday)? sundayChanged,
+    TResult Function()? proceeded,
     required TResult orElse(),
   }) {
     if (fridayChanged != null) {
@@ -971,6 +1008,7 @@ class _$_FridayChanged implements _FridayChanged {
     required TResult Function(_FridayChanged value) fridayChanged,
     required TResult Function(_SaturdayChanged value) saturdayChanged,
     required TResult Function(_SundayChanged value) sundayChanged,
+    required TResult Function(_Proceeded value) proceeded,
   }) {
     return fridayChanged(this);
   }
@@ -985,6 +1023,7 @@ class _$_FridayChanged implements _FridayChanged {
     TResult Function(_FridayChanged value)? fridayChanged,
     TResult Function(_SaturdayChanged value)? saturdayChanged,
     TResult Function(_SundayChanged value)? sundayChanged,
+    TResult Function(_Proceeded value)? proceeded,
   }) {
     return fridayChanged?.call(this);
   }
@@ -999,6 +1038,7 @@ class _$_FridayChanged implements _FridayChanged {
     TResult Function(_FridayChanged value)? fridayChanged,
     TResult Function(_SaturdayChanged value)? saturdayChanged,
     TResult Function(_SundayChanged value)? sundayChanged,
+    TResult Function(_Proceeded value)? proceeded,
     required TResult orElse(),
   }) {
     if (fridayChanged != null) {
@@ -1098,6 +1138,7 @@ class _$_SaturdayChanged implements _SaturdayChanged {
     required TResult Function(DayPrimitive friday) fridayChanged,
     required TResult Function(DayPrimitive saturday) saturdayChanged,
     required TResult Function(DayPrimitive sunday) sundayChanged,
+    required TResult Function() proceeded,
   }) {
     return saturdayChanged(saturday);
   }
@@ -1112,6 +1153,7 @@ class _$_SaturdayChanged implements _SaturdayChanged {
     TResult Function(DayPrimitive friday)? fridayChanged,
     TResult Function(DayPrimitive saturday)? saturdayChanged,
     TResult Function(DayPrimitive sunday)? sundayChanged,
+    TResult Function()? proceeded,
   }) {
     return saturdayChanged?.call(saturday);
   }
@@ -1126,6 +1168,7 @@ class _$_SaturdayChanged implements _SaturdayChanged {
     TResult Function(DayPrimitive friday)? fridayChanged,
     TResult Function(DayPrimitive saturday)? saturdayChanged,
     TResult Function(DayPrimitive sunday)? sundayChanged,
+    TResult Function()? proceeded,
     required TResult orElse(),
   }) {
     if (saturdayChanged != null) {
@@ -1144,6 +1187,7 @@ class _$_SaturdayChanged implements _SaturdayChanged {
     required TResult Function(_FridayChanged value) fridayChanged,
     required TResult Function(_SaturdayChanged value) saturdayChanged,
     required TResult Function(_SundayChanged value) sundayChanged,
+    required TResult Function(_Proceeded value) proceeded,
   }) {
     return saturdayChanged(this);
   }
@@ -1158,6 +1202,7 @@ class _$_SaturdayChanged implements _SaturdayChanged {
     TResult Function(_FridayChanged value)? fridayChanged,
     TResult Function(_SaturdayChanged value)? saturdayChanged,
     TResult Function(_SundayChanged value)? sundayChanged,
+    TResult Function(_Proceeded value)? proceeded,
   }) {
     return saturdayChanged?.call(this);
   }
@@ -1172,6 +1217,7 @@ class _$_SaturdayChanged implements _SaturdayChanged {
     TResult Function(_FridayChanged value)? fridayChanged,
     TResult Function(_SaturdayChanged value)? saturdayChanged,
     TResult Function(_SundayChanged value)? sundayChanged,
+    TResult Function(_Proceeded value)? proceeded,
     required TResult orElse(),
   }) {
     if (saturdayChanged != null) {
@@ -1271,6 +1317,7 @@ class _$_SundayChanged implements _SundayChanged {
     required TResult Function(DayPrimitive friday) fridayChanged,
     required TResult Function(DayPrimitive saturday) saturdayChanged,
     required TResult Function(DayPrimitive sunday) sundayChanged,
+    required TResult Function() proceeded,
   }) {
     return sundayChanged(sunday);
   }
@@ -1285,6 +1332,7 @@ class _$_SundayChanged implements _SundayChanged {
     TResult Function(DayPrimitive friday)? fridayChanged,
     TResult Function(DayPrimitive saturday)? saturdayChanged,
     TResult Function(DayPrimitive sunday)? sundayChanged,
+    TResult Function()? proceeded,
   }) {
     return sundayChanged?.call(sunday);
   }
@@ -1299,6 +1347,7 @@ class _$_SundayChanged implements _SundayChanged {
     TResult Function(DayPrimitive friday)? fridayChanged,
     TResult Function(DayPrimitive saturday)? saturdayChanged,
     TResult Function(DayPrimitive sunday)? sundayChanged,
+    TResult Function()? proceeded,
     required TResult orElse(),
   }) {
     if (sundayChanged != null) {
@@ -1317,6 +1366,7 @@ class _$_SundayChanged implements _SundayChanged {
     required TResult Function(_FridayChanged value) fridayChanged,
     required TResult Function(_SaturdayChanged value) saturdayChanged,
     required TResult Function(_SundayChanged value) sundayChanged,
+    required TResult Function(_Proceeded value) proceeded,
   }) {
     return sundayChanged(this);
   }
@@ -1331,6 +1381,7 @@ class _$_SundayChanged implements _SundayChanged {
     TResult Function(_FridayChanged value)? fridayChanged,
     TResult Function(_SaturdayChanged value)? saturdayChanged,
     TResult Function(_SundayChanged value)? sundayChanged,
+    TResult Function(_Proceeded value)? proceeded,
   }) {
     return sundayChanged?.call(this);
   }
@@ -1345,6 +1396,7 @@ class _$_SundayChanged implements _SundayChanged {
     TResult Function(_FridayChanged value)? fridayChanged,
     TResult Function(_SaturdayChanged value)? saturdayChanged,
     TResult Function(_SundayChanged value)? sundayChanged,
+    TResult Function(_Proceeded value)? proceeded,
     required TResult orElse(),
   }) {
     if (sundayChanged != null) {
@@ -1364,13 +1416,155 @@ abstract class _SundayChanged implements ShopTimePickerEvent {
 }
 
 /// @nodoc
+abstract class _$ProceededCopyWith<$Res> {
+  factory _$ProceededCopyWith(
+          _Proceeded value, $Res Function(_Proceeded) then) =
+      __$ProceededCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$ProceededCopyWithImpl<$Res>
+    extends _$ShopTimePickerEventCopyWithImpl<$Res>
+    implements _$ProceededCopyWith<$Res> {
+  __$ProceededCopyWithImpl(_Proceeded _value, $Res Function(_Proceeded) _then)
+      : super(_value, (v) => _then(v as _Proceeded));
+
+  @override
+  _Proceeded get _value => super._value as _Proceeded;
+}
+
+/// @nodoc
+
+class _$_Proceeded implements _Proceeded {
+  const _$_Proceeded();
+
+  @override
+  String toString() {
+    return 'ShopTimePickerEvent.proceeded()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _Proceeded);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(DayPrimitive monday) mondayChanged,
+    required TResult Function(DayPrimitive tuesday) tuesdayChanged,
+    required TResult Function(DayPrimitive wednesday) wednesdayChanged,
+    required TResult Function(DayPrimitive thursday) thursdayChanged,
+    required TResult Function(DayPrimitive friday) fridayChanged,
+    required TResult Function(DayPrimitive saturday) saturdayChanged,
+    required TResult Function(DayPrimitive sunday) sundayChanged,
+    required TResult Function() proceeded,
+  }) {
+    return proceeded();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(DayPrimitive monday)? mondayChanged,
+    TResult Function(DayPrimitive tuesday)? tuesdayChanged,
+    TResult Function(DayPrimitive wednesday)? wednesdayChanged,
+    TResult Function(DayPrimitive thursday)? thursdayChanged,
+    TResult Function(DayPrimitive friday)? fridayChanged,
+    TResult Function(DayPrimitive saturday)? saturdayChanged,
+    TResult Function(DayPrimitive sunday)? sundayChanged,
+    TResult Function()? proceeded,
+  }) {
+    return proceeded?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(DayPrimitive monday)? mondayChanged,
+    TResult Function(DayPrimitive tuesday)? tuesdayChanged,
+    TResult Function(DayPrimitive wednesday)? wednesdayChanged,
+    TResult Function(DayPrimitive thursday)? thursdayChanged,
+    TResult Function(DayPrimitive friday)? fridayChanged,
+    TResult Function(DayPrimitive saturday)? saturdayChanged,
+    TResult Function(DayPrimitive sunday)? sundayChanged,
+    TResult Function()? proceeded,
+    required TResult orElse(),
+  }) {
+    if (proceeded != null) {
+      return proceeded();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_MondayChanged value) mondayChanged,
+    required TResult Function(_TuesdayChanged value) tuesdayChanged,
+    required TResult Function(_WednesdayChanged value) wednesdayChanged,
+    required TResult Function(_ThursdayChanged value) thursdayChanged,
+    required TResult Function(_FridayChanged value) fridayChanged,
+    required TResult Function(_SaturdayChanged value) saturdayChanged,
+    required TResult Function(_SundayChanged value) sundayChanged,
+    required TResult Function(_Proceeded value) proceeded,
+  }) {
+    return proceeded(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_MondayChanged value)? mondayChanged,
+    TResult Function(_TuesdayChanged value)? tuesdayChanged,
+    TResult Function(_WednesdayChanged value)? wednesdayChanged,
+    TResult Function(_ThursdayChanged value)? thursdayChanged,
+    TResult Function(_FridayChanged value)? fridayChanged,
+    TResult Function(_SaturdayChanged value)? saturdayChanged,
+    TResult Function(_SundayChanged value)? sundayChanged,
+    TResult Function(_Proceeded value)? proceeded,
+  }) {
+    return proceeded?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_MondayChanged value)? mondayChanged,
+    TResult Function(_TuesdayChanged value)? tuesdayChanged,
+    TResult Function(_WednesdayChanged value)? wednesdayChanged,
+    TResult Function(_ThursdayChanged value)? thursdayChanged,
+    TResult Function(_FridayChanged value)? fridayChanged,
+    TResult Function(_SaturdayChanged value)? saturdayChanged,
+    TResult Function(_SundayChanged value)? sundayChanged,
+    TResult Function(_Proceeded value)? proceeded,
+    required TResult orElse(),
+  }) {
+    if (proceeded != null) {
+      return proceeded(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Proceeded implements ShopTimePickerEvent {
+  const factory _Proceeded() = _$_Proceeded;
+}
+
+/// @nodoc
 class _$ShopTimePickerStateTearOff {
   const _$ShopTimePickerStateTearOff();
 
-  _ShopTimePickerState call({required Week week, required bool showErrors}) {
+  _ShopTimePickerState call(
+      {required Week week, required bool showErrors, required bool saved}) {
     return _ShopTimePickerState(
       week: week,
       showErrors: showErrors,
+      saved: saved,
     );
   }
 }
@@ -1382,6 +1576,7 @@ const $ShopTimePickerState = _$ShopTimePickerStateTearOff();
 mixin _$ShopTimePickerState {
   Week get week => throw _privateConstructorUsedError;
   bool get showErrors => throw _privateConstructorUsedError;
+  bool get saved => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ShopTimePickerStateCopyWith<ShopTimePickerState> get copyWith =>
@@ -1393,7 +1588,7 @@ abstract class $ShopTimePickerStateCopyWith<$Res> {
   factory $ShopTimePickerStateCopyWith(
           ShopTimePickerState value, $Res Function(ShopTimePickerState) then) =
       _$ShopTimePickerStateCopyWithImpl<$Res>;
-  $Res call({Week week, bool showErrors});
+  $Res call({Week week, bool showErrors, bool saved});
 
   $WeekCopyWith<$Res> get week;
 }
@@ -1411,6 +1606,7 @@ class _$ShopTimePickerStateCopyWithImpl<$Res>
   $Res call({
     Object? week = freezed,
     Object? showErrors = freezed,
+    Object? saved = freezed,
   }) {
     return _then(_value.copyWith(
       week: week == freezed
@@ -1420,6 +1616,10 @@ class _$ShopTimePickerStateCopyWithImpl<$Res>
       showErrors: showErrors == freezed
           ? _value.showErrors
           : showErrors // ignore: cast_nullable_to_non_nullable
+              as bool,
+      saved: saved == freezed
+          ? _value.saved
+          : saved // ignore: cast_nullable_to_non_nullable
               as bool,
     ));
   }
@@ -1439,7 +1639,7 @@ abstract class _$ShopTimePickerStateCopyWith<$Res>
           $Res Function(_ShopTimePickerState) then) =
       __$ShopTimePickerStateCopyWithImpl<$Res>;
   @override
-  $Res call({Week week, bool showErrors});
+  $Res call({Week week, bool showErrors, bool saved});
 
   @override
   $WeekCopyWith<$Res> get week;
@@ -1460,6 +1660,7 @@ class __$ShopTimePickerStateCopyWithImpl<$Res>
   $Res call({
     Object? week = freezed,
     Object? showErrors = freezed,
+    Object? saved = freezed,
   }) {
     return _then(_ShopTimePickerState(
       week: week == freezed
@@ -1470,6 +1671,10 @@ class __$ShopTimePickerStateCopyWithImpl<$Res>
           ? _value.showErrors
           : showErrors // ignore: cast_nullable_to_non_nullable
               as bool,
+      saved: saved == freezed
+          ? _value.saved
+          : saved // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -1477,16 +1682,19 @@ class __$ShopTimePickerStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_ShopTimePickerState implements _ShopTimePickerState {
-  const _$_ShopTimePickerState({required this.week, required this.showErrors});
+  const _$_ShopTimePickerState(
+      {required this.week, required this.showErrors, required this.saved});
 
   @override
   final Week week;
   @override
   final bool showErrors;
+  @override
+  final bool saved;
 
   @override
   String toString() {
-    return 'ShopTimePickerState(week: $week, showErrors: $showErrors)';
+    return 'ShopTimePickerState(week: $week, showErrors: $showErrors, saved: $saved)';
   }
 
   @override
@@ -1496,14 +1704,16 @@ class _$_ShopTimePickerState implements _ShopTimePickerState {
             other is _ShopTimePickerState &&
             const DeepCollectionEquality().equals(other.week, week) &&
             const DeepCollectionEquality()
-                .equals(other.showErrors, showErrors));
+                .equals(other.showErrors, showErrors) &&
+            const DeepCollectionEquality().equals(other.saved, saved));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(week),
-      const DeepCollectionEquality().hash(showErrors));
+      const DeepCollectionEquality().hash(showErrors),
+      const DeepCollectionEquality().hash(saved));
 
   @JsonKey(ignore: true)
   @override
@@ -1514,12 +1724,16 @@ class _$_ShopTimePickerState implements _ShopTimePickerState {
 
 abstract class _ShopTimePickerState implements ShopTimePickerState {
   const factory _ShopTimePickerState(
-      {required Week week, required bool showErrors}) = _$_ShopTimePickerState;
+      {required Week week,
+      required bool showErrors,
+      required bool saved}) = _$_ShopTimePickerState;
 
   @override
   Week get week;
   @override
   bool get showErrors;
+  @override
+  bool get saved;
   @override
   @JsonKey(ignore: true)
   _$ShopTimePickerStateCopyWith<_ShopTimePickerState> get copyWith =>

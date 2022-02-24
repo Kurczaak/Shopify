@@ -253,6 +253,41 @@ void main() {
       correctEvent: ShopTimePickerEvent.sundayChanged(primitiveSunday),
     );
   });
+
+  group('proceeded', () {
+    final tValidWeek = Week.empty()
+        .copyWith(sunday: Day.empty(DayName.sunday).copyWith(isOpen: false));
+    final tInvalidWeek = Week.empty().copyWith(
+        sunday: Day.empty(DayName.sunday)
+            .copyWith(openingInterval: TimeInterval.fullHours(22, 8)));
+
+    test(
+      'shoud emit [SAVED] state when the week is valid',
+      () async {
+        // arrange
+        final bloc = ShopTimePickerBloc();
+        // act
+        bloc.add(ShopTimePickerEvent.sundayChanged(
+            DayPrimitive.sunday().copyWith(isOpen: false)));
+        bloc.add(const ShopTimePickerEvent.proceeded());
+        // assert
+        expectLater(bloc.stream.asBroadcastStream(),
+            emitsInOrder([ShopTimePickerState.saved(week: tValidWeek)]));
+      },
+    );
+
+    blocTest(
+      'shoud emit error state when the week is invalid',
+      build: () => ShopTimePickerBloc(),
+      act: (ShopTimePickerBloc bloc) =>
+          bloc.add(const ShopTimePickerEvent.proceeded()),
+      seed: () => ShopTimePickerState(
+          week: tInvalidWeek, showErrors: false, saved: false),
+      expect: () => [
+        ShopTimePickerState(showErrors: true, week: tInvalidWeek, saved: false)
+      ],
+    );
+  });
 }
 
 @isTest
