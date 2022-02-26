@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+import 'package:shopify_manager/domain/core/address.dart';
 import 'package:shopify_manager/domain/core/value_objects.dart';
 import 'package:shopify_manager/domain/shopping/i_shop_repository.dart';
 import 'package:shopify_manager/domain/shopping/shop_form.dart';
@@ -12,7 +13,7 @@ part 'shop_form_event.dart';
 part 'shop_form_state.dart';
 part 'shop_form_bloc.freezed.dart';
 
-@injectable
+@singleton
 class ShopFormBloc extends Bloc<ShopFormEvent, ShopFormState> {
   ShopFormBloc() : super(ShopFormState.initial()) {
     on<ShopFormEvent>((event, emit) {

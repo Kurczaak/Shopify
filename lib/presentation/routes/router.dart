@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:shopify_manager/presentation/core/debug_page.dart';
+import 'package:shopify_manager/presentation/register_shop/debug_location_page.dart';
 import 'package:shopify_manager/presentation/register_shop/opening_hours/opening_hours_page.dart';
 import 'package:shopify_manager/presentation/register_shop/shop_details_page.dart';
 import 'package:shopify_manager/presentation/sign_in/sign_in_page.dart';
@@ -12,17 +13,19 @@ import 'package:shopify_manager/presentation/splash/splash_page.dart';
     //TODO IMPLEMENT DEBUG PAGE LOL
     AutoRoute(
       page: DebugPage,
-      initial: true,
     ),
     AutoRoute(
       page: SplashPage,
+    ),
+    AutoRoute(
+      page: DebugLocationPage,
     ),
     AutoRoute(
       page: SignInPage,
     ),
     AutoRoute(
       page: ShopDetailsPage,
-      // initial: true,
+      initial: true,
     ),
     AutoRoute(
       page: SignUpPage,

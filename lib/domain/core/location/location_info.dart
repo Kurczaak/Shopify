@@ -1,4 +1,5 @@
 import 'package:geocoding/geocoding.dart' as g;
+import 'package:injectable/injectable.dart';
 import 'package:shopify_manager/domain/core/address.dart';
 import 'package:shopify_manager/domain/core/location.dart';
 
@@ -6,6 +7,7 @@ abstract class LocationInfo {
   Future<Location> getLocationFromAddress(Address address);
 }
 
+@LazySingleton(as: LocationInfo)
 class LocationInfoImpl implements LocationInfo {
   final g.GeocodingPlatform geocodingPlatform;
 

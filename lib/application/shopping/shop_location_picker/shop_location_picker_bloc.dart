@@ -8,7 +8,7 @@ part 'shop_location_picker_bloc.freezed.dart';
 part 'shop_location_picker_event.dart';
 part 'shop_location_picker_state.dart';
 
-@injectable
+@singleton
 class ShopLocationPickerBloc
     extends Bloc<ShopLocationPickerEvent, ShopLocationPickerState> {
   ShopLocationPickerBloc() : super(ShopLocationPickerState.initial()) {

@@ -1,10 +1,15 @@
 import 'package:another_flushbar/flushbar_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loading_overlay/loading_overlay.dart';
 import 'package:shopify_manager/application/shopping/shop_form/shop_form_bloc.dart';
+import 'package:shopify_manager/application/shopping/shop_registration/shop_registration_bloc.dart';
 import 'package:shopify_manager/injection.dart';
+import 'package:shopify_manager/presentation/core/debug_page.dart';
 import 'package:shopify_manager/presentation/core/widgets/process_appbar.dart';
+import 'package:shopify_manager/presentation/routes/router.gr.dart';
+import 'package:auto_route/auto_route.dart';
 
 class ShopDetailsPage extends StatelessWidget {
   ShopDetailsPage({Key? key}) : super(key: key);
@@ -17,10 +22,17 @@ class ShopDetailsPage extends StatelessWidget {
         title: 'Register Shop',
         appBar: AppBar(),
       ),
-      body: BlocProvider(
-        create: (context) => getIt<ShopFormBloc>(),
+      body: MultiBlocProvider(
+        providers: [
+          BlocProvider<ShopFormBloc>(
+            create: (context) => getIt<ShopFormBloc>(),
+          ),
+        ],
         child: BlocConsumer<ShopFormBloc, ShopFormState>(
-          listener: (context, state) {},
+          listener: (context, state) {
+            if (state.saved) context.router.replace(DebugLocationRoute());
+            print(state.showErrorMessages);
+          },
           builder: (context, state) => Padding(
             padding: const EdgeInsets.symmetric(horizontal: 28),
             child: Column(
@@ -71,11 +83,15 @@ class ShopDetailsPage extends StatelessWidget {
                               .read<ShopFormBloc>()
                               .add(ShopFormEvent.streetNameChanged(value)),
                         ),
-                        // const SizedBox(height: 20),
-                        // TextFormField(
-                        //   decoration: const InputDecoration(
-                        //       labelText: 'Street Number'),
-                        // ),
+                        const SizedBox(height: 20),
+                        TextFormField(
+                          keyboardType: TextInputType.number,
+                          decoration:
+                              const InputDecoration(labelText: 'Street Number'),
+                          onChanged: (value) => context
+                              .read<ShopFormBloc>()
+                              .add(ShopFormEvent.streetNumberChanged(value)),
+                        ),
                         const SizedBox(height: 20),
                         TextFormField(
                           maxLength: 6,

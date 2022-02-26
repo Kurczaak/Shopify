@@ -25,7 +25,7 @@ part 'shop_registration_state.dart';
 part 'shop_registration_bloc.super.dart';
 part 'shop_registration_bloc.freezed.dart';
 
-@injectable
+@singleton
 class ShopRegistrationBloc
     extends Bloc<ShopRegistrationEvent, ShopRegistrationState> {
   final ShopFormBloc shopFormBloc;
@@ -45,7 +45,9 @@ class ShopRegistrationBloc
     required this.shopLogoPickerBloc,
     required this.locationInfo,
   }) : super(ShopRegistrationState.initial()) {
+    print('Ciao');
     _shopFormBlocSubscription = shopFormBloc.stream.listen((state) {
+      print('FORM IS KURWA SAVED XDDDD');
       if (state.saved) {
         add(ShopRegistrationEvent.formSaved(shopForm: state.shop));
       }
@@ -73,6 +75,7 @@ class ShopRegistrationBloc
     on<ShopRegistrationEvent>((event, emit) async {
       await event.when(
         formSaved: (formSavedState) async {
+          print('FORM IS KURWA SAVED');
           emit(state.copyWith(
               shop: state.shop.copyWith(
             address: formSavedState.shopForm.address,

@@ -11,7 +11,7 @@ part 'shop_logo_picker_event.dart';
 part 'shop_logo_picker_state.dart';
 part 'shop_logo_picker_bloc.super.dart';
 
-@injectable
+@singleton
 class ShopLogoPickerBloc
     extends Bloc<ShopLogoPickerEvent, ShopLogoPickerState> {
   final IImageFacade _imageFacade;
