@@ -7,6 +7,8 @@ import 'package:shopify_manager/application/shopping/shop_logo_picker/shop_logo_
 import 'package:shopify_manager/application/shopping/shop_registration/shop_registration_bloc.dart';
 import 'package:shopify_manager/application/shopping/shop_time_picker/shop_time_picker_bloc.dart';
 import 'package:shopify_manager/domain/core/address.dart';
+import 'package:shopify_manager/domain/core/errors.dart';
+import 'package:shopify_manager/domain/core/images/photo.dart';
 import 'package:shopify_manager/domain/core/location.dart';
 import 'package:shopify_manager/domain/core/location/location_info.dart';
 import 'package:shopify_manager/domain/core/value_objects.dart';
@@ -17,6 +19,8 @@ import 'package:shopify_manager/domain/shopping/time/value_objects.dart';
 import 'package:shopify_manager/domain/shopping/time/week.dart';
 import 'package:shopify_manager/domain/shopping/value_objects.dart';
 import 'package:mocktail/mocktail.dart';
+
+import '../../../utils/image_reader.dart';
 
 class MockShopFormBloc extends MockBloc<ShopFormEvent, ShopFormState>
     implements ShopFormBloc {}
@@ -35,7 +39,7 @@ class MockShopLogoPickerBloc
 
 class MockLocationInfo extends Mock implements LocationInfo {}
 
-void main() {
+void main() async {
   late MockShopFormBloc mockShopFormBloc;
   late MockShopTimePickerBloc mockShopTimePickerBloc;
   late MockShopLocationPickerBloc mockShopLocationPickerBloc;
@@ -61,6 +65,11 @@ void main() {
       streetName: StreetName(streetNameStr),
     ),
   );
+
+  final tLogo = await getImageFileFromAssets('test_logo.jpg');
+  final tShopLogo = ShopLogo(tLogo);
+  final tTooSmallLogo = await getImageFileFromAssets('too_small_logo.jpg');
+  final tTooSmallShopLogo = ShopLogo(tTooSmallLogo);
 
   setUp(() {
     mockShopFormBloc = MockShopFormBloc();
@@ -263,6 +272,53 @@ void main() {
         // assert
         expect(bloc.stream.asBroadcastStream(), emitsInOrder([]));
       },
+    );
+  });
+
+  group('logoSaved', () {
+    test(
+      'should emit state with saved logo if ShopLogo is valid',
+      () async {
+        // arrange
+
+        whenListen(
+          mockShopLogoPickerBloc,
+          Stream.fromIterable([
+            ShopLogoPickerState.loaded(logo: tShopLogo),
+          ]),
+        );
+        final bloc = ShopRegistrationBloc(
+          shopFormBloc: mockShopFormBloc,
+          shopLocationPickerBloc: mockShopLocationPickerBloc,
+          shopLogoPickerBloc: mockShopLogoPickerBloc,
+          shopTimePickerBloc: mockShopTimePickerBloc,
+          locationInfo: mockLocationInfo,
+        );
+
+        // assert
+        expect(bloc.stream.asBroadcastStream(),
+            emitsInOrder([bloc.state.copyWith(shopLogo: some(tShopLogo))]));
+      },
+    );
+
+    blocTest(
+      'should throw UnexpectedValueError when invalid logo is being saved',
+      build: () {
+        whenListen(
+            mockShopLogoPickerBloc,
+            Stream.fromIterable([
+              ShopLogoPickerState.loaded(logo: tTooSmallShopLogo),
+            ]),
+            initialState: ShopLogoPickerState.loaded(logo: tTooSmallShopLogo));
+        return ShopRegistrationBloc(
+          shopFormBloc: mockShopFormBloc,
+          shopLocationPickerBloc: mockShopLocationPickerBloc,
+          shopLogoPickerBloc: mockShopLogoPickerBloc,
+          shopTimePickerBloc: mockShopTimePickerBloc,
+          locationInfo: mockLocationInfo,
+        );
+      },
+      errors: () => <Matcher>[isA<UnexpectedValueError>()],
     );
   });
 }

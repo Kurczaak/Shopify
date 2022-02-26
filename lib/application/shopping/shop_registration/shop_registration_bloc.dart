@@ -37,6 +37,7 @@ class ShopRegistrationBloc
   late final StreamSubscription _shopFormBlocSubscription;
   late final StreamSubscription _shopLocationPickerBlocSubscription;
   late final StreamSubscription _shopTimePickerBlocSubscription;
+  late final StreamSubscription _shopLogoPickerBlocSubscription;
 
   ShopRegistrationBloc({
     required this.shopFormBloc,
@@ -45,9 +46,7 @@ class ShopRegistrationBloc
     required this.shopLogoPickerBloc,
     required this.locationInfo,
   }) : super(ShopRegistrationState.initial()) {
-    print('Ciao');
     _shopFormBlocSubscription = shopFormBloc.stream.listen((state) {
-      print('FORM IS KURWA SAVED XDDDD');
       if (state.saved) {
         add(ShopRegistrationEvent.formSaved(shopForm: state.shop));
       }
@@ -66,16 +65,20 @@ class ShopRegistrationBloc
     _shopTimePickerBlocSubscription = shopTimePickerBloc.stream.listen((state) {
       if (state.saved) {
         state.week.failureOption.fold(
-            () => null,
-            (location) =>
-                add(ShopRegistrationEvent.weekSaved(week: state.week)));
+            () => add(ShopRegistrationEvent.weekSaved(week: state.week)),
+            (_) => null);
+      }
+    });
+
+    _shopLogoPickerBlocSubscription = shopLogoPickerBloc.stream.listen((state) {
+      if (state.isLoaded()) {
+        add(ShopRegistrationEvent.logoSaved(logo: state.asLoaded().logo));
       }
     });
 
     on<ShopRegistrationEvent>((event, emit) async {
       await event.when(
         formSaved: (formSavedState) async {
-          print('FORM IS KURWA SAVED');
           emit(state.copyWith(
               shop: state.shop.copyWith(
             address: formSavedState.shopForm.address,
@@ -95,7 +98,10 @@ class ShopRegistrationBloc
           emit(state.copyWith(
               shop: state.shop.copyWith(workingWeek: weekSavedState.week)));
         },
-        logoSaved: (logoSavedState) {},
+        logoSaved: (logoSavedState) {
+          emit(state.copyWith(
+              shopLogo: some(ShopLogo(logoSavedState.logo.getOrCrash()))));
+        },
         shopSaved: () {},
       );
     });
