@@ -16,7 +16,7 @@ import 'package:flutter/material.dart' as _i9;
 import '../core/debug_page.dart' as _i1;
 import '../register_shop/debug_location_page.dart' as _i3;
 import '../register_shop/opening_hours/opening_hours_page.dart' as _i7;
-import '../register_shop/shop_form_page.dart' as _i5;
+import '../register_shop/shop_form/shop_form_page.dart' as _i5;
 import '../sign_in/sign_in_page.dart' as _i4;
 import '../sign_in/sign_up_page.dart' as _i6;
 import '../splash/splash_page.dart' as _i2;

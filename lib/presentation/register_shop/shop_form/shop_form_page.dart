@@ -1,15 +1,9 @@
-import 'package:another_flushbar/flushbar_helper.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:loading_overlay/loading_overlay.dart';
-import 'package:shopify_manager/application/auth/auth_bloc.dart';
 import 'package:shopify_manager/application/shopping/shop_form/shop_form_bloc.dart';
-import 'package:shopify_manager/application/shopping/shop_registration/shop_registration_bloc.dart';
 import 'package:shopify_manager/domain/core/failures.dart';
 import 'package:shopify_manager/injection.dart';
-import 'package:shopify_manager/presentation/core/debug_page.dart';
 import 'package:shopify_manager/presentation/core/widgets/process_appbar.dart';
 import 'package:shopify_manager/presentation/core/widgets/shopify_text_form_field.dart';
 import 'package:shopify_manager/presentation/register_shop/widgets/registration_progress_bar.dart';
