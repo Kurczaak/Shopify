@@ -67,7 +67,9 @@ class AddressNumber extends ValueObject<String> {
 
 class StreetNumber extends AddressNumber {
   factory StreetNumber(String input) {
-    return StreetNumber._(validateStringNotEmpty(input));
+    return StreetNumber._(validateStringNotEmpty(input)
+        .flatMap(validateContainsNumber)
+        .flatMap((passedValue) => validateMaxStringLength(passedValue, 3)));
   }
   const StreetNumber._(Either<ValueFailure<String>, String> value)
       : super._(value);
@@ -75,13 +77,15 @@ class StreetNumber extends AddressNumber {
 
 class StreetName extends Name {
   static const maxLength = 50;
+  static const minLength = 3;
   @override
   final Either<ValueFailure<String>, String> value;
   factory StreetName(String input) {
     return StreetName._(
       validateMaxStringLength(input, maxLength)
-          .flatMap(validateSingleLine)
-          .flatMap(validateStringNotEmpty),
+          .flatMap(
+              (passedValue) => validateMinStringLength(passedValue, minLength))
+          .flatMap(validateSingleLine),
     );
   }
   const StreetName._(this.value);
@@ -89,13 +93,15 @@ class StreetName extends Name {
 
 class CityName extends Name {
   static const maxLength = 80;
+  static const minLength = 3;
   @override
   final Either<ValueFailure<String>, String> value;
   factory CityName(String input) {
     return CityName._(
       validateMaxStringLength(input, maxLength)
-          .flatMap(validateSingleLine)
-          .flatMap(validateStringNotEmpty),
+          .flatMap(
+              (passedValue) => validateMinStringLength(passedValue, minLength))
+          .flatMap(validateSingleLine),
     );
   }
   const CityName._(this.value);

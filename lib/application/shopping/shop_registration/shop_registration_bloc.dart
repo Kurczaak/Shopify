@@ -106,4 +106,13 @@ class ShopRegistrationBloc
       );
     });
   }
+
+  @override
+  Future<void> close() {
+    _shopFormBlocSubscription.cancel();
+    _shopLocationPickerBlocSubscription.cancel();
+    _shopTimePickerBlocSubscription.cancel();
+    _shopLogoPickerBlocSubscription.cancel();
+    return super.close();
+  }
 }

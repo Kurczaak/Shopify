@@ -16,7 +16,7 @@ import 'package:flutter/material.dart' as _i9;
 import '../core/debug_page.dart' as _i1;
 import '../register_shop/debug_location_page.dart' as _i3;
 import '../register_shop/opening_hours/opening_hours_page.dart' as _i7;
-import '../register_shop/shop_details_page.dart' as _i5;
+import '../register_shop/shop_form_page.dart' as _i5;
 import '../sign_in/sign_in_page.dart' as _i4;
 import '../sign_in/sign_up_page.dart' as _i6;
 import '../splash/splash_page.dart' as _i2;
@@ -49,7 +49,7 @@ class AppRouter extends _i8.RootStackRouter {
       final args = routeData.argsAs<ShopDetailsRouteArgs>(
           orElse: () => const ShopDetailsRouteArgs());
       return _i8.MaterialPageX<dynamic>(
-          routeData: routeData, child: _i5.ShopDetailsPage(key: args.key));
+          routeData: routeData, child: _i5.ShopFormPage(key: args.key));
     },
     SignUpRoute.name: (routeData) {
       return _i8.MaterialPageX<dynamic>(
@@ -122,7 +122,7 @@ class SignInRoute extends _i8.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i5.ShopDetailsPage]
+/// [_i5.ShopFormPage]
 class ShopDetailsRoute extends _i8.PageRouteInfo<ShopDetailsRouteArgs> {
   ShopDetailsRoute({_i9.Key? key})
       : super(ShopDetailsRoute.name,
