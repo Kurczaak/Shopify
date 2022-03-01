@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:kt_dart/kt.dart';
+import 'package:shopify_manager/domain/core/errors.dart';
 import 'package:shopify_manager/domain/core/failures.dart';
 import 'package:shopify_manager/domain/core/value_objects.dart';
 import 'package:shopify_manager/domain/shopping/time/primitive_hour.dart';
@@ -31,6 +32,14 @@ class TimeInterval extends ValueObject<KtList<Hour>> {
     final openingHour = Hour.fromInt(opening, 0);
     final closingHour = Hour.fromInt(closing, 0);
     return TimeInterval(openingHour, closingHour);
+  }
+
+  String get getStringOrCrash {
+    return value.fold((f) => throw UnexpectedValueError(f), (interval) {
+      final opening = interval[0].getOrCrash().toString();
+      final closing = interval[1].getOrCrash().toString();
+      return '$opening - $closing';
+    });
   }
 
   const TimeInterval._(this.value);

@@ -1,6 +1,15 @@
+import 'package:auto_route/src/router/auto_router_x.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:shopify_manager/application/shopping/shop_registration/shop_registration_bloc.dart';
+import 'package:shopify_manager/application/shopping/shop_time_picker/shop_time_picker_bloc.dart';
+import 'package:shopify_manager/injection.dart';
+import 'package:shopify_manager/presentation/core/widgets/process_appbar.dart';
 import 'package:shopify_manager/presentation/register_shop/widgets/day_row.dart';
+import 'package:shopify_manager/presentation/register_shop/widgets/registration_progress_bar.dart';
+import 'package:shopify_manager/presentation/routes/router.gr.dart';
+import 'package:shopify_manager/presentation/routes/router.dart';
 
 class OpeningHoursPage extends StatelessWidget {
   OpeningHoursPage({Key? key}) : super(key: key);
@@ -9,78 +18,64 @@ class OpeningHoursPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          toolbarHeight: 80,
-          title: const Text(
-            'Register Shop',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          centerTitle: true,
-          actions: [Image.asset('images/logo.png')],
-          leading: const Padding(
-            padding: EdgeInsets.all(8.0),
-            child: FittedBox(
-              fit: BoxFit.contain,
-              child: FaIcon(
-                FontAwesomeIcons.arrowCircleLeft,
-              ),
+      appBar: ProcessAppBar(
+        appBar: AppBar(),
+        title: 'Register Shop',
+        onPressed: () => context.router.pop(),
+      ),
+      body: MultiBlocProvider(
+        providers: [
+          BlocProvider<ShopRegistrationBloc>(
+              create: (context) => getIt<ShopRegistrationBloc>()),
+          BlocProvider<ShopTimePickerBloc>(
+              create: (context) => getIt<ShopTimePickerBloc>()),
+        ],
+        child: BlocConsumer<ShopTimePickerBloc, ShopTimePickerState>(
+          listener: (context, state) {
+            if (state.saved) {
+              context.router.push(DebugRoute());
+            }
+          },
+          builder: (context, state) => Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 28),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                const SizedBox(height: 28),
+                const RegistrationProgressRow(
+                  title: 'Opening hours',
+                  subtitle: 'Adjust the time users can pickup orders',
+                  pageNum: 3,
+                ),
+                const SizedBox(height: 30),
+                DayRow(day: 'Mon', hours: hours),
+                DayRow(day: 'Tue', hours: hours),
+                DayRow(day: 'Wed', hours: hours),
+                DayRow(day: 'Thu', hours: hours),
+                DayRow(day: 'Fri', hours: hours),
+                DayRow(day: 'Sat', hours: hours),
+                DayRow(day: 'Sun', hours: hours),
+                const Spacer(),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: SizedBox(
+                    height: 50,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        context
+                            .read<ShopTimePickerBloc>()
+                            .add(const ShopTimePickerEvent.proceeded());
+                      },
+                      child: const Text('Next'),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
         ),
-        body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 28),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              const SizedBox(height: 28),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        'Opening hours',
-                        style: TextStyle(
-                          fontSize: 30,
-                        ),
-                      ),
-                      Text(
-                        'Adjust the time users can pickup orders',
-                        style: TextStyle(
-                          color: Theme.of(context).secondaryHeaderColor,
-                          fontWeight: FontWeight.normal,
-                        ),
-                      ),
-                    ],
-                  ),
-                  const Text('3/4'),
-                ],
-              ),
-              const SizedBox(height: 30),
-              DayRow(day: 'Mon', hours: hours),
-              DayRow(day: 'Tue', hours: hours),
-              DayRow(day: 'Wed', hours: hours),
-              DayRow(day: 'Thu', hours: hours),
-              DayRow(day: 'Fri', hours: hours),
-              DayRow(day: 'Sat', hours: hours),
-              DayRow(day: 'Sun', hours: hours),
-              const Spacer(),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: SizedBox(
-                  height: 50,
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    child: const Text('Next'),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ));
+      ),
+    );
   }
 }
 

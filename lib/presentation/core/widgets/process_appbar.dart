@@ -5,16 +5,18 @@ class ProcessAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Color backgroundColor = Colors.red;
   final String title;
   final AppBar appBar;
+  final void Function()? onPressed;
   const ProcessAppBar({
     Key? key,
     required this.title,
     required this.appBar,
+    required this.onPressed,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      toolbarHeight: 80,
+      toolbarHeight: 100,
       title: Text(
         title,
         style: const TextStyle(
@@ -23,12 +25,16 @@ class ProcessAppBar extends StatelessWidget implements PreferredSizeWidget {
       ),
       centerTitle: true,
       actions: [Image.asset('images/logo.png')],
-      leading: const Padding(
-        padding: EdgeInsets.all(8.0),
+      leading: Padding(
+        padding: const EdgeInsets.all(8.0),
         child: FittedBox(
           fit: BoxFit.contain,
-          child: FaIcon(
-            FontAwesomeIcons.arrowCircleLeft,
+          child: IconButton(
+            iconSize: 50,
+            onPressed: onPressed,
+            icon: const FaIcon(
+              FontAwesomeIcons.arrowCircleLeft,
+            ),
           ),
         ),
       ),

@@ -29,7 +29,7 @@ class RegistrationProgressRow extends StatelessWidget {
               ),
             ),
             const Spacer(),
-            Text('$pageNum/4'),
+            Text('$pageNum/5'),
           ],
         ),
         Text(

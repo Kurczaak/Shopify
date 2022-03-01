@@ -43,6 +43,8 @@ abstract class Address with _$Address {
     }
     final cityStr = city.value.toString();
     final postalCodeStr = postalCode.value.toString();
-    return '$streetStr $streetNumberStr$apartmentNumberStr, $postalCodeStr $cityStr';
+    print(
+        'Searching location: $postalCodeStr $cityStr $streetStr $streetNumberStr$apartmentNumberStr');
+    return '$postalCodeStr $cityStr $streetStr $streetNumberStr$apartmentNumberStr';
   }
 }

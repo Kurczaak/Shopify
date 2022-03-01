@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopify_manager/application/shopping/shop_form/shop_form_bloc.dart';
+import 'package:shopify_manager/application/shopping/shop_registration/shop_registration_bloc.dart';
 import 'package:shopify_manager/domain/core/failures.dart';
 import 'package:shopify_manager/injection.dart';
 import 'package:shopify_manager/presentation/core/widgets/process_appbar.dart';
@@ -31,29 +32,37 @@ class ShopFormPage extends StatelessWidget {
       appBar: ProcessAppBar(
         title: 'Register Shop',
         appBar: AppBar(),
+        onPressed: () {},
       ),
-      body: BlocProvider(
-        create: (context) {
-          final bloc = getIt<ShopFormBloc>();
-          final address = bloc.state.shop.address;
-          final shopName = bloc.state.shop.shopName;
+      body: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) {
+              final bloc = getIt<ShopFormBloc>();
+              final address = bloc.state.shop.address;
+              final shopName = bloc.state.shop.shopName;
 
-          _setControllersInitialText(_shopNameController, shopName.value);
-          _setControllersInitialText(
-              _streetNameController, address.streetName.value);
-          _setControllersInitialText(
-              _streetNumberController, address.streetNumber.value);
-          _setControllersInitialText(
-              _apartmentNumberController, address.apartmentNumber.value);
-          _setControllersInitialText(
-              _postalCodeController, address.postalCode.value);
-          _setControllersInitialText(_cityNameController, address.city.value);
+              _setControllersInitialText(_shopNameController, shopName.value);
+              _setControllersInitialText(
+                  _streetNameController, address.streetName.value);
+              _setControllersInitialText(
+                  _streetNumberController, address.streetNumber.value);
+              _setControllersInitialText(
+                  _apartmentNumberController, address.apartmentNumber.value);
+              _setControllersInitialText(
+                  _postalCodeController, address.postalCode.value);
+              _setControllersInitialText(
+                  _cityNameController, address.city.value);
 
-          return bloc;
-        },
+              return bloc;
+            },
+          ),
+          BlocProvider<ShopRegistrationBloc>(
+              create: (context) => getIt<ShopRegistrationBloc>()),
+        ],
         child: BlocConsumer<ShopFormBloc, ShopFormState>(
           listener: (context, state) {
-            if (state.saved) context.router.replace(DebugLocationRoute());
+            if (state.saved) context.router.push(DebugLocationRoute());
           },
           builder: (context, state) => Padding(
             padding: const EdgeInsets.symmetric(horizontal: 28),
