@@ -77,7 +77,7 @@ class AppRouter extends _i9.RootStackRouter {
         _i9.RouteConfig(SplashRoute.name, path: '/splash-page'),
         _i9.RouteConfig(DebugLocationRoute.name, path: '/debug-location-page'),
         _i9.RouteConfig(SignInRoute.name, path: '/sign-in-page'),
-        _i9.RouteConfig(ShopFormRoute.name, path: '/'),
+        _i9.RouteConfig(ShopFormRoute.name, path: '/shop-form-page'),
         _i9.RouteConfig(SignUpRoute.name, path: '/sign-up-page'),
         _i9.RouteConfig(OpeningHoursRoute.name, path: '/opening-hours-page'),
         _i9.RouteConfig(RegistrationRecapRoute.name,
@@ -135,7 +135,8 @@ class SignInRoute extends _i9.PageRouteInfo<void> {
 /// [_i5.ShopFormPage]
 class ShopFormRoute extends _i9.PageRouteInfo<ShopFormRouteArgs> {
   ShopFormRoute({_i10.Key? key})
-      : super(ShopFormRoute.name, path: '/', args: ShopFormRouteArgs(key: key));
+      : super(ShopFormRoute.name,
+            path: '/shop-form-page', args: ShopFormRouteArgs(key: key));
 
   static const String name = 'ShopFormRoute';
 }
