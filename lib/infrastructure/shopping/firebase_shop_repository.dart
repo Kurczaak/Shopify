@@ -3,6 +3,9 @@ import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
+import 'package:shopify_manager/domain/auth/i_auth_facade.dart';
+import 'package:shopify_manager/domain/core/errors.dart';
+import 'package:shopify_manager/domain/core/images/photo.dart';
 import 'package:shopify_manager/domain/shopping/i_shop_repository.dart';
 import 'package:shopify_manager/domain/shopping/shop_failure.dart';
 import 'package:shopify_manager/domain/shopping/shop.dart';
@@ -17,22 +20,39 @@ class FirebaseShopRepositoryImpl implements IShopRepository {
   FirebaseShopRepositoryImpl(this._firestore);
 
   @override
-  Future<Either<ShopFailure, Unit>> create(Shop shop) async {
+  Future<Either<ShopFailure, Unit>> create(Shop shop, ShopLogo logo) async {
     try {
-      final userDoc = await _firestore.userDocument();
-      final shopDto = ShopDto.fromDomain(shop);
-      await userDoc.shopCollection.doc(shopDto.id).set(shopDto.toJson());
+      final shopsCollection = _firestore.shopsCollection;
+      await shopsCollection.add(ShopDto.fromDomain(shop).toJson());
       return right(unit);
     } on PlatformException catch (e) {
+      //TODO log this error
+      // log.error(e.toString());
       if (e.message != null && e.message!.contains('PERMISSION_DENIED')) {
         return left(const ShopFailure.insufficientPermission());
       } else {
-        //TODO log this error
-        // log.error(e.toString());
         return left(const ShopFailure.unexpected());
       }
     }
   }
+
+  // @override
+  // Future<Either<ShopFailure, Unit>> create(Shop shop) async {
+  //   try {
+  //     final userDoc = await _firestore.userDocument();
+  //     final shopDto = ShopDto.fromDomain(shop);
+  //     await userDoc.shopCollection.doc(shopDto.id).set(shopDto.toJson());
+  //     return right(unit);
+  //   } on PlatformException catch (e) {
+  //     if (e.message != null && e.message!.contains('PERMISSION_DENIED')) {
+  //       return left(const ShopFailure.insufficientPermission());
+  //     } else {
+  //       //TODO log this error
+  //       // log.error(e.toString());
+  //       return left(const ShopFailure.unexpected());
+  //     }
+  //   }
+  // }
 
   @override
   Future<Either<ShopFailure, Unit>> delete(Shop shop) async {

@@ -100,8 +100,8 @@ class __$ShopifyUserCopyWithImpl<$Res> extends _$ShopifyUserCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ShopifyUser implements _ShopifyUser {
-  const _$_ShopifyUser({required this.id});
+class _$_ShopifyUser extends _ShopifyUser {
+  const _$_ShopifyUser({required this.id}) : super._();
 
   @override
   final UniqueId id;
@@ -129,8 +129,9 @@ class _$_ShopifyUser implements _ShopifyUser {
       __$ShopifyUserCopyWithImpl<_ShopifyUser>(this, _$identity);
 }
 
-abstract class _ShopifyUser implements ShopifyUser {
+abstract class _ShopifyUser extends ShopifyUser {
   const factory _ShopifyUser({required UniqueId id}) = _$_ShopifyUser;
+  const _ShopifyUser._() : super._();
 
   @override
   UniqueId get id;

@@ -27,8 +27,7 @@ class _$ShopDtoTearOff {
       required AddressDto address,
       required WeekDto week,
       required LocationDto position,
-      required String logoUrl,
-      @ServerTimestampConverter() required FieldValue serverTimeStamp}) {
+      required String logoUrl}) {
     return _ShopItemDto(
       id: id,
       shopName: shopName,
@@ -36,7 +35,6 @@ class _$ShopDtoTearOff {
       week: week,
       position: position,
       logoUrl: logoUrl,
-      serverTimeStamp: serverTimeStamp,
     );
   }
 
@@ -57,8 +55,6 @@ mixin _$ShopDto {
   WeekDto get week => throw _privateConstructorUsedError;
   LocationDto get position => throw _privateConstructorUsedError;
   String get logoUrl => throw _privateConstructorUsedError;
-  @ServerTimestampConverter()
-  FieldValue get serverTimeStamp => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -75,8 +71,7 @@ abstract class $ShopDtoCopyWith<$Res> {
       AddressDto address,
       WeekDto week,
       LocationDto position,
-      String logoUrl,
-      @ServerTimestampConverter() FieldValue serverTimeStamp});
+      String logoUrl});
 
   $AddressDtoCopyWith<$Res> get address;
   $WeekDtoCopyWith<$Res> get week;
@@ -99,7 +94,6 @@ class _$ShopDtoCopyWithImpl<$Res> implements $ShopDtoCopyWith<$Res> {
     Object? week = freezed,
     Object? position = freezed,
     Object? logoUrl = freezed,
-    Object? serverTimeStamp = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -126,10 +120,6 @@ class _$ShopDtoCopyWithImpl<$Res> implements $ShopDtoCopyWith<$Res> {
           ? _value.logoUrl
           : logoUrl // ignore: cast_nullable_to_non_nullable
               as String,
-      serverTimeStamp: serverTimeStamp == freezed
-          ? _value.serverTimeStamp
-          : serverTimeStamp // ignore: cast_nullable_to_non_nullable
-              as FieldValue,
     ));
   }
 
@@ -167,8 +157,7 @@ abstract class _$ShopItemDtoCopyWith<$Res> implements $ShopDtoCopyWith<$Res> {
       AddressDto address,
       WeekDto week,
       LocationDto position,
-      String logoUrl,
-      @ServerTimestampConverter() FieldValue serverTimeStamp});
+      String logoUrl});
 
   @override
   $AddressDtoCopyWith<$Res> get address;
@@ -196,7 +185,6 @@ class __$ShopItemDtoCopyWithImpl<$Res> extends _$ShopDtoCopyWithImpl<$Res>
     Object? week = freezed,
     Object? position = freezed,
     Object? logoUrl = freezed,
-    Object? serverTimeStamp = freezed,
   }) {
     return _then(_ShopItemDto(
       id: id == freezed
@@ -223,10 +211,6 @@ class __$ShopItemDtoCopyWithImpl<$Res> extends _$ShopDtoCopyWithImpl<$Res>
           ? _value.logoUrl
           : logoUrl // ignore: cast_nullable_to_non_nullable
               as String,
-      serverTimeStamp: serverTimeStamp == freezed
-          ? _value.serverTimeStamp
-          : serverTimeStamp // ignore: cast_nullable_to_non_nullable
-              as FieldValue,
     ));
   }
 }
@@ -240,8 +224,7 @@ class _$_ShopItemDto extends _ShopItemDto {
       required this.address,
       required this.week,
       required this.position,
-      required this.logoUrl,
-      @ServerTimestampConverter() required this.serverTimeStamp})
+      required this.logoUrl})
       : super._();
 
   factory _$_ShopItemDto.fromJson(Map<String, dynamic> json) =>
@@ -260,13 +243,10 @@ class _$_ShopItemDto extends _ShopItemDto {
   final LocationDto position;
   @override
   final String logoUrl;
-  @override
-  @ServerTimestampConverter()
-  final FieldValue serverTimeStamp;
 
   @override
   String toString() {
-    return 'ShopDto(id: $id, shopName: $shopName, address: $address, week: $week, position: $position, logoUrl: $logoUrl, serverTimeStamp: $serverTimeStamp)';
+    return 'ShopDto(id: $id, shopName: $shopName, address: $address, week: $week, position: $position, logoUrl: $logoUrl)';
   }
 
   @override
@@ -279,9 +259,7 @@ class _$_ShopItemDto extends _ShopItemDto {
             const DeepCollectionEquality().equals(other.address, address) &&
             const DeepCollectionEquality().equals(other.week, week) &&
             const DeepCollectionEquality().equals(other.position, position) &&
-            const DeepCollectionEquality().equals(other.logoUrl, logoUrl) &&
-            const DeepCollectionEquality()
-                .equals(other.serverTimeStamp, serverTimeStamp));
+            const DeepCollectionEquality().equals(other.logoUrl, logoUrl));
   }
 
   @override
@@ -292,8 +270,7 @@ class _$_ShopItemDto extends _ShopItemDto {
       const DeepCollectionEquality().hash(address),
       const DeepCollectionEquality().hash(week),
       const DeepCollectionEquality().hash(position),
-      const DeepCollectionEquality().hash(logoUrl),
-      const DeepCollectionEquality().hash(serverTimeStamp));
+      const DeepCollectionEquality().hash(logoUrl));
 
   @JsonKey(ignore: true)
   @override
@@ -308,14 +285,12 @@ class _$_ShopItemDto extends _ShopItemDto {
 
 abstract class _ShopItemDto extends ShopDto {
   const factory _ShopItemDto(
-          {@JsonKey(ignore: true) String id,
-          required String shopName,
-          required AddressDto address,
-          required WeekDto week,
-          required LocationDto position,
-          required String logoUrl,
-          @ServerTimestampConverter() required FieldValue serverTimeStamp}) =
-      _$_ShopItemDto;
+      {@JsonKey(ignore: true) String id,
+      required String shopName,
+      required AddressDto address,
+      required WeekDto week,
+      required LocationDto position,
+      required String logoUrl}) = _$_ShopItemDto;
   const _ShopItemDto._() : super._();
 
   factory _ShopItemDto.fromJson(Map<String, dynamic> json) =
@@ -334,9 +309,6 @@ abstract class _ShopItemDto extends ShopDto {
   LocationDto get position;
   @override
   String get logoUrl;
-  @override
-  @ServerTimestampConverter()
-  FieldValue get serverTimeStamp;
   @override
   @JsonKey(ignore: true)
   _$ShopItemDtoCopyWith<_ShopItemDto> get copyWith =>

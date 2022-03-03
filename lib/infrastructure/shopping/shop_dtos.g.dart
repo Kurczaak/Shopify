@@ -13,8 +13,6 @@ _$_ShopItemDto _$$_ShopItemDtoFromJson(Map<String, dynamic> json) =>
       week: WeekDto.fromJson(json['week'] as Map<String, dynamic>),
       position: LocationDto.fromJson(json['position'] as Map<String, dynamic>),
       logoUrl: json['logoUrl'] as String,
-      serverTimeStamp: const ServerTimestampConverter()
-          .fromJson(json['serverTimeStamp'] as Object),
     );
 
 Map<String, dynamic> _$$_ShopItemDtoToJson(_$_ShopItemDto instance) =>
@@ -24,6 +22,4 @@ Map<String, dynamic> _$$_ShopItemDtoToJson(_$_ShopItemDto instance) =>
       'week': instance.week.toJson(),
       'position': instance.position.toJson(),
       'logoUrl': instance.logoUrl,
-      'serverTimeStamp':
-          const ServerTimestampConverter().toJson(instance.serverTimeStamp),
     };

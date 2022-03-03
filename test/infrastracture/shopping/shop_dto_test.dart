@@ -61,7 +61,8 @@ void main() async {
       postalCode: postalCodeStr,
       streetName: streetNameStr,
     ),
-    serverTimeStamp: FieldValue.serverTimestamp(),
+    //TODO
+    //serverTimeStamp: FieldValue.serverTimestamp(),
     position: LocationDto.fromDomain(Location.empty()),
     logoUrl: logoUrlStr,
     week: WeekDto.fromDomain(Week.empty()),

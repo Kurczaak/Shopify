@@ -47,5 +47,5 @@ class GeoPointConverter implements JsonConverter<GeoPoint, Object> {
   }
 
   @override
-  Object toJson(GeoPoint geopoint) => geopoint.toStringsMap();
+  Object toJson(GeoPoint geopoint) => geopoint.toGeoJsonFeatureString();
 }

@@ -8,9 +8,11 @@
         "postalCode": "99-400",
         "city": "Łowicz"
     },
-    "location":{
-        "latitude": 37.421764,
-        "longitude":  -122.084614,
+    "position":{
+        "geopoint":{
+            "latitude": 37.421764,
+            "longitude":  -122.084614
+        },
         "geoHash": "9q9hvuktw"
     },
     "logoUrl": "https://www.example.com",

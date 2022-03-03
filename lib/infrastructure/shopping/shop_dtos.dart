@@ -25,7 +25,7 @@ abstract class ShopDto implements _$ShopDto {
     required WeekDto week,
     required LocationDto position,
     required String logoUrl,
-    @ServerTimestampConverter() required FieldValue serverTimeStamp,
+    //@ServerTimestampConverter() required FieldValue serverTimeStamp,
   }) = _ShopItemDto;
 
   factory ShopDto.fromDomain(Shop shop) {
@@ -33,7 +33,7 @@ abstract class ShopDto implements _$ShopDto {
       id: shop.id.getOrCrash(),
       shopName: shop.shopName.getOrCrash(),
       address: AddressDto.fromDomain(shop.address),
-      serverTimeStamp: FieldValue.serverTimestamp(),
+      //serverTimeStamp: FieldValue.serverTimestamp(),
       position: LocationDto.fromDomain(shop.location),
       week: WeekDto.fromDomain(shop.workingWeek),
       logoUrl: shop.logoUrl,
