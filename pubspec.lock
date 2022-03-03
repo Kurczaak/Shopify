@@ -464,6 +464,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.1"
+  geoflutterfire:
+    dependency: "direct main"
+    description:
+      name: geoflutterfire
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.3"
   geolocator:
     dependency: "direct main"
     description:
@@ -499,6 +506,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.1"
+  geopoint:
+    dependency: "direct main"
+    description:
+      name: geopoint
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.0"
   get_it:
     dependency: "direct main"
     description:
@@ -681,6 +695,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.10.0"
+  latlong2:
+    dependency: transitive
+    description:
+      name: latlong2
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.8.1"
   lints:
     dependency: transitive
     description:
@@ -959,6 +980,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.99"
+  slugify:
+    dependency: transitive
+    description:
+      name: slugify
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.0"
   source_gen:
     dependency: transitive
     description:

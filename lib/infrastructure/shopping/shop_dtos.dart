@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:shopify_manager/domain/core/address.dart';
 import 'package:shopify_manager/domain/core/location.dart';
@@ -21,7 +23,7 @@ abstract class ShopDto implements _$ShopDto {
     required String shopName,
     required AddressDto address,
     required WeekDto week,
-    required LocationDto location,
+    required LocationDto position,
     required String logoUrl,
     @ServerTimestampConverter() required FieldValue serverTimeStamp,
   }) = _ShopItemDto;
@@ -32,7 +34,7 @@ abstract class ShopDto implements _$ShopDto {
       shopName: shop.shopName.getOrCrash(),
       address: AddressDto.fromDomain(shop.address),
       serverTimeStamp: FieldValue.serverTimestamp(),
-      location: LocationDto.fromDomain(shop.location),
+      position: LocationDto.fromDomain(shop.location),
       week: WeekDto.fromDomain(shop.workingWeek),
       logoUrl: shop.logoUrl,
     );
@@ -49,7 +51,7 @@ abstract class ShopDto implements _$ShopDto {
         postalCode: PostalCode(address.postalCode),
         streetName: StreetName(address.streetName),
       ),
-      location: location.toDomain(),
+      location: position.toDomain(),
       logoUrl: logoUrl,
       workingWeek: week.toDomain(),
     );

@@ -35,7 +35,7 @@ import 'infrastructure/core/firebase_injectable_module.dart' as _i24;
 import 'infrastructure/core/images/image_picker_image_facade.dart' as _i21;
 import 'infrastructure/core/images/image_picker_injectable_module.dart' as _i26;
 import 'infrastructure/core/location/location_injectable_module.dart' as _i25;
-import 'infrastructure/shopping/shop_repository.dart'
+import 'infrastructure/shopping/firebase_shop_repository.dart'
     as _i10; // ignore_for_file: unnecessary_lambdas
 
 // ignore_for_file: lines_longer_than_80_chars
@@ -57,7 +57,7 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.lazySingleton<_i7.IAuthFacade>(() =>
       _i8.FirebaseAuthFacade(get<_i3.FirebaseAuth>(), get<_i6.GoogleSignIn>()));
   gh.lazySingleton<_i9.IShopRepository>(
-      () => _i10.ShopRepository(get<_i4.FirebaseFirestore>()));
+      () => _i10.FirebaseShopRepositoryImpl(get<_i4.FirebaseFirestore>()));
   gh.lazySingleton<_i11.ImagePicker>(
       () => imagePikcerInjectableModule.imagePicker);
   gh.lazySingleton<_i12.LocationInfo>(

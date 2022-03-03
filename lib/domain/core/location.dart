@@ -13,7 +13,7 @@ abstract class Location implements _$Location {
   const factory Location({
     required double latitude,
     required double longitude,
-    required String geoHash,
+    required String geohash,
   }) = _Location;
 
   factory Location.fromLatLang({
@@ -21,7 +21,7 @@ abstract class Location implements _$Location {
     required double longitude,
   }) {
     final hash = latLangToHash(latitude, longitude);
-    return Location(latitude: latitude, longitude: longitude, geoHash: hash);
+    return Location(latitude: latitude, longitude: longitude, geohash: hash);
   }
 
   factory Location.empty() =>

@@ -11,10 +11,10 @@ import 'package:shopify_manager/infrastructure/shopping/shop_dtos.dart';
 import 'package:rxdart/rxdart.dart';
 
 @LazySingleton(as: IShopRepository)
-class ShopRepository implements IShopRepository {
+class FirebaseShopRepositoryImpl implements IShopRepository {
   final FirebaseFirestore _firestore;
 
-  ShopRepository(this._firestore);
+  FirebaseShopRepositoryImpl(this._firestore);
 
   @override
   Future<Either<ShopFailure, Unit>> create(Shop shop) async {

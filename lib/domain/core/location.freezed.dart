@@ -20,11 +20,11 @@ class _$LocationTearOff {
   _Location call(
       {required double latitude,
       required double longitude,
-      required String geoHash}) {
+      required String geohash}) {
     return _Location(
       latitude: latitude,
       longitude: longitude,
-      geoHash: geoHash,
+      geohash: geohash,
     );
   }
 }
@@ -36,7 +36,7 @@ const $Location = _$LocationTearOff();
 mixin _$Location {
   double get latitude => throw _privateConstructorUsedError;
   double get longitude => throw _privateConstructorUsedError;
-  String get geoHash => throw _privateConstructorUsedError;
+  String get geohash => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $LocationCopyWith<Location> get copyWith =>
@@ -47,7 +47,7 @@ mixin _$Location {
 abstract class $LocationCopyWith<$Res> {
   factory $LocationCopyWith(Location value, $Res Function(Location) then) =
       _$LocationCopyWithImpl<$Res>;
-  $Res call({double latitude, double longitude, String geoHash});
+  $Res call({double latitude, double longitude, String geohash});
 }
 
 /// @nodoc
@@ -62,7 +62,7 @@ class _$LocationCopyWithImpl<$Res> implements $LocationCopyWith<$Res> {
   $Res call({
     Object? latitude = freezed,
     Object? longitude = freezed,
-    Object? geoHash = freezed,
+    Object? geohash = freezed,
   }) {
     return _then(_value.copyWith(
       latitude: latitude == freezed
@@ -73,9 +73,9 @@ class _$LocationCopyWithImpl<$Res> implements $LocationCopyWith<$Res> {
           ? _value.longitude
           : longitude // ignore: cast_nullable_to_non_nullable
               as double,
-      geoHash: geoHash == freezed
-          ? _value.geoHash
-          : geoHash // ignore: cast_nullable_to_non_nullable
+      geohash: geohash == freezed
+          ? _value.geohash
+          : geohash // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -86,7 +86,7 @@ abstract class _$LocationCopyWith<$Res> implements $LocationCopyWith<$Res> {
   factory _$LocationCopyWith(_Location value, $Res Function(_Location) then) =
       __$LocationCopyWithImpl<$Res>;
   @override
-  $Res call({double latitude, double longitude, String geoHash});
+  $Res call({double latitude, double longitude, String geohash});
 }
 
 /// @nodoc
@@ -102,7 +102,7 @@ class __$LocationCopyWithImpl<$Res> extends _$LocationCopyWithImpl<$Res>
   $Res call({
     Object? latitude = freezed,
     Object? longitude = freezed,
-    Object? geoHash = freezed,
+    Object? geohash = freezed,
   }) {
     return _then(_Location(
       latitude: latitude == freezed
@@ -113,9 +113,9 @@ class __$LocationCopyWithImpl<$Res> extends _$LocationCopyWithImpl<$Res>
           ? _value.longitude
           : longitude // ignore: cast_nullable_to_non_nullable
               as double,
-      geoHash: geoHash == freezed
-          ? _value.geoHash
-          : geoHash // ignore: cast_nullable_to_non_nullable
+      geohash: geohash == freezed
+          ? _value.geohash
+          : geohash // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -125,7 +125,7 @@ class __$LocationCopyWithImpl<$Res> extends _$LocationCopyWithImpl<$Res>
 
 class _$_Location extends _Location {
   const _$_Location(
-      {required this.latitude, required this.longitude, required this.geoHash})
+      {required this.latitude, required this.longitude, required this.geohash})
       : super._();
 
   @override
@@ -133,11 +133,11 @@ class _$_Location extends _Location {
   @override
   final double longitude;
   @override
-  final String geoHash;
+  final String geohash;
 
   @override
   String toString() {
-    return 'Location(latitude: $latitude, longitude: $longitude, geoHash: $geoHash)';
+    return 'Location(latitude: $latitude, longitude: $longitude, geohash: $geohash)';
   }
 
   @override
@@ -147,7 +147,7 @@ class _$_Location extends _Location {
             other is _Location &&
             const DeepCollectionEquality().equals(other.latitude, latitude) &&
             const DeepCollectionEquality().equals(other.longitude, longitude) &&
-            const DeepCollectionEquality().equals(other.geoHash, geoHash));
+            const DeepCollectionEquality().equals(other.geohash, geohash));
   }
 
   @override
@@ -155,7 +155,7 @@ class _$_Location extends _Location {
       runtimeType,
       const DeepCollectionEquality().hash(latitude),
       const DeepCollectionEquality().hash(longitude),
-      const DeepCollectionEquality().hash(geoHash));
+      const DeepCollectionEquality().hash(geohash));
 
   @JsonKey(ignore: true)
   @override
@@ -167,7 +167,7 @@ abstract class _Location extends Location {
   const factory _Location(
       {required double latitude,
       required double longitude,
-      required String geoHash}) = _$_Location;
+      required String geohash}) = _$_Location;
   const _Location._() : super._();
 
   @override
@@ -175,7 +175,7 @@ abstract class _Location extends Location {
   @override
   double get longitude;
   @override
-  String get geoHash;
+  String get geohash;
   @override
   @JsonKey(ignore: true)
   _$LocationCopyWith<_Location> get copyWith =>

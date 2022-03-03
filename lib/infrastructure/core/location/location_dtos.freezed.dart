@@ -22,13 +22,11 @@ class _$LocationDtoTearOff {
   const _$LocationDtoTearOff();
 
   _LocationDto call(
-      {required double latitude,
-      required double longitude,
-      required String geoHash}) {
+      {@GeoPointConverter() required GeoPoint geopoint,
+      required String geohash}) {
     return _LocationDto(
-      latitude: latitude,
-      longitude: longitude,
-      geoHash: geoHash,
+      geopoint: geopoint,
+      geohash: geohash,
     );
   }
 
@@ -42,9 +40,9 @@ const $LocationDto = _$LocationDtoTearOff();
 
 /// @nodoc
 mixin _$LocationDto {
-  double get latitude => throw _privateConstructorUsedError;
-  double get longitude => throw _privateConstructorUsedError;
-  String get geoHash => throw _privateConstructorUsedError;
+  @GeoPointConverter()
+  GeoPoint get geopoint => throw _privateConstructorUsedError;
+  String get geohash => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -57,7 +55,7 @@ abstract class $LocationDtoCopyWith<$Res> {
   factory $LocationDtoCopyWith(
           LocationDto value, $Res Function(LocationDto) then) =
       _$LocationDtoCopyWithImpl<$Res>;
-  $Res call({double latitude, double longitude, String geoHash});
+  $Res call({@GeoPointConverter() GeoPoint geopoint, String geohash});
 }
 
 /// @nodoc
@@ -70,22 +68,17 @@ class _$LocationDtoCopyWithImpl<$Res> implements $LocationDtoCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? latitude = freezed,
-    Object? longitude = freezed,
-    Object? geoHash = freezed,
+    Object? geopoint = freezed,
+    Object? geohash = freezed,
   }) {
     return _then(_value.copyWith(
-      latitude: latitude == freezed
-          ? _value.latitude
-          : latitude // ignore: cast_nullable_to_non_nullable
-              as double,
-      longitude: longitude == freezed
-          ? _value.longitude
-          : longitude // ignore: cast_nullable_to_non_nullable
-              as double,
-      geoHash: geoHash == freezed
-          ? _value.geoHash
-          : geoHash // ignore: cast_nullable_to_non_nullable
+      geopoint: geopoint == freezed
+          ? _value.geopoint
+          : geopoint // ignore: cast_nullable_to_non_nullable
+              as GeoPoint,
+      geohash: geohash == freezed
+          ? _value.geohash
+          : geohash // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -98,7 +91,7 @@ abstract class _$LocationDtoCopyWith<$Res>
           _LocationDto value, $Res Function(_LocationDto) then) =
       __$LocationDtoCopyWithImpl<$Res>;
   @override
-  $Res call({double latitude, double longitude, String geoHash});
+  $Res call({@GeoPointConverter() GeoPoint geopoint, String geohash});
 }
 
 /// @nodoc
@@ -113,22 +106,17 @@ class __$LocationDtoCopyWithImpl<$Res> extends _$LocationDtoCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? latitude = freezed,
-    Object? longitude = freezed,
-    Object? geoHash = freezed,
+    Object? geopoint = freezed,
+    Object? geohash = freezed,
   }) {
     return _then(_LocationDto(
-      latitude: latitude == freezed
-          ? _value.latitude
-          : latitude // ignore: cast_nullable_to_non_nullable
-              as double,
-      longitude: longitude == freezed
-          ? _value.longitude
-          : longitude // ignore: cast_nullable_to_non_nullable
-              as double,
-      geoHash: geoHash == freezed
-          ? _value.geoHash
-          : geoHash // ignore: cast_nullable_to_non_nullable
+      geopoint: geopoint == freezed
+          ? _value.geopoint
+          : geopoint // ignore: cast_nullable_to_non_nullable
+              as GeoPoint,
+      geohash: geohash == freezed
+          ? _value.geohash
+          : geohash // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -138,22 +126,21 @@ class __$LocationDtoCopyWithImpl<$Res> extends _$LocationDtoCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_LocationDto extends _LocationDto {
   const _$_LocationDto(
-      {required this.latitude, required this.longitude, required this.geoHash})
+      {@GeoPointConverter() required this.geopoint, required this.geohash})
       : super._();
 
   factory _$_LocationDto.fromJson(Map<String, dynamic> json) =>
       _$$_LocationDtoFromJson(json);
 
   @override
-  final double latitude;
+  @GeoPointConverter()
+  final GeoPoint geopoint;
   @override
-  final double longitude;
-  @override
-  final String geoHash;
+  final String geohash;
 
   @override
   String toString() {
-    return 'LocationDto(latitude: $latitude, longitude: $longitude, geoHash: $geoHash)';
+    return 'LocationDto(geopoint: $geopoint, geohash: $geohash)';
   }
 
   @override
@@ -161,17 +148,15 @@ class _$_LocationDto extends _LocationDto {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _LocationDto &&
-            const DeepCollectionEquality().equals(other.latitude, latitude) &&
-            const DeepCollectionEquality().equals(other.longitude, longitude) &&
-            const DeepCollectionEquality().equals(other.geoHash, geoHash));
+            const DeepCollectionEquality().equals(other.geopoint, geopoint) &&
+            const DeepCollectionEquality().equals(other.geohash, geohash));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(latitude),
-      const DeepCollectionEquality().hash(longitude),
-      const DeepCollectionEquality().hash(geoHash));
+      const DeepCollectionEquality().hash(geopoint),
+      const DeepCollectionEquality().hash(geohash));
 
   @JsonKey(ignore: true)
   @override
@@ -186,20 +171,18 @@ class _$_LocationDto extends _LocationDto {
 
 abstract class _LocationDto extends LocationDto {
   const factory _LocationDto(
-      {required double latitude,
-      required double longitude,
-      required String geoHash}) = _$_LocationDto;
+      {@GeoPointConverter() required GeoPoint geopoint,
+      required String geohash}) = _$_LocationDto;
   const _LocationDto._() : super._();
 
   factory _LocationDto.fromJson(Map<String, dynamic> json) =
       _$_LocationDto.fromJson;
 
   @override
-  double get latitude;
+  @GeoPointConverter()
+  GeoPoint get geopoint;
   @override
-  double get longitude;
-  @override
-  String get geoHash;
+  String get geohash;
   @override
   @JsonKey(ignore: true)
   _$LocationDtoCopyWith<_LocationDto> get copyWith =>

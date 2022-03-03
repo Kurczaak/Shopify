@@ -11,7 +11,7 @@ _$_ShopItemDto _$$_ShopItemDtoFromJson(Map<String, dynamic> json) =>
       shopName: json['shopName'] as String,
       address: AddressDto.fromJson(json['address'] as Map<String, dynamic>),
       week: WeekDto.fromJson(json['week'] as Map<String, dynamic>),
-      location: LocationDto.fromJson(json['location'] as Map<String, dynamic>),
+      position: LocationDto.fromJson(json['position'] as Map<String, dynamic>),
       logoUrl: json['logoUrl'] as String,
       serverTimeStamp: const ServerTimestampConverter()
           .fromJson(json['serverTimeStamp'] as Object),
@@ -20,9 +20,9 @@ _$_ShopItemDto _$$_ShopItemDtoFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$_ShopItemDtoToJson(_$_ShopItemDto instance) =>
     <String, dynamic>{
       'shopName': instance.shopName,
-      'address': instance.address,
-      'week': instance.week,
-      'location': instance.location,
+      'address': instance.address.toJson(),
+      'week': instance.week.toJson(),
+      'position': instance.position.toJson(),
       'logoUrl': instance.logoUrl,
       'serverTimeStamp':
           const ServerTimestampConverter().toJson(instance.serverTimeStamp),
