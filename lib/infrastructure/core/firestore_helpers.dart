@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:shopify_manager/domain/auth/i_auth_facade.dart';
 import 'package:shopify_manager/domain/core/errors.dart';
 import 'package:shopify_manager/injection.dart';
@@ -18,4 +19,8 @@ extension FirestoreX on FirebaseFirestore {
 
 extension DocumentReferenceX on DocumentReference {
   CollectionReference get shopCollection => collection('shops');
+}
+
+extension StorageX on FirebaseStorage {
+  Reference get shopLogosReference => ref('images/shop_logos');
 }

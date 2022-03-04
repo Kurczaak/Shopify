@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/services.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
@@ -12,18 +14,26 @@ import 'package:shopify_manager/domain/shopping/shop.dart';
 import 'package:shopify_manager/infrastructure/core/firestore_helpers.dart';
 import 'package:shopify_manager/infrastructure/shopping/shop_dtos.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
 @LazySingleton(as: IShopRepository)
 class FirebaseShopRepositoryImpl implements IShopRepository {
   final FirebaseFirestore _firestore;
+  final FirebaseStorage _storage;
 
-  FirebaseShopRepositoryImpl(this._firestore);
+  FirebaseShopRepositoryImpl(this._firestore, this._storage);
 
   @override
   Future<Either<ShopFailure, Unit>> create(Shop shop, ShopLogo logo) async {
     try {
+      final taskSnapshot =
+          await _storage.shopLogosReference.putFile(logo.getOrCrash());
+
+      final uploadUrl = await taskSnapshot.ref.getDownloadURL();
+      final shopWithUpdatedLogo = shop.copyWith(logoUrl: uploadUrl);
       final shopsCollection = _firestore.shopsCollection;
-      await shopsCollection.add(ShopDto.fromDomain(shop).toJson());
+      await shopsCollection
+          .add(ShopDto.fromDomain(shopWithUpdatedLogo).toJson());
       return right(unit);
     } on PlatformException catch (e) {
       //TODO log this error
