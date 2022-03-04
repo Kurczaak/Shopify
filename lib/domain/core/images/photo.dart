@@ -24,6 +24,11 @@ class Photo extends ValueObject<File> {
 
   @override
   List<Object> get props => [value.fold((l) => l, (r) => r.readAsBytesSync())];
+
+  @override
+  String toString() {
+    return value.fold((l) => l.toString(), (r) => r.path);
+  }
 }
 
 class ShopLogo extends Photo {
