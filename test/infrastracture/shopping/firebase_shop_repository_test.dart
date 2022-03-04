@@ -5,7 +5,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:shopify_manager/domain/auth/i_auth_facade.dart';
-import 'package:shopify_manager/domain/auth/user.dart';
 import 'package:shopify_manager/domain/core/address.dart';
 import 'package:shopify_manager/domain/core/images/photo.dart';
 import 'package:shopify_manager/domain/core/location.dart';
@@ -17,8 +16,6 @@ import 'package:shopify_manager/domain/shopping/value_objects.dart';
 import 'package:shopify_manager/infrastructure/shopping/firebase_shop_repository.dart';
 import 'package:shopify_manager/infrastructure/shopping/shop_dtos.dart';
 import 'package:fake_cloud_firestore/fake_cloud_firestore.dart';
-import 'package:geoflutterfire/geoflutterfire.dart';
-import 'package:shopify_manager/domain/core/value_transformers.dart';
 import 'package:firebase_storage_mocks/firebase_storage_mocks.dart' as fake;
 import 'package:firebase_storage/firebase_storage.dart';
 
