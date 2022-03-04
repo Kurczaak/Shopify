@@ -83,7 +83,8 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       shopLocationPickerBloc: get<_i15.ShopLocationPickerBloc>(),
       shopTimePickerBloc: get<_i16.ShopTimePickerBloc>(),
       shopLogoPickerBloc: get<_i23.ShopLogoPickerBloc>(),
-      locationInfo: get<_i13.LocationInfo>()));
+      locationInfo: get<_i13.LocationInfo>(),
+      shopRepository: get<_i10.IShopRepository>()));
   return get;
 }
 

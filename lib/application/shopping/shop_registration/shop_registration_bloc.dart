@@ -8,6 +8,7 @@ import 'package:shopify_manager/domain/core/errors.dart';
 import 'package:shopify_manager/domain/core/images/photo.dart';
 import 'package:shopify_manager/domain/core/location.dart';
 import 'package:shopify_manager/domain/core/location/location_info.dart';
+import 'package:shopify_manager/domain/shopping/i_shop_repository.dart';
 import 'package:shopify_manager/domain/shopping/shop.dart';
 import 'package:shopify_manager/domain/shopping/shop_failure.dart';
 import 'package:shopify_manager/domain/shopping/shop_form.dart';
@@ -33,6 +34,7 @@ class ShopRegistrationBloc
   final ShopTimePickerBloc shopTimePickerBloc;
   final ShopLogoPickerBloc shopLogoPickerBloc;
   final LocationInfo locationInfo;
+  final IShopRepository shopRepository;
 
   late final StreamSubscription _shopFormBlocSubscription;
   late final StreamSubscription _shopLocationPickerBlocSubscription;
@@ -45,6 +47,7 @@ class ShopRegistrationBloc
     required this.shopTimePickerBloc,
     required this.shopLogoPickerBloc,
     required this.locationInfo,
+    required this.shopRepository,
   }) : super(ShopRegistrationState.initial()) {
     _shopFormBlocSubscription = shopFormBloc.stream.listen((state) {
       if (state.saved) {
@@ -102,7 +105,22 @@ class ShopRegistrationBloc
           emit(state.copyWith(
               shopLogo: some(ShopLogo(logoSavedState.logo.getOrCrash()))));
         },
-        shopSaved: () {},
+        shopSaved: () async {
+          emit(state.copyWith(
+            isSaving: true,
+          ));
+          final failureOrUnit = await shopRepository.create(state.shop,
+              state.shopLogo.getOrElse(() => throw UnimplementedError()));
+          failureOrUnit.fold(
+              (f) => emit(state.copyWith(
+                    isSaving: false,
+                    saveFailureOrSuccessOption: some(left(f)),
+                  )),
+              (r) => emit(state.copyWith(
+                    isSaving: false,
+                    saveFailureOrSuccessOption: some(right(r)),
+                  )));
+        },
       );
     });
   }

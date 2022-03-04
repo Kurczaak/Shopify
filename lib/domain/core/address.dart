@@ -35,14 +35,18 @@ abstract class Address with _$Address {
 
   @override
   String toString() {
-    final streetStr = streetName.value.toString();
-    final streetNumberStr = streetNumber.value.toString();
-    String apartmentNumberStr = apartmentNumber.value.toString();
+    final streetStr =
+        streetName.value.fold((l) => l.toString(), (r) => r.toString());
+    final streetNumberStr =
+        streetNumber.value.fold((l) => l.toString(), (r) => r.toString());
+    String apartmentNumberStr =
+        apartmentNumber.value.fold((l) => l.toString(), (r) => r.toString());
     if (apartmentNumberStr != '') {
       apartmentNumberStr = "\\" + apartmentNumberStr;
     }
-    final cityStr = city.value.toString();
-    final postalCodeStr = postalCode.value.toString();
+    final cityStr = city.value.fold((l) => l.toString(), (r) => r.toString());
+    final postalCodeStr =
+        postalCode.value.fold((l) => l.toString(), (r) => r.toString());
     print(
         'Searching location: $postalCodeStr $cityStr $streetStr $streetNumberStr$apartmentNumberStr');
     return '$postalCodeStr $cityStr $streetStr $streetNumberStr$apartmentNumberStr';

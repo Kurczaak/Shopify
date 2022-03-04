@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:bloc_test/bloc_test.dart';
+import 'package:mockito/annotations.dart';
 import 'package:shopify_manager/application/shopping/shop_form/shop_form_bloc.dart';
 import 'package:shopify_manager/application/shopping/shop_location_picker/shop_location_picker_bloc.dart';
 import 'package:shopify_manager/application/shopping/shop_logo_picker/shop_logo_picker_bloc.dart';
@@ -12,7 +13,9 @@ import 'package:shopify_manager/domain/core/images/photo.dart';
 import 'package:shopify_manager/domain/core/location.dart';
 import 'package:shopify_manager/domain/core/location/location_info.dart';
 import 'package:shopify_manager/domain/core/value_objects.dart';
+import 'package:shopify_manager/domain/shopping/i_shop_repository.dart';
 import 'package:shopify_manager/domain/shopping/shop.dart';
+import 'package:shopify_manager/domain/shopping/shop_failure.dart';
 import 'package:shopify_manager/domain/shopping/shop_form.dart';
 import 'package:shopify_manager/domain/shopping/time/day.dart';
 import 'package:shopify_manager/domain/shopping/time/value_objects.dart';
@@ -39,6 +42,8 @@ class MockShopLogoPickerBloc
 
 class MockLocationInfo extends Mock implements LocationInfo {}
 
+class MockIShopRepository extends Mock implements IShopRepository {}
+
 void main() async {
   late MockShopFormBloc mockShopFormBloc;
   late MockShopTimePickerBloc mockShopTimePickerBloc;
@@ -46,6 +51,7 @@ void main() async {
   late MockShopLogoPickerBloc mockShopLogoPickerBloc;
   late MockLocationInfo mockLocationInfo;
   late ShopRegistrationBloc shopRegistrationBloc;
+  late MockIShopRepository mockShopRepository;
 
   // Address strings
   const streetNameStr = "Street Name";
@@ -66,6 +72,14 @@ void main() async {
     ),
   );
 
+  final tShop = Shop(
+      address: tShopForm.address,
+      shopName: tShopForm.shopName,
+      location: Location.empty(),
+      logoUrl: 'https://www.example.com',
+      workingWeek: Week.empty(),
+      id: UniqueId());
+
   final tLogo = await getImageFileFromAssets('test_logo.jpg');
   final tShopLogo = ShopLogo(tLogo);
   final tTooSmallLogo = await getImageFileFromAssets('too_small_logo.jpg');
@@ -77,14 +91,15 @@ void main() async {
     mockShopLocationPickerBloc = MockShopLocationPickerBloc();
     mockShopLogoPickerBloc = MockShopLogoPickerBloc();
     mockLocationInfo = MockLocationInfo();
+    mockShopRepository = MockIShopRepository();
 
     shopRegistrationBloc = ShopRegistrationBloc(
-      shopFormBloc: mockShopFormBloc,
-      shopLocationPickerBloc: mockShopLocationPickerBloc,
-      shopLogoPickerBloc: mockShopLogoPickerBloc,
-      shopTimePickerBloc: mockShopTimePickerBloc,
-      locationInfo: mockLocationInfo,
-    );
+        shopFormBloc: mockShopFormBloc,
+        shopLocationPickerBloc: mockShopLocationPickerBloc,
+        shopLogoPickerBloc: mockShopLogoPickerBloc,
+        shopTimePickerBloc: mockShopTimePickerBloc,
+        locationInfo: mockLocationInfo,
+        shopRepository: mockShopRepository);
   });
 
   group('formSaved', () {
@@ -104,12 +119,12 @@ void main() async {
           ]),
         );
         final bloc = ShopRegistrationBloc(
-          shopFormBloc: mockShopFormBloc,
-          shopLocationPickerBloc: mockShopLocationPickerBloc,
-          shopLogoPickerBloc: mockShopLogoPickerBloc,
-          shopTimePickerBloc: mockShopTimePickerBloc,
-          locationInfo: mockLocationInfo,
-        );
+            shopFormBloc: mockShopFormBloc,
+            shopLocationPickerBloc: mockShopLocationPickerBloc,
+            shopLogoPickerBloc: mockShopLogoPickerBloc,
+            shopTimePickerBloc: mockShopTimePickerBloc,
+            locationInfo: mockLocationInfo,
+            shopRepository: mockShopRepository);
 
         // assert
         expect(
@@ -171,12 +186,12 @@ void main() async {
           ]),
         );
         final bloc = ShopRegistrationBloc(
-          shopFormBloc: mockShopFormBloc,
-          shopLocationPickerBloc: mockShopLocationPickerBloc,
-          shopLogoPickerBloc: mockShopLogoPickerBloc,
-          shopTimePickerBloc: mockShopTimePickerBloc,
-          locationInfo: mockLocationInfo,
-        );
+            shopFormBloc: mockShopFormBloc,
+            shopLocationPickerBloc: mockShopLocationPickerBloc,
+            shopLogoPickerBloc: mockShopLogoPickerBloc,
+            shopTimePickerBloc: mockShopTimePickerBloc,
+            locationInfo: mockLocationInfo,
+            shopRepository: mockShopRepository);
 
         // assert
         expect(
@@ -200,12 +215,12 @@ void main() async {
           ]),
         );
         final bloc = ShopRegistrationBloc(
-          shopFormBloc: mockShopFormBloc,
-          shopLocationPickerBloc: mockShopLocationPickerBloc,
-          shopLogoPickerBloc: mockShopLogoPickerBloc,
-          shopTimePickerBloc: mockShopTimePickerBloc,
-          locationInfo: mockLocationInfo,
-        );
+            shopFormBloc: mockShopFormBloc,
+            shopLocationPickerBloc: mockShopLocationPickerBloc,
+            shopLogoPickerBloc: mockShopLogoPickerBloc,
+            shopTimePickerBloc: mockShopTimePickerBloc,
+            locationInfo: mockLocationInfo,
+            shopRepository: mockShopRepository);
 
         // assert
         expect(bloc.stream.asBroadcastStream(), emitsInOrder([]));
@@ -232,12 +247,12 @@ void main() async {
           ]),
         );
         final bloc = ShopRegistrationBloc(
-          shopFormBloc: mockShopFormBloc,
-          shopLocationPickerBloc: mockShopLocationPickerBloc,
-          shopLogoPickerBloc: mockShopLogoPickerBloc,
-          shopTimePickerBloc: mockShopTimePickerBloc,
-          locationInfo: mockLocationInfo,
-        );
+            shopFormBloc: mockShopFormBloc,
+            shopLocationPickerBloc: mockShopLocationPickerBloc,
+            shopLogoPickerBloc: mockShopLogoPickerBloc,
+            shopTimePickerBloc: mockShopTimePickerBloc,
+            locationInfo: mockLocationInfo,
+            shopRepository: mockShopRepository);
 
         // assert
         expect(
@@ -262,12 +277,12 @@ void main() async {
           ]),
         );
         final bloc = ShopRegistrationBloc(
-          shopFormBloc: mockShopFormBloc,
-          shopLocationPickerBloc: mockShopLocationPickerBloc,
-          shopLogoPickerBloc: mockShopLogoPickerBloc,
-          shopTimePickerBloc: mockShopTimePickerBloc,
-          locationInfo: mockLocationInfo,
-        );
+            shopFormBloc: mockShopFormBloc,
+            shopLocationPickerBloc: mockShopLocationPickerBloc,
+            shopLogoPickerBloc: mockShopLogoPickerBloc,
+            shopTimePickerBloc: mockShopTimePickerBloc,
+            locationInfo: mockLocationInfo,
+            shopRepository: mockShopRepository);
 
         // assert
         expect(bloc.stream.asBroadcastStream(), emitsInOrder([]));
@@ -288,12 +303,12 @@ void main() async {
           ]),
         );
         final bloc = ShopRegistrationBloc(
-          shopFormBloc: mockShopFormBloc,
-          shopLocationPickerBloc: mockShopLocationPickerBloc,
-          shopLogoPickerBloc: mockShopLogoPickerBloc,
-          shopTimePickerBloc: mockShopTimePickerBloc,
-          locationInfo: mockLocationInfo,
-        );
+            shopFormBloc: mockShopFormBloc,
+            shopLocationPickerBloc: mockShopLocationPickerBloc,
+            shopLogoPickerBloc: mockShopLogoPickerBloc,
+            shopTimePickerBloc: mockShopTimePickerBloc,
+            locationInfo: mockLocationInfo,
+            shopRepository: mockShopRepository);
 
         // assert
         expect(bloc.stream.asBroadcastStream(),
@@ -311,14 +326,76 @@ void main() async {
             ]),
             initialState: ShopLogoPickerState.loaded(logo: tTooSmallShopLogo));
         return ShopRegistrationBloc(
-          shopFormBloc: mockShopFormBloc,
-          shopLocationPickerBloc: mockShopLocationPickerBloc,
-          shopLogoPickerBloc: mockShopLogoPickerBloc,
-          shopTimePickerBloc: mockShopTimePickerBloc,
-          locationInfo: mockLocationInfo,
-        );
+            shopFormBloc: mockShopFormBloc,
+            shopLocationPickerBloc: mockShopLocationPickerBloc,
+            shopLogoPickerBloc: mockShopLogoPickerBloc,
+            shopTimePickerBloc: mockShopTimePickerBloc,
+            locationInfo: mockLocationInfo,
+            shopRepository: mockShopRepository);
       },
       errors: () => <Matcher>[isA<UnexpectedValueError>()],
     );
+  });
+
+  group('shopSaved', () {
+    blocTest(
+      'should emit saving and saved states when shop has been successfully uploaded',
+      build: () => shopRegistrationBloc,
+      act: (ShopRegistrationBloc bloc) =>
+          bloc.add(const ShopRegistrationEvent.shopSaved()),
+      setUp: () {
+        when(() => mockShopRepository.create(tShop, tShopLogo))
+            .thenAnswer((_) async => right(unit));
+      },
+      seed: () => shopRegistrationBloc.state.copyWith(
+        shop: tShop,
+        shopLogo: some(tShopLogo),
+      ),
+      expect: () => [
+        shopRegistrationBloc.state
+            .copyWith(isSaving: true, saveFailureOrSuccessOption: none()),
+        shopRegistrationBloc.state.copyWith(
+            isSaving: false, saveFailureOrSuccessOption: some(right(unit))),
+      ],
+    );
+
+    blocTest(
+      'should emit saving and failure states when uploading failure occured',
+      build: () => shopRegistrationBloc,
+      act: (ShopRegistrationBloc bloc) =>
+          bloc.add(const ShopRegistrationEvent.shopSaved()),
+      setUp: () {
+        when(() => mockShopRepository.create(tShop, tShopLogo))
+            .thenAnswer((_) async => left(const ShopFailure.unexpected()));
+      },
+      seed: () => shopRegistrationBloc.state.copyWith(
+        shop: tShop,
+        shopLogo: some(tShopLogo),
+      ),
+      expect: () => [
+        shopRegistrationBloc.state
+            .copyWith(isSaving: true, saveFailureOrSuccessOption: none()),
+        shopRegistrationBloc.state.copyWith(
+            isSaving: false,
+            saveFailureOrSuccessOption:
+                some(left(const ShopFailure.unexpected()))),
+      ],
+    );
+
+    blocTest('should call IShopRepository and upload the shop',
+        build: () => shopRegistrationBloc,
+        act: (ShopRegistrationBloc bloc) =>
+            bloc.add(const ShopRegistrationEvent.shopSaved()),
+        seed: () => shopRegistrationBloc.state.copyWith(
+              shop: tShop,
+              shopLogo: some(tShopLogo),
+            ),
+        setUp: () {
+          when(() => mockShopRepository.create(tShop, tShopLogo))
+              .thenAnswer((_) async => right(unit));
+        },
+        verify: (bloc) {
+          verify(() => mockShopRepository.create(tShop, tShopLogo)).called(1);
+        });
   });
 }
