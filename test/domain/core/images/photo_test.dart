@@ -21,6 +21,19 @@ void main() async {
   );
 
   test(
+    'should have data equality',
+    () async {
+      // arrange
+      final tLogo2 = await getImageFileFromAssets('test_logo.jpg');
+      // act
+      final tShopLogo1 = ShopLogo(tLogo);
+      final tShopLogo2 = ShopLogo(tLogo2);
+      // assert
+      expect(tShopLogo2, equals(tShopLogo1));
+    },
+  );
+
+  test(
     'should return a value failure when logo is too small',
     () async {
       // act
