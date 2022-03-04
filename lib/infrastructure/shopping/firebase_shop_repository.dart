@@ -5,8 +5,6 @@ import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
-import 'package:shopify_manager/domain/auth/i_auth_facade.dart';
-import 'package:shopify_manager/domain/core/errors.dart';
 import 'package:shopify_manager/domain/core/images/photo.dart';
 import 'package:shopify_manager/domain/shopping/i_shop_repository.dart';
 import 'package:shopify_manager/domain/shopping/shop_failure.dart';
