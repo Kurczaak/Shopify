@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shopify_manager/injection.dart';
 import 'presentation/core/app_widget.dart';
@@ -21,6 +22,6 @@ void main() async {
     ),
   );
   configureInjection(Environment.prod);
-  runApp(AppWidget());
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
+      .then((value) => runApp(AppWidget()));
 }
-
