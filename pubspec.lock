@@ -541,13 +541,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.1.0"
-  geopoint:
-    dependency: "direct main"
-    description:
-      name: geopoint
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.0"
   get_it:
     dependency: "direct main"
     description:
@@ -708,7 +701,7 @@ packages:
       name: js
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.6.4"
+    version: "0.6.3"
   json_annotation:
     dependency: "direct main"
     description:
@@ -730,13 +723,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.10.0"
-  latlong2:
-    dependency: transitive
-    description:
-      name: latlong2
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.8.1"
   lints:
     dependency: transitive
     description:
@@ -827,7 +813,7 @@ packages:
       name: path
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.8.1"
+    version: "1.8.0"
   path_provider:
     dependency: "direct main"
     description:
@@ -1036,13 +1022,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.99"
-  slugify:
-    dependency: transitive
-    description:
-      name: slugify
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.0"
   source_gen:
     dependency: transitive
     description:
@@ -1133,21 +1112,21 @@ packages:
       name: test
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.20.1"
+    version: "1.19.5"
   test_api:
     dependency: transitive
     description:
       name: test_api
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.4.9"
+    version: "0.4.8"
   test_core:
     dependency: transitive
     description:
       name: test_core
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.4.11"
+    version: "0.4.9"
   timing:
     dependency: transitive
     description:

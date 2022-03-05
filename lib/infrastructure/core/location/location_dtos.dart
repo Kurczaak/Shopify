@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:shopify_manager/domain/core/location.dart';
-import 'package:geopoint/geopoint.dart';
+//import 'package:geopoint/geopoint.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:shopify_manager/domain/core/value_transformers.dart';
 
 part 'location_dtos.freezed.dart';
@@ -16,8 +17,7 @@ class LocationDto with _$LocationDto {
 
   factory LocationDto.fromDomain(Location location) {
     return LocationDto(
-        geopoint: GeoPoint(
-            latitude: location.latitude, longitude: location.longitude),
+        geopoint: GeoPoint(location.latitude, location.longitude),
         geohash: location.geohash);
   }
 
@@ -38,14 +38,14 @@ class LocationDto with _$LocationDto {
       _$LocationDtoFromJson(json);
 }
 
-class GeoPointConverter implements JsonConverter<GeoPoint, Object> {
+class GeoPointConverter implements JsonConverter<GeoPoint, GeoPoint> {
   const GeoPointConverter();
 
   @override
-  GeoPoint fromJson(dynamic json) {
-    return GeoPoint.fromJson(json);
+  GeoPoint fromJson(dynamic geoPoint) {
+    return geoPoint;
   }
 
   @override
-  Object toJson(GeoPoint geopoint) => geopoint.toGeoJsonFeatureString();
+  GeoPoint toJson(GeoPoint geopoint) => geopoint;
 }

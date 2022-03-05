@@ -29,7 +29,8 @@ void main() async {
   const streetNumberStr = '12A';
   const logoUrlStr = 'https://www.example.com';
 
-  final Map<String, dynamic> jsonShop = json.decode(fixture('shop.json'));
+  final Map<String, dynamic> jsonData = json.decode(fixture('shop.json'));
+  final jsonShop = ShopDto.fromJson(jsonData).toJson();
   final Map<String, dynamic> jsonShopWithId =
       json.decode(fixture('shop_with_id.json'));
 

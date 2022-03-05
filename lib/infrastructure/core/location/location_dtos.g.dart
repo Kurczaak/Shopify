@@ -8,7 +8,8 @@ part of 'location_dtos.dart';
 
 _$_LocationDto _$$_LocationDtoFromJson(Map<String, dynamic> json) =>
     _$_LocationDto(
-      geopoint: const GeoPointConverter().fromJson(json['geopoint'] as Object),
+      geopoint:
+          const GeoPointConverter().fromJson(json['geopoint'] as GeoPoint),
       geohash: json['geohash'] as String,
     );
 
