@@ -128,7 +128,13 @@ class _RegistrationRecapPageState extends State<RegistrationRecapPage> {
                       Text(day.day.name),
                       Text(day.openingInterval.getStringOrCrash),
                     ],
-                  )
+                  ),
+                TextButton(
+                    onPressed: () {
+                      getIt<ShopRegistrationBloc>()
+                          .add(ShopRegistrationEvent.shopSaved());
+                    },
+                    child: Text('XDDDDDDD'))
               ],
             ),
           ),
