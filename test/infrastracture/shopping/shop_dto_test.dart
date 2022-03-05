@@ -29,14 +29,6 @@ void main() async {
   const streetNumberStr = '12A';
   const logoUrlStr = 'https://www.example.com';
 
-  final Map<String, dynamic> jsonData = json.decode(fixture('shop.json'));
-  final jsonShop = ShopDto.fromJson(jsonData).toJson();
-  final Map<String, dynamic> jsonShopWithId =
-      json.decode(fixture('shop_with_id.json'));
-
-  await instance.collectionGroup('shops').doc(shopDocumentIdStr).set(jsonShop);
-  print(instance.dump());
-
   final tShop = Shop(
     id: UniqueId.fromUniqueString(shopDocumentIdStr),
     shopName: ShopName(shopNameStr),
@@ -51,6 +43,11 @@ void main() async {
     logoUrl: logoUrlStr,
     workingWeek: Week.empty(),
   );
+
+  instance
+      .collectionGroup('shops')
+      .doc(shopDocumentIdStr)
+      .set(ShopDto.fromDomain(tShop).toJson());
 
   final tShopDto = ShopDto(
     id: shopDocumentIdStr,
@@ -68,11 +65,6 @@ void main() async {
     logoUrl: logoUrlStr,
     week: WeekDto.fromDomain(Week.empty()),
   );
-
-  final shopDoc =
-      await instance.collection('shops').doc(shopDocumentIdStr).get();
-  //TODO Maybe remove
-  //final shopDto = ShopDto.fromFirestore(shopDoc);
 
   group('fromDomain', () {
     test(
@@ -109,21 +101,12 @@ void main() async {
       // arrange
       final shopDoc =
           await instance.collection('shops').doc(shopDocumentIdStr).get();
+      print(shopDoc.data());
       final shopDto = ShopDto.fromFirestore(shopDoc);
       // act
       final shop = shopDto.toDomain();
       // assert
       expect(shop, tShop);
-    },
-  );
-
-  test(
-    'should ignore json id and leave it as an empty string',
-    () async {
-      // act
-      final shopDto = ShopDto.fromJson(jsonShopWithId);
-      // assert
-      expect(shopDto.id, '');
     },
   );
 }

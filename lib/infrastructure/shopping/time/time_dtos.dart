@@ -24,7 +24,7 @@ abstract class WeekDto with _$WeekDto {
     return WeekDto(
       monday: DayDto.fromDomain(week.monday),
       tuesday: DayDto.fromDomain(week.tuesday),
-      wednesday: DayDto.fromDomain(week.monday),
+      wednesday: DayDto.fromDomain(week.wednesday),
       thursday: DayDto.fromDomain(week.thursday),
       friday: DayDto.fromDomain(week.friday),
       saturday: DayDto.fromDomain(week.saturday),

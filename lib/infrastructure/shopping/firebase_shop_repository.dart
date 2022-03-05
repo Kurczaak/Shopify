@@ -22,14 +22,16 @@ class FirebaseShopRepositoryImpl implements IShopRepository {
   @override
   Future<Either<ShopFailure, Unit>> create(Shop shop, ShopLogo logo) async {
     try {
-      final taskSnapshot =
-          await _storage.shopLogosReference.putFile(logo.getOrCrash());
+      final taskSnapshot = await _storage.shopLogosReference
+          .child(shop.id.getOrCrash())
+          .putFile(logo.getOrCrash());
 
       final uploadUrl = await taskSnapshot.ref.getDownloadURL();
       final shopWithUpdatedLogo = shop.copyWith(logoUrl: uploadUrl);
       final shopsCollection = _firestore.shopsCollection;
       await shopsCollection
-          .add(ShopDto.fromDomain(shopWithUpdatedLogo).toJson());
+          .doc(shop.id.getOrCrash())
+          .set(ShopDto.fromDomain(shopWithUpdatedLogo).toJson());
       return right(unit);
     } on PlatformException catch (e) {
       //TODO log this error

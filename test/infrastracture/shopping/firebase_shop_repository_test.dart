@@ -29,7 +29,8 @@ import 'firebase_shop_repository_test.mocks.dart';
   Reference,
   FirebaseStorage,
   TaskSnapshot,
-  UploadTask
+  UploadTask,
+  DocumentReference
 ])
 void main() async {
   final fakeFirestore = FakeFirebaseFirestore();
@@ -39,6 +40,7 @@ void main() async {
   late FirebaseShopRepositoryImpl firebaseShopRepository;
 
   late MockCollectionReference<Map<String, dynamic>> mockCollectionReference;
+  late MockDocumentReference<Map<String, dynamic>> mockDocumentReference;
   late MockReference mockReference;
   late MockTaskSnapshot mockTaskSnapshot;
   late MockUploadTask mockUploadTask;
@@ -82,6 +84,7 @@ void main() async {
         FirebaseShopRepositoryImpl(mockFirebaseFirestore, mockFirebaseStorage);
     // helpers
     mockCollectionReference = MockCollectionReference();
+    mockDocumentReference = MockDocumentReference();
     mockReference = MockReference();
     mockTaskSnapshot = MockTaskSnapshot();
     mockUploadTask = MockUploadTask();
@@ -90,6 +93,7 @@ void main() async {
   void _setUpStorage(MockFirebaseStorage storage, String logoUrl) {
     final newReference = MockReference();
     when(storage.ref(any)).thenReturn(mockReference);
+    when(mockReference.child(any)).thenReturn(mockReference);
     when(mockReference.putFile(any))
         .thenAnswer((_) => fake.MockUploadTask(newReference));
     when(newReference.getDownloadURL()).thenAnswer((_) async => logoUrl);
@@ -102,6 +106,7 @@ void main() async {
       final newFakeFirestore = FakeFirebaseFirestore();
       final newReference = MockReference();
       when(mockFirebaseStorage.ref(any)).thenReturn(mockReference);
+      when(mockReference.child(any)).thenReturn(mockReference);
       when(mockReference.putFile(any))
           .thenAnswer((_) => fake.MockUploadTask(newReference));
       when(newReference.getDownloadURL()).thenAnswer(
@@ -128,9 +133,11 @@ void main() async {
     'should get shops collection, then add a new shop to it',
     () async {
       // arrange
+      final imageReference = MockReference();
       when(mockFirebaseFirestore.collection('shops'))
           .thenReturn(mockCollectionReference);
-      when(mockCollectionReference.add(any))
+      when(mockCollectionReference.doc(any)).thenReturn(mockDocumentReference);
+      when(mockDocumentReference.set(any))
           .thenAnswer((_) async => shopDcumentReference);
       _setUpStorage(mockFirebaseStorage,
           'https://www.example.com/images/shop_logos/1.jpg');
@@ -164,7 +171,8 @@ void main() async {
     _setUpStorage(mockFirebaseStorage, 'https://www.example.com');
     when(mockFirebaseFirestore.collection('shops'))
         .thenReturn(mockCollectionReference);
-    when(mockCollectionReference.add(any))
+    when(mockCollectionReference.doc(any)).thenReturn(mockDocumentReference);
+    when(mockDocumentReference.set(any))
         .thenAnswer((_) async => shopDcumentReference);
     // act
     final result = await firebaseShopRepository.create(tShop, tShopLogo);
@@ -179,9 +187,10 @@ void main() async {
       _setUpStorage(mockFirebaseStorage, 'https://www.example.com');
       final MockCollectionReference<Map<String, dynamic>> ref =
           MockCollectionReference();
-      when(mockFirebaseFirestore.collection('shops')).thenReturn(ref);
-
-      when(ref.add(tShopDto.toJson())).thenThrow(PlatformException(
+      when(mockFirebaseFirestore.collection('shops'))
+          .thenReturn(mockCollectionReference);
+      when(mockCollectionReference.doc(any)).thenReturn(mockDocumentReference);
+      when(mockDocumentReference.set(any)).thenThrow(PlatformException(
         code: '1',
       ));
       // act
@@ -196,11 +205,10 @@ void main() async {
     () async {
       // arrange
       _setUpStorage(mockFirebaseStorage, 'https://www.example.com');
-      final MockCollectionReference<Map<String, dynamic>> ref =
-          MockCollectionReference();
-      when(mockFirebaseFirestore.collection('shops')).thenReturn(ref);
-
-      when(ref.add(tShopDto.toJson())).thenThrow(
+      when(mockFirebaseFirestore.collection('shops'))
+          .thenReturn(mockCollectionReference);
+      when(mockCollectionReference.doc(any)).thenReturn(mockDocumentReference);
+      when(mockDocumentReference.set(any)).thenThrow(
           PlatformException(code: '1', message: 'PERMISSION_DENIED'));
       // act
       final result = await firebaseShopRepository.create(tShop, tShopLogo);
