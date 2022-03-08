@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:shopify_manager/domain/core/value_transformers.dart';
 
 part 'location.freezed.dart';
@@ -16,6 +17,7 @@ abstract class Location implements _$Location {
     required String geohash,
   }) = _Location;
 
+  LatLng get latLng => LatLng(latitude, longitude);
   factory Location.fromLatLang({
     required double latitude,
     required double longitude,

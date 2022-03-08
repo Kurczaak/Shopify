@@ -44,7 +44,9 @@ class ShopFormPage extends StatelessWidget {
       ),
       body: BlocConsumer<ShopFormBloc, ShopFormState>(
         listener: (context, state) async {
-          if (state.saved) await context.router.navigate(DebugLocationRoute());
+          if (state.saved) {
+            await context.router.navigate(DebugLocationRoute());
+          }
         },
         builder: (context, state) => Padding(
           padding: const EdgeInsets.symmetric(horizontal: 28),

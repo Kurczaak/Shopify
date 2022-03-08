@@ -34,18 +34,10 @@ class DebugLocationPage extends StatefulWidget {
 }
 
 class _DebugLocationPageState extends State<DebugLocationPage> {
-  Completer<GoogleMapController> _controller = Completer();
-  late Marker pin;
+  final Completer<GoogleMapController> _controller = Completer();
+  late LatLng pinPosition;
 
-  late CameraPosition camPos;
-
-  @override
-  void initState() {
-    pin = const Marker(markerId: MarkerId('1'));
-    camPos = CameraPosition(target: LatLng(13, 12));
-
-    super.initState();
-  }
+  CameraPosition camPos = CameraPosition(target: Location.empty().latLng);
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +49,14 @@ class _DebugLocationPageState extends State<DebugLocationPage> {
             context.router.popUntilRouteWithName(ShopFormRoute.name),
       ),
       body: BlocConsumer<ShopLocationPickerBloc, ShopLocationPickerState>(
-        listener: (context, state) {
+        listener: (context, state) async {
+          final GoogleMapController controller = await _controller.future;
+          state.location.fold(
+              () => null,
+              (location) => controller.animateCamera(
+                  CameraUpdate.newCameraPosition(
+                      CameraPosition(target: location.latLng, zoom: 18))));
+
           if (state.saved) {
             context.router.push(OpeningHoursRoute());
           }
@@ -96,28 +95,26 @@ class _DebugLocationPageState extends State<DebugLocationPage> {
                 mapType: MapType.hybrid,
                 markers:
                     context.read<ShopLocationPickerBloc>().state.location.fold(
-                        () => {},
-                        (a) => {
-                              Marker(
-                                markerId: MarkerId('xd'),
-                                draggable: true,
-                                position: LatLng(a.latitude, a.longitude),
-                                onDrag: (latLng) => context
-                                    .read<ShopLocationPickerBloc>()
-                                    .add(
-                                        ShopLocationPickerEvent.locationChanged(
-                                            latitude: latLng.latitude,
-                                            longitude: latLng.longitude)),
-                              ),
-                            }),
+                          () => {},
+                          (a) => {
+                            Marker(
+                              markerId: const MarkerId('1'),
+                              draggable: true,
+                              position: LatLng(a.latitude, a.longitude),
+                              onDragEnd: (latLng) => context
+                                  .read<ShopLocationPickerBloc>()
+                                  .add(ShopLocationPickerEvent.locationChanged(
+                                      latitude: latLng.latitude,
+                                      longitude: latLng.longitude)),
+                            ),
+                          },
+                        ),
                 initialCameraPosition: context
                     .read<ShopLocationPickerBloc>()
                     .state
                     .location
-                    .fold(
-                        () => camPos,
-                        (a) => CameraPosition(
-                            target: LatLng(a.latitude, a.longitude), zoom: 18)),
+                    .fold(() => camPos,
+                        (a) => CameraPosition(target: a.latLng, zoom: 18)),
                 onMapCreated: (GoogleMapController controller) {
                   _controller.complete(controller);
                 },
