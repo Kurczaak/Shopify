@@ -28,14 +28,16 @@ void main() {
   );
 
   blocTest(
-    'should emit saved state when location is correct',
+    'should emit saved state when location is correct and then unsave it',
     build: () => ShopLocationPickerBloc(),
     seed: () =>
         ShopLocationPickerState(location: some(tLocation), saved: false),
     act: (ShopLocationPickerBloc bloc) =>
         bloc.add(ShopLocationPickerEvent.saved()),
-    expect: () =>
-        [ShopLocationPickerState(location: some(tLocation), saved: true)],
+    expect: () => [
+      ShopLocationPickerState(location: some(tLocation), saved: true),
+      ShopLocationPickerState(location: some(tLocation), saved: false)
+    ],
   );
 
   blocTest(

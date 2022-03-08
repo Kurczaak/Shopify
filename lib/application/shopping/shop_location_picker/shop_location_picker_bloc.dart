@@ -20,6 +20,7 @@ class ShopLocationPickerBloc
       }, saved: (e) {
         if (state.location.isSome()) {
           emit(state.copyWith(saved: true));
+          emit(state.copyWith(saved: false));
         }
       });
     });

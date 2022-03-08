@@ -58,7 +58,7 @@ class _DebugLocationPageState extends State<DebugLocationPage> {
                       CameraPosition(target: location.latLng, zoom: 18))));
 
           if (state.saved) {
-            context.router.push(OpeningHoursRoute());
+            context.router.navigate(OpeningHoursRoute());
           }
         },
         builder: (context, state) => Column(
@@ -79,10 +79,12 @@ class _DebugLocationPageState extends State<DebugLocationPage> {
                   SizedBox(
                     height: 50,
                     child: ElevatedButton(
-                      onPressed: () {
-                        context
-                            .read<ShopLocationPickerBloc>()
-                            .add(ShopLocationPickerEvent.saved());
+                      onPressed: () async {
+                        context.read<ShopLocationPickerBloc>().state.saved
+                            ? await context.router.navigate(OpeningHoursRoute())
+                            : context
+                                .read<ShopLocationPickerBloc>()
+                                .add(ShopLocationPickerEvent.saved());
                       },
                       child: const Text('Next'),
                     ),
