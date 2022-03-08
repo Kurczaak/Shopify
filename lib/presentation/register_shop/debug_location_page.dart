@@ -5,6 +5,7 @@ import 'package:shopify_manager/application/shopping/shop_logo_picker/shop_logo_
 import 'package:shopify_manager/application/shopping/shop_registration/shop_registration_bloc.dart';
 import 'package:shopify_manager/application/shopping/shop_time_picker/shop_time_picker_bloc.dart';
 import 'package:shopify_manager/domain/core/images/image_failure.dart';
+import 'package:shopify_manager/domain/core/location.dart';
 import 'package:shopify_manager/domain/shopping/failures.dart';
 import 'package:shopify_manager/presentation/core/widgets/process_appbar.dart';
 import 'package:shopify_manager/presentation/register_shop/widgets/hour_dropdown_picker.dart';
@@ -39,92 +40,90 @@ class _DebugLocationPageState extends State<DebugLocationPage> {
   late CameraPosition camPos;
 
   @override
+  void initState() {
+    pin = const Marker(markerId: MarkerId('1'));
+    camPos = CameraPosition(target: LatLng(13, 12));
+
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: ProcessAppBar(
         appBar: AppBar(),
         title: 'Register Shop',
-        onPressed: () => context.router.pop(),
+        onPressed: () =>
+            context.router.popUntilRouteWithName(ShopFormRoute.name),
       ),
-      body: MultiBlocProvider(
-        providers: [
-          BlocProvider<ShopRegistrationBloc>(
-              create: (context) => getIt<ShopRegistrationBloc>()),
-          BlocProvider<ShopLocationPickerBloc>(
-            create: (context) {
-              final bloc = getIt<ShopLocationPickerBloc>();
-              final locationOption = bloc.state.location;
-
-              locationOption
-                  .fold(() => pin = const Marker(markerId: MarkerId('1')),
-                      (location) {
-                camPos = CameraPosition(
-                  target: LatLng(location.latitude, location.longitude),
-                  zoom: 18,
-                );
-                pin = Marker(
-                    markerId: const MarkerId('1'),
-                    position: LatLng(location.latitude, location.longitude),
-                    draggable: true,
-                    onDrag: (latLng) => bloc.add(
-                        ShopLocationPickerEvent.locationChanged(
-                            latitude: latLng.latitude,
-                            longitude: latLng.longitude)));
-              });
-              return bloc;
-            },
-          ),
-        ],
-        child: BlocConsumer<ShopLocationPickerBloc, ShopLocationPickerState>(
-          listener: (context, state) {
-            if (state.saved) {
-              context.router.push(OpeningHoursRoute());
-            }
-          },
-          builder: (context, state) => Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Expanded(
-                      child: RegistrationProgressRow(
-                        title: 'Pin Location',
-                        subtitle: 'Make sure the pin is placed accordingly',
-                        pageNum: 2,
-                      ),
+      body: BlocConsumer<ShopLocationPickerBloc, ShopLocationPickerState>(
+        listener: (context, state) {
+          if (state.saved) {
+            context.router.push(OpeningHoursRoute());
+          }
+        },
+        builder: (context, state) => Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Expanded(
+                    child: RegistrationProgressRow(
+                      title: 'Pin Location',
+                      subtitle: 'Make sure the pin is placed accordingly',
+                      pageNum: 2,
                     ),
-                    const SizedBox(width: 20),
-                    SizedBox(
-                      height: 50,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          context
-                              .read<ShopLocationPickerBloc>()
-                              .add(ShopLocationPickerEvent.saved());
-                        },
-                        child: const Text('Next'),
-                      ),
+                  ),
+                  const SizedBox(width: 20),
+                  SizedBox(
+                    height: 50,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        context
+                            .read<ShopLocationPickerBloc>()
+                            .add(ShopLocationPickerEvent.saved());
+                      },
+                      child: const Text('Next'),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-              Expanded(
-                child: GoogleMap(
-                  mapType: MapType.hybrid,
-                  markers: {pin},
-                  initialCameraPosition: state.location.fold(
-                      () => camPos,
-                      (a) => CameraPosition(
-                          target: LatLng(a.latitude, a.longitude), zoom: 18)),
-                  onMapCreated: (GoogleMapController controller) {
-                    _controller.complete(controller);
-                  },
-                ),
+            ),
+            Expanded(
+              child: GoogleMap(
+                mapType: MapType.hybrid,
+                markers:
+                    context.read<ShopLocationPickerBloc>().state.location.fold(
+                        () => {},
+                        (a) => {
+                              Marker(
+                                markerId: MarkerId('xd'),
+                                draggable: true,
+                                position: LatLng(a.latitude, a.longitude),
+                                onDrag: (latLng) => context
+                                    .read<ShopLocationPickerBloc>()
+                                    .add(
+                                        ShopLocationPickerEvent.locationChanged(
+                                            latitude: latLng.latitude,
+                                            longitude: latLng.longitude)),
+                              ),
+                            }),
+                initialCameraPosition: context
+                    .read<ShopLocationPickerBloc>()
+                    .state
+                    .location
+                    .fold(
+                        () => camPos,
+                        (a) => CameraPosition(
+                            target: LatLng(a.latitude, a.longitude), zoom: 18)),
+                onMapCreated: (GoogleMapController controller) {
+                  _controller.complete(controller);
+                },
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

@@ -47,8 +47,6 @@ abstract class Address with _$Address {
     final cityStr = city.value.fold((l) => l.toString(), (r) => r.toString());
     final postalCodeStr =
         postalCode.value.fold((l) => l.toString(), (r) => r.toString());
-    print(
-        'Searching location: $postalCodeStr $cityStr $streetStr $streetNumberStr$apartmentNumberStr');
     return '$postalCodeStr $cityStr $streetStr $streetNumberStr$apartmentNumberStr';
   }
 }
