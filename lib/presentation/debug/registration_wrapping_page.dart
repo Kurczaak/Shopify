@@ -8,6 +8,7 @@ import 'package:shopify_manager/domain/core/failures.dart';
 import 'package:shopify_manager/injection.dart';
 import 'package:shopify_manager/presentation/core/widgets/process_appbar.dart';
 import 'package:shopify_manager/presentation/core/widgets/shopify_text_form_field.dart';
+import 'package:shopify_manager/presentation/register_shop/shop_form/shop_form_page.dart';
 import 'package:shopify_manager/presentation/register_shop/widgets/registration_progress_bar.dart';
 import 'package:shopify_manager/presentation/routes/router.gr.dart';
 import 'package:auto_route/auto_route.dart';
@@ -42,20 +43,30 @@ class RegistrationWrappingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: MultiBlocProvider(
-      providers: [
-        BlocProvider<ShopRegistrationBloc>(
-            create: (context) => getIt<ShopRegistrationBloc>()),
-        BlocProvider<ShopFormBloc>(create: (context) => getIt<ShopFormBloc>()),
-        BlocProvider<ShopLocationPickerBloc>(
-            create: (context) => getIt<ShopLocationPickerBloc>()),
-      ],
-      child: Column(
-        children: [
-          Expanded(child: AutoRouter()),
-        ],
+      appBar: ProcessAppBar(
+        onPressed: () => context.router.navigateBack(),
+        appBar: AppBar(),
+        title: 'Register Shop',
       ),
-    ));
+      body: MultiBlocProvider(
+        providers: [
+          BlocProvider<ShopRegistrationBloc>(
+              create: (context) => getIt<ShopRegistrationBloc>()),
+          BlocProvider<ShopFormBloc>(
+              create: (context) => getIt<ShopFormBloc>()),
+          BlocProvider<ShopLocationPickerBloc>(
+              create: (context) => getIt<ShopLocationPickerBloc>()),
+          BlocProvider<ShopTimePickerBloc>(
+              create: (context) => getIt<ShopTimePickerBloc>()),
+          BlocProvider<ShopLogoPickerBloc>(
+              create: (context) => getIt<ShopLogoPickerBloc>()),
+        ],
+        child: Padding(
+          padding: const EdgeInsets.all(28.0),
+          child: AutoRouter(),
+        ),
+      ),
+    );
   }
 }
 

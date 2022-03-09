@@ -53,93 +53,138 @@ class _RegistrationRecapPageState extends State<RegistrationRecapPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: ProcessAppBar(
-        appBar: AppBar(),
-        title: 'Register Shop',
-        onPressed: () => context.router.pop(),
-      ),
-      body: BlocProvider<ShopRegistrationBloc>(
-        create: (context) {
-          final bloc = getIt<ShopRegistrationBloc>();
-          shop = bloc.state.shop;
-          logo = bloc.state.shopLogo
-              .getOrElse(() => throw UnimplementedError('No logo'));
-          shopName = shop.shopName.getOrCrash();
-          postalCode = shop.address.postalCode.getOrCrash();
-          city = shop.address.city.getOrCrash();
-          street = shop.address.streetName.getOrCrash();
-          streetNumber = shop.address.streetNumber.getOrCrash();
-          apartmentNumber = shop.address.apartmentNumber.getOrCrash();
-          apartmentNumber != ''
-              ? apartmentNumber = '/' + apartmentNumber
-              : null;
-          week = shop.workingWeek;
-          return bloc;
-        },
-        child: BlocConsumer<ShopRegistrationBloc, ShopRegistrationState>(
-          listener: (context, state) {},
-          builder: (context, state) => Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const RegistrationProgressRow(
-                  title: 'Recap',
-                  subtitle:
-                      'Check your shop details and register it if you\'re ready to go!',
-                  pageNum: 5,
-                ),
-                Row(
-                  children: [
-                    Icon(
-                      Icons.store,
-                      color: Theme.of(context).secondaryHeaderColor,
-                    ),
-                    Text(shopName),
-                  ],
-                ),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Icon(Icons.location_on,
-                        color: Theme.of(context).secondaryHeaderColor),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text('$postalCode, $city'),
-                        Text('$street $streetNumber$apartmentNumber')
-                      ],
-                    ),
-                  ],
-                ),
-                logo.value.fold(
-                  (f) => Container(),
-                  (logo) => SizedBox(
-                      height: 150,
-                      width: 250,
-                      child: FittedBox(
-                          alignment: Alignment.centerLeft,
-                          fit: BoxFit.contain,
-                          child: Image.file(logo))),
-                ),
-                for (final day in week.asList)
-                  Row(
-                    children: [
-                      Text(day.day.name),
-                      Text(day.openingInterval.getStringOrCrash),
-                    ],
-                  ),
-                TextButton(
-                    onPressed: () {
-                      getIt<ShopRegistrationBloc>()
-                          .add(ShopRegistrationEvent.shopSaved());
-                    },
-                    child: Text('XDDDDDDD'))
-              ],
+      body: BlocConsumer<ShopRegistrationBloc, ShopRegistrationState>(
+        listener: (context, state) {},
+        builder: (context, state) => Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            const RegistrationProgressRow(
+              title: 'Recap',
+              subtitle:
+                  'Check your shop details and register it if you\'re ready to go!',
+              pageNum: 5,
             ),
-          ),
+            ShopRecap(
+              logo: context
+                  .read<ShopRegistrationBloc>()
+                  .state
+                  .shopLogo
+                  .getOrElse(() => throw UnimplementedError()),
+              shop: context.read<ShopRegistrationBloc>().state.shop,
+            ),
+            const Spacer(),
+            SizedBox(
+              height: 50,
+              child: ElevatedButton(
+                onPressed: () {
+                  getIt<ShopRegistrationBloc>()
+                      .add(const ShopRegistrationEvent.shopSaved());
+                },
+                child: const Text('Register'),
+              ),
+            ),
+          ],
         ),
       ),
+    );
+  }
+}
+
+class ShopRecap extends StatefulWidget {
+  const ShopRecap({Key? key, required this.shop, required this.logo})
+      : super(key: key);
+  final Shop shop;
+  final ShopLogo logo;
+
+  @override
+  State<ShopRecap> createState() => _ShopRecapState();
+}
+
+class _ShopRecapState extends State<ShopRecap> {
+  late Shop shop;
+  late ShopLogo logo;
+  late String shopName;
+  late String postalCode;
+  late String city;
+  late String street;
+  late String streetNumber;
+  late String apartmentNumber;
+  late Week week;
+  @override
+  void initState() {
+    shop = widget.shop;
+    logo = widget.logo;
+    shopName = shop.shopName.getOrCrash();
+    postalCode = shop.address.postalCode.getOrCrash();
+    city = shop.address.city.getOrCrash();
+    street = shop.address.streetName.getOrCrash();
+    streetNumber = shop.address.streetNumber.getOrCrash();
+    apartmentNumber = shop.address.apartmentNumber.getOrCrash();
+    week = shop.workingWeek;
+
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        const SizedBox(height: 20),
+        Row(
+          children: [
+            Icon(
+              Icons.store,
+              color: Theme.of(context).secondaryHeaderColor,
+            ),
+            Text(shopName),
+          ],
+        ),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Icon(Icons.location_on,
+                color: Theme.of(context).secondaryHeaderColor),
+            Text(shop.address.toString()),
+            //Text('$postalCode, $city'),
+          ],
+        ),
+        const SizedBox(height: 20),
+        widget.logo.value.fold(
+          (f) => Container(),
+          (logo) => SizedBox(
+              height: 150,
+              width: 250,
+              child: FittedBox(
+                  alignment: Alignment.centerLeft,
+                  fit: BoxFit.contain,
+                  child: Image.file(logo))),
+        ),
+        const SizedBox(height: 20),
+        for (final day in week.asList)
+          Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              SizedBox(
+                width: 100,
+                child: Text(day.day.name),
+              ),
+              const SizedBox(width: 10),
+              SizedBox(
+                width: 150,
+                child: Center(
+                  child: Text(
+                    day.isOpen
+                        ? day.openingInterval.getStringOrCrash
+                        : 'closed',
+                    textAlign: day.isOpen ? TextAlign.start : TextAlign.center,
+                  ),
+                ),
+              ),
+            ],
+          ),
+      ],
     );
   }
 }

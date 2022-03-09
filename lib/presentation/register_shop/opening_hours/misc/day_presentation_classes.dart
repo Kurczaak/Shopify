@@ -78,8 +78,34 @@ abstract class TimeIntervalPrimitive implements _$TimeIntervalPrimitive {
     );
   }
 
+  factory TimeIntervalPrimitive.fromString(String opening, String closing) {
+    final openingList = opening.split(':');
+    final closingList = closing.split(':');
+    final openingHourInt = int.parse(openingList.first);
+    final openingMinutesInt = int.parse(openingList.last);
+    final closingHourInt = int.parse(closingList.first);
+    final closingMinutesInt = int.parse(closingList.last);
+
+    return TimeIntervalPrimitive(
+        openingHour: openingHourInt,
+        openingMinutes: openingMinutesInt,
+        closingHour: closingHourInt,
+        closingMinutes: closingMinutesInt);
+  }
+
+  String get openingToString =>
+      '${openingHour.stringifyHour}:${openingMinutes.stringifyHour}';
+  String get closingToString =>
+      '${closingHour.stringifyHour}:${closingMinutes.stringifyHour}';
+
   TimeInterval toDomain() {
     return TimeInterval(Hour.fromInt(openingHour, openingMinutes),
         Hour.fromInt(closingHour, closingMinutes));
+  }
+}
+
+extension StringifyHour on int {
+  String get stringifyHour {
+    return this < 10 ? '0$this' : toString();
   }
 }

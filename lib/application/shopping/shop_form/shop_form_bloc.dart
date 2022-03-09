@@ -83,6 +83,11 @@ class ShopFormBloc extends Bloc<ShopFormEvent, ShopFormState> {
               saved: true,
             ),
           );
+          emit(
+            state.copyWith(
+              saved: false,
+            ),
+          );
         } else {
           emit(
             state.copyWith(

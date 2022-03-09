@@ -13,15 +13,15 @@
 import 'package:auto_route/auto_route.dart' as _i10;
 import 'package:flutter/material.dart' as _i11;
 
-import '../core/debug_page.dart' as _i1;
-import '../debug/registration_wrapping_page.dart' as _i5;
-import '../register_shop/debug_location_page.dart' as _i7;
-import '../register_shop/opening_hours/opening_hours_page.dart' as _i8;
-import '../register_shop/shop_form/shop_form_page.dart' as _i6;
-import '../registration_recap_page.dart' as _i9;
-import '../sign_in/sign_in_page.dart' as _i3;
-import '../sign_in/sign_up_page.dart' as _i4;
-import '../splash/splash_page.dart' as _i2;
+import '../core/debug_page.dart' as _i9;
+import '../debug/registration_wrapping_page.dart' as _i4;
+import '../register_shop/debug_location_page.dart' as _i6;
+import '../register_shop/opening_hours/opening_hours_page.dart' as _i7;
+import '../register_shop/shop_form/shop_form_page.dart' as _i5;
+import '../registration_recap_page.dart' as _i8;
+import '../sign_in/sign_in_page.dart' as _i2;
+import '../sign_in/sign_up_page.dart' as _i3;
+import '../splash/splash_page.dart' as _i1;
 
 class AppRouter extends _i10.RootStackRouter {
   AppRouter([_i11.GlobalKey<_i11.NavigatorState>? navigatorKey])
@@ -29,56 +29,55 @@ class AppRouter extends _i10.RootStackRouter {
 
   @override
   final Map<String, _i10.PageFactory> pagesMap = {
-    DebugRoute.name: (routeData) {
-      return _i10.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i1.DebugPage());
-    },
     SplashRoute.name: (routeData) {
       return _i10.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i2.SplashPage());
+          routeData: routeData, child: const _i1.SplashPage());
     },
     SignInRoute.name: (routeData) {
       return _i10.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i3.SignInPage());
+          routeData: routeData, child: const _i2.SignInPage());
     },
     SignUpRoute.name: (routeData) {
       return _i10.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i4.SignUpPage());
+          routeData: routeData, child: const _i3.SignUpPage());
     },
     RegistrationWrappingRoute.name: (routeData) {
       return _i10.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i5.RegistrationWrappingPage());
+          routeData: routeData, child: const _i4.RegistrationWrappingPage());
     },
     ShopFormRoute.name: (routeData) {
       final args = routeData.argsAs<ShopFormRouteArgs>(
           orElse: () => const ShopFormRouteArgs());
       return _i10.MaterialPageX<dynamic>(
-          routeData: routeData, child: _i6.ShopFormPage(key: args.key));
+          routeData: routeData, child: _i5.ShopFormPage(key: args.key));
     },
     DebugLocationRoute.name: (routeData) {
       final args = routeData.argsAs<DebugLocationRouteArgs>(
           orElse: () => const DebugLocationRouteArgs());
       return _i10.MaterialPageX<dynamic>(
-          routeData: routeData, child: _i7.DebugLocationPage(key: args.key));
+          routeData: routeData, child: _i6.DebugLocationPage(key: args.key));
     },
     OpeningHoursRoute.name: (routeData) {
       final args = routeData.argsAs<OpeningHoursRouteArgs>(
           orElse: () => const OpeningHoursRouteArgs());
       return _i10.MaterialPageX<dynamic>(
-          routeData: routeData, child: _i8.OpeningHoursPage(key: args.key));
+          routeData: routeData, child: _i7.OpeningHoursPage(key: args.key));
     },
     RegistrationRecapRoute.name: (routeData) {
       final args = routeData.argsAs<RegistrationRecapRouteArgs>(
           orElse: () => const RegistrationRecapRouteArgs());
       return _i10.MaterialPageX<dynamic>(
           routeData: routeData,
-          child: _i9.RegistrationRecapPage(key: args.key));
+          child: _i8.RegistrationRecapPage(key: args.key));
+    },
+    DebugRoute.name: (routeData) {
+      return _i10.MaterialPageX<dynamic>(
+          routeData: routeData, child: const _i9.DebugPage());
     }
   };
 
   @override
   List<_i10.RouteConfig> get routes => [
-        _i10.RouteConfig(DebugRoute.name, path: '/debug-page'),
         _i10.RouteConfig(SplashRoute.name, path: '/splash-page'),
         _i10.RouteConfig(SignInRoute.name, path: '/sign-in-page'),
         _i10.RouteConfig(SignUpRoute.name, path: '/sign-up-page'),
@@ -93,21 +92,15 @@ class AppRouter extends _i10.RootStackRouter {
               parent: RegistrationWrappingRoute.name),
           _i10.RouteConfig(RegistrationRecapRoute.name,
               path: 'registration-recap-page',
-              parent: RegistrationWrappingRoute.name)
+              parent: RegistrationWrappingRoute.name),
+          _i10.RouteConfig(DebugRoute.name,
+              path: 'debug-page', parent: RegistrationWrappingRoute.name)
         ])
       ];
 }
 
 /// generated route for
-/// [_i1.DebugPage]
-class DebugRoute extends _i10.PageRouteInfo<void> {
-  const DebugRoute() : super(DebugRoute.name, path: '/debug-page');
-
-  static const String name = 'DebugRoute';
-}
-
-/// generated route for
-/// [_i2.SplashPage]
+/// [_i1.SplashPage]
 class SplashRoute extends _i10.PageRouteInfo<void> {
   const SplashRoute() : super(SplashRoute.name, path: '/splash-page');
 
@@ -115,7 +108,7 @@ class SplashRoute extends _i10.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i3.SignInPage]
+/// [_i2.SignInPage]
 class SignInRoute extends _i10.PageRouteInfo<void> {
   const SignInRoute() : super(SignInRoute.name, path: '/sign-in-page');
 
@@ -123,7 +116,7 @@ class SignInRoute extends _i10.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i4.SignUpPage]
+/// [_i3.SignUpPage]
 class SignUpRoute extends _i10.PageRouteInfo<void> {
   const SignUpRoute() : super(SignUpRoute.name, path: '/sign-up-page');
 
@@ -131,7 +124,7 @@ class SignUpRoute extends _i10.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i5.RegistrationWrappingPage]
+/// [_i4.RegistrationWrappingPage]
 class RegistrationWrappingRoute extends _i10.PageRouteInfo<void> {
   const RegistrationWrappingRoute({List<_i10.PageRouteInfo>? children})
       : super(RegistrationWrappingRoute.name,
@@ -141,7 +134,7 @@ class RegistrationWrappingRoute extends _i10.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i6.ShopFormPage]
+/// [_i5.ShopFormPage]
 class ShopFormRoute extends _i10.PageRouteInfo<ShopFormRouteArgs> {
   ShopFormRoute({_i11.Key? key})
       : super(ShopFormRoute.name, path: '', args: ShopFormRouteArgs(key: key));
@@ -161,7 +154,7 @@ class ShopFormRouteArgs {
 }
 
 /// generated route for
-/// [_i7.DebugLocationPage]
+/// [_i6.DebugLocationPage]
 class DebugLocationRoute extends _i10.PageRouteInfo<DebugLocationRouteArgs> {
   DebugLocationRoute({_i11.Key? key})
       : super(DebugLocationRoute.name,
@@ -183,7 +176,7 @@ class DebugLocationRouteArgs {
 }
 
 /// generated route for
-/// [_i8.OpeningHoursPage]
+/// [_i7.OpeningHoursPage]
 class OpeningHoursRoute extends _i10.PageRouteInfo<OpeningHoursRouteArgs> {
   OpeningHoursRoute({_i11.Key? key})
       : super(OpeningHoursRoute.name,
@@ -204,7 +197,7 @@ class OpeningHoursRouteArgs {
 }
 
 /// generated route for
-/// [_i9.RegistrationRecapPage]
+/// [_i8.RegistrationRecapPage]
 class RegistrationRecapRoute
     extends _i10.PageRouteInfo<RegistrationRecapRouteArgs> {
   RegistrationRecapRoute({_i11.Key? key})
@@ -224,4 +217,12 @@ class RegistrationRecapRouteArgs {
   String toString() {
     return 'RegistrationRecapRouteArgs{key: $key}';
   }
+}
+
+/// generated route for
+/// [_i9.DebugPage]
+class DebugRoute extends _i10.PageRouteInfo<void> {
+  const DebugRoute() : super(DebugRoute.name, path: 'debug-page');
+
+  static const String name = 'DebugRoute';
 }

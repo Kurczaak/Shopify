@@ -13,9 +13,7 @@ import 'package:shopify_manager/presentation/splash/splash_page.dart';
   replaceInRouteName: 'Page,Route',
   routes: <AutoRoute>[
     //TODO IMPLEMENT DEBUG PAGE LOL
-    AutoRoute(
-      page: DebugPage,
-    ),
+
     AutoRoute(
       page: SplashPage,
     ),
@@ -44,6 +42,9 @@ import 'package:shopify_manager/presentation/splash/splash_page.dart';
         ),
         AutoRoute(
           page: RegistrationRecapPage,
+        ),
+        AutoRoute(
+          page: DebugPage,
         ),
       ],
     ),

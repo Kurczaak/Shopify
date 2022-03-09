@@ -28,7 +28,8 @@ abstract class Week with _$Week {
         sunday: Day.empty(DayName.sunday),
       );
 
-  List<Day> get asList => [monday, tuesday, thursday, friday, saturday, sunday];
+  List<Day> get asList =>
+      [monday, tuesday, wednesday, thursday, friday, saturday, sunday];
 
   Option<ValueFailure<dynamic>> get failureOption {
     return monday.failureOption.fold(

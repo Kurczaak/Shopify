@@ -42,12 +42,6 @@ class _DebugLocationPageState extends State<DebugLocationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: ProcessAppBar(
-        appBar: AppBar(),
-        title: 'Register Shop',
-        onPressed: () =>
-            context.router.popUntilRouteWithName(ShopFormRoute.name),
-      ),
       body: BlocConsumer<ShopLocationPickerBloc, ShopLocationPickerState>(
         listener: (context, state) async {
           final GoogleMapController controller = await _controller.future;
@@ -63,34 +57,31 @@ class _DebugLocationPageState extends State<DebugLocationPage> {
         },
         builder: (context, state) => Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Expanded(
-                    child: RegistrationProgressRow(
-                      title: 'Pin Location',
-                      subtitle: 'Make sure the pin is placed accordingly',
-                      pageNum: 2,
-                    ),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Expanded(
+                  child: RegistrationProgressRow(
+                    title: 'Pin Location',
+                    subtitle: 'Make sure the pin is placed accordingly',
+                    pageNum: 2,
                   ),
-                  const SizedBox(width: 20),
-                  SizedBox(
-                    height: 50,
-                    child: ElevatedButton(
-                      onPressed: () async {
-                        context.read<ShopLocationPickerBloc>().state.saved
-                            ? await context.router.navigate(OpeningHoursRoute())
-                            : context
-                                .read<ShopLocationPickerBloc>()
-                                .add(ShopLocationPickerEvent.saved());
-                      },
-                      child: const Text('Next'),
-                    ),
+                ),
+                const SizedBox(width: 20),
+                SizedBox(
+                  height: 50,
+                  child: ElevatedButton(
+                    onPressed: () async {
+                      context.read<ShopLocationPickerBloc>().state.saved
+                          ? await context.router.navigate(OpeningHoursRoute())
+                          : context
+                              .read<ShopLocationPickerBloc>()
+                              .add(ShopLocationPickerEvent.saved());
+                    },
+                    child: const Text('Next'),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
             Expanded(
               child: GoogleMap(
