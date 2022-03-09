@@ -47,11 +47,7 @@ class OpeningHoursPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<ShopTimePickerBloc, ShopTimePickerState>(
-      listener: (context, state) {
-        if (state.saved) {
-          context.router.navigate(const DebugRoute());
-        }
-      },
+      listener: (context, state) {},
       builder: (context, state) => Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -90,6 +86,7 @@ class OpeningHoursPage extends StatelessWidget {
             height: 50,
             child: ElevatedButton(
               onPressed: () {
+                context.router.navigate(const DebugRoute());
                 context
                     .read<ShopTimePickerBloc>()
                     .add(const ShopTimePickerEvent.proceeded());

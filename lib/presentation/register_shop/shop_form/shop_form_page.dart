@@ -63,11 +63,7 @@ class _ShopFormPageState extends State<ShopFormPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: BlocConsumer<ShopFormBloc, ShopFormState>(
-        listener: (context, state) async {
-          if (state.saved) {
-            await context.router.navigate(DebugLocationRoute());
-          }
-        },
+        listener: (context, state) async {},
         builder: (context, state) => Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
@@ -172,11 +168,10 @@ class _ShopFormPageState extends State<ShopFormPage> {
               child: ElevatedButton(
                 onPressed: () async {
                   FocusManager.instance.primaryFocus?.unfocus();
-                  context.read<ShopFormBloc>().state.saved
-                      ? await context.router.navigate(DebugLocationRoute())
-                      : context
-                          .read<ShopFormBloc>()
-                          .add(const ShopFormEvent.proceeded());
+                  await context.router.navigate(DebugLocationRoute());
+                  context
+                      .read<ShopFormBloc>()
+                      .add(const ShopFormEvent.proceeded());
                 },
                 child: const Text('Next'),
               ),
