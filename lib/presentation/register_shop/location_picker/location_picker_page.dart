@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shopify_manager/application/shopping/shop_form/shop_form_bloc.dart';
 import 'package:shopify_manager/application/shopping/shop_location_picker/shop_location_picker_bloc.dart';
-import 'package:shopify_manager/domain/core/location.dart';
 import 'package:shopify_manager/presentation/register_shop/widgets/registration_progress_bar.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';

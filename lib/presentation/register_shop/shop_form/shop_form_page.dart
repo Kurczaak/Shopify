@@ -67,7 +67,6 @@ class _ShopFormPageState extends State<ShopFormPage> {
         builder: (context, state) => Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const SizedBox(height: 28),
             const RegistrationProgressRow(
               title: 'Shop Details',
               subtitle: 'Enter shop details',

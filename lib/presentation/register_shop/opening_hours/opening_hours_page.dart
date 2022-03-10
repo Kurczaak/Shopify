@@ -86,7 +86,7 @@ class OpeningHoursPage extends StatelessWidget {
             height: 50,
             child: ElevatedButton(
               onPressed: () {
-                context.router.navigate(const DebugRoute());
+                context.router.navigate(const LogoPickerRoute());
                 context
                     .read<ShopTimePickerBloc>()
                     .add(const ShopTimePickerEvent.proceeded());

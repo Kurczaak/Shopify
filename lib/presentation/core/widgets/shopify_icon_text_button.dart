@@ -1,0 +1,82 @@
+import 'package:flutter/material.dart';
+
+class ShopifyIconTextButton extends StatelessWidget {
+  final String title;
+  final String subtitle;
+  final IconData icon;
+  final bool error;
+  final Function() onPressed;
+  const ShopifyIconTextButton({
+    Key? key,
+    required this.title,
+    required this.subtitle,
+    required this.icon,
+    required this.onPressed,
+    this.error = false,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return OutlinedButton(
+      onPressed: onPressed,
+      child: Container(
+        color: Colors.white,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 10.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: TextStyle(
+                      color: Theme.of(context).secondaryHeaderColor,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                    ),
+                  ),
+                  Text(
+                    subtitle,
+                    style: TextStyle(
+                      color: Theme.of(context).secondaryHeaderColor,
+                      fontWeight: FontWeight.normal,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 0,
+                vertical: 10,
+              ),
+              decoration: BoxDecoration(
+                  color: error
+                      ? Theme.of(context).errorColor
+                      : Theme.of(context).primaryColor,
+                  borderRadius: const BorderRadius.horizontal(
+                      left: Radius.zero, right: Radius.circular(8))),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  const SizedBox(width: 10),
+                  Icon(
+                    icon,
+                    color: Colors.white,
+                  ),
+                  const Icon(
+                    Icons.chevron_right,
+                    color: Colors.white,
+                    size: 40,
+                  )
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
