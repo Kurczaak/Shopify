@@ -30,7 +30,7 @@ class LocationInfoImpl implements LocationInfo {
         return right(Location.fromLatLang(
             latitude: location.latitude, longitude: location.longitude));
       }
-    } on UnimplementedError catch (e) {
+    } on UnimplementedError catch (_) {
       //TODO LOG THIS ERROR
       return left(const LocationFailure.unexpected());
     }

@@ -11,6 +11,7 @@ import 'package:shopify_manager/domain/core/address.dart';
 import 'package:shopify_manager/domain/core/errors.dart';
 import 'package:shopify_manager/domain/core/images/photo.dart';
 import 'package:shopify_manager/domain/core/location.dart';
+import 'package:shopify_manager/domain/core/location/location_failure.dart';
 import 'package:shopify_manager/domain/core/location/location_info.dart';
 import 'package:shopify_manager/domain/core/value_objects.dart';
 import 'package:shopify_manager/domain/shopping/i_shop_repository.dart';
@@ -108,7 +109,7 @@ void main() async {
       () async {
         // arrange
         when(() => mockLocationInfo.getLocationFromAddress(tShopForm.address))
-            .thenAnswer((_) async => Location.empty());
+            .thenAnswer((_) async => right(Location.empty()));
         whenListen(
           mockShopFormBloc,
           Stream.fromIterable([
@@ -145,7 +146,7 @@ void main() async {
       ),
       setUp: () {
         when(() => mockLocationInfo.getLocationFromAddress(tShopForm.address))
-            .thenAnswer((_) async => Location.empty());
+            .thenAnswer((_) async => right(Location.empty()));
       },
       verify: (ShopRegistrationBloc bloc) {
         verify(
@@ -161,13 +162,30 @@ void main() async {
       ),
       setUp: () {
         when(() => mockLocationInfo.getLocationFromAddress(tShopForm.address))
-            .thenAnswer((_) async => Location.empty());
+            .thenAnswer((_) async => right(Location.empty()));
       },
       verify: (ShopRegistrationBloc bloc) {
         verify(() => mockShopLocationPickerBloc.add(
             ShopLocationPickerEvent.locationChanged(
                 latitude: Location.empty().latitude,
                 longitude: Location.empty().longitude)));
+      },
+    );
+
+    blocTest(
+      'should add noLocationFound event to the locationPickerBloc when no location has been found',
+      build: () => shopRegistrationBloc,
+      act: (ShopRegistrationBloc bloc) => bloc.add(
+        ShopRegistrationEvent.formSaved(shopForm: tShopForm),
+      ),
+      setUp: () {
+        when(() => mockLocationInfo.getLocationFromAddress(tShopForm.address))
+            .thenAnswer(
+                (_) async => left(const LocationFailure.noLocationFound()));
+      },
+      verify: (ShopRegistrationBloc bloc) {
+        verify(() => mockShopLocationPickerBloc
+            .add(ShopLocationPickerEvent.locationNotFound()));
       },
     );
   });

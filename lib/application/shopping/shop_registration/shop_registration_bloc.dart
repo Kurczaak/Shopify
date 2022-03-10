@@ -88,11 +88,16 @@ class ShopRegistrationBloc
             address: formSavedState.shopForm.address,
             shopName: formSavedState.shopForm.shopName,
           )));
-          final location = await locationInfo
+          final failureOrLocation = await locationInfo
               .getLocationFromAddress(formSavedState.shopForm.address);
 
-          shopLocationPickerBloc.add(ShopLocationPickerEvent.locationChanged(
-              latitude: location.latitude, longitude: location.longitude));
+          failureOrLocation.fold(
+              (f) => shopLocationPickerBloc
+                  .add(ShopLocationPickerEvent.locationNotFound()),
+              (location) => shopLocationPickerBloc.add(
+                  ShopLocationPickerEvent.locationChanged(
+                      latitude: location.latitude,
+                      longitude: location.longitude)));
         },
         locationSaved: (locationSavedState) {
           emit(state.copyWith(
