@@ -12,10 +12,11 @@
 
 import 'package:auto_route/auto_route.dart' as _i10;
 import 'package:flutter/material.dart' as _i11;
+import 'package:flutter/widgets.dart' as _i12;
 
 import '../core/debug_page.dart' as _i9;
 import '../debug/registration_wrapping_page.dart' as _i4;
-import '../register_shop/debug_location_page.dart' as _i6;
+import '../register_shop/location_picker/location_picker_page.dart' as _i6;
 import '../register_shop/opening_hours/opening_hours_page.dart' as _i7;
 import '../register_shop/shop_form/shop_form_page.dart' as _i5;
 import '../registration_recap_page.dart' as _i8;
@@ -51,11 +52,11 @@ class AppRouter extends _i10.RootStackRouter {
       return _i10.MaterialPageX<dynamic>(
           routeData: routeData, child: _i5.ShopFormPage(key: args.key));
     },
-    DebugLocationRoute.name: (routeData) {
-      final args = routeData.argsAs<DebugLocationRouteArgs>(
-          orElse: () => const DebugLocationRouteArgs());
+    LocationPickerRoute.name: (routeData) {
+      final args = routeData.argsAs<LocationPickerRouteArgs>(
+          orElse: () => const LocationPickerRouteArgs());
       return _i10.MaterialPageX<dynamic>(
-          routeData: routeData, child: _i6.DebugLocationPage(key: args.key));
+          routeData: routeData, child: _i6.LocationPickerPage(key: args.key));
     },
     OpeningHoursRoute.name: (routeData) {
       final args = routeData.argsAs<OpeningHoursRouteArgs>(
@@ -84,8 +85,8 @@ class AppRouter extends _i10.RootStackRouter {
         _i10.RouteConfig(RegistrationWrappingRoute.name, path: '/', children: [
           _i10.RouteConfig(ShopFormRoute.name,
               path: '', parent: RegistrationWrappingRoute.name),
-          _i10.RouteConfig(DebugLocationRoute.name,
-              path: 'debug-location-page',
+          _i10.RouteConfig(LocationPickerRoute.name,
+              path: 'location-picker-page',
               parent: RegistrationWrappingRoute.name),
           _i10.RouteConfig(OpeningHoursRoute.name,
               path: 'opening-hours-page',
@@ -136,7 +137,7 @@ class RegistrationWrappingRoute extends _i10.PageRouteInfo<void> {
 /// generated route for
 /// [_i5.ShopFormPage]
 class ShopFormRoute extends _i10.PageRouteInfo<ShopFormRouteArgs> {
-  ShopFormRoute({_i11.Key? key})
+  ShopFormRoute({_i12.Key? key})
       : super(ShopFormRoute.name, path: '', args: ShopFormRouteArgs(key: key));
 
   static const String name = 'ShopFormRoute';
@@ -145,7 +146,7 @@ class ShopFormRoute extends _i10.PageRouteInfo<ShopFormRouteArgs> {
 class ShopFormRouteArgs {
   const ShopFormRouteArgs({this.key});
 
-  final _i11.Key? key;
+  final _i12.Key? key;
 
   @override
   String toString() {
@@ -154,31 +155,31 @@ class ShopFormRouteArgs {
 }
 
 /// generated route for
-/// [_i6.DebugLocationPage]
-class DebugLocationRoute extends _i10.PageRouteInfo<DebugLocationRouteArgs> {
-  DebugLocationRoute({_i11.Key? key})
-      : super(DebugLocationRoute.name,
-            path: 'debug-location-page',
-            args: DebugLocationRouteArgs(key: key));
+/// [_i6.LocationPickerPage]
+class LocationPickerRoute extends _i10.PageRouteInfo<LocationPickerRouteArgs> {
+  LocationPickerRoute({_i12.Key? key})
+      : super(LocationPickerRoute.name,
+            path: 'location-picker-page',
+            args: LocationPickerRouteArgs(key: key));
 
-  static const String name = 'DebugLocationRoute';
+  static const String name = 'LocationPickerRoute';
 }
 
-class DebugLocationRouteArgs {
-  const DebugLocationRouteArgs({this.key});
+class LocationPickerRouteArgs {
+  const LocationPickerRouteArgs({this.key});
 
-  final _i11.Key? key;
+  final _i12.Key? key;
 
   @override
   String toString() {
-    return 'DebugLocationRouteArgs{key: $key}';
+    return 'LocationPickerRouteArgs{key: $key}';
   }
 }
 
 /// generated route for
 /// [_i7.OpeningHoursPage]
 class OpeningHoursRoute extends _i10.PageRouteInfo<OpeningHoursRouteArgs> {
-  OpeningHoursRoute({_i11.Key? key})
+  OpeningHoursRoute({_i12.Key? key})
       : super(OpeningHoursRoute.name,
             path: 'opening-hours-page', args: OpeningHoursRouteArgs(key: key));
 
@@ -188,7 +189,7 @@ class OpeningHoursRoute extends _i10.PageRouteInfo<OpeningHoursRouteArgs> {
 class OpeningHoursRouteArgs {
   const OpeningHoursRouteArgs({this.key});
 
-  final _i11.Key? key;
+  final _i12.Key? key;
 
   @override
   String toString() {
@@ -200,7 +201,7 @@ class OpeningHoursRouteArgs {
 /// [_i8.RegistrationRecapPage]
 class RegistrationRecapRoute
     extends _i10.PageRouteInfo<RegistrationRecapRouteArgs> {
-  RegistrationRecapRoute({_i11.Key? key})
+  RegistrationRecapRoute({_i12.Key? key})
       : super(RegistrationRecapRoute.name,
             path: 'registration-recap-page',
             args: RegistrationRecapRouteArgs(key: key));
@@ -211,7 +212,7 @@ class RegistrationRecapRoute
 class RegistrationRecapRouteArgs {
   const RegistrationRecapRouteArgs({this.key});
 
-  final _i11.Key? key;
+  final _i12.Key? key;
 
   @override
   String toString() {

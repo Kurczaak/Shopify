@@ -61,10 +61,7 @@ class RegistrationWrappingPage extends StatelessWidget {
           BlocProvider<ShopLogoPickerBloc>(
               create: (context) => getIt<ShopLogoPickerBloc>()),
         ],
-        child: Padding(
-          padding: const EdgeInsets.all(28.0),
-          child: AutoRouter(),
-        ),
+        child: AutoRouter(),
       ),
     );
   }

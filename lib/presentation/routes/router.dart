@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:shopify_manager/presentation/core/debug_page.dart';
 import 'package:shopify_manager/presentation/debug/registration_wrapping_page.dart';
-import 'package:shopify_manager/presentation/register_shop/debug_location_page.dart';
+import 'package:shopify_manager/presentation/register_shop/location_picker/location_picker_page.dart';
 import 'package:shopify_manager/presentation/register_shop/opening_hours/opening_hours_page.dart';
 import 'package:shopify_manager/presentation/register_shop/shop_form/shop_form_page.dart';
 import 'package:shopify_manager/presentation/registration_recap_page.dart';
@@ -35,7 +35,7 @@ import 'package:shopify_manager/presentation/splash/splash_page.dart';
           initial: true,
         ),
         AutoRoute(
-          page: DebugLocationPage,
+          page: LocationPickerPage,
         ),
         AutoRoute(
           page: OpeningHoursPage,

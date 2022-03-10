@@ -168,7 +168,7 @@ class _ShopFormPageState extends State<ShopFormPage> {
               child: ElevatedButton(
                 onPressed: () async {
                   FocusManager.instance.primaryFocus?.unfocus();
-                  await context.router.navigate(DebugLocationRoute());
+                  await context.router.navigate(LocationPickerRoute());
                   context
                       .read<ShopFormBloc>()
                       .add(const ShopFormEvent.proceeded());

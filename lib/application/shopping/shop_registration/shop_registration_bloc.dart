@@ -82,6 +82,7 @@ class ShopRegistrationBloc
     on<ShopRegistrationEvent>((event, emit) async {
       await event.when(
         formSaved: (formSavedState) async {
+          print(formSavedState.shopForm.address);
           emit(state.copyWith(
               shop: state.shop.copyWith(
             address: formSavedState.shopForm.address,
