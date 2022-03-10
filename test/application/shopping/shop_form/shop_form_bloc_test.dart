@@ -154,24 +154,25 @@ void main() {
     ShopFormState initialState = shopFormBloc.state;
 
     blocTest(
-      'should set saved to true when saving valid form',
-      build: () {
-        return ShopFormBloc();
-      },
-      seed: () => ShopFormState.initial().copyWith(
-        saved: false,
-        shop: tShop,
-      ),
-      act: (ShopFormBloc bloc) => bloc.add(const ShopFormEvent.proceeded()),
-      verify: (ShopFormBloc bloc) {
-        expectLater(
-            bloc.state,
-            ShopFormState.initial().copyWith(
+        'should set saved to true, and back to false when saving valid form',
+        build: () {
+          return ShopFormBloc();
+        },
+        seed: () => ShopFormState.initial().copyWith(
+              saved: false,
               shop: tShop,
-              saved: true,
-            ));
-      },
-    );
+            ),
+        act: (ShopFormBloc bloc) => bloc.add(const ShopFormEvent.proceeded()),
+        expect: () => [
+              ShopFormState.initial().copyWith(
+                shop: tShop,
+                saved: true,
+              ),
+              ShopFormState.initial().copyWith(
+                shop: tShop,
+                saved: false,
+              )
+            ]);
     testEmptyFormField(
         'should emit saving and failure states when trying to save a shop with an empty shopName field',
         bloc: ShopFormBloc(),
