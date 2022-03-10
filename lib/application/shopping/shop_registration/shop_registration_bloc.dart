@@ -90,6 +90,7 @@ class ShopRegistrationBloc
           )));
           final location = await locationInfo
               .getLocationFromAddress(formSavedState.shopForm.address);
+
           shopLocationPickerBloc.add(ShopLocationPickerEvent.locationChanged(
               latitude: location.latitude, longitude: location.longitude));
         },
