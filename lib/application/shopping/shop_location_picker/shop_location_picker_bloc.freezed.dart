@@ -25,6 +25,10 @@ class _$ShopLocationPickerEventTearOff {
     );
   }
 
+  _LocationNotFound locationNotFound() {
+    return _LocationNotFound();
+  }
+
   _Saved saved() {
     return _Saved();
   }
@@ -39,18 +43,21 @@ mixin _$ShopLocationPickerEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(double latitude, double longitude)
         locationChanged,
+    required TResult Function() locationNotFound,
     required TResult Function() saved,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(double latitude, double longitude)? locationChanged,
+    TResult Function()? locationNotFound,
     TResult Function()? saved,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(double latitude, double longitude)? locationChanged,
+    TResult Function()? locationNotFound,
     TResult Function()? saved,
     required TResult orElse(),
   }) =>
@@ -58,18 +65,21 @@ mixin _$ShopLocationPickerEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_LocationChanged value) locationChanged,
+    required TResult Function(_LocationNotFound value) locationNotFound,
     required TResult Function(_Saved value) saved,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_LocationChanged value)? locationChanged,
+    TResult Function(_LocationNotFound value)? locationNotFound,
     TResult Function(_Saved value)? saved,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_LocationChanged value)? locationChanged,
+    TResult Function(_LocationNotFound value)? locationNotFound,
     TResult Function(_Saved value)? saved,
     required TResult orElse(),
   }) =>
@@ -170,6 +180,7 @@ class _$_LocationChanged implements _LocationChanged {
   TResult when<TResult extends Object?>({
     required TResult Function(double latitude, double longitude)
         locationChanged,
+    required TResult Function() locationNotFound,
     required TResult Function() saved,
   }) {
     return locationChanged(latitude, longitude);
@@ -179,6 +190,7 @@ class _$_LocationChanged implements _LocationChanged {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(double latitude, double longitude)? locationChanged,
+    TResult Function()? locationNotFound,
     TResult Function()? saved,
   }) {
     return locationChanged?.call(latitude, longitude);
@@ -188,6 +200,7 @@ class _$_LocationChanged implements _LocationChanged {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(double latitude, double longitude)? locationChanged,
+    TResult Function()? locationNotFound,
     TResult Function()? saved,
     required TResult orElse(),
   }) {
@@ -201,6 +214,7 @@ class _$_LocationChanged implements _LocationChanged {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_LocationChanged value) locationChanged,
+    required TResult Function(_LocationNotFound value) locationNotFound,
     required TResult Function(_Saved value) saved,
   }) {
     return locationChanged(this);
@@ -210,6 +224,7 @@ class _$_LocationChanged implements _LocationChanged {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_LocationChanged value)? locationChanged,
+    TResult Function(_LocationNotFound value)? locationNotFound,
     TResult Function(_Saved value)? saved,
   }) {
     return locationChanged?.call(this);
@@ -219,6 +234,7 @@ class _$_LocationChanged implements _LocationChanged {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_LocationChanged value)? locationChanged,
+    TResult Function(_LocationNotFound value)? locationNotFound,
     TResult Function(_Saved value)? saved,
     required TResult orElse(),
   }) {
@@ -239,6 +255,118 @@ abstract class _LocationChanged implements ShopLocationPickerEvent {
   @JsonKey(ignore: true)
   _$LocationChangedCopyWith<_LocationChanged> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$LocationNotFoundCopyWith<$Res> {
+  factory _$LocationNotFoundCopyWith(
+          _LocationNotFound value, $Res Function(_LocationNotFound) then) =
+      __$LocationNotFoundCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$LocationNotFoundCopyWithImpl<$Res>
+    extends _$ShopLocationPickerEventCopyWithImpl<$Res>
+    implements _$LocationNotFoundCopyWith<$Res> {
+  __$LocationNotFoundCopyWithImpl(
+      _LocationNotFound _value, $Res Function(_LocationNotFound) _then)
+      : super(_value, (v) => _then(v as _LocationNotFound));
+
+  @override
+  _LocationNotFound get _value => super._value as _LocationNotFound;
+}
+
+/// @nodoc
+
+class _$_LocationNotFound implements _LocationNotFound {
+  _$_LocationNotFound();
+
+  @override
+  String toString() {
+    return 'ShopLocationPickerEvent.locationNotFound()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _LocationNotFound);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(double latitude, double longitude)
+        locationChanged,
+    required TResult Function() locationNotFound,
+    required TResult Function() saved,
+  }) {
+    return locationNotFound();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(double latitude, double longitude)? locationChanged,
+    TResult Function()? locationNotFound,
+    TResult Function()? saved,
+  }) {
+    return locationNotFound?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(double latitude, double longitude)? locationChanged,
+    TResult Function()? locationNotFound,
+    TResult Function()? saved,
+    required TResult orElse(),
+  }) {
+    if (locationNotFound != null) {
+      return locationNotFound();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_LocationChanged value) locationChanged,
+    required TResult Function(_LocationNotFound value) locationNotFound,
+    required TResult Function(_Saved value) saved,
+  }) {
+    return locationNotFound(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_LocationChanged value)? locationChanged,
+    TResult Function(_LocationNotFound value)? locationNotFound,
+    TResult Function(_Saved value)? saved,
+  }) {
+    return locationNotFound?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_LocationChanged value)? locationChanged,
+    TResult Function(_LocationNotFound value)? locationNotFound,
+    TResult Function(_Saved value)? saved,
+    required TResult orElse(),
+  }) {
+    if (locationNotFound != null) {
+      return locationNotFound(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _LocationNotFound implements ShopLocationPickerEvent {
+  factory _LocationNotFound() = _$_LocationNotFound;
 }
 
 /// @nodoc
@@ -282,6 +410,7 @@ class _$_Saved implements _Saved {
   TResult when<TResult extends Object?>({
     required TResult Function(double latitude, double longitude)
         locationChanged,
+    required TResult Function() locationNotFound,
     required TResult Function() saved,
   }) {
     return saved();
@@ -291,6 +420,7 @@ class _$_Saved implements _Saved {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(double latitude, double longitude)? locationChanged,
+    TResult Function()? locationNotFound,
     TResult Function()? saved,
   }) {
     return saved?.call();
@@ -300,6 +430,7 @@ class _$_Saved implements _Saved {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(double latitude, double longitude)? locationChanged,
+    TResult Function()? locationNotFound,
     TResult Function()? saved,
     required TResult orElse(),
   }) {
@@ -313,6 +444,7 @@ class _$_Saved implements _Saved {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_LocationChanged value) locationChanged,
+    required TResult Function(_LocationNotFound value) locationNotFound,
     required TResult Function(_Saved value) saved,
   }) {
     return saved(this);
@@ -322,6 +454,7 @@ class _$_Saved implements _Saved {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_LocationChanged value)? locationChanged,
+    TResult Function(_LocationNotFound value)? locationNotFound,
     TResult Function(_Saved value)? saved,
   }) {
     return saved?.call(this);
@@ -331,6 +464,7 @@ class _$_Saved implements _Saved {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_LocationChanged value)? locationChanged,
+    TResult Function(_LocationNotFound value)? locationNotFound,
     TResult Function(_Saved value)? saved,
     required TResult orElse(),
   }) {

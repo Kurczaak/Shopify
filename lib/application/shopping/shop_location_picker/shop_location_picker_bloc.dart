@@ -22,6 +22,8 @@ class ShopLocationPickerBloc
           emit(state.copyWith(saved: true));
           emit(state.copyWith(saved: false));
         }
+      }, locationNotFound: (e) {
+        emit(ShopLocationPickerState.initial());
       });
     });
   }

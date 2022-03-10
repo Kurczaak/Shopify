@@ -48,4 +48,13 @@ void main() {
         bloc.add(ShopLocationPickerEvent.saved()),
     expect: () => [],
   );
+
+  blocTest(
+    'saved emit initial state when no location has been found',
+    build: () => ShopLocationPickerBloc(),
+    seed: () => ShopLocationPickerState(location: some(tLocation), saved: true),
+    act: (ShopLocationPickerBloc bloc) =>
+        bloc.add(ShopLocationPickerEvent.locationNotFound()),
+    expect: () => [ShopLocationPickerState.initial()],
+  );
 }
