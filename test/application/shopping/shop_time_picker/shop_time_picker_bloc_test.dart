@@ -262,12 +262,15 @@ void main() {
             .copyWith(openingInterval: TimeInterval.fullHours(22, 8)));
 
     blocTest(
-      'shoud emit [SAVED] state when the week is valid',
+      'shoud emit [SAVED], and [notSaved] state when the week is valid',
       build: () => ShopTimePickerBloc(),
       seed: () => ShopTimePickerState.initial().copyWith(week: tValidWeek),
       act: (ShopTimePickerBloc bloc) =>
           bloc.add(const ShopTimePickerEvent.proceeded()),
-      expect: () => [ShopTimePickerState.saved(week: tValidWeek)],
+      expect: () => [
+        ShopTimePickerState.saved(week: tValidWeek),
+        ShopTimePickerState.saved(week: tValidWeek).copyWith(saved: false),
+      ],
     );
 
     blocTest(
