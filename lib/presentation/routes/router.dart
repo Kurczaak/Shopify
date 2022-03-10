@@ -1,5 +1,5 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:shopify_manager/presentation/register_shop/location_picker/logo_picker_page.dart';
+import 'package:shopify_manager/presentation/register_shop/logo_picker/logo_picker_page.dart';
 import 'package:shopify_manager/presentation/debug/registration_wrapping_page.dart';
 import 'package:shopify_manager/presentation/register_shop/location_picker/location_picker_page.dart';
 import 'package:shopify_manager/presentation/register_shop/opening_hours/opening_hours_page.dart';

@@ -15,7 +15,7 @@ import 'package:flutter/material.dart' as _i11;
 
 import '../debug/registration_wrapping_page.dart' as _i4;
 import '../register_shop/location_picker/location_picker_page.dart' as _i6;
-import '../register_shop/location_picker/logo_picker_page.dart' as _i8;
+import '../register_shop/logo_picker/logo_picker_page.dart' as _i8;
 import '../register_shop/opening_hours/opening_hours_page.dart' as _i7;
 import '../register_shop/shop_form/shop_form_page.dart' as _i5;
 import '../registration_recap_page.dart' as _i9;
