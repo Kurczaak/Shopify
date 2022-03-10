@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:flutter/services.dart';
 import 'package:geocoding/geocoding.dart' as g;
 import 'package:injectable/injectable.dart';
 import 'package:shopify_manager/domain/core/address.dart';
@@ -30,7 +31,7 @@ class LocationInfoImpl implements LocationInfo {
         return right(Location.fromLatLang(
             latitude: location.latitude, longitude: location.longitude));
       }
-    } on UnimplementedError catch (_) {
+    } on PlatformException catch (_) {
       //TODO LOG THIS ERROR
       return left(const LocationFailure.unexpected());
     }

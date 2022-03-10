@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -61,7 +62,7 @@ void main() {
     () async {
       // arrange
       when(mockGeocodingPlatform.locationFromAddress(tAddress.toString()))
-          .thenThrow(UnimplementedError());
+          .thenThrow(PlatformException(code: 'IO Error'));
       // act
       final result = await locationInfo.getLocationFromAddress(tAddress);
       // assert
