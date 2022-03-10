@@ -27,7 +27,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'dart:async';
 import 'package:auto_route/auto_route.dart';
-import './routes/router.gr.dart';
+import '../../routes/router.gr.dart';
 import 'package:shopify_manager/domain/shopping/time/day.dart';
 
 class RegistrationRecapPage extends StatefulWidget {

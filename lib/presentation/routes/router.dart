@@ -1,10 +1,11 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:shopify_manager/presentation/debug_dashboard_page.dart';
 import 'package:shopify_manager/presentation/register_shop/logo_picker/logo_picker_page.dart';
 import 'package:shopify_manager/presentation/debug/registration_wrapping_page.dart';
 import 'package:shopify_manager/presentation/register_shop/location_picker/location_picker_page.dart';
 import 'package:shopify_manager/presentation/register_shop/opening_hours/opening_hours_page.dart';
 import 'package:shopify_manager/presentation/register_shop/shop_form/shop_form_page.dart';
-import 'package:shopify_manager/presentation/registration_recap_page.dart';
+import 'package:shopify_manager/presentation/register_shop/recap/registration_recap_page.dart';
 import 'package:shopify_manager/presentation/sign_in/sign_in_page.dart';
 import 'package:shopify_manager/presentation/sign_in/sign_up_page.dart';
 import 'package:shopify_manager/presentation/splash/splash_page.dart';
@@ -27,8 +28,12 @@ import 'package:shopify_manager/presentation/splash/splash_page.dart';
     ),
 
     AutoRoute(
-      page: RegistrationWrappingPage,
+      page: DebugDashboardPage,
       initial: true,
+    ),
+
+    AutoRoute(
+      page: RegistrationWrappingPage,
       children: [
         AutoRoute(
           page: ShopFormPage,
