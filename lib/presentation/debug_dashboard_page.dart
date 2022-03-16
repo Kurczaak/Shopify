@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:shopify_manager/injection.dart';
 import 'routes/router.gr.dart';
 
 class DebugDashboardPage extends StatelessWidget {
@@ -17,7 +18,7 @@ class DebugDashboardPage extends StatelessWidget {
                 onPressed: () {
                   context.router.push(const RegistrationWrappingRoute());
                 },
-                child: const Text('Register Shop'))
+                child: const Text('Register Shop')),
           ],
         ),
       ),

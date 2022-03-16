@@ -8,7 +8,7 @@ part 'shop_time_picker_event.dart';
 part 'shop_time_picker_state.dart';
 part 'shop_time_picker_bloc.freezed.dart';
 
-@singleton
+@LazySingleton()
 class ShopTimePickerBloc
     extends Bloc<ShopTimePickerEvent, ShopTimePickerState> {
   ShopTimePickerBloc() : super(ShopTimePickerState.initial()) {

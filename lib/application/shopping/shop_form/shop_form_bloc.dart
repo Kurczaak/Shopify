@@ -13,7 +13,7 @@ part 'shop_form_event.dart';
 part 'shop_form_state.dart';
 part 'shop_form_bloc.freezed.dart';
 
-@singleton
+@LazySingleton()
 class ShopFormBloc extends Bloc<ShopFormEvent, ShopFormState> {
   ShopFormBloc() : super(ShopFormState.initial()) {
     on<ShopFormEvent>((event, emit) {

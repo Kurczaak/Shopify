@@ -64,9 +64,10 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => imagePikcerInjectableModule.imagePicker);
   gh.lazySingleton<_i13.LocationInfo>(
       () => _i13.LocationInfoImpl(get<_i6.GeocodingPlatform>()));
-  gh.singleton<_i14.ShopFormBloc>(_i14.ShopFormBloc());
-  gh.singleton<_i15.ShopLocationPickerBloc>(_i15.ShopLocationPickerBloc());
-  gh.singleton<_i16.ShopTimePickerBloc>(_i16.ShopTimePickerBloc());
+  gh.lazySingleton<_i14.ShopFormBloc>(() => _i14.ShopFormBloc());
+  gh.lazySingleton<_i15.ShopLocationPickerBloc>(
+      () => _i15.ShopLocationPickerBloc());
+  gh.lazySingleton<_i16.ShopTimePickerBloc>(() => _i16.ShopTimePickerBloc());
   gh.factory<_i17.ShoppingActorBloc>(
       () => _i17.ShoppingActorBloc(get<_i10.IShopRepository>()));
   gh.factory<_i18.ShoppingWatcherBloc>(
@@ -76,15 +77,17 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.factory<_i20.AuthBloc>(() => _i20.AuthBloc(get<_i8.IAuthFacade>()));
   gh.lazySingleton<_i21.IImageFacade>(
       () => _i22.ImagePickerImageFacade(get<_i12.ImagePicker>()));
-  gh.singleton<_i23.ShopLogoPickerBloc>(
-      _i23.ShopLogoPickerBloc(get<_i21.IImageFacade>()));
-  gh.singleton<_i24.ShopRegistrationBloc>(_i24.ShopRegistrationBloc(
-      shopFormBloc: get<_i14.ShopFormBloc>(),
-      shopLocationPickerBloc: get<_i15.ShopLocationPickerBloc>(),
-      shopTimePickerBloc: get<_i16.ShopTimePickerBloc>(),
-      shopLogoPickerBloc: get<_i23.ShopLogoPickerBloc>(),
-      locationInfo: get<_i13.LocationInfo>(),
-      shopRepository: get<_i10.IShopRepository>()));
+  gh.lazySingleton<_i23.ShopLogoPickerBloc>(
+      () => _i23.ShopLogoPickerBloc(get<_i21.IImageFacade>()));
+  gh.lazySingleton<_i24.ShopRegistrationBloc>(
+      () => _i24.ShopRegistrationBloc(
+          shopFormBloc: get<_i14.ShopFormBloc>(),
+          shopLocationPickerBloc: get<_i15.ShopLocationPickerBloc>(),
+          shopTimePickerBloc: get<_i16.ShopTimePickerBloc>(),
+          shopLogoPickerBloc: get<_i23.ShopLogoPickerBloc>(),
+          locationInfo: get<_i13.LocationInfo>(),
+          shopRepository: get<_i10.IShopRepository>()),
+      dispose: _i24.disposeBloc);
   return get;
 }
 

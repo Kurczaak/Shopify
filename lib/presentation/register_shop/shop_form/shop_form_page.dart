@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopify_manager/application/shopping/shop_form/shop_form_bloc.dart';
+import 'package:shopify_manager/application/shopping/shop_registration/shop_registration_bloc.dart';
 import 'package:shopify_manager/injection.dart';
 import 'package:shopify_manager/presentation/core/widgets/process_appbar.dart';
+import 'package:shopify_manager/presentation/core/widgets/shopify_primary_button.dart';
+import 'package:shopify_manager/presentation/core/widgets/shopify_secondary_button.dart';
 import 'package:shopify_manager/presentation/core/widgets/shopify_text_form_field.dart';
 import 'package:shopify_manager/presentation/register_shop/widgets/registration_progress_bar.dart';
 import 'package:shopify_manager/presentation/routes/router.gr.dart';
@@ -61,10 +64,39 @@ class _ShopFormPageState extends State<ShopFormPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: BlocConsumer<ShopFormBloc, ShopFormState>(
-        listener: (context, state) async {},
-        builder: (context, state) => Column(
+    return BlocConsumer<ShopFormBloc, ShopFormState>(
+      listener: (context, state) async {},
+      builder: (context, state) => WillPopScope(
+        onWillPop: () async {
+          final dialogOutput = await showDialog<bool>(
+              context: context,
+              builder: (context) {
+                return AlertDialog(
+                  title: const Text('Do you want to quit?'),
+                  content: SingleChildScrollView(
+                      child: const Text('All your progress will be lost')),
+                  actions: [
+                    ShopifySecondaryButton(
+                        onPressed: () {
+                          Navigator.pop(context, false);
+                        },
+                        text: 'Cancel'),
+                    ShopifyPrimaryButton(
+                        onPressed: () {
+                          Navigator.pop(context, true);
+                        },
+                        text: 'Ok'),
+                  ],
+                );
+              });
+          if (dialogOutput != null && dialogOutput) {
+            getIt.resetLazySingleton<ShopRegistrationBloc>();
+            return true;
+          } else {
+            return false;
+          }
+        },
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const RegistrationProgressRow(

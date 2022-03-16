@@ -5,6 +5,7 @@ import 'package:shopify_manager/application/shopping/shop_form/shop_form_bloc.da
 import 'package:shopify_manager/application/shopping/shop_location_picker/shop_location_picker_bloc.dart';
 import 'package:shopify_manager/application/shopping/shop_registration/shop_registration_bloc.dart';
 import 'package:shopify_manager/domain/core/failures.dart';
+import 'package:shopify_manager/domain/shopping/shop_form.dart';
 import 'package:shopify_manager/injection.dart';
 import 'package:shopify_manager/presentation/core/widgets/process_appbar.dart';
 import 'package:shopify_manager/presentation/core/widgets/shopify_text_form_field.dart';
@@ -44,7 +45,7 @@ class RegistrationWrappingPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: ProcessAppBar(
-        onPressed: () => context.router.navigateBack(),
+        onPressed: () => context.router.popTop(),
         appBar: AppBar(),
         title: 'Register Shop',
       ),
@@ -61,39 +62,14 @@ class RegistrationWrappingPage extends StatelessWidget {
           BlocProvider<ShopLogoPickerBloc>(
               create: (context) => getIt<ShopLogoPickerBloc>()),
         ],
-        child: AutoRouter(),
+        child: MultiBlocListener(listeners: [
+          BlocListener<ShopRegistrationBloc, ShopRegistrationState>(
+              listener: (_, __) {}),
+          BlocListener<ShopFormBloc, ShopFormState>(listener: (_, __) {}),
+          BlocListener<ShopLocationPickerBloc, ShopLocationPickerState>(
+              listener: (_, __) {}),
+        ], child: AutoRouter()),
       ),
     );
   }
 }
-
-//  Scaffold(
-//   appBar: ProcessAppBar(
-//     title: 'Register Shop',
-//     appBar: AppBar(),
-//     onPressed: () {},
-//   ),
-//   body: MultiBlocProvider(
-//     providers: [
-//       BlocProvider(create: (context) => getIt<ShopRegistrationBloc>()),
-//       BlocProvider(create: (context) => getIt<ShopFormBloc>()),
-//       BlocProvider(create: (context) => getIt<ShopLocationPickerBloc>()),
-//     ],
-//     child: Column(
-//       children: [
-//         AutoRouter(),
-//         SizedBox(
-//                       height: 50,
-//                       child: ElevatedButton(
-//                         onPressed: () {
-//                           context
-//                               .read<ShopFormBloc>()
-//                               .add(const ShopFormEvent.proceeded());
-//                         },
-//                         child: const Text('Location'),
-//                       ),
-//                     ),
-//       ],
-//     ),
-//   ),
-// );

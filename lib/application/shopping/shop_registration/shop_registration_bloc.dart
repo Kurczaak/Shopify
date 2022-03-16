@@ -14,6 +14,7 @@ import 'package:shopify_manager/domain/shopping/shop_failure.dart';
 import 'package:shopify_manager/domain/shopping/shop_form.dart';
 import 'package:shopify_manager/domain/shopping/time/week.dart';
 import 'package:shopify_manager/domain/shopping/value_objects.dart';
+import 'package:shopify_manager/injection.dart';
 import 'package:super_enum_sealed_annotations/super_enum_sealed_annotations.dart';
 import 'package:shopify_manager/application/shopping/shop_form/shop_form_bloc.dart';
 import 'package:shopify_manager/application/shopping/shop_location_picker/shop_location_picker_bloc.dart';
@@ -26,7 +27,17 @@ part 'shop_registration_state.dart';
 part 'shop_registration_bloc.super.dart';
 part 'shop_registration_bloc.freezed.dart';
 
-@singleton
+FutureOr disposeBloc(ShopRegistrationBloc bloc) {
+  print('=========================================');
+  print('Resetting ShopRegistrationBloc singletons');
+  print('=========================================');
+  getIt.resetLazySingleton<ShopFormBloc>();
+  getIt.resetLazySingleton<ShopLocationPickerBloc>();
+  getIt.resetLazySingleton<ShopTimePickerBloc>();
+  getIt.resetLazySingleton<ShopLogoPickerBloc>();
+}
+
+@LazySingleton(dispose: disposeBloc)
 class ShopRegistrationBloc
     extends Bloc<ShopRegistrationEvent, ShopRegistrationState> {
   final ShopFormBloc shopFormBloc;
