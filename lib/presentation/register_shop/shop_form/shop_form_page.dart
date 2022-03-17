@@ -4,6 +4,7 @@ import 'package:shopify_manager/application/shopping/shop_form/shop_form_bloc.da
 import 'package:shopify_manager/application/shopping/shop_registration/shop_registration_bloc.dart';
 import 'package:shopify_manager/injection.dart';
 import 'package:shopify_manager/presentation/core/widgets/process_appbar.dart';
+import 'package:shopify_manager/presentation/core/widgets/shopify_alert_dialog.dart';
 import 'package:shopify_manager/presentation/core/widgets/shopify_primary_button.dart';
 import 'package:shopify_manager/presentation/core/widgets/shopify_secondary_button.dart';
 import 'package:shopify_manager/presentation/core/widgets/shopify_text_form_field.dart';
@@ -71,22 +72,11 @@ class _ShopFormPageState extends State<ShopFormPage> {
           final dialogOutput = await showDialog<bool>(
               context: context,
               builder: (context) {
-                return AlertDialog(
-                  title: const Text('Do you want to quit?'),
-                  content: SingleChildScrollView(
-                      child: const Text('All your progress will be lost')),
-                  actions: [
-                    ShopifySecondaryButton(
-                        onPressed: () {
-                          Navigator.pop(context, false);
-                        },
-                        text: 'Cancel'),
-                    ShopifyPrimaryButton(
-                        onPressed: () {
-                          Navigator.pop(context, true);
-                        },
-                        text: 'Ok'),
-                  ],
+                return const ShopifyAlertDialog(
+                  title: 'Do you want to leave?',
+                  subtitle: 'All your progres will be lost',
+                  cancelText: 'Cancel',
+                  confirmText: 'Ok',
                 );
               });
           if (dialogOutput != null && dialogOutput) {
