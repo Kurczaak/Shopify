@@ -5,8 +5,8 @@ import 'package:shopify_manager/application/shopping/shop_registration/shop_regi
 import 'package:shopify_manager/injection.dart';
 import 'package:shopify_manager/presentation/core/widgets/process_appbar.dart';
 import 'package:shopify_manager/presentation/core/widgets/shopify_alert_dialog.dart';
-import 'package:shopify_manager/presentation/core/widgets/shopify_primary_button.dart';
-import 'package:shopify_manager/presentation/core/widgets/shopify_secondary_button.dart';
+
+import 'package:shopify_manager/presentation/core/widgets/shopify_buttons.dart';
 import 'package:shopify_manager/presentation/core/widgets/shopify_text_form_field.dart';
 import 'package:shopify_manager/presentation/register_shop/widgets/registration_progress_bar.dart';
 import 'package:shopify_manager/presentation/routes/router.gr.dart';
@@ -72,11 +72,17 @@ class _ShopFormPageState extends State<ShopFormPage> {
           final dialogOutput = await showDialog<bool>(
               context: context,
               builder: (context) {
-                return const ShopifyAlertDialog(
+                return ShopifyAlertDialog(
                   title: 'Do you want to leave?',
                   subtitle: 'All your progres will be lost',
                   cancelText: 'Cancel',
                   confirmText: 'Ok',
+                  onCancel: () {
+                    Navigator.of(context).pop(false);
+                  },
+                  onConfirm: () {
+                    Navigator.of(context).pop(true);
+                  },
                 );
               });
           if (dialogOutput != null && dialogOutput) {
