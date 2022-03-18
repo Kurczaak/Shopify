@@ -10,9 +10,11 @@ class ShopifyTextFormField extends StatelessWidget {
     required this.value,
     required this.onChanged,
     required this.showErrorMessages,
+    this.textInputAction = TextInputAction.next,
     this.keyboardType,
   }) : super(key: key);
 
+  final TextInputAction textInputAction;
   final TextEditingController controller;
   final String fieldName;
   final Either<ValueFailure<String>, String> value;
@@ -23,6 +25,7 @@ class ShopifyTextFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      textInputAction: textInputAction,
       autovalidateMode: showErrorMessages
           ? AutovalidateMode.always
           : AutovalidateMode.disabled,
