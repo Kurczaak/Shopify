@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopify_manager/application/auth/auth_bloc.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:shopify_manager/presentation/core/widgets/shopify_progress_indicator.dart';
 import 'package:shopify_manager/presentation/routes/router.gr.dart';
 import 'package:progress_indicators/progress_indicators.dart';
 
@@ -17,7 +18,7 @@ class SplashPage extends StatelessWidget {
             authenticated: (_) async {
               //TODO remove artificial delay
               await Future.delayed(const Duration(seconds: 4));
-              context.router.replace(ShopFormRoute());
+              context.router.replace(DebugDashboardRoute());
             },
             unauthenticated: (_) async {
               //TODO remove artificial delay
@@ -30,17 +31,7 @@ class SplashPage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              HeartbeatProgressIndicator(
-                startScale: .5,
-                endScale: 1,
-                child: CircleAvatar(
-                    radius: 50,
-                    backgroundColor: Theme.of(context).primaryColor,
-                    child: Image.asset(
-                      'images/logo.png',
-                      fit: BoxFit.fill,
-                    )),
-              ),
+              const ShopifyProgressIndicator(),
               const SizedBox(height: 20),
               HeartbeatProgressIndicator(
                 startScale: .5,
