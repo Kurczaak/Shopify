@@ -11,6 +11,8 @@ import 'package:shopify_manager/domain/shopping/failures.dart';
 import 'package:shopify_manager/domain/shopping/shop.dart';
 import 'package:shopify_manager/domain/shopping/time/week.dart';
 import 'package:shopify_manager/presentation/core/widgets/process_appbar.dart';
+import 'package:shopify_manager/presentation/core/widgets/shopify_alert_dialog.dart';
+import 'package:shopify_manager/presentation/core/widgets/shopify_progress_indicator.dart';
 import 'package:shopify_manager/presentation/register_shop/widgets/hour_dropdown_picker.dart';
 import 'package:shopify_manager/presentation/register_shop/widgets/registration_progress_bar.dart';
 import 'package:shopify_manager/presentation/routes/router.dart';
@@ -54,7 +56,37 @@ class _RegistrationRecapPageState extends State<RegistrationRecapPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: BlocConsumer<ShopRegistrationBloc, ShopRegistrationState>(
-        listener: (context, state) {},
+        listener: (context, state) {
+          if (!state.isSaving) {
+            state.saveFailureOrSuccessOption.fold(
+                () => null,
+                (failureOrUnit) => failureOrUnit.fold(
+                    (f) => showDialog(
+                        context: context,
+                        builder: (context) => ShopifyAlertDialog(
+                            title: 'Error',
+                            subtitle: f.map(
+                                unexpected: (_) =>
+                                    'An unexpected error has occured',
+                                insufficientPermission: (_) =>
+                                    'Insufficient Permission',
+                                unableToUpdate: (_) => 'Unable to update'),
+                            type: DialogType.error,
+                            onConfirm: () {
+                              context.router.pop();
+                            })),
+                    (unit) => showDialog(
+                        context: context,
+                        builder: (context) => ShopifyAlertDialog(
+                            title: 'Success',
+                            subtitle: 'You shop has been succesfully uploaded',
+                            onConfirm: () {
+                              getIt.resetLazySingleton<ShopRegistrationBloc>();
+                              context.router.popUntilRouteWithName(
+                                  DebugDashboardRoute.name);
+                            }))));
+          }
+        },
         builder: (context, state) => Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
