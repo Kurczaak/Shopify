@@ -33,10 +33,12 @@ class FirebaseShopRepositoryImpl implements IShopRepository {
           .doc(shop.id.getOrCrash())
           .set(ShopDto.fromDomain(shopWithUpdatedLogo).toJson());
       return right(unit);
-    } on PlatformException catch (e) {
+    } on FirebaseException catch (e) {
       //TODO log this error
+
       // log.error(e.toString());
-      if (e.message != null && e.message!.contains('PERMISSION_DENIED')) {
+
+      if (e.code.contains('permission-denied')) {
         return left(const ShopFailure.insufficientPermission());
       } else {
         return left(const ShopFailure.unexpected());
@@ -70,10 +72,14 @@ class FirebaseShopRepositoryImpl implements IShopRepository {
 
       await userDoc.shopCollection.doc(shopId).delete();
       return right(unit);
-    } on PlatformException catch (e) {
-      if (e.message != null && e.message!.contains('PERMISSION_DENIED')) {
+    } on FirebaseException catch (e) {
+      //TODO log this error
+
+      // log.error(e.toString());
+
+      if (e.code.contains('permission-denied')) {
         return left(const ShopFailure.insufficientPermission());
-      } else if (e.message != null && e.message!.contains('NOT_FOUND')) {
+      } else if (e.code.contains('not-found')) {
         return left(const ShopFailure.unableToUpdate());
       } else {
         //TODO log this error
@@ -91,10 +97,14 @@ class FirebaseShopRepositoryImpl implements IShopRepository {
 
       await userDoc.shopCollection.doc(shopDto.id).update(shopDto.toJson());
       return right(unit);
-    } on PlatformException catch (e) {
-      if (e.message != null && e.message!.contains('PERMISSION_DENIED')) {
+    } on FirebaseException catch (e) {
+      //TODO log this error
+
+      // log.error(e.toString());
+
+      if (e.code.contains('permission-denied')) {
         return left(const ShopFailure.insufficientPermission());
-      } else if (e.message != null && e.message!.contains('NOT_FOUND')) {
+      } else if (e.code.contains('not-found')) {
         return left(const ShopFailure.unableToUpdate());
       } else {
         //TODO log this error
@@ -118,9 +128,7 @@ class FirebaseShopRepositoryImpl implements IShopRepository {
           ),
         )
         .onErrorReturnWith((e, _) {
-      if (e is PlatformException &&
-          e.message != null &&
-          e.message!.contains('PERMISSION_DENIED')) {
+      if (e is FirebaseException && e.code.contains('permission-denied')) {
         return left(const ShopFailure.insufficientPermission());
       } else {
         //TODO log this error
