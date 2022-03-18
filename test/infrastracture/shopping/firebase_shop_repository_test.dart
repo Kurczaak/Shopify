@@ -190,8 +190,9 @@ void main() async {
       when(mockFirebaseFirestore.collection('shops'))
           .thenReturn(mockCollectionReference);
       when(mockCollectionReference.doc(any)).thenReturn(mockDocumentReference);
-      when(mockDocumentReference.set(any)).thenThrow(PlatformException(
-        code: '1',
+      when(mockDocumentReference.set(any)).thenThrow(FirebaseException(
+        plugin: '1',
+        code: 'unknown',
       ));
       // act
       final result = await firebaseShopRepository.create(tShop, tShopLogo);
@@ -208,8 +209,10 @@ void main() async {
       when(mockFirebaseFirestore.collection('shops'))
           .thenReturn(mockCollectionReference);
       when(mockCollectionReference.doc(any)).thenReturn(mockDocumentReference);
-      when(mockDocumentReference.set(any)).thenThrow(
-          PlatformException(code: '1', message: 'PERMISSION_DENIED'));
+      when(mockDocumentReference.set(any)).thenThrow(FirebaseException(
+        plugin: '1',
+        code: 'permission-denied',
+      ));
       // act
       final result = await firebaseShopRepository.create(tShop, tShopLogo);
       // assert
