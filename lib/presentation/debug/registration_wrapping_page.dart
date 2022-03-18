@@ -8,6 +8,7 @@ import 'package:shopify_manager/domain/core/failures.dart';
 import 'package:shopify_manager/domain/shopping/shop_form.dart';
 import 'package:shopify_manager/injection.dart';
 import 'package:shopify_manager/presentation/core/widgets/process_appbar.dart';
+import 'package:shopify_manager/presentation/core/widgets/shopify_progress_indicator.dart';
 import 'package:shopify_manager/presentation/core/widgets/shopify_text_form_field.dart';
 import 'package:shopify_manager/presentation/register_shop/shop_form/shop_form_page.dart';
 import 'package:shopify_manager/presentation/register_shop/widgets/registration_progress_bar.dart';
@@ -43,32 +44,42 @@ class RegistrationWrappingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: ProcessAppBar(
-        onPressed: () => context.router.popTop(),
-        appBar: AppBar(),
-        title: 'Register Shop',
-      ),
-      body: MultiBlocProvider(
-        providers: [
-          BlocProvider<ShopRegistrationBloc>(
-              create: (context) => getIt<ShopRegistrationBloc>()),
-          BlocProvider<ShopFormBloc>(
-              create: (context) => getIt<ShopFormBloc>()),
-          BlocProvider<ShopLocationPickerBloc>(
-              create: (context) => getIt<ShopLocationPickerBloc>()),
-          BlocProvider<ShopTimePickerBloc>(
-              create: (context) => getIt<ShopTimePickerBloc>()),
-          BlocProvider<ShopLogoPickerBloc>(
-              create: (context) => getIt<ShopLogoPickerBloc>()),
-        ],
-        child: MultiBlocListener(listeners: [
-          BlocListener<ShopRegistrationBloc, ShopRegistrationState>(
-              listener: (_, __) {}),
-          BlocListener<ShopFormBloc, ShopFormState>(listener: (_, __) {}),
-          BlocListener<ShopLocationPickerBloc, ShopLocationPickerState>(
-              listener: (_, __) {}),
-        ], child: AutoRouter()),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<ShopRegistrationBloc>(
+            create: (context) => getIt<ShopRegistrationBloc>()),
+        BlocProvider<ShopFormBloc>(create: (context) => getIt<ShopFormBloc>()),
+        BlocProvider<ShopLocationPickerBloc>(
+            create: (context) => getIt<ShopLocationPickerBloc>()),
+        BlocProvider<ShopTimePickerBloc>(
+            create: (context) => getIt<ShopTimePickerBloc>()),
+        BlocProvider<ShopLogoPickerBloc>(
+            create: (context) => getIt<ShopLogoPickerBloc>()),
+      ],
+      child: BlocConsumer<ShopRegistrationBloc, ShopRegistrationState>(
+        listener: (_, __) {},
+        builder: (context, state) => LoadingOverlay(
+          opacity: .5,
+          color: Colors.black,
+          progressIndicator: const ShopifyProgressIndicator(
+            duration: Duration(milliseconds: 700),
+          ),
+          isLoading: state.isSaving,
+          child: Scaffold(
+            appBar: ProcessAppBar(
+              onPressed: () => context.router.popTop(),
+              appBar: AppBar(),
+              title: 'Register Shop',
+            ),
+            body: MultiBlocListener(listeners: [
+              BlocListener<ShopRegistrationBloc, ShopRegistrationState>(
+                  listener: (_, __) {}),
+              BlocListener<ShopFormBloc, ShopFormState>(listener: (_, __) {}),
+              BlocListener<ShopLocationPickerBloc, ShopLocationPickerState>(
+                  listener: (_, __) {}),
+            ], child: AutoRouter()),
+          ),
+        ),
       ),
     );
   }
