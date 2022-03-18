@@ -51,7 +51,6 @@ class OpeningHoursPage extends StatelessWidget {
       builder: (context, state) => Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          const SizedBox(height: 28),
           const RegistrationProgressRow(
             title: 'Opening hours',
             subtitle: 'Adjust the time users can pickup orders',
