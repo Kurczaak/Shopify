@@ -73,11 +73,8 @@ class AppRouter extends _i11.RootStackRouter {
           routeData: routeData, child: const _i9.LogoPickerPage());
     },
     RegistrationRecapRoute.name: (routeData) {
-      final args = routeData.argsAs<RegistrationRecapRouteArgs>(
-          orElse: () => const RegistrationRecapRouteArgs());
       return _i11.MaterialPageX<dynamic>(
-          routeData: routeData,
-          child: _i10.RegistrationRecapPage(key: args.key));
+          routeData: routeData, child: const _i10.RegistrationRecapPage());
     }
   };
 
@@ -226,23 +223,9 @@ class LogoPickerRoute extends _i11.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i10.RegistrationRecapPage]
-class RegistrationRecapRoute
-    extends _i11.PageRouteInfo<RegistrationRecapRouteArgs> {
-  RegistrationRecapRoute({_i12.Key? key})
-      : super(RegistrationRecapRoute.name,
-            path: 'registration-recap-page',
-            args: RegistrationRecapRouteArgs(key: key));
+class RegistrationRecapRoute extends _i11.PageRouteInfo<void> {
+  const RegistrationRecapRoute()
+      : super(RegistrationRecapRoute.name, path: 'registration-recap-page');
 
   static const String name = 'RegistrationRecapRoute';
-}
-
-class RegistrationRecapRouteArgs {
-  const RegistrationRecapRouteArgs({this.key});
-
-  final _i12.Key? key;
-
-  @override
-  String toString() {
-    return 'RegistrationRecapRouteArgs{key: $key}';
-  }
 }
