@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/services.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
@@ -7,6 +9,7 @@ import 'package:shopify_manager/domain/core/images/photo.dart';
 import 'package:shopify_manager/domain/shopping/i_shop_repository.dart';
 import 'package:shopify_manager/domain/shopping/shop_failure.dart';
 import 'package:shopify_manager/domain/shopping/shop.dart';
+import 'package:shopify_manager/infrastructure/core/config.dart';
 import 'package:shopify_manager/infrastructure/core/firestore_helpers.dart';
 import 'package:shopify_manager/infrastructure/shopping/shop_dtos.dart';
 import 'package:rxdart/rxdart.dart';
@@ -24,14 +27,18 @@ class FirebaseShopRepositoryImpl implements IShopRepository {
     try {
       final taskSnapshot = await _storage.shopLogosReference
           .child(shop.id.getOrCrash())
-          .putFile(logo.getOrCrash());
+          .putFile(logo.getOrCrash())
+          .timeout(timeoutDuration, onTimeout: () {
+        throw TimeoutException('Connection timeout ', timeoutDuration);
+      });
 
       final uploadUrl = await taskSnapshot.ref.getDownloadURL();
       final shopWithUpdatedLogo = shop.copyWith(logoUrl: uploadUrl);
       final shopsCollection = _firestore.shopsCollection;
       await shopsCollection
           .doc(shop.id.getOrCrash())
-          .set(ShopDto.fromDomain(shopWithUpdatedLogo).toJson());
+          .set(ShopDto.fromDomain(shopWithUpdatedLogo).toJson())
+          .timeout(timeoutDuration);
       return right(unit);
     } on FirebaseException catch (e) {
       //TODO log this error
@@ -43,6 +50,8 @@ class FirebaseShopRepositoryImpl implements IShopRepository {
       } else {
         return left(const ShopFailure.unexpected());
       }
+    } on TimeoutException catch (_) {
+      return left(const ShopFailure.timeout(timeoutDuration));
     }
   }
 

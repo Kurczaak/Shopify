@@ -28,6 +28,12 @@ class _$ShopFailureTearOff {
   _UnableToUpdate unableToUpdate() {
     return const _UnableToUpdate();
   }
+
+  _Timeout timeout(Duration timeout) {
+    return _Timeout(
+      timeout,
+    );
+  }
 }
 
 /// @nodoc
@@ -40,6 +46,7 @@ mixin _$ShopFailure {
     required TResult Function() unexpected,
     required TResult Function() insufficientPermission,
     required TResult Function() unableToUpdate,
+    required TResult Function(Duration timeout) timeout,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -47,6 +54,7 @@ mixin _$ShopFailure {
     TResult Function()? unexpected,
     TResult Function()? insufficientPermission,
     TResult Function()? unableToUpdate,
+    TResult Function(Duration timeout)? timeout,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -54,6 +62,7 @@ mixin _$ShopFailure {
     TResult Function()? unexpected,
     TResult Function()? insufficientPermission,
     TResult Function()? unableToUpdate,
+    TResult Function(Duration timeout)? timeout,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -63,6 +72,7 @@ mixin _$ShopFailure {
     required TResult Function(_InsufficientPermission value)
         insufficientPermission,
     required TResult Function(_UnableToUpdate value) unableToUpdate,
+    required TResult Function(_Timeout value) timeout,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -70,6 +80,7 @@ mixin _$ShopFailure {
     TResult Function(_Unexpected value)? unexpected,
     TResult Function(_InsufficientPermission value)? insufficientPermission,
     TResult Function(_UnableToUpdate value)? unableToUpdate,
+    TResult Function(_Timeout value)? timeout,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -77,6 +88,7 @@ mixin _$ShopFailure {
     TResult Function(_Unexpected value)? unexpected,
     TResult Function(_InsufficientPermission value)? insufficientPermission,
     TResult Function(_UnableToUpdate value)? unableToUpdate,
+    TResult Function(_Timeout value)? timeout,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -141,6 +153,7 @@ class _$_Unexpected implements _Unexpected {
     required TResult Function() unexpected,
     required TResult Function() insufficientPermission,
     required TResult Function() unableToUpdate,
+    required TResult Function(Duration timeout) timeout,
   }) {
     return unexpected();
   }
@@ -151,6 +164,7 @@ class _$_Unexpected implements _Unexpected {
     TResult Function()? unexpected,
     TResult Function()? insufficientPermission,
     TResult Function()? unableToUpdate,
+    TResult Function(Duration timeout)? timeout,
   }) {
     return unexpected?.call();
   }
@@ -161,6 +175,7 @@ class _$_Unexpected implements _Unexpected {
     TResult Function()? unexpected,
     TResult Function()? insufficientPermission,
     TResult Function()? unableToUpdate,
+    TResult Function(Duration timeout)? timeout,
     required TResult orElse(),
   }) {
     if (unexpected != null) {
@@ -176,6 +191,7 @@ class _$_Unexpected implements _Unexpected {
     required TResult Function(_InsufficientPermission value)
         insufficientPermission,
     required TResult Function(_UnableToUpdate value) unableToUpdate,
+    required TResult Function(_Timeout value) timeout,
   }) {
     return unexpected(this);
   }
@@ -186,6 +202,7 @@ class _$_Unexpected implements _Unexpected {
     TResult Function(_Unexpected value)? unexpected,
     TResult Function(_InsufficientPermission value)? insufficientPermission,
     TResult Function(_UnableToUpdate value)? unableToUpdate,
+    TResult Function(_Timeout value)? timeout,
   }) {
     return unexpected?.call(this);
   }
@@ -196,6 +213,7 @@ class _$_Unexpected implements _Unexpected {
     TResult Function(_Unexpected value)? unexpected,
     TResult Function(_InsufficientPermission value)? insufficientPermission,
     TResult Function(_UnableToUpdate value)? unableToUpdate,
+    TResult Function(_Timeout value)? timeout,
     required TResult orElse(),
   }) {
     if (unexpected != null) {
@@ -253,6 +271,7 @@ class _$_InsufficientPermission implements _InsufficientPermission {
     required TResult Function() unexpected,
     required TResult Function() insufficientPermission,
     required TResult Function() unableToUpdate,
+    required TResult Function(Duration timeout) timeout,
   }) {
     return insufficientPermission();
   }
@@ -263,6 +282,7 @@ class _$_InsufficientPermission implements _InsufficientPermission {
     TResult Function()? unexpected,
     TResult Function()? insufficientPermission,
     TResult Function()? unableToUpdate,
+    TResult Function(Duration timeout)? timeout,
   }) {
     return insufficientPermission?.call();
   }
@@ -273,6 +293,7 @@ class _$_InsufficientPermission implements _InsufficientPermission {
     TResult Function()? unexpected,
     TResult Function()? insufficientPermission,
     TResult Function()? unableToUpdate,
+    TResult Function(Duration timeout)? timeout,
     required TResult orElse(),
   }) {
     if (insufficientPermission != null) {
@@ -288,6 +309,7 @@ class _$_InsufficientPermission implements _InsufficientPermission {
     required TResult Function(_InsufficientPermission value)
         insufficientPermission,
     required TResult Function(_UnableToUpdate value) unableToUpdate,
+    required TResult Function(_Timeout value) timeout,
   }) {
     return insufficientPermission(this);
   }
@@ -298,6 +320,7 @@ class _$_InsufficientPermission implements _InsufficientPermission {
     TResult Function(_Unexpected value)? unexpected,
     TResult Function(_InsufficientPermission value)? insufficientPermission,
     TResult Function(_UnableToUpdate value)? unableToUpdate,
+    TResult Function(_Timeout value)? timeout,
   }) {
     return insufficientPermission?.call(this);
   }
@@ -308,6 +331,7 @@ class _$_InsufficientPermission implements _InsufficientPermission {
     TResult Function(_Unexpected value)? unexpected,
     TResult Function(_InsufficientPermission value)? insufficientPermission,
     TResult Function(_UnableToUpdate value)? unableToUpdate,
+    TResult Function(_Timeout value)? timeout,
     required TResult orElse(),
   }) {
     if (insufficientPermission != null) {
@@ -365,6 +389,7 @@ class _$_UnableToUpdate implements _UnableToUpdate {
     required TResult Function() unexpected,
     required TResult Function() insufficientPermission,
     required TResult Function() unableToUpdate,
+    required TResult Function(Duration timeout) timeout,
   }) {
     return unableToUpdate();
   }
@@ -375,6 +400,7 @@ class _$_UnableToUpdate implements _UnableToUpdate {
     TResult Function()? unexpected,
     TResult Function()? insufficientPermission,
     TResult Function()? unableToUpdate,
+    TResult Function(Duration timeout)? timeout,
   }) {
     return unableToUpdate?.call();
   }
@@ -385,6 +411,7 @@ class _$_UnableToUpdate implements _UnableToUpdate {
     TResult Function()? unexpected,
     TResult Function()? insufficientPermission,
     TResult Function()? unableToUpdate,
+    TResult Function(Duration timeout)? timeout,
     required TResult orElse(),
   }) {
     if (unableToUpdate != null) {
@@ -400,6 +427,7 @@ class _$_UnableToUpdate implements _UnableToUpdate {
     required TResult Function(_InsufficientPermission value)
         insufficientPermission,
     required TResult Function(_UnableToUpdate value) unableToUpdate,
+    required TResult Function(_Timeout value) timeout,
   }) {
     return unableToUpdate(this);
   }
@@ -410,6 +438,7 @@ class _$_UnableToUpdate implements _UnableToUpdate {
     TResult Function(_Unexpected value)? unexpected,
     TResult Function(_InsufficientPermission value)? insufficientPermission,
     TResult Function(_UnableToUpdate value)? unableToUpdate,
+    TResult Function(_Timeout value)? timeout,
   }) {
     return unableToUpdate?.call(this);
   }
@@ -420,6 +449,7 @@ class _$_UnableToUpdate implements _UnableToUpdate {
     TResult Function(_Unexpected value)? unexpected,
     TResult Function(_InsufficientPermission value)? insufficientPermission,
     TResult Function(_UnableToUpdate value)? unableToUpdate,
+    TResult Function(_Timeout value)? timeout,
     required TResult orElse(),
   }) {
     if (unableToUpdate != null) {
@@ -431,4 +461,148 @@ class _$_UnableToUpdate implements _UnableToUpdate {
 
 abstract class _UnableToUpdate implements ShopFailure {
   const factory _UnableToUpdate() = _$_UnableToUpdate;
+}
+
+/// @nodoc
+abstract class _$TimeoutCopyWith<$Res> {
+  factory _$TimeoutCopyWith(_Timeout value, $Res Function(_Timeout) then) =
+      __$TimeoutCopyWithImpl<$Res>;
+  $Res call({Duration timeout});
+}
+
+/// @nodoc
+class __$TimeoutCopyWithImpl<$Res> extends _$ShopFailureCopyWithImpl<$Res>
+    implements _$TimeoutCopyWith<$Res> {
+  __$TimeoutCopyWithImpl(_Timeout _value, $Res Function(_Timeout) _then)
+      : super(_value, (v) => _then(v as _Timeout));
+
+  @override
+  _Timeout get _value => super._value as _Timeout;
+
+  @override
+  $Res call({
+    Object? timeout = freezed,
+  }) {
+    return _then(_Timeout(
+      timeout == freezed
+          ? _value.timeout
+          : timeout // ignore: cast_nullable_to_non_nullable
+              as Duration,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_Timeout implements _Timeout {
+  const _$_Timeout(this.timeout);
+
+  @override
+  final Duration timeout;
+
+  @override
+  String toString() {
+    return 'ShopFailure.timeout(timeout: $timeout)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _Timeout &&
+            const DeepCollectionEquality().equals(other.timeout, timeout));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(timeout));
+
+  @JsonKey(ignore: true)
+  @override
+  _$TimeoutCopyWith<_Timeout> get copyWith =>
+      __$TimeoutCopyWithImpl<_Timeout>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() unexpected,
+    required TResult Function() insufficientPermission,
+    required TResult Function() unableToUpdate,
+    required TResult Function(Duration timeout) timeout,
+  }) {
+    return timeout(this.timeout);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? unexpected,
+    TResult Function()? insufficientPermission,
+    TResult Function()? unableToUpdate,
+    TResult Function(Duration timeout)? timeout,
+  }) {
+    return timeout?.call(this.timeout);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? unexpected,
+    TResult Function()? insufficientPermission,
+    TResult Function()? unableToUpdate,
+    TResult Function(Duration timeout)? timeout,
+    required TResult orElse(),
+  }) {
+    if (timeout != null) {
+      return timeout(this.timeout);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Unexpected value) unexpected,
+    required TResult Function(_InsufficientPermission value)
+        insufficientPermission,
+    required TResult Function(_UnableToUpdate value) unableToUpdate,
+    required TResult Function(_Timeout value) timeout,
+  }) {
+    return timeout(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_InsufficientPermission value)? insufficientPermission,
+    TResult Function(_UnableToUpdate value)? unableToUpdate,
+    TResult Function(_Timeout value)? timeout,
+  }) {
+    return timeout?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_InsufficientPermission value)? insufficientPermission,
+    TResult Function(_UnableToUpdate value)? unableToUpdate,
+    TResult Function(_Timeout value)? timeout,
+    required TResult orElse(),
+  }) {
+    if (timeout != null) {
+      return timeout(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Timeout implements ShopFailure {
+  const factory _Timeout(Duration timeout) = _$_Timeout;
+
+  Duration get timeout;
+  @JsonKey(ignore: true)
+  _$TimeoutCopyWith<_Timeout> get copyWith =>
+      throw _privateConstructorUsedError;
 }

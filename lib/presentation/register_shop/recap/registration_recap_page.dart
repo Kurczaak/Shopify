@@ -64,17 +64,20 @@ class _RegistrationRecapPageState extends State<RegistrationRecapPage> {
                     (f) => showDialog(
                         context: context,
                         builder: (context) => ShopifyAlertDialog(
-                            title: 'Error',
-                            subtitle: f.map(
-                                unexpected: (_) =>
-                                    'An unexpected error has occured',
-                                insufficientPermission: (_) =>
-                                    'Insufficient Permission',
-                                unableToUpdate: (_) => 'Unable to update'),
-                            type: DialogType.error,
-                            onConfirm: () {
-                              context.router.pop();
-                            })),
+                              title: 'Error',
+                              subtitle: f.map(
+                                  timeout: (_) =>
+                                      'Connection timeout. Try again later or check your internet connection',
+                                  unexpected: (_) =>
+                                      'An unexpected error has occured',
+                                  insufficientPermission: (_) =>
+                                      'Insufficient Permission',
+                                  unableToUpdate: (_) => 'Unable to update'),
+                              type: DialogType.error,
+                              onConfirm: () {
+                                context.router.pop();
+                              },
+                            )),
                     (unit) => showDialog(
                         context: context,
                         builder: (context) => ShopifyAlertDialog(
@@ -87,35 +90,38 @@ class _RegistrationRecapPageState extends State<RegistrationRecapPage> {
                             }))));
           }
         },
-        builder: (context, state) => Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            const RegistrationProgressRow(
-              title: 'Recap',
-              subtitle:
-                  'Check your shop details and register it if you\'re ready to go!',
-              pageNum: 5,
-            ),
-            ShopRecap(
-              logo: context
-                  .read<ShopRegistrationBloc>()
-                  .state
-                  .shopLogo
-                  .getOrElse(() => throw UnimplementedError()),
-              shop: context.read<ShopRegistrationBloc>().state.shop,
-            ),
-            const Spacer(),
-            SizedBox(
-              height: 50,
-              child: ElevatedButton(
-                onPressed: () {
-                  getIt<ShopRegistrationBloc>()
-                      .add(const ShopRegistrationEvent.shopSaved());
-                },
-                child: const Text('Register'),
+        builder: (context, state) => Padding(
+          padding: const EdgeInsets.all(28.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              const RegistrationProgressRow(
+                title: 'Recap',
+                subtitle:
+                    'Check your shop details and register it if you\'re ready to go!',
+                pageNum: 5,
               ),
-            ),
-          ],
+              ShopRecap(
+                logo: context
+                    .read<ShopRegistrationBloc>()
+                    .state
+                    .shopLogo
+                    .getOrElse(() => throw UnimplementedError()),
+                shop: context.read<ShopRegistrationBloc>().state.shop,
+              ),
+              const Spacer(),
+              SizedBox(
+                height: 50,
+                child: ElevatedButton(
+                  onPressed: () {
+                    getIt<ShopRegistrationBloc>()
+                        .add(const ShopRegistrationEvent.shopSaved());
+                  },
+                  child: const Text('Register'),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
