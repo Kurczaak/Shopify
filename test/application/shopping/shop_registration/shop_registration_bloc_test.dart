@@ -133,7 +133,16 @@ void main() async {
             emitsInOrder([
               ShopRegistrationState.initial().copyWith(
                   shop: bloc.state.shop.copyWith(
-                      address: tShopForm.address, shopName: tShopForm.shopName))
+                    address: tShopForm.address,
+                    shopName: tShopForm.shopName,
+                  ),
+                  isSaving: true),
+              ShopRegistrationState.initial().copyWith(
+                  shop: bloc.state.shop.copyWith(
+                    address: tShopForm.address,
+                    shopName: tShopForm.shopName,
+                  ),
+                  isSaving: false),
             ]));
       },
     );
