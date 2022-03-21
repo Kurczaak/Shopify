@@ -35,6 +35,11 @@ part of 'location_failure.dart';
 // @WithEquality(Equality.data)
 // @WithName('NoLocationFound')
 // void noLocationFound();
+//
+// @WithWrap()
+// @WithEquality(Equality.data)
+// @WithName('Timeout')
+// void timeout();
 // }
 
 /// [LocationFailure] {
@@ -42,6 +47,8 @@ part of 'location_failure.dart';
 /// ([Unexpected] unexpected){} with data equality with wrap
 ///
 /// ([NoLocationFound] noLocationFound){} with data equality with wrap
+///
+/// ([Timeout] timeout){} with data equality with wrap
 ///
 /// }
 @immutable
@@ -52,13 +59,19 @@ abstract class LocationFailure {
 
   const factory LocationFailure.noLocationFound() = NoLocationFound;
 
+  const factory LocationFailure.timeout() = Timeout;
+
   bool isUnexpected() => this is Unexpected;
 
   bool isNoLocationFound() => this is NoLocationFound;
 
+  bool isTimeout() => this is Timeout;
+
   Unexpected asUnexpected() => this as Unexpected;
 
   NoLocationFound asNoLocationFound() => this as NoLocationFound;
+
+  Timeout asTimeout() => this as Timeout;
 
   Unexpected? asUnexpectedOrNull() {
     final locationFailure = this;
@@ -70,15 +83,23 @@ abstract class LocationFailure {
     return locationFailure is NoLocationFound ? locationFailure : null;
   }
 
+  Timeout? asTimeoutOrNull() {
+    final locationFailure = this;
+    return locationFailure is Timeout ? locationFailure : null;
+  }
+
   R when<R extends Object?>({
     required R Function() unexpected,
     required R Function() noLocationFound,
+    required R Function() timeout,
   }) {
     final locationFailure = this;
     if (locationFailure is Unexpected) {
       return unexpected();
     } else if (locationFailure is NoLocationFound) {
       return noLocationFound();
+    } else if (locationFailure is Timeout) {
+      return timeout();
     } else {
       throw AssertionError();
     }
@@ -87,6 +108,7 @@ abstract class LocationFailure {
   R whenOrElse<R extends Object?>({
     R Function()? unexpected,
     R Function()? noLocationFound,
+    R Function()? timeout,
     required R Function(LocationFailure locationFailure) orElse,
   }) {
     final locationFailure = this;
@@ -96,6 +118,8 @@ abstract class LocationFailure {
       return noLocationFound != null
           ? noLocationFound()
           : orElse(locationFailure);
+    } else if (locationFailure is Timeout) {
+      return timeout != null ? timeout() : orElse(locationFailure);
     } else {
       throw AssertionError();
     }
@@ -104,6 +128,7 @@ abstract class LocationFailure {
   R whenOrDefault<R extends Object?>({
     R Function()? unexpected,
     R Function()? noLocationFound,
+    R Function()? timeout,
     required R orDefault,
   }) {
     final locationFailure = this;
@@ -111,6 +136,8 @@ abstract class LocationFailure {
       return unexpected != null ? unexpected() : orDefault;
     } else if (locationFailure is NoLocationFound) {
       return noLocationFound != null ? noLocationFound() : orDefault;
+    } else if (locationFailure is Timeout) {
+      return timeout != null ? timeout() : orDefault;
     } else {
       throw AssertionError();
     }
@@ -119,12 +146,15 @@ abstract class LocationFailure {
   R? whenOrNull<R extends Object?>({
     R Function()? unexpected,
     R Function()? noLocationFound,
+    R Function()? timeout,
   }) {
     final locationFailure = this;
     if (locationFailure is Unexpected) {
       return unexpected?.call();
     } else if (locationFailure is NoLocationFound) {
       return noLocationFound?.call();
+    } else if (locationFailure is Timeout) {
+      return timeout?.call();
     } else {
       throw AssertionError();
     }
@@ -133,12 +163,15 @@ abstract class LocationFailure {
   R whenOrThrow<R extends Object?>({
     R Function()? unexpected,
     R Function()? noLocationFound,
+    R Function()? timeout,
   }) {
     final locationFailure = this;
     if (locationFailure is Unexpected && unexpected != null) {
       return unexpected();
     } else if (locationFailure is NoLocationFound && noLocationFound != null) {
       return noLocationFound();
+    } else if (locationFailure is Timeout && timeout != null) {
+      return timeout();
     } else {
       throw AssertionError();
     }
@@ -147,12 +180,15 @@ abstract class LocationFailure {
   void whenPartial({
     void Function()? unexpected,
     void Function()? noLocationFound,
+    void Function()? timeout,
   }) {
     final locationFailure = this;
     if (locationFailure is Unexpected) {
       unexpected?.call();
     } else if (locationFailure is NoLocationFound) {
       noLocationFound?.call();
+    } else if (locationFailure is Timeout) {
+      timeout?.call();
     } else {
       throw AssertionError();
     }
@@ -186,6 +222,22 @@ class NoLocationFound extends LocationFailure with EquatableMixin {
 
   @override
   String toString() => 'LocationFailure.noLocationFound()';
+
+  @override
+  List<Object?> get props => [];
+}
+
+/// (([Timeout] : [LocationFailure]) timeout){}
+///
+/// with data equality
+///
+/// with wrap
+@immutable
+class Timeout extends LocationFailure with EquatableMixin {
+  const Timeout() : super._internal();
+
+  @override
+  String toString() => 'LocationFailure.timeout()';
 
   @override
   List<Object?> get props => [];

@@ -14,6 +14,7 @@ import 'package:shopify_manager/domain/shopping/shop_failure.dart';
 import 'package:shopify_manager/domain/shopping/shop_form.dart';
 import 'package:shopify_manager/domain/shopping/time/week.dart';
 import 'package:shopify_manager/domain/shopping/value_objects.dart';
+import 'package:shopify_manager/infrastructure/core/config.dart';
 import 'package:shopify_manager/injection.dart';
 import 'package:super_enum_sealed_annotations/super_enum_sealed_annotations.dart';
 import 'package:shopify_manager/application/shopping/shop_form/shop_form_bloc.dart';
@@ -95,12 +96,13 @@ class ShopRegistrationBloc
         formSaved: (formSavedState) async {
           emit(state.copyWith(
               shop: state.shop.copyWith(
-            address: formSavedState.shopForm.address,
-            shopName: formSavedState.shopForm.shopName,
-          )));
+                address: formSavedState.shopForm.address,
+                shopName: formSavedState.shopForm.shopName,
+              ),
+              isSaving: true));
           final failureOrLocation = await locationInfo
               .getLocationFromAddress(formSavedState.shopForm.address);
-
+          emit(state.copyWith(isSaving: false));
           failureOrLocation.fold(
               (f) => shopLocationPickerBloc
                   .add(ShopLocationPickerEvent.locationNotFound()),

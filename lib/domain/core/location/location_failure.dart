@@ -8,4 +8,6 @@ enum _LocationFailure {
   Unexpected,
   @object
   NoLocationFound,
+  @object
+  Timeout,
 }
