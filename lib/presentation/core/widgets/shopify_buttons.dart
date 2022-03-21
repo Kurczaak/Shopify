@@ -20,6 +20,7 @@ class ShopifySecondaryButton extends StatelessWidget {
         child: Text(
           text,
           style: TextStyle(
+            fontWeight: FontWeight.bold,
             color: type == ButtonType.success
                 ? Theme.of(context).primaryColor
                 : Theme.of(context).errorColor,
@@ -59,6 +60,7 @@ class ShopifyPrimaryButton extends StatelessWidget {
       onPressed: onPressed,
       child: Text(
         text,
+        style: const TextStyle(fontWeight: FontWeight.bold),
       ),
     );
   }
