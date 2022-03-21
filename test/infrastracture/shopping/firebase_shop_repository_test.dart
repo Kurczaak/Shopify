@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/services.dart';
@@ -13,6 +15,7 @@ import 'package:shopify_manager/domain/shopping/shop.dart';
 import 'package:shopify_manager/domain/shopping/shop_failure.dart';
 import 'package:shopify_manager/domain/shopping/time/week.dart';
 import 'package:shopify_manager/domain/shopping/value_objects.dart';
+import 'package:shopify_manager/infrastructure/core/config.dart';
 import 'package:shopify_manager/infrastructure/shopping/firebase_shop_repository.dart';
 import 'package:shopify_manager/infrastructure/shopping/shop_dtos.dart';
 import 'package:fake_cloud_firestore/fake_cloud_firestore.dart';
@@ -217,6 +220,24 @@ void main() async {
       final result = await firebaseShopRepository.create(tShop, tShopLogo);
       // assert
       expect(result, left(const ShopFailure.insufficientPermission()));
+    },
+  );
+
+  test(
+    'should return ShopFailure if firebase uploading timed out',
+    () async {
+      // arrange
+      _setUpStorage(mockFirebaseStorage, 'https://www.example.com');
+      when(mockFirebaseFirestore.collection('shops'))
+          .thenReturn(mockCollectionReference);
+      when(mockCollectionReference.doc(any)).thenReturn(mockDocumentReference);
+      when(mockDocumentReference.set(any)).thenAnswer((_) {
+        return Future.delayed(Duration(seconds: 10));
+      });
+      // act
+      final result = await firebaseShopRepository.create(tShop, tShopLogo);
+      // assert
+      expect(result, left(const ShopFailure.timeout(timeoutDuration)));
     },
   );
 }
