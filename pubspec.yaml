@@ -18,7 +18,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.15.0-226.0.dev <3.0.0"
+  sdk: ">=2.16.0-80.1.beta <3.0.0"
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -29,6 +29,7 @@ environment:
 dependencies:
   another_flushbar: ^1.10.28
   auto_route: ^3.2.0
+  cloud_firestore: ^3.1.10
   cupertino_icons: ^1.0.4
   dart_geohash: ^2.0.2
   dartz: ^0.10.1
@@ -37,6 +38,7 @@ dependencies:
   firebase_analytics: ^9.0.4
   firebase_auth: ^3.3.4
   firebase_core: ^1.10.6
+  firebase_storage: ^10.2.9
   flutter:
     sdk: flutter
   flutter_bloc: ^8.0.0
@@ -46,6 +48,8 @@ dependencies:
   google_maps_flutter: ^2.1.3
   google_sign_in: ^5.2.1
   google_sign_in_web: ^0.10.0+3
+  image_picker: ^0.8.4+11
+  image_size_getter: ^1.0.0
   injectable: ^1.5.0
   json_annotation: ^4.4.0
   kt_dart: ^0.10.0
@@ -53,17 +57,21 @@ dependencies:
   path_provider: ^2.0.9
   progress_indicators: ^1.0.0
   responsive_framework: ^0.1.5
+  rxdart: ^0.27.3
+  super_enum_sealed_annotations: ^1.4.0
   uuid: ^3.0.5
 
 dev_dependencies:
   auto_route_generator: ^3.2.0
   bloc_test: ^9.0.1
   build_runner: ^2.1.7
+  fake_cloud_firestore: ^1.2.2
   flutter_lints: ^1.0.4
   flutter_test:
     sdk: flutter
   freezed: ^1.1.0
   injectable_generator: ^1.5.2
+  json_annotation: ^4.4.0
   json_serializable: ^6.1.3
   mockito: ^5.0.16
 
@@ -79,6 +87,9 @@ flutter:
     - images/corner_shape.png
     - images/undraw_gone_shopping.png
     - images/logo.png
+    - images/test/test_logo.jpg
+    - images/test/too_small_logo.jpg
+    - images/test/too_big_logo.jpg
     # An image asset can refer to one or more resolution-specific "variants", see
     # https://flutter.dev/assets-and-images/#resolution-aware.
     # For details regarding adding assets from package dependencies, see
