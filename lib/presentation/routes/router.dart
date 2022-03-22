@@ -4,7 +4,7 @@ import 'package:shopify_manager/injection.dart';
 import 'package:shopify_manager/presentation/debug/debug.dart';
 import 'package:shopify_manager/presentation/debug_dashboard_page.dart';
 import 'package:shopify_manager/presentation/register_shop/logo_picker/logo_picker_page.dart';
-import 'package:shopify_manager/presentation/debug/registration_wrapping_page.dart';
+import 'package:shopify_manager/presentation/register_shop/registration_wrapping_page.dart';
 import 'package:shopify_manager/presentation/register_shop/location_picker/location_picker_page.dart';
 import 'package:shopify_manager/presentation/register_shop/opening_hours/opening_hours_page.dart';
 import 'package:shopify_manager/presentation/register_shop/shop_form/shop_form_page.dart';

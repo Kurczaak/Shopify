@@ -13,7 +13,7 @@
 import 'package:auto_route/auto_route.dart' as _i11;
 import 'package:flutter/material.dart' as _i12;
 
-import '../debug/registration_wrapping_page.dart' as _i5;
+import '../register_shop/registration_wrapping_page.dart' as _i5;
 import '../debug_dashboard_page.dart' as _i4;
 import '../register_shop/location_picker/location_picker_page.dart' as _i7;
 import '../register_shop/logo_picker/logo_picker_page.dart' as _i9;
