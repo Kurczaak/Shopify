@@ -8,7 +8,7 @@ import 'package:shopify_manager/presentation/register_shop/widgets/week_table.da
 import 'package:shopify_manager/presentation/routes/router.gr.dart';
 
 class OpeningHoursPage extends StatelessWidget {
-  OpeningHoursPage({Key? key}) : super(key: key);
+  const OpeningHoursPage({Key? key}) : super(key: key);
 
   void onDayChanged(DayPrimitive day, ShopTimePickerBloc bloc) {
     final lowercaseName = day.day.toLowerCase();

@@ -5,7 +5,6 @@ import 'package:mocktail/mocktail.dart';
 import 'package:shopify_manager/application/shopping/shop_logo_picker/shop_logo_picker_bloc.dart';
 import 'package:shopify_manager/domain/core/images/image_failure.dart';
 import 'package:shopify_manager/domain/core/images/photo.dart';
-import 'package:mockito/annotations.dart';
 import 'package:shopify_manager/infrastructure/core/images/image_picker_image_facade.dart';
 
 import '../../../utils/image_reader.dart';

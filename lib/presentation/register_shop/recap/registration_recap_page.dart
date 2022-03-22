@@ -8,8 +8,6 @@ import 'package:shopify_manager/presentation/register_shop/recap/shop_recap_colu
 import 'package:shopify_manager/presentation/register_shop/widgets/registration_progress_bar.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopify_manager/injection.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'dart:async';
 import 'package:auto_route/auto_route.dart';
 import '../../routes/router.gr.dart';
 
@@ -21,8 +19,6 @@ class RegistrationRecapPage extends StatefulWidget {
 }
 
 class _RegistrationRecapPageState extends State<RegistrationRecapPage> {
-  Completer<GoogleMapController> _controller = Completer();
-
   late Shop shop;
   late ShopLogo logo;
   late String shopName;

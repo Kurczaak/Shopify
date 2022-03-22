@@ -26,7 +26,7 @@ class ImagePickerImageFacade implements IImageFacade {
       } else {
         return right(ShopLogo(File(image.path)));
       }
-    } on PlatformException catch (e) {
+    } on PlatformException catch (_) {
       // TODO log error
       return left(const ImageFailure.unexpected());
     }

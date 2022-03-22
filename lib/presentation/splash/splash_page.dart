@@ -18,7 +18,7 @@ class SplashPage extends StatelessWidget {
             authenticated: (_) async {
               //TODO remove artificial delay
               await Future.delayed(const Duration(seconds: 4));
-              context.router.replace(DebugDashboardRoute());
+              context.router.replace(const DebugDashboardRoute());
             },
             unauthenticated: (_) async {
               //TODO remove artificial delay

@@ -1,7 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:bloc_test/bloc_test.dart';
-import 'package:mockito/annotations.dart';
 import 'package:shopify_manager/application/shopping/shop_form/shop_form_bloc.dart';
 import 'package:shopify_manager/application/shopping/shop_location_picker/shop_location_picker_bloc.dart';
 import 'package:shopify_manager/application/shopping/shop_logo_picker/shop_logo_picker_bloc.dart';

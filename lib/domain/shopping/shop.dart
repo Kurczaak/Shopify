@@ -2,7 +2,6 @@ import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:shopify_manager/domain/core/address.dart';
 import 'package:shopify_manager/domain/core/failures.dart';
-import 'package:shopify_manager/domain/core/images/photo.dart';
 import 'package:shopify_manager/domain/core/location.dart';
 import 'package:shopify_manager/domain/shopping/time/week.dart';
 import 'package:shopify_manager/domain/shopping/value_objects.dart';
@@ -32,9 +31,7 @@ abstract class Shop implements _$Shop {
         logoUrl: '',
       );
 
-//TODO might need to change value to failureOrUnit
   Option<ValueFailure<dynamic>> get failureOption {
-    //TODO UPDATE!!!!
     return shopName.failureOrUnit
         .andThen(address.failureOrOption
             .fold(() => right(unit), (failure) => left(failure)))

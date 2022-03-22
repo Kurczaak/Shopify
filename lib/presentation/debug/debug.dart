@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:shopify_manager/presentation/core/widgets/shopify_alert_dialog.dart';
-import 'package:shopify_manager/presentation/core/widgets/shopify_buttons.dart';
 
 class DebugPage extends StatefulWidget {
   const DebugPage({Key? key}) : super(key: key);

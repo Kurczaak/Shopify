@@ -3,7 +3,6 @@ import 'package:shopify_manager/domain/core/errors.dart';
 import 'package:shopify_manager/domain/core/images/i_image_facade.dart';
 import 'package:shopify_manager/domain/core/images/image_failure.dart';
 import 'package:shopify_manager/domain/core/images/photo.dart';
-import 'package:shopify_manager/domain/shopping/failures.dart';
 import 'package:super_enum_sealed_annotations/super_enum_sealed_annotations.dart';
 import 'package:injectable/injectable.dart';
 
@@ -51,6 +50,7 @@ class ShopLogoPickerBloc
                                 failure: ImageFailure.invalidImageSize())),
                             imageTooSmall: (_) => emit(const Error(
                                 failure: ImageFailure.invalidImageSize())),
+                            // ignore: void_checks
                             orElse: () {
                               throw UnexpectedValueError(shoppingFialure);
                             });

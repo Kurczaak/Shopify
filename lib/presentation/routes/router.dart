@@ -1,7 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:shopify_manager/application/auth/auth_bloc.dart';
-import 'package:shopify_manager/injection.dart';
-import 'package:shopify_manager/presentation/debug/debug.dart';
 import 'package:shopify_manager/presentation/debug_dashboard_page.dart';
 import 'package:shopify_manager/presentation/register_shop/logo_picker/logo_picker_page.dart';
 import 'package:shopify_manager/presentation/register_shop/registration_wrapping_page.dart';
@@ -16,7 +13,6 @@ import 'package:shopify_manager/presentation/splash/splash_page.dart';
 @MaterialAutoRouter(
   replaceInRouteName: 'Page,Route',
   routes: <AutoRoute>[
-    //TODO IMPLEMENT DEBUG PAGE LOL
     // AutoRoute(
     //   page: DebugPage,
     // ),

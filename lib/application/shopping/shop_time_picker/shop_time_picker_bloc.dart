@@ -15,7 +15,6 @@ class ShopTimePickerBloc
     on<ShopTimePickerEvent>((event, emit) {
       event.map(
         mondayChanged: (e) {
-          print('CHANGED MONDAYKURWO');
           final domain = e.monday.toDomain();
           final updatedWeek = state.week.copyWith(monday: domain);
           emit(state.copyWith(

@@ -11,7 +11,7 @@ import 'package:shopify_manager/presentation/routes/router.gr.dart';
 import 'package:auto_route/auto_route.dart';
 
 class ShopFormPage extends StatefulWidget {
-  ShopFormPage({Key? key}) : super(key: key);
+  const ShopFormPage({Key? key}) : super(key: key);
 
   @override
   State<ShopFormPage> createState() => _ShopFormPageState();

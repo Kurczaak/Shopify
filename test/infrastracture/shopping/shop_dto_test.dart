@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shopify_manager/domain/core/address.dart';
@@ -12,8 +11,6 @@ import 'package:shopify_manager/infrastructure/core/address_dto.dart';
 import 'package:shopify_manager/infrastructure/core/location/location_dtos.dart';
 import 'package:shopify_manager/infrastructure/shopping/shop_dtos.dart';
 import 'package:shopify_manager/infrastructure/shopping/time/time_dtos.dart';
-import '../../utils/fixture_reader.dart';
-import 'dart:convert';
 import 'package:fake_cloud_firestore/fake_cloud_firestore.dart';
 
 //TODO IMPLEMENT!!!
@@ -101,7 +98,6 @@ void main() async {
       // arrange
       final shopDoc =
           await instance.collection('shops').doc(shopDocumentIdStr).get();
-      print(shopDoc.data());
       final shopDto = ShopDto.fromFirestore(shopDoc);
       // act
       final shop = shopDto.toDomain();

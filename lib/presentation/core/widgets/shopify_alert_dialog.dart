@@ -33,23 +33,21 @@ class ShopifyAlertDialog extends StatelessWidget {
         clipBehavior: Clip.none,
         alignment: Alignment.topCenter,
         children: [
-          Container(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const SizedBox(height: 70),
-                Text(
-                  title,
-                  style: const TextStyle(fontSize: 20),
-                ),
-                const SizedBox(height: 20),
-                Text(subtitle,
-                    style: TextStyle(
-                      fontSize: 15,
-                      color: Theme.of(context).secondaryHeaderColor,
-                    )),
-              ],
-            ),
+          Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const SizedBox(height: 70),
+              Text(
+                title,
+                style: const TextStyle(fontSize: 20),
+              ),
+              const SizedBox(height: 20),
+              Text(subtitle,
+                  style: TextStyle(
+                    fontSize: 15,
+                    color: Theme.of(context).secondaryHeaderColor,
+                  )),
+            ],
           ),
           Positioned(
             child: Container(

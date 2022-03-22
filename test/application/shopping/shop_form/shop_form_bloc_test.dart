@@ -204,11 +204,6 @@ void main() {
         seed: initialState.copyWith(
             shop: tShop.copyWith(
                 address: tShop.address.copyWith(postalCode: PostalCode('')))));
-
-    ShopFormState emptyApartmentNumberState = initialState.copyWith(
-        shop: tShop.copyWith(
-            address:
-                tShop.address.copyWith(apartmentNumber: AddressNumber(''))));
   });
 }
 

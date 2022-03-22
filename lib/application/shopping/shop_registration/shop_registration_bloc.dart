@@ -1,10 +1,7 @@
 import 'dart:async';
-
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
-import 'package:shopify_manager/domain/core/address.dart';
-import 'package:shopify_manager/domain/core/errors.dart';
 import 'package:shopify_manager/domain/core/images/photo.dart';
 import 'package:shopify_manager/domain/core/location.dart';
 import 'package:shopify_manager/domain/core/location/location_info.dart';
@@ -13,8 +10,6 @@ import 'package:shopify_manager/domain/shopping/shop.dart';
 import 'package:shopify_manager/domain/shopping/shop_failure.dart';
 import 'package:shopify_manager/domain/shopping/shop_form.dart';
 import 'package:shopify_manager/domain/shopping/time/week.dart';
-import 'package:shopify_manager/domain/shopping/value_objects.dart';
-import 'package:shopify_manager/infrastructure/core/config.dart';
 import 'package:shopify_manager/injection.dart';
 import 'package:super_enum_sealed_annotations/super_enum_sealed_annotations.dart';
 import 'package:shopify_manager/application/shopping/shop_form/shop_form_bloc.dart';

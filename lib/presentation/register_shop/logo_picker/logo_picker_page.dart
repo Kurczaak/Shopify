@@ -76,7 +76,7 @@ class LogoPickerPage extends StatelessWidget {
               child: ElevatedButton(
                 onPressed: () {
                   if (context.read<ShopLogoPickerBloc>().state.isLoaded()) {
-                    context.router.navigate(RegistrationRecapRoute());
+                    context.router.navigate(const RegistrationRecapRoute());
                   } else {
                     FlushbarHelper.createError(
                             message: 'No logo chosen. Pick a valid image')
