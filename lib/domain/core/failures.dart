@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:shopify_client/domain/shopping/failures.dart';
 
 part 'failures.freezed.dart';
 
@@ -6,6 +7,7 @@ part 'failures.freezed.dart';
 class ValueFailure<T> with _$ValueFailure<T> {
   const factory ValueFailure.auth(AuthValueFailure<T> f) = _Auth<T>;
   const factory ValueFailure.product(ProductValueFailure<T> f) = _Product<T>;
+  const factory ValueFailure.shopping(ShoppingValueFailure<T> f) = _Shopping<T>;
 }
 
 @freezed
