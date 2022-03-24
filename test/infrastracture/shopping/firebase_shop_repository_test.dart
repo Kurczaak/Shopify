@@ -31,7 +31,6 @@ class MockStream extends Mock
 void main() async {
   late MockGeoflutterfire geo;
   late MockGeoFireCollectionRef mockGeoFireCollectionRef;
-  late MockFirebaseStorage mockFirebaseStorage;
   late FirebaseShopRepositoryImpl firebaseShopRepositoryImpl;
   late MockFirebaseFirestore mockFirebaseFirestore;
   late MockCollectionReference<Map<String, dynamic>> mockCollectionReference;
@@ -71,7 +70,6 @@ void main() async {
     geo = MockGeoflutterfire();
 
     mockGeoFireCollectionRef = MockGeoFireCollectionRef();
-    mockFirebaseStorage = MockFirebaseStorage();
     mockFirebaseFirestore = MockFirebaseFirestore();
     firebaseShopRepositoryImpl =
         FirebaseShopRepositoryImpl(mockFirebaseFirestore, geo);
