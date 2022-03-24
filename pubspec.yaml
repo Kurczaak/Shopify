@@ -44,6 +44,7 @@ dependencies:
   flutter_bloc: ^8.0.0
   flutter_signin_button: ^2.0.0
   geocoding: ^2.0.4
+  geoflutterfire: ^3.0.3
   get_it: ^7.2.0
   google_maps_flutter: ^2.1.3
   google_sign_in: ^5.2.1

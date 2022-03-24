@@ -13,8 +13,10 @@ extension FirestoreX on FirebaseFirestore {
         .doc(user.id.getOrCrash());
   }
 
-  CollectionReference get usersCollection => collection('users');
-  CollectionReference get shopsCollection => collection('shops');
+  CollectionReference<Map<String, dynamic>> get usersCollection =>
+      collection('users');
+  CollectionReference<Map<String, dynamic>> get shopsCollection =>
+      collection('shops');
 }
 
 extension DocumentReferenceX on DocumentReference {
