@@ -41,9 +41,12 @@ class FirebaseShopRepositoryImpl implements IShopRepository {
         );
       },
     ).onErrorReturnWith((error, stackTrace) {
-      return left(ShopFailure.unexpected());
+      if (error is FirebaseException) {
+        if (error.code.contains('permission-denied')) {
+          return left(const ShopFailure.insufficientPermission());
+        }
+      }
+      return left(const ShopFailure.unexpected());
     });
-
-    //throw UnimplementedError();
   }
 }
