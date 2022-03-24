@@ -41,7 +41,7 @@ dependencies:
   firebase_storage: ^10.2.9
   flutter:
     sdk: flutter
-  flutter_bloc: ^8.0.0
+  flutter_bloc: ^8.0.1
   flutter_signin_button: ^2.0.0
   geocoding: ^2.0.4
   geoflutterfire: ^3.0.3
@@ -75,6 +75,7 @@ dev_dependencies:
   json_annotation: ^4.4.0
   json_serializable: ^6.1.3
   mockito: ^5.0.16
+  super_enum_sealed_generators: ^1.4.0
 
 # The following section is specific to Flutter.
 flutter:

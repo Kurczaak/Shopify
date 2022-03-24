@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopify_client/domain/auth/i_auth_facade.dart';
 import 'package:shopify_client/injection.dart';
 
@@ -7,9 +8,6 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(
-      child: const Text('Sign Out'),
-      onPressed: () async => await getIt<IAuthFacade>().signOut(),
-    );
+    return Scaffold(body: Container());
   }
 }
