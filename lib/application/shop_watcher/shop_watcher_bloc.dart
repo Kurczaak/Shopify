@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
+import 'package:dartz/dartz.dart';
 import 'package:kt_dart/collection.dart';
 import 'package:shopify_client/domain/core/location.dart';
 import 'package:shopify_client/domain/shopping/i_shop_repository.dart';
@@ -12,6 +15,7 @@ part 'shop_watcher_bloc.super.dart';
 
 class ShopWatcherBloc extends Bloc<ShopWatcherEvent, ShopWatcherState> {
   final IShopRepository _shopRepository;
+  late StreamSubscription<Either<ShopFailure, KtList<Shop>>> streamSubscription;
   ShopWatcherBloc(this._shopRepository)
       : super(const ShopWatcherState.initial()) {
     on<ShopWatcherEvent>((event, emit) {
@@ -21,12 +25,18 @@ class ShopWatcherBloc extends Bloc<ShopWatcherEvent, ShopWatcherState> {
           final stream = _shopRepository.watchNearby(
               watchNearbyShops.location, watchNearbyShops.radius.toDouble());
 
-          stream.listen((event) {
+          streamSubscription = stream.listen((event) {
             event.fold((f) => emit(ShopWatcherState.error(failure: f)),
                 (shopList) => emit(ShopWatcherState.loaded(shops: shopList)));
           });
         },
       );
     });
+  }
+
+  @override
+  Future<void> close() {
+    streamSubscription.cancel();
+    return super.close();
   }
 }
