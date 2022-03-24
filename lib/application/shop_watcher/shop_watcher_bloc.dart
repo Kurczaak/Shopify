@@ -17,8 +17,14 @@ class ShopWatcherBloc extends Bloc<ShopWatcherEvent, ShopWatcherState> {
     on<ShopWatcherEvent>((event, emit) {
       event.when(
         watchNearbyShops: (watchNearbyShops) {
-          _shopRepository.watchNearby(
+          emit(const ShopWatcherState.loading());
+          final stream = _shopRepository.watchNearby(
               watchNearbyShops.location, watchNearbyShops.radius.toDouble());
+
+          stream.listen((event) {
+            event.fold((f) => emit(ShopWatcherState.error(failure: f)),
+                (shopList) => emit(ShopWatcherState.loaded(shops: shopList)));
+          });
         },
       );
     });
