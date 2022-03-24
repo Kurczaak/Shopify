@@ -49,9 +49,7 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.lazySingleton<_i9.IAuthFacade>(() => _i10.FirebaseAuthFacade(
       get<_i3.FirebaseAuth>(), get<_i8.GoogleSignIn>()));
   gh.lazySingleton<_i11.IShopRepository>(() => _i12.FirebaseShopRepositoryImpl(
-      get<_i4.FirebaseFirestore>(),
-      get<_i5.FirebaseStorage>(),
-      get<_i7.Geoflutterfire>()));
+      get<_i4.FirebaseFirestore>(), get<_i7.Geoflutterfire>()));
   gh.lazySingleton<_i13.ImagePicker>(
       () => imagePikcerInjectableModule.imagePicker);
   gh.factory<_i14.SignInFormBloc>(

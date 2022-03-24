@@ -41,27 +41,23 @@ class _FakeDuration_5 extends _i1.Fake implements Duration {}
 
 class _FakeReference_6 extends _i1.Fake implements _i7.Reference {}
 
-class _FakeGeoPoint_7 extends _i1.Fake implements _i5.GeoPoint {}
-
-class _FakeCoordinates_8 extends _i1.Fake implements _i4.Coordinates {}
-
-class _FakeFirebaseFirestore_9 extends _i1.Fake
+class _FakeFirebaseFirestore_7 extends _i1.Fake
     implements _i5.FirebaseFirestore {}
 
-class _FakeCollectionReference_10<T extends Object?> extends _i1.Fake
+class _FakeCollectionReference_8<T extends Object?> extends _i1.Fake
     implements _i5.CollectionReference<T> {}
 
-class _FakeQuery_11<T extends Object?> extends _i1.Fake
-    implements _i5.Query<T> {}
+class _FakeQuery_9<T extends Object?> extends _i1.Fake implements _i5.Query<T> {
+}
 
-class _FakeQuerySnapshot_12<T extends Object?> extends _i1.Fake
+class _FakeQuerySnapshot_10<T extends Object?> extends _i1.Fake
     implements _i5.QuerySnapshot<T> {}
 
-class _FakeSettings_13 extends _i1.Fake implements _i5.Settings {}
+class _FakeSettings_11 extends _i1.Fake implements _i5.Settings {}
 
-class _FakeWriteBatch_14 extends _i1.Fake implements _i5.WriteBatch {}
+class _FakeWriteBatch_12 extends _i1.Fake implements _i5.WriteBatch {}
 
-class _FakeLoadBundleTask_15 extends _i1.Fake implements _i5.LoadBundleTask {}
+class _FakeLoadBundleTask_13 extends _i1.Fake implements _i5.LoadBundleTask {}
 
 /// A class which mocks [Geoflutterfire].
 ///
@@ -304,54 +300,6 @@ class MockFirebaseStorage extends _i1.Mock implements _i7.FirebaseStorage {
   String toString() => super.toString();
 }
 
-/// A class which mocks [GeoFirePoint].
-///
-/// See the documentation for Mockito's code generation for more information.
-class MockGeoFirePoint extends _i1.Mock implements _i4.GeoFirePoint {
-  MockGeoFirePoint() {
-    _i1.throwOnMissingStub(this);
-  }
-
-  @override
-  double get latitude =>
-      (super.noSuchMethod(Invocation.getter(#latitude), returnValue: 0.0)
-          as double);
-  @override
-  set latitude(double? _latitude) =>
-      super.noSuchMethod(Invocation.setter(#latitude, _latitude),
-          returnValueForMissingStub: null);
-  @override
-  double get longitude =>
-      (super.noSuchMethod(Invocation.getter(#longitude), returnValue: 0.0)
-          as double);
-  @override
-  set longitude(double? _longitude) =>
-      super.noSuchMethod(Invocation.setter(#longitude, _longitude),
-          returnValueForMissingStub: null);
-  @override
-  String get hash =>
-      (super.noSuchMethod(Invocation.getter(#hash), returnValue: '') as String);
-  @override
-  List<String> get neighbors => (super
-          .noSuchMethod(Invocation.getter(#neighbors), returnValue: <String>[])
-      as List<String>);
-  @override
-  _i5.GeoPoint get geoPoint => (super.noSuchMethod(Invocation.getter(#geoPoint),
-      returnValue: _FakeGeoPoint_7()) as _i5.GeoPoint);
-  @override
-  _i4.Coordinates get coords => (super.noSuchMethod(Invocation.getter(#coords),
-      returnValue: _FakeCoordinates_8()) as _i4.Coordinates);
-  @override
-  double kmDistance({double? lat, double? lng}) => (super.noSuchMethod(
-      Invocation.method(#kmDistance, [], {#lat: lat, #lng: lng}),
-      returnValue: 0.0) as double);
-  @override
-  dynamic haversineDistance({double? lat, double? lng}) => super.noSuchMethod(
-      Invocation.method(#haversineDistance, [], {#lat: lat, #lng: lng}));
-  @override
-  String toString() => super.toString();
-}
-
 /// A class which mocks [CollectionReference].
 ///
 /// See the documentation for Mockito's code generation for more information.
@@ -371,7 +319,7 @@ class MockCollectionReference<T extends Object?> extends _i1.Mock
   @override
   _i5.FirebaseFirestore get firestore =>
       (super.noSuchMethod(Invocation.getter(#firestore),
-          returnValue: _FakeFirebaseFirestore_9()) as _i5.FirebaseFirestore);
+          returnValue: _FakeFirebaseFirestore_7()) as _i5.FirebaseFirestore);
   @override
   Map<String, dynamic> get parameters =>
       (super.noSuchMethod(Invocation.getter(#parameters),
@@ -393,41 +341,41 @@ class MockCollectionReference<T extends Object?> extends _i1.Mock
       (super.noSuchMethod(
               Invocation.method(#withConverter, [],
                   {#fromFirestore: fromFirestore, #toFirestore: toFirestore}),
-              returnValue: _FakeCollectionReference_10<R>())
+              returnValue: _FakeCollectionReference_8<R>())
           as _i5.CollectionReference<R>);
   @override
   String toString() => super.toString();
   @override
   _i5.Query<T> endAtDocument(_i5.DocumentSnapshot<Object?>? documentSnapshot) =>
       (super.noSuchMethod(Invocation.method(#endAtDocument, [documentSnapshot]),
-          returnValue: _FakeQuery_11<T>()) as _i5.Query<T>);
+          returnValue: _FakeQuery_9<T>()) as _i5.Query<T>);
   @override
   _i5.Query<T> endAt(List<Object?>? values) =>
       (super.noSuchMethod(Invocation.method(#endAt, [values]),
-          returnValue: _FakeQuery_11<T>()) as _i5.Query<T>);
+          returnValue: _FakeQuery_9<T>()) as _i5.Query<T>);
   @override
   _i5.Query<T> endBeforeDocument(
           _i5.DocumentSnapshot<Object?>? documentSnapshot) =>
       (super.noSuchMethod(
           Invocation.method(#endBeforeDocument, [documentSnapshot]),
-          returnValue: _FakeQuery_11<T>()) as _i5.Query<T>);
+          returnValue: _FakeQuery_9<T>()) as _i5.Query<T>);
   @override
   _i5.Query<T> endBefore(List<Object?>? values) =>
       (super.noSuchMethod(Invocation.method(#endBefore, [values]),
-          returnValue: _FakeQuery_11<T>()) as _i5.Query<T>);
+          returnValue: _FakeQuery_9<T>()) as _i5.Query<T>);
   @override
   _i9.Future<_i5.QuerySnapshot<T>> get([_i5.GetOptions? options]) =>
       (super.noSuchMethod(Invocation.method(#get, [options]),
           returnValue: Future<_i5.QuerySnapshot<T>>.value(
-              _FakeQuerySnapshot_12<T>())) as _i9.Future<_i5.QuerySnapshot<T>>);
+              _FakeQuerySnapshot_10<T>())) as _i9.Future<_i5.QuerySnapshot<T>>);
   @override
   _i5.Query<T> limit(int? limit) =>
       (super.noSuchMethod(Invocation.method(#limit, [limit]),
-          returnValue: _FakeQuery_11<T>()) as _i5.Query<T>);
+          returnValue: _FakeQuery_9<T>()) as _i5.Query<T>);
   @override
   _i5.Query<T> limitToLast(int? limit) =>
       (super.noSuchMethod(Invocation.method(#limitToLast, [limit]),
-          returnValue: _FakeQuery_11<T>()) as _i5.Query<T>);
+          returnValue: _FakeQuery_9<T>()) as _i5.Query<T>);
   @override
   _i9.Stream<_i5.QuerySnapshot<T>> snapshots(
           {bool? includeMetadataChanges = false}) =>
@@ -440,27 +388,27 @@ class MockCollectionReference<T extends Object?> extends _i1.Mock
   _i5.Query<T> orderBy(Object? field, {bool? descending = false}) =>
       (super.noSuchMethod(
           Invocation.method(#orderBy, [field], {#descending: descending}),
-          returnValue: _FakeQuery_11<T>()) as _i5.Query<T>);
+          returnValue: _FakeQuery_9<T>()) as _i5.Query<T>);
   @override
   _i5.Query<T> startAfterDocument(
           _i5.DocumentSnapshot<Object?>? documentSnapshot) =>
       (super.noSuchMethod(
           Invocation.method(#startAfterDocument, [documentSnapshot]),
-          returnValue: _FakeQuery_11<T>()) as _i5.Query<T>);
+          returnValue: _FakeQuery_9<T>()) as _i5.Query<T>);
   @override
   _i5.Query<T> startAfter(List<Object?>? values) =>
       (super.noSuchMethod(Invocation.method(#startAfter, [values]),
-          returnValue: _FakeQuery_11<T>()) as _i5.Query<T>);
+          returnValue: _FakeQuery_9<T>()) as _i5.Query<T>);
   @override
   _i5.Query<T> startAtDocument(
           _i5.DocumentSnapshot<Object?>? documentSnapshot) =>
       (super.noSuchMethod(
           Invocation.method(#startAtDocument, [documentSnapshot]),
-          returnValue: _FakeQuery_11<T>()) as _i5.Query<T>);
+          returnValue: _FakeQuery_9<T>()) as _i5.Query<T>);
   @override
   _i5.Query<T> startAt(List<Object?>? values) =>
       (super.noSuchMethod(Invocation.method(#startAt, [values]),
-          returnValue: _FakeQuery_11<T>()) as _i5.Query<T>);
+          returnValue: _FakeQuery_9<T>()) as _i5.Query<T>);
   @override
   _i5.Query<T> where(Object? field,
           {Object? isEqualTo,
@@ -490,7 +438,7 @@ class MockCollectionReference<T extends Object?> extends _i1.Mock
             #whereNotIn: whereNotIn,
             #isNull: isNull
           }),
-          returnValue: _FakeQuery_11<T>()) as _i5.Query<T>);
+          returnValue: _FakeQuery_9<T>()) as _i5.Query<T>);
 }
 
 /// A class which mocks [FirebaseFirestore].
@@ -514,7 +462,7 @@ class MockFirebaseFirestore extends _i1.Mock implements _i5.FirebaseFirestore {
           returnValueForMissingStub: null);
   @override
   _i5.Settings get settings => (super.noSuchMethod(Invocation.getter(#settings),
-      returnValue: _FakeSettings_13()) as _i5.Settings);
+      returnValue: _FakeSettings_11()) as _i5.Settings);
   @override
   Map<dynamic, dynamic> get pluginConstants =>
       (super.noSuchMethod(Invocation.getter(#pluginConstants),
@@ -523,11 +471,11 @@ class MockFirebaseFirestore extends _i1.Mock implements _i5.FirebaseFirestore {
   _i5.CollectionReference<Map<String, dynamic>> collection(
           String? collectionPath) =>
       (super.noSuchMethod(Invocation.method(#collection, [collectionPath]),
-              returnValue: _FakeCollectionReference_10<Map<String, dynamic>>())
+              returnValue: _FakeCollectionReference_8<Map<String, dynamic>>())
           as _i5.CollectionReference<Map<String, dynamic>>);
   @override
   _i5.WriteBatch batch() => (super.noSuchMethod(Invocation.method(#batch, []),
-      returnValue: _FakeWriteBatch_14()) as _i5.WriteBatch);
+      returnValue: _FakeWriteBatch_12()) as _i5.WriteBatch);
   @override
   _i9.Future<void> clearPersistence() =>
       (super.noSuchMethod(Invocation.method(#clearPersistence, []),
@@ -543,7 +491,7 @@ class MockFirebaseFirestore extends _i1.Mock implements _i5.FirebaseFirestore {
   @override
   _i5.LoadBundleTask loadBundle(_i11.Uint8List? bundle) =>
       (super.noSuchMethod(Invocation.method(#loadBundle, [bundle]),
-          returnValue: _FakeLoadBundleTask_15()) as _i5.LoadBundleTask);
+          returnValue: _FakeLoadBundleTask_13()) as _i5.LoadBundleTask);
   @override
   void useFirestoreEmulator(String? host, int? port,
           {bool? sslEnabled = false}) =>
@@ -558,12 +506,12 @@ class MockFirebaseFirestore extends _i1.Mock implements _i5.FirebaseFirestore {
       (super.noSuchMethod(
           Invocation.method(#namedQueryGet, [name], {#options: options}),
           returnValue: Future<_i5.QuerySnapshot<Map<String, dynamic>>>.value(
-              _FakeQuerySnapshot_12<Map<String, dynamic>>())) as _i9
+              _FakeQuerySnapshot_10<Map<String, dynamic>>())) as _i9
           .Future<_i5.QuerySnapshot<Map<String, dynamic>>>);
   @override
   _i5.Query<Map<String, dynamic>> collectionGroup(String? collectionPath) =>
       (super.noSuchMethod(Invocation.method(#collectionGroup, [collectionPath]),
-              returnValue: _FakeQuery_11<Map<String, dynamic>>())
+              returnValue: _FakeQuery_9<Map<String, dynamic>>())
           as _i5.Query<Map<String, dynamic>>);
   @override
   _i9.Future<void> disableNetwork() =>
