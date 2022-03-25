@@ -1,11 +1,8 @@
-import 'package:super_enum_sealed_annotations/super_enum_sealed_annotations.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+part 'location_failure.freezed.dart';
 
-part 'location_failure.super.dart';
-
-@superEnum
-enum _LocationFailure {
-  @object
-  PermissionDenied,
-  @object
-  Unexpected
+@freezed
+abstract class LocationFailure with _$LocationFailure {
+  const factory LocationFailure.permissionDenied() = _PermissionDenied;
+  const factory LocationFailure.unexpected() = _Unexpected;
 }
