@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
+import 'package:injectable/injectable.dart';
 import 'package:kt_dart/collection.dart';
 import 'package:shopify_client/domain/core/location.dart';
 import 'package:shopify_client/domain/shopping/i_shop_repository.dart';
@@ -13,22 +14,34 @@ part 'shop_watcher_event.dart';
 part 'shop_watcher_state.dart';
 part 'shop_watcher_bloc.super.dart';
 
+@injectable
 class ShopWatcherBloc extends Bloc<ShopWatcherEvent, ShopWatcherState> {
   final IShopRepository _shopRepository;
-  late StreamSubscription<Either<ShopFailure, KtList<Shop>>> streamSubscription;
+  //late StreamSubscription<Either<ShopFailure, KtList<Shop>>> streamSubscription;
   ShopWatcherBloc(this._shopRepository)
       : super(const ShopWatcherState.initial()) {
-    on<ShopWatcherEvent>((event, emit) {
-      event.when(
-        watchNearbyShops: (watchNearbyShops) {
+    on<ShopWatcherEvent>((event, emit) async {
+      await event.when(
+        watchShopsByLocation: (watchShopsByLocation) async {
           emit(const ShopWatcherState.loading());
-          final stream = _shopRepository.watchNearby(
-              watchNearbyShops.location, watchNearbyShops.radius.toDouble());
 
-          streamSubscription = stream.listen((event) {
-            event.fold((f) => emit(ShopWatcherState.error(failure: f)),
-                (shopList) => emit(ShopWatcherState.loaded(shops: shopList)));
-          });
+          await emit.forEach(
+              _shopRepository.watchNearby(watchShopsByLocation.location,
+                  watchShopsByLocation.radius.toDouble()),
+              onData: (Either<ShopFailure, KtList<Shop>> data) => data.fold(
+                  (f) => ShopWatcherState.error(failure: f),
+                  (shopList) => ShopWatcherState.loaded(shops: shopList)));
+        },
+        watchNearbyShops: (watchNearbyShops) async {
+          emit(const ShopWatcherState.loading());
+
+          await emit.forEach(
+              _shopRepository.watchNearby(
+                  Location.empty(), //TODO TEMP
+                  watchNearbyShops.radius.toDouble()),
+              onData: (Either<ShopFailure, KtList<Shop>> data) => data.fold(
+                  (f) => ShopWatcherState.error(failure: f),
+                  (shopList) => ShopWatcherState.loaded(shops: shopList)));
         },
       );
     });
@@ -36,7 +49,7 @@ class ShopWatcherBloc extends Bloc<ShopWatcherEvent, ShopWatcherState> {
 
   @override
   Future<void> close() {
-    streamSubscription.cancel();
+    // streamSubscription.cancel();
     return super.close();
   }
 }
