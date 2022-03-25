@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:shopify_client/application/shop_watcher/shop_watcher_bloc.dart';
 import 'package:shopify_client/domain/auth/i_auth_facade.dart';
-import 'package:shopify_client/domain/core/location.dart';
+import 'package:shopify_client/domain/core/location/location.dart';
 import 'package:shopify_client/injection.dart';
 
 class HomePage extends StatelessWidget {

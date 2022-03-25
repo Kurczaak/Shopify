@@ -1,6 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:shopify_client/domain/core/location.dart';
-//import 'package:geopoint/geopoint.dart';
+import 'package:shopify_client/domain/core/location/location.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:shopify_client/domain/core/value_transformers.dart';
 

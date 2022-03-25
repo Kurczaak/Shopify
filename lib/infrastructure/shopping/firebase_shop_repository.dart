@@ -4,7 +4,7 @@ import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
-import 'package:shopify_client/domain/core/location.dart';
+import 'package:shopify_client/domain/core/location/location.dart';
 import 'package:shopify_client/domain/shopping/i_shop_repository.dart';
 import 'package:shopify_client/domain/shopping/shop_failure.dart';
 import 'package:shopify_client/domain/shopping/shop.dart';

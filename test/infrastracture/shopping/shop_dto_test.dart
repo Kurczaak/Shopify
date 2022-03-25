@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shopify_client/domain/core/address.dart';
 import 'package:shopify_client/domain/core/errors.dart';
-import 'package:shopify_client/domain/core/location.dart';
+import 'package:shopify_client/domain/core/location/location.dart';
 import 'package:shopify_client/domain/core/value_objects.dart';
 import 'package:shopify_client/domain/shopping/shop.dart';
 import 'package:shopify_client/domain/shopping/time/week.dart';

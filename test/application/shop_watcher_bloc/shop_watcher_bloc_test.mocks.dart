@@ -7,7 +7,7 @@ import 'dart:async' as _i3;
 import 'package:dartz/dartz.dart' as _i4;
 import 'package:kt_dart/kt.dart' as _i6;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:shopify_client/domain/core/location.dart' as _i8;
+import 'package:shopify_client/domain/core/location/location.dart' as _i8;
 import 'package:shopify_client/domain/shopping/i_shop_repository.dart' as _i2;
 import 'package:shopify_client/domain/shopping/shop.dart' as _i7;
 import 'package:shopify_client/domain/shopping/shop_failure.dart' as _i5;

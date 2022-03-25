@@ -5,7 +5,7 @@ import 'package:kt_dart/collection.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:shopify_client/domain/core/address.dart';
-import 'package:shopify_client/domain/core/location.dart';
+import 'package:shopify_client/domain/core/location/location.dart';
 import 'package:shopify_client/domain/core/value_objects.dart';
 import 'package:shopify_client/domain/shopping/shop.dart';
 import 'package:shopify_client/domain/shopping/time/week.dart';

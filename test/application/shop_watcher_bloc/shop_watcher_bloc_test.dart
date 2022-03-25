@@ -3,7 +3,7 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:kt_dart/collection.dart';
 import 'package:mockito/annotations.dart';
 import 'package:shopify_client/application/shop_watcher/shop_watcher_bloc.dart';
-import 'package:shopify_client/domain/core/location.dart';
+import 'package:shopify_client/domain/core/location/location.dart';
 import 'package:mockito/mockito.dart';
 import 'package:shopify_client/domain/shopping/i_shop_repository.dart';
 import 'package:shopify_client/domain/shopping/shop.dart';
