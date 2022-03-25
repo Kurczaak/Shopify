@@ -14,7 +14,7 @@ import 'shop_watcher_bloc_test.mocks.dart';
 @GenerateMocks([IShopRepository])
 void main() {
   final mockShopRepository = MockIShopRepository();
-  const tRadius = 10;
+  const tRadius = 10.0;
   final tLocation = Location.empty();
   final tShop = Shop.empty();
   final shopsList = KtList.from([tShop, tShop, tShop]);
@@ -24,7 +24,6 @@ void main() {
     act: (ShopWatcherBloc bloc) => bloc.add(
       ShopWatcherEvent.watchNearbyShops(
         radius: tRadius,
-        location: tLocation,
       ),
     ),
     verify: (_) =>
@@ -42,7 +41,6 @@ void main() {
     act: (ShopWatcherBloc bloc) => bloc.add(
       ShopWatcherEvent.watchNearbyShops(
         radius: tRadius,
-        location: tLocation,
       ),
     ),
     expect: () => const [
@@ -62,7 +60,6 @@ void main() {
     act: (ShopWatcherBloc bloc) => bloc.add(
       ShopWatcherEvent.watchNearbyShops(
         radius: tRadius,
-        location: tLocation,
       ),
     ),
     expect: () => [

@@ -28,12 +28,18 @@ part of 'shop_watcher_bloc.dart';
 // {
 // @WithEquality(Equality.data)
 // @WithName('WatchNearbyShops')
-// void watchNearbyShops(int radius, Location location);
+// void watchNearbyShops(double radius);
+//
+// @WithEquality(Equality.data)
+// @WithName('WatchShopsByLocation')
+// void watchShopsByLocation(double radius, Location location);
 // }
 
 /// [ShopWatcherEvent] {
 ///
-/// ([WatchNearbyShops] watchNearbyShops){[int] radius, [Location] location} with data equality
+/// ([WatchNearbyShops] watchNearbyShops){[double] radius} with data equality
+///
+/// ([WatchShopsByLocation] watchShopsByLocation){[double] radius, [Location] location} with data equality
 ///
 /// }
 @immutable
@@ -41,25 +47,42 @@ abstract class ShopWatcherEvent {
   const ShopWatcherEvent._internal();
 
   const factory ShopWatcherEvent.watchNearbyShops({
-    required int radius,
-    required Location location,
+    required double radius,
   }) = WatchNearbyShops;
+
+  const factory ShopWatcherEvent.watchShopsByLocation({
+    required double radius,
+    required Location location,
+  }) = WatchShopsByLocation;
 
   bool isWatchNearbyShops() => this is WatchNearbyShops;
 
+  bool isWatchShopsByLocation() => this is WatchShopsByLocation;
+
   WatchNearbyShops asWatchNearbyShops() => this as WatchNearbyShops;
+
+  WatchShopsByLocation asWatchShopsByLocation() => this as WatchShopsByLocation;
 
   WatchNearbyShops? asWatchNearbyShopsOrNull() {
     final shopWatcherEvent = this;
     return shopWatcherEvent is WatchNearbyShops ? shopWatcherEvent : null;
   }
 
+  WatchShopsByLocation? asWatchShopsByLocationOrNull() {
+    final shopWatcherEvent = this;
+    return shopWatcherEvent is WatchShopsByLocation ? shopWatcherEvent : null;
+  }
+
   R when<R extends Object?>({
     required R Function(WatchNearbyShops watchNearbyShops) watchNearbyShops,
+    required R Function(WatchShopsByLocation watchShopsByLocation)
+        watchShopsByLocation,
   }) {
     final shopWatcherEvent = this;
     if (shopWatcherEvent is WatchNearbyShops) {
       return watchNearbyShops(shopWatcherEvent);
+    } else if (shopWatcherEvent is WatchShopsByLocation) {
+      return watchShopsByLocation(shopWatcherEvent);
     } else {
       throw AssertionError();
     }
@@ -67,12 +90,17 @@ abstract class ShopWatcherEvent {
 
   R whenOrElse<R extends Object?>({
     R Function(WatchNearbyShops watchNearbyShops)? watchNearbyShops,
+    R Function(WatchShopsByLocation watchShopsByLocation)? watchShopsByLocation,
     required R Function(ShopWatcherEvent shopWatcherEvent) orElse,
   }) {
     final shopWatcherEvent = this;
     if (shopWatcherEvent is WatchNearbyShops) {
       return watchNearbyShops != null
           ? watchNearbyShops(shopWatcherEvent)
+          : orElse(shopWatcherEvent);
+    } else if (shopWatcherEvent is WatchShopsByLocation) {
+      return watchShopsByLocation != null
+          ? watchShopsByLocation(shopWatcherEvent)
           : orElse(shopWatcherEvent);
     } else {
       throw AssertionError();
@@ -81,12 +109,17 @@ abstract class ShopWatcherEvent {
 
   R whenOrDefault<R extends Object?>({
     R Function(WatchNearbyShops watchNearbyShops)? watchNearbyShops,
+    R Function(WatchShopsByLocation watchShopsByLocation)? watchShopsByLocation,
     required R orDefault,
   }) {
     final shopWatcherEvent = this;
     if (shopWatcherEvent is WatchNearbyShops) {
       return watchNearbyShops != null
           ? watchNearbyShops(shopWatcherEvent)
+          : orDefault;
+    } else if (shopWatcherEvent is WatchShopsByLocation) {
+      return watchShopsByLocation != null
+          ? watchShopsByLocation(shopWatcherEvent)
           : orDefault;
     } else {
       throw AssertionError();
@@ -95,10 +128,13 @@ abstract class ShopWatcherEvent {
 
   R? whenOrNull<R extends Object?>({
     R Function(WatchNearbyShops watchNearbyShops)? watchNearbyShops,
+    R Function(WatchShopsByLocation watchShopsByLocation)? watchShopsByLocation,
   }) {
     final shopWatcherEvent = this;
     if (shopWatcherEvent is WatchNearbyShops) {
       return watchNearbyShops?.call(shopWatcherEvent);
+    } else if (shopWatcherEvent is WatchShopsByLocation) {
+      return watchShopsByLocation?.call(shopWatcherEvent);
     } else {
       throw AssertionError();
     }
@@ -106,10 +142,14 @@ abstract class ShopWatcherEvent {
 
   R whenOrThrow<R extends Object?>({
     R Function(WatchNearbyShops watchNearbyShops)? watchNearbyShops,
+    R Function(WatchShopsByLocation watchShopsByLocation)? watchShopsByLocation,
   }) {
     final shopWatcherEvent = this;
     if (shopWatcherEvent is WatchNearbyShops && watchNearbyShops != null) {
       return watchNearbyShops(shopWatcherEvent);
+    } else if (shopWatcherEvent is WatchShopsByLocation &&
+        watchShopsByLocation != null) {
+      return watchShopsByLocation(shopWatcherEvent);
     } else {
       throw AssertionError();
     }
@@ -117,32 +157,56 @@ abstract class ShopWatcherEvent {
 
   void whenPartial({
     void Function(WatchNearbyShops watchNearbyShops)? watchNearbyShops,
+    void Function(WatchShopsByLocation watchShopsByLocation)?
+        watchShopsByLocation,
   }) {
     final shopWatcherEvent = this;
     if (shopWatcherEvent is WatchNearbyShops) {
       watchNearbyShops?.call(shopWatcherEvent);
+    } else if (shopWatcherEvent is WatchShopsByLocation) {
+      watchShopsByLocation?.call(shopWatcherEvent);
     } else {
       throw AssertionError();
     }
   }
 }
 
-/// (([WatchNearbyShops] : [ShopWatcherEvent]) watchNearbyShops){[int] radius, [Location] location}
+/// (([WatchNearbyShops] : [ShopWatcherEvent]) watchNearbyShops){[double] radius}
 ///
 /// with data equality
 @immutable
 class WatchNearbyShops extends ShopWatcherEvent with EquatableMixin {
   const WatchNearbyShops({
     required this.radius,
+  }) : super._internal();
+
+  final double radius;
+
+  @override
+  String toString() => 'ShopWatcherEvent.watchNearbyShops(radius: $radius)';
+
+  @override
+  List<Object?> get props => [
+        radius,
+      ];
+}
+
+/// (([WatchShopsByLocation] : [ShopWatcherEvent]) watchShopsByLocation){[double] radius, [Location] location}
+///
+/// with data equality
+@immutable
+class WatchShopsByLocation extends ShopWatcherEvent with EquatableMixin {
+  const WatchShopsByLocation({
+    required this.radius,
     required this.location,
   }) : super._internal();
 
-  final int radius;
+  final double radius;
   final Location location;
 
   @override
   String toString() =>
-      'ShopWatcherEvent.watchNearbyShops(radius: $radius, location: $location)';
+      'ShopWatcherEvent.watchShopsByLocation(radius: $radius, location: $location)';
 
   @override
   List<Object?> get props => [

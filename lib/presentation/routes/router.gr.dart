@@ -36,8 +36,10 @@ class AppRouter extends _i6.RootStackRouter {
           routeData: routeData, child: const _i3.SignInPage());
     },
     HomeRoute.name: (routeData) {
+      final args =
+          routeData.argsAs<HomeRouteArgs>(orElse: () => const HomeRouteArgs());
       return _i6.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i4.HomePage());
+          routeData: routeData, child: _i4.HomePage(key: args.key));
     },
     SignUpRoute.name: (routeData) {
       return _i6.MaterialPageX<dynamic>(
@@ -81,10 +83,23 @@ class SignInRoute extends _i6.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i4.HomePage]
-class HomeRoute extends _i6.PageRouteInfo<void> {
-  const HomeRoute() : super(HomeRoute.name, path: '/home-page');
+class HomeRoute extends _i6.PageRouteInfo<HomeRouteArgs> {
+  HomeRoute({_i7.Key? key})
+      : super(HomeRoute.name,
+            path: '/home-page', args: HomeRouteArgs(key: key));
 
   static const String name = 'HomeRoute';
+}
+
+class HomeRouteArgs {
+  const HomeRouteArgs({this.key});
+
+  final _i7.Key? key;
+
+  @override
+  String toString() {
+    return 'HomeRouteArgs{key: $key}';
+  }
 }
 
 /// generated route for
