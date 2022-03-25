@@ -13,18 +13,21 @@ import 'package:get_it/get_it.dart' as _i1;
 import 'package:google_sign_in/google_sign_in.dart' as _i8;
 import 'package:image_picker/image_picker.dart' as _i13;
 import 'package:injectable/injectable.dart' as _i2;
+import 'package:location/location.dart' as _i14;
 
-import 'application/auth/auth_bloc.dart' as _i16;
-import 'application/auth/sign_in_form/sign_in_form_bloc.dart' as _i15;
-import 'application/shop_watcher/shop_watcher_bloc.dart' as _i14;
+import 'application/auth/auth_bloc.dart' as _i17;
+import 'application/auth/sign_in_form/sign_in_form_bloc.dart' as _i16;
+import 'application/shop_watcher/shop_watcher_bloc.dart' as _i15;
 import 'domain/auth/i_auth_facade.dart' as _i9;
-import 'domain/core/images/i_image_facade.dart' as _i17;
+import 'domain/core/images/i_image_facade.dart' as _i18;
+import 'domain/core/location/i_location_facade.dart' as _i20;
 import 'domain/shopping/i_shop_repository.dart' as _i11;
 import 'infrastructure/auth/firebase_auth_facade.dart' as _i10;
-import 'infrastructure/core/firebase_injectable_module.dart' as _i19;
-import 'infrastructure/core/images/image_picker_image_facade.dart' as _i18;
-import 'infrastructure/core/images/image_picker_injectable_module.dart' as _i21;
-import 'infrastructure/core/location/location_injectable_module.dart' as _i20;
+import 'infrastructure/core/images/image_picker_image_facade.dart' as _i19;
+import 'infrastructure/core/images/image_picker_injectable_module.dart' as _i24;
+import 'infrastructure/core/injectables_module.dart' as _i22;
+import 'infrastructure/core/location/location_facade_impl.dart' as _i21;
+import 'infrastructure/core/location/location_injectable_module.dart' as _i23;
 import 'infrastructure/shopping/firebase_shop_repository.dart'
     as _i12; // ignore_for_file: unnecessary_lambdas
 
@@ -36,6 +39,7 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   final firebaseInjectableModule = _$FirebaseInjectableModule();
   final geocodingInjectableModule = _$GeocodingInjectableModule();
   final imagePikcerInjectableModule = _$ImagePikcerInjectableModule();
+  final locationInjectableModule = _$LocationInjectableModule();
   gh.lazySingleton<_i3.FirebaseAuth>(
       () => firebaseInjectableModule.firebaseAuth);
   gh.lazySingleton<_i4.FirebaseFirestore>(
@@ -53,18 +57,24 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       get<_i4.FirebaseFirestore>(), get<_i7.Geoflutterfire>()));
   gh.lazySingleton<_i13.ImagePicker>(
       () => imagePikcerInjectableModule.imagePicker);
-  gh.factory<_i14.ShopWatcherBloc>(
-      () => _i14.ShopWatcherBloc(get<_i11.IShopRepository>()));
-  gh.factory<_i15.SignInFormBloc>(
-      () => _i15.SignInFormBloc(get<_i9.IAuthFacade>()));
-  gh.factory<_i16.AuthBloc>(() => _i16.AuthBloc(get<_i9.IAuthFacade>()));
-  gh.lazySingleton<_i17.IImageFacade>(
-      () => _i18.ImagePickerImageFacade(get<_i13.ImagePicker>()));
+  gh.lazySingleton<_i14.Location>(
+      () => locationInjectableModule.locationService);
+  gh.factory<_i15.ShopWatcherBloc>(
+      () => _i15.ShopWatcherBloc(get<_i11.IShopRepository>()));
+  gh.factory<_i16.SignInFormBloc>(
+      () => _i16.SignInFormBloc(get<_i9.IAuthFacade>()));
+  gh.factory<_i17.AuthBloc>(() => _i17.AuthBloc(get<_i9.IAuthFacade>()));
+  gh.lazySingleton<_i18.IImageFacade>(
+      () => _i19.ImagePickerImageFacade(get<_i13.ImagePicker>()));
+  gh.lazySingleton<_i20.ILocationFacade>(
+      () => _i21.LocationFacadeImpl(get<_i14.Location>()));
   return get;
 }
 
-class _$FirebaseInjectableModule extends _i19.FirebaseInjectableModule {}
+class _$FirebaseInjectableModule extends _i22.FirebaseInjectableModule {}
 
-class _$GeocodingInjectableModule extends _i20.GeocodingInjectableModule {}
+class _$GeocodingInjectableModule extends _i23.GeocodingInjectableModule {}
 
-class _$ImagePikcerInjectableModule extends _i21.ImagePikcerInjectableModule {}
+class _$ImagePikcerInjectableModule extends _i24.ImagePikcerInjectableModule {}
+
+class _$LocationInjectableModule extends _i22.LocationInjectableModule {}
