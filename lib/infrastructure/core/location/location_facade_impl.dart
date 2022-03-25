@@ -12,9 +12,9 @@ class LocationFacadeImpl implements ILocationFacade {
 
   LocationFacadeImpl(this._locationService);
   @override
-  Future<Either<LocationFailure, Location>> getCurrentLocation() {
-    // TODO: implement getCurrentLocation
-    throw UnimplementedError();
+  Future<Either<LocationFailure, Location>> getCurrentLocation() async {
+    _locationService.getLocation();
+    return left(const LocationFailure.unexpected());
   }
 
   @override
