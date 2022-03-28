@@ -32,7 +32,10 @@ class ShopWatcherBloc extends Bloc<ShopWatcherEvent, ShopWatcherState> {
                   watchShopsByLocation.radius.toDouble()),
               onData: (Either<ShopFailure, KtList<Shop>> data) => data.fold(
                   (f) => ShopWatcherState.error(failure: f),
-                  (shopList) => ShopWatcherState.loaded(shops: shopList)));
+                  (shopList) => ShopWatcherState.loaded(
+                      shops: shopList,
+                      center: watchShopsByLocation.location,
+                      radius: watchShopsByLocation.radius)));
         },
         watchNearbyShops: (watchNearbyShops) async {
           emit(const ShopWatcherState.loading());
@@ -46,7 +49,10 @@ class ShopWatcherBloc extends Bloc<ShopWatcherEvent, ShopWatcherState> {
                   location, watchNearbyShops.radius.toDouble()),
               onData: (Either<ShopFailure, KtList<Shop>> data) => data.fold(
                   (f) => ShopWatcherState.error(failure: f),
-                  (shopList) => ShopWatcherState.loaded(shops: shopList)),
+                  (shopList) => ShopWatcherState.loaded(
+                      shops: shopList,
+                      center: location,
+                      radius: watchNearbyShops.radius)),
             ),
           );
         },

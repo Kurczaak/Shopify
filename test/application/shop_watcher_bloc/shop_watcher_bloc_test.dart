@@ -64,8 +64,7 @@ void main() {
       'Should emit [LOADING], and [LOADED] states when the repository returns list of Shops',
       build: () => ShopWatcherBloc(mockShopRepository, mockLocationFacade),
       setUp: () =>
-          when(mockShopRepository.watchNearby(tLocation, tRadius.toDouble()))
-              .thenAnswer(
+          when(mockShopRepository.watchNearby(tLocation, tRadius)).thenAnswer(
         (_) => Stream.fromIterable([right(shopsList)]),
       ),
       act: (ShopWatcherBloc bloc) => bloc.add(
@@ -75,7 +74,8 @@ void main() {
       ),
       expect: () => [
         const ShopWatcherState.loading(),
-        ShopWatcherState.loaded(shops: shopsList)
+        ShopWatcherState.loaded(
+            shops: shopsList, center: tLocation, radius: tRadius)
       ],
     );
 
@@ -144,7 +144,8 @@ void main() {
       ),
       expect: () => [
         const ShopWatcherState.loading(),
-        ShopWatcherState.loaded(shops: shopsList)
+        ShopWatcherState.loaded(
+            shops: shopsList, center: tLocation, radius: tRadius)
       ],
     );
   });

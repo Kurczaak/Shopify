@@ -16,6 +16,7 @@ class LocationFacadeImpl implements ILocationFacade {
   LocationFacadeImpl(this._locationService);
   @override
   Future<Either<LocationFailure, Location>> getCurrentLocation() async {
+    await _locationService.requestPermission();
     final permissionStatus = await _locationService.hasPermission();
     if (permissionStatus == loc.PermissionStatus.denied ||
         permissionStatus == loc.PermissionStatus.deniedForever) {

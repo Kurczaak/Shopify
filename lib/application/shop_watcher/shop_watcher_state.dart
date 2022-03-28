@@ -8,6 +8,8 @@ enum _ShopWatcherState {
   Loading,
   @Data(fields: [
     DataField<KtList<Shop>>('shops'),
+    DataField<Location>('center'),
+    DataField<double>('radius'),
   ])
   Loaded,
   @Data(fields: [

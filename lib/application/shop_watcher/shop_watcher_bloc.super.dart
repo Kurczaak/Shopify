@@ -247,7 +247,7 @@ class WatchShopsByLocation extends ShopWatcherEvent with EquatableMixin {
 //
 // @WithEquality(Equality.data)
 // @WithName('Loaded')
-// void loaded(KtList<Shop> shops);
+// void loaded(KtList<Shop> shops, Location center, double radius);
 //
 // @WithEquality(Equality.data)
 // @WithName('Error')
@@ -260,7 +260,7 @@ class WatchShopsByLocation extends ShopWatcherEvent with EquatableMixin {
 ///
 /// ([Loading] loading){} with data equality with wrap
 ///
-/// ([Loaded] loaded){[KtList<Shop>] shops} with data equality
+/// ([Loaded] loaded){[KtList<Shop>] shops, [Location] center, [double] radius} with data equality
 ///
 /// ([Error] error){[ShopFailure] failure} with data equality
 ///
@@ -275,6 +275,8 @@ abstract class ShopWatcherState {
 
   const factory ShopWatcherState.loaded({
     required KtList<Shop> shops,
+    required Location center,
+    required double radius,
   }) = Loaded;
 
   const factory ShopWatcherState.error({
@@ -474,23 +476,30 @@ class Loading extends ShopWatcherState with EquatableMixin {
   List<Object?> get props => [];
 }
 
-/// (([Loaded] : [ShopWatcherState]) loaded){[KtList<Shop>] shops}
+/// (([Loaded] : [ShopWatcherState]) loaded){[KtList<Shop>] shops, [Location] center, [double] radius}
 ///
 /// with data equality
 @immutable
 class Loaded extends ShopWatcherState with EquatableMixin {
   const Loaded({
     required this.shops,
+    required this.center,
+    required this.radius,
   }) : super._internal();
 
   final KtList<Shop> shops;
+  final Location center;
+  final double radius;
 
   @override
-  String toString() => 'ShopWatcherState.loaded(shops: $shops)';
+  String toString() =>
+      'ShopWatcherState.loaded(shops: $shops, center: $center, radius: $radius)';
 
   @override
   List<Object?> get props => [
         shops,
+        center,
+        radius,
       ];
 }
 

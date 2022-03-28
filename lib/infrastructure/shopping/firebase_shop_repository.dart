@@ -22,13 +22,12 @@ class FirebaseShopRepositoryImpl implements IShopRepository {
   Stream<Either<ShopFailure, KtList<Shop>>> watchNearby(
       Location location, double radius) async* {
     final shopsCollectionRef = _firestore.collection('shops');
-
     const String field = 'position';
     final GeoFirePoint center =
         _geo.point(latitude: location.latitude, longitude: location.longitude);
     final collection = _geo.collection(collectionRef: shopsCollectionRef);
-    Stream<List<DocumentSnapshot>> stream =
-        collection.within(center: center, radius: radius, field: field);
+    Stream<List<DocumentSnapshot>> stream = collection.within(
+        center: center, radius: radius, field: field, strictMode: true);
 
     yield* stream.map(
       (documents) {
