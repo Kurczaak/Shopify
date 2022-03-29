@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:loading_overlay/loading_overlay.dart';
+import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:shopify_client/application/shop_watcher/shop_watcher_bloc.dart';
 import 'package:shopify_client/domain/auth/i_auth_facade.dart';
 import 'package:shopify_client/domain/core/location/location.dart';
@@ -25,6 +26,8 @@ class _HomePageState extends State<HomePage> {
   CameraPosition? cameraPosition;
   GoogleMapController? mapController;
   LatLng center = Location.empty().latLng;
+  final itemController = ItemScrollController();
+  final positionListener = ItemPositionsListener.create();
 
   @override
   Widget build(BuildContext context) {
@@ -41,6 +44,13 @@ class _HomePageState extends State<HomePage> {
                 .shops
                 .asList()
                 .map((shop) => Marker(
+                    onTap: () {
+                      itemController.scrollTo(
+                        duration: Duration(milliseconds: 500),
+                        index: state.asLoaded().shops.indexOf(shop),
+                        alignment: .25,
+                      );
+                    },
                     infoWindow: InfoWindow(
                         title: shop.shopName.getOrCrash(),
                         snippet: shop.address.toString()),
@@ -73,7 +83,14 @@ class _HomePageState extends State<HomePage> {
             ),
             body: state.whenOrElse(
               initial: () => Container(),
-              error: (_) => Text('Error'),
+              error: (_) => ElevatedButton(
+                child: Text('Error'),
+                onPressed: () {
+                  context
+                      .read<ShopWatcherBloc>()
+                      .add(ShopWatcherEvent.watchNearbyShops(radius: radius));
+                },
+              ),
               orElse: (_) => Column(
                 children: [
                   SizedBox(height: 28),
@@ -86,7 +103,7 @@ class _HomePageState extends State<HomePage> {
                         Expanded(
                           child: Slider(
                             min: 0.1,
-                            max: 5,
+                            max: 20,
                             value: radius,
                             onChanged: (value) {
                               setState(() {
@@ -114,20 +131,32 @@ class _HomePageState extends State<HomePage> {
                     height: 100,
                     child: !state.isLoaded()
                         ? Container()
-                        : ListView.builder(
+                        : ScrollablePositionedList.builder(
+                            itemScrollController: itemController,
+                            itemPositionsListener: positionListener,
                             itemCount: state.asLoaded().shops.size,
                             scrollDirection: Axis.horizontal,
                             itemBuilder: (context, index) => SizedBox(
                               height: 92,
                               width: 184,
                               child: Card(
-                                child: CachedNetworkImage(
-                                  imageUrl:
-                                      state.asLoaded().shops[index].logoUrl,
-                                  placeholder: (context, url) =>
-                                      Image.asset('images/logo.png'),
-                                  errorWidget: (context, url, error) =>
-                                      Icon(Icons.error),
+                                child: InkWell(
+                                  onTap: () {
+                                    mapController?.animateCamera(
+                                        CameraUpdate.newLatLng(state
+                                            .asLoaded()
+                                            .shops[index]
+                                            .location
+                                            .latLng));
+                                  },
+                                  child: CachedNetworkImage(
+                                    imageUrl:
+                                        state.asLoaded().shops[index].logoUrl,
+                                    placeholder: (context, url) =>
+                                        Image.asset('images/logo.png'),
+                                    errorWidget: (context, url, error) =>
+                                        Icon(Icons.error),
+                                  ),
                                 ),
                               ),
                             ),
@@ -135,36 +164,37 @@ class _HomePageState extends State<HomePage> {
                   ),
                   Expanded(
                     child: LoadingOverlay(
-                        isLoading: state.isLoading(),
-                        color: Colors.black,
-                        child: Placeholder()
-                        //  GoogleMap(
-                        //   circles: {
-                        //     Circle(
-                        //       circleId: CircleId('1'),
-                        //       center: center,
-                        //       radius: radius * 1000,
-                        //       fillColor: Colors.red.withOpacity(.1),
-                        //       strokeWidth: 0,
-                        //       visible: true,
-                        //     )
-                        //   },
-                        //   myLocationEnabled: true,
-                        //   myLocationButtonEnabled: true,
-                        //   zoomControlsEnabled: false,
-                        //   mapType: MapType.hybrid,
-                        //   markers: markers,
-                        //   initialCameraPosition: cameraPosition ??
-                        //       CameraPosition(
-                        //           target: Location.empty().latLng, zoom: 15),
-                        //   onMapCreated: (GoogleMapController controller) {
-                        //     _controller.complete(controller);
-                        //     setState(() {
-                        //       mapController = controller;
-                        //     });
-                        //   },
-                        // ),
-                        ),
+                      isLoading: state.isLoading(),
+                      color: Colors.black,
+                      child:
+                          //Placeholder()
+                          GoogleMap(
+                        circles: {
+                          Circle(
+                            circleId: CircleId('1'),
+                            center: center,
+                            radius: radius * 1000,
+                            fillColor: Colors.red.withOpacity(.1),
+                            strokeWidth: 0,
+                            visible: true,
+                          )
+                        },
+                        myLocationEnabled: true,
+                        myLocationButtonEnabled: true,
+                        zoomControlsEnabled: false,
+                        mapType: MapType.hybrid,
+                        markers: markers,
+                        initialCameraPosition: cameraPosition ??
+                            CameraPosition(
+                                target: Location.empty().latLng, zoom: 15),
+                        onMapCreated: (GoogleMapController controller) {
+                          _controller.complete(controller);
+                          setState(() {
+                            mapController = controller;
+                          });
+                        },
+                      ),
+                    ),
                   ),
                 ],
               ),
