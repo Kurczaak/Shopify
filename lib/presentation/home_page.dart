@@ -7,13 +7,11 @@ import 'package:kt_dart/kt.dart';
 import 'package:loading_overlay/loading_overlay.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:shopify_client/application/shop_watcher/shop_watcher_bloc.dart';
-import 'package:shopify_client/domain/auth/i_auth_facade.dart';
 import 'package:shopify_client/domain/core/location/location.dart';
 import 'package:shopify_client/domain/shopping/shop.dart';
 import 'package:shopify_client/injection.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:shopify_client/presentation/core/widgets/shop_preview_dialog.dart';
-import 'package:shopify_client/presentation/core/widgets/shopify_alert_dialog.dart';
 import 'package:shopify_client/presentation/core/widgets/shopify_appbar.dart';
 
 class HomePage extends StatefulWidget {
@@ -24,7 +22,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final Completer<GoogleMapController> _controller = Completer();
+  Completer<GoogleMapController> _controller = Completer();
   GoogleMapController? mapController;
   final double minDistance = .1;
   final double maxDistance = 20;
@@ -76,14 +74,45 @@ class _HomePageState extends State<HomePage> {
                   )
                 : null,
             body: state.whenOrElse(
-              initial: () => Container(),
-              error: (_) => ElevatedButton(
-                child: Text('Error'),
-                onPressed: () {
-                  context
-                      .read<ShopWatcherBloc>()
-                      .add(ShopWatcherEvent.watchNearbyShops(radius: radius));
-                },
+              initial: () => const Center(
+                child: CircularProgressIndicator(),
+              ),
+              error: (errorState) => Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(28.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        errorState.failure.map(
+                            unexpected: (_) =>
+                                'An Unexpected Failure has occured',
+                            insufficientPermission: (_) =>
+                                'Insufficient Permissions',
+                            unableToUpdate: (_) => 'Unable to update',
+                            timeout: (_) => 'Connection has timed out',
+                            noLocation: (_) =>
+                                'Your location could not be found'),
+                        style: const TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 22),
+                      ),
+                      const Text(
+                        'Make sure you have an access to internet, location permission enabled or try again later',
+                        textAlign: TextAlign.center,
+                      ),
+                      const SizedBox(height: 10),
+                      ElevatedButton(
+                        child: const Icon(Icons.refresh),
+                        onPressed: () {
+                          context.read<ShopWatcherBloc>().add(
+                              ShopWatcherEvent.watchNearbyShops(
+                                  radius: radius));
+                        },
+                      ),
+                    ],
+                  ),
+                ),
               ),
               orElse: (orElseState) => Column(
                 children: [
@@ -160,6 +189,7 @@ class _HomePageState extends State<HomePage> {
                           ? state.asLoaded().shops
                           : const KtList.empty(),
                       onMapCreated: (GoogleMapController controller) {
+                        _controller = Completer<GoogleMapController>();
                         _controller.complete(controller);
                         setState(() {
                           mapController = controller;
