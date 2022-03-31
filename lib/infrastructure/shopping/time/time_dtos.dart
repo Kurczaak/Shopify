@@ -58,7 +58,7 @@ abstract class DayDto with _$DayDto {
 
   factory DayDto.fromDomain(Day day) {
     return DayDto(
-      day: day.day.name,
+      day: day.day.stringify,
       isOpen: day.isOpen,
       timeInterval: TimeIntervalDto.fromDomain(day.openingInterval),
     );

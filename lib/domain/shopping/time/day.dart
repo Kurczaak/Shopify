@@ -38,7 +38,7 @@ abstract class Day with _$Day {
 }
 
 extension Stringify on DayName {
-  String get name {
+  String get stringify {
     switch (this) {
       case DayName.monday:
         return 'Monday';
