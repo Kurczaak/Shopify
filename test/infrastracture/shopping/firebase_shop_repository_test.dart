@@ -102,7 +102,7 @@ void main() async {
           .thenReturn(mockGeoFireCollectionRef);
 
       when(mockGeoFireCollectionRef.within(
-              center: geoPoint, radius: radius, field: field))
+              center: geoPoint, radius: radius, field: field, strictMode: true))
           .thenAnswer(
               (_) => Stream.fromIterable([listOfShopDocumentSnapshots]));
 
@@ -120,7 +120,7 @@ void main() async {
           longitude: Location.empty().longitude));
       verify(geo.collection(collectionRef: mockCollectionReference));
       verify(mockGeoFireCollectionRef.within(
-          center: geoPoint, radius: radius, field: field));
+          center: geoPoint, radius: radius, field: field, strictMode: true));
     },
   );
 
@@ -150,7 +150,7 @@ void main() async {
           .thenReturn(mockGeoFireCollectionRef);
 
       when(mockGeoFireCollectionRef.within(
-              center: geoPoint, radius: radius, field: field))
+              center: geoPoint, radius: radius, field: field, strictMode: true))
           .thenAnswer(
               (_) => Stream.fromIterable([listOfShopDocumentSnapshots]));
 
