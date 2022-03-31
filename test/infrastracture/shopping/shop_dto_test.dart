@@ -13,7 +13,6 @@ import 'package:shopify_client/infrastructure/shopping/shop_dtos.dart';
 import 'package:shopify_client/infrastructure/shopping/time/time_dtos.dart';
 import 'package:fake_cloud_firestore/fake_cloud_firestore.dart';
 
-//TODO IMPLEMENT!!!
 void main() async {
   final instance = FakeFirebaseFirestore();
 
