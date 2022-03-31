@@ -35,11 +35,9 @@ class AppRouter extends _i6.RootStackRouter {
       return _i6.MaterialPageX<dynamic>(
           routeData: routeData, child: const _i3.SignInPage());
     },
-    HomeRoute.name: (routeData) {
-      final args =
-          routeData.argsAs<HomeRouteArgs>(orElse: () => const HomeRouteArgs());
+    ShopPickerRoute.name: (routeData) {
       return _i6.MaterialPageX<dynamic>(
-          routeData: routeData, child: _i4.ShopPickerPage(key: args.key));
+          routeData: routeData, child: const _i4.ShopPickerPage());
     },
     SignUpRoute.name: (routeData) {
       return _i6.MaterialPageX<dynamic>(
@@ -52,7 +50,7 @@ class AppRouter extends _i6.RootStackRouter {
         _i6.RouteConfig(DebugRoute.name, path: '/debug-page'),
         _i6.RouteConfig(SplashRoute.name, path: '/'),
         _i6.RouteConfig(SignInRoute.name, path: '/sign-in-page'),
-        _i6.RouteConfig(HomeRoute.name, path: '/home-page'),
+        _i6.RouteConfig(ShopPickerRoute.name, path: '/shop-picker-page'),
         _i6.RouteConfig(SignUpRoute.name, path: '/sign-up-page')
       ];
 }
@@ -83,23 +81,11 @@ class SignInRoute extends _i6.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i4.ShopPickerPage]
-class HomeRoute extends _i6.PageRouteInfo<HomeRouteArgs> {
-  HomeRoute({_i7.Key? key})
-      : super(HomeRoute.name,
-            path: '/home-page', args: HomeRouteArgs(key: key));
+class ShopPickerRoute extends _i6.PageRouteInfo<void> {
+  const ShopPickerRoute()
+      : super(ShopPickerRoute.name, path: '/shop-picker-page');
 
-  static const String name = 'HomeRoute';
-}
-
-class HomeRouteArgs {
-  const HomeRouteArgs({this.key});
-
-  final _i7.Key? key;
-
-  @override
-  String toString() {
-    return 'HomeRouteArgs{key: $key}';
-  }
+  static const String name = 'ShopPickerRoute';
 }
 
 /// generated route for

@@ -29,6 +29,8 @@ void main() {
     'should check if permissions are granted and return according LocationFailure',
     () async {
       // arrange
+      when(mockLocationService.requestPermission())
+          .thenAnswer((_) async => loc.PermissionStatus.denied);
       when(mockLocationService.hasPermission())
           .thenAnswer((_) async => loc.PermissionStatus.denied);
       // act
@@ -43,6 +45,8 @@ void main() {
     'should call Location service',
     () async {
       //arrange
+      when(mockLocationService.requestPermission())
+          .thenAnswer((_) async => loc.PermissionStatus.granted);
       when(mockLocationService.hasPermission())
           .thenAnswer((_) async => loc.PermissionStatus.granted);
       when(mockLocationService.getLocation())
@@ -60,6 +64,8 @@ void main() {
     'should return a valid Location',
     () async {
       // arrange
+      when(mockLocationService.requestPermission())
+          .thenAnswer((_) async => loc.PermissionStatus.granted);
       when(mockLocationService.hasPermission())
           .thenAnswer((_) async => loc.PermissionStatus.granted);
       when(mockLocationService.getLocation())
@@ -77,6 +83,8 @@ void main() {
     'should return unexpected LocationFailure when LocationData contains nulls',
     () async {
       // arrange
+      when(mockLocationService.requestPermission())
+          .thenAnswer((_) async => loc.PermissionStatus.granted);
       when(mockLocationService.hasPermission())
           .thenAnswer((_) async => loc.PermissionStatus.granted);
       when(mockLocationService.getLocation())
@@ -94,6 +102,8 @@ void main() {
     'should return unexpected LocationFailure when Location throws PlatformException',
     () async {
       // arrange
+      when(mockLocationService.requestPermission())
+          .thenAnswer((_) async => loc.PermissionStatus.granted);
       when(mockLocationService.hasPermission())
           .thenAnswer((_) async => loc.PermissionStatus.granted);
       when(mockLocationService.getLocation())
