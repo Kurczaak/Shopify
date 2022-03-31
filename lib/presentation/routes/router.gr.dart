@@ -12,7 +12,7 @@ import 'package:auto_route/auto_route.dart' as _i6;
 import 'package:flutter/material.dart' as _i7;
 
 import '../core/debug_page.dart' as _i1;
-import '../home_page.dart' as _i4;
+import '../shop_picker_page.dart' as _i4;
 import '../sign_in/sign_in_page.dart' as _i3;
 import '../sign_in/sign_up_page.dart' as _i5;
 import '../splash/splash_page.dart' as _i2;
@@ -39,7 +39,7 @@ class AppRouter extends _i6.RootStackRouter {
       final args =
           routeData.argsAs<HomeRouteArgs>(orElse: () => const HomeRouteArgs());
       return _i6.MaterialPageX<dynamic>(
-          routeData: routeData, child: _i4.HomePage(key: args.key));
+          routeData: routeData, child: _i4.ShopPickerPage(key: args.key));
     },
     SignUpRoute.name: (routeData) {
       return _i6.MaterialPageX<dynamic>(
@@ -82,7 +82,7 @@ class SignInRoute extends _i6.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i4.HomePage]
+/// [_i4.ShopPickerPage]
 class HomeRoute extends _i6.PageRouteInfo<HomeRouteArgs> {
   HomeRoute({_i7.Key? key})
       : super(HomeRoute.name,

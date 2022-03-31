@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:shopify_client/presentation/core/debug_page.dart';
-import 'package:shopify_client/presentation/home_page.dart';
+import 'package:shopify_client/presentation/shop_picker_page.dart';
 import 'package:shopify_client/presentation/sign_in/sign_in_page.dart';
 import 'package:shopify_client/presentation/sign_in/sign_up_page.dart';
 import 'package:shopify_client/presentation/splash/splash_page.dart';
@@ -19,7 +19,7 @@ import 'package:shopify_client/presentation/splash/splash_page.dart';
       page: SignInPage,
     ),
     AutoRoute(
-      page: HomePage,
+      page: ShopPickerPage,
     ),
     AutoRoute(
       page: SignUpPage,
