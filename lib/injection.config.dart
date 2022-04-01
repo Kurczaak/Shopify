@@ -15,28 +15,24 @@ import 'package:injectable/injectable.dart' as _i2;
 
 import 'application/auth/auth_bloc.dart' as _i20;
 import 'application/auth/sign_in_form/sign_in_form_bloc.dart' as _i19;
-import 'application/shopping/shop_form/shop_form_bloc.dart' as _i14;
-import 'application/shopping/shop_location_picker/shop_location_picker_bloc.dart'
+import 'application/shop/shop_actor/shop_actor_bloc.dart' as _i17;
+import 'application/shop/shop_form/shop_form_bloc.dart' as _i14;
+import 'application/shop/shop_location_picker/shop_location_picker_bloc.dart'
     as _i15;
-import 'application/shopping/shop_logo_picker/shop_logo_picker_bloc.dart'
-    as _i23;
-import 'application/shopping/shop_registration/shop_registration_bloc.dart'
-    as _i24;
-import 'application/shopping/shop_time_picker/shop_time_picker_bloc.dart'
-    as _i16;
-import 'application/shopping/shopping_actor/shopping_actor_bloc.dart' as _i17;
-import 'application/shopping/shopping_watcher/shopping_watcher_bloc.dart'
-    as _i18;
+import 'application/shop/shop_logo_picker/shop_logo_picker_bloc.dart' as _i23;
+import 'application/shop/shop_registration/shop_registration_bloc.dart' as _i24;
+import 'application/shop/shop_time_picker/shop_time_picker_bloc.dart' as _i16;
+import 'application/shop/shop_watcher/shop_watcher_bloc.dart' as _i18;
 import 'domain/auth/i_auth_facade.dart' as _i8;
 import 'domain/core/images/i_image_facade.dart' as _i21;
 import 'domain/core/location/location_info.dart' as _i13;
-import 'domain/shopping/i_shop_repository.dart' as _i10;
+import 'domain/shop/i_shop_repository.dart' as _i10;
 import 'infrastructure/auth/firebase_auth_facade.dart' as _i9;
 import 'infrastructure/core/firebase_injectable_module.dart' as _i25;
 import 'infrastructure/core/images/image_picker_image_facade.dart' as _i22;
 import 'infrastructure/core/images/image_picker_injectable_module.dart' as _i27;
 import 'infrastructure/core/location/location_injectable_module.dart' as _i26;
-import 'infrastructure/shopping/firebase_shop_repository.dart'
+import 'infrastructure/shop/firebase_shop_repository.dart'
     as _i11; // ignore_for_file: unnecessary_lambdas
 
 // ignore_for_file: lines_longer_than_80_chars

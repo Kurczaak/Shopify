@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shopify_manager/application/shopping/shop_form/shop_form_bloc.dart';
-import 'package:shopify_manager/application/shopping/shop_location_picker/shop_location_picker_bloc.dart';
-import 'package:shopify_manager/application/shopping/shop_registration/shop_registration_bloc.dart';
+import 'package:shopify_manager/application/shop/shop_form/shop_form_bloc.dart';
+import 'package:shopify_manager/application/shop/shop_location_picker/shop_location_picker_bloc.dart';
+import 'package:shopify_manager/application/shop/shop_registration/shop_registration_bloc.dart';
 import 'package:shopify_manager/injection.dart';
 import 'package:shopify_manager/presentation/core/widgets/process_appbar.dart';
 import 'package:shopify_manager/presentation/core/widgets/shopify_progress_indicator.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:shopify_manager/application/shopping/shop_logo_picker/shop_logo_picker_bloc.dart';
-import 'package:shopify_manager/application/shopping/shop_time_picker/shop_time_picker_bloc.dart';
+import 'package:shopify_manager/application/shop/shop_logo_picker/shop_logo_picker_bloc.dart';
+import 'package:shopify_manager/application/shop/shop_time_picker/shop_time_picker_bloc.dart';
 import 'package:loading_overlay/loading_overlay.dart';
 
 class RegistrationWrappingPage extends StatelessWidget {

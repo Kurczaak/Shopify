@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:shopify_manager/domain/shopping/time/day.dart';
-import 'package:shopify_manager/domain/shopping/time/value_objects.dart';
+import 'package:shopify_manager/domain/shop/time/day.dart';
+import 'package:shopify_manager/domain/shop/time/value_objects.dart';
 import 'package:shopify_manager/presentation/register_shop/opening_hours/misc/day_presentation_classes.dart';
 
 void main() {

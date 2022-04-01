@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:shopify_manager/domain/core/address.dart';
 import 'package:shopify_manager/domain/core/failures.dart';
 import 'package:shopify_manager/domain/core/value_objects.dart';
-import 'package:shopify_manager/domain/shopping/failures.dart';
+import 'package:shopify_manager/domain/shop/failures.dart';
 
 void main() {
   final tAddress = Address(
@@ -34,7 +34,7 @@ void main() {
         // assert
         expect(
             failureOrOption,
-            equals(some(const ValueFailure.shopping(
+            equals(some(const ValueFailure.shop(
                 ShoppingValueFailure.empty(failedValue: '')))));
       },
     );

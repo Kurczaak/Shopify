@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:shopify_manager/application/shopping/shop_logo_picker/shop_logo_picker_bloc.dart';
+import 'package:shopify_manager/application/shop/shop_logo_picker/shop_logo_picker_bloc.dart';
 import 'package:shopify_manager/domain/core/images/image_failure.dart';
 import 'package:another_flushbar/flushbar_helper.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

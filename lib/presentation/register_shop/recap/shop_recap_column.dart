@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shopify_manager/domain/core/images/photo.dart';
-import 'package:shopify_manager/domain/shopping/shop.dart';
-import 'package:shopify_manager/domain/shopping/time/week.dart';
+import 'package:shopify_manager/domain/shop/shop.dart';
+import 'package:shopify_manager/domain/shop/time/week.dart';
 
 class ShopRecap extends StatefulWidget {
   const ShopRecap({Key? key, required this.shop, required this.logo})

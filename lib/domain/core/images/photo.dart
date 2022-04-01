@@ -4,7 +4,7 @@ import 'package:dartz/dartz.dart';
 import 'package:shopify_manager/domain/core/failures.dart';
 import 'package:shopify_manager/domain/core/images/validators.dart';
 import 'package:shopify_manager/domain/core/value_objects.dart';
-import 'package:shopify_manager/domain/shopping/failures.dart';
+import 'package:shopify_manager/domain/shop/failures.dart';
 
 class Photo extends ValueObject<File> {
   static const int maxHeight = 768;
@@ -37,7 +37,7 @@ class ShopLogo extends Photo {
   static const int minWidth = Photo.minWidth;
 
   ShopLogo.empty()
-      : super._(left(ValueFailure.shopping(ShoppingValueFailure.empty(
+      : super._(left(ValueFailure.shop(ShoppingValueFailure.empty(
             failedValue: File.fromRawPath(Uint8List.fromList([]))))));
 
   ShopLogo(File file)

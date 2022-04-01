@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shopify_manager/application/shopping/shop_form/shop_form_bloc.dart';
-import 'package:shopify_manager/application/shopping/shop_registration/shop_registration_bloc.dart';
+import 'package:shopify_manager/application/shop/shop_form/shop_form_bloc.dart';
+import 'package:shopify_manager/application/shop/shop_registration/shop_registration_bloc.dart';
 import 'package:shopify_manager/injection.dart';
 import 'package:shopify_manager/presentation/core/widgets/shopify_alert_dialog.dart';
 import 'package:shopify_manager/presentation/core/widgets/shopify_buttons.dart';

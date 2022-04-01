@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:shopify_manager/application/shopping/shop_registration/shop_registration_bloc.dart';
+import 'package:shopify_manager/application/shop/shop_registration/shop_registration_bloc.dart';
 import 'package:shopify_manager/domain/core/images/photo.dart';
-import 'package:shopify_manager/domain/shopping/shop.dart';
-import 'package:shopify_manager/domain/shopping/time/week.dart';
+import 'package:shopify_manager/domain/shop/shop.dart';
+import 'package:shopify_manager/domain/shop/time/week.dart';
 import 'package:shopify_manager/presentation/core/widgets/shopify_alert_dialog.dart';
 import 'package:shopify_manager/presentation/register_shop/recap/shop_recap_column.dart';
 import 'package:shopify_manager/presentation/register_shop/widgets/registration_progress_bar.dart';

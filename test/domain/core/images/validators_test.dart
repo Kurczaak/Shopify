@@ -3,7 +3,7 @@ import 'package:dartz/dartz.dart';
 import 'package:shopify_manager/domain/core/failures.dart';
 import 'package:shopify_manager/domain/core/images/photo.dart';
 import 'package:shopify_manager/domain/core/images/validators.dart';
-import 'package:shopify_manager/domain/shopping/failures.dart';
+import 'package:shopify_manager/domain/shop/failures.dart';
 
 import '../../../utils/image_reader.dart';
 
@@ -33,7 +33,7 @@ void main() async {
       // assert
       expect(
           result,
-          left(ValueFailure.shopping(ShoppingValueFailure.imageTooBig(
+          left(ValueFailure.shop(ShoppingValueFailure.imageTooBig(
               failedValue: tooBigImage,
               maxHeight: ShopLogo.maxHeight,
               maxWidth: ShopLogo.maxWidth))));
@@ -49,7 +49,7 @@ void main() async {
       // assert
       expect(
           result,
-          left(ValueFailure.shopping(ShoppingValueFailure.imageTooSmall(
+          left(ValueFailure.shop(ShoppingValueFailure.imageTooSmall(
               failedValue: tooSmallImage,
               minHeight: ShopLogo.minHeight,
               minWidth: ShopLogo.minWidth))));

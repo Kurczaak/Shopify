@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shopify_manager/domain/core/failures.dart';
 import 'package:shopify_manager/domain/core/images/photo.dart';
-import 'package:shopify_manager/domain/shopping/failures.dart';
+import 'package:shopify_manager/domain/shop/failures.dart';
 
 import '../../../utils/image_reader.dart';
 
@@ -41,7 +41,7 @@ void main() async {
       // assert
       expect(
           result.value,
-          left(ValueFailure.shopping(ShoppingValueFailure.imageTooSmall(
+          left(ValueFailure.shop(ShoppingValueFailure.imageTooSmall(
               failedValue: tTooSmallLogo,
               minHeight: ShopLogo.minHeight,
               minWidth: ShopLogo.minWidth))));
@@ -55,7 +55,7 @@ void main() async {
       // assert
       expect(
           result.value,
-          left(ValueFailure.shopping(ShoppingValueFailure.imageTooBig(
+          left(ValueFailure.shop(ShoppingValueFailure.imageTooBig(
               failedValue: tTooBigLogo,
               maxHeight: ShopLogo.maxHeight,
               maxWidth: ShopLogo.maxWidth))));

@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:shopify_manager/domain/shopping/time/day.dart';
-import 'package:shopify_manager/domain/shopping/time/value_objects.dart';
+import 'package:shopify_manager/domain/shop/time/day.dart';
+import 'package:shopify_manager/domain/shop/time/value_objects.dart';
 
 part 'day_presentation_classes.freezed.dart';
 

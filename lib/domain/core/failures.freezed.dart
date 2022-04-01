@@ -23,7 +23,7 @@ class _$ValueFailureTearOff {
     );
   }
 
-  _Shopping<T> shopping<T>(ShoppingValueFailure<T> f) {
+  _Shopping<T> shop<T>(ShoppingValueFailure<T> f) {
     return _Shopping<T>(
       f,
     );
@@ -38,38 +38,38 @@ mixin _$ValueFailure<T> {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(AuthValueFailure<T> f) auth,
-    required TResult Function(ShoppingValueFailure<T> f) shopping,
+    required TResult Function(ShoppingValueFailure<T> f) shop,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(AuthValueFailure<T> f)? auth,
-    TResult Function(ShoppingValueFailure<T> f)? shopping,
+    TResult Function(ShoppingValueFailure<T> f)? shop,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(AuthValueFailure<T> f)? auth,
-    TResult Function(ShoppingValueFailure<T> f)? shopping,
+    TResult Function(ShoppingValueFailure<T> f)? shop,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Auth<T> value) auth,
-    required TResult Function(_Shopping<T> value) shopping,
+    required TResult Function(_Shopping<T> value) shop,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Auth<T> value)? auth,
-    TResult Function(_Shopping<T> value)? shopping,
+    TResult Function(_Shopping<T> value)? shop,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Auth<T> value)? auth,
-    TResult Function(_Shopping<T> value)? shopping,
+    TResult Function(_Shopping<T> value)? shop,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -164,7 +164,7 @@ class _$_Auth<T> implements _Auth<T> {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(AuthValueFailure<T> f) auth,
-    required TResult Function(ShoppingValueFailure<T> f) shopping,
+    required TResult Function(ShoppingValueFailure<T> f) shop,
   }) {
     return auth(f);
   }
@@ -173,7 +173,7 @@ class _$_Auth<T> implements _Auth<T> {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(AuthValueFailure<T> f)? auth,
-    TResult Function(ShoppingValueFailure<T> f)? shopping,
+    TResult Function(ShoppingValueFailure<T> f)? shop,
   }) {
     return auth?.call(f);
   }
@@ -182,7 +182,7 @@ class _$_Auth<T> implements _Auth<T> {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(AuthValueFailure<T> f)? auth,
-    TResult Function(ShoppingValueFailure<T> f)? shopping,
+    TResult Function(ShoppingValueFailure<T> f)? shop,
     required TResult orElse(),
   }) {
     if (auth != null) {
@@ -195,7 +195,7 @@ class _$_Auth<T> implements _Auth<T> {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Auth<T> value) auth,
-    required TResult Function(_Shopping<T> value) shopping,
+    required TResult Function(_Shopping<T> value) shop,
   }) {
     return auth(this);
   }
@@ -204,7 +204,7 @@ class _$_Auth<T> implements _Auth<T> {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Auth<T> value)? auth,
-    TResult Function(_Shopping<T> value)? shopping,
+    TResult Function(_Shopping<T> value)? shop,
   }) {
     return auth?.call(this);
   }
@@ -213,7 +213,7 @@ class _$_Auth<T> implements _Auth<T> {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Auth<T> value)? auth,
-    TResult Function(_Shopping<T> value)? shopping,
+    TResult Function(_Shopping<T> value)? shop,
     required TResult orElse(),
   }) {
     if (auth != null) {
@@ -283,7 +283,7 @@ class _$_Shopping<T> implements _Shopping<T> {
 
   @override
   String toString() {
-    return 'ValueFailure<$T>.shopping(f: $f)';
+    return 'ValueFailure<$T>.shop(f: $f)';
   }
 
   @override
@@ -307,29 +307,29 @@ class _$_Shopping<T> implements _Shopping<T> {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(AuthValueFailure<T> f) auth,
-    required TResult Function(ShoppingValueFailure<T> f) shopping,
+    required TResult Function(ShoppingValueFailure<T> f) shop,
   }) {
-    return shopping(f);
+    return shop(f);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(AuthValueFailure<T> f)? auth,
-    TResult Function(ShoppingValueFailure<T> f)? shopping,
+    TResult Function(ShoppingValueFailure<T> f)? shop,
   }) {
-    return shopping?.call(f);
+    return shop?.call(f);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(AuthValueFailure<T> f)? auth,
-    TResult Function(ShoppingValueFailure<T> f)? shopping,
+    TResult Function(ShoppingValueFailure<T> f)? shop,
     required TResult orElse(),
   }) {
-    if (shopping != null) {
-      return shopping(f);
+    if (shop != null) {
+      return shop(f);
     }
     return orElse();
   }
@@ -338,29 +338,29 @@ class _$_Shopping<T> implements _Shopping<T> {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Auth<T> value) auth,
-    required TResult Function(_Shopping<T> value) shopping,
+    required TResult Function(_Shopping<T> value) shop,
   }) {
-    return shopping(this);
+    return shop(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Auth<T> value)? auth,
-    TResult Function(_Shopping<T> value)? shopping,
+    TResult Function(_Shopping<T> value)? shop,
   }) {
-    return shopping?.call(this);
+    return shop?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Auth<T> value)? auth,
-    TResult Function(_Shopping<T> value)? shopping,
+    TResult Function(_Shopping<T> value)? shop,
     required TResult orElse(),
   }) {
-    if (shopping != null) {
-      return shopping(this);
+    if (shop != null) {
+      return shop(this);
     }
     return orElse();
   }

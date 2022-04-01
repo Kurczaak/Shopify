@@ -32,7 +32,7 @@ class ShopifyTextFormField extends StatelessWidget {
       validator: (_) => value.fold(
           (l) => l.maybeMap(
                 orElse: () => null,
-                shopping: (value) => value.f.maybeMap(
+                shop: (value) => value.f.maybeMap(
                   orElse: () => '',
                   empty: (_) => '$fieldName cannot be empty',
                   exceedingLength: (f) =>
