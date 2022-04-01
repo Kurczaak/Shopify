@@ -49,3 +49,15 @@ class Weight extends ValueObject<int> {
   }
   const Weight._(this.value);
 }
+
+class Price extends ValueObject<double> {
+  static const double maxPrice = 99999.99;
+
+  @override
+  final Either<ValueFailure<double>, double> value;
+  factory Price(double input) {
+    return Price._(validatePositiveValue(input).flatMap(
+        (passedValue) => validateDoubleRange(passedValue, 0.1, maxPrice)));
+  }
+  const Price._(this.value);
+}
