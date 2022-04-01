@@ -88,6 +88,16 @@ Either<ValueFailure<int>, int> validateIntegerRange(
   }
 }
 
+Either<ValueFailure<double>, double> validateDoubleRange(
+    double input, double minInclusive, double maxInclusive) {
+  if (input >= minInclusive && input <= maxInclusive) {
+    return right(input);
+  } else {
+    return left(ValueFailure.product(ProductValueFailure.numberOutsideInterval(
+        failedValue: input, min: minInclusive, max: maxInclusive)));
+  }
+}
+
 Either<ValueFailure<KtList<T>>, KtList<T>> validateListLength<T>(
     KtList<T> input, int maxLength,
     {int minLength = 0}) {
