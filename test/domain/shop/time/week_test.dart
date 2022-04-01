@@ -59,7 +59,7 @@ void main() {
         // assert
         expect(
             result,
-            some(ValueFailure.shop(ShoppingValueFailure.invalidTimeInterval(
+            some(ValueFailure.shop(ShopValueFailure.invalidTimeInterval(
                 failedValue: invalidIntervalList))));
       },
     );
@@ -82,7 +82,7 @@ void main() {
         // assert
         expect(
             result,
-            some(ValueFailure.shop(ShoppingValueFailure.invalidTimeInterval(
+            some(ValueFailure.shop(ShopValueFailure.invalidTimeInterval(
                 failedValue: invalidIntervalList))));
       },
     );
@@ -104,7 +104,7 @@ void main() {
         // assert
         expect(
             result,
-            some(ValueFailure.shop(ShoppingValueFailure.invalidTimeInterval(
+            some(ValueFailure.shop(ShopValueFailure.invalidTimeInterval(
                 failedValue: invalidIntervalList))));
       },
     );
@@ -126,7 +126,7 @@ void main() {
         // assert
         expect(
             result,
-            some(ValueFailure.shop(ShoppingValueFailure.invalidTimeInterval(
+            some(ValueFailure.shop(ShopValueFailure.invalidTimeInterval(
                 failedValue: invalidIntervalList))));
       },
     );
@@ -148,7 +148,7 @@ void main() {
         // assert
         expect(
             result,
-            some(ValueFailure.shop(ShoppingValueFailure.invalidTimeInterval(
+            some(ValueFailure.shop(ShopValueFailure.invalidTimeInterval(
                 failedValue: invalidIntervalList))));
       },
     );
@@ -170,7 +170,7 @@ void main() {
         // assert
         expect(
             result,
-            some(ValueFailure.shop(ShoppingValueFailure.invalidTimeInterval(
+            some(ValueFailure.shop(ShopValueFailure.invalidTimeInterval(
                 failedValue: invalidIntervalList))));
       },
     );
@@ -194,7 +194,7 @@ void main() {
         // assert
         expect(
             result,
-            some(ValueFailure.shop(ShoppingValueFailure.invalidTimeInterval(
+            some(ValueFailure.shop(ShopValueFailure.invalidTimeInterval(
                 failedValue: invalidIntervalList))));
       },
     );

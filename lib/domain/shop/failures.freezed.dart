@@ -14,8 +14,8 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-class _$ShoppingValueFailureTearOff {
-  const _$ShoppingValueFailureTearOff();
+class _$ShopValueFailureTearOff {
+  const _$ShopValueFailureTearOff();
 
   ExceedingLength<T> exceedingLength<T>(
       {required T failedValue, required int maxLength}) {
@@ -141,10 +141,10 @@ class _$ShoppingValueFailureTearOff {
 }
 
 /// @nodoc
-const $ShoppingValueFailure = _$ShoppingValueFailureTearOff();
+const $ShopValueFailure = _$ShopValueFailureTearOff();
 
 /// @nodoc
-mixin _$ShoppingValueFailure<T> {
+mixin _$ShopValueFailure<T> {
   T get failedValue => throw _privateConstructorUsedError;
 
   @optionalTypeArgs
@@ -283,26 +283,26 @@ mixin _$ShoppingValueFailure<T> {
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $ShoppingValueFailureCopyWith<T, ShoppingValueFailure<T>> get copyWith =>
+  $ShopValueFailureCopyWith<T, ShopValueFailure<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ShoppingValueFailureCopyWith<T, $Res> {
-  factory $ShoppingValueFailureCopyWith(ShoppingValueFailure<T> value,
-          $Res Function(ShoppingValueFailure<T>) then) =
-      _$ShoppingValueFailureCopyWithImpl<T, $Res>;
+abstract class $ShopValueFailureCopyWith<T, $Res> {
+  factory $ShopValueFailureCopyWith(
+          ShopValueFailure<T> value, $Res Function(ShopValueFailure<T>) then) =
+      _$ShopValueFailureCopyWithImpl<T, $Res>;
   $Res call({T failedValue});
 }
 
 /// @nodoc
-class _$ShoppingValueFailureCopyWithImpl<T, $Res>
-    implements $ShoppingValueFailureCopyWith<T, $Res> {
-  _$ShoppingValueFailureCopyWithImpl(this._value, this._then);
+class _$ShopValueFailureCopyWithImpl<T, $Res>
+    implements $ShopValueFailureCopyWith<T, $Res> {
+  _$ShopValueFailureCopyWithImpl(this._value, this._then);
 
-  final ShoppingValueFailure<T> _value;
+  final ShopValueFailure<T> _value;
   // ignore: unused_field
-  final $Res Function(ShoppingValueFailure<T>) _then;
+  final $Res Function(ShopValueFailure<T>) _then;
 
   @override
   $Res call({
@@ -319,7 +319,7 @@ class _$ShoppingValueFailureCopyWithImpl<T, $Res>
 
 /// @nodoc
 abstract class $ExceedingLengthCopyWith<T, $Res>
-    implements $ShoppingValueFailureCopyWith<T, $Res> {
+    implements $ShopValueFailureCopyWith<T, $Res> {
   factory $ExceedingLengthCopyWith(
           ExceedingLength<T> value, $Res Function(ExceedingLength<T>) then) =
       _$ExceedingLengthCopyWithImpl<T, $Res>;
@@ -329,7 +329,7 @@ abstract class $ExceedingLengthCopyWith<T, $Res>
 
 /// @nodoc
 class _$ExceedingLengthCopyWithImpl<T, $Res>
-    extends _$ShoppingValueFailureCopyWithImpl<T, $Res>
+    extends _$ShopValueFailureCopyWithImpl<T, $Res>
     implements $ExceedingLengthCopyWith<T, $Res> {
   _$ExceedingLengthCopyWithImpl(
       ExceedingLength<T> _value, $Res Function(ExceedingLength<T>) _then)
@@ -368,7 +368,7 @@ class _$ExceedingLength<T> implements ExceedingLength<T> {
 
   @override
   String toString() {
-    return 'ShoppingValueFailure<$T>.exceedingLength(failedValue: $failedValue, maxLength: $maxLength)';
+    return 'ShopValueFailure<$T>.exceedingLength(failedValue: $failedValue, maxLength: $maxLength)';
   }
 
   @override
@@ -551,7 +551,7 @@ class _$ExceedingLength<T> implements ExceedingLength<T> {
   }
 }
 
-abstract class ExceedingLength<T> implements ShoppingValueFailure<T> {
+abstract class ExceedingLength<T> implements ShopValueFailure<T> {
   const factory ExceedingLength(
       {required T failedValue, required int maxLength}) = _$ExceedingLength<T>;
 
@@ -566,7 +566,7 @@ abstract class ExceedingLength<T> implements ShoppingValueFailure<T> {
 
 /// @nodoc
 abstract class $StringTooShortCopyWith<T, $Res>
-    implements $ShoppingValueFailureCopyWith<T, $Res> {
+    implements $ShopValueFailureCopyWith<T, $Res> {
   factory $StringTooShortCopyWith(
           StringTooShort<T> value, $Res Function(StringTooShort<T>) then) =
       _$StringTooShortCopyWithImpl<T, $Res>;
@@ -576,7 +576,7 @@ abstract class $StringTooShortCopyWith<T, $Res>
 
 /// @nodoc
 class _$StringTooShortCopyWithImpl<T, $Res>
-    extends _$ShoppingValueFailureCopyWithImpl<T, $Res>
+    extends _$ShopValueFailureCopyWithImpl<T, $Res>
     implements $StringTooShortCopyWith<T, $Res> {
   _$StringTooShortCopyWithImpl(
       StringTooShort<T> _value, $Res Function(StringTooShort<T>) _then)
@@ -615,7 +615,7 @@ class _$StringTooShort<T> implements StringTooShort<T> {
 
   @override
   String toString() {
-    return 'ShoppingValueFailure<$T>.stringTooShort(failedValue: $failedValue, minLength: $minLength)';
+    return 'ShopValueFailure<$T>.stringTooShort(failedValue: $failedValue, minLength: $minLength)';
   }
 
   @override
@@ -798,7 +798,7 @@ class _$StringTooShort<T> implements StringTooShort<T> {
   }
 }
 
-abstract class StringTooShort<T> implements ShoppingValueFailure<T> {
+abstract class StringTooShort<T> implements ShopValueFailure<T> {
   const factory StringTooShort(
       {required T failedValue, required int minLength}) = _$StringTooShort<T>;
 
@@ -813,7 +813,7 @@ abstract class StringTooShort<T> implements ShoppingValueFailure<T> {
 
 /// @nodoc
 abstract class $EmptyCopyWith<T, $Res>
-    implements $ShoppingValueFailureCopyWith<T, $Res> {
+    implements $ShopValueFailureCopyWith<T, $Res> {
   factory $EmptyCopyWith(Empty<T> value, $Res Function(Empty<T>) then) =
       _$EmptyCopyWithImpl<T, $Res>;
   @override
@@ -822,7 +822,7 @@ abstract class $EmptyCopyWith<T, $Res>
 
 /// @nodoc
 class _$EmptyCopyWithImpl<T, $Res>
-    extends _$ShoppingValueFailureCopyWithImpl<T, $Res>
+    extends _$ShopValueFailureCopyWithImpl<T, $Res>
     implements $EmptyCopyWith<T, $Res> {
   _$EmptyCopyWithImpl(Empty<T> _value, $Res Function(Empty<T>) _then)
       : super(_value, (v) => _then(v as Empty<T>));
@@ -853,7 +853,7 @@ class _$Empty<T> implements Empty<T> {
 
   @override
   String toString() {
-    return 'ShoppingValueFailure<$T>.empty(failedValue: $failedValue)';
+    return 'ShopValueFailure<$T>.empty(failedValue: $failedValue)';
   }
 
   @override
@@ -1033,7 +1033,7 @@ class _$Empty<T> implements Empty<T> {
   }
 }
 
-abstract class Empty<T> implements ShoppingValueFailure<T> {
+abstract class Empty<T> implements ShopValueFailure<T> {
   const factory Empty({required T failedValue}) = _$Empty<T>;
 
   @override
@@ -1046,7 +1046,7 @@ abstract class Empty<T> implements ShoppingValueFailure<T> {
 
 /// @nodoc
 abstract class $MultilineCopyWith<T, $Res>
-    implements $ShoppingValueFailureCopyWith<T, $Res> {
+    implements $ShopValueFailureCopyWith<T, $Res> {
   factory $MultilineCopyWith(
           Multiline<T> value, $Res Function(Multiline<T>) then) =
       _$MultilineCopyWithImpl<T, $Res>;
@@ -1056,7 +1056,7 @@ abstract class $MultilineCopyWith<T, $Res>
 
 /// @nodoc
 class _$MultilineCopyWithImpl<T, $Res>
-    extends _$ShoppingValueFailureCopyWithImpl<T, $Res>
+    extends _$ShopValueFailureCopyWithImpl<T, $Res>
     implements $MultilineCopyWith<T, $Res> {
   _$MultilineCopyWithImpl(
       Multiline<T> _value, $Res Function(Multiline<T>) _then)
@@ -1088,7 +1088,7 @@ class _$Multiline<T> implements Multiline<T> {
 
   @override
   String toString() {
-    return 'ShoppingValueFailure<$T>.multiline(failedValue: $failedValue)';
+    return 'ShopValueFailure<$T>.multiline(failedValue: $failedValue)';
   }
 
   @override
@@ -1268,7 +1268,7 @@ class _$Multiline<T> implements Multiline<T> {
   }
 }
 
-abstract class Multiline<T> implements ShoppingValueFailure<T> {
+abstract class Multiline<T> implements ShopValueFailure<T> {
   const factory Multiline({required T failedValue}) = _$Multiline<T>;
 
   @override
@@ -1281,7 +1281,7 @@ abstract class Multiline<T> implements ShoppingValueFailure<T> {
 
 /// @nodoc
 abstract class $IncorrectPostalCodeCopyWith<T, $Res>
-    implements $ShoppingValueFailureCopyWith<T, $Res> {
+    implements $ShopValueFailureCopyWith<T, $Res> {
   factory $IncorrectPostalCodeCopyWith(IncorrectPostalCode<T> value,
           $Res Function(IncorrectPostalCode<T>) then) =
       _$IncorrectPostalCodeCopyWithImpl<T, $Res>;
@@ -1291,7 +1291,7 @@ abstract class $IncorrectPostalCodeCopyWith<T, $Res>
 
 /// @nodoc
 class _$IncorrectPostalCodeCopyWithImpl<T, $Res>
-    extends _$ShoppingValueFailureCopyWithImpl<T, $Res>
+    extends _$ShopValueFailureCopyWithImpl<T, $Res>
     implements $IncorrectPostalCodeCopyWith<T, $Res> {
   _$IncorrectPostalCodeCopyWithImpl(IncorrectPostalCode<T> _value,
       $Res Function(IncorrectPostalCode<T>) _then)
@@ -1323,7 +1323,7 @@ class _$IncorrectPostalCode<T> implements IncorrectPostalCode<T> {
 
   @override
   String toString() {
-    return 'ShoppingValueFailure<$T>.incorrectPostalCode(failedValue: $failedValue)';
+    return 'ShopValueFailure<$T>.incorrectPostalCode(failedValue: $failedValue)';
   }
 
   @override
@@ -1504,7 +1504,7 @@ class _$IncorrectPostalCode<T> implements IncorrectPostalCode<T> {
   }
 }
 
-abstract class IncorrectPostalCode<T> implements ShoppingValueFailure<T> {
+abstract class IncorrectPostalCode<T> implements ShopValueFailure<T> {
   const factory IncorrectPostalCode({required T failedValue}) =
       _$IncorrectPostalCode<T>;
 
@@ -1518,7 +1518,7 @@ abstract class IncorrectPostalCode<T> implements ShoppingValueFailure<T> {
 
 /// @nodoc
 abstract class $ShopClosedAllWeekLongCopyWith<T, $Res>
-    implements $ShoppingValueFailureCopyWith<T, $Res> {
+    implements $ShopValueFailureCopyWith<T, $Res> {
   factory $ShopClosedAllWeekLongCopyWith(ShopClosedAllWeekLong<T> value,
           $Res Function(ShopClosedAllWeekLong<T>) then) =
       _$ShopClosedAllWeekLongCopyWithImpl<T, $Res>;
@@ -1528,7 +1528,7 @@ abstract class $ShopClosedAllWeekLongCopyWith<T, $Res>
 
 /// @nodoc
 class _$ShopClosedAllWeekLongCopyWithImpl<T, $Res>
-    extends _$ShoppingValueFailureCopyWithImpl<T, $Res>
+    extends _$ShopValueFailureCopyWithImpl<T, $Res>
     implements $ShopClosedAllWeekLongCopyWith<T, $Res> {
   _$ShopClosedAllWeekLongCopyWithImpl(ShopClosedAllWeekLong<T> _value,
       $Res Function(ShopClosedAllWeekLong<T>) _then)
@@ -1561,7 +1561,7 @@ class _$ShopClosedAllWeekLong<T> implements ShopClosedAllWeekLong<T> {
 
   @override
   String toString() {
-    return 'ShoppingValueFailure<$T>.shopClosedAllWeekLong(failedValue: $failedValue)';
+    return 'ShopValueFailure<$T>.shopClosedAllWeekLong(failedValue: $failedValue)';
   }
 
   @override
@@ -1742,7 +1742,7 @@ class _$ShopClosedAllWeekLong<T> implements ShopClosedAllWeekLong<T> {
   }
 }
 
-abstract class ShopClosedAllWeekLong<T> implements ShoppingValueFailure<T> {
+abstract class ShopClosedAllWeekLong<T> implements ShopValueFailure<T> {
   const factory ShopClosedAllWeekLong({required T failedValue}) =
       _$ShopClosedAllWeekLong<T>;
 
@@ -1756,7 +1756,7 @@ abstract class ShopClosedAllWeekLong<T> implements ShoppingValueFailure<T> {
 
 /// @nodoc
 abstract class $NoPhotoSelectedCopyWith<T, $Res>
-    implements $ShoppingValueFailureCopyWith<T, $Res> {
+    implements $ShopValueFailureCopyWith<T, $Res> {
   factory $NoPhotoSelectedCopyWith(
           NoPhotoSelected<T> value, $Res Function(NoPhotoSelected<T>) then) =
       _$NoPhotoSelectedCopyWithImpl<T, $Res>;
@@ -1766,7 +1766,7 @@ abstract class $NoPhotoSelectedCopyWith<T, $Res>
 
 /// @nodoc
 class _$NoPhotoSelectedCopyWithImpl<T, $Res>
-    extends _$ShoppingValueFailureCopyWithImpl<T, $Res>
+    extends _$ShopValueFailureCopyWithImpl<T, $Res>
     implements $NoPhotoSelectedCopyWith<T, $Res> {
   _$NoPhotoSelectedCopyWithImpl(
       NoPhotoSelected<T> _value, $Res Function(NoPhotoSelected<T>) _then)
@@ -1798,7 +1798,7 @@ class _$NoPhotoSelected<T> implements NoPhotoSelected<T> {
 
   @override
   String toString() {
-    return 'ShoppingValueFailure<$T>.noPhotoSelected(failedValue: $failedValue)';
+    return 'ShopValueFailure<$T>.noPhotoSelected(failedValue: $failedValue)';
   }
 
   @override
@@ -1978,7 +1978,7 @@ class _$NoPhotoSelected<T> implements NoPhotoSelected<T> {
   }
 }
 
-abstract class NoPhotoSelected<T> implements ShoppingValueFailure<T> {
+abstract class NoPhotoSelected<T> implements ShopValueFailure<T> {
   const factory NoPhotoSelected({required T failedValue}) =
       _$NoPhotoSelected<T>;
 
@@ -1992,7 +1992,7 @@ abstract class NoPhotoSelected<T> implements ShoppingValueFailure<T> {
 
 /// @nodoc
 abstract class $NonPositivePriceCopyWith<T, $Res>
-    implements $ShoppingValueFailureCopyWith<T, $Res> {
+    implements $ShopValueFailureCopyWith<T, $Res> {
   factory $NonPositivePriceCopyWith(
           NonPositivePrice<T> value, $Res Function(NonPositivePrice<T>) then) =
       _$NonPositivePriceCopyWithImpl<T, $Res>;
@@ -2002,7 +2002,7 @@ abstract class $NonPositivePriceCopyWith<T, $Res>
 
 /// @nodoc
 class _$NonPositivePriceCopyWithImpl<T, $Res>
-    extends _$ShoppingValueFailureCopyWithImpl<T, $Res>
+    extends _$ShopValueFailureCopyWithImpl<T, $Res>
     implements $NonPositivePriceCopyWith<T, $Res> {
   _$NonPositivePriceCopyWithImpl(
       NonPositivePrice<T> _value, $Res Function(NonPositivePrice<T>) _then)
@@ -2034,7 +2034,7 @@ class _$NonPositivePrice<T> implements NonPositivePrice<T> {
 
   @override
   String toString() {
-    return 'ShoppingValueFailure<$T>.nonPositiveValue(failedValue: $failedValue)';
+    return 'ShopValueFailure<$T>.nonPositiveValue(failedValue: $failedValue)';
   }
 
   @override
@@ -2214,7 +2214,7 @@ class _$NonPositivePrice<T> implements NonPositivePrice<T> {
   }
 }
 
-abstract class NonPositivePrice<T> implements ShoppingValueFailure<T> {
+abstract class NonPositivePrice<T> implements ShopValueFailure<T> {
   const factory NonPositivePrice({required T failedValue}) =
       _$NonPositivePrice<T>;
 
@@ -2228,7 +2228,7 @@ abstract class NonPositivePrice<T> implements ShoppingValueFailure<T> {
 
 /// @nodoc
 abstract class $NoAddressNumberCopyWith<T, $Res>
-    implements $ShoppingValueFailureCopyWith<T, $Res> {
+    implements $ShopValueFailureCopyWith<T, $Res> {
   factory $NoAddressNumberCopyWith(
           NoAddressNumber<T> value, $Res Function(NoAddressNumber<T>) then) =
       _$NoAddressNumberCopyWithImpl<T, $Res>;
@@ -2238,7 +2238,7 @@ abstract class $NoAddressNumberCopyWith<T, $Res>
 
 /// @nodoc
 class _$NoAddressNumberCopyWithImpl<T, $Res>
-    extends _$ShoppingValueFailureCopyWithImpl<T, $Res>
+    extends _$ShopValueFailureCopyWithImpl<T, $Res>
     implements $NoAddressNumberCopyWith<T, $Res> {
   _$NoAddressNumberCopyWithImpl(
       NoAddressNumber<T> _value, $Res Function(NoAddressNumber<T>) _then)
@@ -2270,7 +2270,7 @@ class _$NoAddressNumber<T> implements NoAddressNumber<T> {
 
   @override
   String toString() {
-    return 'ShoppingValueFailure<$T>.noAddressNumber(failedValue: $failedValue)';
+    return 'ShopValueFailure<$T>.noAddressNumber(failedValue: $failedValue)';
   }
 
   @override
@@ -2450,7 +2450,7 @@ class _$NoAddressNumber<T> implements NoAddressNumber<T> {
   }
 }
 
-abstract class NoAddressNumber<T> implements ShoppingValueFailure<T> {
+abstract class NoAddressNumber<T> implements ShopValueFailure<T> {
   const factory NoAddressNumber({required T failedValue}) =
       _$NoAddressNumber<T>;
 
@@ -2464,7 +2464,7 @@ abstract class NoAddressNumber<T> implements ShoppingValueFailure<T> {
 
 /// @nodoc
 abstract class $IncorrectHourCopyWith<T, $Res>
-    implements $ShoppingValueFailureCopyWith<T, $Res> {
+    implements $ShopValueFailureCopyWith<T, $Res> {
   factory $IncorrectHourCopyWith(
           IncorrectHour<T> value, $Res Function(IncorrectHour<T>) then) =
       _$IncorrectHourCopyWithImpl<T, $Res>;
@@ -2474,7 +2474,7 @@ abstract class $IncorrectHourCopyWith<T, $Res>
 
 /// @nodoc
 class _$IncorrectHourCopyWithImpl<T, $Res>
-    extends _$ShoppingValueFailureCopyWithImpl<T, $Res>
+    extends _$ShopValueFailureCopyWithImpl<T, $Res>
     implements $IncorrectHourCopyWith<T, $Res> {
   _$IncorrectHourCopyWithImpl(
       IncorrectHour<T> _value, $Res Function(IncorrectHour<T>) _then)
@@ -2514,7 +2514,7 @@ class _$IncorrectHour<T> implements IncorrectHour<T> {
 
   @override
   String toString() {
-    return 'ShoppingValueFailure<$T>.incorrectHour(failedValue: $failedValue, twelveHourFormat: $twelveHourFormat)';
+    return 'ShopValueFailure<$T>.incorrectHour(failedValue: $failedValue, twelveHourFormat: $twelveHourFormat)';
   }
 
   @override
@@ -2698,7 +2698,7 @@ class _$IncorrectHour<T> implements IncorrectHour<T> {
   }
 }
 
-abstract class IncorrectHour<T> implements ShoppingValueFailure<T> {
+abstract class IncorrectHour<T> implements ShopValueFailure<T> {
   const factory IncorrectHour(
       {required T failedValue,
       required bool twelveHourFormat}) = _$IncorrectHour<T>;
@@ -2714,7 +2714,7 @@ abstract class IncorrectHour<T> implements ShoppingValueFailure<T> {
 
 /// @nodoc
 abstract class $NumberOutsideIntervalCopyWith<T, $Res>
-    implements $ShoppingValueFailureCopyWith<T, $Res> {
+    implements $ShopValueFailureCopyWith<T, $Res> {
   factory $NumberOutsideIntervalCopyWith(NumberOutsideInterval<T> value,
           $Res Function(NumberOutsideInterval<T>) then) =
       _$NumberOutsideIntervalCopyWithImpl<T, $Res>;
@@ -2724,7 +2724,7 @@ abstract class $NumberOutsideIntervalCopyWith<T, $Res>
 
 /// @nodoc
 class _$NumberOutsideIntervalCopyWithImpl<T, $Res>
-    extends _$ShoppingValueFailureCopyWithImpl<T, $Res>
+    extends _$ShopValueFailureCopyWithImpl<T, $Res>
     implements $NumberOutsideIntervalCopyWith<T, $Res> {
   _$NumberOutsideIntervalCopyWithImpl(NumberOutsideInterval<T> _value,
       $Res Function(NumberOutsideInterval<T>) _then)
@@ -2772,7 +2772,7 @@ class _$NumberOutsideInterval<T> implements NumberOutsideInterval<T> {
 
   @override
   String toString() {
-    return 'ShoppingValueFailure<$T>.numberOutsideInterval(failedValue: $failedValue, min: $min, max: $max)';
+    return 'ShopValueFailure<$T>.numberOutsideInterval(failedValue: $failedValue, min: $min, max: $max)';
   }
 
   @override
@@ -2958,7 +2958,7 @@ class _$NumberOutsideInterval<T> implements NumberOutsideInterval<T> {
   }
 }
 
-abstract class NumberOutsideInterval<T> implements ShoppingValueFailure<T> {
+abstract class NumberOutsideInterval<T> implements ShopValueFailure<T> {
   const factory NumberOutsideInterval(
       {required T failedValue,
       required num min,
@@ -2976,7 +2976,7 @@ abstract class NumberOutsideInterval<T> implements ShoppingValueFailure<T> {
 
 /// @nodoc
 abstract class $InvalidTimeIntervalCopyWith<T, $Res>
-    implements $ShoppingValueFailureCopyWith<T, $Res> {
+    implements $ShopValueFailureCopyWith<T, $Res> {
   factory $InvalidTimeIntervalCopyWith(InvalidTimeInterval<T> value,
           $Res Function(InvalidTimeInterval<T>) then) =
       _$InvalidTimeIntervalCopyWithImpl<T, $Res>;
@@ -2986,7 +2986,7 @@ abstract class $InvalidTimeIntervalCopyWith<T, $Res>
 
 /// @nodoc
 class _$InvalidTimeIntervalCopyWithImpl<T, $Res>
-    extends _$ShoppingValueFailureCopyWithImpl<T, $Res>
+    extends _$ShopValueFailureCopyWithImpl<T, $Res>
     implements $InvalidTimeIntervalCopyWith<T, $Res> {
   _$InvalidTimeIntervalCopyWithImpl(InvalidTimeInterval<T> _value,
       $Res Function(InvalidTimeInterval<T>) _then)
@@ -3018,7 +3018,7 @@ class _$InvalidTimeInterval<T> implements InvalidTimeInterval<T> {
 
   @override
   String toString() {
-    return 'ShoppingValueFailure<$T>.invalidTimeInterval(failedValue: $failedValue)';
+    return 'ShopValueFailure<$T>.invalidTimeInterval(failedValue: $failedValue)';
   }
 
   @override
@@ -3199,7 +3199,7 @@ class _$InvalidTimeInterval<T> implements InvalidTimeInterval<T> {
   }
 }
 
-abstract class InvalidTimeInterval<T> implements ShoppingValueFailure<T> {
+abstract class InvalidTimeInterval<T> implements ShopValueFailure<T> {
   const factory InvalidTimeInterval({required T failedValue}) =
       _$InvalidTimeInterval<T>;
 
@@ -3213,7 +3213,7 @@ abstract class InvalidTimeInterval<T> implements ShoppingValueFailure<T> {
 
 /// @nodoc
 abstract class $ListTooLongCopyWith<T, $Res>
-    implements $ShoppingValueFailureCopyWith<T, $Res> {
+    implements $ShopValueFailureCopyWith<T, $Res> {
   factory $ListTooLongCopyWith(
           ListTooLong<T> value, $Res Function(ListTooLong<T>) then) =
       _$ListTooLongCopyWithImpl<T, $Res>;
@@ -3223,7 +3223,7 @@ abstract class $ListTooLongCopyWith<T, $Res>
 
 /// @nodoc
 class _$ListTooLongCopyWithImpl<T, $Res>
-    extends _$ShoppingValueFailureCopyWithImpl<T, $Res>
+    extends _$ShopValueFailureCopyWithImpl<T, $Res>
     implements $ListTooLongCopyWith<T, $Res> {
   _$ListTooLongCopyWithImpl(
       ListTooLong<T> _value, $Res Function(ListTooLong<T>) _then)
@@ -3262,7 +3262,7 @@ class _$ListTooLong<T> implements ListTooLong<T> {
 
   @override
   String toString() {
-    return 'ShoppingValueFailure<$T>.listTooLong(failedValue: $failedValue, maxLength: $maxLength)';
+    return 'ShopValueFailure<$T>.listTooLong(failedValue: $failedValue, maxLength: $maxLength)';
   }
 
   @override
@@ -3445,7 +3445,7 @@ class _$ListTooLong<T> implements ListTooLong<T> {
   }
 }
 
-abstract class ListTooLong<T> implements ShoppingValueFailure<T> {
+abstract class ListTooLong<T> implements ShopValueFailure<T> {
   const factory ListTooLong({required T failedValue, required int maxLength}) =
       _$ListTooLong<T>;
 
@@ -3460,7 +3460,7 @@ abstract class ListTooLong<T> implements ShoppingValueFailure<T> {
 
 /// @nodoc
 abstract class $ListTooShortCopyWith<T, $Res>
-    implements $ShoppingValueFailureCopyWith<T, $Res> {
+    implements $ShopValueFailureCopyWith<T, $Res> {
   factory $ListTooShortCopyWith(
           ListTooShort<T> value, $Res Function(ListTooShort<T>) then) =
       _$ListTooShortCopyWithImpl<T, $Res>;
@@ -3470,7 +3470,7 @@ abstract class $ListTooShortCopyWith<T, $Res>
 
 /// @nodoc
 class _$ListTooShortCopyWithImpl<T, $Res>
-    extends _$ShoppingValueFailureCopyWithImpl<T, $Res>
+    extends _$ShopValueFailureCopyWithImpl<T, $Res>
     implements $ListTooShortCopyWith<T, $Res> {
   _$ListTooShortCopyWithImpl(
       ListTooShort<T> _value, $Res Function(ListTooShort<T>) _then)
@@ -3509,7 +3509,7 @@ class _$ListTooShort<T> implements ListTooShort<T> {
 
   @override
   String toString() {
-    return 'ShoppingValueFailure<$T>.listTooShort(failedValue: $failedValue, minLength: $minLength)';
+    return 'ShopValueFailure<$T>.listTooShort(failedValue: $failedValue, minLength: $minLength)';
   }
 
   @override
@@ -3692,7 +3692,7 @@ class _$ListTooShort<T> implements ListTooShort<T> {
   }
 }
 
-abstract class ListTooShort<T> implements ShoppingValueFailure<T> {
+abstract class ListTooShort<T> implements ShopValueFailure<T> {
   const factory ListTooShort({required T failedValue, required int minLength}) =
       _$ListTooShort<T>;
 
@@ -3707,7 +3707,7 @@ abstract class ListTooShort<T> implements ShoppingValueFailure<T> {
 
 /// @nodoc
 abstract class $EmptyListCopyWith<T, $Res>
-    implements $ShoppingValueFailureCopyWith<T, $Res> {
+    implements $ShopValueFailureCopyWith<T, $Res> {
   factory $EmptyListCopyWith(
           EmptyList<T> value, $Res Function(EmptyList<T>) then) =
       _$EmptyListCopyWithImpl<T, $Res>;
@@ -3717,7 +3717,7 @@ abstract class $EmptyListCopyWith<T, $Res>
 
 /// @nodoc
 class _$EmptyListCopyWithImpl<T, $Res>
-    extends _$ShoppingValueFailureCopyWithImpl<T, $Res>
+    extends _$ShopValueFailureCopyWithImpl<T, $Res>
     implements $EmptyListCopyWith<T, $Res> {
   _$EmptyListCopyWithImpl(
       EmptyList<T> _value, $Res Function(EmptyList<T>) _then)
@@ -3756,7 +3756,7 @@ class _$EmptyList<T> implements EmptyList<T> {
 
   @override
   String toString() {
-    return 'ShoppingValueFailure<$T>.emptyList(failedValue: $failedValue, minLength: $minLength)';
+    return 'ShopValueFailure<$T>.emptyList(failedValue: $failedValue, minLength: $minLength)';
   }
 
   @override
@@ -3939,7 +3939,7 @@ class _$EmptyList<T> implements EmptyList<T> {
   }
 }
 
-abstract class EmptyList<T> implements ShoppingValueFailure<T> {
+abstract class EmptyList<T> implements ShopValueFailure<T> {
   const factory EmptyList({required T failedValue, required int minLength}) =
       _$EmptyList<T>;
 
@@ -3954,7 +3954,7 @@ abstract class EmptyList<T> implements ShoppingValueFailure<T> {
 
 /// @nodoc
 abstract class $ImageTooBigCopyWith<T, $Res>
-    implements $ShoppingValueFailureCopyWith<T, $Res> {
+    implements $ShopValueFailureCopyWith<T, $Res> {
   factory $ImageTooBigCopyWith(
           ImageTooBig<T> value, $Res Function(ImageTooBig<T>) then) =
       _$ImageTooBigCopyWithImpl<T, $Res>;
@@ -3964,7 +3964,7 @@ abstract class $ImageTooBigCopyWith<T, $Res>
 
 /// @nodoc
 class _$ImageTooBigCopyWithImpl<T, $Res>
-    extends _$ShoppingValueFailureCopyWithImpl<T, $Res>
+    extends _$ShopValueFailureCopyWithImpl<T, $Res>
     implements $ImageTooBigCopyWith<T, $Res> {
   _$ImageTooBigCopyWithImpl(
       ImageTooBig<T> _value, $Res Function(ImageTooBig<T>) _then)
@@ -4013,7 +4013,7 @@ class _$ImageTooBig<T> implements ImageTooBig<T> {
 
   @override
   String toString() {
-    return 'ShoppingValueFailure<$T>.imageTooBig(failedValue: $failedValue, maxHeight: $maxHeight, maxWidth: $maxWidth)';
+    return 'ShopValueFailure<$T>.imageTooBig(failedValue: $failedValue, maxHeight: $maxHeight, maxWidth: $maxWidth)';
   }
 
   @override
@@ -4198,7 +4198,7 @@ class _$ImageTooBig<T> implements ImageTooBig<T> {
   }
 }
 
-abstract class ImageTooBig<T> implements ShoppingValueFailure<T> {
+abstract class ImageTooBig<T> implements ShopValueFailure<T> {
   const factory ImageTooBig(
       {required T failedValue,
       required int maxHeight,
@@ -4216,7 +4216,7 @@ abstract class ImageTooBig<T> implements ShoppingValueFailure<T> {
 
 /// @nodoc
 abstract class $ImageTooSmallCopyWith<T, $Res>
-    implements $ShoppingValueFailureCopyWith<T, $Res> {
+    implements $ShopValueFailureCopyWith<T, $Res> {
   factory $ImageTooSmallCopyWith(
           ImageTooSmall<T> value, $Res Function(ImageTooSmall<T>) then) =
       _$ImageTooSmallCopyWithImpl<T, $Res>;
@@ -4226,7 +4226,7 @@ abstract class $ImageTooSmallCopyWith<T, $Res>
 
 /// @nodoc
 class _$ImageTooSmallCopyWithImpl<T, $Res>
-    extends _$ShoppingValueFailureCopyWithImpl<T, $Res>
+    extends _$ShopValueFailureCopyWithImpl<T, $Res>
     implements $ImageTooSmallCopyWith<T, $Res> {
   _$ImageTooSmallCopyWithImpl(
       ImageTooSmall<T> _value, $Res Function(ImageTooSmall<T>) _then)
@@ -4275,7 +4275,7 @@ class _$ImageTooSmall<T> implements ImageTooSmall<T> {
 
   @override
   String toString() {
-    return 'ShoppingValueFailure<$T>.imageTooSmall(failedValue: $failedValue, minHeight: $minHeight, minWidth: $minWidth)';
+    return 'ShopValueFailure<$T>.imageTooSmall(failedValue: $failedValue, minHeight: $minHeight, minWidth: $minWidth)';
   }
 
   @override
@@ -4460,7 +4460,7 @@ class _$ImageTooSmall<T> implements ImageTooSmall<T> {
   }
 }
 
-abstract class ImageTooSmall<T> implements ShoppingValueFailure<T> {
+abstract class ImageTooSmall<T> implements ShopValueFailure<T> {
   const factory ImageTooSmall(
       {required T failedValue,
       required int minHeight,

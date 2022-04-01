@@ -9,7 +9,7 @@ Either<ValueFailure<File>, File> validatePhotoTooBig(File fileImage,
     {required int maxWidth, required int maxHeight}) {
   final size = ImageSizeGetter.getSize(FileInput(fileImage));
   if (size.height > maxHeight || size.width > maxWidth) {
-    return left(ValueFailure.shop(ShoppingValueFailure.imageTooBig(
+    return left(ValueFailure.shop(ShopValueFailure.imageTooBig(
         failedValue: fileImage, maxHeight: maxHeight, maxWidth: maxWidth)));
   } else {
     return right(fileImage);
@@ -20,7 +20,7 @@ Either<ValueFailure<File>, File> validatePhotoTooSmall(File fileImage,
     {required int minWidth, required int minHeight}) {
   final size = ImageSizeGetter.getSize(FileInput(fileImage));
   if (size.height < minHeight || size.width < minWidth) {
-    return left(ValueFailure.shop(ShoppingValueFailure.imageTooSmall(
+    return left(ValueFailure.shop(ShopValueFailure.imageTooSmall(
         failedValue: fileImage, minHeight: minHeight, minWidth: minWidth)));
   } else {
     return right(fileImage);

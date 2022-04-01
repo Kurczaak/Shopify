@@ -23,8 +23,8 @@ class _$ValueFailureTearOff {
     );
   }
 
-  _Shopping<T> shop<T>(ShoppingValueFailure<T> f) {
-    return _Shopping<T>(
+  _Shop<T> shop<T>(ShopValueFailure<T> f) {
+    return _Shop<T>(
       f,
     );
   }
@@ -38,38 +38,38 @@ mixin _$ValueFailure<T> {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(AuthValueFailure<T> f) auth,
-    required TResult Function(ShoppingValueFailure<T> f) shop,
+    required TResult Function(ShopValueFailure<T> f) shop,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(AuthValueFailure<T> f)? auth,
-    TResult Function(ShoppingValueFailure<T> f)? shop,
+    TResult Function(ShopValueFailure<T> f)? shop,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(AuthValueFailure<T> f)? auth,
-    TResult Function(ShoppingValueFailure<T> f)? shop,
+    TResult Function(ShopValueFailure<T> f)? shop,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Auth<T> value) auth,
-    required TResult Function(_Shopping<T> value) shop,
+    required TResult Function(_Shop<T> value) shop,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Auth<T> value)? auth,
-    TResult Function(_Shopping<T> value)? shop,
+    TResult Function(_Shop<T> value)? shop,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Auth<T> value)? auth,
-    TResult Function(_Shopping<T> value)? shop,
+    TResult Function(_Shop<T> value)? shop,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -164,7 +164,7 @@ class _$_Auth<T> implements _Auth<T> {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(AuthValueFailure<T> f) auth,
-    required TResult Function(ShoppingValueFailure<T> f) shop,
+    required TResult Function(ShopValueFailure<T> f) shop,
   }) {
     return auth(f);
   }
@@ -173,7 +173,7 @@ class _$_Auth<T> implements _Auth<T> {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(AuthValueFailure<T> f)? auth,
-    TResult Function(ShoppingValueFailure<T> f)? shop,
+    TResult Function(ShopValueFailure<T> f)? shop,
   }) {
     return auth?.call(f);
   }
@@ -182,7 +182,7 @@ class _$_Auth<T> implements _Auth<T> {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(AuthValueFailure<T> f)? auth,
-    TResult Function(ShoppingValueFailure<T> f)? shop,
+    TResult Function(ShopValueFailure<T> f)? shop,
     required TResult orElse(),
   }) {
     if (auth != null) {
@@ -195,7 +195,7 @@ class _$_Auth<T> implements _Auth<T> {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Auth<T> value) auth,
-    required TResult Function(_Shopping<T> value) shop,
+    required TResult Function(_Shop<T> value) shop,
   }) {
     return auth(this);
   }
@@ -204,7 +204,7 @@ class _$_Auth<T> implements _Auth<T> {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Auth<T> value)? auth,
-    TResult Function(_Shopping<T> value)? shop,
+    TResult Function(_Shop<T> value)? shop,
   }) {
     return auth?.call(this);
   }
@@ -213,7 +213,7 @@ class _$_Auth<T> implements _Auth<T> {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Auth<T> value)? auth,
-    TResult Function(_Shopping<T> value)? shop,
+    TResult Function(_Shop<T> value)? shop,
     required TResult orElse(),
   }) {
     if (auth != null) {
@@ -233,41 +233,38 @@ abstract class _Auth<T> implements ValueFailure<T> {
 }
 
 /// @nodoc
-abstract class _$ShoppingCopyWith<T, $Res> {
-  factory _$ShoppingCopyWith(
-          _Shopping<T> value, $Res Function(_Shopping<T>) then) =
-      __$ShoppingCopyWithImpl<T, $Res>;
-  $Res call({ShoppingValueFailure<T> f});
+abstract class _$ShopCopyWith<T, $Res> {
+  factory _$ShopCopyWith(_Shop<T> value, $Res Function(_Shop<T>) then) =
+      __$ShopCopyWithImpl<T, $Res>;
+  $Res call({ShopValueFailure<T> f});
 
-  $ShoppingValueFailureCopyWith<T, $Res> get f;
+  $ShopValueFailureCopyWith<T, $Res> get f;
 }
 
 /// @nodoc
-class __$ShoppingCopyWithImpl<T, $Res>
-    extends _$ValueFailureCopyWithImpl<T, $Res>
-    implements _$ShoppingCopyWith<T, $Res> {
-  __$ShoppingCopyWithImpl(
-      _Shopping<T> _value, $Res Function(_Shopping<T>) _then)
-      : super(_value, (v) => _then(v as _Shopping<T>));
+class __$ShopCopyWithImpl<T, $Res> extends _$ValueFailureCopyWithImpl<T, $Res>
+    implements _$ShopCopyWith<T, $Res> {
+  __$ShopCopyWithImpl(_Shop<T> _value, $Res Function(_Shop<T>) _then)
+      : super(_value, (v) => _then(v as _Shop<T>));
 
   @override
-  _Shopping<T> get _value => super._value as _Shopping<T>;
+  _Shop<T> get _value => super._value as _Shop<T>;
 
   @override
   $Res call({
     Object? f = freezed,
   }) {
-    return _then(_Shopping<T>(
+    return _then(_Shop<T>(
       f == freezed
           ? _value.f
           : f // ignore: cast_nullable_to_non_nullable
-              as ShoppingValueFailure<T>,
+              as ShopValueFailure<T>,
     ));
   }
 
   @override
-  $ShoppingValueFailureCopyWith<T, $Res> get f {
-    return $ShoppingValueFailureCopyWith<T, $Res>(_value.f, (value) {
+  $ShopValueFailureCopyWith<T, $Res> get f {
+    return $ShopValueFailureCopyWith<T, $Res>(_value.f, (value) {
       return _then(_value.copyWith(f: value));
     });
   }
@@ -275,11 +272,11 @@ class __$ShoppingCopyWithImpl<T, $Res>
 
 /// @nodoc
 
-class _$_Shopping<T> implements _Shopping<T> {
-  const _$_Shopping(this.f);
+class _$_Shop<T> implements _Shop<T> {
+  const _$_Shop(this.f);
 
   @override
-  final ShoppingValueFailure<T> f;
+  final ShopValueFailure<T> f;
 
   @override
   String toString() {
@@ -290,7 +287,7 @@ class _$_Shopping<T> implements _Shopping<T> {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _Shopping<T> &&
+            other is _Shop<T> &&
             const DeepCollectionEquality().equals(other.f, f));
   }
 
@@ -300,14 +297,14 @@ class _$_Shopping<T> implements _Shopping<T> {
 
   @JsonKey(ignore: true)
   @override
-  _$ShoppingCopyWith<T, _Shopping<T>> get copyWith =>
-      __$ShoppingCopyWithImpl<T, _Shopping<T>>(this, _$identity);
+  _$ShopCopyWith<T, _Shop<T>> get copyWith =>
+      __$ShopCopyWithImpl<T, _Shop<T>>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(AuthValueFailure<T> f) auth,
-    required TResult Function(ShoppingValueFailure<T> f) shop,
+    required TResult Function(ShopValueFailure<T> f) shop,
   }) {
     return shop(f);
   }
@@ -316,7 +313,7 @@ class _$_Shopping<T> implements _Shopping<T> {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(AuthValueFailure<T> f)? auth,
-    TResult Function(ShoppingValueFailure<T> f)? shop,
+    TResult Function(ShopValueFailure<T> f)? shop,
   }) {
     return shop?.call(f);
   }
@@ -325,7 +322,7 @@ class _$_Shopping<T> implements _Shopping<T> {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(AuthValueFailure<T> f)? auth,
-    TResult Function(ShoppingValueFailure<T> f)? shop,
+    TResult Function(ShopValueFailure<T> f)? shop,
     required TResult orElse(),
   }) {
     if (shop != null) {
@@ -338,7 +335,7 @@ class _$_Shopping<T> implements _Shopping<T> {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Auth<T> value) auth,
-    required TResult Function(_Shopping<T> value) shop,
+    required TResult Function(_Shop<T> value) shop,
   }) {
     return shop(this);
   }
@@ -347,7 +344,7 @@ class _$_Shopping<T> implements _Shopping<T> {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Auth<T> value)? auth,
-    TResult Function(_Shopping<T> value)? shop,
+    TResult Function(_Shop<T> value)? shop,
   }) {
     return shop?.call(this);
   }
@@ -356,7 +353,7 @@ class _$_Shopping<T> implements _Shopping<T> {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Auth<T> value)? auth,
-    TResult Function(_Shopping<T> value)? shop,
+    TResult Function(_Shop<T> value)? shop,
     required TResult orElse(),
   }) {
     if (shop != null) {
@@ -366,12 +363,12 @@ class _$_Shopping<T> implements _Shopping<T> {
   }
 }
 
-abstract class _Shopping<T> implements ValueFailure<T> {
-  const factory _Shopping(ShoppingValueFailure<T> f) = _$_Shopping<T>;
+abstract class _Shop<T> implements ValueFailure<T> {
+  const factory _Shop(ShopValueFailure<T> f) = _$_Shop<T>;
 
-  ShoppingValueFailure<T> get f;
+  ShopValueFailure<T> get f;
   @JsonKey(ignore: true)
-  _$ShoppingCopyWith<T, _Shopping<T>> get copyWith =>
+  _$ShopCopyWith<T, _Shop<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

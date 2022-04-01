@@ -37,7 +37,7 @@ class ShopLogo extends Photo {
   static const int minWidth = Photo.minWidth;
 
   ShopLogo.empty()
-      : super._(left(ValueFailure.shop(ShoppingValueFailure.empty(
+      : super._(left(ValueFailure.shop(ShopValueFailure.empty(
             failedValue: File.fromRawPath(Uint8List.fromList([]))))));
 
   ShopLogo(File file)

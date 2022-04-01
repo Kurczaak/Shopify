@@ -13,7 +13,7 @@ Either<ValueFailure<PrimitiveHour>, PrimitiveHour> hourValidator(
   if (hoursValueOrFailure.isRight() && minutesValueOrFailure.isRight()) {
     return right(hour);
   } else {
-    return left(ValueFailure.shop(ShoppingValueFailure.incorrectHour(
+    return left(ValueFailure.shop(ShopValueFailure.incorrectHour(
         failedValue: hour, twelveHourFormat: true)));
   }
 }
@@ -27,6 +27,6 @@ Either<ValueFailure<KtList<Hour>>, KtList<Hour>> timeIntervalValidator(
     return right(timeInterval);
   } else {
     return left(ValueFailure.shop(
-        ShoppingValueFailure.invalidTimeInterval(failedValue: timeInterval)));
+        ShopValueFailure.invalidTimeInterval(failedValue: timeInterval)));
   }
 }

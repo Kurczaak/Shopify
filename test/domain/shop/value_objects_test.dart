@@ -29,7 +29,7 @@ void main() {
         // assert
         expect(
             result.value,
-            equals(left(ValueFailure.shop(ShoppingValueFailure.exceedingLength(
+            equals(left(ValueFailure.shop(ShopValueFailure.exceedingLength(
                 failedValue: tooLongShopNameStr,
                 maxLength: ShopName.maxLength)))));
       },
@@ -45,10 +45,9 @@ void main() {
         // assert
         expect(
             result.value,
-            equals(left(const ValueFailure.shop(
-                ShoppingValueFailure.stringTooShort(
-                    failedValue: tooShortShopName,
-                    minLength: ShopName.minLength)))));
+            equals(left(const ValueFailure.shop(ShopValueFailure.stringTooShort(
+                failedValue: tooShortShopName,
+                minLength: ShopName.minLength)))));
       },
     );
 
@@ -62,8 +61,8 @@ void main() {
         // assert
         expect(
             result.value,
-            equals(left(const ValueFailure.shop(ShoppingValueFailure.multiline(
-                failedValue: multilineShopName)))));
+            equals(left(const ValueFailure.shop(
+                ShopValueFailure.multiline(failedValue: multilineShopName)))));
       },
     );
   });
@@ -92,7 +91,7 @@ void main() {
   //       expect(
   //           result.value,
   //           equals(left(const ValueFailure.shop(
-  //               ShoppingValueFailure.incorrectHour(
+  //               ShopValueFailure.incorrectHour(
   //                   failedValue: incorrectHour, twelveHourFormat: true)))));
   //     },
   //   );
@@ -122,7 +121,7 @@ void main() {
   //       expect(
   //           result.value,
   //           equals(left(const ValueFailure.shop(
-  //               ShoppingValueFailure.incorrectMinutes(
+  //               ShopValueFailure.incorrectMinutes(
   //                   failedValue: incorrectMinutes)))));
   //     },
   //   );

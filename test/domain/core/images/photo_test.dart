@@ -41,7 +41,7 @@ void main() async {
       // assert
       expect(
           result.value,
-          left(ValueFailure.shop(ShoppingValueFailure.imageTooSmall(
+          left(ValueFailure.shop(ShopValueFailure.imageTooSmall(
               failedValue: tTooSmallLogo,
               minHeight: ShopLogo.minHeight,
               minWidth: ShopLogo.minWidth))));
@@ -55,7 +55,7 @@ void main() async {
       // assert
       expect(
           result.value,
-          left(ValueFailure.shop(ShoppingValueFailure.imageTooBig(
+          left(ValueFailure.shop(ShopValueFailure.imageTooBig(
               failedValue: tTooBigLogo,
               maxHeight: ShopLogo.maxHeight,
               maxWidth: ShopLogo.maxWidth))));

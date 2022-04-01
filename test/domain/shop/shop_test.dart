@@ -50,9 +50,8 @@ void main() {
         expect(
           failureOption,
           equals(
-            some(const ValueFailure.shop(
-                ShoppingValueFailure.incorrectPostalCode(
-                    failedValue: invalidPostalCode))),
+            some(const ValueFailure.shop(ShopValueFailure.incorrectPostalCode(
+                failedValue: invalidPostalCode))),
           ),
         );
       },

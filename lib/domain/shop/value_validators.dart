@@ -11,7 +11,7 @@ Either<ValueFailure<String>, String> validateMaxStringLength(
   if (input.length > maxLength) {
     return left(
       ValueFailure.shop(
-        ShoppingValueFailure.exceedingLength(
+        ShopValueFailure.exceedingLength(
             failedValue: input, maxLength: maxLength),
       ),
     );
@@ -25,7 +25,7 @@ Either<ValueFailure<String>, String> validateMinStringLength(
   if (input.length < minLength) {
     return left(
       ValueFailure.shop(
-        ShoppingValueFailure.stringTooShort(
+        ShopValueFailure.stringTooShort(
             failedValue: input, minLength: minLength),
       ),
     );
@@ -37,7 +37,7 @@ Either<ValueFailure<String>, String> validateMinStringLength(
 Either<ValueFailure<String>, String> validateStringNotEmpty(String input) {
   if (input.isEmpty) {
     return left(ValueFailure.shop(
-      ShoppingValueFailure.empty(failedValue: input),
+      ShopValueFailure.empty(failedValue: input),
     ));
   } else {
     return right(input);
@@ -48,7 +48,7 @@ Either<ValueFailure<String>, String> validateSingleLine(String input) {
   if (input.contains('\n')) {
     return left(
       ValueFailure.shop(
-        ShoppingValueFailure.multiline(failedValue: input),
+        ShopValueFailure.multiline(failedValue: input),
       ),
     );
   } else {
@@ -66,7 +66,7 @@ Either<ValueFailure<String>, String> validatePostalCode(String input) {
       !input[5].isInt) {
     return left(
       ValueFailure.shop(
-        ShoppingValueFailure.incorrectPostalCode(failedValue: input),
+        ShopValueFailure.incorrectPostalCode(failedValue: input),
       ),
     );
   } else {
@@ -79,7 +79,7 @@ Either<ValueFailure<String>, String> validateContainsNumber(String input) {
     return right(input);
   } else {
     return left(ValueFailure.shop(
-        ShoppingValueFailure.noAddressNumber(failedValue: input)));
+        ShopValueFailure.noAddressNumber(failedValue: input)));
   }
 }
 
@@ -87,7 +87,7 @@ Either<ValueFailure<String>, String> validateContainsNumber(String input) {
 Either<ValueFailure<String>, String> validateShopOpen(String input) {
   throw UnexpectedValueError(
     ValueFailure.shop(
-      ShoppingValueFailure.shopClosedAllWeekLong(failedValue: input),
+      ShopValueFailure.shopClosedAllWeekLong(failedValue: input),
     ),
   );
 }
@@ -97,7 +97,7 @@ Either<ValueFailure<String>, String> validateShopOpen(String input) {
 Either<ValueFailure<String>, String> validatePohtoSelected(String input) {
   throw UnexpectedValueError(
     ValueFailure.shop(
-      ShoppingValueFailure.noPhotoSelected(failedValue: input),
+      ShopValueFailure.noPhotoSelected(failedValue: input),
     ),
   );
 }
@@ -106,7 +106,7 @@ Either<ValueFailure<double>, double> validatePositiveValue(double input) {
   if (input <= 0) {
     return left(
       ValueFailure.shop(
-        ShoppingValueFailure.nonPositiveValue(failedValue: input),
+        ShopValueFailure.nonPositiveValue(failedValue: input),
       ),
     );
   } else {
@@ -119,7 +119,7 @@ Either<ValueFailure<int>, int> validateIntegerRange(
   if (input >= minInclusive && input <= maxInclusive) {
     return right(input);
   } else {
-    return left(ValueFailure.shop(ShoppingValueFailure.numberOutsideInterval(
+    return left(ValueFailure.shop(ShopValueFailure.numberOutsideInterval(
         failedValue: input, min: minInclusive, max: maxInclusive)));
   }
 }
@@ -131,9 +131,8 @@ Either<ValueFailure<KtList<T>>, KtList<T>> validateListLength<T>(
     return right(input);
   } else {
     return left(ValueFailure.shop(input.size > maxLength
-        ? ShoppingValueFailure.listTooLong(
-            failedValue: input, maxLength: maxLength)
-        : ShoppingValueFailure.listTooShort(
+        ? ShopValueFailure.listTooLong(failedValue: input, maxLength: maxLength)
+        : ShopValueFailure.listTooShort(
             failedValue: input, minLength: minLength)));
   }
 }

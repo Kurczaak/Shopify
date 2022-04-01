@@ -7,7 +7,7 @@ part 'failures.freezed.dart';
 @freezed
 class ValueFailure<T> with _$ValueFailure<T> {
   const factory ValueFailure.auth(AuthValueFailure<T> f) = _Auth<T>;
-  const factory ValueFailure.shop(ShoppingValueFailure<T> f) = _Shopping<T>;
+  const factory ValueFailure.shop(ShopValueFailure<T> f) = _Shop<T>;
   //const factory ValueFailure.core()
 }
 

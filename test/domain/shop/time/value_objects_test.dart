@@ -29,7 +29,7 @@ void main() {
         // assert
         expect(
             hour.value,
-            left(ValueFailure.shop(ShoppingValueFailure.incorrectHour(
+            left(ValueFailure.shop(ShopValueFailure.incorrectHour(
                 failedValue: tInvalidHour, twelveHourFormat: true))));
       },
     );
@@ -63,7 +63,7 @@ void main() {
         expect(
             result.value,
             left(ValueFailure.shop(
-                ShoppingValueFailure.invalidTimeInterval(failedValue: list))));
+                ShopValueFailure.invalidTimeInterval(failedValue: list))));
       },
     );
   });

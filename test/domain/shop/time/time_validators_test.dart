@@ -31,7 +31,7 @@ void main() {
         // assert
         expect(
             result,
-            left(const ValueFailure.shop(ShoppingValueFailure.incorrectHour(
+            left(const ValueFailure.shop(ShopValueFailure.incorrectHour(
                 failedValue: invalidHour, twelveHourFormat: true))));
       },
     );
@@ -76,8 +76,8 @@ void main() {
       ];
       final expectedResults = [
         for (var i = 0; i < 23; i++)
-          left(ValueFailure.shop(ShoppingValueFailure.invalidTimeInterval(
-              failedValue: intervals[i])))
+          left(ValueFailure.shop(
+              ShopValueFailure.invalidTimeInterval(failedValue: intervals[i])))
       ];
       // act
       final results = [

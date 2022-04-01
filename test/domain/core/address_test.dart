@@ -35,7 +35,7 @@ void main() {
         expect(
             failureOrOption,
             equals(some(const ValueFailure.shop(
-                ShoppingValueFailure.empty(failedValue: '')))));
+                ShopValueFailure.empty(failedValue: '')))));
       },
     );
   });
