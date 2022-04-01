@@ -28,6 +28,12 @@ class _$ValueFailureTearOff {
       f,
     );
   }
+
+  _Product<T> product<T>(ProductValueFailure<T> f) {
+    return _Product<T>(
+      f,
+    );
+  }
 }
 
 /// @nodoc
@@ -39,18 +45,21 @@ mixin _$ValueFailure<T> {
   TResult when<TResult extends Object?>({
     required TResult Function(AuthValueFailure<T> f) auth,
     required TResult Function(ShopValueFailure<T> f) shop,
+    required TResult Function(ProductValueFailure<T> f) product,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(AuthValueFailure<T> f)? auth,
     TResult Function(ShopValueFailure<T> f)? shop,
+    TResult Function(ProductValueFailure<T> f)? product,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(AuthValueFailure<T> f)? auth,
     TResult Function(ShopValueFailure<T> f)? shop,
+    TResult Function(ProductValueFailure<T> f)? product,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -58,18 +67,21 @@ mixin _$ValueFailure<T> {
   TResult map<TResult extends Object?>({
     required TResult Function(_Auth<T> value) auth,
     required TResult Function(_Shop<T> value) shop,
+    required TResult Function(_Product<T> value) product,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Auth<T> value)? auth,
     TResult Function(_Shop<T> value)? shop,
+    TResult Function(_Product<T> value)? product,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Auth<T> value)? auth,
     TResult Function(_Shop<T> value)? shop,
+    TResult Function(_Product<T> value)? product,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -165,6 +177,7 @@ class _$_Auth<T> implements _Auth<T> {
   TResult when<TResult extends Object?>({
     required TResult Function(AuthValueFailure<T> f) auth,
     required TResult Function(ShopValueFailure<T> f) shop,
+    required TResult Function(ProductValueFailure<T> f) product,
   }) {
     return auth(f);
   }
@@ -174,6 +187,7 @@ class _$_Auth<T> implements _Auth<T> {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(AuthValueFailure<T> f)? auth,
     TResult Function(ShopValueFailure<T> f)? shop,
+    TResult Function(ProductValueFailure<T> f)? product,
   }) {
     return auth?.call(f);
   }
@@ -183,6 +197,7 @@ class _$_Auth<T> implements _Auth<T> {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(AuthValueFailure<T> f)? auth,
     TResult Function(ShopValueFailure<T> f)? shop,
+    TResult Function(ProductValueFailure<T> f)? product,
     required TResult orElse(),
   }) {
     if (auth != null) {
@@ -196,6 +211,7 @@ class _$_Auth<T> implements _Auth<T> {
   TResult map<TResult extends Object?>({
     required TResult Function(_Auth<T> value) auth,
     required TResult Function(_Shop<T> value) shop,
+    required TResult Function(_Product<T> value) product,
   }) {
     return auth(this);
   }
@@ -205,6 +221,7 @@ class _$_Auth<T> implements _Auth<T> {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Auth<T> value)? auth,
     TResult Function(_Shop<T> value)? shop,
+    TResult Function(_Product<T> value)? product,
   }) {
     return auth?.call(this);
   }
@@ -214,6 +231,7 @@ class _$_Auth<T> implements _Auth<T> {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Auth<T> value)? auth,
     TResult Function(_Shop<T> value)? shop,
+    TResult Function(_Product<T> value)? product,
     required TResult orElse(),
   }) {
     if (auth != null) {
@@ -305,6 +323,7 @@ class _$_Shop<T> implements _Shop<T> {
   TResult when<TResult extends Object?>({
     required TResult Function(AuthValueFailure<T> f) auth,
     required TResult Function(ShopValueFailure<T> f) shop,
+    required TResult Function(ProductValueFailure<T> f) product,
   }) {
     return shop(f);
   }
@@ -314,6 +333,7 @@ class _$_Shop<T> implements _Shop<T> {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(AuthValueFailure<T> f)? auth,
     TResult Function(ShopValueFailure<T> f)? shop,
+    TResult Function(ProductValueFailure<T> f)? product,
   }) {
     return shop?.call(f);
   }
@@ -323,6 +343,7 @@ class _$_Shop<T> implements _Shop<T> {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(AuthValueFailure<T> f)? auth,
     TResult Function(ShopValueFailure<T> f)? shop,
+    TResult Function(ProductValueFailure<T> f)? product,
     required TResult orElse(),
   }) {
     if (shop != null) {
@@ -336,6 +357,7 @@ class _$_Shop<T> implements _Shop<T> {
   TResult map<TResult extends Object?>({
     required TResult Function(_Auth<T> value) auth,
     required TResult Function(_Shop<T> value) shop,
+    required TResult Function(_Product<T> value) product,
   }) {
     return shop(this);
   }
@@ -345,6 +367,7 @@ class _$_Shop<T> implements _Shop<T> {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Auth<T> value)? auth,
     TResult Function(_Shop<T> value)? shop,
+    TResult Function(_Product<T> value)? product,
   }) {
     return shop?.call(this);
   }
@@ -354,6 +377,7 @@ class _$_Shop<T> implements _Shop<T> {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Auth<T> value)? auth,
     TResult Function(_Shop<T> value)? shop,
+    TResult Function(_Product<T> value)? product,
     required TResult orElse(),
   }) {
     if (shop != null) {
@@ -373,179 +397,105 @@ abstract class _Shop<T> implements ValueFailure<T> {
 }
 
 /// @nodoc
-class _$CoreValueFailureTearOff {
-  const _$CoreValueFailureTearOff();
+abstract class _$ProductCopyWith<T, $Res> {
+  factory _$ProductCopyWith(
+          _Product<T> value, $Res Function(_Product<T>) then) =
+      __$ProductCopyWithImpl<T, $Res>;
+  $Res call({ProductValueFailure<T> f});
 
-  IncorrectAddress<T> incorrectAddress<T>({required T input}) {
-    return IncorrectAddress<T>(
-      input: input,
-    );
-  }
+  $ProductValueFailureCopyWith<T, $Res> get f;
 }
 
 /// @nodoc
-const $CoreValueFailure = _$CoreValueFailureTearOff();
+class __$ProductCopyWithImpl<T, $Res>
+    extends _$ValueFailureCopyWithImpl<T, $Res>
+    implements _$ProductCopyWith<T, $Res> {
+  __$ProductCopyWithImpl(_Product<T> _value, $Res Function(_Product<T>) _then)
+      : super(_value, (v) => _then(v as _Product<T>));
 
-/// @nodoc
-mixin _$CoreValueFailure<T> {
-  T get input => throw _privateConstructorUsedError;
-
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(T input) incorrectAddress,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(T input)? incorrectAddress,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(T input)? incorrectAddress,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(IncorrectAddress<T> value) incorrectAddress,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(IncorrectAddress<T> value)? incorrectAddress,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(IncorrectAddress<T> value)? incorrectAddress,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $CoreValueFailureCopyWith<T, CoreValueFailure<T>> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $CoreValueFailureCopyWith<T, $Res> {
-  factory $CoreValueFailureCopyWith(
-          CoreValueFailure<T> value, $Res Function(CoreValueFailure<T>) then) =
-      _$CoreValueFailureCopyWithImpl<T, $Res>;
-  $Res call({T input});
-}
-
-/// @nodoc
-class _$CoreValueFailureCopyWithImpl<T, $Res>
-    implements $CoreValueFailureCopyWith<T, $Res> {
-  _$CoreValueFailureCopyWithImpl(this._value, this._then);
-
-  final CoreValueFailure<T> _value;
-  // ignore: unused_field
-  final $Res Function(CoreValueFailure<T>) _then;
+  @override
+  _Product<T> get _value => super._value as _Product<T>;
 
   @override
   $Res call({
-    Object? input = freezed,
+    Object? f = freezed,
   }) {
-    return _then(_value.copyWith(
-      input: input == freezed
-          ? _value.input
-          : input // ignore: cast_nullable_to_non_nullable
-              as T,
+    return _then(_Product<T>(
+      f == freezed
+          ? _value.f
+          : f // ignore: cast_nullable_to_non_nullable
+              as ProductValueFailure<T>,
     ));
   }
-}
-
-/// @nodoc
-abstract class $IncorrectAddressCopyWith<T, $Res>
-    implements $CoreValueFailureCopyWith<T, $Res> {
-  factory $IncorrectAddressCopyWith(
-          IncorrectAddress<T> value, $Res Function(IncorrectAddress<T>) then) =
-      _$IncorrectAddressCopyWithImpl<T, $Res>;
-  @override
-  $Res call({T input});
-}
-
-/// @nodoc
-class _$IncorrectAddressCopyWithImpl<T, $Res>
-    extends _$CoreValueFailureCopyWithImpl<T, $Res>
-    implements $IncorrectAddressCopyWith<T, $Res> {
-  _$IncorrectAddressCopyWithImpl(
-      IncorrectAddress<T> _value, $Res Function(IncorrectAddress<T>) _then)
-      : super(_value, (v) => _then(v as IncorrectAddress<T>));
 
   @override
-  IncorrectAddress<T> get _value => super._value as IncorrectAddress<T>;
-
-  @override
-  $Res call({
-    Object? input = freezed,
-  }) {
-    return _then(IncorrectAddress<T>(
-      input: input == freezed
-          ? _value.input
-          : input // ignore: cast_nullable_to_non_nullable
-              as T,
-    ));
+  $ProductValueFailureCopyWith<T, $Res> get f {
+    return $ProductValueFailureCopyWith<T, $Res>(_value.f, (value) {
+      return _then(_value.copyWith(f: value));
+    });
   }
 }
 
 /// @nodoc
 
-class _$IncorrectAddress<T> implements IncorrectAddress<T> {
-  const _$IncorrectAddress({required this.input});
+class _$_Product<T> implements _Product<T> {
+  const _$_Product(this.f);
 
   @override
-  final T input;
+  final ProductValueFailure<T> f;
 
   @override
   String toString() {
-    return 'CoreValueFailure<$T>.incorrectAddress(input: $input)';
+    return 'ValueFailure<$T>.product(f: $f)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is IncorrectAddress<T> &&
-            const DeepCollectionEquality().equals(other.input, input));
+            other is _Product<T> &&
+            const DeepCollectionEquality().equals(other.f, f));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(input));
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(f));
 
   @JsonKey(ignore: true)
   @override
-  $IncorrectAddressCopyWith<T, IncorrectAddress<T>> get copyWith =>
-      _$IncorrectAddressCopyWithImpl<T, IncorrectAddress<T>>(this, _$identity);
+  _$ProductCopyWith<T, _Product<T>> get copyWith =>
+      __$ProductCopyWithImpl<T, _Product<T>>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(T input) incorrectAddress,
+    required TResult Function(AuthValueFailure<T> f) auth,
+    required TResult Function(ShopValueFailure<T> f) shop,
+    required TResult Function(ProductValueFailure<T> f) product,
   }) {
-    return incorrectAddress(input);
+    return product(f);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(T input)? incorrectAddress,
+    TResult Function(AuthValueFailure<T> f)? auth,
+    TResult Function(ShopValueFailure<T> f)? shop,
+    TResult Function(ProductValueFailure<T> f)? product,
   }) {
-    return incorrectAddress?.call(input);
+    return product?.call(f);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(T input)? incorrectAddress,
+    TResult Function(AuthValueFailure<T> f)? auth,
+    TResult Function(ShopValueFailure<T> f)? shop,
+    TResult Function(ProductValueFailure<T> f)? product,
     required TResult orElse(),
   }) {
-    if (incorrectAddress != null) {
-      return incorrectAddress(input);
+    if (product != null) {
+      return product(f);
     }
     return orElse();
   }
@@ -553,39 +503,43 @@ class _$IncorrectAddress<T> implements IncorrectAddress<T> {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(IncorrectAddress<T> value) incorrectAddress,
+    required TResult Function(_Auth<T> value) auth,
+    required TResult Function(_Shop<T> value) shop,
+    required TResult Function(_Product<T> value) product,
   }) {
-    return incorrectAddress(this);
+    return product(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(IncorrectAddress<T> value)? incorrectAddress,
+    TResult Function(_Auth<T> value)? auth,
+    TResult Function(_Shop<T> value)? shop,
+    TResult Function(_Product<T> value)? product,
   }) {
-    return incorrectAddress?.call(this);
+    return product?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(IncorrectAddress<T> value)? incorrectAddress,
+    TResult Function(_Auth<T> value)? auth,
+    TResult Function(_Shop<T> value)? shop,
+    TResult Function(_Product<T> value)? product,
     required TResult orElse(),
   }) {
-    if (incorrectAddress != null) {
-      return incorrectAddress(this);
+    if (product != null) {
+      return product(this);
     }
     return orElse();
   }
 }
 
-abstract class IncorrectAddress<T> implements CoreValueFailure<T> {
-  const factory IncorrectAddress({required T input}) = _$IncorrectAddress<T>;
+abstract class _Product<T> implements ValueFailure<T> {
+  const factory _Product(ProductValueFailure<T> f) = _$_Product<T>;
 
-  @override
-  T get input;
-  @override
+  ProductValueFailure<T> get f;
   @JsonKey(ignore: true)
-  $IncorrectAddressCopyWith<T, IncorrectAddress<T>> get copyWith =>
+  _$ProductCopyWith<T, _Product<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
