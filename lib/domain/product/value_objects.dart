@@ -37,14 +37,26 @@ class BrandName extends Name {
   const BrandName._(this.value);
 }
 
-class Weight extends ValueObject<int> {
-  static const int maxWeight = 99999;
+class Description extends ValueObject<String> {
+  static const maxLength = 500;
+  static const minLength = 0;
+  @override
+  final Either<ValueFailure<String>, String> value;
+  factory Description(String input) {
+    return Description._(validateMaxStringLength(input, maxLength).flatMap(
+        (passedValue) => validateMinStringLength(passedValue, minLength)));
+  }
+  const Description._(this.value);
+}
+
+class Weight extends ValueObject<double> {
+  static const double maxWeight = 99999;
 
   @override
-  final Either<ValueFailure<int>, int> value;
-  factory Weight(int input) {
+  final Either<ValueFailure<double>, double> value;
+  factory Weight(double input) {
     return Weight._(
-      validateIntegerRange(input, 1, maxWeight),
+      validateDoubleRange(input, 1, maxWeight),
     );
   }
   const Weight._(this.value);
