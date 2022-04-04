@@ -3,11 +3,6 @@ import 'package:kt_dart/kt.dart';
 import 'package:shopify_manager/domain/core/failures.dart';
 import 'package:shopify_manager/domain/core/value_failures.dart';
 
-bool validateMaxLength(String input, int maxLength) {
-  if (input.length <= maxLength) return true;
-  return false;
-}
-
 Either<ValueFailure<KtList<T>>, KtList<T>> validateMaxListLength<T>(
   KtList<T> input,
   int maxLength,
@@ -18,6 +13,31 @@ Either<ValueFailure<KtList<T>>, KtList<T>> validateMaxListLength<T>(
     return left(ValueFailure.core(CoreValueFailure.listTooLong(
       failedValue: input,
       maxLength: maxLength,
+    )));
+  }
+}
+
+Either<ValueFailure<KtList<T>>, KtList<T>> validateListLength<T>(
+    KtList<T> input, int maxLength,
+    {int minLength = 0}) {
+  if (input.size <= maxLength && input.size >= minLength) {
+    return right(input);
+  } else {
+    return left(ValueFailure.core(input.size > maxLength
+        ? CoreValueFailure.listTooLong(failedValue: input, maxLength: maxLength)
+        : CoreValueFailure.listTooShort(
+            failedValue: input, minLength: minLength)));
+  }
+}
+
+Either<ValueFailure<KtList<T>>, KtList<T>> validateListNotEmpty<T>(
+  KtList<T> input,
+) {
+  if (input.size > 0) {
+    return right(input);
+  } else {
+    return left(ValueFailure.core(CoreValueFailure.empty(
+      failedValue: input,
     )));
   }
 }
@@ -127,19 +147,6 @@ Either<ValueFailure<int>, int> validateIntegerRange(
   } else {
     return left(ValueFailure.core(CoreValueFailure.numberOutsideInterval(
         failedValue: input, min: minInclusive, max: maxInclusive)));
-  }
-}
-
-Either<ValueFailure<KtList<T>>, KtList<T>> validateListLength<T>(
-    KtList<T> input, int maxLength,
-    {int minLength = 0}) {
-  if (input.size <= maxLength && input.size >= minLength) {
-    return right(input);
-  } else {
-    return left(ValueFailure.core(input.size > maxLength
-        ? CoreValueFailure.listTooLong(failedValue: input, maxLength: maxLength)
-        : CoreValueFailure.listTooShort(
-            failedValue: input, minLength: minLength)));
   }
 }
 

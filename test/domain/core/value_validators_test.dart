@@ -1,153 +1,512 @@
-import 'package:shopify_manager/domain/auth/value_failures.dart';
+import 'package:kt_dart/kt.dart';
+import 'package:shopify_manager/domain/core/value_failures.dart';
 import 'package:shopify_manager/domain/core/failures.dart';
-import 'package:shopify_manager/domain/auth/value_validators.dart';
+import 'package:shopify_manager/domain/core/value_validators.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:dartz/dartz.dart';
 
 void main() {
-  group('Email Validator', () {
+  group('validateMaxListLength', () {
     test(
-      'should pass a valid email address',
+      'should return a list with a valid length',
       () async {
-        //arrange
-        String validEmailString = 'valid@email.com';
+        // arrange
+        final length3List = KtList.from([1, 2, 3]);
+        const maxLength = 3;
         // act
-        final result = validateEmailAddress(validEmailString);
+        final result = validateMaxListLength(length3List, maxLength);
         // assert
-        expect(result, right(validEmailString));
+        expect(result, right(length3List));
       },
     );
+
     test(
-      'should return ValueFailure when email is missing "@"',
+      'should return ListTooLong failure when a list is too long',
       () async {
-        //arrange
-        String invalidEmailString = 'invalidemail.com';
+        // arrange
+        final tooLongList = KtList.from([1, 2, 3, 4]);
+        const maxLength = 3;
         // act
-        final result = validateEmailAddress(invalidEmailString);
+        final result = validateMaxListLength(tooLongList, maxLength);
         // assert
         expect(
             result,
-            left(ValueFailure.auth(AuthValueFailure.invalidEmail(
-                failedValue: invalidEmailString))));
-      },
-    );
-    test(
-      'should return ValueFailure when email is missing "."',
-      () async {
-        //arrange
-        String invalidEmailString = 'invalid@emailcom';
-        // act
-        final result = validateEmailAddress(invalidEmailString);
-        // assert
-        expect(
-            result,
-            left(ValueFailure.auth(AuthValueFailure.invalidEmail(
-                failedValue: invalidEmailString))));
-      },
-    );
-    test(
-      'should return ValueFailure when email is invalid',
-      () async {
-        //arrange
-        String invalidEmailString = 'invalidemailcom';
-        // act
-        final result = validateEmailAddress(invalidEmailString);
-        // assert
-        expect(
-            result,
-            left(ValueFailure.auth(AuthValueFailure.invalidEmail(
-                failedValue: invalidEmailString))));
+            left(ValueFailure.core(CoreValueFailure.listTooLong(
+                failedValue: tooLongList, maxLength: maxLength))));
       },
     );
   });
 
-  group('Password Validator', () {
+  group('validateListNotEmpty', () {
     test(
-      'should pass a password containing more than 6 characters, capital letters, numerical characters, and special characters',
-      () async {
-        //arrange
-        String correctPassword = '12vaL#';
-        // act
-        final result = validatePassword(correctPassword);
-        // assert
-        expect(result, right(correctPassword));
-      },
-    );
-    test(
-      'should return an incorrect password ValueFailure when the password is less than 6 characters long',
-      () async {
-        //arrange
-        String shortPasswordString = '1Sho#';
-        // act
-        final result = validatePassword(shortPasswordString);
-        // assert
-        expect(
-            result,
-            left(ValueFailure.auth(AuthValueFailure.incorrectPassword(
-                failedValue: shortPasswordString))));
-      },
-    );
-
-    test(
-      'should return an incorrect password ValueFailure when the String doesn\'t contain a special character',
-      () async {
-        //arrange
-        String noSpecialCharacterPassword = '12VaLiD';
-        // act
-        final result = validatePassword(noSpecialCharacterPassword);
-        // assert
-        expect(
-            result,
-            left(ValueFailure.auth(AuthValueFailure.incorrectPassword(
-                failedValue: noSpecialCharacterPassword))));
-      },
-    );
-
-    test(
-      'should return an incorrect password character Value Failure when the String doesn\'t contain a numerical character',
+      'should pass nonempty lsit',
       () async {
         // arrange
-        String noNumericalCharacterPassword = 'ThisIsNotValid#';
+        final nonemptyList = KtList.from([1]);
         // act
-        final result = validatePassword(noNumericalCharacterPassword);
-
+        final result = validateListNotEmpty(nonemptyList);
         // assert
-        expect(
-            result,
-            left(ValueFailure.auth(AuthValueFailure.incorrectPassword(
-                failedValue: noNumericalCharacterPassword))));
+        expect(result, right(nonemptyList));
       },
     );
 
     test(
-      'should return an incorrect password Value Failure when the String doesn\'t contain a capital letter',
+      'should return Empty value failure when given an empty list',
       () async {
         // arrange
-        String noCapitalLetterPassword = 'thisisinvalidpwd1#';
+        final emptyList = KtList.empty();
         // act
-        final result = validatePassword(noCapitalLetterPassword);
-
+        final result = validateListNotEmpty(emptyList);
         // assert
         expect(
             result,
-            left(ValueFailure.auth(AuthValueFailure.incorrectPassword(
-                failedValue: noCapitalLetterPassword))));
+            left(ValueFailure.core(
+                CoreValueFailure.empty(failedValue: emptyList))));
+      },
+    );
+  });
+
+  group(
+    'validateMaxStringLength',
+    () {
+      const shortString = '12345';
+      const exceedingLengthString = '123456';
+      const maxLength = 5;
+      test(
+        'should return string that does not exceed max length',
+        () async {
+          // act
+          final result = validateMaxStringLength(shortString, maxLength);
+          // assert
+          expect(result, right(shortString));
+        },
+      );
+      test(
+        'should return ValueFailure<String> when string exceeds max length',
+        () async {
+          // act
+          final result =
+              validateMaxStringLength(exceedingLengthString, maxLength);
+          // assert
+          expect(result, isA<Left<ValueFailure, String>>());
+        },
+      );
+      test(
+        'should return exceedingLength ValueFailure when string exceeds max length',
+        () async {
+          // act
+          final result =
+              validateMaxStringLength(exceedingLengthString, maxLength);
+          // assert
+          expect(
+            result,
+            left(
+              const ValueFailure.core(
+                CoreValueFailure.exceedingLength(
+                    failedValue: exceedingLengthString, maxLength: maxLength),
+              ),
+            ),
+          );
+        },
+      );
+    },
+  );
+
+  group(
+    'validateMinStringLength',
+    () {
+      const tooShortString = '12345';
+      const longEnoughString = '123456';
+      const minLength = 6;
+      test(
+        'should return string that exceeds min length',
+        () async {
+          // act
+          final result = validateMinStringLength(longEnoughString, minLength);
+          // assert
+          expect(result, right(longEnoughString));
+        },
+      );
+      test(
+        'should return ValueFailure<String> when string is shorter than minLength',
+        () async {
+          // act
+          final result = validateMinStringLength(tooShortString, minLength);
+          // assert
+          expect(result, isA<Left<ValueFailure, String>>());
+        },
+      );
+      test(
+        'should return tooShortString ValueFailure when string exceeds max length',
+        () async {
+          // act
+          final result = validateMinStringLength(tooShortString, minLength);
+          // assert
+          expect(
+            result,
+            left(
+              const ValueFailure.core(
+                CoreValueFailure.stringTooShort(
+                    failedValue: tooShortString, minLength: minLength),
+              ),
+            ),
+          );
+        },
+      );
+    },
+  );
+
+  group(
+    'validateStringNotEmpty',
+    () {
+      const emptyString = '';
+      const nonEmptyString = 'this is a non empty string';
+
+      test(
+        'should return ValueFailure when a string is empty',
+        () async {
+          // act
+          final result = validateStringNotEmpty(emptyString);
+          // assert
+          expect(result, isA<Left<ValueFailure, String>>());
+        },
+      );
+
+      test(
+        'should return empty ValueFailure when a string is empty',
+        () async {
+          // act
+          final result = validateStringNotEmpty(emptyString);
+          // assert
+          expect(
+            result,
+            left(
+              const ValueFailure.core(
+                CoreValueFailure.empty(failedValue: emptyString),
+              ),
+            ),
+          );
+        },
+      );
+
+      test(
+        'should return a valid, non empty string',
+        () async {
+          // act
+          final result = validateStringNotEmpty(nonEmptyString);
+          // assert
+          expect(result, right(nonEmptyString));
+        },
+      );
+    },
+  );
+
+  group('validateSingleLine', () {
+    const multilineString = 'this \n is a multiline string';
+    const singleLineString = 'this is a single line string';
+    test(
+      'should return ValueFailure when a string is multiline',
+      () async {
+        // act
+        final result = validateSingleLine(multilineString);
+        // assert
+        expect(result, isA<Left<ValueFailure, String>>());
+      },
+    );
+    test(
+      'should return a multiline ValueFailure when a string is multiline',
+      () async {
+        // act
+        final result = validateSingleLine(multilineString);
+        // assert
+        expect(
+          result,
+          left(
+            const ValueFailure.core(
+              CoreValueFailure.multiline(failedValue: multilineString),
+            ),
+          ),
+        );
+      },
+    );
+    test(
+      'should return the string when it is a single line string',
+      () async {
+        // act
+        final result = validateSingleLine(singleLineString);
+        // assert
+        expect(
+          result,
+          right(singleLineString),
+        );
+      },
+    );
+  });
+
+  group('validatePostalCode', () {
+    test(
+      'should return a ValueFailure when the postal code doesnt conain a dash "-"',
+      () async {
+        // arrange
+        const noDashPostalCode = '994000';
+        // act
+        final result = validatePostalCode(noDashPostalCode);
+        // assert
+        expect(
+            result,
+            left(const ValueFailure.core(CoreValueFailure.incorrectPostalCode(
+                failedValue: noDashPostalCode))));
       },
     );
 
     test(
-      'should return an incorrect password Value Failure when the String doesn\'t contain a small letter',
+      'should return a ValueFailure when the postal code has an incorrect format',
       () async {
         // arrange
-        String noSmallLetterPassword = 'THISISINVALID1#';
+        final incorrectFormatPostalCodes = [
+          '9-9400',
+          '999-400',
+          '99-40',
+          '99-4000',
+        ];
         // act
-        final result = validatePassword(noSmallLetterPassword);
+        final results = [];
+        final expectedResults = [];
+        for (var incorrectPC in incorrectFormatPostalCodes) {
+          results.add(validatePostalCode(incorrectPC));
+          expectedResults.add(
+            left(
+              ValueFailure.core(CoreValueFailure.incorrectPostalCode(
+                  failedValue: incorrectPC)),
+            ),
+          );
+        }
+        // assert
+        expect(results, expectedResults);
+      },
+    );
+
+    test(
+      'should return a VauleFailure when the postal code has more than 6 characters',
+      () async {
+        // arrange
+        const incorrectPostalCode = '99-4000';
+        // act
+        final result = validatePostalCode(incorrectPostalCode);
 
         // assert
         expect(
+          result,
+          left(const ValueFailure.core(
+            CoreValueFailure.incorrectPostalCode(
+                failedValue: incorrectPostalCode),
+          )),
+        );
+      },
+    );
+    test(
+      'should return a VauleFailure when the postal code contains invalid characters',
+      () async {
+        final incorrectFormatPostalCodes = [
+          'PL-400',
+          '9.-400',
+          '9A-400',
+          '99--00',
+          'AB-CDE',
+        ];
+        // act
+        final results = [];
+        final expectedResults = [];
+        for (var incorrectPC in incorrectFormatPostalCodes) {
+          results.add(validatePostalCode(incorrectPC));
+          expectedResults.add(
+            left(
+              ValueFailure.core(CoreValueFailure.incorrectPostalCode(
+                  failedValue: incorrectPC)),
+            ),
+          );
+        }
+        // assert
+        expect(results, expectedResults);
+      },
+    );
+  });
+
+  group('validatePositiveValue', () {
+    test(
+      'should return a ValueFailure when input is a negative value',
+      () async {
+        // arrange
+        const negativeValue = -.01;
+        // act
+        final result = validatePositiveValue(negativeValue);
+        // assert
+        expect(
+          result,
+          left(
+            const ValueFailure.core(
+              CoreValueFailure.nonPositive(failedValue: negativeValue),
+            ),
+          ),
+        );
+      },
+    );
+    test(
+      'should return a ValueFailure when input is 0',
+      () async {
+        // arrange
+        const zero = 0.0;
+        // act
+        final result = validatePositiveValue(zero);
+        // assert
+        expect(
+          result,
+          left(
+            const ValueFailure.core(
+              CoreValueFailure.nonPositive(failedValue: zero),
+            ),
+          ),
+        );
+      },
+    );
+
+    test(
+      'should return input when it\'s a positive number',
+      () async {
+        // arrange
+        const positiveValue = .01;
+        // act
+        final result = validatePositiveValue(positiveValue);
+        // assert
+        expect(
+          result,
+          right(positiveValue),
+        );
+      },
+    );
+  });
+
+  group('validateContainsNumber', () {
+    test(
+      'should return address containing a number',
+      () async {
+        // arrange
+        const address = '43A';
+        // act
+        final result = validateContainsNumber(address);
+        // assert
+        expect(result, right(address));
+      },
+    );
+
+    test(
+      'should return noAddressNumber ValueFailure when an address doesnt contain a number',
+      () async {
+        // arrange
+        const noNumberAddress = 'BCA';
+        // act
+        final result = validateContainsNumber(noNumberAddress);
+        // assert
+        expect(
             result,
-            left(ValueFailure.auth(AuthValueFailure.incorrectPassword(
-                failedValue: noSmallLetterPassword))));
+            left<ValueFailure<String>, String>(const ValueFailure.core(
+                CoreValueFailure.noAddressNumber(
+                    failedValue: noNumberAddress))));
+      },
+    );
+  });
+
+  group('validateIntegerRange', () {
+    const minNumber = 0;
+    const maxNumber = 59;
+    test(
+      'should return number when it falls within the bottom threshold',
+      () async {
+        // act
+        final result = validateIntegerRange(minNumber, minNumber, maxNumber);
+        // assert
+        expect(result, right(minNumber));
+      },
+    );
+    test(
+      'should return number when it falls within the top threshold',
+      () async {
+        // act
+        final result = validateIntegerRange(maxNumber, minNumber, maxNumber);
+        // assert
+        expect(result, right(maxNumber));
+      },
+    );
+
+    test(
+      'should return a value failure when it falls outside the interval boundaries',
+      () async {
+        //arrange
+        const invalidNumber = 60;
+        // act
+        final result =
+            validateIntegerRange(invalidNumber, minNumber, maxNumber);
+        // assert
+        expect(
+            result,
+            left(const ValueFailure.core(CoreValueFailure.numberOutsideInterval(
+                failedValue: invalidNumber, min: minNumber, max: maxNumber))));
+      },
+    );
+  });
+
+  group('validateListLength', () {
+    test(
+      'should return the list if it doesn\'t exceed maxLength',
+      () async {
+        // arrange
+        final list = KtList.from([1, 2, 3, 4]);
+        // act
+        final result = validateListLength(list, 4);
+        // assert
+        expect(result, right(list));
+      },
+    );
+
+    test(
+      'should return ValueFailure when the list exceeds maxLength',
+      () async {
+        // arrange
+        final list = KtList.from([1, 2, 3, 4]);
+        const maxLength = 3;
+        // act
+        final result = validateListLength(list, maxLength);
+        // assert
+        expect(
+            result,
+            left(ValueFailure.core(CoreValueFailure.listTooLong(
+                failedValue: list, maxLength: maxLength))));
+      },
+    );
+    test(
+      'should return the list if it exceeds minLength',
+      () async {
+        // arrange
+        final list = KtList.from([1, 2, 3, 4]);
+        // act
+        final result = validateListLength(list, 4, minLength: 4);
+        // assert
+        expect(result, right(list));
+      },
+    );
+    test(
+      'should return ValueFailure when the list is shorter than minLength',
+      () async {
+        // arrange
+        final list = KtList.from([1, 2, 3, 4]);
+        const minLength = 5;
+        // act
+        final result = validateListLength(list, 10, minLength: minLength);
+        // assert
+        expect(
+            result,
+            left(ValueFailure.core(CoreValueFailure.listTooShort(
+                failedValue: list, minLength: minLength))));
       },
     );
   });
