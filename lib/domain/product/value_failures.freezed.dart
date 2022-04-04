@@ -45,6 +45,13 @@ class _$ProductValueFailureTearOff {
     );
   }
 
+  IncorrectCategoryString<T> incorrectCategoryString<T>(
+      {required String failedValue}) {
+    return IncorrectCategoryString<T>(
+      failedValue: failedValue,
+    );
+  }
+
   NoPhotoSelected<T> noPhotoSelected<T>({required T failedValue}) {
     return NoPhotoSelected<T>(
       failedValue: failedValue,
@@ -95,14 +102,13 @@ const $ProductValueFailure = _$ProductValueFailureTearOff();
 
 /// @nodoc
 mixin _$ProductValueFailure<T> {
-  T get failedValue => throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(T failedValue, int maxLength) exceedingLength,
     required TResult Function(T failedValue, int minLength) stringTooShort,
     required TResult Function(T failedValue) empty,
     required TResult Function(T failedValue) multiline,
+    required TResult Function(String failedValue) incorrectCategoryString,
     required TResult Function(T failedValue) noPhotoSelected,
     required TResult Function(T failedValue) nonPositiveValue,
     required TResult Function(T failedValue, num min, num max)
@@ -118,6 +124,7 @@ mixin _$ProductValueFailure<T> {
     TResult Function(T failedValue, int minLength)? stringTooShort,
     TResult Function(T failedValue)? empty,
     TResult Function(T failedValue)? multiline,
+    TResult Function(String failedValue)? incorrectCategoryString,
     TResult Function(T failedValue)? noPhotoSelected,
     TResult Function(T failedValue)? nonPositiveValue,
     TResult Function(T failedValue, num min, num max)? numberOutsideInterval,
@@ -132,6 +139,7 @@ mixin _$ProductValueFailure<T> {
     TResult Function(T failedValue, int minLength)? stringTooShort,
     TResult Function(T failedValue)? empty,
     TResult Function(T failedValue)? multiline,
+    TResult Function(String failedValue)? incorrectCategoryString,
     TResult Function(T failedValue)? noPhotoSelected,
     TResult Function(T failedValue)? nonPositiveValue,
     TResult Function(T failedValue, num min, num max)? numberOutsideInterval,
@@ -147,6 +155,8 @@ mixin _$ProductValueFailure<T> {
     required TResult Function(StringTooShort<T> value) stringTooShort,
     required TResult Function(Empty<T> value) empty,
     required TResult Function(Multiline<T> value) multiline,
+    required TResult Function(IncorrectCategoryString<T> value)
+        incorrectCategoryString,
     required TResult Function(NoPhotoSelected<T> value) noPhotoSelected,
     required TResult Function(NonPositivePrice<T> value) nonPositiveValue,
     required TResult Function(NumberOutsideInterval<T> value)
@@ -162,6 +172,7 @@ mixin _$ProductValueFailure<T> {
     TResult Function(StringTooShort<T> value)? stringTooShort,
     TResult Function(Empty<T> value)? empty,
     TResult Function(Multiline<T> value)? multiline,
+    TResult Function(IncorrectCategoryString<T> value)? incorrectCategoryString,
     TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
     TResult Function(NonPositivePrice<T> value)? nonPositiveValue,
     TResult Function(NumberOutsideInterval<T> value)? numberOutsideInterval,
@@ -176,6 +187,7 @@ mixin _$ProductValueFailure<T> {
     TResult Function(StringTooShort<T> value)? stringTooShort,
     TResult Function(Empty<T> value)? empty,
     TResult Function(Multiline<T> value)? multiline,
+    TResult Function(IncorrectCategoryString<T> value)? incorrectCategoryString,
     TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
     TResult Function(NonPositivePrice<T> value)? nonPositiveValue,
     TResult Function(NumberOutsideInterval<T> value)? numberOutsideInterval,
@@ -185,10 +197,6 @@ mixin _$ProductValueFailure<T> {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $ProductValueFailureCopyWith<T, ProductValueFailure<T>> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -196,7 +204,6 @@ abstract class $ProductValueFailureCopyWith<T, $Res> {
   factory $ProductValueFailureCopyWith(ProductValueFailure<T> value,
           $Res Function(ProductValueFailure<T>) then) =
       _$ProductValueFailureCopyWithImpl<T, $Res>;
-  $Res call({T failedValue});
 }
 
 /// @nodoc
@@ -207,27 +214,13 @@ class _$ProductValueFailureCopyWithImpl<T, $Res>
   final ProductValueFailure<T> _value;
   // ignore: unused_field
   final $Res Function(ProductValueFailure<T>) _then;
-
-  @override
-  $Res call({
-    Object? failedValue = freezed,
-  }) {
-    return _then(_value.copyWith(
-      failedValue: failedValue == freezed
-          ? _value.failedValue
-          : failedValue // ignore: cast_nullable_to_non_nullable
-              as T,
-    ));
-  }
 }
 
 /// @nodoc
-abstract class $ExceedingLengthCopyWith<T, $Res>
-    implements $ProductValueFailureCopyWith<T, $Res> {
+abstract class $ExceedingLengthCopyWith<T, $Res> {
   factory $ExceedingLengthCopyWith(
           ExceedingLength<T> value, $Res Function(ExceedingLength<T>) then) =
       _$ExceedingLengthCopyWithImpl<T, $Res>;
-  @override
   $Res call({T failedValue, int maxLength});
 }
 
@@ -303,6 +296,7 @@ class _$ExceedingLength<T> implements ExceedingLength<T> {
     required TResult Function(T failedValue, int minLength) stringTooShort,
     required TResult Function(T failedValue) empty,
     required TResult Function(T failedValue) multiline,
+    required TResult Function(String failedValue) incorrectCategoryString,
     required TResult Function(T failedValue) noPhotoSelected,
     required TResult Function(T failedValue) nonPositiveValue,
     required TResult Function(T failedValue, num min, num max)
@@ -321,6 +315,7 @@ class _$ExceedingLength<T> implements ExceedingLength<T> {
     TResult Function(T failedValue, int minLength)? stringTooShort,
     TResult Function(T failedValue)? empty,
     TResult Function(T failedValue)? multiline,
+    TResult Function(String failedValue)? incorrectCategoryString,
     TResult Function(T failedValue)? noPhotoSelected,
     TResult Function(T failedValue)? nonPositiveValue,
     TResult Function(T failedValue, num min, num max)? numberOutsideInterval,
@@ -338,6 +333,7 @@ class _$ExceedingLength<T> implements ExceedingLength<T> {
     TResult Function(T failedValue, int minLength)? stringTooShort,
     TResult Function(T failedValue)? empty,
     TResult Function(T failedValue)? multiline,
+    TResult Function(String failedValue)? incorrectCategoryString,
     TResult Function(T failedValue)? noPhotoSelected,
     TResult Function(T failedValue)? nonPositiveValue,
     TResult Function(T failedValue, num min, num max)? numberOutsideInterval,
@@ -359,6 +355,8 @@ class _$ExceedingLength<T> implements ExceedingLength<T> {
     required TResult Function(StringTooShort<T> value) stringTooShort,
     required TResult Function(Empty<T> value) empty,
     required TResult Function(Multiline<T> value) multiline,
+    required TResult Function(IncorrectCategoryString<T> value)
+        incorrectCategoryString,
     required TResult Function(NoPhotoSelected<T> value) noPhotoSelected,
     required TResult Function(NonPositivePrice<T> value) nonPositiveValue,
     required TResult Function(NumberOutsideInterval<T> value)
@@ -377,6 +375,7 @@ class _$ExceedingLength<T> implements ExceedingLength<T> {
     TResult Function(StringTooShort<T> value)? stringTooShort,
     TResult Function(Empty<T> value)? empty,
     TResult Function(Multiline<T> value)? multiline,
+    TResult Function(IncorrectCategoryString<T> value)? incorrectCategoryString,
     TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
     TResult Function(NonPositivePrice<T> value)? nonPositiveValue,
     TResult Function(NumberOutsideInterval<T> value)? numberOutsideInterval,
@@ -394,6 +393,7 @@ class _$ExceedingLength<T> implements ExceedingLength<T> {
     TResult Function(StringTooShort<T> value)? stringTooShort,
     TResult Function(Empty<T> value)? empty,
     TResult Function(Multiline<T> value)? multiline,
+    TResult Function(IncorrectCategoryString<T> value)? incorrectCategoryString,
     TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
     TResult Function(NonPositivePrice<T> value)? nonPositiveValue,
     TResult Function(NumberOutsideInterval<T> value)? numberOutsideInterval,
@@ -413,22 +413,18 @@ abstract class ExceedingLength<T> implements ProductValueFailure<T> {
   const factory ExceedingLength(
       {required T failedValue, required int maxLength}) = _$ExceedingLength<T>;
 
-  @override
   T get failedValue;
   int get maxLength;
-  @override
   @JsonKey(ignore: true)
   $ExceedingLengthCopyWith<T, ExceedingLength<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $StringTooShortCopyWith<T, $Res>
-    implements $ProductValueFailureCopyWith<T, $Res> {
+abstract class $StringTooShortCopyWith<T, $Res> {
   factory $StringTooShortCopyWith(
           StringTooShort<T> value, $Res Function(StringTooShort<T>) then) =
       _$StringTooShortCopyWithImpl<T, $Res>;
-  @override
   $Res call({T failedValue, int minLength});
 }
 
@@ -504,6 +500,7 @@ class _$StringTooShort<T> implements StringTooShort<T> {
     required TResult Function(T failedValue, int minLength) stringTooShort,
     required TResult Function(T failedValue) empty,
     required TResult Function(T failedValue) multiline,
+    required TResult Function(String failedValue) incorrectCategoryString,
     required TResult Function(T failedValue) noPhotoSelected,
     required TResult Function(T failedValue) nonPositiveValue,
     required TResult Function(T failedValue, num min, num max)
@@ -522,6 +519,7 @@ class _$StringTooShort<T> implements StringTooShort<T> {
     TResult Function(T failedValue, int minLength)? stringTooShort,
     TResult Function(T failedValue)? empty,
     TResult Function(T failedValue)? multiline,
+    TResult Function(String failedValue)? incorrectCategoryString,
     TResult Function(T failedValue)? noPhotoSelected,
     TResult Function(T failedValue)? nonPositiveValue,
     TResult Function(T failedValue, num min, num max)? numberOutsideInterval,
@@ -539,6 +537,7 @@ class _$StringTooShort<T> implements StringTooShort<T> {
     TResult Function(T failedValue, int minLength)? stringTooShort,
     TResult Function(T failedValue)? empty,
     TResult Function(T failedValue)? multiline,
+    TResult Function(String failedValue)? incorrectCategoryString,
     TResult Function(T failedValue)? noPhotoSelected,
     TResult Function(T failedValue)? nonPositiveValue,
     TResult Function(T failedValue, num min, num max)? numberOutsideInterval,
@@ -560,6 +559,8 @@ class _$StringTooShort<T> implements StringTooShort<T> {
     required TResult Function(StringTooShort<T> value) stringTooShort,
     required TResult Function(Empty<T> value) empty,
     required TResult Function(Multiline<T> value) multiline,
+    required TResult Function(IncorrectCategoryString<T> value)
+        incorrectCategoryString,
     required TResult Function(NoPhotoSelected<T> value) noPhotoSelected,
     required TResult Function(NonPositivePrice<T> value) nonPositiveValue,
     required TResult Function(NumberOutsideInterval<T> value)
@@ -578,6 +579,7 @@ class _$StringTooShort<T> implements StringTooShort<T> {
     TResult Function(StringTooShort<T> value)? stringTooShort,
     TResult Function(Empty<T> value)? empty,
     TResult Function(Multiline<T> value)? multiline,
+    TResult Function(IncorrectCategoryString<T> value)? incorrectCategoryString,
     TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
     TResult Function(NonPositivePrice<T> value)? nonPositiveValue,
     TResult Function(NumberOutsideInterval<T> value)? numberOutsideInterval,
@@ -595,6 +597,7 @@ class _$StringTooShort<T> implements StringTooShort<T> {
     TResult Function(StringTooShort<T> value)? stringTooShort,
     TResult Function(Empty<T> value)? empty,
     TResult Function(Multiline<T> value)? multiline,
+    TResult Function(IncorrectCategoryString<T> value)? incorrectCategoryString,
     TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
     TResult Function(NonPositivePrice<T> value)? nonPositiveValue,
     TResult Function(NumberOutsideInterval<T> value)? numberOutsideInterval,
@@ -614,21 +617,17 @@ abstract class StringTooShort<T> implements ProductValueFailure<T> {
   const factory StringTooShort(
       {required T failedValue, required int minLength}) = _$StringTooShort<T>;
 
-  @override
   T get failedValue;
   int get minLength;
-  @override
   @JsonKey(ignore: true)
   $StringTooShortCopyWith<T, StringTooShort<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $EmptyCopyWith<T, $Res>
-    implements $ProductValueFailureCopyWith<T, $Res> {
+abstract class $EmptyCopyWith<T, $Res> {
   factory $EmptyCopyWith(Empty<T> value, $Res Function(Empty<T>) then) =
       _$EmptyCopyWithImpl<T, $Res>;
-  @override
   $Res call({T failedValue});
 }
 
@@ -693,6 +692,7 @@ class _$Empty<T> implements Empty<T> {
     required TResult Function(T failedValue, int minLength) stringTooShort,
     required TResult Function(T failedValue) empty,
     required TResult Function(T failedValue) multiline,
+    required TResult Function(String failedValue) incorrectCategoryString,
     required TResult Function(T failedValue) noPhotoSelected,
     required TResult Function(T failedValue) nonPositiveValue,
     required TResult Function(T failedValue, num min, num max)
@@ -711,6 +711,7 @@ class _$Empty<T> implements Empty<T> {
     TResult Function(T failedValue, int minLength)? stringTooShort,
     TResult Function(T failedValue)? empty,
     TResult Function(T failedValue)? multiline,
+    TResult Function(String failedValue)? incorrectCategoryString,
     TResult Function(T failedValue)? noPhotoSelected,
     TResult Function(T failedValue)? nonPositiveValue,
     TResult Function(T failedValue, num min, num max)? numberOutsideInterval,
@@ -728,6 +729,7 @@ class _$Empty<T> implements Empty<T> {
     TResult Function(T failedValue, int minLength)? stringTooShort,
     TResult Function(T failedValue)? empty,
     TResult Function(T failedValue)? multiline,
+    TResult Function(String failedValue)? incorrectCategoryString,
     TResult Function(T failedValue)? noPhotoSelected,
     TResult Function(T failedValue)? nonPositiveValue,
     TResult Function(T failedValue, num min, num max)? numberOutsideInterval,
@@ -749,6 +751,8 @@ class _$Empty<T> implements Empty<T> {
     required TResult Function(StringTooShort<T> value) stringTooShort,
     required TResult Function(Empty<T> value) empty,
     required TResult Function(Multiline<T> value) multiline,
+    required TResult Function(IncorrectCategoryString<T> value)
+        incorrectCategoryString,
     required TResult Function(NoPhotoSelected<T> value) noPhotoSelected,
     required TResult Function(NonPositivePrice<T> value) nonPositiveValue,
     required TResult Function(NumberOutsideInterval<T> value)
@@ -767,6 +771,7 @@ class _$Empty<T> implements Empty<T> {
     TResult Function(StringTooShort<T> value)? stringTooShort,
     TResult Function(Empty<T> value)? empty,
     TResult Function(Multiline<T> value)? multiline,
+    TResult Function(IncorrectCategoryString<T> value)? incorrectCategoryString,
     TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
     TResult Function(NonPositivePrice<T> value)? nonPositiveValue,
     TResult Function(NumberOutsideInterval<T> value)? numberOutsideInterval,
@@ -784,6 +789,7 @@ class _$Empty<T> implements Empty<T> {
     TResult Function(StringTooShort<T> value)? stringTooShort,
     TResult Function(Empty<T> value)? empty,
     TResult Function(Multiline<T> value)? multiline,
+    TResult Function(IncorrectCategoryString<T> value)? incorrectCategoryString,
     TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
     TResult Function(NonPositivePrice<T> value)? nonPositiveValue,
     TResult Function(NumberOutsideInterval<T> value)? numberOutsideInterval,
@@ -802,21 +808,17 @@ class _$Empty<T> implements Empty<T> {
 abstract class Empty<T> implements ProductValueFailure<T> {
   const factory Empty({required T failedValue}) = _$Empty<T>;
 
-  @override
   T get failedValue;
-  @override
   @JsonKey(ignore: true)
   $EmptyCopyWith<T, Empty<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $MultilineCopyWith<T, $Res>
-    implements $ProductValueFailureCopyWith<T, $Res> {
+abstract class $MultilineCopyWith<T, $Res> {
   factory $MultilineCopyWith(
           Multiline<T> value, $Res Function(Multiline<T>) then) =
       _$MultilineCopyWithImpl<T, $Res>;
-  @override
   $Res call({T failedValue});
 }
 
@@ -882,6 +884,7 @@ class _$Multiline<T> implements Multiline<T> {
     required TResult Function(T failedValue, int minLength) stringTooShort,
     required TResult Function(T failedValue) empty,
     required TResult Function(T failedValue) multiline,
+    required TResult Function(String failedValue) incorrectCategoryString,
     required TResult Function(T failedValue) noPhotoSelected,
     required TResult Function(T failedValue) nonPositiveValue,
     required TResult Function(T failedValue, num min, num max)
@@ -900,6 +903,7 @@ class _$Multiline<T> implements Multiline<T> {
     TResult Function(T failedValue, int minLength)? stringTooShort,
     TResult Function(T failedValue)? empty,
     TResult Function(T failedValue)? multiline,
+    TResult Function(String failedValue)? incorrectCategoryString,
     TResult Function(T failedValue)? noPhotoSelected,
     TResult Function(T failedValue)? nonPositiveValue,
     TResult Function(T failedValue, num min, num max)? numberOutsideInterval,
@@ -917,6 +921,7 @@ class _$Multiline<T> implements Multiline<T> {
     TResult Function(T failedValue, int minLength)? stringTooShort,
     TResult Function(T failedValue)? empty,
     TResult Function(T failedValue)? multiline,
+    TResult Function(String failedValue)? incorrectCategoryString,
     TResult Function(T failedValue)? noPhotoSelected,
     TResult Function(T failedValue)? nonPositiveValue,
     TResult Function(T failedValue, num min, num max)? numberOutsideInterval,
@@ -938,6 +943,8 @@ class _$Multiline<T> implements Multiline<T> {
     required TResult Function(StringTooShort<T> value) stringTooShort,
     required TResult Function(Empty<T> value) empty,
     required TResult Function(Multiline<T> value) multiline,
+    required TResult Function(IncorrectCategoryString<T> value)
+        incorrectCategoryString,
     required TResult Function(NoPhotoSelected<T> value) noPhotoSelected,
     required TResult Function(NonPositivePrice<T> value) nonPositiveValue,
     required TResult Function(NumberOutsideInterval<T> value)
@@ -956,6 +963,7 @@ class _$Multiline<T> implements Multiline<T> {
     TResult Function(StringTooShort<T> value)? stringTooShort,
     TResult Function(Empty<T> value)? empty,
     TResult Function(Multiline<T> value)? multiline,
+    TResult Function(IncorrectCategoryString<T> value)? incorrectCategoryString,
     TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
     TResult Function(NonPositivePrice<T> value)? nonPositiveValue,
     TResult Function(NumberOutsideInterval<T> value)? numberOutsideInterval,
@@ -973,6 +981,7 @@ class _$Multiline<T> implements Multiline<T> {
     TResult Function(StringTooShort<T> value)? stringTooShort,
     TResult Function(Empty<T> value)? empty,
     TResult Function(Multiline<T> value)? multiline,
+    TResult Function(IncorrectCategoryString<T> value)? incorrectCategoryString,
     TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
     TResult Function(NonPositivePrice<T> value)? nonPositiveValue,
     TResult Function(NumberOutsideInterval<T> value)? numberOutsideInterval,
@@ -991,21 +1000,213 @@ class _$Multiline<T> implements Multiline<T> {
 abstract class Multiline<T> implements ProductValueFailure<T> {
   const factory Multiline({required T failedValue}) = _$Multiline<T>;
 
-  @override
   T get failedValue;
-  @override
   @JsonKey(ignore: true)
   $MultilineCopyWith<T, Multiline<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $NoPhotoSelectedCopyWith<T, $Res>
-    implements $ProductValueFailureCopyWith<T, $Res> {
+abstract class $IncorrectCategoryStringCopyWith<T, $Res> {
+  factory $IncorrectCategoryStringCopyWith(IncorrectCategoryString<T> value,
+          $Res Function(IncorrectCategoryString<T>) then) =
+      _$IncorrectCategoryStringCopyWithImpl<T, $Res>;
+  $Res call({String failedValue});
+}
+
+/// @nodoc
+class _$IncorrectCategoryStringCopyWithImpl<T, $Res>
+    extends _$ProductValueFailureCopyWithImpl<T, $Res>
+    implements $IncorrectCategoryStringCopyWith<T, $Res> {
+  _$IncorrectCategoryStringCopyWithImpl(IncorrectCategoryString<T> _value,
+      $Res Function(IncorrectCategoryString<T>) _then)
+      : super(_value, (v) => _then(v as IncorrectCategoryString<T>));
+
+  @override
+  IncorrectCategoryString<T> get _value =>
+      super._value as IncorrectCategoryString<T>;
+
+  @override
+  $Res call({
+    Object? failedValue = freezed,
+  }) {
+    return _then(IncorrectCategoryString<T>(
+      failedValue: failedValue == freezed
+          ? _value.failedValue
+          : failedValue // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$IncorrectCategoryString<T> implements IncorrectCategoryString<T> {
+  const _$IncorrectCategoryString({required this.failedValue});
+
+  @override
+  final String failedValue;
+
+  @override
+  String toString() {
+    return 'ProductValueFailure<$T>.incorrectCategoryString(failedValue: $failedValue)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is IncorrectCategoryString<T> &&
+            const DeepCollectionEquality()
+                .equals(other.failedValue, failedValue));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(failedValue));
+
+  @JsonKey(ignore: true)
+  @override
+  $IncorrectCategoryStringCopyWith<T, IncorrectCategoryString<T>>
+      get copyWith =>
+          _$IncorrectCategoryStringCopyWithImpl<T, IncorrectCategoryString<T>>(
+              this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(T failedValue, int maxLength) exceedingLength,
+    required TResult Function(T failedValue, int minLength) stringTooShort,
+    required TResult Function(T failedValue) empty,
+    required TResult Function(T failedValue) multiline,
+    required TResult Function(String failedValue) incorrectCategoryString,
+    required TResult Function(T failedValue) noPhotoSelected,
+    required TResult Function(T failedValue) nonPositiveValue,
+    required TResult Function(T failedValue, num min, num max)
+        numberOutsideInterval,
+    required TResult Function(T failedValue, int maxLength) listTooLong,
+    required TResult Function(T failedValue, int minLength) listTooShort,
+    required TResult Function(T failedValue, int minLength) emptyList,
+  }) {
+    return incorrectCategoryString(failedValue);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(T failedValue, int maxLength)? exceedingLength,
+    TResult Function(T failedValue, int minLength)? stringTooShort,
+    TResult Function(T failedValue)? empty,
+    TResult Function(T failedValue)? multiline,
+    TResult Function(String failedValue)? incorrectCategoryString,
+    TResult Function(T failedValue)? noPhotoSelected,
+    TResult Function(T failedValue)? nonPositiveValue,
+    TResult Function(T failedValue, num min, num max)? numberOutsideInterval,
+    TResult Function(T failedValue, int maxLength)? listTooLong,
+    TResult Function(T failedValue, int minLength)? listTooShort,
+    TResult Function(T failedValue, int minLength)? emptyList,
+  }) {
+    return incorrectCategoryString?.call(failedValue);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(T failedValue, int maxLength)? exceedingLength,
+    TResult Function(T failedValue, int minLength)? stringTooShort,
+    TResult Function(T failedValue)? empty,
+    TResult Function(T failedValue)? multiline,
+    TResult Function(String failedValue)? incorrectCategoryString,
+    TResult Function(T failedValue)? noPhotoSelected,
+    TResult Function(T failedValue)? nonPositiveValue,
+    TResult Function(T failedValue, num min, num max)? numberOutsideInterval,
+    TResult Function(T failedValue, int maxLength)? listTooLong,
+    TResult Function(T failedValue, int minLength)? listTooShort,
+    TResult Function(T failedValue, int minLength)? emptyList,
+    required TResult orElse(),
+  }) {
+    if (incorrectCategoryString != null) {
+      return incorrectCategoryString(failedValue);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ExceedingLength<T> value) exceedingLength,
+    required TResult Function(StringTooShort<T> value) stringTooShort,
+    required TResult Function(Empty<T> value) empty,
+    required TResult Function(Multiline<T> value) multiline,
+    required TResult Function(IncorrectCategoryString<T> value)
+        incorrectCategoryString,
+    required TResult Function(NoPhotoSelected<T> value) noPhotoSelected,
+    required TResult Function(NonPositivePrice<T> value) nonPositiveValue,
+    required TResult Function(NumberOutsideInterval<T> value)
+        numberOutsideInterval,
+    required TResult Function(ListTooLong<T> value) listTooLong,
+    required TResult Function(ListTooShort<T> value) listTooShort,
+    required TResult Function(EmptyList<T> value) emptyList,
+  }) {
+    return incorrectCategoryString(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(ExceedingLength<T> value)? exceedingLength,
+    TResult Function(StringTooShort<T> value)? stringTooShort,
+    TResult Function(Empty<T> value)? empty,
+    TResult Function(Multiline<T> value)? multiline,
+    TResult Function(IncorrectCategoryString<T> value)? incorrectCategoryString,
+    TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
+    TResult Function(NonPositivePrice<T> value)? nonPositiveValue,
+    TResult Function(NumberOutsideInterval<T> value)? numberOutsideInterval,
+    TResult Function(ListTooLong<T> value)? listTooLong,
+    TResult Function(ListTooShort<T> value)? listTooShort,
+    TResult Function(EmptyList<T> value)? emptyList,
+  }) {
+    return incorrectCategoryString?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ExceedingLength<T> value)? exceedingLength,
+    TResult Function(StringTooShort<T> value)? stringTooShort,
+    TResult Function(Empty<T> value)? empty,
+    TResult Function(Multiline<T> value)? multiline,
+    TResult Function(IncorrectCategoryString<T> value)? incorrectCategoryString,
+    TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
+    TResult Function(NonPositivePrice<T> value)? nonPositiveValue,
+    TResult Function(NumberOutsideInterval<T> value)? numberOutsideInterval,
+    TResult Function(ListTooLong<T> value)? listTooLong,
+    TResult Function(ListTooShort<T> value)? listTooShort,
+    TResult Function(EmptyList<T> value)? emptyList,
+    required TResult orElse(),
+  }) {
+    if (incorrectCategoryString != null) {
+      return incorrectCategoryString(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class IncorrectCategoryString<T> implements ProductValueFailure<T> {
+  const factory IncorrectCategoryString({required String failedValue}) =
+      _$IncorrectCategoryString<T>;
+
+  String get failedValue;
+  @JsonKey(ignore: true)
+  $IncorrectCategoryStringCopyWith<T, IncorrectCategoryString<T>>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $NoPhotoSelectedCopyWith<T, $Res> {
   factory $NoPhotoSelectedCopyWith(
           NoPhotoSelected<T> value, $Res Function(NoPhotoSelected<T>) then) =
       _$NoPhotoSelectedCopyWithImpl<T, $Res>;
-  @override
   $Res call({T failedValue});
 }
 
@@ -1071,6 +1272,7 @@ class _$NoPhotoSelected<T> implements NoPhotoSelected<T> {
     required TResult Function(T failedValue, int minLength) stringTooShort,
     required TResult Function(T failedValue) empty,
     required TResult Function(T failedValue) multiline,
+    required TResult Function(String failedValue) incorrectCategoryString,
     required TResult Function(T failedValue) noPhotoSelected,
     required TResult Function(T failedValue) nonPositiveValue,
     required TResult Function(T failedValue, num min, num max)
@@ -1089,6 +1291,7 @@ class _$NoPhotoSelected<T> implements NoPhotoSelected<T> {
     TResult Function(T failedValue, int minLength)? stringTooShort,
     TResult Function(T failedValue)? empty,
     TResult Function(T failedValue)? multiline,
+    TResult Function(String failedValue)? incorrectCategoryString,
     TResult Function(T failedValue)? noPhotoSelected,
     TResult Function(T failedValue)? nonPositiveValue,
     TResult Function(T failedValue, num min, num max)? numberOutsideInterval,
@@ -1106,6 +1309,7 @@ class _$NoPhotoSelected<T> implements NoPhotoSelected<T> {
     TResult Function(T failedValue, int minLength)? stringTooShort,
     TResult Function(T failedValue)? empty,
     TResult Function(T failedValue)? multiline,
+    TResult Function(String failedValue)? incorrectCategoryString,
     TResult Function(T failedValue)? noPhotoSelected,
     TResult Function(T failedValue)? nonPositiveValue,
     TResult Function(T failedValue, num min, num max)? numberOutsideInterval,
@@ -1127,6 +1331,8 @@ class _$NoPhotoSelected<T> implements NoPhotoSelected<T> {
     required TResult Function(StringTooShort<T> value) stringTooShort,
     required TResult Function(Empty<T> value) empty,
     required TResult Function(Multiline<T> value) multiline,
+    required TResult Function(IncorrectCategoryString<T> value)
+        incorrectCategoryString,
     required TResult Function(NoPhotoSelected<T> value) noPhotoSelected,
     required TResult Function(NonPositivePrice<T> value) nonPositiveValue,
     required TResult Function(NumberOutsideInterval<T> value)
@@ -1145,6 +1351,7 @@ class _$NoPhotoSelected<T> implements NoPhotoSelected<T> {
     TResult Function(StringTooShort<T> value)? stringTooShort,
     TResult Function(Empty<T> value)? empty,
     TResult Function(Multiline<T> value)? multiline,
+    TResult Function(IncorrectCategoryString<T> value)? incorrectCategoryString,
     TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
     TResult Function(NonPositivePrice<T> value)? nonPositiveValue,
     TResult Function(NumberOutsideInterval<T> value)? numberOutsideInterval,
@@ -1162,6 +1369,7 @@ class _$NoPhotoSelected<T> implements NoPhotoSelected<T> {
     TResult Function(StringTooShort<T> value)? stringTooShort,
     TResult Function(Empty<T> value)? empty,
     TResult Function(Multiline<T> value)? multiline,
+    TResult Function(IncorrectCategoryString<T> value)? incorrectCategoryString,
     TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
     TResult Function(NonPositivePrice<T> value)? nonPositiveValue,
     TResult Function(NumberOutsideInterval<T> value)? numberOutsideInterval,
@@ -1181,21 +1389,17 @@ abstract class NoPhotoSelected<T> implements ProductValueFailure<T> {
   const factory NoPhotoSelected({required T failedValue}) =
       _$NoPhotoSelected<T>;
 
-  @override
   T get failedValue;
-  @override
   @JsonKey(ignore: true)
   $NoPhotoSelectedCopyWith<T, NoPhotoSelected<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $NonPositivePriceCopyWith<T, $Res>
-    implements $ProductValueFailureCopyWith<T, $Res> {
+abstract class $NonPositivePriceCopyWith<T, $Res> {
   factory $NonPositivePriceCopyWith(
           NonPositivePrice<T> value, $Res Function(NonPositivePrice<T>) then) =
       _$NonPositivePriceCopyWithImpl<T, $Res>;
-  @override
   $Res call({T failedValue});
 }
 
@@ -1261,6 +1465,7 @@ class _$NonPositivePrice<T> implements NonPositivePrice<T> {
     required TResult Function(T failedValue, int minLength) stringTooShort,
     required TResult Function(T failedValue) empty,
     required TResult Function(T failedValue) multiline,
+    required TResult Function(String failedValue) incorrectCategoryString,
     required TResult Function(T failedValue) noPhotoSelected,
     required TResult Function(T failedValue) nonPositiveValue,
     required TResult Function(T failedValue, num min, num max)
@@ -1279,6 +1484,7 @@ class _$NonPositivePrice<T> implements NonPositivePrice<T> {
     TResult Function(T failedValue, int minLength)? stringTooShort,
     TResult Function(T failedValue)? empty,
     TResult Function(T failedValue)? multiline,
+    TResult Function(String failedValue)? incorrectCategoryString,
     TResult Function(T failedValue)? noPhotoSelected,
     TResult Function(T failedValue)? nonPositiveValue,
     TResult Function(T failedValue, num min, num max)? numberOutsideInterval,
@@ -1296,6 +1502,7 @@ class _$NonPositivePrice<T> implements NonPositivePrice<T> {
     TResult Function(T failedValue, int minLength)? stringTooShort,
     TResult Function(T failedValue)? empty,
     TResult Function(T failedValue)? multiline,
+    TResult Function(String failedValue)? incorrectCategoryString,
     TResult Function(T failedValue)? noPhotoSelected,
     TResult Function(T failedValue)? nonPositiveValue,
     TResult Function(T failedValue, num min, num max)? numberOutsideInterval,
@@ -1317,6 +1524,8 @@ class _$NonPositivePrice<T> implements NonPositivePrice<T> {
     required TResult Function(StringTooShort<T> value) stringTooShort,
     required TResult Function(Empty<T> value) empty,
     required TResult Function(Multiline<T> value) multiline,
+    required TResult Function(IncorrectCategoryString<T> value)
+        incorrectCategoryString,
     required TResult Function(NoPhotoSelected<T> value) noPhotoSelected,
     required TResult Function(NonPositivePrice<T> value) nonPositiveValue,
     required TResult Function(NumberOutsideInterval<T> value)
@@ -1335,6 +1544,7 @@ class _$NonPositivePrice<T> implements NonPositivePrice<T> {
     TResult Function(StringTooShort<T> value)? stringTooShort,
     TResult Function(Empty<T> value)? empty,
     TResult Function(Multiline<T> value)? multiline,
+    TResult Function(IncorrectCategoryString<T> value)? incorrectCategoryString,
     TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
     TResult Function(NonPositivePrice<T> value)? nonPositiveValue,
     TResult Function(NumberOutsideInterval<T> value)? numberOutsideInterval,
@@ -1352,6 +1562,7 @@ class _$NonPositivePrice<T> implements NonPositivePrice<T> {
     TResult Function(StringTooShort<T> value)? stringTooShort,
     TResult Function(Empty<T> value)? empty,
     TResult Function(Multiline<T> value)? multiline,
+    TResult Function(IncorrectCategoryString<T> value)? incorrectCategoryString,
     TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
     TResult Function(NonPositivePrice<T> value)? nonPositiveValue,
     TResult Function(NumberOutsideInterval<T> value)? numberOutsideInterval,
@@ -1371,21 +1582,17 @@ abstract class NonPositivePrice<T> implements ProductValueFailure<T> {
   const factory NonPositivePrice({required T failedValue}) =
       _$NonPositivePrice<T>;
 
-  @override
   T get failedValue;
-  @override
   @JsonKey(ignore: true)
   $NonPositivePriceCopyWith<T, NonPositivePrice<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $NumberOutsideIntervalCopyWith<T, $Res>
-    implements $ProductValueFailureCopyWith<T, $Res> {
+abstract class $NumberOutsideIntervalCopyWith<T, $Res> {
   factory $NumberOutsideIntervalCopyWith(NumberOutsideInterval<T> value,
           $Res Function(NumberOutsideInterval<T>) then) =
       _$NumberOutsideIntervalCopyWithImpl<T, $Res>;
-  @override
   $Res call({T failedValue, num min, num max});
 }
 
@@ -1473,6 +1680,7 @@ class _$NumberOutsideInterval<T> implements NumberOutsideInterval<T> {
     required TResult Function(T failedValue, int minLength) stringTooShort,
     required TResult Function(T failedValue) empty,
     required TResult Function(T failedValue) multiline,
+    required TResult Function(String failedValue) incorrectCategoryString,
     required TResult Function(T failedValue) noPhotoSelected,
     required TResult Function(T failedValue) nonPositiveValue,
     required TResult Function(T failedValue, num min, num max)
@@ -1491,6 +1699,7 @@ class _$NumberOutsideInterval<T> implements NumberOutsideInterval<T> {
     TResult Function(T failedValue, int minLength)? stringTooShort,
     TResult Function(T failedValue)? empty,
     TResult Function(T failedValue)? multiline,
+    TResult Function(String failedValue)? incorrectCategoryString,
     TResult Function(T failedValue)? noPhotoSelected,
     TResult Function(T failedValue)? nonPositiveValue,
     TResult Function(T failedValue, num min, num max)? numberOutsideInterval,
@@ -1508,6 +1717,7 @@ class _$NumberOutsideInterval<T> implements NumberOutsideInterval<T> {
     TResult Function(T failedValue, int minLength)? stringTooShort,
     TResult Function(T failedValue)? empty,
     TResult Function(T failedValue)? multiline,
+    TResult Function(String failedValue)? incorrectCategoryString,
     TResult Function(T failedValue)? noPhotoSelected,
     TResult Function(T failedValue)? nonPositiveValue,
     TResult Function(T failedValue, num min, num max)? numberOutsideInterval,
@@ -1529,6 +1739,8 @@ class _$NumberOutsideInterval<T> implements NumberOutsideInterval<T> {
     required TResult Function(StringTooShort<T> value) stringTooShort,
     required TResult Function(Empty<T> value) empty,
     required TResult Function(Multiline<T> value) multiline,
+    required TResult Function(IncorrectCategoryString<T> value)
+        incorrectCategoryString,
     required TResult Function(NoPhotoSelected<T> value) noPhotoSelected,
     required TResult Function(NonPositivePrice<T> value) nonPositiveValue,
     required TResult Function(NumberOutsideInterval<T> value)
@@ -1547,6 +1759,7 @@ class _$NumberOutsideInterval<T> implements NumberOutsideInterval<T> {
     TResult Function(StringTooShort<T> value)? stringTooShort,
     TResult Function(Empty<T> value)? empty,
     TResult Function(Multiline<T> value)? multiline,
+    TResult Function(IncorrectCategoryString<T> value)? incorrectCategoryString,
     TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
     TResult Function(NonPositivePrice<T> value)? nonPositiveValue,
     TResult Function(NumberOutsideInterval<T> value)? numberOutsideInterval,
@@ -1564,6 +1777,7 @@ class _$NumberOutsideInterval<T> implements NumberOutsideInterval<T> {
     TResult Function(StringTooShort<T> value)? stringTooShort,
     TResult Function(Empty<T> value)? empty,
     TResult Function(Multiline<T> value)? multiline,
+    TResult Function(IncorrectCategoryString<T> value)? incorrectCategoryString,
     TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
     TResult Function(NonPositivePrice<T> value)? nonPositiveValue,
     TResult Function(NumberOutsideInterval<T> value)? numberOutsideInterval,
@@ -1585,23 +1799,19 @@ abstract class NumberOutsideInterval<T> implements ProductValueFailure<T> {
       required num min,
       required num max}) = _$NumberOutsideInterval<T>;
 
-  @override
   T get failedValue;
   num get min;
   num get max;
-  @override
   @JsonKey(ignore: true)
   $NumberOutsideIntervalCopyWith<T, NumberOutsideInterval<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ListTooLongCopyWith<T, $Res>
-    implements $ProductValueFailureCopyWith<T, $Res> {
+abstract class $ListTooLongCopyWith<T, $Res> {
   factory $ListTooLongCopyWith(
           ListTooLong<T> value, $Res Function(ListTooLong<T>) then) =
       _$ListTooLongCopyWithImpl<T, $Res>;
-  @override
   $Res call({T failedValue, int maxLength});
 }
 
@@ -1677,6 +1887,7 @@ class _$ListTooLong<T> implements ListTooLong<T> {
     required TResult Function(T failedValue, int minLength) stringTooShort,
     required TResult Function(T failedValue) empty,
     required TResult Function(T failedValue) multiline,
+    required TResult Function(String failedValue) incorrectCategoryString,
     required TResult Function(T failedValue) noPhotoSelected,
     required TResult Function(T failedValue) nonPositiveValue,
     required TResult Function(T failedValue, num min, num max)
@@ -1695,6 +1906,7 @@ class _$ListTooLong<T> implements ListTooLong<T> {
     TResult Function(T failedValue, int minLength)? stringTooShort,
     TResult Function(T failedValue)? empty,
     TResult Function(T failedValue)? multiline,
+    TResult Function(String failedValue)? incorrectCategoryString,
     TResult Function(T failedValue)? noPhotoSelected,
     TResult Function(T failedValue)? nonPositiveValue,
     TResult Function(T failedValue, num min, num max)? numberOutsideInterval,
@@ -1712,6 +1924,7 @@ class _$ListTooLong<T> implements ListTooLong<T> {
     TResult Function(T failedValue, int minLength)? stringTooShort,
     TResult Function(T failedValue)? empty,
     TResult Function(T failedValue)? multiline,
+    TResult Function(String failedValue)? incorrectCategoryString,
     TResult Function(T failedValue)? noPhotoSelected,
     TResult Function(T failedValue)? nonPositiveValue,
     TResult Function(T failedValue, num min, num max)? numberOutsideInterval,
@@ -1733,6 +1946,8 @@ class _$ListTooLong<T> implements ListTooLong<T> {
     required TResult Function(StringTooShort<T> value) stringTooShort,
     required TResult Function(Empty<T> value) empty,
     required TResult Function(Multiline<T> value) multiline,
+    required TResult Function(IncorrectCategoryString<T> value)
+        incorrectCategoryString,
     required TResult Function(NoPhotoSelected<T> value) noPhotoSelected,
     required TResult Function(NonPositivePrice<T> value) nonPositiveValue,
     required TResult Function(NumberOutsideInterval<T> value)
@@ -1751,6 +1966,7 @@ class _$ListTooLong<T> implements ListTooLong<T> {
     TResult Function(StringTooShort<T> value)? stringTooShort,
     TResult Function(Empty<T> value)? empty,
     TResult Function(Multiline<T> value)? multiline,
+    TResult Function(IncorrectCategoryString<T> value)? incorrectCategoryString,
     TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
     TResult Function(NonPositivePrice<T> value)? nonPositiveValue,
     TResult Function(NumberOutsideInterval<T> value)? numberOutsideInterval,
@@ -1768,6 +1984,7 @@ class _$ListTooLong<T> implements ListTooLong<T> {
     TResult Function(StringTooShort<T> value)? stringTooShort,
     TResult Function(Empty<T> value)? empty,
     TResult Function(Multiline<T> value)? multiline,
+    TResult Function(IncorrectCategoryString<T> value)? incorrectCategoryString,
     TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
     TResult Function(NonPositivePrice<T> value)? nonPositiveValue,
     TResult Function(NumberOutsideInterval<T> value)? numberOutsideInterval,
@@ -1787,22 +2004,18 @@ abstract class ListTooLong<T> implements ProductValueFailure<T> {
   const factory ListTooLong({required T failedValue, required int maxLength}) =
       _$ListTooLong<T>;
 
-  @override
   T get failedValue;
   int get maxLength;
-  @override
   @JsonKey(ignore: true)
   $ListTooLongCopyWith<T, ListTooLong<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ListTooShortCopyWith<T, $Res>
-    implements $ProductValueFailureCopyWith<T, $Res> {
+abstract class $ListTooShortCopyWith<T, $Res> {
   factory $ListTooShortCopyWith(
           ListTooShort<T> value, $Res Function(ListTooShort<T>) then) =
       _$ListTooShortCopyWithImpl<T, $Res>;
-  @override
   $Res call({T failedValue, int minLength});
 }
 
@@ -1878,6 +2091,7 @@ class _$ListTooShort<T> implements ListTooShort<T> {
     required TResult Function(T failedValue, int minLength) stringTooShort,
     required TResult Function(T failedValue) empty,
     required TResult Function(T failedValue) multiline,
+    required TResult Function(String failedValue) incorrectCategoryString,
     required TResult Function(T failedValue) noPhotoSelected,
     required TResult Function(T failedValue) nonPositiveValue,
     required TResult Function(T failedValue, num min, num max)
@@ -1896,6 +2110,7 @@ class _$ListTooShort<T> implements ListTooShort<T> {
     TResult Function(T failedValue, int minLength)? stringTooShort,
     TResult Function(T failedValue)? empty,
     TResult Function(T failedValue)? multiline,
+    TResult Function(String failedValue)? incorrectCategoryString,
     TResult Function(T failedValue)? noPhotoSelected,
     TResult Function(T failedValue)? nonPositiveValue,
     TResult Function(T failedValue, num min, num max)? numberOutsideInterval,
@@ -1913,6 +2128,7 @@ class _$ListTooShort<T> implements ListTooShort<T> {
     TResult Function(T failedValue, int minLength)? stringTooShort,
     TResult Function(T failedValue)? empty,
     TResult Function(T failedValue)? multiline,
+    TResult Function(String failedValue)? incorrectCategoryString,
     TResult Function(T failedValue)? noPhotoSelected,
     TResult Function(T failedValue)? nonPositiveValue,
     TResult Function(T failedValue, num min, num max)? numberOutsideInterval,
@@ -1934,6 +2150,8 @@ class _$ListTooShort<T> implements ListTooShort<T> {
     required TResult Function(StringTooShort<T> value) stringTooShort,
     required TResult Function(Empty<T> value) empty,
     required TResult Function(Multiline<T> value) multiline,
+    required TResult Function(IncorrectCategoryString<T> value)
+        incorrectCategoryString,
     required TResult Function(NoPhotoSelected<T> value) noPhotoSelected,
     required TResult Function(NonPositivePrice<T> value) nonPositiveValue,
     required TResult Function(NumberOutsideInterval<T> value)
@@ -1952,6 +2170,7 @@ class _$ListTooShort<T> implements ListTooShort<T> {
     TResult Function(StringTooShort<T> value)? stringTooShort,
     TResult Function(Empty<T> value)? empty,
     TResult Function(Multiline<T> value)? multiline,
+    TResult Function(IncorrectCategoryString<T> value)? incorrectCategoryString,
     TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
     TResult Function(NonPositivePrice<T> value)? nonPositiveValue,
     TResult Function(NumberOutsideInterval<T> value)? numberOutsideInterval,
@@ -1969,6 +2188,7 @@ class _$ListTooShort<T> implements ListTooShort<T> {
     TResult Function(StringTooShort<T> value)? stringTooShort,
     TResult Function(Empty<T> value)? empty,
     TResult Function(Multiline<T> value)? multiline,
+    TResult Function(IncorrectCategoryString<T> value)? incorrectCategoryString,
     TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
     TResult Function(NonPositivePrice<T> value)? nonPositiveValue,
     TResult Function(NumberOutsideInterval<T> value)? numberOutsideInterval,
@@ -1988,22 +2208,18 @@ abstract class ListTooShort<T> implements ProductValueFailure<T> {
   const factory ListTooShort({required T failedValue, required int minLength}) =
       _$ListTooShort<T>;
 
-  @override
   T get failedValue;
   int get minLength;
-  @override
   @JsonKey(ignore: true)
   $ListTooShortCopyWith<T, ListTooShort<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $EmptyListCopyWith<T, $Res>
-    implements $ProductValueFailureCopyWith<T, $Res> {
+abstract class $EmptyListCopyWith<T, $Res> {
   factory $EmptyListCopyWith(
           EmptyList<T> value, $Res Function(EmptyList<T>) then) =
       _$EmptyListCopyWithImpl<T, $Res>;
-  @override
   $Res call({T failedValue, int minLength});
 }
 
@@ -2079,6 +2295,7 @@ class _$EmptyList<T> implements EmptyList<T> {
     required TResult Function(T failedValue, int minLength) stringTooShort,
     required TResult Function(T failedValue) empty,
     required TResult Function(T failedValue) multiline,
+    required TResult Function(String failedValue) incorrectCategoryString,
     required TResult Function(T failedValue) noPhotoSelected,
     required TResult Function(T failedValue) nonPositiveValue,
     required TResult Function(T failedValue, num min, num max)
@@ -2097,6 +2314,7 @@ class _$EmptyList<T> implements EmptyList<T> {
     TResult Function(T failedValue, int minLength)? stringTooShort,
     TResult Function(T failedValue)? empty,
     TResult Function(T failedValue)? multiline,
+    TResult Function(String failedValue)? incorrectCategoryString,
     TResult Function(T failedValue)? noPhotoSelected,
     TResult Function(T failedValue)? nonPositiveValue,
     TResult Function(T failedValue, num min, num max)? numberOutsideInterval,
@@ -2114,6 +2332,7 @@ class _$EmptyList<T> implements EmptyList<T> {
     TResult Function(T failedValue, int minLength)? stringTooShort,
     TResult Function(T failedValue)? empty,
     TResult Function(T failedValue)? multiline,
+    TResult Function(String failedValue)? incorrectCategoryString,
     TResult Function(T failedValue)? noPhotoSelected,
     TResult Function(T failedValue)? nonPositiveValue,
     TResult Function(T failedValue, num min, num max)? numberOutsideInterval,
@@ -2135,6 +2354,8 @@ class _$EmptyList<T> implements EmptyList<T> {
     required TResult Function(StringTooShort<T> value) stringTooShort,
     required TResult Function(Empty<T> value) empty,
     required TResult Function(Multiline<T> value) multiline,
+    required TResult Function(IncorrectCategoryString<T> value)
+        incorrectCategoryString,
     required TResult Function(NoPhotoSelected<T> value) noPhotoSelected,
     required TResult Function(NonPositivePrice<T> value) nonPositiveValue,
     required TResult Function(NumberOutsideInterval<T> value)
@@ -2153,6 +2374,7 @@ class _$EmptyList<T> implements EmptyList<T> {
     TResult Function(StringTooShort<T> value)? stringTooShort,
     TResult Function(Empty<T> value)? empty,
     TResult Function(Multiline<T> value)? multiline,
+    TResult Function(IncorrectCategoryString<T> value)? incorrectCategoryString,
     TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
     TResult Function(NonPositivePrice<T> value)? nonPositiveValue,
     TResult Function(NumberOutsideInterval<T> value)? numberOutsideInterval,
@@ -2170,6 +2392,7 @@ class _$EmptyList<T> implements EmptyList<T> {
     TResult Function(StringTooShort<T> value)? stringTooShort,
     TResult Function(Empty<T> value)? empty,
     TResult Function(Multiline<T> value)? multiline,
+    TResult Function(IncorrectCategoryString<T> value)? incorrectCategoryString,
     TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
     TResult Function(NonPositivePrice<T> value)? nonPositiveValue,
     TResult Function(NumberOutsideInterval<T> value)? numberOutsideInterval,
@@ -2189,10 +2412,8 @@ abstract class EmptyList<T> implements ProductValueFailure<T> {
   const factory EmptyList({required T failedValue, required int minLength}) =
       _$EmptyList<T>;
 
-  @override
   T get failedValue;
   int get minLength;
-  @override
   @JsonKey(ignore: true)
   $EmptyListCopyWith<T, EmptyList<T>> get copyWith =>
       throw _privateConstructorUsedError;

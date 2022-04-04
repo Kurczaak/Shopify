@@ -99,7 +99,6 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - images/corner_shape.png
-    - images/undraw_gone_shop.png
     - images/logo.png
     - images/test/test_logo.jpg
     - images/test/too_small_logo.jpg

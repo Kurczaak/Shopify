@@ -11,6 +11,9 @@ class ProductValueFailure<T> with _$ProductValueFailure<T> {
   const factory ProductValueFailure.multiline({required T failedValue}) =
       Multiline<T>;
 
+  const factory ProductValueFailure.incorrectCategoryString(
+      {required String failedValue}) = IncorrectCategoryString<T>;
+
   const factory ProductValueFailure.noPhotoSelected({required T failedValue}) =
       NoPhotoSelected<T>;
   const factory ProductValueFailure.nonPositiveValue({required T failedValue}) =
