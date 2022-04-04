@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:dartz/dartz.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:shopify_manager/domain/core/images/i_image_facade.dart';
 import 'package:shopify_manager/domain/core/images/photo.dart';
@@ -24,6 +25,15 @@ class ImagePickerImageFacade implements IImageFacade {
       if (image == null || image.path == '') {
         return left(const ImageFailure.noImageSelected());
       } else {
+        final imageBytes = await image.readAsBytes();
+        final decodedImage = await decodeImageFromList(imageBytes);
+        if (decodedImage.width < ShopLogo.minWidth ||
+            decodedImage.height < ShopLogo.minHeight ||
+            decodedImage.width > ShopLogo.maxHeight ||
+            decodedImage.height > ShopLogo.maxHeight) {
+          return left(const ImageFailure.invalidImageSize());
+        }
+
         return right(ShopLogo(File(image.path)));
       }
     } on PlatformException catch (_) {

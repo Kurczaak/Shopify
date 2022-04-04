@@ -78,7 +78,7 @@ void main() async {
       'emits [Loading, Error] when chosen logo has invalid size',
       build: () => ShopLogoPickerBloc(mockImageFacade),
       setUp: () => when(() => mockImageFacade.getShopLogo())
-          .thenAnswer((_) async => right(tTooSmallShopLogo)),
+          .thenAnswer((_) async => left(const ImageFailure.invalidImageSize())),
       act: (ShopLogoPickerBloc bloc) => bloc.add(const GetShopLogo()),
       expect: () =>
           const [Loading(), Error(failure: ImageFailure.invalidImageSize())],

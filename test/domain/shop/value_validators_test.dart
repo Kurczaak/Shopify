@@ -1,7 +1,8 @@
 import 'package:kt_dart/kt.dart';
-import 'package:shopify_manager/domain/shop/failures.dart';
+import 'package:shopify_manager/domain/shop/value_failures.dart';
+import 'package:shopify_manager/domain/core/value_failures.dart';
 import 'package:shopify_manager/domain/core/failures.dart';
-import 'package:shopify_manager/domain/shop/value_validators.dart';
+import 'package:shopify_manager/domain/core/value_validators.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:dartz/dartz.dart';
 
@@ -42,8 +43,8 @@ void main() {
           expect(
             result,
             left(
-              const ValueFailure.shop(
-                ShopValueFailure.exceedingLength(
+              const ValueFailure.core(
+                CoreValueFailure.exceedingLength(
                     failedValue: exceedingLengthString, maxLength: maxLength),
               ),
             ),
@@ -86,8 +87,8 @@ void main() {
           expect(
             result,
             left(
-              const ValueFailure.shop(
-                ShopValueFailure.stringTooShort(
+              const ValueFailure.core(
+                CoreValueFailure.stringTooShort(
                     failedValue: tooShortString, minLength: minLength),
               ),
             ),
@@ -122,8 +123,8 @@ void main() {
           expect(
             result,
             left(
-              const ValueFailure.shop(
-                ShopValueFailure.empty(failedValue: emptyString),
+              const ValueFailure.core(
+                CoreValueFailure.empty(failedValue: emptyString),
               ),
             ),
           );
@@ -163,8 +164,8 @@ void main() {
         expect(
           result,
           left(
-            const ValueFailure.shop(
-              ShopValueFailure.multiline(failedValue: multilineString),
+            const ValueFailure.core(
+              CoreValueFailure.multiline(failedValue: multilineString),
             ),
           ),
         );
@@ -195,7 +196,7 @@ void main() {
         // assert
         expect(
             result,
-            left(const ValueFailure.shop(ShopValueFailure.incorrectPostalCode(
+            left(const ValueFailure.core(CoreValueFailure.incorrectPostalCode(
                 failedValue: noDashPostalCode))));
       },
     );
@@ -217,7 +218,7 @@ void main() {
           results.add(validatePostalCode(incorrectPC));
           expectedResults.add(
             left(
-              ValueFailure.shop(ShopValueFailure.incorrectPostalCode(
+              ValueFailure.core(CoreValueFailure.incorrectPostalCode(
                   failedValue: incorrectPC)),
             ),
           );
@@ -238,8 +239,8 @@ void main() {
         // assert
         expect(
           result,
-          left(const ValueFailure.shop(
-            ShopValueFailure.incorrectPostalCode(
+          left(const ValueFailure.core(
+            CoreValueFailure.incorrectPostalCode(
                 failedValue: incorrectPostalCode),
           )),
         );
@@ -262,7 +263,7 @@ void main() {
           results.add(validatePostalCode(incorrectPC));
           expectedResults.add(
             left(
-              ValueFailure.shop(ShopValueFailure.incorrectPostalCode(
+              ValueFailure.core(CoreValueFailure.incorrectPostalCode(
                   failedValue: incorrectPC)),
             ),
           );
@@ -285,8 +286,8 @@ void main() {
         expect(
           result,
           left(
-            const ValueFailure.shop(
-              ShopValueFailure.nonPositiveValue(failedValue: negativeValue),
+            const ValueFailure.core(
+              CoreValueFailure.nonPositive(failedValue: negativeValue),
             ),
           ),
         );
@@ -303,8 +304,8 @@ void main() {
         expect(
           result,
           left(
-            const ValueFailure.shop(
-              ShopValueFailure.nonPositiveValue(failedValue: zero),
+            const ValueFailure.core(
+              CoreValueFailure.nonPositive(failedValue: zero),
             ),
           ),
         );
@@ -350,8 +351,9 @@ void main() {
         // assert
         expect(
             result,
-            left(const ValueFailure.shop(ShopValueFailure.noAddressNumber(
-                failedValue: noNumberAddress))));
+            left<ValueFailure<String>, String>(const ValueFailure.core(
+                CoreValueFailure.noAddressNumber(
+                    failedValue: noNumberAddress))));
       },
     );
   });
@@ -389,7 +391,7 @@ void main() {
         // assert
         expect(
             result,
-            left(const ValueFailure.shop(ShopValueFailure.numberOutsideInterval(
+            left(const ValueFailure.core(CoreValueFailure.numberOutsideInterval(
                 failedValue: invalidNumber, min: minNumber, max: maxNumber))));
       },
     );
@@ -419,7 +421,7 @@ void main() {
         // assert
         expect(
             result,
-            left(ValueFailure.shop(ShopValueFailure.listTooLong(
+            left(ValueFailure.core(CoreValueFailure.listTooLong(
                 failedValue: list, maxLength: maxLength))));
       },
     );
@@ -445,7 +447,7 @@ void main() {
         // assert
         expect(
             result,
-            left(ValueFailure.shop(ShopValueFailure.listTooShort(
+            left(ValueFailure.core(CoreValueFailure.listTooShort(
                 failedValue: list, minLength: minLength))));
       },
     );

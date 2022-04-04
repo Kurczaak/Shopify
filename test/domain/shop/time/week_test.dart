@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:kt_dart/kt.dart';
 import 'package:shopify_manager/domain/core/failures.dart';
-import 'package:shopify_manager/domain/shop/failures.dart';
+import 'package:shopify_manager/domain/shop/value_failures.dart';
 import 'package:shopify_manager/domain/shop/time/day.dart';
 import 'package:shopify_manager/domain/shop/time/value_objects.dart';
 import 'package:shopify_manager/domain/shop/time/week.dart';

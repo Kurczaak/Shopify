@@ -4,7 +4,7 @@ import 'package:shopify_manager/domain/core/address.dart';
 import 'package:shopify_manager/domain/core/failures.dart';
 import 'package:shopify_manager/domain/core/location.dart';
 import 'package:shopify_manager/domain/core/value_objects.dart';
-import 'package:shopify_manager/domain/shop/failures.dart';
+import 'package:shopify_manager/domain/core/value_failures.dart';
 import 'package:shopify_manager/domain/shop/shop.dart';
 import 'package:shopify_manager/domain/shop/time/week.dart';
 import 'package:shopify_manager/domain/shop/value_objects.dart';
@@ -50,7 +50,7 @@ void main() {
         expect(
           failureOption,
           equals(
-            some(const ValueFailure.shop(ShopValueFailure.incorrectPostalCode(
+            some(const ValueFailure.core(CoreValueFailure.incorrectPostalCode(
                 failedValue: invalidPostalCode))),
           ),
         );

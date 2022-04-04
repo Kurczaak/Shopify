@@ -2,8 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:kt_dart/kt.dart';
-import 'package:shopify_manager/domain/core/validators.dart';
-import 'package:shopify_manager/domain/shop/value_validators.dart';
+import 'package:shopify_manager/domain/core/value_validators.dart';
 import 'package:uuid/uuid.dart';
 import 'package:shopify_manager/domain/core/errors.dart';
 

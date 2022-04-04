@@ -1,7 +1,8 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shopify_manager/domain/core/failures.dart';
-import 'package:shopify_manager/domain/shop/failures.dart';
+import 'package:shopify_manager/domain/shop/value_failures.dart';
+import 'package:shopify_manager/domain/core/value_failures.dart';
 import 'package:shopify_manager/domain/shop/value_objects.dart';
 import '../../utils/random_string_generator.dart';
 
@@ -29,7 +30,7 @@ void main() {
         // assert
         expect(
             result.value,
-            equals(left(ValueFailure.shop(ShopValueFailure.exceedingLength(
+            equals(left(ValueFailure.core(CoreValueFailure.exceedingLength(
                 failedValue: tooLongShopNameStr,
                 maxLength: ShopName.maxLength)))));
       },
@@ -45,7 +46,7 @@ void main() {
         // assert
         expect(
             result.value,
-            equals(left(const ValueFailure.shop(ShopValueFailure.stringTooShort(
+            equals(left(const ValueFailure.core(CoreValueFailure.stringTooShort(
                 failedValue: tooShortShopName,
                 minLength: ShopName.minLength)))));
       },
@@ -61,8 +62,8 @@ void main() {
         // assert
         expect(
             result.value,
-            equals(left(const ValueFailure.shop(
-                ShopValueFailure.multiline(failedValue: multilineShopName)))));
+            equals(left(const ValueFailure.core(
+                CoreValueFailure.multiline(failedValue: multilineShopName)))));
       },
     );
   });

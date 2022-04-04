@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:shopify_manager/domain/core/failures.dart';
 import 'package:shopify_manager/domain/shop/time/day.dart';
+import 'package:shopify_manager/domain/shop/value_validators.dart';
 
 part 'week.freezed.dart';
 
@@ -32,24 +33,26 @@ abstract class Week with _$Week {
       [monday, tuesday, wednesday, thursday, friday, saturday, sunday];
 
   Option<ValueFailure<dynamic>> get failureOption {
-    return monday.failureOption.fold(
-      () => tuesday.failureOption.fold(
-        () => wednesday.failureOption.fold(
-          () => thursday.failureOption.fold(
-            () => friday.failureOption.fold(
-              () => saturday.failureOption.fold(
-                () => sunday.failureOption,
+    return validateShopOpen(this).fold(
+        (f) => some(f),
+        (r) => monday.failureOption.fold(
+              () => tuesday.failureOption.fold(
+                () => wednesday.failureOption.fold(
+                  () => thursday.failureOption.fold(
+                    () => friday.failureOption.fold(
+                      () => saturday.failureOption.fold(
+                        () => sunday.failureOption,
+                        (f) => some(f),
+                      ),
+                      (f) => some(f),
+                    ),
+                    (f) => some(f),
+                  ),
+                  (f) => some(f),
+                ),
                 (f) => some(f),
               ),
               (f) => some(f),
-            ),
-            (f) => some(f),
-          ),
-          (f) => some(f),
-        ),
-        (f) => some(f),
-      ),
-      (f) => some(f),
-    );
+            ));
   }
 }

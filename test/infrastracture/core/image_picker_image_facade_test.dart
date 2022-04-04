@@ -64,6 +64,46 @@ void main() async {
     );
 
     test(
+      'should return ImageFailure when image is too small',
+      () async {
+        // arrange
+        final tooSmallLogo = await getImageFileFromAssets('too_small_logo.jpg');
+        final logoBytes = tooSmallLogo.readAsBytesSync();
+        final tXFileLogo = XFile.fromData(logoBytes,
+            path: tLogo.path, lastModified: thisMoment);
+        when(mockImagePicker.pickImage(
+                source: ImageSource.gallery,
+                maxHeight: ShopLogo.maxHeight.toDouble(),
+                maxWidth: ShopLogo.maxWidth.toDouble()))
+            .thenAnswer((_) async => tXFileLogo);
+        // act
+        final result = await imagePickerImageFacade.getShopLogo();
+        // assert
+        expect(result, left(const ImageFailure.invalidImageSize()));
+      },
+    );
+
+    test(
+      'should return ImageFailure when image is too big',
+      () async {
+        // arrange
+        final tooSmallLogo = await getImageFileFromAssets('too_big_logo.jpg');
+        final logoBytes = tooSmallLogo.readAsBytesSync();
+        final tXFileLogo = XFile.fromData(logoBytes,
+            path: tLogo.path, lastModified: thisMoment);
+        when(mockImagePicker.pickImage(
+                source: ImageSource.gallery,
+                maxHeight: ShopLogo.maxHeight.toDouble(),
+                maxWidth: ShopLogo.maxWidth.toDouble()))
+            .thenAnswer((_) async => tXFileLogo);
+        // act
+        final result = await imagePickerImageFacade.getShopLogo();
+        // assert
+        expect(result, left(const ImageFailure.invalidImageSize()));
+      },
+    );
+
+    test(
       'should return a valid ShopLogo',
       () async {
         // arrange

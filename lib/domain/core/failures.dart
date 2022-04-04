@@ -2,7 +2,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:shopify_manager/domain/core/value_failures.dart';
 import 'package:shopify_manager/domain/product/value_failures.dart';
 import '../auth/value_failures.dart';
-import '../shop/failures.dart';
+import '../shop/value_failures.dart';
 
 part 'failures.freezed.dart';
 

@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:shopify_manager/domain/core/failures.dart';
 import 'package:shopify_manager/domain/core/value_objects.dart';
-import 'package:shopify_manager/domain/shop/value_validators.dart';
+import 'package:shopify_manager/domain/core/value_validators.dart';
 
 class ShopName extends Name {
   static const maxLength = 40;

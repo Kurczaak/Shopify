@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:kt_dart/collection.dart';
 import 'package:shopify_manager/domain/core/failures.dart';
-import 'package:shopify_manager/domain/shop/failures.dart';
+import 'package:shopify_manager/domain/shop/value_failures.dart';
 import 'package:shopify_manager/domain/shop/time/primitive_hour.dart';
 import 'package:shopify_manager/domain/shop/time/time_validators.dart';
 import 'package:shopify_manager/domain/shop/time/value_objects.dart';
