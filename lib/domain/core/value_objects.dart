@@ -117,19 +117,17 @@ class PostalCode extends ValueObject<String> {
   const PostalCode._(this.value);
 }
 
-class List5<T> extends ValueObject<KtList<T>> {
+class NonEmptyList5<T> extends ValueObject<KtList<T>> {
   @override
   final Either<ValueFailure<KtList<T>>, KtList<T>> value;
 
   static const maxLength = 5;
 
-  factory List5(KtList<T> input) {
-    return List5._(
-      validateMaxListLength(input, maxLength),
-    );
+  factory NonEmptyList5(KtList<T> input) {
+    return NonEmptyList5._(validateListLength(input, maxLength, minLength: 1));
   }
 
-  const List5._(this.value);
+  const NonEmptyList5._(this.value);
 
   int get length {
     return value.getOrElse(() => emptyList()).size;
