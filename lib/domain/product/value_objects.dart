@@ -1,6 +1,8 @@
+import 'package:kt_dart/kt.dart';
 import 'package:shopify_manager/domain/core/failures.dart';
 import 'package:dartz/dartz.dart';
 import 'package:shopify_manager/domain/core/value_objects.dart';
+import 'package:shopify_manager/domain/product/product_categories.dart';
 import 'package:shopify_manager/domain/product/value_validators.dart';
 
 class ProductName extends Name {
@@ -51,12 +53,13 @@ class Description extends ValueObject<String> {
 
 class Weight extends ValueObject<double> {
   static const double maxWeight = 99999;
+  static const double minWeight = 0.01;
 
   @override
   final Either<ValueFailure<double>, double> value;
   factory Weight(double input) {
     return Weight._(
-      validateDoubleRange(input, 1, maxWeight),
+      validateDoubleRange(input, minWeight, maxWeight),
     );
   }
   const Weight._(this.value);
@@ -72,4 +75,13 @@ class Price extends ValueObject<double> {
         (passedValue) => validateDoubleRange(passedValue, 0.1, maxPrice)));
   }
   const Price._(this.value);
+}
+
+class Category extends ValueObject<Categories> {
+  @override
+  final Either<ValueFailure<Categories>, Categories> value;
+  factory Category(String category) {
+    return Category._(right(Categories.Diary));
+  }
+  const Category._(this.value);
 }
