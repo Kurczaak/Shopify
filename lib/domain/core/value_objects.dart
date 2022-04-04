@@ -46,6 +46,20 @@ class UniqueId extends ValueObject<String> {
   const UniqueId._(this.value);
 }
 
+class PositiveNumber extends ValueObject<double> {
+  static const double maxPositiveNumber = 999999;
+  static const double minPositiveNumber = 0.01;
+
+  @override
+  final Either<ValueFailure<double>, double> value;
+  factory PositiveNumber(double input) {
+    return PositiveNumber._(
+      validateDoubleRange(input, minPositiveNumber, maxPositiveNumber),
+    );
+  }
+  const PositiveNumber._(this.value);
+}
+
 abstract class Name extends ValueObject<String> {
   static const maxLength = 10;
   @override

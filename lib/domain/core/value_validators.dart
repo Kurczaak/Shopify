@@ -57,8 +57,16 @@ Either<ValueFailure<String>, String> validateMaxStringLength(
 }
 
 Either<ValueFailure<String>, String> validateMinStringLength(
-    String input, int minLength) {
-  if (input.length < minLength) {
+    String input, int minLength,
+    {bool countWhiteChars = true}) {
+  late String stringInput;
+  if (!countWhiteChars) {
+    stringInput = input.replaceAll(' ', '');
+    stringInput = stringInput.replaceAll('\n', '');
+  } else {
+    stringInput = input;
+  }
+  if (stringInput.length < minLength) {
     return left(
       ValueFailure.core(
         CoreValueFailure.stringTooShort(
@@ -137,6 +145,16 @@ Either<ValueFailure<double>, double> validatePositiveValue(double input) {
     );
   } else {
     return right(input);
+  }
+}
+
+Either<ValueFailure<double>, double> validateDoubleRange(
+    double input, double minInclusive, double maxInclusive) {
+  if (input >= minInclusive && input <= maxInclusive) {
+    return right(input);
+  } else {
+    return left(ValueFailure.core(CoreValueFailure.numberOutsideInterval(
+        failedValue: input, min: minInclusive, max: maxInclusive)));
   }
 }
 
