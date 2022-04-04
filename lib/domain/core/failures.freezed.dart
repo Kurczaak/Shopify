@@ -34,6 +34,12 @@ class _$ValueFailureTearOff {
       f,
     );
   }
+
+  _Core<T> core<T>(CoreValueFailure<T> f) {
+    return _Core<T>(
+      f,
+    );
+  }
 }
 
 /// @nodoc
@@ -46,6 +52,7 @@ mixin _$ValueFailure<T> {
     required TResult Function(AuthValueFailure<T> f) auth,
     required TResult Function(ShopValueFailure<T> f) shop,
     required TResult Function(ProductValueFailure<T> f) product,
+    required TResult Function(CoreValueFailure<T> f) core,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -53,6 +60,7 @@ mixin _$ValueFailure<T> {
     TResult Function(AuthValueFailure<T> f)? auth,
     TResult Function(ShopValueFailure<T> f)? shop,
     TResult Function(ProductValueFailure<T> f)? product,
+    TResult Function(CoreValueFailure<T> f)? core,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -60,6 +68,7 @@ mixin _$ValueFailure<T> {
     TResult Function(AuthValueFailure<T> f)? auth,
     TResult Function(ShopValueFailure<T> f)? shop,
     TResult Function(ProductValueFailure<T> f)? product,
+    TResult Function(CoreValueFailure<T> f)? core,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -68,6 +77,7 @@ mixin _$ValueFailure<T> {
     required TResult Function(_Auth<T> value) auth,
     required TResult Function(_Shop<T> value) shop,
     required TResult Function(_Product<T> value) product,
+    required TResult Function(_Core<T> value) core,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -75,6 +85,7 @@ mixin _$ValueFailure<T> {
     TResult Function(_Auth<T> value)? auth,
     TResult Function(_Shop<T> value)? shop,
     TResult Function(_Product<T> value)? product,
+    TResult Function(_Core<T> value)? core,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -82,6 +93,7 @@ mixin _$ValueFailure<T> {
     TResult Function(_Auth<T> value)? auth,
     TResult Function(_Shop<T> value)? shop,
     TResult Function(_Product<T> value)? product,
+    TResult Function(_Core<T> value)? core,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -178,6 +190,7 @@ class _$_Auth<T> implements _Auth<T> {
     required TResult Function(AuthValueFailure<T> f) auth,
     required TResult Function(ShopValueFailure<T> f) shop,
     required TResult Function(ProductValueFailure<T> f) product,
+    required TResult Function(CoreValueFailure<T> f) core,
   }) {
     return auth(f);
   }
@@ -188,6 +201,7 @@ class _$_Auth<T> implements _Auth<T> {
     TResult Function(AuthValueFailure<T> f)? auth,
     TResult Function(ShopValueFailure<T> f)? shop,
     TResult Function(ProductValueFailure<T> f)? product,
+    TResult Function(CoreValueFailure<T> f)? core,
   }) {
     return auth?.call(f);
   }
@@ -198,6 +212,7 @@ class _$_Auth<T> implements _Auth<T> {
     TResult Function(AuthValueFailure<T> f)? auth,
     TResult Function(ShopValueFailure<T> f)? shop,
     TResult Function(ProductValueFailure<T> f)? product,
+    TResult Function(CoreValueFailure<T> f)? core,
     required TResult orElse(),
   }) {
     if (auth != null) {
@@ -212,6 +227,7 @@ class _$_Auth<T> implements _Auth<T> {
     required TResult Function(_Auth<T> value) auth,
     required TResult Function(_Shop<T> value) shop,
     required TResult Function(_Product<T> value) product,
+    required TResult Function(_Core<T> value) core,
   }) {
     return auth(this);
   }
@@ -222,6 +238,7 @@ class _$_Auth<T> implements _Auth<T> {
     TResult Function(_Auth<T> value)? auth,
     TResult Function(_Shop<T> value)? shop,
     TResult Function(_Product<T> value)? product,
+    TResult Function(_Core<T> value)? core,
   }) {
     return auth?.call(this);
   }
@@ -232,6 +249,7 @@ class _$_Auth<T> implements _Auth<T> {
     TResult Function(_Auth<T> value)? auth,
     TResult Function(_Shop<T> value)? shop,
     TResult Function(_Product<T> value)? product,
+    TResult Function(_Core<T> value)? core,
     required TResult orElse(),
   }) {
     if (auth != null) {
@@ -324,6 +342,7 @@ class _$_Shop<T> implements _Shop<T> {
     required TResult Function(AuthValueFailure<T> f) auth,
     required TResult Function(ShopValueFailure<T> f) shop,
     required TResult Function(ProductValueFailure<T> f) product,
+    required TResult Function(CoreValueFailure<T> f) core,
   }) {
     return shop(f);
   }
@@ -334,6 +353,7 @@ class _$_Shop<T> implements _Shop<T> {
     TResult Function(AuthValueFailure<T> f)? auth,
     TResult Function(ShopValueFailure<T> f)? shop,
     TResult Function(ProductValueFailure<T> f)? product,
+    TResult Function(CoreValueFailure<T> f)? core,
   }) {
     return shop?.call(f);
   }
@@ -344,6 +364,7 @@ class _$_Shop<T> implements _Shop<T> {
     TResult Function(AuthValueFailure<T> f)? auth,
     TResult Function(ShopValueFailure<T> f)? shop,
     TResult Function(ProductValueFailure<T> f)? product,
+    TResult Function(CoreValueFailure<T> f)? core,
     required TResult orElse(),
   }) {
     if (shop != null) {
@@ -358,6 +379,7 @@ class _$_Shop<T> implements _Shop<T> {
     required TResult Function(_Auth<T> value) auth,
     required TResult Function(_Shop<T> value) shop,
     required TResult Function(_Product<T> value) product,
+    required TResult Function(_Core<T> value) core,
   }) {
     return shop(this);
   }
@@ -368,6 +390,7 @@ class _$_Shop<T> implements _Shop<T> {
     TResult Function(_Auth<T> value)? auth,
     TResult Function(_Shop<T> value)? shop,
     TResult Function(_Product<T> value)? product,
+    TResult Function(_Core<T> value)? core,
   }) {
     return shop?.call(this);
   }
@@ -378,6 +401,7 @@ class _$_Shop<T> implements _Shop<T> {
     TResult Function(_Auth<T> value)? auth,
     TResult Function(_Shop<T> value)? shop,
     TResult Function(_Product<T> value)? product,
+    TResult Function(_Core<T> value)? core,
     required TResult orElse(),
   }) {
     if (shop != null) {
@@ -472,6 +496,7 @@ class _$_Product<T> implements _Product<T> {
     required TResult Function(AuthValueFailure<T> f) auth,
     required TResult Function(ShopValueFailure<T> f) shop,
     required TResult Function(ProductValueFailure<T> f) product,
+    required TResult Function(CoreValueFailure<T> f) core,
   }) {
     return product(f);
   }
@@ -482,6 +507,7 @@ class _$_Product<T> implements _Product<T> {
     TResult Function(AuthValueFailure<T> f)? auth,
     TResult Function(ShopValueFailure<T> f)? shop,
     TResult Function(ProductValueFailure<T> f)? product,
+    TResult Function(CoreValueFailure<T> f)? core,
   }) {
     return product?.call(f);
   }
@@ -492,6 +518,7 @@ class _$_Product<T> implements _Product<T> {
     TResult Function(AuthValueFailure<T> f)? auth,
     TResult Function(ShopValueFailure<T> f)? shop,
     TResult Function(ProductValueFailure<T> f)? product,
+    TResult Function(CoreValueFailure<T> f)? core,
     required TResult orElse(),
   }) {
     if (product != null) {
@@ -506,6 +533,7 @@ class _$_Product<T> implements _Product<T> {
     required TResult Function(_Auth<T> value) auth,
     required TResult Function(_Shop<T> value) shop,
     required TResult Function(_Product<T> value) product,
+    required TResult Function(_Core<T> value) core,
   }) {
     return product(this);
   }
@@ -516,6 +544,7 @@ class _$_Product<T> implements _Product<T> {
     TResult Function(_Auth<T> value)? auth,
     TResult Function(_Shop<T> value)? shop,
     TResult Function(_Product<T> value)? product,
+    TResult Function(_Core<T> value)? core,
   }) {
     return product?.call(this);
   }
@@ -526,6 +555,7 @@ class _$_Product<T> implements _Product<T> {
     TResult Function(_Auth<T> value)? auth,
     TResult Function(_Shop<T> value)? shop,
     TResult Function(_Product<T> value)? product,
+    TResult Function(_Core<T> value)? core,
     required TResult orElse(),
   }) {
     if (product != null) {
@@ -541,5 +571,157 @@ abstract class _Product<T> implements ValueFailure<T> {
   ProductValueFailure<T> get f;
   @JsonKey(ignore: true)
   _$ProductCopyWith<T, _Product<T>> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$CoreCopyWith<T, $Res> {
+  factory _$CoreCopyWith(_Core<T> value, $Res Function(_Core<T>) then) =
+      __$CoreCopyWithImpl<T, $Res>;
+  $Res call({CoreValueFailure<T> f});
+
+  $CoreValueFailureCopyWith<T, $Res> get f;
+}
+
+/// @nodoc
+class __$CoreCopyWithImpl<T, $Res> extends _$ValueFailureCopyWithImpl<T, $Res>
+    implements _$CoreCopyWith<T, $Res> {
+  __$CoreCopyWithImpl(_Core<T> _value, $Res Function(_Core<T>) _then)
+      : super(_value, (v) => _then(v as _Core<T>));
+
+  @override
+  _Core<T> get _value => super._value as _Core<T>;
+
+  @override
+  $Res call({
+    Object? f = freezed,
+  }) {
+    return _then(_Core<T>(
+      f == freezed
+          ? _value.f
+          : f // ignore: cast_nullable_to_non_nullable
+              as CoreValueFailure<T>,
+    ));
+  }
+
+  @override
+  $CoreValueFailureCopyWith<T, $Res> get f {
+    return $CoreValueFailureCopyWith<T, $Res>(_value.f, (value) {
+      return _then(_value.copyWith(f: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$_Core<T> implements _Core<T> {
+  const _$_Core(this.f);
+
+  @override
+  final CoreValueFailure<T> f;
+
+  @override
+  String toString() {
+    return 'ValueFailure<$T>.core(f: $f)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _Core<T> &&
+            const DeepCollectionEquality().equals(other.f, f));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(f));
+
+  @JsonKey(ignore: true)
+  @override
+  _$CoreCopyWith<T, _Core<T>> get copyWith =>
+      __$CoreCopyWithImpl<T, _Core<T>>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(AuthValueFailure<T> f) auth,
+    required TResult Function(ShopValueFailure<T> f) shop,
+    required TResult Function(ProductValueFailure<T> f) product,
+    required TResult Function(CoreValueFailure<T> f) core,
+  }) {
+    return core(f);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(AuthValueFailure<T> f)? auth,
+    TResult Function(ShopValueFailure<T> f)? shop,
+    TResult Function(ProductValueFailure<T> f)? product,
+    TResult Function(CoreValueFailure<T> f)? core,
+  }) {
+    return core?.call(f);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(AuthValueFailure<T> f)? auth,
+    TResult Function(ShopValueFailure<T> f)? shop,
+    TResult Function(ProductValueFailure<T> f)? product,
+    TResult Function(CoreValueFailure<T> f)? core,
+    required TResult orElse(),
+  }) {
+    if (core != null) {
+      return core(f);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Auth<T> value) auth,
+    required TResult Function(_Shop<T> value) shop,
+    required TResult Function(_Product<T> value) product,
+    required TResult Function(_Core<T> value) core,
+  }) {
+    return core(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Auth<T> value)? auth,
+    TResult Function(_Shop<T> value)? shop,
+    TResult Function(_Product<T> value)? product,
+    TResult Function(_Core<T> value)? core,
+  }) {
+    return core?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Auth<T> value)? auth,
+    TResult Function(_Shop<T> value)? shop,
+    TResult Function(_Product<T> value)? product,
+    TResult Function(_Core<T> value)? core,
+    required TResult orElse(),
+  }) {
+    if (core != null) {
+      return core(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Core<T> implements ValueFailure<T> {
+  const factory _Core(CoreValueFailure<T> f) = _$_Core<T>;
+
+  CoreValueFailure<T> get f;
+  @JsonKey(ignore: true)
+  _$CoreCopyWith<T, _Core<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }

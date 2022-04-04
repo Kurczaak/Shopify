@@ -1,6 +1,8 @@
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:kt_dart/kt.dart';
+import 'package:shopify_manager/domain/core/validators.dart';
 import 'package:shopify_manager/domain/shop/value_validators.dart';
 import 'package:uuid/uuid.dart';
 import 'package:shopify_manager/domain/core/errors.dart';
@@ -114,4 +116,27 @@ class PostalCode extends ValueObject<String> {
     return PostalCode._(validatePostalCode(input));
   }
   const PostalCode._(this.value);
+}
+
+class List5<T> extends ValueObject<KtList<T>> {
+  @override
+  final Either<ValueFailure<KtList<T>>, KtList<T>> value;
+
+  static const maxLength = 5;
+
+  factory List5(KtList<T> input) {
+    return List5._(
+      validateMaxListLength(input, maxLength),
+    );
+  }
+
+  const List5._(this.value);
+
+  int get length {
+    return value.getOrElse(() => emptyList()).size;
+  }
+
+  bool get isFull {
+    return length == maxLength;
+  }
 }
