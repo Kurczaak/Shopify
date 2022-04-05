@@ -19,14 +19,20 @@ class _$ProductTearOff {
 
   _Product call(
       {required UniqueId id,
+      required Barcode barcode,
+      required Weight weight,
+      required Fats fats,
       required Category category,
       required ProductName name,
       required BrandName brand,
       required ProductDescription description,
       required ProductDescription ingredients,
-      required NonEmptyList5<dynamic> photos}) {
+      required NonEmptyList5<ProductPhoto> photos}) {
     return _Product(
       id: id,
+      barcode: barcode,
+      weight: weight,
+      fats: fats,
       category: category,
       name: name,
       brand: brand,
@@ -43,12 +49,15 @@ const $Product = _$ProductTearOff();
 /// @nodoc
 mixin _$Product {
   UniqueId get id => throw _privateConstructorUsedError;
+  Barcode get barcode => throw _privateConstructorUsedError;
+  Weight get weight => throw _privateConstructorUsedError;
+  Fats get fats => throw _privateConstructorUsedError;
   Category get category => throw _privateConstructorUsedError;
   ProductName get name => throw _privateConstructorUsedError;
   BrandName get brand => throw _privateConstructorUsedError;
   ProductDescription get description => throw _privateConstructorUsedError;
   ProductDescription get ingredients => throw _privateConstructorUsedError;
-  NonEmptyList5<dynamic> get photos => throw _privateConstructorUsedError;
+  NonEmptyList5<ProductPhoto> get photos => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ProductCopyWith<Product> get copyWith => throw _privateConstructorUsedError;
@@ -60,12 +69,17 @@ abstract class $ProductCopyWith<$Res> {
       _$ProductCopyWithImpl<$Res>;
   $Res call(
       {UniqueId id,
+      Barcode barcode,
+      Weight weight,
+      Fats fats,
       Category category,
       ProductName name,
       BrandName brand,
       ProductDescription description,
       ProductDescription ingredients,
-      NonEmptyList5<dynamic> photos});
+      NonEmptyList5<ProductPhoto> photos});
+
+  $WeightCopyWith<$Res> get weight;
 }
 
 /// @nodoc
@@ -79,6 +93,9 @@ class _$ProductCopyWithImpl<$Res> implements $ProductCopyWith<$Res> {
   @override
   $Res call({
     Object? id = freezed,
+    Object? barcode = freezed,
+    Object? weight = freezed,
+    Object? fats = freezed,
     Object? category = freezed,
     Object? name = freezed,
     Object? brand = freezed,
@@ -91,6 +108,18 @@ class _$ProductCopyWithImpl<$Res> implements $ProductCopyWith<$Res> {
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as UniqueId,
+      barcode: barcode == freezed
+          ? _value.barcode
+          : barcode // ignore: cast_nullable_to_non_nullable
+              as Barcode,
+      weight: weight == freezed
+          ? _value.weight
+          : weight // ignore: cast_nullable_to_non_nullable
+              as Weight,
+      fats: fats == freezed
+          ? _value.fats
+          : fats // ignore: cast_nullable_to_non_nullable
+              as Fats,
       category: category == freezed
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
@@ -114,8 +143,15 @@ class _$ProductCopyWithImpl<$Res> implements $ProductCopyWith<$Res> {
       photos: photos == freezed
           ? _value.photos
           : photos // ignore: cast_nullable_to_non_nullable
-              as NonEmptyList5<dynamic>,
+              as NonEmptyList5<ProductPhoto>,
     ));
+  }
+
+  @override
+  $WeightCopyWith<$Res> get weight {
+    return $WeightCopyWith<$Res>(_value.weight, (value) {
+      return _then(_value.copyWith(weight: value));
+    });
   }
 }
 
@@ -126,12 +162,18 @@ abstract class _$ProductCopyWith<$Res> implements $ProductCopyWith<$Res> {
   @override
   $Res call(
       {UniqueId id,
+      Barcode barcode,
+      Weight weight,
+      Fats fats,
       Category category,
       ProductName name,
       BrandName brand,
       ProductDescription description,
       ProductDescription ingredients,
-      NonEmptyList5<dynamic> photos});
+      NonEmptyList5<ProductPhoto> photos});
+
+  @override
+  $WeightCopyWith<$Res> get weight;
 }
 
 /// @nodoc
@@ -146,6 +188,9 @@ class __$ProductCopyWithImpl<$Res> extends _$ProductCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
+    Object? barcode = freezed,
+    Object? weight = freezed,
+    Object? fats = freezed,
     Object? category = freezed,
     Object? name = freezed,
     Object? brand = freezed,
@@ -158,6 +203,18 @@ class __$ProductCopyWithImpl<$Res> extends _$ProductCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as UniqueId,
+      barcode: barcode == freezed
+          ? _value.barcode
+          : barcode // ignore: cast_nullable_to_non_nullable
+              as Barcode,
+      weight: weight == freezed
+          ? _value.weight
+          : weight // ignore: cast_nullable_to_non_nullable
+              as Weight,
+      fats: fats == freezed
+          ? _value.fats
+          : fats // ignore: cast_nullable_to_non_nullable
+              as Fats,
       category: category == freezed
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
@@ -181,7 +238,7 @@ class __$ProductCopyWithImpl<$Res> extends _$ProductCopyWithImpl<$Res>
       photos: photos == freezed
           ? _value.photos
           : photos // ignore: cast_nullable_to_non_nullable
-              as NonEmptyList5<dynamic>,
+              as NonEmptyList5<ProductPhoto>,
     ));
   }
 }
@@ -191,6 +248,9 @@ class __$ProductCopyWithImpl<$Res> extends _$ProductCopyWithImpl<$Res>
 class _$_Product implements _Product {
   const _$_Product(
       {required this.id,
+      required this.barcode,
+      required this.weight,
+      required this.fats,
       required this.category,
       required this.name,
       required this.brand,
@@ -200,6 +260,12 @@ class _$_Product implements _Product {
 
   @override
   final UniqueId id;
+  @override
+  final Barcode barcode;
+  @override
+  final Weight weight;
+  @override
+  final Fats fats;
   @override
   final Category category;
   @override
@@ -211,11 +277,11 @@ class _$_Product implements _Product {
   @override
   final ProductDescription ingredients;
   @override
-  final NonEmptyList5<dynamic> photos;
+  final NonEmptyList5<ProductPhoto> photos;
 
   @override
   String toString() {
-    return 'Product(id: $id, category: $category, name: $name, brand: $brand, description: $description, ingredients: $ingredients, photos: $photos)';
+    return 'Product(id: $id, barcode: $barcode, weight: $weight, fats: $fats, category: $category, name: $name, brand: $brand, description: $description, ingredients: $ingredients, photos: $photos)';
   }
 
   @override
@@ -224,6 +290,9 @@ class _$_Product implements _Product {
         (other.runtimeType == runtimeType &&
             other is _Product &&
             const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.barcode, barcode) &&
+            const DeepCollectionEquality().equals(other.weight, weight) &&
+            const DeepCollectionEquality().equals(other.fats, fats) &&
             const DeepCollectionEquality().equals(other.category, category) &&
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality().equals(other.brand, brand) &&
@@ -238,6 +307,9 @@ class _$_Product implements _Product {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(barcode),
+      const DeepCollectionEquality().hash(weight),
+      const DeepCollectionEquality().hash(fats),
       const DeepCollectionEquality().hash(category),
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(brand),
@@ -254,15 +326,24 @@ class _$_Product implements _Product {
 abstract class _Product implements Product {
   const factory _Product(
       {required UniqueId id,
+      required Barcode barcode,
+      required Weight weight,
+      required Fats fats,
       required Category category,
       required ProductName name,
       required BrandName brand,
       required ProductDescription description,
       required ProductDescription ingredients,
-      required NonEmptyList5<dynamic> photos}) = _$_Product;
+      required NonEmptyList5<ProductPhoto> photos}) = _$_Product;
 
   @override
   UniqueId get id;
+  @override
+  Barcode get barcode;
+  @override
+  Weight get weight;
+  @override
+  Fats get fats;
   @override
   Category get category;
   @override
@@ -274,7 +355,7 @@ abstract class _Product implements Product {
   @override
   ProductDescription get ingredients;
   @override
-  NonEmptyList5<dynamic> get photos;
+  NonEmptyList5<ProductPhoto> get photos;
   @override
   @JsonKey(ignore: true)
   _$ProductCopyWith<_Product> get copyWith =>
