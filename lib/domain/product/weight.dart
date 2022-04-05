@@ -1,4 +1,6 @@
+import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:shopify_manager/domain/core/failures.dart';
 import 'package:shopify_manager/domain/core/value_objects.dart';
 
 part 'weight.freezed.dart';
@@ -11,6 +13,10 @@ abstract class Weight with _$Weight {
     required PositiveNumber weight,
     @Default(WeightUnit.gram) WeightUnit unit,
   }) = _Weight;
+
+  Option<ValueFailure<dynamic>> get failureOption {
+    return weight.failureOrUnit.fold((f) => some(f), (r) => none());
+  }
 }
 
 enum WeightUnit {
