@@ -1,1 +1,1 @@
-enum Categories { Diary, Bread, Fish }
+enum Categories { Diary, Bread, Fish, Unknown }

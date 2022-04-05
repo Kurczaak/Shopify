@@ -3,7 +3,7 @@ import 'package:shopify_manager/domain/product/product_categories.dart';
 import '../core/failures.dart';
 import './value_failures.dart';
 
-Either<ValueFailure<String>, Categories> validateCategoryFromString(
+Either<ValueFailure<Categories>, Categories> validateCategoryFromString(
     String input) {
   final lowercaseInput = input.toLowerCase();
 
