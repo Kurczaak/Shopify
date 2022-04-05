@@ -31,8 +31,8 @@ class Photo extends ValueObject<File> {
 }
 
 class ShopLogo extends Photo {
-  static const int maxHeight = 400;
-  static const int maxWidth = 900;
+  static const int maxHeight = 768;
+  static const int maxWidth = 1024;
   static const int minHeight = Photo.minHeight;
   static const int minWidth = Photo.minWidth;
 
@@ -41,6 +41,23 @@ class ShopLogo extends Photo {
             failedValue: File.fromRawPath(Uint8List.fromList([]))))));
 
   ShopLogo(File file)
+      : super._(
+            validatePhotoTooBig(file, maxHeight: maxHeight, maxWidth: maxWidth)
+                .andThen(validatePhotoTooSmall(file,
+                    minWidth: Photo.minWidth, minHeight: Photo.minHeight)));
+}
+
+class ProductPhoto extends Photo {
+  static const int maxHeight = 400;
+  static const int maxWidth = 900;
+  static const int minHeight = Photo.minHeight;
+  static const int minWidth = Photo.minWidth;
+
+  ProductPhoto.empty()
+      : super._(left(ValueFailure.core(CoreValueFailure.empty(
+            failedValue: File.fromRawPath(Uint8List.fromList([]))))));
+
+  ProductPhoto(File file)
       : super._(
             validatePhotoTooBig(file, maxHeight: maxHeight, maxWidth: maxWidth)
                 .andThen(validatePhotoTooSmall(file,
