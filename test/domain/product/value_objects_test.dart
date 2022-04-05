@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shopify_manager/domain/core/failures.dart';
+import 'package:shopify_manager/domain/product/product_categories.dart';
 import 'package:shopify_manager/domain/product/value_objects.dart';
 import '../../fixtures/description_501_chars.dart';
 
@@ -155,7 +156,7 @@ void main() {
     );
   });
 
-  group('Description', () {
+  group('ProductDescription', () {
     test(
       'should pass a valid description',
       () async {
@@ -169,7 +170,7 @@ void main() {
       },
     );
     test(
-      'should not pass too long description',
+      'should not pass a too long description',
       () async {
         // arrange
         const desc = reallyLongDescription;
@@ -177,6 +178,57 @@ void main() {
         final result = ProductDescription(desc);
         // assert
         expect(result.value, isA<Left<ValueFailure<String>, String>>());
+      },
+    );
+
+    test(
+      'should pass an empty description',
+      () async {
+        // arrange
+        const desc = '';
+        // act
+        final result = ProductDescription(desc);
+        // assert
+        expect(result.value, right(desc));
+      },
+    );
+  });
+
+  group('Category', () {
+    test(
+      'should pass a valid category',
+      () async {
+        // arrange
+        const category = Categories.Bread;
+        // act
+        final result = Category(category);
+        // assert
+        expect(
+            result.value, isA<Right<ValueFailure<Categories>, Categories>>());
+      },
+    );
+    test(
+      'should pass a valid category string',
+      () async {
+        // arrange
+        const category = 'bread';
+        // act
+        final result = Category.fromString(category);
+        // assert
+        expect(
+            result.value, isA<Right<ValueFailure<Categories>, Categories>>());
+      },
+    );
+
+    test(
+      'should not pass an invalid category string',
+      () async {
+        // arrange
+        const category = 'invalid';
+        // act
+        final result = Category.fromString(category);
+        // assert
+        expect(result.value, isA<Left<ValueFailure<Categories>, Categories>>());
       },
     );
   });
