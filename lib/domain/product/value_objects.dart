@@ -67,3 +67,13 @@ class Category extends ValueObject<Categories> {
   }
   const Category._(this.value);
 }
+
+class Barcode extends ValueObject<String> {
+  @override
+  final Either<ValueFailure<String>, String> value;
+  factory Barcode(String input) {
+    return Barcode._(validateSingleLine(input).flatMap(validateStringNotEmpty));
+  }
+
+  const Barcode._(this.value);
+}

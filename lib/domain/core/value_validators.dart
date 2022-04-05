@@ -79,7 +79,8 @@ Either<ValueFailure<String>, String> validateMinStringLength(
 }
 
 Either<ValueFailure<String>, String> validateStringNotEmpty(String input) {
-  if (input.isEmpty) {
+  final noWhiteCharsStr = input.replaceAll(' ', '');
+  if (noWhiteCharsStr.isEmpty) {
     return left(ValueFailure.core(
       CoreValueFailure.empty(failedValue: input),
     ));

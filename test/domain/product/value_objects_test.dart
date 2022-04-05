@@ -232,4 +232,40 @@ void main() {
       },
     );
   });
+
+  group('Barcode', () {
+    test(
+      'should pass a valid barcode string',
+      () async {
+        // arrange
+        String barcode = 'abc-123-234';
+        // act
+        final result = Barcode(barcode);
+        // assert
+        expect(result.value, isA<Right<ValueFailure<String>, String>>());
+      },
+    );
+    test(
+      'should not pass a multiline barcode string',
+      () async {
+        // arrange
+        String barcode = 'abc-123-\n234';
+        // act
+        final result = Barcode(barcode);
+        // assert
+        expect(result.value, isA<Left<ValueFailure<String>, String>>());
+      },
+    );
+    test(
+      'should not pass an empty barcode string',
+      () async {
+        // arrange
+        String barcode = '           ';
+        // act
+        final result = Barcode(barcode);
+        // assert
+        expect(result.value, isA<Left<ValueFailure<String>, String>>());
+      },
+    );
+  });
 }
