@@ -17,8 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$PriceTearOff {
   const _$PriceTearOff();
 
-  _Price call(
-      {required PositiveNumber price, Currency currency = Currency.zl}) {
+  _Price call({required PositiveNumber price, required Currency currency}) {
     return _Price(
       price: price,
       currency: currency,
@@ -109,12 +108,10 @@ class __$PriceCopyWithImpl<$Res> extends _$PriceCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Price extends _Price {
-  const _$_Price({required this.price, this.currency = Currency.zl})
-      : super._();
+  _$_Price({required this.price, required this.currency}) : super._();
 
   @override
   final PositiveNumber price;
-  @JsonKey()
   @override
   final Currency currency;
 
@@ -145,9 +142,9 @@ class _$_Price extends _Price {
 }
 
 abstract class _Price extends Price {
-  const factory _Price({required PositiveNumber price, Currency currency}) =
+  factory _Price({required PositiveNumber price, required Currency currency}) =
       _$_Price;
-  const _Price._() : super._();
+  _Price._() : super._();
 
   @override
   PositiveNumber get price;

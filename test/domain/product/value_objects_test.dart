@@ -1,8 +1,10 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shopify_manager/domain/core/failures.dart';
+import 'package:shopify_manager/domain/product/price.dart';
 import 'package:shopify_manager/domain/product/product_categories.dart';
 import 'package:shopify_manager/domain/product/value_objects.dart';
+import 'package:shopify_manager/domain/product/weight.dart';
 import '../../fixtures/description_501_chars.dart';
 
 void main() {
@@ -229,6 +231,69 @@ void main() {
         final result = Category.fromString(category);
         // assert
         expect(result.value, isA<Left<ValueFailure<Categories>, Categories>>());
+      },
+    );
+  });
+
+  group('WeightUnit', () {
+    test(
+      'should contain a valid WeightUnit given a correct enum',
+      () async {
+        // act
+        final result = WeightUnit(WeightUnits.gram);
+        // assert
+        expect(result.failureOrUnit, right(unit));
+      },
+    );
+
+    test(
+      'should return a valid WeightUnit given a correct string',
+      () async {
+        // act
+        final result = WeightUnit.fromString('gram');
+        // assert
+        expect(result.failureOrUnit, right(unit));
+      },
+    );
+    test(
+      'should return an invalid WeightUnit given an incorrect string',
+      () async {
+        // act
+        final result = WeightUnit.fromString('incorrectUnit');
+        // assert
+        expect(result.failureOrUnit, isA<Left<ValueFailure<dynamic>, Unit>>());
+      },
+    );
+  });
+
+  group('Currency', () {
+    test(
+      'should contain a valid currency given a correct enum',
+      () async {
+        // act
+        final result = Currency(Currencies.zl);
+        // assert
+        expect(result.failureOrUnit, right(unit));
+      },
+    );
+
+    test(
+      'should return a valid Currency given a correct string',
+      () async {
+        // act
+        final result = Currency.fromString('zl');
+        // assert
+        expect(result.failureOrUnit, right(unit));
+      },
+    );
+
+    test(
+      'should return an invalid Currency given an incorrect string',
+      () async {
+        // act
+        final result = Currency.fromString('incorrectCurrency');
+        // assert
+        expect(result.failureOrUnit, isA<Left<ValueFailure<dynamic>, Unit>>());
       },
     );
   });

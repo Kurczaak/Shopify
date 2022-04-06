@@ -52,6 +52,20 @@ class _$ProductValueFailureTearOff {
     );
   }
 
+  IncorrectWeightUnitString<T> incorrectWeightUnitString<T>(
+      {required String failedValue}) {
+    return IncorrectWeightUnitString<T>(
+      failedValue: failedValue,
+    );
+  }
+
+  IncorrectCurrencyString<T> incorrectCurrencyString<T>(
+      {required String failedValue}) {
+    return IncorrectCurrencyString<T>(
+      failedValue: failedValue,
+    );
+  }
+
   NoPhotoSelected<T> noPhotoSelected<T>({required T failedValue}) {
     return NoPhotoSelected<T>(
       failedValue: failedValue,
@@ -109,6 +123,8 @@ mixin _$ProductValueFailure<T> {
     required TResult Function(T failedValue) empty,
     required TResult Function(T failedValue) multiline,
     required TResult Function(String failedValue) incorrectCategoryString,
+    required TResult Function(String failedValue) incorrectWeightUnitString,
+    required TResult Function(String failedValue) incorrectCurrencyString,
     required TResult Function(T failedValue) noPhotoSelected,
     required TResult Function(T failedValue) nonPositiveValue,
     required TResult Function(T failedValue, num min, num max)
@@ -125,6 +141,8 @@ mixin _$ProductValueFailure<T> {
     TResult Function(T failedValue)? empty,
     TResult Function(T failedValue)? multiline,
     TResult Function(String failedValue)? incorrectCategoryString,
+    TResult Function(String failedValue)? incorrectWeightUnitString,
+    TResult Function(String failedValue)? incorrectCurrencyString,
     TResult Function(T failedValue)? noPhotoSelected,
     TResult Function(T failedValue)? nonPositiveValue,
     TResult Function(T failedValue, num min, num max)? numberOutsideInterval,
@@ -140,6 +158,8 @@ mixin _$ProductValueFailure<T> {
     TResult Function(T failedValue)? empty,
     TResult Function(T failedValue)? multiline,
     TResult Function(String failedValue)? incorrectCategoryString,
+    TResult Function(String failedValue)? incorrectWeightUnitString,
+    TResult Function(String failedValue)? incorrectCurrencyString,
     TResult Function(T failedValue)? noPhotoSelected,
     TResult Function(T failedValue)? nonPositiveValue,
     TResult Function(T failedValue, num min, num max)? numberOutsideInterval,
@@ -157,6 +177,10 @@ mixin _$ProductValueFailure<T> {
     required TResult Function(Multiline<T> value) multiline,
     required TResult Function(IncorrectCategoryString<T> value)
         incorrectCategoryString,
+    required TResult Function(IncorrectWeightUnitString<T> value)
+        incorrectWeightUnitString,
+    required TResult Function(IncorrectCurrencyString<T> value)
+        incorrectCurrencyString,
     required TResult Function(NoPhotoSelected<T> value) noPhotoSelected,
     required TResult Function(NonPositivePrice<T> value) nonPositiveValue,
     required TResult Function(NumberOutsideInterval<T> value)
@@ -173,6 +197,9 @@ mixin _$ProductValueFailure<T> {
     TResult Function(Empty<T> value)? empty,
     TResult Function(Multiline<T> value)? multiline,
     TResult Function(IncorrectCategoryString<T> value)? incorrectCategoryString,
+    TResult Function(IncorrectWeightUnitString<T> value)?
+        incorrectWeightUnitString,
+    TResult Function(IncorrectCurrencyString<T> value)? incorrectCurrencyString,
     TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
     TResult Function(NonPositivePrice<T> value)? nonPositiveValue,
     TResult Function(NumberOutsideInterval<T> value)? numberOutsideInterval,
@@ -188,6 +215,9 @@ mixin _$ProductValueFailure<T> {
     TResult Function(Empty<T> value)? empty,
     TResult Function(Multiline<T> value)? multiline,
     TResult Function(IncorrectCategoryString<T> value)? incorrectCategoryString,
+    TResult Function(IncorrectWeightUnitString<T> value)?
+        incorrectWeightUnitString,
+    TResult Function(IncorrectCurrencyString<T> value)? incorrectCurrencyString,
     TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
     TResult Function(NonPositivePrice<T> value)? nonPositiveValue,
     TResult Function(NumberOutsideInterval<T> value)? numberOutsideInterval,
@@ -297,6 +327,8 @@ class _$ExceedingLength<T> implements ExceedingLength<T> {
     required TResult Function(T failedValue) empty,
     required TResult Function(T failedValue) multiline,
     required TResult Function(String failedValue) incorrectCategoryString,
+    required TResult Function(String failedValue) incorrectWeightUnitString,
+    required TResult Function(String failedValue) incorrectCurrencyString,
     required TResult Function(T failedValue) noPhotoSelected,
     required TResult Function(T failedValue) nonPositiveValue,
     required TResult Function(T failedValue, num min, num max)
@@ -316,6 +348,8 @@ class _$ExceedingLength<T> implements ExceedingLength<T> {
     TResult Function(T failedValue)? empty,
     TResult Function(T failedValue)? multiline,
     TResult Function(String failedValue)? incorrectCategoryString,
+    TResult Function(String failedValue)? incorrectWeightUnitString,
+    TResult Function(String failedValue)? incorrectCurrencyString,
     TResult Function(T failedValue)? noPhotoSelected,
     TResult Function(T failedValue)? nonPositiveValue,
     TResult Function(T failedValue, num min, num max)? numberOutsideInterval,
@@ -334,6 +368,8 @@ class _$ExceedingLength<T> implements ExceedingLength<T> {
     TResult Function(T failedValue)? empty,
     TResult Function(T failedValue)? multiline,
     TResult Function(String failedValue)? incorrectCategoryString,
+    TResult Function(String failedValue)? incorrectWeightUnitString,
+    TResult Function(String failedValue)? incorrectCurrencyString,
     TResult Function(T failedValue)? noPhotoSelected,
     TResult Function(T failedValue)? nonPositiveValue,
     TResult Function(T failedValue, num min, num max)? numberOutsideInterval,
@@ -357,6 +393,10 @@ class _$ExceedingLength<T> implements ExceedingLength<T> {
     required TResult Function(Multiline<T> value) multiline,
     required TResult Function(IncorrectCategoryString<T> value)
         incorrectCategoryString,
+    required TResult Function(IncorrectWeightUnitString<T> value)
+        incorrectWeightUnitString,
+    required TResult Function(IncorrectCurrencyString<T> value)
+        incorrectCurrencyString,
     required TResult Function(NoPhotoSelected<T> value) noPhotoSelected,
     required TResult Function(NonPositivePrice<T> value) nonPositiveValue,
     required TResult Function(NumberOutsideInterval<T> value)
@@ -376,6 +416,9 @@ class _$ExceedingLength<T> implements ExceedingLength<T> {
     TResult Function(Empty<T> value)? empty,
     TResult Function(Multiline<T> value)? multiline,
     TResult Function(IncorrectCategoryString<T> value)? incorrectCategoryString,
+    TResult Function(IncorrectWeightUnitString<T> value)?
+        incorrectWeightUnitString,
+    TResult Function(IncorrectCurrencyString<T> value)? incorrectCurrencyString,
     TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
     TResult Function(NonPositivePrice<T> value)? nonPositiveValue,
     TResult Function(NumberOutsideInterval<T> value)? numberOutsideInterval,
@@ -394,6 +437,9 @@ class _$ExceedingLength<T> implements ExceedingLength<T> {
     TResult Function(Empty<T> value)? empty,
     TResult Function(Multiline<T> value)? multiline,
     TResult Function(IncorrectCategoryString<T> value)? incorrectCategoryString,
+    TResult Function(IncorrectWeightUnitString<T> value)?
+        incorrectWeightUnitString,
+    TResult Function(IncorrectCurrencyString<T> value)? incorrectCurrencyString,
     TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
     TResult Function(NonPositivePrice<T> value)? nonPositiveValue,
     TResult Function(NumberOutsideInterval<T> value)? numberOutsideInterval,
@@ -501,6 +547,8 @@ class _$StringTooShort<T> implements StringTooShort<T> {
     required TResult Function(T failedValue) empty,
     required TResult Function(T failedValue) multiline,
     required TResult Function(String failedValue) incorrectCategoryString,
+    required TResult Function(String failedValue) incorrectWeightUnitString,
+    required TResult Function(String failedValue) incorrectCurrencyString,
     required TResult Function(T failedValue) noPhotoSelected,
     required TResult Function(T failedValue) nonPositiveValue,
     required TResult Function(T failedValue, num min, num max)
@@ -520,6 +568,8 @@ class _$StringTooShort<T> implements StringTooShort<T> {
     TResult Function(T failedValue)? empty,
     TResult Function(T failedValue)? multiline,
     TResult Function(String failedValue)? incorrectCategoryString,
+    TResult Function(String failedValue)? incorrectWeightUnitString,
+    TResult Function(String failedValue)? incorrectCurrencyString,
     TResult Function(T failedValue)? noPhotoSelected,
     TResult Function(T failedValue)? nonPositiveValue,
     TResult Function(T failedValue, num min, num max)? numberOutsideInterval,
@@ -538,6 +588,8 @@ class _$StringTooShort<T> implements StringTooShort<T> {
     TResult Function(T failedValue)? empty,
     TResult Function(T failedValue)? multiline,
     TResult Function(String failedValue)? incorrectCategoryString,
+    TResult Function(String failedValue)? incorrectWeightUnitString,
+    TResult Function(String failedValue)? incorrectCurrencyString,
     TResult Function(T failedValue)? noPhotoSelected,
     TResult Function(T failedValue)? nonPositiveValue,
     TResult Function(T failedValue, num min, num max)? numberOutsideInterval,
@@ -561,6 +613,10 @@ class _$StringTooShort<T> implements StringTooShort<T> {
     required TResult Function(Multiline<T> value) multiline,
     required TResult Function(IncorrectCategoryString<T> value)
         incorrectCategoryString,
+    required TResult Function(IncorrectWeightUnitString<T> value)
+        incorrectWeightUnitString,
+    required TResult Function(IncorrectCurrencyString<T> value)
+        incorrectCurrencyString,
     required TResult Function(NoPhotoSelected<T> value) noPhotoSelected,
     required TResult Function(NonPositivePrice<T> value) nonPositiveValue,
     required TResult Function(NumberOutsideInterval<T> value)
@@ -580,6 +636,9 @@ class _$StringTooShort<T> implements StringTooShort<T> {
     TResult Function(Empty<T> value)? empty,
     TResult Function(Multiline<T> value)? multiline,
     TResult Function(IncorrectCategoryString<T> value)? incorrectCategoryString,
+    TResult Function(IncorrectWeightUnitString<T> value)?
+        incorrectWeightUnitString,
+    TResult Function(IncorrectCurrencyString<T> value)? incorrectCurrencyString,
     TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
     TResult Function(NonPositivePrice<T> value)? nonPositiveValue,
     TResult Function(NumberOutsideInterval<T> value)? numberOutsideInterval,
@@ -598,6 +657,9 @@ class _$StringTooShort<T> implements StringTooShort<T> {
     TResult Function(Empty<T> value)? empty,
     TResult Function(Multiline<T> value)? multiline,
     TResult Function(IncorrectCategoryString<T> value)? incorrectCategoryString,
+    TResult Function(IncorrectWeightUnitString<T> value)?
+        incorrectWeightUnitString,
+    TResult Function(IncorrectCurrencyString<T> value)? incorrectCurrencyString,
     TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
     TResult Function(NonPositivePrice<T> value)? nonPositiveValue,
     TResult Function(NumberOutsideInterval<T> value)? numberOutsideInterval,
@@ -693,6 +755,8 @@ class _$Empty<T> implements Empty<T> {
     required TResult Function(T failedValue) empty,
     required TResult Function(T failedValue) multiline,
     required TResult Function(String failedValue) incorrectCategoryString,
+    required TResult Function(String failedValue) incorrectWeightUnitString,
+    required TResult Function(String failedValue) incorrectCurrencyString,
     required TResult Function(T failedValue) noPhotoSelected,
     required TResult Function(T failedValue) nonPositiveValue,
     required TResult Function(T failedValue, num min, num max)
@@ -712,6 +776,8 @@ class _$Empty<T> implements Empty<T> {
     TResult Function(T failedValue)? empty,
     TResult Function(T failedValue)? multiline,
     TResult Function(String failedValue)? incorrectCategoryString,
+    TResult Function(String failedValue)? incorrectWeightUnitString,
+    TResult Function(String failedValue)? incorrectCurrencyString,
     TResult Function(T failedValue)? noPhotoSelected,
     TResult Function(T failedValue)? nonPositiveValue,
     TResult Function(T failedValue, num min, num max)? numberOutsideInterval,
@@ -730,6 +796,8 @@ class _$Empty<T> implements Empty<T> {
     TResult Function(T failedValue)? empty,
     TResult Function(T failedValue)? multiline,
     TResult Function(String failedValue)? incorrectCategoryString,
+    TResult Function(String failedValue)? incorrectWeightUnitString,
+    TResult Function(String failedValue)? incorrectCurrencyString,
     TResult Function(T failedValue)? noPhotoSelected,
     TResult Function(T failedValue)? nonPositiveValue,
     TResult Function(T failedValue, num min, num max)? numberOutsideInterval,
@@ -753,6 +821,10 @@ class _$Empty<T> implements Empty<T> {
     required TResult Function(Multiline<T> value) multiline,
     required TResult Function(IncorrectCategoryString<T> value)
         incorrectCategoryString,
+    required TResult Function(IncorrectWeightUnitString<T> value)
+        incorrectWeightUnitString,
+    required TResult Function(IncorrectCurrencyString<T> value)
+        incorrectCurrencyString,
     required TResult Function(NoPhotoSelected<T> value) noPhotoSelected,
     required TResult Function(NonPositivePrice<T> value) nonPositiveValue,
     required TResult Function(NumberOutsideInterval<T> value)
@@ -772,6 +844,9 @@ class _$Empty<T> implements Empty<T> {
     TResult Function(Empty<T> value)? empty,
     TResult Function(Multiline<T> value)? multiline,
     TResult Function(IncorrectCategoryString<T> value)? incorrectCategoryString,
+    TResult Function(IncorrectWeightUnitString<T> value)?
+        incorrectWeightUnitString,
+    TResult Function(IncorrectCurrencyString<T> value)? incorrectCurrencyString,
     TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
     TResult Function(NonPositivePrice<T> value)? nonPositiveValue,
     TResult Function(NumberOutsideInterval<T> value)? numberOutsideInterval,
@@ -790,6 +865,9 @@ class _$Empty<T> implements Empty<T> {
     TResult Function(Empty<T> value)? empty,
     TResult Function(Multiline<T> value)? multiline,
     TResult Function(IncorrectCategoryString<T> value)? incorrectCategoryString,
+    TResult Function(IncorrectWeightUnitString<T> value)?
+        incorrectWeightUnitString,
+    TResult Function(IncorrectCurrencyString<T> value)? incorrectCurrencyString,
     TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
     TResult Function(NonPositivePrice<T> value)? nonPositiveValue,
     TResult Function(NumberOutsideInterval<T> value)? numberOutsideInterval,
@@ -885,6 +963,8 @@ class _$Multiline<T> implements Multiline<T> {
     required TResult Function(T failedValue) empty,
     required TResult Function(T failedValue) multiline,
     required TResult Function(String failedValue) incorrectCategoryString,
+    required TResult Function(String failedValue) incorrectWeightUnitString,
+    required TResult Function(String failedValue) incorrectCurrencyString,
     required TResult Function(T failedValue) noPhotoSelected,
     required TResult Function(T failedValue) nonPositiveValue,
     required TResult Function(T failedValue, num min, num max)
@@ -904,6 +984,8 @@ class _$Multiline<T> implements Multiline<T> {
     TResult Function(T failedValue)? empty,
     TResult Function(T failedValue)? multiline,
     TResult Function(String failedValue)? incorrectCategoryString,
+    TResult Function(String failedValue)? incorrectWeightUnitString,
+    TResult Function(String failedValue)? incorrectCurrencyString,
     TResult Function(T failedValue)? noPhotoSelected,
     TResult Function(T failedValue)? nonPositiveValue,
     TResult Function(T failedValue, num min, num max)? numberOutsideInterval,
@@ -922,6 +1004,8 @@ class _$Multiline<T> implements Multiline<T> {
     TResult Function(T failedValue)? empty,
     TResult Function(T failedValue)? multiline,
     TResult Function(String failedValue)? incorrectCategoryString,
+    TResult Function(String failedValue)? incorrectWeightUnitString,
+    TResult Function(String failedValue)? incorrectCurrencyString,
     TResult Function(T failedValue)? noPhotoSelected,
     TResult Function(T failedValue)? nonPositiveValue,
     TResult Function(T failedValue, num min, num max)? numberOutsideInterval,
@@ -945,6 +1029,10 @@ class _$Multiline<T> implements Multiline<T> {
     required TResult Function(Multiline<T> value) multiline,
     required TResult Function(IncorrectCategoryString<T> value)
         incorrectCategoryString,
+    required TResult Function(IncorrectWeightUnitString<T> value)
+        incorrectWeightUnitString,
+    required TResult Function(IncorrectCurrencyString<T> value)
+        incorrectCurrencyString,
     required TResult Function(NoPhotoSelected<T> value) noPhotoSelected,
     required TResult Function(NonPositivePrice<T> value) nonPositiveValue,
     required TResult Function(NumberOutsideInterval<T> value)
@@ -964,6 +1052,9 @@ class _$Multiline<T> implements Multiline<T> {
     TResult Function(Empty<T> value)? empty,
     TResult Function(Multiline<T> value)? multiline,
     TResult Function(IncorrectCategoryString<T> value)? incorrectCategoryString,
+    TResult Function(IncorrectWeightUnitString<T> value)?
+        incorrectWeightUnitString,
+    TResult Function(IncorrectCurrencyString<T> value)? incorrectCurrencyString,
     TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
     TResult Function(NonPositivePrice<T> value)? nonPositiveValue,
     TResult Function(NumberOutsideInterval<T> value)? numberOutsideInterval,
@@ -982,6 +1073,9 @@ class _$Multiline<T> implements Multiline<T> {
     TResult Function(Empty<T> value)? empty,
     TResult Function(Multiline<T> value)? multiline,
     TResult Function(IncorrectCategoryString<T> value)? incorrectCategoryString,
+    TResult Function(IncorrectWeightUnitString<T> value)?
+        incorrectWeightUnitString,
+    TResult Function(IncorrectCurrencyString<T> value)? incorrectCurrencyString,
     TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
     TResult Function(NonPositivePrice<T> value)? nonPositiveValue,
     TResult Function(NumberOutsideInterval<T> value)? numberOutsideInterval,
@@ -1080,6 +1174,8 @@ class _$IncorrectCategoryString<T> implements IncorrectCategoryString<T> {
     required TResult Function(T failedValue) empty,
     required TResult Function(T failedValue) multiline,
     required TResult Function(String failedValue) incorrectCategoryString,
+    required TResult Function(String failedValue) incorrectWeightUnitString,
+    required TResult Function(String failedValue) incorrectCurrencyString,
     required TResult Function(T failedValue) noPhotoSelected,
     required TResult Function(T failedValue) nonPositiveValue,
     required TResult Function(T failedValue, num min, num max)
@@ -1099,6 +1195,8 @@ class _$IncorrectCategoryString<T> implements IncorrectCategoryString<T> {
     TResult Function(T failedValue)? empty,
     TResult Function(T failedValue)? multiline,
     TResult Function(String failedValue)? incorrectCategoryString,
+    TResult Function(String failedValue)? incorrectWeightUnitString,
+    TResult Function(String failedValue)? incorrectCurrencyString,
     TResult Function(T failedValue)? noPhotoSelected,
     TResult Function(T failedValue)? nonPositiveValue,
     TResult Function(T failedValue, num min, num max)? numberOutsideInterval,
@@ -1117,6 +1215,8 @@ class _$IncorrectCategoryString<T> implements IncorrectCategoryString<T> {
     TResult Function(T failedValue)? empty,
     TResult Function(T failedValue)? multiline,
     TResult Function(String failedValue)? incorrectCategoryString,
+    TResult Function(String failedValue)? incorrectWeightUnitString,
+    TResult Function(String failedValue)? incorrectCurrencyString,
     TResult Function(T failedValue)? noPhotoSelected,
     TResult Function(T failedValue)? nonPositiveValue,
     TResult Function(T failedValue, num min, num max)? numberOutsideInterval,
@@ -1140,6 +1240,10 @@ class _$IncorrectCategoryString<T> implements IncorrectCategoryString<T> {
     required TResult Function(Multiline<T> value) multiline,
     required TResult Function(IncorrectCategoryString<T> value)
         incorrectCategoryString,
+    required TResult Function(IncorrectWeightUnitString<T> value)
+        incorrectWeightUnitString,
+    required TResult Function(IncorrectCurrencyString<T> value)
+        incorrectCurrencyString,
     required TResult Function(NoPhotoSelected<T> value) noPhotoSelected,
     required TResult Function(NonPositivePrice<T> value) nonPositiveValue,
     required TResult Function(NumberOutsideInterval<T> value)
@@ -1159,6 +1263,9 @@ class _$IncorrectCategoryString<T> implements IncorrectCategoryString<T> {
     TResult Function(Empty<T> value)? empty,
     TResult Function(Multiline<T> value)? multiline,
     TResult Function(IncorrectCategoryString<T> value)? incorrectCategoryString,
+    TResult Function(IncorrectWeightUnitString<T> value)?
+        incorrectWeightUnitString,
+    TResult Function(IncorrectCurrencyString<T> value)? incorrectCurrencyString,
     TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
     TResult Function(NonPositivePrice<T> value)? nonPositiveValue,
     TResult Function(NumberOutsideInterval<T> value)? numberOutsideInterval,
@@ -1177,6 +1284,9 @@ class _$IncorrectCategoryString<T> implements IncorrectCategoryString<T> {
     TResult Function(Empty<T> value)? empty,
     TResult Function(Multiline<T> value)? multiline,
     TResult Function(IncorrectCategoryString<T> value)? incorrectCategoryString,
+    TResult Function(IncorrectWeightUnitString<T> value)?
+        incorrectWeightUnitString,
+    TResult Function(IncorrectCurrencyString<T> value)? incorrectCurrencyString,
     TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
     TResult Function(NonPositivePrice<T> value)? nonPositiveValue,
     TResult Function(NumberOutsideInterval<T> value)? numberOutsideInterval,
@@ -1199,6 +1309,429 @@ abstract class IncorrectCategoryString<T> implements ProductValueFailure<T> {
   String get failedValue;
   @JsonKey(ignore: true)
   $IncorrectCategoryStringCopyWith<T, IncorrectCategoryString<T>>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $IncorrectWeightUnitStringCopyWith<T, $Res> {
+  factory $IncorrectWeightUnitStringCopyWith(IncorrectWeightUnitString<T> value,
+          $Res Function(IncorrectWeightUnitString<T>) then) =
+      _$IncorrectWeightUnitStringCopyWithImpl<T, $Res>;
+  $Res call({String failedValue});
+}
+
+/// @nodoc
+class _$IncorrectWeightUnitStringCopyWithImpl<T, $Res>
+    extends _$ProductValueFailureCopyWithImpl<T, $Res>
+    implements $IncorrectWeightUnitStringCopyWith<T, $Res> {
+  _$IncorrectWeightUnitStringCopyWithImpl(IncorrectWeightUnitString<T> _value,
+      $Res Function(IncorrectWeightUnitString<T>) _then)
+      : super(_value, (v) => _then(v as IncorrectWeightUnitString<T>));
+
+  @override
+  IncorrectWeightUnitString<T> get _value =>
+      super._value as IncorrectWeightUnitString<T>;
+
+  @override
+  $Res call({
+    Object? failedValue = freezed,
+  }) {
+    return _then(IncorrectWeightUnitString<T>(
+      failedValue: failedValue == freezed
+          ? _value.failedValue
+          : failedValue // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$IncorrectWeightUnitString<T> implements IncorrectWeightUnitString<T> {
+  const _$IncorrectWeightUnitString({required this.failedValue});
+
+  @override
+  final String failedValue;
+
+  @override
+  String toString() {
+    return 'ProductValueFailure<$T>.incorrectWeightUnitString(failedValue: $failedValue)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is IncorrectWeightUnitString<T> &&
+            const DeepCollectionEquality()
+                .equals(other.failedValue, failedValue));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(failedValue));
+
+  @JsonKey(ignore: true)
+  @override
+  $IncorrectWeightUnitStringCopyWith<T, IncorrectWeightUnitString<T>>
+      get copyWith => _$IncorrectWeightUnitStringCopyWithImpl<T,
+          IncorrectWeightUnitString<T>>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(T failedValue, int maxLength) exceedingLength,
+    required TResult Function(T failedValue, int minLength) stringTooShort,
+    required TResult Function(T failedValue) empty,
+    required TResult Function(T failedValue) multiline,
+    required TResult Function(String failedValue) incorrectCategoryString,
+    required TResult Function(String failedValue) incorrectWeightUnitString,
+    required TResult Function(String failedValue) incorrectCurrencyString,
+    required TResult Function(T failedValue) noPhotoSelected,
+    required TResult Function(T failedValue) nonPositiveValue,
+    required TResult Function(T failedValue, num min, num max)
+        numberOutsideInterval,
+    required TResult Function(T failedValue, int maxLength) listTooLong,
+    required TResult Function(T failedValue, int minLength) listTooShort,
+    required TResult Function(T failedValue, int minLength) emptyList,
+  }) {
+    return incorrectWeightUnitString(failedValue);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(T failedValue, int maxLength)? exceedingLength,
+    TResult Function(T failedValue, int minLength)? stringTooShort,
+    TResult Function(T failedValue)? empty,
+    TResult Function(T failedValue)? multiline,
+    TResult Function(String failedValue)? incorrectCategoryString,
+    TResult Function(String failedValue)? incorrectWeightUnitString,
+    TResult Function(String failedValue)? incorrectCurrencyString,
+    TResult Function(T failedValue)? noPhotoSelected,
+    TResult Function(T failedValue)? nonPositiveValue,
+    TResult Function(T failedValue, num min, num max)? numberOutsideInterval,
+    TResult Function(T failedValue, int maxLength)? listTooLong,
+    TResult Function(T failedValue, int minLength)? listTooShort,
+    TResult Function(T failedValue, int minLength)? emptyList,
+  }) {
+    return incorrectWeightUnitString?.call(failedValue);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(T failedValue, int maxLength)? exceedingLength,
+    TResult Function(T failedValue, int minLength)? stringTooShort,
+    TResult Function(T failedValue)? empty,
+    TResult Function(T failedValue)? multiline,
+    TResult Function(String failedValue)? incorrectCategoryString,
+    TResult Function(String failedValue)? incorrectWeightUnitString,
+    TResult Function(String failedValue)? incorrectCurrencyString,
+    TResult Function(T failedValue)? noPhotoSelected,
+    TResult Function(T failedValue)? nonPositiveValue,
+    TResult Function(T failedValue, num min, num max)? numberOutsideInterval,
+    TResult Function(T failedValue, int maxLength)? listTooLong,
+    TResult Function(T failedValue, int minLength)? listTooShort,
+    TResult Function(T failedValue, int minLength)? emptyList,
+    required TResult orElse(),
+  }) {
+    if (incorrectWeightUnitString != null) {
+      return incorrectWeightUnitString(failedValue);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ExceedingLength<T> value) exceedingLength,
+    required TResult Function(StringTooShort<T> value) stringTooShort,
+    required TResult Function(Empty<T> value) empty,
+    required TResult Function(Multiline<T> value) multiline,
+    required TResult Function(IncorrectCategoryString<T> value)
+        incorrectCategoryString,
+    required TResult Function(IncorrectWeightUnitString<T> value)
+        incorrectWeightUnitString,
+    required TResult Function(IncorrectCurrencyString<T> value)
+        incorrectCurrencyString,
+    required TResult Function(NoPhotoSelected<T> value) noPhotoSelected,
+    required TResult Function(NonPositivePrice<T> value) nonPositiveValue,
+    required TResult Function(NumberOutsideInterval<T> value)
+        numberOutsideInterval,
+    required TResult Function(ListTooLong<T> value) listTooLong,
+    required TResult Function(ListTooShort<T> value) listTooShort,
+    required TResult Function(EmptyList<T> value) emptyList,
+  }) {
+    return incorrectWeightUnitString(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(ExceedingLength<T> value)? exceedingLength,
+    TResult Function(StringTooShort<T> value)? stringTooShort,
+    TResult Function(Empty<T> value)? empty,
+    TResult Function(Multiline<T> value)? multiline,
+    TResult Function(IncorrectCategoryString<T> value)? incorrectCategoryString,
+    TResult Function(IncorrectWeightUnitString<T> value)?
+        incorrectWeightUnitString,
+    TResult Function(IncorrectCurrencyString<T> value)? incorrectCurrencyString,
+    TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
+    TResult Function(NonPositivePrice<T> value)? nonPositiveValue,
+    TResult Function(NumberOutsideInterval<T> value)? numberOutsideInterval,
+    TResult Function(ListTooLong<T> value)? listTooLong,
+    TResult Function(ListTooShort<T> value)? listTooShort,
+    TResult Function(EmptyList<T> value)? emptyList,
+  }) {
+    return incorrectWeightUnitString?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ExceedingLength<T> value)? exceedingLength,
+    TResult Function(StringTooShort<T> value)? stringTooShort,
+    TResult Function(Empty<T> value)? empty,
+    TResult Function(Multiline<T> value)? multiline,
+    TResult Function(IncorrectCategoryString<T> value)? incorrectCategoryString,
+    TResult Function(IncorrectWeightUnitString<T> value)?
+        incorrectWeightUnitString,
+    TResult Function(IncorrectCurrencyString<T> value)? incorrectCurrencyString,
+    TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
+    TResult Function(NonPositivePrice<T> value)? nonPositiveValue,
+    TResult Function(NumberOutsideInterval<T> value)? numberOutsideInterval,
+    TResult Function(ListTooLong<T> value)? listTooLong,
+    TResult Function(ListTooShort<T> value)? listTooShort,
+    TResult Function(EmptyList<T> value)? emptyList,
+    required TResult orElse(),
+  }) {
+    if (incorrectWeightUnitString != null) {
+      return incorrectWeightUnitString(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class IncorrectWeightUnitString<T> implements ProductValueFailure<T> {
+  const factory IncorrectWeightUnitString({required String failedValue}) =
+      _$IncorrectWeightUnitString<T>;
+
+  String get failedValue;
+  @JsonKey(ignore: true)
+  $IncorrectWeightUnitStringCopyWith<T, IncorrectWeightUnitString<T>>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $IncorrectCurrencyStringCopyWith<T, $Res> {
+  factory $IncorrectCurrencyStringCopyWith(IncorrectCurrencyString<T> value,
+          $Res Function(IncorrectCurrencyString<T>) then) =
+      _$IncorrectCurrencyStringCopyWithImpl<T, $Res>;
+  $Res call({String failedValue});
+}
+
+/// @nodoc
+class _$IncorrectCurrencyStringCopyWithImpl<T, $Res>
+    extends _$ProductValueFailureCopyWithImpl<T, $Res>
+    implements $IncorrectCurrencyStringCopyWith<T, $Res> {
+  _$IncorrectCurrencyStringCopyWithImpl(IncorrectCurrencyString<T> _value,
+      $Res Function(IncorrectCurrencyString<T>) _then)
+      : super(_value, (v) => _then(v as IncorrectCurrencyString<T>));
+
+  @override
+  IncorrectCurrencyString<T> get _value =>
+      super._value as IncorrectCurrencyString<T>;
+
+  @override
+  $Res call({
+    Object? failedValue = freezed,
+  }) {
+    return _then(IncorrectCurrencyString<T>(
+      failedValue: failedValue == freezed
+          ? _value.failedValue
+          : failedValue // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$IncorrectCurrencyString<T> implements IncorrectCurrencyString<T> {
+  const _$IncorrectCurrencyString({required this.failedValue});
+
+  @override
+  final String failedValue;
+
+  @override
+  String toString() {
+    return 'ProductValueFailure<$T>.incorrectCurrencyString(failedValue: $failedValue)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is IncorrectCurrencyString<T> &&
+            const DeepCollectionEquality()
+                .equals(other.failedValue, failedValue));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(failedValue));
+
+  @JsonKey(ignore: true)
+  @override
+  $IncorrectCurrencyStringCopyWith<T, IncorrectCurrencyString<T>>
+      get copyWith =>
+          _$IncorrectCurrencyStringCopyWithImpl<T, IncorrectCurrencyString<T>>(
+              this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(T failedValue, int maxLength) exceedingLength,
+    required TResult Function(T failedValue, int minLength) stringTooShort,
+    required TResult Function(T failedValue) empty,
+    required TResult Function(T failedValue) multiline,
+    required TResult Function(String failedValue) incorrectCategoryString,
+    required TResult Function(String failedValue) incorrectWeightUnitString,
+    required TResult Function(String failedValue) incorrectCurrencyString,
+    required TResult Function(T failedValue) noPhotoSelected,
+    required TResult Function(T failedValue) nonPositiveValue,
+    required TResult Function(T failedValue, num min, num max)
+        numberOutsideInterval,
+    required TResult Function(T failedValue, int maxLength) listTooLong,
+    required TResult Function(T failedValue, int minLength) listTooShort,
+    required TResult Function(T failedValue, int minLength) emptyList,
+  }) {
+    return incorrectCurrencyString(failedValue);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(T failedValue, int maxLength)? exceedingLength,
+    TResult Function(T failedValue, int minLength)? stringTooShort,
+    TResult Function(T failedValue)? empty,
+    TResult Function(T failedValue)? multiline,
+    TResult Function(String failedValue)? incorrectCategoryString,
+    TResult Function(String failedValue)? incorrectWeightUnitString,
+    TResult Function(String failedValue)? incorrectCurrencyString,
+    TResult Function(T failedValue)? noPhotoSelected,
+    TResult Function(T failedValue)? nonPositiveValue,
+    TResult Function(T failedValue, num min, num max)? numberOutsideInterval,
+    TResult Function(T failedValue, int maxLength)? listTooLong,
+    TResult Function(T failedValue, int minLength)? listTooShort,
+    TResult Function(T failedValue, int minLength)? emptyList,
+  }) {
+    return incorrectCurrencyString?.call(failedValue);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(T failedValue, int maxLength)? exceedingLength,
+    TResult Function(T failedValue, int minLength)? stringTooShort,
+    TResult Function(T failedValue)? empty,
+    TResult Function(T failedValue)? multiline,
+    TResult Function(String failedValue)? incorrectCategoryString,
+    TResult Function(String failedValue)? incorrectWeightUnitString,
+    TResult Function(String failedValue)? incorrectCurrencyString,
+    TResult Function(T failedValue)? noPhotoSelected,
+    TResult Function(T failedValue)? nonPositiveValue,
+    TResult Function(T failedValue, num min, num max)? numberOutsideInterval,
+    TResult Function(T failedValue, int maxLength)? listTooLong,
+    TResult Function(T failedValue, int minLength)? listTooShort,
+    TResult Function(T failedValue, int minLength)? emptyList,
+    required TResult orElse(),
+  }) {
+    if (incorrectCurrencyString != null) {
+      return incorrectCurrencyString(failedValue);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ExceedingLength<T> value) exceedingLength,
+    required TResult Function(StringTooShort<T> value) stringTooShort,
+    required TResult Function(Empty<T> value) empty,
+    required TResult Function(Multiline<T> value) multiline,
+    required TResult Function(IncorrectCategoryString<T> value)
+        incorrectCategoryString,
+    required TResult Function(IncorrectWeightUnitString<T> value)
+        incorrectWeightUnitString,
+    required TResult Function(IncorrectCurrencyString<T> value)
+        incorrectCurrencyString,
+    required TResult Function(NoPhotoSelected<T> value) noPhotoSelected,
+    required TResult Function(NonPositivePrice<T> value) nonPositiveValue,
+    required TResult Function(NumberOutsideInterval<T> value)
+        numberOutsideInterval,
+    required TResult Function(ListTooLong<T> value) listTooLong,
+    required TResult Function(ListTooShort<T> value) listTooShort,
+    required TResult Function(EmptyList<T> value) emptyList,
+  }) {
+    return incorrectCurrencyString(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(ExceedingLength<T> value)? exceedingLength,
+    TResult Function(StringTooShort<T> value)? stringTooShort,
+    TResult Function(Empty<T> value)? empty,
+    TResult Function(Multiline<T> value)? multiline,
+    TResult Function(IncorrectCategoryString<T> value)? incorrectCategoryString,
+    TResult Function(IncorrectWeightUnitString<T> value)?
+        incorrectWeightUnitString,
+    TResult Function(IncorrectCurrencyString<T> value)? incorrectCurrencyString,
+    TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
+    TResult Function(NonPositivePrice<T> value)? nonPositiveValue,
+    TResult Function(NumberOutsideInterval<T> value)? numberOutsideInterval,
+    TResult Function(ListTooLong<T> value)? listTooLong,
+    TResult Function(ListTooShort<T> value)? listTooShort,
+    TResult Function(EmptyList<T> value)? emptyList,
+  }) {
+    return incorrectCurrencyString?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ExceedingLength<T> value)? exceedingLength,
+    TResult Function(StringTooShort<T> value)? stringTooShort,
+    TResult Function(Empty<T> value)? empty,
+    TResult Function(Multiline<T> value)? multiline,
+    TResult Function(IncorrectCategoryString<T> value)? incorrectCategoryString,
+    TResult Function(IncorrectWeightUnitString<T> value)?
+        incorrectWeightUnitString,
+    TResult Function(IncorrectCurrencyString<T> value)? incorrectCurrencyString,
+    TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
+    TResult Function(NonPositivePrice<T> value)? nonPositiveValue,
+    TResult Function(NumberOutsideInterval<T> value)? numberOutsideInterval,
+    TResult Function(ListTooLong<T> value)? listTooLong,
+    TResult Function(ListTooShort<T> value)? listTooShort,
+    TResult Function(EmptyList<T> value)? emptyList,
+    required TResult orElse(),
+  }) {
+    if (incorrectCurrencyString != null) {
+      return incorrectCurrencyString(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class IncorrectCurrencyString<T> implements ProductValueFailure<T> {
+  const factory IncorrectCurrencyString({required String failedValue}) =
+      _$IncorrectCurrencyString<T>;
+
+  String get failedValue;
+  @JsonKey(ignore: true)
+  $IncorrectCurrencyStringCopyWith<T, IncorrectCurrencyString<T>>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -1273,6 +1806,8 @@ class _$NoPhotoSelected<T> implements NoPhotoSelected<T> {
     required TResult Function(T failedValue) empty,
     required TResult Function(T failedValue) multiline,
     required TResult Function(String failedValue) incorrectCategoryString,
+    required TResult Function(String failedValue) incorrectWeightUnitString,
+    required TResult Function(String failedValue) incorrectCurrencyString,
     required TResult Function(T failedValue) noPhotoSelected,
     required TResult Function(T failedValue) nonPositiveValue,
     required TResult Function(T failedValue, num min, num max)
@@ -1292,6 +1827,8 @@ class _$NoPhotoSelected<T> implements NoPhotoSelected<T> {
     TResult Function(T failedValue)? empty,
     TResult Function(T failedValue)? multiline,
     TResult Function(String failedValue)? incorrectCategoryString,
+    TResult Function(String failedValue)? incorrectWeightUnitString,
+    TResult Function(String failedValue)? incorrectCurrencyString,
     TResult Function(T failedValue)? noPhotoSelected,
     TResult Function(T failedValue)? nonPositiveValue,
     TResult Function(T failedValue, num min, num max)? numberOutsideInterval,
@@ -1310,6 +1847,8 @@ class _$NoPhotoSelected<T> implements NoPhotoSelected<T> {
     TResult Function(T failedValue)? empty,
     TResult Function(T failedValue)? multiline,
     TResult Function(String failedValue)? incorrectCategoryString,
+    TResult Function(String failedValue)? incorrectWeightUnitString,
+    TResult Function(String failedValue)? incorrectCurrencyString,
     TResult Function(T failedValue)? noPhotoSelected,
     TResult Function(T failedValue)? nonPositiveValue,
     TResult Function(T failedValue, num min, num max)? numberOutsideInterval,
@@ -1333,6 +1872,10 @@ class _$NoPhotoSelected<T> implements NoPhotoSelected<T> {
     required TResult Function(Multiline<T> value) multiline,
     required TResult Function(IncorrectCategoryString<T> value)
         incorrectCategoryString,
+    required TResult Function(IncorrectWeightUnitString<T> value)
+        incorrectWeightUnitString,
+    required TResult Function(IncorrectCurrencyString<T> value)
+        incorrectCurrencyString,
     required TResult Function(NoPhotoSelected<T> value) noPhotoSelected,
     required TResult Function(NonPositivePrice<T> value) nonPositiveValue,
     required TResult Function(NumberOutsideInterval<T> value)
@@ -1352,6 +1895,9 @@ class _$NoPhotoSelected<T> implements NoPhotoSelected<T> {
     TResult Function(Empty<T> value)? empty,
     TResult Function(Multiline<T> value)? multiline,
     TResult Function(IncorrectCategoryString<T> value)? incorrectCategoryString,
+    TResult Function(IncorrectWeightUnitString<T> value)?
+        incorrectWeightUnitString,
+    TResult Function(IncorrectCurrencyString<T> value)? incorrectCurrencyString,
     TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
     TResult Function(NonPositivePrice<T> value)? nonPositiveValue,
     TResult Function(NumberOutsideInterval<T> value)? numberOutsideInterval,
@@ -1370,6 +1916,9 @@ class _$NoPhotoSelected<T> implements NoPhotoSelected<T> {
     TResult Function(Empty<T> value)? empty,
     TResult Function(Multiline<T> value)? multiline,
     TResult Function(IncorrectCategoryString<T> value)? incorrectCategoryString,
+    TResult Function(IncorrectWeightUnitString<T> value)?
+        incorrectWeightUnitString,
+    TResult Function(IncorrectCurrencyString<T> value)? incorrectCurrencyString,
     TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
     TResult Function(NonPositivePrice<T> value)? nonPositiveValue,
     TResult Function(NumberOutsideInterval<T> value)? numberOutsideInterval,
@@ -1466,6 +2015,8 @@ class _$NonPositivePrice<T> implements NonPositivePrice<T> {
     required TResult Function(T failedValue) empty,
     required TResult Function(T failedValue) multiline,
     required TResult Function(String failedValue) incorrectCategoryString,
+    required TResult Function(String failedValue) incorrectWeightUnitString,
+    required TResult Function(String failedValue) incorrectCurrencyString,
     required TResult Function(T failedValue) noPhotoSelected,
     required TResult Function(T failedValue) nonPositiveValue,
     required TResult Function(T failedValue, num min, num max)
@@ -1485,6 +2036,8 @@ class _$NonPositivePrice<T> implements NonPositivePrice<T> {
     TResult Function(T failedValue)? empty,
     TResult Function(T failedValue)? multiline,
     TResult Function(String failedValue)? incorrectCategoryString,
+    TResult Function(String failedValue)? incorrectWeightUnitString,
+    TResult Function(String failedValue)? incorrectCurrencyString,
     TResult Function(T failedValue)? noPhotoSelected,
     TResult Function(T failedValue)? nonPositiveValue,
     TResult Function(T failedValue, num min, num max)? numberOutsideInterval,
@@ -1503,6 +2056,8 @@ class _$NonPositivePrice<T> implements NonPositivePrice<T> {
     TResult Function(T failedValue)? empty,
     TResult Function(T failedValue)? multiline,
     TResult Function(String failedValue)? incorrectCategoryString,
+    TResult Function(String failedValue)? incorrectWeightUnitString,
+    TResult Function(String failedValue)? incorrectCurrencyString,
     TResult Function(T failedValue)? noPhotoSelected,
     TResult Function(T failedValue)? nonPositiveValue,
     TResult Function(T failedValue, num min, num max)? numberOutsideInterval,
@@ -1526,6 +2081,10 @@ class _$NonPositivePrice<T> implements NonPositivePrice<T> {
     required TResult Function(Multiline<T> value) multiline,
     required TResult Function(IncorrectCategoryString<T> value)
         incorrectCategoryString,
+    required TResult Function(IncorrectWeightUnitString<T> value)
+        incorrectWeightUnitString,
+    required TResult Function(IncorrectCurrencyString<T> value)
+        incorrectCurrencyString,
     required TResult Function(NoPhotoSelected<T> value) noPhotoSelected,
     required TResult Function(NonPositivePrice<T> value) nonPositiveValue,
     required TResult Function(NumberOutsideInterval<T> value)
@@ -1545,6 +2104,9 @@ class _$NonPositivePrice<T> implements NonPositivePrice<T> {
     TResult Function(Empty<T> value)? empty,
     TResult Function(Multiline<T> value)? multiline,
     TResult Function(IncorrectCategoryString<T> value)? incorrectCategoryString,
+    TResult Function(IncorrectWeightUnitString<T> value)?
+        incorrectWeightUnitString,
+    TResult Function(IncorrectCurrencyString<T> value)? incorrectCurrencyString,
     TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
     TResult Function(NonPositivePrice<T> value)? nonPositiveValue,
     TResult Function(NumberOutsideInterval<T> value)? numberOutsideInterval,
@@ -1563,6 +2125,9 @@ class _$NonPositivePrice<T> implements NonPositivePrice<T> {
     TResult Function(Empty<T> value)? empty,
     TResult Function(Multiline<T> value)? multiline,
     TResult Function(IncorrectCategoryString<T> value)? incorrectCategoryString,
+    TResult Function(IncorrectWeightUnitString<T> value)?
+        incorrectWeightUnitString,
+    TResult Function(IncorrectCurrencyString<T> value)? incorrectCurrencyString,
     TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
     TResult Function(NonPositivePrice<T> value)? nonPositiveValue,
     TResult Function(NumberOutsideInterval<T> value)? numberOutsideInterval,
@@ -1681,6 +2246,8 @@ class _$NumberOutsideInterval<T> implements NumberOutsideInterval<T> {
     required TResult Function(T failedValue) empty,
     required TResult Function(T failedValue) multiline,
     required TResult Function(String failedValue) incorrectCategoryString,
+    required TResult Function(String failedValue) incorrectWeightUnitString,
+    required TResult Function(String failedValue) incorrectCurrencyString,
     required TResult Function(T failedValue) noPhotoSelected,
     required TResult Function(T failedValue) nonPositiveValue,
     required TResult Function(T failedValue, num min, num max)
@@ -1700,6 +2267,8 @@ class _$NumberOutsideInterval<T> implements NumberOutsideInterval<T> {
     TResult Function(T failedValue)? empty,
     TResult Function(T failedValue)? multiline,
     TResult Function(String failedValue)? incorrectCategoryString,
+    TResult Function(String failedValue)? incorrectWeightUnitString,
+    TResult Function(String failedValue)? incorrectCurrencyString,
     TResult Function(T failedValue)? noPhotoSelected,
     TResult Function(T failedValue)? nonPositiveValue,
     TResult Function(T failedValue, num min, num max)? numberOutsideInterval,
@@ -1718,6 +2287,8 @@ class _$NumberOutsideInterval<T> implements NumberOutsideInterval<T> {
     TResult Function(T failedValue)? empty,
     TResult Function(T failedValue)? multiline,
     TResult Function(String failedValue)? incorrectCategoryString,
+    TResult Function(String failedValue)? incorrectWeightUnitString,
+    TResult Function(String failedValue)? incorrectCurrencyString,
     TResult Function(T failedValue)? noPhotoSelected,
     TResult Function(T failedValue)? nonPositiveValue,
     TResult Function(T failedValue, num min, num max)? numberOutsideInterval,
@@ -1741,6 +2312,10 @@ class _$NumberOutsideInterval<T> implements NumberOutsideInterval<T> {
     required TResult Function(Multiline<T> value) multiline,
     required TResult Function(IncorrectCategoryString<T> value)
         incorrectCategoryString,
+    required TResult Function(IncorrectWeightUnitString<T> value)
+        incorrectWeightUnitString,
+    required TResult Function(IncorrectCurrencyString<T> value)
+        incorrectCurrencyString,
     required TResult Function(NoPhotoSelected<T> value) noPhotoSelected,
     required TResult Function(NonPositivePrice<T> value) nonPositiveValue,
     required TResult Function(NumberOutsideInterval<T> value)
@@ -1760,6 +2335,9 @@ class _$NumberOutsideInterval<T> implements NumberOutsideInterval<T> {
     TResult Function(Empty<T> value)? empty,
     TResult Function(Multiline<T> value)? multiline,
     TResult Function(IncorrectCategoryString<T> value)? incorrectCategoryString,
+    TResult Function(IncorrectWeightUnitString<T> value)?
+        incorrectWeightUnitString,
+    TResult Function(IncorrectCurrencyString<T> value)? incorrectCurrencyString,
     TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
     TResult Function(NonPositivePrice<T> value)? nonPositiveValue,
     TResult Function(NumberOutsideInterval<T> value)? numberOutsideInterval,
@@ -1778,6 +2356,9 @@ class _$NumberOutsideInterval<T> implements NumberOutsideInterval<T> {
     TResult Function(Empty<T> value)? empty,
     TResult Function(Multiline<T> value)? multiline,
     TResult Function(IncorrectCategoryString<T> value)? incorrectCategoryString,
+    TResult Function(IncorrectWeightUnitString<T> value)?
+        incorrectWeightUnitString,
+    TResult Function(IncorrectCurrencyString<T> value)? incorrectCurrencyString,
     TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
     TResult Function(NonPositivePrice<T> value)? nonPositiveValue,
     TResult Function(NumberOutsideInterval<T> value)? numberOutsideInterval,
@@ -1888,6 +2469,8 @@ class _$ListTooLong<T> implements ListTooLong<T> {
     required TResult Function(T failedValue) empty,
     required TResult Function(T failedValue) multiline,
     required TResult Function(String failedValue) incorrectCategoryString,
+    required TResult Function(String failedValue) incorrectWeightUnitString,
+    required TResult Function(String failedValue) incorrectCurrencyString,
     required TResult Function(T failedValue) noPhotoSelected,
     required TResult Function(T failedValue) nonPositiveValue,
     required TResult Function(T failedValue, num min, num max)
@@ -1907,6 +2490,8 @@ class _$ListTooLong<T> implements ListTooLong<T> {
     TResult Function(T failedValue)? empty,
     TResult Function(T failedValue)? multiline,
     TResult Function(String failedValue)? incorrectCategoryString,
+    TResult Function(String failedValue)? incorrectWeightUnitString,
+    TResult Function(String failedValue)? incorrectCurrencyString,
     TResult Function(T failedValue)? noPhotoSelected,
     TResult Function(T failedValue)? nonPositiveValue,
     TResult Function(T failedValue, num min, num max)? numberOutsideInterval,
@@ -1925,6 +2510,8 @@ class _$ListTooLong<T> implements ListTooLong<T> {
     TResult Function(T failedValue)? empty,
     TResult Function(T failedValue)? multiline,
     TResult Function(String failedValue)? incorrectCategoryString,
+    TResult Function(String failedValue)? incorrectWeightUnitString,
+    TResult Function(String failedValue)? incorrectCurrencyString,
     TResult Function(T failedValue)? noPhotoSelected,
     TResult Function(T failedValue)? nonPositiveValue,
     TResult Function(T failedValue, num min, num max)? numberOutsideInterval,
@@ -1948,6 +2535,10 @@ class _$ListTooLong<T> implements ListTooLong<T> {
     required TResult Function(Multiline<T> value) multiline,
     required TResult Function(IncorrectCategoryString<T> value)
         incorrectCategoryString,
+    required TResult Function(IncorrectWeightUnitString<T> value)
+        incorrectWeightUnitString,
+    required TResult Function(IncorrectCurrencyString<T> value)
+        incorrectCurrencyString,
     required TResult Function(NoPhotoSelected<T> value) noPhotoSelected,
     required TResult Function(NonPositivePrice<T> value) nonPositiveValue,
     required TResult Function(NumberOutsideInterval<T> value)
@@ -1967,6 +2558,9 @@ class _$ListTooLong<T> implements ListTooLong<T> {
     TResult Function(Empty<T> value)? empty,
     TResult Function(Multiline<T> value)? multiline,
     TResult Function(IncorrectCategoryString<T> value)? incorrectCategoryString,
+    TResult Function(IncorrectWeightUnitString<T> value)?
+        incorrectWeightUnitString,
+    TResult Function(IncorrectCurrencyString<T> value)? incorrectCurrencyString,
     TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
     TResult Function(NonPositivePrice<T> value)? nonPositiveValue,
     TResult Function(NumberOutsideInterval<T> value)? numberOutsideInterval,
@@ -1985,6 +2579,9 @@ class _$ListTooLong<T> implements ListTooLong<T> {
     TResult Function(Empty<T> value)? empty,
     TResult Function(Multiline<T> value)? multiline,
     TResult Function(IncorrectCategoryString<T> value)? incorrectCategoryString,
+    TResult Function(IncorrectWeightUnitString<T> value)?
+        incorrectWeightUnitString,
+    TResult Function(IncorrectCurrencyString<T> value)? incorrectCurrencyString,
     TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
     TResult Function(NonPositivePrice<T> value)? nonPositiveValue,
     TResult Function(NumberOutsideInterval<T> value)? numberOutsideInterval,
@@ -2092,6 +2689,8 @@ class _$ListTooShort<T> implements ListTooShort<T> {
     required TResult Function(T failedValue) empty,
     required TResult Function(T failedValue) multiline,
     required TResult Function(String failedValue) incorrectCategoryString,
+    required TResult Function(String failedValue) incorrectWeightUnitString,
+    required TResult Function(String failedValue) incorrectCurrencyString,
     required TResult Function(T failedValue) noPhotoSelected,
     required TResult Function(T failedValue) nonPositiveValue,
     required TResult Function(T failedValue, num min, num max)
@@ -2111,6 +2710,8 @@ class _$ListTooShort<T> implements ListTooShort<T> {
     TResult Function(T failedValue)? empty,
     TResult Function(T failedValue)? multiline,
     TResult Function(String failedValue)? incorrectCategoryString,
+    TResult Function(String failedValue)? incorrectWeightUnitString,
+    TResult Function(String failedValue)? incorrectCurrencyString,
     TResult Function(T failedValue)? noPhotoSelected,
     TResult Function(T failedValue)? nonPositiveValue,
     TResult Function(T failedValue, num min, num max)? numberOutsideInterval,
@@ -2129,6 +2730,8 @@ class _$ListTooShort<T> implements ListTooShort<T> {
     TResult Function(T failedValue)? empty,
     TResult Function(T failedValue)? multiline,
     TResult Function(String failedValue)? incorrectCategoryString,
+    TResult Function(String failedValue)? incorrectWeightUnitString,
+    TResult Function(String failedValue)? incorrectCurrencyString,
     TResult Function(T failedValue)? noPhotoSelected,
     TResult Function(T failedValue)? nonPositiveValue,
     TResult Function(T failedValue, num min, num max)? numberOutsideInterval,
@@ -2152,6 +2755,10 @@ class _$ListTooShort<T> implements ListTooShort<T> {
     required TResult Function(Multiline<T> value) multiline,
     required TResult Function(IncorrectCategoryString<T> value)
         incorrectCategoryString,
+    required TResult Function(IncorrectWeightUnitString<T> value)
+        incorrectWeightUnitString,
+    required TResult Function(IncorrectCurrencyString<T> value)
+        incorrectCurrencyString,
     required TResult Function(NoPhotoSelected<T> value) noPhotoSelected,
     required TResult Function(NonPositivePrice<T> value) nonPositiveValue,
     required TResult Function(NumberOutsideInterval<T> value)
@@ -2171,6 +2778,9 @@ class _$ListTooShort<T> implements ListTooShort<T> {
     TResult Function(Empty<T> value)? empty,
     TResult Function(Multiline<T> value)? multiline,
     TResult Function(IncorrectCategoryString<T> value)? incorrectCategoryString,
+    TResult Function(IncorrectWeightUnitString<T> value)?
+        incorrectWeightUnitString,
+    TResult Function(IncorrectCurrencyString<T> value)? incorrectCurrencyString,
     TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
     TResult Function(NonPositivePrice<T> value)? nonPositiveValue,
     TResult Function(NumberOutsideInterval<T> value)? numberOutsideInterval,
@@ -2189,6 +2799,9 @@ class _$ListTooShort<T> implements ListTooShort<T> {
     TResult Function(Empty<T> value)? empty,
     TResult Function(Multiline<T> value)? multiline,
     TResult Function(IncorrectCategoryString<T> value)? incorrectCategoryString,
+    TResult Function(IncorrectWeightUnitString<T> value)?
+        incorrectWeightUnitString,
+    TResult Function(IncorrectCurrencyString<T> value)? incorrectCurrencyString,
     TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
     TResult Function(NonPositivePrice<T> value)? nonPositiveValue,
     TResult Function(NumberOutsideInterval<T> value)? numberOutsideInterval,
@@ -2296,6 +2909,8 @@ class _$EmptyList<T> implements EmptyList<T> {
     required TResult Function(T failedValue) empty,
     required TResult Function(T failedValue) multiline,
     required TResult Function(String failedValue) incorrectCategoryString,
+    required TResult Function(String failedValue) incorrectWeightUnitString,
+    required TResult Function(String failedValue) incorrectCurrencyString,
     required TResult Function(T failedValue) noPhotoSelected,
     required TResult Function(T failedValue) nonPositiveValue,
     required TResult Function(T failedValue, num min, num max)
@@ -2315,6 +2930,8 @@ class _$EmptyList<T> implements EmptyList<T> {
     TResult Function(T failedValue)? empty,
     TResult Function(T failedValue)? multiline,
     TResult Function(String failedValue)? incorrectCategoryString,
+    TResult Function(String failedValue)? incorrectWeightUnitString,
+    TResult Function(String failedValue)? incorrectCurrencyString,
     TResult Function(T failedValue)? noPhotoSelected,
     TResult Function(T failedValue)? nonPositiveValue,
     TResult Function(T failedValue, num min, num max)? numberOutsideInterval,
@@ -2333,6 +2950,8 @@ class _$EmptyList<T> implements EmptyList<T> {
     TResult Function(T failedValue)? empty,
     TResult Function(T failedValue)? multiline,
     TResult Function(String failedValue)? incorrectCategoryString,
+    TResult Function(String failedValue)? incorrectWeightUnitString,
+    TResult Function(String failedValue)? incorrectCurrencyString,
     TResult Function(T failedValue)? noPhotoSelected,
     TResult Function(T failedValue)? nonPositiveValue,
     TResult Function(T failedValue, num min, num max)? numberOutsideInterval,
@@ -2356,6 +2975,10 @@ class _$EmptyList<T> implements EmptyList<T> {
     required TResult Function(Multiline<T> value) multiline,
     required TResult Function(IncorrectCategoryString<T> value)
         incorrectCategoryString,
+    required TResult Function(IncorrectWeightUnitString<T> value)
+        incorrectWeightUnitString,
+    required TResult Function(IncorrectCurrencyString<T> value)
+        incorrectCurrencyString,
     required TResult Function(NoPhotoSelected<T> value) noPhotoSelected,
     required TResult Function(NonPositivePrice<T> value) nonPositiveValue,
     required TResult Function(NumberOutsideInterval<T> value)
@@ -2375,6 +2998,9 @@ class _$EmptyList<T> implements EmptyList<T> {
     TResult Function(Empty<T> value)? empty,
     TResult Function(Multiline<T> value)? multiline,
     TResult Function(IncorrectCategoryString<T> value)? incorrectCategoryString,
+    TResult Function(IncorrectWeightUnitString<T> value)?
+        incorrectWeightUnitString,
+    TResult Function(IncorrectCurrencyString<T> value)? incorrectCurrencyString,
     TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
     TResult Function(NonPositivePrice<T> value)? nonPositiveValue,
     TResult Function(NumberOutsideInterval<T> value)? numberOutsideInterval,
@@ -2393,6 +3019,9 @@ class _$EmptyList<T> implements EmptyList<T> {
     TResult Function(Empty<T> value)? empty,
     TResult Function(Multiline<T> value)? multiline,
     TResult Function(IncorrectCategoryString<T> value)? incorrectCategoryString,
+    TResult Function(IncorrectWeightUnitString<T> value)?
+        incorrectWeightUnitString,
+    TResult Function(IncorrectCurrencyString<T> value)? incorrectCurrencyString,
     TResult Function(NoPhotoSelected<T> value)? noPhotoSelected,
     TResult Function(NonPositivePrice<T> value)? nonPositiveValue,
     TResult Function(NumberOutsideInterval<T> value)? numberOutsideInterval,

@@ -18,10 +18,10 @@ class _$WeightTearOff {
   const _$WeightTearOff();
 
   _Weight call(
-      {required PositiveNumber weight, WeightUnit unit = WeightUnit.gram}) {
+      {required PositiveNumber weight, required WeightUnit weightUnit}) {
     return _Weight(
       weight: weight,
-      unit: unit,
+      weightUnit: weightUnit,
     );
   }
 }
@@ -32,7 +32,7 @@ const $Weight = _$WeightTearOff();
 /// @nodoc
 mixin _$Weight {
   PositiveNumber get weight => throw _privateConstructorUsedError;
-  WeightUnit get unit => throw _privateConstructorUsedError;
+  WeightUnit get weightUnit => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $WeightCopyWith<Weight> get copyWith => throw _privateConstructorUsedError;
@@ -42,7 +42,7 @@ mixin _$Weight {
 abstract class $WeightCopyWith<$Res> {
   factory $WeightCopyWith(Weight value, $Res Function(Weight) then) =
       _$WeightCopyWithImpl<$Res>;
-  $Res call({PositiveNumber weight, WeightUnit unit});
+  $Res call({PositiveNumber weight, WeightUnit weightUnit});
 }
 
 /// @nodoc
@@ -56,16 +56,16 @@ class _$WeightCopyWithImpl<$Res> implements $WeightCopyWith<$Res> {
   @override
   $Res call({
     Object? weight = freezed,
-    Object? unit = freezed,
+    Object? weightUnit = freezed,
   }) {
     return _then(_value.copyWith(
       weight: weight == freezed
           ? _value.weight
           : weight // ignore: cast_nullable_to_non_nullable
               as PositiveNumber,
-      unit: unit == freezed
-          ? _value.unit
-          : unit // ignore: cast_nullable_to_non_nullable
+      weightUnit: weightUnit == freezed
+          ? _value.weightUnit
+          : weightUnit // ignore: cast_nullable_to_non_nullable
               as WeightUnit,
     ));
   }
@@ -76,7 +76,7 @@ abstract class _$WeightCopyWith<$Res> implements $WeightCopyWith<$Res> {
   factory _$WeightCopyWith(_Weight value, $Res Function(_Weight) then) =
       __$WeightCopyWithImpl<$Res>;
   @override
-  $Res call({PositiveNumber weight, WeightUnit unit});
+  $Res call({PositiveNumber weight, WeightUnit weightUnit});
 }
 
 /// @nodoc
@@ -91,16 +91,16 @@ class __$WeightCopyWithImpl<$Res> extends _$WeightCopyWithImpl<$Res>
   @override
   $Res call({
     Object? weight = freezed,
-    Object? unit = freezed,
+    Object? weightUnit = freezed,
   }) {
     return _then(_Weight(
       weight: weight == freezed
           ? _value.weight
           : weight // ignore: cast_nullable_to_non_nullable
               as PositiveNumber,
-      unit: unit == freezed
-          ? _value.unit
-          : unit // ignore: cast_nullable_to_non_nullable
+      weightUnit: weightUnit == freezed
+          ? _value.weightUnit
+          : weightUnit // ignore: cast_nullable_to_non_nullable
               as WeightUnit,
     ));
   }
@@ -109,18 +109,16 @@ class __$WeightCopyWithImpl<$Res> extends _$WeightCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Weight extends _Weight {
-  const _$_Weight({required this.weight, this.unit = WeightUnit.gram})
-      : super._();
+  const _$_Weight({required this.weight, required this.weightUnit}) : super._();
 
   @override
   final PositiveNumber weight;
-  @JsonKey()
   @override
-  final WeightUnit unit;
+  final WeightUnit weightUnit;
 
   @override
   String toString() {
-    return 'Weight(weight: $weight, unit: $unit)';
+    return 'Weight(weight: $weight, weightUnit: $weightUnit)';
   }
 
   @override
@@ -129,14 +127,15 @@ class _$_Weight extends _Weight {
         (other.runtimeType == runtimeType &&
             other is _Weight &&
             const DeepCollectionEquality().equals(other.weight, weight) &&
-            const DeepCollectionEquality().equals(other.unit, unit));
+            const DeepCollectionEquality()
+                .equals(other.weightUnit, weightUnit));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(weight),
-      const DeepCollectionEquality().hash(unit));
+      const DeepCollectionEquality().hash(weightUnit));
 
   @JsonKey(ignore: true)
   @override
@@ -145,14 +144,15 @@ class _$_Weight extends _Weight {
 }
 
 abstract class _Weight extends Weight {
-  const factory _Weight({required PositiveNumber weight, WeightUnit unit}) =
-      _$_Weight;
+  const factory _Weight(
+      {required PositiveNumber weight,
+      required WeightUnit weightUnit}) = _$_Weight;
   const _Weight._() : super._();
 
   @override
   PositiveNumber get weight;
   @override
-  WeightUnit get unit;
+  WeightUnit get weightUnit;
   @override
   @JsonKey(ignore: true)
   _$WeightCopyWith<_Weight> get copyWith => throw _privateConstructorUsedError;

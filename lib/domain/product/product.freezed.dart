@@ -21,18 +21,18 @@ class _$ProductTearOff {
       {required UniqueId id,
       required Barcode barcode,
       required Weight weight,
-      required Fats fats,
+      required Price price,
       required Category category,
       required ProductName name,
       required BrandName brand,
       required ProductDescription description,
       required ProductDescription ingredients,
-      required NonEmptyList5<ProductPhoto> photos}) {
+      required NonEmptyList5<String> photos}) {
     return _Product(
       id: id,
       barcode: barcode,
       weight: weight,
-      fats: fats,
+      price: price,
       category: category,
       name: name,
       brand: brand,
@@ -50,14 +50,14 @@ const $Product = _$ProductTearOff();
 mixin _$Product {
   UniqueId get id => throw _privateConstructorUsedError;
   Barcode get barcode => throw _privateConstructorUsedError;
-  Weight get weight => throw _privateConstructorUsedError;
-  Fats get fats => throw _privateConstructorUsedError;
+  Weight get weight => throw _privateConstructorUsedError; //required Fats fats,
+  Price get price => throw _privateConstructorUsedError;
   Category get category => throw _privateConstructorUsedError;
   ProductName get name => throw _privateConstructorUsedError;
   BrandName get brand => throw _privateConstructorUsedError;
   ProductDescription get description => throw _privateConstructorUsedError;
   ProductDescription get ingredients => throw _privateConstructorUsedError;
-  NonEmptyList5<ProductPhoto> get photos => throw _privateConstructorUsedError;
+  NonEmptyList5<String> get photos => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ProductCopyWith<Product> get copyWith => throw _privateConstructorUsedError;
@@ -71,15 +71,16 @@ abstract class $ProductCopyWith<$Res> {
       {UniqueId id,
       Barcode barcode,
       Weight weight,
-      Fats fats,
+      Price price,
       Category category,
       ProductName name,
       BrandName brand,
       ProductDescription description,
       ProductDescription ingredients,
-      NonEmptyList5<ProductPhoto> photos});
+      NonEmptyList5<String> photos});
 
   $WeightCopyWith<$Res> get weight;
+  $PriceCopyWith<$Res> get price;
 }
 
 /// @nodoc
@@ -95,7 +96,7 @@ class _$ProductCopyWithImpl<$Res> implements $ProductCopyWith<$Res> {
     Object? id = freezed,
     Object? barcode = freezed,
     Object? weight = freezed,
-    Object? fats = freezed,
+    Object? price = freezed,
     Object? category = freezed,
     Object? name = freezed,
     Object? brand = freezed,
@@ -116,10 +117,10 @@ class _$ProductCopyWithImpl<$Res> implements $ProductCopyWith<$Res> {
           ? _value.weight
           : weight // ignore: cast_nullable_to_non_nullable
               as Weight,
-      fats: fats == freezed
-          ? _value.fats
-          : fats // ignore: cast_nullable_to_non_nullable
-              as Fats,
+      price: price == freezed
+          ? _value.price
+          : price // ignore: cast_nullable_to_non_nullable
+              as Price,
       category: category == freezed
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
@@ -143,7 +144,7 @@ class _$ProductCopyWithImpl<$Res> implements $ProductCopyWith<$Res> {
       photos: photos == freezed
           ? _value.photos
           : photos // ignore: cast_nullable_to_non_nullable
-              as NonEmptyList5<ProductPhoto>,
+              as NonEmptyList5<String>,
     ));
   }
 
@@ -151,6 +152,13 @@ class _$ProductCopyWithImpl<$Res> implements $ProductCopyWith<$Res> {
   $WeightCopyWith<$Res> get weight {
     return $WeightCopyWith<$Res>(_value.weight, (value) {
       return _then(_value.copyWith(weight: value));
+    });
+  }
+
+  @override
+  $PriceCopyWith<$Res> get price {
+    return $PriceCopyWith<$Res>(_value.price, (value) {
+      return _then(_value.copyWith(price: value));
     });
   }
 }
@@ -164,16 +172,18 @@ abstract class _$ProductCopyWith<$Res> implements $ProductCopyWith<$Res> {
       {UniqueId id,
       Barcode barcode,
       Weight weight,
-      Fats fats,
+      Price price,
       Category category,
       ProductName name,
       BrandName brand,
       ProductDescription description,
       ProductDescription ingredients,
-      NonEmptyList5<ProductPhoto> photos});
+      NonEmptyList5<String> photos});
 
   @override
   $WeightCopyWith<$Res> get weight;
+  @override
+  $PriceCopyWith<$Res> get price;
 }
 
 /// @nodoc
@@ -190,7 +200,7 @@ class __$ProductCopyWithImpl<$Res> extends _$ProductCopyWithImpl<$Res>
     Object? id = freezed,
     Object? barcode = freezed,
     Object? weight = freezed,
-    Object? fats = freezed,
+    Object? price = freezed,
     Object? category = freezed,
     Object? name = freezed,
     Object? brand = freezed,
@@ -211,10 +221,10 @@ class __$ProductCopyWithImpl<$Res> extends _$ProductCopyWithImpl<$Res>
           ? _value.weight
           : weight // ignore: cast_nullable_to_non_nullable
               as Weight,
-      fats: fats == freezed
-          ? _value.fats
-          : fats // ignore: cast_nullable_to_non_nullable
-              as Fats,
+      price: price == freezed
+          ? _value.price
+          : price // ignore: cast_nullable_to_non_nullable
+              as Price,
       category: category == freezed
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
@@ -238,25 +248,26 @@ class __$ProductCopyWithImpl<$Res> extends _$ProductCopyWithImpl<$Res>
       photos: photos == freezed
           ? _value.photos
           : photos // ignore: cast_nullable_to_non_nullable
-              as NonEmptyList5<ProductPhoto>,
+              as NonEmptyList5<String>,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_Product implements _Product {
+class _$_Product extends _Product {
   const _$_Product(
       {required this.id,
       required this.barcode,
       required this.weight,
-      required this.fats,
+      required this.price,
       required this.category,
       required this.name,
       required this.brand,
       required this.description,
       required this.ingredients,
-      required this.photos});
+      required this.photos})
+      : super._();
 
   @override
   final UniqueId id;
@@ -264,8 +275,8 @@ class _$_Product implements _Product {
   final Barcode barcode;
   @override
   final Weight weight;
-  @override
-  final Fats fats;
+  @override //required Fats fats,
+  final Price price;
   @override
   final Category category;
   @override
@@ -277,11 +288,11 @@ class _$_Product implements _Product {
   @override
   final ProductDescription ingredients;
   @override
-  final NonEmptyList5<ProductPhoto> photos;
+  final NonEmptyList5<String> photos;
 
   @override
   String toString() {
-    return 'Product(id: $id, barcode: $barcode, weight: $weight, fats: $fats, category: $category, name: $name, brand: $brand, description: $description, ingredients: $ingredients, photos: $photos)';
+    return 'Product(id: $id, barcode: $barcode, weight: $weight, price: $price, category: $category, name: $name, brand: $brand, description: $description, ingredients: $ingredients, photos: $photos)';
   }
 
   @override
@@ -292,7 +303,7 @@ class _$_Product implements _Product {
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.barcode, barcode) &&
             const DeepCollectionEquality().equals(other.weight, weight) &&
-            const DeepCollectionEquality().equals(other.fats, fats) &&
+            const DeepCollectionEquality().equals(other.price, price) &&
             const DeepCollectionEquality().equals(other.category, category) &&
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality().equals(other.brand, brand) &&
@@ -309,7 +320,7 @@ class _$_Product implements _Product {
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(barcode),
       const DeepCollectionEquality().hash(weight),
-      const DeepCollectionEquality().hash(fats),
+      const DeepCollectionEquality().hash(price),
       const DeepCollectionEquality().hash(category),
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(brand),
@@ -323,18 +334,19 @@ class _$_Product implements _Product {
       __$ProductCopyWithImpl<_Product>(this, _$identity);
 }
 
-abstract class _Product implements Product {
+abstract class _Product extends Product {
   const factory _Product(
       {required UniqueId id,
       required Barcode barcode,
       required Weight weight,
-      required Fats fats,
+      required Price price,
       required Category category,
       required ProductName name,
       required BrandName brand,
       required ProductDescription description,
       required ProductDescription ingredients,
-      required NonEmptyList5<ProductPhoto> photos}) = _$_Product;
+      required NonEmptyList5<String> photos}) = _$_Product;
+  const _Product._() : super._();
 
   @override
   UniqueId get id;
@@ -342,8 +354,8 @@ abstract class _Product implements Product {
   Barcode get barcode;
   @override
   Weight get weight;
-  @override
-  Fats get fats;
+  @override //required Fats fats,
+  Price get price;
   @override
   Category get category;
   @override
@@ -355,7 +367,7 @@ abstract class _Product implements Product {
   @override
   ProductDescription get ingredients;
   @override
-  NonEmptyList5<ProductPhoto> get photos;
+  NonEmptyList5<String> get photos;
   @override
   @JsonKey(ignore: true)
   _$ProductCopyWith<_Product> get copyWith =>

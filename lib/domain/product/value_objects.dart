@@ -1,9 +1,11 @@
 import 'package:shopify_manager/domain/core/failures.dart';
 import 'package:dartz/dartz.dart';
 import 'package:shopify_manager/domain/core/value_objects.dart';
+import 'package:shopify_manager/domain/product/price.dart';
 import 'package:shopify_manager/domain/product/product_categories.dart';
 import 'package:shopify_manager/domain/core/value_validators.dart';
 import 'package:shopify_manager/domain/product/value_validators.dart';
+import 'package:shopify_manager/domain/product/weight.dart';
 
 class ProductName extends Name {
   static const maxLength = 40;
@@ -66,6 +68,30 @@ class Category extends ValueObject<Categories> {
     return Category._(validateCategoryFromString(category));
   }
   const Category._(this.value);
+}
+
+class WeightUnit extends ValueObject<WeightUnits> {
+  @override
+  final Either<ValueFailure<WeightUnits>, WeightUnits> value;
+  factory WeightUnit(WeightUnits unit) => WeightUnit._(right(unit));
+
+  factory WeightUnit.fromString(String unit) =>
+      WeightUnit._(validateWeightUnitFromString(unit));
+
+  const WeightUnit._(this.value);
+}
+
+class Currency extends ValueObject<Currencies> {
+  @override
+  final Either<ValueFailure<Currencies>, Currencies> value;
+  factory Currency(Currencies currency) {
+    return Currency._(right(Currencies.zl));
+  }
+
+  factory Currency.fromString(String currency) {
+    return Currency._(validateCurrencyFromString(currency));
+  }
+  const Currency._(this.value);
 }
 
 class Barcode extends ValueObject<String> {
