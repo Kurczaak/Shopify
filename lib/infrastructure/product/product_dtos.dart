@@ -28,6 +28,7 @@ class ProductDto with _$ProductDto {
   }) = _ProductDto;
 
   factory ProductDto.fromDomain(Product product) => ProductDto(
+        id: product.id.getOrCrash(),
         barcode: product.barcode.getOrCrash(),
         weight: WeightDto.fromDomain(product.weight),
         price: PriceDto.fromDomain(product.price),
