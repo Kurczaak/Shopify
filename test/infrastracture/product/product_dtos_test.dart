@@ -25,11 +25,11 @@ void main() {
 
   // Weight
   final tWeight = Weight.fromPrimitives(weight, weightUnit);
-  final tWeightDto = WeightDto(weight: weight, weightUnit: weightUnit);
+  const tWeightDto = WeightDto(weight: weight, weightUnit: weightUnit);
 
   // Price
   final tPrice = Price.fromPrimitives(price, currency);
-  const tPriceDto = const PriceDto(price: price, currency: currency);
+  const tPriceDto = PriceDto(price: price, currency: currency);
 
   // Product
   final tProduct = Product.fromPrimitives(

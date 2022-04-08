@@ -15,6 +15,7 @@ extension FirestoreX on FirebaseFirestore {
 
   CollectionReference get usersCollection => collection('users');
   CollectionReference get shopsCollection => collection('shops');
+  CollectionReference get productsCollection => collection('products');
 }
 
 extension DocumentReferenceX on DocumentReference {
@@ -23,4 +24,5 @@ extension DocumentReferenceX on DocumentReference {
 
 extension StorageX on FirebaseStorage {
   Reference get shopLogosReference => ref('images/shop_logos');
+  Reference get productPhotosReference => ref('images/product_photos');
 }
