@@ -13,6 +13,10 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+ProductDto _$ProductDtoFromJson(Map<String, dynamic> json) {
+  return _ProductDto.fromJson(json);
+}
+
 /// @nodoc
 class _$ProductDtoTearOff {
   const _$ProductDtoTearOff();
@@ -41,6 +45,10 @@ class _$ProductDtoTearOff {
       photosUrls: photosUrls,
     );
   }
+
+  ProductDto fromJson(Map<String, Object?> json) {
+    return ProductDto.fromJson(json);
+  }
 }
 
 /// @nodoc
@@ -61,6 +69,7 @@ mixin _$ProductDto {
   String get ingredients => throw _privateConstructorUsedError;
   List<String> get photosUrls => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $ProductDtoCopyWith<ProductDto> get copyWith =>
       throw _privateConstructorUsedError;
@@ -260,7 +269,7 @@ class __$ProductDtoCopyWithImpl<$Res> extends _$ProductDtoCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$_ProductDto extends _ProductDto {
   const _$_ProductDto(
       {@JsonKey(ignore: true) this.id = '',
@@ -274,6 +283,9 @@ class _$_ProductDto extends _ProductDto {
       required this.ingredients,
       required this.photosUrls})
       : super._();
+
+  factory _$_ProductDto.fromJson(Map<String, dynamic> json) =>
+      _$$_ProductDtoFromJson(json);
 
   @override
   @JsonKey(ignore: true)
@@ -340,6 +352,11 @@ class _$_ProductDto extends _ProductDto {
   @override
   _$ProductDtoCopyWith<_ProductDto> get copyWith =>
       __$ProductDtoCopyWithImpl<_ProductDto>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_ProductDtoToJson(this);
+  }
 }
 
 abstract class _ProductDto extends ProductDto {
@@ -355,6 +372,9 @@ abstract class _ProductDto extends ProductDto {
       required String ingredients,
       required List<String> photosUrls}) = _$_ProductDto;
   const _ProductDto._() : super._();
+
+  factory _ProductDto.fromJson(Map<String, dynamic> json) =
+      _$_ProductDto.fromJson;
 
   @override
   @JsonKey(ignore: true)
@@ -383,6 +403,10 @@ abstract class _ProductDto extends ProductDto {
       throw _privateConstructorUsedError;
 }
 
+WeightDto _$WeightDtoFromJson(Map<String, dynamic> json) {
+  return _WeightDto.fromJson(json);
+}
+
 /// @nodoc
 class _$WeightDtoTearOff {
   const _$WeightDtoTearOff();
@@ -392,6 +416,10 @@ class _$WeightDtoTearOff {
       weight: weight,
       weightUnit: weightUnit,
     );
+  }
+
+  WeightDto fromJson(Map<String, Object?> json) {
+    return WeightDto.fromJson(json);
   }
 }
 
@@ -403,6 +431,7 @@ mixin _$WeightDto {
   double get weight => throw _privateConstructorUsedError;
   String get weightUnit => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $WeightDtoCopyWith<WeightDto> get copyWith =>
       throw _privateConstructorUsedError;
@@ -478,10 +507,13 @@ class __$WeightDtoCopyWithImpl<$Res> extends _$WeightDtoCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$_WeightDto extends _WeightDto {
   const _$_WeightDto({required this.weight, required this.weightUnit})
       : super._();
+
+  factory _$_WeightDto.fromJson(Map<String, dynamic> json) =>
+      _$$_WeightDtoFromJson(json);
 
   @override
   final double weight;
@@ -513,12 +545,20 @@ class _$_WeightDto extends _WeightDto {
   @override
   _$WeightDtoCopyWith<_WeightDto> get copyWith =>
       __$WeightDtoCopyWithImpl<_WeightDto>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_WeightDtoToJson(this);
+  }
 }
 
 abstract class _WeightDto extends WeightDto {
   const factory _WeightDto(
       {required double weight, required String weightUnit}) = _$_WeightDto;
   const _WeightDto._() : super._();
+
+  factory _WeightDto.fromJson(Map<String, dynamic> json) =
+      _$_WeightDto.fromJson;
 
   @override
   double get weight;
@@ -528,6 +568,10 @@ abstract class _WeightDto extends WeightDto {
   @JsonKey(ignore: true)
   _$WeightDtoCopyWith<_WeightDto> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+PriceDto _$PriceDtoFromJson(Map<String, dynamic> json) {
+  return _PriceDto.fromJson(json);
 }
 
 /// @nodoc
@@ -540,6 +584,10 @@ class _$PriceDtoTearOff {
       currency: currency,
     );
   }
+
+  PriceDto fromJson(Map<String, Object?> json) {
+    return PriceDto.fromJson(json);
+  }
 }
 
 /// @nodoc
@@ -550,6 +598,7 @@ mixin _$PriceDto {
   double get price => throw _privateConstructorUsedError;
   String get currency => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $PriceDtoCopyWith<PriceDto> get copyWith =>
       throw _privateConstructorUsedError;
@@ -624,9 +673,12 @@ class __$PriceDtoCopyWithImpl<$Res> extends _$PriceDtoCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$_PriceDto extends _PriceDto {
   const _$_PriceDto({required this.price, required this.currency}) : super._();
+
+  factory _$_PriceDto.fromJson(Map<String, dynamic> json) =>
+      _$$_PriceDtoFromJson(json);
 
   @override
   final double price;
@@ -657,12 +709,19 @@ class _$_PriceDto extends _PriceDto {
   @override
   _$PriceDtoCopyWith<_PriceDto> get copyWith =>
       __$PriceDtoCopyWithImpl<_PriceDto>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_PriceDtoToJson(this);
+  }
 }
 
 abstract class _PriceDto extends PriceDto {
   const factory _PriceDto({required double price, required String currency}) =
       _$_PriceDto;
   const _PriceDto._() : super._();
+
+  factory _PriceDto.fromJson(Map<String, dynamic> json) = _$_PriceDto.fromJson;
 
   @override
   double get price;

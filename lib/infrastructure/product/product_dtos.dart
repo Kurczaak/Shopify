@@ -8,6 +8,7 @@ import 'package:shopify_manager/domain/product/value_objects.dart';
 import 'package:shopify_manager/domain/product/weight.dart';
 
 part 'product_dtos.freezed.dart';
+part 'product_dtos.g.dart';
 
 @freezed
 class ProductDto with _$ProductDto {
@@ -54,6 +55,9 @@ class ProductDto with _$ProductDto {
       price: price.toDomain(),
     );
   }
+
+  factory ProductDto.fromJson(Map<String, dynamic> json) =>
+      _$ProductDtoFromJson(json);
 }
 
 @freezed
@@ -74,6 +78,9 @@ class WeightDto with _$WeightDto {
         weight: PositiveNumber(weight),
         weightUnit: WeightUnit.fromString(weightUnit));
   }
+
+  factory WeightDto.fromJson(Map<String, dynamic> json) =>
+      _$WeightDtoFromJson(json);
 }
 
 @freezed
@@ -91,6 +98,9 @@ abstract class PriceDto with _$PriceDto {
     return Price(
         price: PositiveNumber(price), currency: Currency.fromString(currency));
   }
+
+  factory PriceDto.fromJson(Map<String, dynamic> json) =>
+      _$PriceDtoFromJson(json);
 }
 
 
