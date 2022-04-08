@@ -61,8 +61,9 @@ class FirebaseProductRepositoryImpl implements IProductRepository {
 
       productWithPhotos.failureOption.fold(() {
         final productsCollection = _firestore.productsCollection;
-        productsCollection.doc(product.id.getOrCrash());
-        // .set(ProductDto.fromDomain(productWithPhotos));
+        productsCollection
+            .doc(product.id.getOrCrash())
+            .set(ProductDto.fromDomain(productWithPhotos).toJson());
       }, (failure) => left(failure));
     }
 

@@ -11,6 +11,7 @@ import 'package:shopify_manager/infrastructure/core/firestore_helpers.dart';
 import 'package:shopify_manager/infrastructure/core/network/network_info.dart';
 import 'package:shopify_manager/infrastructure/product/firebase_product_repository.dart';
 import 'package:firebase_storage_mocks/firebase_storage_mocks.dart' as fake;
+import 'package:shopify_manager/infrastructure/product/product_dtos.dart';
 
 import '../../fixtures/test_product.dart';
 import '../../utils/image_reader.dart';
@@ -47,6 +48,11 @@ Future<void> main() async {
   final file = await getImageFileFromAssets('test_logo.jpg');
   final photo = ProductPhoto(file);
   final photosList = NonEmptyList5(KtList.from([photo, photo, photo]));
+  const photoUrl = 'https://www.newLogo.com/logo123';
+  final nonemptyPhotosList =
+      NonEmptyList5<String>(KtList.from([photoUrl, photoUrl, photoUrl]));
+  final tProductWithUploadedPhotos =
+      tProduct.copyWith(photos: nonemptyPhotosList);
 
   setUp(() {
     mockFirestore = MockFirebaseFirestore();
@@ -74,11 +80,14 @@ Future<void> main() async {
     when(mockPhotoReference.putFile(any))
         .thenAnswer((_) => fake.MockUploadTask(mockUploadedPhotoReference));
     when(mockUploadedPhotoReference.getDownloadURL())
-        .thenAnswer((_) async => 'https://www.newLogo.com/logo123');
+        .thenAnswer((_) async => photoUrl);
 
     // Set Up Firestore
     when(mockFirestore.productsCollection).thenReturn(mockProductsReference);
     when(mockProductsReference.doc(any)).thenReturn(mockProductDoc);
+    when(mockProductDoc
+            .set(ProductDto.fromDomain(tProductWithUploadedPhotos).toJson()))
+        .thenAnswer((_) async => Future.value);
   });
   group('create', () {
     test(
@@ -166,6 +175,17 @@ Future<void> main() async {
           await repository.create(tProduct, photosList);
           // assert
           verify(mockProductsReference.doc(tProduct.id.getOrCrash()));
+        },
+      );
+
+      test(
+        'should set the product in the firestore',
+        () async {
+          // act
+          await repository.create(tProduct, photosList);
+          // assert
+          verify(mockProductDoc
+              .set(ProductDto.fromDomain(tProductWithUploadedPhotos).toJson()));
         },
       );
     });
