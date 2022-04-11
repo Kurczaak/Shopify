@@ -12,6 +12,8 @@ abstract class CoreValueFailure<T> with _$CoreValueFailure<T> {
       {required T failedValue, required int maxLength}) = ExceedingLength<T>;
   const factory CoreValueFailure.stringTooShort(
       {required T failedValue, required int minLength}) = StringTooShort<T>;
+  const factory CoreValueFailure.stringDoesntContainKeyword(
+      {required T failedValue, required String missingKeyword}) = StringDoesntContainKeyword<T>;
   const factory CoreValueFailure.empty({required T failedValue}) = Empty<T>;
   const factory CoreValueFailure.multiline({required T failedValue}) =
       Multiline<T>;

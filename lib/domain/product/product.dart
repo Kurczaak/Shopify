@@ -3,7 +3,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kt_dart/kt.dart';
 import 'package:shopify_manager/domain/core/failures.dart';
 import 'package:shopify_manager/domain/core/value_objects.dart';
-import 'package:shopify_manager/domain/product/nutrient.dart';
 import 'package:shopify_manager/domain/product/price.dart';
 import 'package:shopify_manager/domain/product/value_objects.dart';
 import 'package:shopify_manager/domain/product/weight.dart';
@@ -25,7 +24,7 @@ abstract class Product with _$Product {
     required BrandName brand,
     required ProductDescription description,
     required ProductDescription ingredients,
-    required NonEmptyList5<String> photos,
+    required NonEmptyList5<ShopifyUrl> photos,
   }) = _Product;
 
   factory Product.fromPrimitives({
@@ -52,7 +51,8 @@ abstract class Product with _$Product {
         brand: BrandName(brand),
         description: ProductDescription(description),
         ingredients: ProductDescription(ingredients),
-        photos: NonEmptyList5(KtList.from(photosUrls)),
+        photos: NonEmptyList5(KtList.from(
+            photosUrls.map((stringUrl) => ShopifyUrl(stringUrl)).toList())),
       );
 
   Option<ValueFailure<dynamic>> get failureOption {

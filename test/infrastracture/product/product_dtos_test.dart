@@ -18,9 +18,9 @@ void main() {
   const String description = 'This is just a test product';
   const String ingredients = 'tests, bugs, overflows';
   final List<String> photosUrls = [
-    'www.photo.com/1',
-    'www.photo.com/2',
-    'www.photo.com/3'
+    'https://firebasestorage.googleapis.com/v0/b/shopify-app-6d29d.appspot.com/o/images/1',
+    'https://firebasestorage.googleapis.com/v0/b/shopify-app-6d29d.appspot.com/o/images/2',
+    'https://firebasestorage.googleapis.com/v0/b/shopify-app-6d29d.appspot.com/o/images/3'
   ];
 
   // Weight

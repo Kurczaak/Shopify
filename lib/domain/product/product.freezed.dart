@@ -27,7 +27,7 @@ class _$ProductTearOff {
       required BrandName brand,
       required ProductDescription description,
       required ProductDescription ingredients,
-      required NonEmptyList5<String> photos}) {
+      required NonEmptyList5<ShopifyUrl> photos}) {
     return _Product(
       id: id,
       barcode: barcode,
@@ -57,7 +57,7 @@ mixin _$Product {
   BrandName get brand => throw _privateConstructorUsedError;
   ProductDescription get description => throw _privateConstructorUsedError;
   ProductDescription get ingredients => throw _privateConstructorUsedError;
-  NonEmptyList5<String> get photos => throw _privateConstructorUsedError;
+  NonEmptyList5<ShopifyUrl> get photos => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ProductCopyWith<Product> get copyWith => throw _privateConstructorUsedError;
@@ -77,7 +77,7 @@ abstract class $ProductCopyWith<$Res> {
       BrandName brand,
       ProductDescription description,
       ProductDescription ingredients,
-      NonEmptyList5<String> photos});
+      NonEmptyList5<ShopifyUrl> photos});
 
   $WeightCopyWith<$Res> get weight;
   $PriceCopyWith<$Res> get price;
@@ -144,7 +144,7 @@ class _$ProductCopyWithImpl<$Res> implements $ProductCopyWith<$Res> {
       photos: photos == freezed
           ? _value.photos
           : photos // ignore: cast_nullable_to_non_nullable
-              as NonEmptyList5<String>,
+              as NonEmptyList5<ShopifyUrl>,
     ));
   }
 
@@ -178,7 +178,7 @@ abstract class _$ProductCopyWith<$Res> implements $ProductCopyWith<$Res> {
       BrandName brand,
       ProductDescription description,
       ProductDescription ingredients,
-      NonEmptyList5<String> photos});
+      NonEmptyList5<ShopifyUrl> photos});
 
   @override
   $WeightCopyWith<$Res> get weight;
@@ -248,7 +248,7 @@ class __$ProductCopyWithImpl<$Res> extends _$ProductCopyWithImpl<$Res>
       photos: photos == freezed
           ? _value.photos
           : photos // ignore: cast_nullable_to_non_nullable
-              as NonEmptyList5<String>,
+              as NonEmptyList5<ShopifyUrl>,
     ));
   }
 }
@@ -288,7 +288,7 @@ class _$_Product extends _Product {
   @override
   final ProductDescription ingredients;
   @override
-  final NonEmptyList5<String> photos;
+  final NonEmptyList5<ShopifyUrl> photos;
 
   @override
   String toString() {
@@ -345,7 +345,7 @@ abstract class _Product extends Product {
       required BrandName brand,
       required ProductDescription description,
       required ProductDescription ingredients,
-      required NonEmptyList5<String> photos}) = _$_Product;
+      required NonEmptyList5<ShopifyUrl> photos}) = _$_Product;
   const _Product._() : super._();
 
   @override
@@ -367,7 +367,7 @@ abstract class _Product extends Product {
   @override
   ProductDescription get ingredients;
   @override
-  NonEmptyList5<String> get photos;
+  NonEmptyList5<ShopifyUrl> get photos;
   @override
   @JsonKey(ignore: true)
   _$ProductCopyWith<_Product> get copyWith =>

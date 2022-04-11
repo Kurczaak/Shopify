@@ -153,11 +153,12 @@ void main() {
     );
 
     test(
-      'should return photos value failure given an invalid photos',
+      'should return photos value failure given invalid photos',
       () async {
         // arrange
         final invalidProduct = tProduct.copyWith(
-            photos: NonEmptyList5(KtList.from(['1', '2', '3', '4', '5', '6'])));
+            photos: NonEmptyList5(KtList.from(
+                ['1', '2', '3', '4', '5', '6'].map((url) => ShopifyUrl(url)))));
         // act
         final result = invalidProduct.failureOption;
         // assert

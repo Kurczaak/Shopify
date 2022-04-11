@@ -6,7 +6,6 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:shopify_manager/domain/core/images/photo.dart';
 import 'package:shopify_manager/domain/core/value_objects.dart';
-import 'package:shopify_manager/domain/product/product.dart';
 import 'package:shopify_manager/infrastructure/core/firestore_helpers.dart';
 import 'package:shopify_manager/infrastructure/core/network/network_info.dart';
 import 'package:shopify_manager/infrastructure/product/firebase_product_repository.dart';
@@ -48,9 +47,10 @@ Future<void> main() async {
   final file = await getImageFileFromAssets('test_logo.jpg');
   final photo = ProductPhoto(file);
   final photosList = NonEmptyList5(KtList.from([photo, photo, photo]));
-  const photoUrl = 'https://www.newLogo.com/logo123';
-  final nonemptyPhotosList =
-      NonEmptyList5<String>(KtList.from([photoUrl, photoUrl, photoUrl]));
+  const photoUrl =
+      'https://firebasestorage.googleapis.com/v0/b/shopify-app-6d29d.appspot.com/o/images%2Fshop_logos%2F08049a20-a695-11ec-88bb-77ec623e586e?alt=media&token=fc66e7b0-f2cc-4dfc-94dc-e9e9d35e1929';
+  final nonemptyPhotosList = NonEmptyList5<ShopifyUrl>(KtList.from(
+      [photoUrl, photoUrl, photoUrl].map((url) => ShopifyUrl(url)).toList()));
   final tProductWithUploadedPhotos =
       tProduct.copyWith(photos: nonemptyPhotosList);
 

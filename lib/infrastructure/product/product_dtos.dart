@@ -1,7 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kt_dart/kt.dart';
 import 'package:shopify_manager/domain/core/value_objects.dart';
-import 'package:shopify_manager/domain/product/nutrient.dart';
 import 'package:shopify_manager/domain/product/price.dart';
 import 'package:shopify_manager/domain/product/product.dart';
 import 'package:shopify_manager/domain/product/value_objects.dart';
@@ -38,7 +37,10 @@ class ProductDto with _$ProductDto {
         brand: product.brand.getOrCrash(),
         description: product.description.getOrCrash(),
         ingredients: product.ingredients.getOrCrash(),
-        photosUrls: product.photos.getOrCrash().asList(),
+        photosUrls: product.photos
+            .getOrCrash()
+            .map((shopifyUrl) => shopifyUrl.getOrCrash())
+            .asList(),
       );
 
   Product toDomain() {
@@ -50,7 +52,8 @@ class ProductDto with _$ProductDto {
       id: UniqueId.fromUniqueString(id),
       ingredients: ProductDescription(ingredients),
       name: ProductName(name),
-      photos: NonEmptyList5(KtList<String>.from(photosUrls)),
+      photos: NonEmptyList5(KtList.from(
+          photosUrls.map((stringUrl) => ShopifyUrl(stringUrl)).toList())),
       weight: weight.toDomain(),
       price: price.toDomain(),
     );

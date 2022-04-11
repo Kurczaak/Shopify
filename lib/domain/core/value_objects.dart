@@ -60,6 +60,18 @@ class PositiveNumber extends ValueObject<double> {
   const PositiveNumber._(this.value);
 }
 
+class ShopifyUrl extends ValueObject<String> {
+  @override
+  final Either<ValueFailure<String>, String> value;
+
+  factory ShopifyUrl(String url) =>
+      ShopifyUrl._(validateStringContains(url, ['shopify', 'https'])
+          .flatMap(validateStringNotEmpty)
+          .flatMap(validateSingleLine));
+
+  const ShopifyUrl._(this.value);
+}
+
 abstract class Name extends ValueObject<String> {
   static const maxLength = 10;
   @override

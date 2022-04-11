@@ -11,7 +11,6 @@ import 'package:shopify_manager/domain/product/i_product_repository.dart';
 import 'package:shopify_manager/domain/product/product_failure.dart';
 import 'package:shopify_manager/domain/product/product.dart';
 import 'package:shopify_manager/domain/shop/shop.dart';
-import 'package:shopify_manager/infrastructure/core/config.dart';
 import 'package:shopify_manager/infrastructure/core/firestore_helpers.dart';
 import 'package:shopify_manager/infrastructure/core/network/network_info.dart';
 import 'package:shopify_manager/infrastructure/product/product_dtos.dart';
@@ -57,7 +56,8 @@ class FirebaseProductRepositoryImpl implements IProductRepository {
         i++;
       }
       final productWithPhotos = product.copyWith(
-          photos: NonEmptyList5(KtList<String>.from(photosUrls)));
+          photos: NonEmptyList5(KtList.from(
+              photosUrls.map((stringUrl) => ShopifyUrl(stringUrl)).toList())));
 
       productWithPhotos.failureOption.fold(() {
         final productsCollection = _firestore.productsCollection;
