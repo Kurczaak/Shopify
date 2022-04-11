@@ -198,8 +198,8 @@ Future<void> main() async {
         },
       );
 
-      group('when Storage throws a', () {
-        group('FirebaseException', () {
+      group('when Storage throws', () {
+        group('a FirebaseException', () {
           test(
             'should attemp to delete photos',
             () async {
@@ -230,7 +230,7 @@ Future<void> main() async {
           );
         });
 
-        group('TimeoutException', () {
+        group('a TimeoutException', () {
           test(
             'should attempt to delete photos',
             () async {
@@ -262,7 +262,7 @@ Future<void> main() async {
           );
         });
 
-        group('Exception', () {
+        group('an Exception', () {
           test(
             'should attempt to delete photos',
             () async {
@@ -274,6 +274,98 @@ Future<void> main() async {
               final call = repository.create;
               // assert
               expect(call(tProduct, invalidPhotosList),
+                  throwsA(isA<UnimplementedError>()));
+              await untilCalled(mockPhotoReference.delete());
+
+              verify(mockPhotoReference.delete());
+            },
+          );
+        });
+      });
+
+      group('when Firestore throws', () {
+        group('a Firebase Exception', () {
+          test(
+            'should delte all the photos',
+            () async {
+              // arrange
+              when(mockProductDoc.set(
+                      ProductDto.fromDomain(tProductWithUploadedPhotos)
+                          .toJson()))
+                  .thenThrow(
+                      FirebaseException(plugin: '', code: 'permission-denied'));
+              // act
+              await repository.create(tProduct, photosList);
+              // assert
+              verify(mockPhotoReference.delete()).called(photosList.length);
+            },
+          );
+
+          test(
+            'should return a value failure',
+            () async {
+              // arrange
+              when(mockProductDoc.set(
+                      ProductDto.fromDomain(tProductWithUploadedPhotos)
+                          .toJson()))
+                  .thenThrow(
+                      FirebaseException(plugin: '', code: 'permission-denied'));
+              // act
+              final result = await repository.create(tProduct, photosList);
+              // assert
+              expect(result, isA<Left<ProductFailure, Unit>>());
+            },
+          );
+        });
+
+        group('a Timeout Exception', () {
+          test(
+            'should delte all the photos',
+            () async {
+              // arrange
+              when(mockProductDoc.set(
+                      ProductDto.fromDomain(tProductWithUploadedPhotos)
+                          .toJson()))
+                  .thenThrow(
+                      TimeoutException('Connection timeout', timeoutDuration));
+              // act
+              await repository.create(tProduct, photosList);
+              // assert
+              verify(mockPhotoReference.delete()).called(photosList.length);
+            },
+          );
+
+          test(
+            'should return a value failure',
+            () async {
+              // arrange
+              when(mockProductDoc.set(
+                      ProductDto.fromDomain(tProductWithUploadedPhotos)
+                          .toJson()))
+                  .thenThrow(
+                      TimeoutException('Connection timeout', timeoutDuration));
+              // act
+              final result = await repository.create(tProduct, photosList);
+              // assert
+              expect(result, isA<Left<ProductFailure, Unit>>());
+            },
+          );
+        });
+
+        group('an Exception', () {
+          test(
+            'should attempt to delete photos',
+            () async {
+              // arrange
+              when(mockProductDoc.set(
+                      ProductDto.fromDomain(tProductWithUploadedPhotos)
+                          .toJson()))
+                  .thenThrow(UnimplementedError(
+                      'An unimplemented error while creating a new product'));
+              // act
+              final call = repository.create;
+              // assert
+              expect(call(tProduct, photosList),
                   throwsA(isA<UnimplementedError>()));
               await untilCalled(mockPhotoReference.delete());
 

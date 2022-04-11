@@ -91,14 +91,18 @@ class FirebaseProductRepositoryImpl implements IProductRepository {
               .set(ProductDto.fromDomain(productWithPhotos).toJson());
         }, (failure) => left(failure));
       } on FirebaseException catch (e) {
-        //TODO log this error
+        await deletePhotos(uploadedFilesReferences);
         if (e.code.contains('permission-denied')) {
           return left(const ProductFailure.insufficientPermission());
         } else {
           return left(const ProductFailure.unexpected());
         }
       } on TimeoutException catch (_) {
+        await deletePhotos(uploadedFilesReferences);
         return left(const ProductFailure.timeout(timeoutDuration));
+      } catch (_) {
+        await deletePhotos(uploadedFilesReferences);
+        rethrow;
       }
     }
 
