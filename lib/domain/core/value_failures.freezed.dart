@@ -125,6 +125,10 @@ class _$CoreValueFailureTearOff {
       failedValue: failedValue,
     );
   }
+
+  NoInternetConnection<T> noInternetConnection<T>() {
+    return NoInternetConnection<T>();
+  }
 }
 
 /// @nodoc
@@ -132,8 +136,6 @@ const $CoreValueFailure = _$CoreValueFailureTearOff();
 
 /// @nodoc
 mixin _$CoreValueFailure<T> {
-  T get failedValue => throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(T failedValue, int maxLength) listTooLong,
@@ -155,6 +157,7 @@ mixin _$CoreValueFailure<T> {
         imageTooSmall,
     required TResult Function(T failedValue) incorrectPostalCode,
     required TResult Function(T failedValue) noAddressNumber,
+    required TResult Function() noInternetConnection,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -175,6 +178,7 @@ mixin _$CoreValueFailure<T> {
     TResult Function(T failedValue, int minHeight, int minWidth)? imageTooSmall,
     TResult Function(T failedValue)? incorrectPostalCode,
     TResult Function(T failedValue)? noAddressNumber,
+    TResult Function()? noInternetConnection,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -195,6 +199,7 @@ mixin _$CoreValueFailure<T> {
     TResult Function(T failedValue, int minHeight, int minWidth)? imageTooSmall,
     TResult Function(T failedValue)? incorrectPostalCode,
     TResult Function(T failedValue)? noAddressNumber,
+    TResult Function()? noInternetConnection,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -218,6 +223,8 @@ mixin _$CoreValueFailure<T> {
     required TResult Function(ImageTooSmall<T> value) imageTooSmall,
     required TResult Function(IncorrectPostalCode<T> value) incorrectPostalCode,
     required TResult Function(NoAddressNumber<T> value) noAddressNumber,
+    required TResult Function(NoInternetConnection<T> value)
+        noInternetConnection,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -238,6 +245,7 @@ mixin _$CoreValueFailure<T> {
     TResult Function(ImageTooSmall<T> value)? imageTooSmall,
     TResult Function(IncorrectPostalCode<T> value)? incorrectPostalCode,
     TResult Function(NoAddressNumber<T> value)? noAddressNumber,
+    TResult Function(NoInternetConnection<T> value)? noInternetConnection,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -258,12 +266,9 @@ mixin _$CoreValueFailure<T> {
     TResult Function(ImageTooSmall<T> value)? imageTooSmall,
     TResult Function(IncorrectPostalCode<T> value)? incorrectPostalCode,
     TResult Function(NoAddressNumber<T> value)? noAddressNumber,
+    TResult Function(NoInternetConnection<T> value)? noInternetConnection,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $CoreValueFailureCopyWith<T, CoreValueFailure<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -272,7 +277,6 @@ abstract class $CoreValueFailureCopyWith<T, $Res> {
   factory $CoreValueFailureCopyWith(
           CoreValueFailure<T> value, $Res Function(CoreValueFailure<T>) then) =
       _$CoreValueFailureCopyWithImpl<T, $Res>;
-  $Res call({T failedValue});
 }
 
 /// @nodoc
@@ -283,27 +287,13 @@ class _$CoreValueFailureCopyWithImpl<T, $Res>
   final CoreValueFailure<T> _value;
   // ignore: unused_field
   final $Res Function(CoreValueFailure<T>) _then;
-
-  @override
-  $Res call({
-    Object? failedValue = freezed,
-  }) {
-    return _then(_value.copyWith(
-      failedValue: failedValue == freezed
-          ? _value.failedValue
-          : failedValue // ignore: cast_nullable_to_non_nullable
-              as T,
-    ));
-  }
 }
 
 /// @nodoc
-abstract class $ListTooLongCopyWith<T, $Res>
-    implements $CoreValueFailureCopyWith<T, $Res> {
+abstract class $ListTooLongCopyWith<T, $Res> {
   factory $ListTooLongCopyWith(
           ListTooLong<T> value, $Res Function(ListTooLong<T>) then) =
       _$ListTooLongCopyWithImpl<T, $Res>;
-  @override
   $Res call({T failedValue, int maxLength});
 }
 
@@ -394,6 +384,7 @@ class _$ListTooLong<T> implements ListTooLong<T> {
         imageTooSmall,
     required TResult Function(T failedValue) incorrectPostalCode,
     required TResult Function(T failedValue) noAddressNumber,
+    required TResult Function() noInternetConnection,
   }) {
     return listTooLong(failedValue, maxLength);
   }
@@ -417,6 +408,7 @@ class _$ListTooLong<T> implements ListTooLong<T> {
     TResult Function(T failedValue, int minHeight, int minWidth)? imageTooSmall,
     TResult Function(T failedValue)? incorrectPostalCode,
     TResult Function(T failedValue)? noAddressNumber,
+    TResult Function()? noInternetConnection,
   }) {
     return listTooLong?.call(failedValue, maxLength);
   }
@@ -440,6 +432,7 @@ class _$ListTooLong<T> implements ListTooLong<T> {
     TResult Function(T failedValue, int minHeight, int minWidth)? imageTooSmall,
     TResult Function(T failedValue)? incorrectPostalCode,
     TResult Function(T failedValue)? noAddressNumber,
+    TResult Function()? noInternetConnection,
     required TResult orElse(),
   }) {
     if (listTooLong != null) {
@@ -469,6 +462,8 @@ class _$ListTooLong<T> implements ListTooLong<T> {
     required TResult Function(ImageTooSmall<T> value) imageTooSmall,
     required TResult Function(IncorrectPostalCode<T> value) incorrectPostalCode,
     required TResult Function(NoAddressNumber<T> value) noAddressNumber,
+    required TResult Function(NoInternetConnection<T> value)
+        noInternetConnection,
   }) {
     return listTooLong(this);
   }
@@ -492,6 +487,7 @@ class _$ListTooLong<T> implements ListTooLong<T> {
     TResult Function(ImageTooSmall<T> value)? imageTooSmall,
     TResult Function(IncorrectPostalCode<T> value)? incorrectPostalCode,
     TResult Function(NoAddressNumber<T> value)? noAddressNumber,
+    TResult Function(NoInternetConnection<T> value)? noInternetConnection,
   }) {
     return listTooLong?.call(this);
   }
@@ -515,6 +511,7 @@ class _$ListTooLong<T> implements ListTooLong<T> {
     TResult Function(ImageTooSmall<T> value)? imageTooSmall,
     TResult Function(IncorrectPostalCode<T> value)? incorrectPostalCode,
     TResult Function(NoAddressNumber<T> value)? noAddressNumber,
+    TResult Function(NoInternetConnection<T> value)? noInternetConnection,
     required TResult orElse(),
   }) {
     if (listTooLong != null) {
@@ -528,22 +525,18 @@ abstract class ListTooLong<T> implements CoreValueFailure<T> {
   const factory ListTooLong({required T failedValue, required int maxLength}) =
       _$ListTooLong<T>;
 
-  @override
   T get failedValue;
   int get maxLength;
-  @override
   @JsonKey(ignore: true)
   $ListTooLongCopyWith<T, ListTooLong<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ListTooShortCopyWith<T, $Res>
-    implements $CoreValueFailureCopyWith<T, $Res> {
+abstract class $ListTooShortCopyWith<T, $Res> {
   factory $ListTooShortCopyWith(
           ListTooShort<T> value, $Res Function(ListTooShort<T>) then) =
       _$ListTooShortCopyWithImpl<T, $Res>;
-  @override
   $Res call({T failedValue, int minLength});
 }
 
@@ -634,6 +627,7 @@ class _$ListTooShort<T> implements ListTooShort<T> {
         imageTooSmall,
     required TResult Function(T failedValue) incorrectPostalCode,
     required TResult Function(T failedValue) noAddressNumber,
+    required TResult Function() noInternetConnection,
   }) {
     return listTooShort(failedValue, minLength);
   }
@@ -657,6 +651,7 @@ class _$ListTooShort<T> implements ListTooShort<T> {
     TResult Function(T failedValue, int minHeight, int minWidth)? imageTooSmall,
     TResult Function(T failedValue)? incorrectPostalCode,
     TResult Function(T failedValue)? noAddressNumber,
+    TResult Function()? noInternetConnection,
   }) {
     return listTooShort?.call(failedValue, minLength);
   }
@@ -680,6 +675,7 @@ class _$ListTooShort<T> implements ListTooShort<T> {
     TResult Function(T failedValue, int minHeight, int minWidth)? imageTooSmall,
     TResult Function(T failedValue)? incorrectPostalCode,
     TResult Function(T failedValue)? noAddressNumber,
+    TResult Function()? noInternetConnection,
     required TResult orElse(),
   }) {
     if (listTooShort != null) {
@@ -709,6 +705,8 @@ class _$ListTooShort<T> implements ListTooShort<T> {
     required TResult Function(ImageTooSmall<T> value) imageTooSmall,
     required TResult Function(IncorrectPostalCode<T> value) incorrectPostalCode,
     required TResult Function(NoAddressNumber<T> value) noAddressNumber,
+    required TResult Function(NoInternetConnection<T> value)
+        noInternetConnection,
   }) {
     return listTooShort(this);
   }
@@ -732,6 +730,7 @@ class _$ListTooShort<T> implements ListTooShort<T> {
     TResult Function(ImageTooSmall<T> value)? imageTooSmall,
     TResult Function(IncorrectPostalCode<T> value)? incorrectPostalCode,
     TResult Function(NoAddressNumber<T> value)? noAddressNumber,
+    TResult Function(NoInternetConnection<T> value)? noInternetConnection,
   }) {
     return listTooShort?.call(this);
   }
@@ -755,6 +754,7 @@ class _$ListTooShort<T> implements ListTooShort<T> {
     TResult Function(ImageTooSmall<T> value)? imageTooSmall,
     TResult Function(IncorrectPostalCode<T> value)? incorrectPostalCode,
     TResult Function(NoAddressNumber<T> value)? noAddressNumber,
+    TResult Function(NoInternetConnection<T> value)? noInternetConnection,
     required TResult orElse(),
   }) {
     if (listTooShort != null) {
@@ -768,22 +768,18 @@ abstract class ListTooShort<T> implements CoreValueFailure<T> {
   const factory ListTooShort({required T failedValue, required int minLength}) =
       _$ListTooShort<T>;
 
-  @override
   T get failedValue;
   int get minLength;
-  @override
   @JsonKey(ignore: true)
   $ListTooShortCopyWith<T, ListTooShort<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ExceedingLengthCopyWith<T, $Res>
-    implements $CoreValueFailureCopyWith<T, $Res> {
+abstract class $ExceedingLengthCopyWith<T, $Res> {
   factory $ExceedingLengthCopyWith(
           ExceedingLength<T> value, $Res Function(ExceedingLength<T>) then) =
       _$ExceedingLengthCopyWithImpl<T, $Res>;
-  @override
   $Res call({T failedValue, int maxLength});
 }
 
@@ -874,6 +870,7 @@ class _$ExceedingLength<T> implements ExceedingLength<T> {
         imageTooSmall,
     required TResult Function(T failedValue) incorrectPostalCode,
     required TResult Function(T failedValue) noAddressNumber,
+    required TResult Function() noInternetConnection,
   }) {
     return exceedingLength(failedValue, maxLength);
   }
@@ -897,6 +894,7 @@ class _$ExceedingLength<T> implements ExceedingLength<T> {
     TResult Function(T failedValue, int minHeight, int minWidth)? imageTooSmall,
     TResult Function(T failedValue)? incorrectPostalCode,
     TResult Function(T failedValue)? noAddressNumber,
+    TResult Function()? noInternetConnection,
   }) {
     return exceedingLength?.call(failedValue, maxLength);
   }
@@ -920,6 +918,7 @@ class _$ExceedingLength<T> implements ExceedingLength<T> {
     TResult Function(T failedValue, int minHeight, int minWidth)? imageTooSmall,
     TResult Function(T failedValue)? incorrectPostalCode,
     TResult Function(T failedValue)? noAddressNumber,
+    TResult Function()? noInternetConnection,
     required TResult orElse(),
   }) {
     if (exceedingLength != null) {
@@ -949,6 +948,8 @@ class _$ExceedingLength<T> implements ExceedingLength<T> {
     required TResult Function(ImageTooSmall<T> value) imageTooSmall,
     required TResult Function(IncorrectPostalCode<T> value) incorrectPostalCode,
     required TResult Function(NoAddressNumber<T> value) noAddressNumber,
+    required TResult Function(NoInternetConnection<T> value)
+        noInternetConnection,
   }) {
     return exceedingLength(this);
   }
@@ -972,6 +973,7 @@ class _$ExceedingLength<T> implements ExceedingLength<T> {
     TResult Function(ImageTooSmall<T> value)? imageTooSmall,
     TResult Function(IncorrectPostalCode<T> value)? incorrectPostalCode,
     TResult Function(NoAddressNumber<T> value)? noAddressNumber,
+    TResult Function(NoInternetConnection<T> value)? noInternetConnection,
   }) {
     return exceedingLength?.call(this);
   }
@@ -995,6 +997,7 @@ class _$ExceedingLength<T> implements ExceedingLength<T> {
     TResult Function(ImageTooSmall<T> value)? imageTooSmall,
     TResult Function(IncorrectPostalCode<T> value)? incorrectPostalCode,
     TResult Function(NoAddressNumber<T> value)? noAddressNumber,
+    TResult Function(NoInternetConnection<T> value)? noInternetConnection,
     required TResult orElse(),
   }) {
     if (exceedingLength != null) {
@@ -1008,22 +1011,18 @@ abstract class ExceedingLength<T> implements CoreValueFailure<T> {
   const factory ExceedingLength(
       {required T failedValue, required int maxLength}) = _$ExceedingLength<T>;
 
-  @override
   T get failedValue;
   int get maxLength;
-  @override
   @JsonKey(ignore: true)
   $ExceedingLengthCopyWith<T, ExceedingLength<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $StringTooShortCopyWith<T, $Res>
-    implements $CoreValueFailureCopyWith<T, $Res> {
+abstract class $StringTooShortCopyWith<T, $Res> {
   factory $StringTooShortCopyWith(
           StringTooShort<T> value, $Res Function(StringTooShort<T>) then) =
       _$StringTooShortCopyWithImpl<T, $Res>;
-  @override
   $Res call({T failedValue, int minLength});
 }
 
@@ -1114,6 +1113,7 @@ class _$StringTooShort<T> implements StringTooShort<T> {
         imageTooSmall,
     required TResult Function(T failedValue) incorrectPostalCode,
     required TResult Function(T failedValue) noAddressNumber,
+    required TResult Function() noInternetConnection,
   }) {
     return stringTooShort(failedValue, minLength);
   }
@@ -1137,6 +1137,7 @@ class _$StringTooShort<T> implements StringTooShort<T> {
     TResult Function(T failedValue, int minHeight, int minWidth)? imageTooSmall,
     TResult Function(T failedValue)? incorrectPostalCode,
     TResult Function(T failedValue)? noAddressNumber,
+    TResult Function()? noInternetConnection,
   }) {
     return stringTooShort?.call(failedValue, minLength);
   }
@@ -1160,6 +1161,7 @@ class _$StringTooShort<T> implements StringTooShort<T> {
     TResult Function(T failedValue, int minHeight, int minWidth)? imageTooSmall,
     TResult Function(T failedValue)? incorrectPostalCode,
     TResult Function(T failedValue)? noAddressNumber,
+    TResult Function()? noInternetConnection,
     required TResult orElse(),
   }) {
     if (stringTooShort != null) {
@@ -1189,6 +1191,8 @@ class _$StringTooShort<T> implements StringTooShort<T> {
     required TResult Function(ImageTooSmall<T> value) imageTooSmall,
     required TResult Function(IncorrectPostalCode<T> value) incorrectPostalCode,
     required TResult Function(NoAddressNumber<T> value) noAddressNumber,
+    required TResult Function(NoInternetConnection<T> value)
+        noInternetConnection,
   }) {
     return stringTooShort(this);
   }
@@ -1212,6 +1216,7 @@ class _$StringTooShort<T> implements StringTooShort<T> {
     TResult Function(ImageTooSmall<T> value)? imageTooSmall,
     TResult Function(IncorrectPostalCode<T> value)? incorrectPostalCode,
     TResult Function(NoAddressNumber<T> value)? noAddressNumber,
+    TResult Function(NoInternetConnection<T> value)? noInternetConnection,
   }) {
     return stringTooShort?.call(this);
   }
@@ -1235,6 +1240,7 @@ class _$StringTooShort<T> implements StringTooShort<T> {
     TResult Function(ImageTooSmall<T> value)? imageTooSmall,
     TResult Function(IncorrectPostalCode<T> value)? incorrectPostalCode,
     TResult Function(NoAddressNumber<T> value)? noAddressNumber,
+    TResult Function(NoInternetConnection<T> value)? noInternetConnection,
     required TResult orElse(),
   }) {
     if (stringTooShort != null) {
@@ -1248,23 +1254,19 @@ abstract class StringTooShort<T> implements CoreValueFailure<T> {
   const factory StringTooShort(
       {required T failedValue, required int minLength}) = _$StringTooShort<T>;
 
-  @override
   T get failedValue;
   int get minLength;
-  @override
   @JsonKey(ignore: true)
   $StringTooShortCopyWith<T, StringTooShort<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $StringDoesntContainKeywordCopyWith<T, $Res>
-    implements $CoreValueFailureCopyWith<T, $Res> {
+abstract class $StringDoesntContainKeywordCopyWith<T, $Res> {
   factory $StringDoesntContainKeywordCopyWith(
           StringDoesntContainKeyword<T> value,
           $Res Function(StringDoesntContainKeyword<T>) then) =
       _$StringDoesntContainKeywordCopyWithImpl<T, $Res>;
-  @override
   $Res call({T failedValue, String missingKeyword});
 }
 
@@ -1359,6 +1361,7 @@ class _$StringDoesntContainKeyword<T> implements StringDoesntContainKeyword<T> {
         imageTooSmall,
     required TResult Function(T failedValue) incorrectPostalCode,
     required TResult Function(T failedValue) noAddressNumber,
+    required TResult Function() noInternetConnection,
   }) {
     return stringDoesntContainKeyword(failedValue, missingKeyword);
   }
@@ -1382,6 +1385,7 @@ class _$StringDoesntContainKeyword<T> implements StringDoesntContainKeyword<T> {
     TResult Function(T failedValue, int minHeight, int minWidth)? imageTooSmall,
     TResult Function(T failedValue)? incorrectPostalCode,
     TResult Function(T failedValue)? noAddressNumber,
+    TResult Function()? noInternetConnection,
   }) {
     return stringDoesntContainKeyword?.call(failedValue, missingKeyword);
   }
@@ -1405,6 +1409,7 @@ class _$StringDoesntContainKeyword<T> implements StringDoesntContainKeyword<T> {
     TResult Function(T failedValue, int minHeight, int minWidth)? imageTooSmall,
     TResult Function(T failedValue)? incorrectPostalCode,
     TResult Function(T failedValue)? noAddressNumber,
+    TResult Function()? noInternetConnection,
     required TResult orElse(),
   }) {
     if (stringDoesntContainKeyword != null) {
@@ -1434,6 +1439,8 @@ class _$StringDoesntContainKeyword<T> implements StringDoesntContainKeyword<T> {
     required TResult Function(ImageTooSmall<T> value) imageTooSmall,
     required TResult Function(IncorrectPostalCode<T> value) incorrectPostalCode,
     required TResult Function(NoAddressNumber<T> value) noAddressNumber,
+    required TResult Function(NoInternetConnection<T> value)
+        noInternetConnection,
   }) {
     return stringDoesntContainKeyword(this);
   }
@@ -1457,6 +1464,7 @@ class _$StringDoesntContainKeyword<T> implements StringDoesntContainKeyword<T> {
     TResult Function(ImageTooSmall<T> value)? imageTooSmall,
     TResult Function(IncorrectPostalCode<T> value)? incorrectPostalCode,
     TResult Function(NoAddressNumber<T> value)? noAddressNumber,
+    TResult Function(NoInternetConnection<T> value)? noInternetConnection,
   }) {
     return stringDoesntContainKeyword?.call(this);
   }
@@ -1480,6 +1488,7 @@ class _$StringDoesntContainKeyword<T> implements StringDoesntContainKeyword<T> {
     TResult Function(ImageTooSmall<T> value)? imageTooSmall,
     TResult Function(IncorrectPostalCode<T> value)? incorrectPostalCode,
     TResult Function(NoAddressNumber<T> value)? noAddressNumber,
+    TResult Function(NoInternetConnection<T> value)? noInternetConnection,
     required TResult orElse(),
   }) {
     if (stringDoesntContainKeyword != null) {
@@ -1494,21 +1503,17 @@ abstract class StringDoesntContainKeyword<T> implements CoreValueFailure<T> {
       {required T failedValue,
       required String missingKeyword}) = _$StringDoesntContainKeyword<T>;
 
-  @override
   T get failedValue;
   String get missingKeyword;
-  @override
   @JsonKey(ignore: true)
   $StringDoesntContainKeywordCopyWith<T, StringDoesntContainKeyword<T>>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $EmptyCopyWith<T, $Res>
-    implements $CoreValueFailureCopyWith<T, $Res> {
+abstract class $EmptyCopyWith<T, $Res> {
   factory $EmptyCopyWith(Empty<T> value, $Res Function(Empty<T>) then) =
       _$EmptyCopyWithImpl<T, $Res>;
-  @override
   $Res call({T failedValue});
 }
 
@@ -1588,6 +1593,7 @@ class _$Empty<T> implements Empty<T> {
         imageTooSmall,
     required TResult Function(T failedValue) incorrectPostalCode,
     required TResult Function(T failedValue) noAddressNumber,
+    required TResult Function() noInternetConnection,
   }) {
     return empty(failedValue);
   }
@@ -1611,6 +1617,7 @@ class _$Empty<T> implements Empty<T> {
     TResult Function(T failedValue, int minHeight, int minWidth)? imageTooSmall,
     TResult Function(T failedValue)? incorrectPostalCode,
     TResult Function(T failedValue)? noAddressNumber,
+    TResult Function()? noInternetConnection,
   }) {
     return empty?.call(failedValue);
   }
@@ -1634,6 +1641,7 @@ class _$Empty<T> implements Empty<T> {
     TResult Function(T failedValue, int minHeight, int minWidth)? imageTooSmall,
     TResult Function(T failedValue)? incorrectPostalCode,
     TResult Function(T failedValue)? noAddressNumber,
+    TResult Function()? noInternetConnection,
     required TResult orElse(),
   }) {
     if (empty != null) {
@@ -1663,6 +1671,8 @@ class _$Empty<T> implements Empty<T> {
     required TResult Function(ImageTooSmall<T> value) imageTooSmall,
     required TResult Function(IncorrectPostalCode<T> value) incorrectPostalCode,
     required TResult Function(NoAddressNumber<T> value) noAddressNumber,
+    required TResult Function(NoInternetConnection<T> value)
+        noInternetConnection,
   }) {
     return empty(this);
   }
@@ -1686,6 +1696,7 @@ class _$Empty<T> implements Empty<T> {
     TResult Function(ImageTooSmall<T> value)? imageTooSmall,
     TResult Function(IncorrectPostalCode<T> value)? incorrectPostalCode,
     TResult Function(NoAddressNumber<T> value)? noAddressNumber,
+    TResult Function(NoInternetConnection<T> value)? noInternetConnection,
   }) {
     return empty?.call(this);
   }
@@ -1709,6 +1720,7 @@ class _$Empty<T> implements Empty<T> {
     TResult Function(ImageTooSmall<T> value)? imageTooSmall,
     TResult Function(IncorrectPostalCode<T> value)? incorrectPostalCode,
     TResult Function(NoAddressNumber<T> value)? noAddressNumber,
+    TResult Function(NoInternetConnection<T> value)? noInternetConnection,
     required TResult orElse(),
   }) {
     if (empty != null) {
@@ -1721,21 +1733,17 @@ class _$Empty<T> implements Empty<T> {
 abstract class Empty<T> implements CoreValueFailure<T> {
   const factory Empty({required T failedValue}) = _$Empty<T>;
 
-  @override
   T get failedValue;
-  @override
   @JsonKey(ignore: true)
   $EmptyCopyWith<T, Empty<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $MultilineCopyWith<T, $Res>
-    implements $CoreValueFailureCopyWith<T, $Res> {
+abstract class $MultilineCopyWith<T, $Res> {
   factory $MultilineCopyWith(
           Multiline<T> value, $Res Function(Multiline<T>) then) =
       _$MultilineCopyWithImpl<T, $Res>;
-  @override
   $Res call({T failedValue});
 }
 
@@ -1816,6 +1824,7 @@ class _$Multiline<T> implements Multiline<T> {
         imageTooSmall,
     required TResult Function(T failedValue) incorrectPostalCode,
     required TResult Function(T failedValue) noAddressNumber,
+    required TResult Function() noInternetConnection,
   }) {
     return multiline(failedValue);
   }
@@ -1839,6 +1848,7 @@ class _$Multiline<T> implements Multiline<T> {
     TResult Function(T failedValue, int minHeight, int minWidth)? imageTooSmall,
     TResult Function(T failedValue)? incorrectPostalCode,
     TResult Function(T failedValue)? noAddressNumber,
+    TResult Function()? noInternetConnection,
   }) {
     return multiline?.call(failedValue);
   }
@@ -1862,6 +1872,7 @@ class _$Multiline<T> implements Multiline<T> {
     TResult Function(T failedValue, int minHeight, int minWidth)? imageTooSmall,
     TResult Function(T failedValue)? incorrectPostalCode,
     TResult Function(T failedValue)? noAddressNumber,
+    TResult Function()? noInternetConnection,
     required TResult orElse(),
   }) {
     if (multiline != null) {
@@ -1891,6 +1902,8 @@ class _$Multiline<T> implements Multiline<T> {
     required TResult Function(ImageTooSmall<T> value) imageTooSmall,
     required TResult Function(IncorrectPostalCode<T> value) incorrectPostalCode,
     required TResult Function(NoAddressNumber<T> value) noAddressNumber,
+    required TResult Function(NoInternetConnection<T> value)
+        noInternetConnection,
   }) {
     return multiline(this);
   }
@@ -1914,6 +1927,7 @@ class _$Multiline<T> implements Multiline<T> {
     TResult Function(ImageTooSmall<T> value)? imageTooSmall,
     TResult Function(IncorrectPostalCode<T> value)? incorrectPostalCode,
     TResult Function(NoAddressNumber<T> value)? noAddressNumber,
+    TResult Function(NoInternetConnection<T> value)? noInternetConnection,
   }) {
     return multiline?.call(this);
   }
@@ -1937,6 +1951,7 @@ class _$Multiline<T> implements Multiline<T> {
     TResult Function(ImageTooSmall<T> value)? imageTooSmall,
     TResult Function(IncorrectPostalCode<T> value)? incorrectPostalCode,
     TResult Function(NoAddressNumber<T> value)? noAddressNumber,
+    TResult Function(NoInternetConnection<T> value)? noInternetConnection,
     required TResult orElse(),
   }) {
     if (multiline != null) {
@@ -1949,21 +1964,17 @@ class _$Multiline<T> implements Multiline<T> {
 abstract class Multiline<T> implements CoreValueFailure<T> {
   const factory Multiline({required T failedValue}) = _$Multiline<T>;
 
-  @override
   T get failedValue;
-  @override
   @JsonKey(ignore: true)
   $MultilineCopyWith<T, Multiline<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $NonNumericCopyWith<T, $Res>
-    implements $CoreValueFailureCopyWith<T, $Res> {
+abstract class $NonNumericCopyWith<T, $Res> {
   factory $NonNumericCopyWith(
           NonNumeric<T> value, $Res Function(NonNumeric<T>) then) =
       _$NonNumericCopyWithImpl<T, $Res>;
-  @override
   $Res call({T failedValue});
 }
 
@@ -2044,6 +2055,7 @@ class _$NonNumeric<T> implements NonNumeric<T> {
         imageTooSmall,
     required TResult Function(T failedValue) incorrectPostalCode,
     required TResult Function(T failedValue) noAddressNumber,
+    required TResult Function() noInternetConnection,
   }) {
     return nonNumeric(failedValue);
   }
@@ -2067,6 +2079,7 @@ class _$NonNumeric<T> implements NonNumeric<T> {
     TResult Function(T failedValue, int minHeight, int minWidth)? imageTooSmall,
     TResult Function(T failedValue)? incorrectPostalCode,
     TResult Function(T failedValue)? noAddressNumber,
+    TResult Function()? noInternetConnection,
   }) {
     return nonNumeric?.call(failedValue);
   }
@@ -2090,6 +2103,7 @@ class _$NonNumeric<T> implements NonNumeric<T> {
     TResult Function(T failedValue, int minHeight, int minWidth)? imageTooSmall,
     TResult Function(T failedValue)? incorrectPostalCode,
     TResult Function(T failedValue)? noAddressNumber,
+    TResult Function()? noInternetConnection,
     required TResult orElse(),
   }) {
     if (nonNumeric != null) {
@@ -2119,6 +2133,8 @@ class _$NonNumeric<T> implements NonNumeric<T> {
     required TResult Function(ImageTooSmall<T> value) imageTooSmall,
     required TResult Function(IncorrectPostalCode<T> value) incorrectPostalCode,
     required TResult Function(NoAddressNumber<T> value) noAddressNumber,
+    required TResult Function(NoInternetConnection<T> value)
+        noInternetConnection,
   }) {
     return nonNumeric(this);
   }
@@ -2142,6 +2158,7 @@ class _$NonNumeric<T> implements NonNumeric<T> {
     TResult Function(ImageTooSmall<T> value)? imageTooSmall,
     TResult Function(IncorrectPostalCode<T> value)? incorrectPostalCode,
     TResult Function(NoAddressNumber<T> value)? noAddressNumber,
+    TResult Function(NoInternetConnection<T> value)? noInternetConnection,
   }) {
     return nonNumeric?.call(this);
   }
@@ -2165,6 +2182,7 @@ class _$NonNumeric<T> implements NonNumeric<T> {
     TResult Function(ImageTooSmall<T> value)? imageTooSmall,
     TResult Function(IncorrectPostalCode<T> value)? incorrectPostalCode,
     TResult Function(NoAddressNumber<T> value)? noAddressNumber,
+    TResult Function(NoInternetConnection<T> value)? noInternetConnection,
     required TResult orElse(),
   }) {
     if (nonNumeric != null) {
@@ -2177,21 +2195,17 @@ class _$NonNumeric<T> implements NonNumeric<T> {
 abstract class NonNumeric<T> implements CoreValueFailure<T> {
   const factory NonNumeric({required T failedValue}) = _$NonNumeric<T>;
 
-  @override
   T get failedValue;
-  @override
   @JsonKey(ignore: true)
   $NonNumericCopyWith<T, NonNumeric<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $NoNumericValuePresentCopyWith<T, $Res>
-    implements $CoreValueFailureCopyWith<T, $Res> {
+abstract class $NoNumericValuePresentCopyWith<T, $Res> {
   factory $NoNumericValuePresentCopyWith(NoNumericValuePresent<T> value,
           $Res Function(NoNumericValuePresent<T>) then) =
       _$NoNumericValuePresentCopyWithImpl<T, $Res>;
-  @override
   $Res call({T failedValue});
 }
 
@@ -2274,6 +2288,7 @@ class _$NoNumericValuePresent<T> implements NoNumericValuePresent<T> {
         imageTooSmall,
     required TResult Function(T failedValue) incorrectPostalCode,
     required TResult Function(T failedValue) noAddressNumber,
+    required TResult Function() noInternetConnection,
   }) {
     return noNumericValuePresent(failedValue);
   }
@@ -2297,6 +2312,7 @@ class _$NoNumericValuePresent<T> implements NoNumericValuePresent<T> {
     TResult Function(T failedValue, int minHeight, int minWidth)? imageTooSmall,
     TResult Function(T failedValue)? incorrectPostalCode,
     TResult Function(T failedValue)? noAddressNumber,
+    TResult Function()? noInternetConnection,
   }) {
     return noNumericValuePresent?.call(failedValue);
   }
@@ -2320,6 +2336,7 @@ class _$NoNumericValuePresent<T> implements NoNumericValuePresent<T> {
     TResult Function(T failedValue, int minHeight, int minWidth)? imageTooSmall,
     TResult Function(T failedValue)? incorrectPostalCode,
     TResult Function(T failedValue)? noAddressNumber,
+    TResult Function()? noInternetConnection,
     required TResult orElse(),
   }) {
     if (noNumericValuePresent != null) {
@@ -2349,6 +2366,8 @@ class _$NoNumericValuePresent<T> implements NoNumericValuePresent<T> {
     required TResult Function(ImageTooSmall<T> value) imageTooSmall,
     required TResult Function(IncorrectPostalCode<T> value) incorrectPostalCode,
     required TResult Function(NoAddressNumber<T> value) noAddressNumber,
+    required TResult Function(NoInternetConnection<T> value)
+        noInternetConnection,
   }) {
     return noNumericValuePresent(this);
   }
@@ -2372,6 +2391,7 @@ class _$NoNumericValuePresent<T> implements NoNumericValuePresent<T> {
     TResult Function(ImageTooSmall<T> value)? imageTooSmall,
     TResult Function(IncorrectPostalCode<T> value)? incorrectPostalCode,
     TResult Function(NoAddressNumber<T> value)? noAddressNumber,
+    TResult Function(NoInternetConnection<T> value)? noInternetConnection,
   }) {
     return noNumericValuePresent?.call(this);
   }
@@ -2395,6 +2415,7 @@ class _$NoNumericValuePresent<T> implements NoNumericValuePresent<T> {
     TResult Function(ImageTooSmall<T> value)? imageTooSmall,
     TResult Function(IncorrectPostalCode<T> value)? incorrectPostalCode,
     TResult Function(NoAddressNumber<T> value)? noAddressNumber,
+    TResult Function(NoInternetConnection<T> value)? noInternetConnection,
     required TResult orElse(),
   }) {
     if (noNumericValuePresent != null) {
@@ -2408,21 +2429,17 @@ abstract class NoNumericValuePresent<T> implements CoreValueFailure<T> {
   const factory NoNumericValuePresent({required T failedValue}) =
       _$NoNumericValuePresent<T>;
 
-  @override
   T get failedValue;
-  @override
   @JsonKey(ignore: true)
   $NoNumericValuePresentCopyWith<T, NoNumericValuePresent<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $NonPositiveCopyWith<T, $Res>
-    implements $CoreValueFailureCopyWith<T, $Res> {
+abstract class $NonPositiveCopyWith<T, $Res> {
   factory $NonPositiveCopyWith(
           NonPositive<T> value, $Res Function(NonPositive<T>) then) =
       _$NonPositiveCopyWithImpl<T, $Res>;
-  @override
   $Res call({T failedValue});
 }
 
@@ -2503,6 +2520,7 @@ class _$NonPositive<T> implements NonPositive<T> {
         imageTooSmall,
     required TResult Function(T failedValue) incorrectPostalCode,
     required TResult Function(T failedValue) noAddressNumber,
+    required TResult Function() noInternetConnection,
   }) {
     return nonPositive(failedValue);
   }
@@ -2526,6 +2544,7 @@ class _$NonPositive<T> implements NonPositive<T> {
     TResult Function(T failedValue, int minHeight, int minWidth)? imageTooSmall,
     TResult Function(T failedValue)? incorrectPostalCode,
     TResult Function(T failedValue)? noAddressNumber,
+    TResult Function()? noInternetConnection,
   }) {
     return nonPositive?.call(failedValue);
   }
@@ -2549,6 +2568,7 @@ class _$NonPositive<T> implements NonPositive<T> {
     TResult Function(T failedValue, int minHeight, int minWidth)? imageTooSmall,
     TResult Function(T failedValue)? incorrectPostalCode,
     TResult Function(T failedValue)? noAddressNumber,
+    TResult Function()? noInternetConnection,
     required TResult orElse(),
   }) {
     if (nonPositive != null) {
@@ -2578,6 +2598,8 @@ class _$NonPositive<T> implements NonPositive<T> {
     required TResult Function(ImageTooSmall<T> value) imageTooSmall,
     required TResult Function(IncorrectPostalCode<T> value) incorrectPostalCode,
     required TResult Function(NoAddressNumber<T> value) noAddressNumber,
+    required TResult Function(NoInternetConnection<T> value)
+        noInternetConnection,
   }) {
     return nonPositive(this);
   }
@@ -2601,6 +2623,7 @@ class _$NonPositive<T> implements NonPositive<T> {
     TResult Function(ImageTooSmall<T> value)? imageTooSmall,
     TResult Function(IncorrectPostalCode<T> value)? incorrectPostalCode,
     TResult Function(NoAddressNumber<T> value)? noAddressNumber,
+    TResult Function(NoInternetConnection<T> value)? noInternetConnection,
   }) {
     return nonPositive?.call(this);
   }
@@ -2624,6 +2647,7 @@ class _$NonPositive<T> implements NonPositive<T> {
     TResult Function(ImageTooSmall<T> value)? imageTooSmall,
     TResult Function(IncorrectPostalCode<T> value)? incorrectPostalCode,
     TResult Function(NoAddressNumber<T> value)? noAddressNumber,
+    TResult Function(NoInternetConnection<T> value)? noInternetConnection,
     required TResult orElse(),
   }) {
     if (nonPositive != null) {
@@ -2636,21 +2660,17 @@ class _$NonPositive<T> implements NonPositive<T> {
 abstract class NonPositive<T> implements CoreValueFailure<T> {
   const factory NonPositive({required T failedValue}) = _$NonPositive<T>;
 
-  @override
   T get failedValue;
-  @override
   @JsonKey(ignore: true)
   $NonPositiveCopyWith<T, NonPositive<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $NumberOutsideIntervalCopyWith<T, $Res>
-    implements $CoreValueFailureCopyWith<T, $Res> {
+abstract class $NumberOutsideIntervalCopyWith<T, $Res> {
   factory $NumberOutsideIntervalCopyWith(NumberOutsideInterval<T> value,
           $Res Function(NumberOutsideInterval<T>) then) =
       _$NumberOutsideIntervalCopyWithImpl<T, $Res>;
-  @override
   $Res call({T failedValue, num min, num max});
 }
 
@@ -2753,6 +2773,7 @@ class _$NumberOutsideInterval<T> implements NumberOutsideInterval<T> {
         imageTooSmall,
     required TResult Function(T failedValue) incorrectPostalCode,
     required TResult Function(T failedValue) noAddressNumber,
+    required TResult Function() noInternetConnection,
   }) {
     return numberOutsideInterval(failedValue, min, max);
   }
@@ -2776,6 +2797,7 @@ class _$NumberOutsideInterval<T> implements NumberOutsideInterval<T> {
     TResult Function(T failedValue, int minHeight, int minWidth)? imageTooSmall,
     TResult Function(T failedValue)? incorrectPostalCode,
     TResult Function(T failedValue)? noAddressNumber,
+    TResult Function()? noInternetConnection,
   }) {
     return numberOutsideInterval?.call(failedValue, min, max);
   }
@@ -2799,6 +2821,7 @@ class _$NumberOutsideInterval<T> implements NumberOutsideInterval<T> {
     TResult Function(T failedValue, int minHeight, int minWidth)? imageTooSmall,
     TResult Function(T failedValue)? incorrectPostalCode,
     TResult Function(T failedValue)? noAddressNumber,
+    TResult Function()? noInternetConnection,
     required TResult orElse(),
   }) {
     if (numberOutsideInterval != null) {
@@ -2828,6 +2851,8 @@ class _$NumberOutsideInterval<T> implements NumberOutsideInterval<T> {
     required TResult Function(ImageTooSmall<T> value) imageTooSmall,
     required TResult Function(IncorrectPostalCode<T> value) incorrectPostalCode,
     required TResult Function(NoAddressNumber<T> value) noAddressNumber,
+    required TResult Function(NoInternetConnection<T> value)
+        noInternetConnection,
   }) {
     return numberOutsideInterval(this);
   }
@@ -2851,6 +2876,7 @@ class _$NumberOutsideInterval<T> implements NumberOutsideInterval<T> {
     TResult Function(ImageTooSmall<T> value)? imageTooSmall,
     TResult Function(IncorrectPostalCode<T> value)? incorrectPostalCode,
     TResult Function(NoAddressNumber<T> value)? noAddressNumber,
+    TResult Function(NoInternetConnection<T> value)? noInternetConnection,
   }) {
     return numberOutsideInterval?.call(this);
   }
@@ -2874,6 +2900,7 @@ class _$NumberOutsideInterval<T> implements NumberOutsideInterval<T> {
     TResult Function(ImageTooSmall<T> value)? imageTooSmall,
     TResult Function(IncorrectPostalCode<T> value)? incorrectPostalCode,
     TResult Function(NoAddressNumber<T> value)? noAddressNumber,
+    TResult Function(NoInternetConnection<T> value)? noInternetConnection,
     required TResult orElse(),
   }) {
     if (numberOutsideInterval != null) {
@@ -2889,23 +2916,19 @@ abstract class NumberOutsideInterval<T> implements CoreValueFailure<T> {
       required num min,
       required num max}) = _$NumberOutsideInterval<T>;
 
-  @override
   T get failedValue;
   num get min;
   num get max;
-  @override
   @JsonKey(ignore: true)
   $NumberOutsideIntervalCopyWith<T, NumberOutsideInterval<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ImageTooBigCopyWith<T, $Res>
-    implements $CoreValueFailureCopyWith<T, $Res> {
+abstract class $ImageTooBigCopyWith<T, $Res> {
   factory $ImageTooBigCopyWith(
           ImageTooBig<T> value, $Res Function(ImageTooBig<T>) then) =
       _$ImageTooBigCopyWithImpl<T, $Res>;
-  @override
   $Res call({T failedValue, int maxHeight, int maxWidth});
 }
 
@@ -3008,6 +3031,7 @@ class _$ImageTooBig<T> implements ImageTooBig<T> {
         imageTooSmall,
     required TResult Function(T failedValue) incorrectPostalCode,
     required TResult Function(T failedValue) noAddressNumber,
+    required TResult Function() noInternetConnection,
   }) {
     return imageTooBig(failedValue, maxHeight, maxWidth);
   }
@@ -3031,6 +3055,7 @@ class _$ImageTooBig<T> implements ImageTooBig<T> {
     TResult Function(T failedValue, int minHeight, int minWidth)? imageTooSmall,
     TResult Function(T failedValue)? incorrectPostalCode,
     TResult Function(T failedValue)? noAddressNumber,
+    TResult Function()? noInternetConnection,
   }) {
     return imageTooBig?.call(failedValue, maxHeight, maxWidth);
   }
@@ -3054,6 +3079,7 @@ class _$ImageTooBig<T> implements ImageTooBig<T> {
     TResult Function(T failedValue, int minHeight, int minWidth)? imageTooSmall,
     TResult Function(T failedValue)? incorrectPostalCode,
     TResult Function(T failedValue)? noAddressNumber,
+    TResult Function()? noInternetConnection,
     required TResult orElse(),
   }) {
     if (imageTooBig != null) {
@@ -3083,6 +3109,8 @@ class _$ImageTooBig<T> implements ImageTooBig<T> {
     required TResult Function(ImageTooSmall<T> value) imageTooSmall,
     required TResult Function(IncorrectPostalCode<T> value) incorrectPostalCode,
     required TResult Function(NoAddressNumber<T> value) noAddressNumber,
+    required TResult Function(NoInternetConnection<T> value)
+        noInternetConnection,
   }) {
     return imageTooBig(this);
   }
@@ -3106,6 +3134,7 @@ class _$ImageTooBig<T> implements ImageTooBig<T> {
     TResult Function(ImageTooSmall<T> value)? imageTooSmall,
     TResult Function(IncorrectPostalCode<T> value)? incorrectPostalCode,
     TResult Function(NoAddressNumber<T> value)? noAddressNumber,
+    TResult Function(NoInternetConnection<T> value)? noInternetConnection,
   }) {
     return imageTooBig?.call(this);
   }
@@ -3129,6 +3158,7 @@ class _$ImageTooBig<T> implements ImageTooBig<T> {
     TResult Function(ImageTooSmall<T> value)? imageTooSmall,
     TResult Function(IncorrectPostalCode<T> value)? incorrectPostalCode,
     TResult Function(NoAddressNumber<T> value)? noAddressNumber,
+    TResult Function(NoInternetConnection<T> value)? noInternetConnection,
     required TResult orElse(),
   }) {
     if (imageTooBig != null) {
@@ -3144,23 +3174,19 @@ abstract class ImageTooBig<T> implements CoreValueFailure<T> {
       required int maxHeight,
       required int maxWidth}) = _$ImageTooBig<T>;
 
-  @override
   T get failedValue;
   int get maxHeight;
   int get maxWidth;
-  @override
   @JsonKey(ignore: true)
   $ImageTooBigCopyWith<T, ImageTooBig<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ImageTooSmallCopyWith<T, $Res>
-    implements $CoreValueFailureCopyWith<T, $Res> {
+abstract class $ImageTooSmallCopyWith<T, $Res> {
   factory $ImageTooSmallCopyWith(
           ImageTooSmall<T> value, $Res Function(ImageTooSmall<T>) then) =
       _$ImageTooSmallCopyWithImpl<T, $Res>;
-  @override
   $Res call({T failedValue, int minHeight, int minWidth});
 }
 
@@ -3263,6 +3289,7 @@ class _$ImageTooSmall<T> implements ImageTooSmall<T> {
         imageTooSmall,
     required TResult Function(T failedValue) incorrectPostalCode,
     required TResult Function(T failedValue) noAddressNumber,
+    required TResult Function() noInternetConnection,
   }) {
     return imageTooSmall(failedValue, minHeight, minWidth);
   }
@@ -3286,6 +3313,7 @@ class _$ImageTooSmall<T> implements ImageTooSmall<T> {
     TResult Function(T failedValue, int minHeight, int minWidth)? imageTooSmall,
     TResult Function(T failedValue)? incorrectPostalCode,
     TResult Function(T failedValue)? noAddressNumber,
+    TResult Function()? noInternetConnection,
   }) {
     return imageTooSmall?.call(failedValue, minHeight, minWidth);
   }
@@ -3309,6 +3337,7 @@ class _$ImageTooSmall<T> implements ImageTooSmall<T> {
     TResult Function(T failedValue, int minHeight, int minWidth)? imageTooSmall,
     TResult Function(T failedValue)? incorrectPostalCode,
     TResult Function(T failedValue)? noAddressNumber,
+    TResult Function()? noInternetConnection,
     required TResult orElse(),
   }) {
     if (imageTooSmall != null) {
@@ -3338,6 +3367,8 @@ class _$ImageTooSmall<T> implements ImageTooSmall<T> {
     required TResult Function(ImageTooSmall<T> value) imageTooSmall,
     required TResult Function(IncorrectPostalCode<T> value) incorrectPostalCode,
     required TResult Function(NoAddressNumber<T> value) noAddressNumber,
+    required TResult Function(NoInternetConnection<T> value)
+        noInternetConnection,
   }) {
     return imageTooSmall(this);
   }
@@ -3361,6 +3392,7 @@ class _$ImageTooSmall<T> implements ImageTooSmall<T> {
     TResult Function(ImageTooSmall<T> value)? imageTooSmall,
     TResult Function(IncorrectPostalCode<T> value)? incorrectPostalCode,
     TResult Function(NoAddressNumber<T> value)? noAddressNumber,
+    TResult Function(NoInternetConnection<T> value)? noInternetConnection,
   }) {
     return imageTooSmall?.call(this);
   }
@@ -3384,6 +3416,7 @@ class _$ImageTooSmall<T> implements ImageTooSmall<T> {
     TResult Function(ImageTooSmall<T> value)? imageTooSmall,
     TResult Function(IncorrectPostalCode<T> value)? incorrectPostalCode,
     TResult Function(NoAddressNumber<T> value)? noAddressNumber,
+    TResult Function(NoInternetConnection<T> value)? noInternetConnection,
     required TResult orElse(),
   }) {
     if (imageTooSmall != null) {
@@ -3399,23 +3432,19 @@ abstract class ImageTooSmall<T> implements CoreValueFailure<T> {
       required int minHeight,
       required int minWidth}) = _$ImageTooSmall<T>;
 
-  @override
   T get failedValue;
   int get minHeight;
   int get minWidth;
-  @override
   @JsonKey(ignore: true)
   $ImageTooSmallCopyWith<T, ImageTooSmall<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $IncorrectPostalCodeCopyWith<T, $Res>
-    implements $CoreValueFailureCopyWith<T, $Res> {
+abstract class $IncorrectPostalCodeCopyWith<T, $Res> {
   factory $IncorrectPostalCodeCopyWith(IncorrectPostalCode<T> value,
           $Res Function(IncorrectPostalCode<T>) then) =
       _$IncorrectPostalCodeCopyWithImpl<T, $Res>;
-  @override
   $Res call({T failedValue});
 }
 
@@ -3497,6 +3526,7 @@ class _$IncorrectPostalCode<T> implements IncorrectPostalCode<T> {
         imageTooSmall,
     required TResult Function(T failedValue) incorrectPostalCode,
     required TResult Function(T failedValue) noAddressNumber,
+    required TResult Function() noInternetConnection,
   }) {
     return incorrectPostalCode(failedValue);
   }
@@ -3520,6 +3550,7 @@ class _$IncorrectPostalCode<T> implements IncorrectPostalCode<T> {
     TResult Function(T failedValue, int minHeight, int minWidth)? imageTooSmall,
     TResult Function(T failedValue)? incorrectPostalCode,
     TResult Function(T failedValue)? noAddressNumber,
+    TResult Function()? noInternetConnection,
   }) {
     return incorrectPostalCode?.call(failedValue);
   }
@@ -3543,6 +3574,7 @@ class _$IncorrectPostalCode<T> implements IncorrectPostalCode<T> {
     TResult Function(T failedValue, int minHeight, int minWidth)? imageTooSmall,
     TResult Function(T failedValue)? incorrectPostalCode,
     TResult Function(T failedValue)? noAddressNumber,
+    TResult Function()? noInternetConnection,
     required TResult orElse(),
   }) {
     if (incorrectPostalCode != null) {
@@ -3572,6 +3604,8 @@ class _$IncorrectPostalCode<T> implements IncorrectPostalCode<T> {
     required TResult Function(ImageTooSmall<T> value) imageTooSmall,
     required TResult Function(IncorrectPostalCode<T> value) incorrectPostalCode,
     required TResult Function(NoAddressNumber<T> value) noAddressNumber,
+    required TResult Function(NoInternetConnection<T> value)
+        noInternetConnection,
   }) {
     return incorrectPostalCode(this);
   }
@@ -3595,6 +3629,7 @@ class _$IncorrectPostalCode<T> implements IncorrectPostalCode<T> {
     TResult Function(ImageTooSmall<T> value)? imageTooSmall,
     TResult Function(IncorrectPostalCode<T> value)? incorrectPostalCode,
     TResult Function(NoAddressNumber<T> value)? noAddressNumber,
+    TResult Function(NoInternetConnection<T> value)? noInternetConnection,
   }) {
     return incorrectPostalCode?.call(this);
   }
@@ -3618,6 +3653,7 @@ class _$IncorrectPostalCode<T> implements IncorrectPostalCode<T> {
     TResult Function(ImageTooSmall<T> value)? imageTooSmall,
     TResult Function(IncorrectPostalCode<T> value)? incorrectPostalCode,
     TResult Function(NoAddressNumber<T> value)? noAddressNumber,
+    TResult Function(NoInternetConnection<T> value)? noInternetConnection,
     required TResult orElse(),
   }) {
     if (incorrectPostalCode != null) {
@@ -3631,21 +3667,17 @@ abstract class IncorrectPostalCode<T> implements CoreValueFailure<T> {
   const factory IncorrectPostalCode({required T failedValue}) =
       _$IncorrectPostalCode<T>;
 
-  @override
   T get failedValue;
-  @override
   @JsonKey(ignore: true)
   $IncorrectPostalCodeCopyWith<T, IncorrectPostalCode<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $NoAddressNumberCopyWith<T, $Res>
-    implements $CoreValueFailureCopyWith<T, $Res> {
+abstract class $NoAddressNumberCopyWith<T, $Res> {
   factory $NoAddressNumberCopyWith(
           NoAddressNumber<T> value, $Res Function(NoAddressNumber<T>) then) =
       _$NoAddressNumberCopyWithImpl<T, $Res>;
-  @override
   $Res call({T failedValue});
 }
 
@@ -3726,6 +3758,7 @@ class _$NoAddressNumber<T> implements NoAddressNumber<T> {
         imageTooSmall,
     required TResult Function(T failedValue) incorrectPostalCode,
     required TResult Function(T failedValue) noAddressNumber,
+    required TResult Function() noInternetConnection,
   }) {
     return noAddressNumber(failedValue);
   }
@@ -3749,6 +3782,7 @@ class _$NoAddressNumber<T> implements NoAddressNumber<T> {
     TResult Function(T failedValue, int minHeight, int minWidth)? imageTooSmall,
     TResult Function(T failedValue)? incorrectPostalCode,
     TResult Function(T failedValue)? noAddressNumber,
+    TResult Function()? noInternetConnection,
   }) {
     return noAddressNumber?.call(failedValue);
   }
@@ -3772,6 +3806,7 @@ class _$NoAddressNumber<T> implements NoAddressNumber<T> {
     TResult Function(T failedValue, int minHeight, int minWidth)? imageTooSmall,
     TResult Function(T failedValue)? incorrectPostalCode,
     TResult Function(T failedValue)? noAddressNumber,
+    TResult Function()? noInternetConnection,
     required TResult orElse(),
   }) {
     if (noAddressNumber != null) {
@@ -3801,6 +3836,8 @@ class _$NoAddressNumber<T> implements NoAddressNumber<T> {
     required TResult Function(ImageTooSmall<T> value) imageTooSmall,
     required TResult Function(IncorrectPostalCode<T> value) incorrectPostalCode,
     required TResult Function(NoAddressNumber<T> value) noAddressNumber,
+    required TResult Function(NoInternetConnection<T> value)
+        noInternetConnection,
   }) {
     return noAddressNumber(this);
   }
@@ -3824,6 +3861,7 @@ class _$NoAddressNumber<T> implements NoAddressNumber<T> {
     TResult Function(ImageTooSmall<T> value)? imageTooSmall,
     TResult Function(IncorrectPostalCode<T> value)? incorrectPostalCode,
     TResult Function(NoAddressNumber<T> value)? noAddressNumber,
+    TResult Function(NoInternetConnection<T> value)? noInternetConnection,
   }) {
     return noAddressNumber?.call(this);
   }
@@ -3847,6 +3885,7 @@ class _$NoAddressNumber<T> implements NoAddressNumber<T> {
     TResult Function(ImageTooSmall<T> value)? imageTooSmall,
     TResult Function(IncorrectPostalCode<T> value)? incorrectPostalCode,
     TResult Function(NoAddressNumber<T> value)? noAddressNumber,
+    TResult Function(NoInternetConnection<T> value)? noInternetConnection,
     required TResult orElse(),
   }) {
     if (noAddressNumber != null) {
@@ -3860,10 +3899,209 @@ abstract class NoAddressNumber<T> implements CoreValueFailure<T> {
   const factory NoAddressNumber({required T failedValue}) =
       _$NoAddressNumber<T>;
 
-  @override
   T get failedValue;
-  @override
   @JsonKey(ignore: true)
   $NoAddressNumberCopyWith<T, NoAddressNumber<T>> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $NoInternetConnectionCopyWith<T, $Res> {
+  factory $NoInternetConnectionCopyWith(NoInternetConnection<T> value,
+          $Res Function(NoInternetConnection<T>) then) =
+      _$NoInternetConnectionCopyWithImpl<T, $Res>;
+}
+
+/// @nodoc
+class _$NoInternetConnectionCopyWithImpl<T, $Res>
+    extends _$CoreValueFailureCopyWithImpl<T, $Res>
+    implements $NoInternetConnectionCopyWith<T, $Res> {
+  _$NoInternetConnectionCopyWithImpl(NoInternetConnection<T> _value,
+      $Res Function(NoInternetConnection<T>) _then)
+      : super(_value, (v) => _then(v as NoInternetConnection<T>));
+
+  @override
+  NoInternetConnection<T> get _value => super._value as NoInternetConnection<T>;
+}
+
+/// @nodoc
+
+class _$NoInternetConnection<T> implements NoInternetConnection<T> {
+  const _$NoInternetConnection();
+
+  @override
+  String toString() {
+    return 'CoreValueFailure<$T>.noInternetConnection()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is NoInternetConnection<T>);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(T failedValue, int maxLength) listTooLong,
+    required TResult Function(T failedValue, int minLength) listTooShort,
+    required TResult Function(T failedValue, int maxLength) exceedingLength,
+    required TResult Function(T failedValue, int minLength) stringTooShort,
+    required TResult Function(T failedValue, String missingKeyword)
+        stringDoesntContainKeyword,
+    required TResult Function(T failedValue) empty,
+    required TResult Function(T failedValue) multiline,
+    required TResult Function(T failedValue) nonNumeric,
+    required TResult Function(T failedValue) noNumericValuePresent,
+    required TResult Function(T failedValue) nonPositive,
+    required TResult Function(T failedValue, num min, num max)
+        numberOutsideInterval,
+    required TResult Function(T failedValue, int maxHeight, int maxWidth)
+        imageTooBig,
+    required TResult Function(T failedValue, int minHeight, int minWidth)
+        imageTooSmall,
+    required TResult Function(T failedValue) incorrectPostalCode,
+    required TResult Function(T failedValue) noAddressNumber,
+    required TResult Function() noInternetConnection,
+  }) {
+    return noInternetConnection();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(T failedValue, int maxLength)? listTooLong,
+    TResult Function(T failedValue, int minLength)? listTooShort,
+    TResult Function(T failedValue, int maxLength)? exceedingLength,
+    TResult Function(T failedValue, int minLength)? stringTooShort,
+    TResult Function(T failedValue, String missingKeyword)?
+        stringDoesntContainKeyword,
+    TResult Function(T failedValue)? empty,
+    TResult Function(T failedValue)? multiline,
+    TResult Function(T failedValue)? nonNumeric,
+    TResult Function(T failedValue)? noNumericValuePresent,
+    TResult Function(T failedValue)? nonPositive,
+    TResult Function(T failedValue, num min, num max)? numberOutsideInterval,
+    TResult Function(T failedValue, int maxHeight, int maxWidth)? imageTooBig,
+    TResult Function(T failedValue, int minHeight, int minWidth)? imageTooSmall,
+    TResult Function(T failedValue)? incorrectPostalCode,
+    TResult Function(T failedValue)? noAddressNumber,
+    TResult Function()? noInternetConnection,
+  }) {
+    return noInternetConnection?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(T failedValue, int maxLength)? listTooLong,
+    TResult Function(T failedValue, int minLength)? listTooShort,
+    TResult Function(T failedValue, int maxLength)? exceedingLength,
+    TResult Function(T failedValue, int minLength)? stringTooShort,
+    TResult Function(T failedValue, String missingKeyword)?
+        stringDoesntContainKeyword,
+    TResult Function(T failedValue)? empty,
+    TResult Function(T failedValue)? multiline,
+    TResult Function(T failedValue)? nonNumeric,
+    TResult Function(T failedValue)? noNumericValuePresent,
+    TResult Function(T failedValue)? nonPositive,
+    TResult Function(T failedValue, num min, num max)? numberOutsideInterval,
+    TResult Function(T failedValue, int maxHeight, int maxWidth)? imageTooBig,
+    TResult Function(T failedValue, int minHeight, int minWidth)? imageTooSmall,
+    TResult Function(T failedValue)? incorrectPostalCode,
+    TResult Function(T failedValue)? noAddressNumber,
+    TResult Function()? noInternetConnection,
+    required TResult orElse(),
+  }) {
+    if (noInternetConnection != null) {
+      return noInternetConnection();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ListTooLong<T> value) listTooLong,
+    required TResult Function(ListTooShort<T> value) listTooShort,
+    required TResult Function(ExceedingLength<T> value) exceedingLength,
+    required TResult Function(StringTooShort<T> value) stringTooShort,
+    required TResult Function(StringDoesntContainKeyword<T> value)
+        stringDoesntContainKeyword,
+    required TResult Function(Empty<T> value) empty,
+    required TResult Function(Multiline<T> value) multiline,
+    required TResult Function(NonNumeric<T> value) nonNumeric,
+    required TResult Function(NoNumericValuePresent<T> value)
+        noNumericValuePresent,
+    required TResult Function(NonPositive<T> value) nonPositive,
+    required TResult Function(NumberOutsideInterval<T> value)
+        numberOutsideInterval,
+    required TResult Function(ImageTooBig<T> value) imageTooBig,
+    required TResult Function(ImageTooSmall<T> value) imageTooSmall,
+    required TResult Function(IncorrectPostalCode<T> value) incorrectPostalCode,
+    required TResult Function(NoAddressNumber<T> value) noAddressNumber,
+    required TResult Function(NoInternetConnection<T> value)
+        noInternetConnection,
+  }) {
+    return noInternetConnection(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(ListTooLong<T> value)? listTooLong,
+    TResult Function(ListTooShort<T> value)? listTooShort,
+    TResult Function(ExceedingLength<T> value)? exceedingLength,
+    TResult Function(StringTooShort<T> value)? stringTooShort,
+    TResult Function(StringDoesntContainKeyword<T> value)?
+        stringDoesntContainKeyword,
+    TResult Function(Empty<T> value)? empty,
+    TResult Function(Multiline<T> value)? multiline,
+    TResult Function(NonNumeric<T> value)? nonNumeric,
+    TResult Function(NoNumericValuePresent<T> value)? noNumericValuePresent,
+    TResult Function(NonPositive<T> value)? nonPositive,
+    TResult Function(NumberOutsideInterval<T> value)? numberOutsideInterval,
+    TResult Function(ImageTooBig<T> value)? imageTooBig,
+    TResult Function(ImageTooSmall<T> value)? imageTooSmall,
+    TResult Function(IncorrectPostalCode<T> value)? incorrectPostalCode,
+    TResult Function(NoAddressNumber<T> value)? noAddressNumber,
+    TResult Function(NoInternetConnection<T> value)? noInternetConnection,
+  }) {
+    return noInternetConnection?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ListTooLong<T> value)? listTooLong,
+    TResult Function(ListTooShort<T> value)? listTooShort,
+    TResult Function(ExceedingLength<T> value)? exceedingLength,
+    TResult Function(StringTooShort<T> value)? stringTooShort,
+    TResult Function(StringDoesntContainKeyword<T> value)?
+        stringDoesntContainKeyword,
+    TResult Function(Empty<T> value)? empty,
+    TResult Function(Multiline<T> value)? multiline,
+    TResult Function(NonNumeric<T> value)? nonNumeric,
+    TResult Function(NoNumericValuePresent<T> value)? noNumericValuePresent,
+    TResult Function(NonPositive<T> value)? nonPositive,
+    TResult Function(NumberOutsideInterval<T> value)? numberOutsideInterval,
+    TResult Function(ImageTooBig<T> value)? imageTooBig,
+    TResult Function(ImageTooSmall<T> value)? imageTooSmall,
+    TResult Function(IncorrectPostalCode<T> value)? incorrectPostalCode,
+    TResult Function(NoAddressNumber<T> value)? noAddressNumber,
+    TResult Function(NoInternetConnection<T> value)? noInternetConnection,
+    required TResult orElse(),
+  }) {
+    if (noInternetConnection != null) {
+      return noInternetConnection(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class NoInternetConnection<T> implements CoreValueFailure<T> {
+  const factory NoInternetConnection() = _$NoInternetConnection<T>;
 }

@@ -34,6 +34,10 @@ class _$ProductFailureTearOff {
       timeout,
     );
   }
+
+  _NoInternetConnection noInternetConnection() {
+    return const _NoInternetConnection();
+  }
 }
 
 /// @nodoc
@@ -47,6 +51,7 @@ mixin _$ProductFailure {
     required TResult Function() insufficientPermission,
     required TResult Function() unableToUpdate,
     required TResult Function(Duration timeout) timeout,
+    required TResult Function() noInternetConnection,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -55,6 +60,7 @@ mixin _$ProductFailure {
     TResult Function()? insufficientPermission,
     TResult Function()? unableToUpdate,
     TResult Function(Duration timeout)? timeout,
+    TResult Function()? noInternetConnection,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -63,6 +69,7 @@ mixin _$ProductFailure {
     TResult Function()? insufficientPermission,
     TResult Function()? unableToUpdate,
     TResult Function(Duration timeout)? timeout,
+    TResult Function()? noInternetConnection,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -73,6 +80,7 @@ mixin _$ProductFailure {
         insufficientPermission,
     required TResult Function(_UnableToUpdate value) unableToUpdate,
     required TResult Function(_Timeout value) timeout,
+    required TResult Function(_NoInternetConnection value) noInternetConnection,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -81,6 +89,7 @@ mixin _$ProductFailure {
     TResult Function(_InsufficientPermission value)? insufficientPermission,
     TResult Function(_UnableToUpdate value)? unableToUpdate,
     TResult Function(_Timeout value)? timeout,
+    TResult Function(_NoInternetConnection value)? noInternetConnection,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -89,6 +98,7 @@ mixin _$ProductFailure {
     TResult Function(_InsufficientPermission value)? insufficientPermission,
     TResult Function(_UnableToUpdate value)? unableToUpdate,
     TResult Function(_Timeout value)? timeout,
+    TResult Function(_NoInternetConnection value)? noInternetConnection,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -155,6 +165,7 @@ class _$_Unexpected implements _Unexpected {
     required TResult Function() insufficientPermission,
     required TResult Function() unableToUpdate,
     required TResult Function(Duration timeout) timeout,
+    required TResult Function() noInternetConnection,
   }) {
     return unexpected();
   }
@@ -166,6 +177,7 @@ class _$_Unexpected implements _Unexpected {
     TResult Function()? insufficientPermission,
     TResult Function()? unableToUpdate,
     TResult Function(Duration timeout)? timeout,
+    TResult Function()? noInternetConnection,
   }) {
     return unexpected?.call();
   }
@@ -177,6 +189,7 @@ class _$_Unexpected implements _Unexpected {
     TResult Function()? insufficientPermission,
     TResult Function()? unableToUpdate,
     TResult Function(Duration timeout)? timeout,
+    TResult Function()? noInternetConnection,
     required TResult orElse(),
   }) {
     if (unexpected != null) {
@@ -193,6 +206,7 @@ class _$_Unexpected implements _Unexpected {
         insufficientPermission,
     required TResult Function(_UnableToUpdate value) unableToUpdate,
     required TResult Function(_Timeout value) timeout,
+    required TResult Function(_NoInternetConnection value) noInternetConnection,
   }) {
     return unexpected(this);
   }
@@ -204,6 +218,7 @@ class _$_Unexpected implements _Unexpected {
     TResult Function(_InsufficientPermission value)? insufficientPermission,
     TResult Function(_UnableToUpdate value)? unableToUpdate,
     TResult Function(_Timeout value)? timeout,
+    TResult Function(_NoInternetConnection value)? noInternetConnection,
   }) {
     return unexpected?.call(this);
   }
@@ -215,6 +230,7 @@ class _$_Unexpected implements _Unexpected {
     TResult Function(_InsufficientPermission value)? insufficientPermission,
     TResult Function(_UnableToUpdate value)? unableToUpdate,
     TResult Function(_Timeout value)? timeout,
+    TResult Function(_NoInternetConnection value)? noInternetConnection,
     required TResult orElse(),
   }) {
     if (unexpected != null) {
@@ -273,6 +289,7 @@ class _$_InsufficientPermission implements _InsufficientPermission {
     required TResult Function() insufficientPermission,
     required TResult Function() unableToUpdate,
     required TResult Function(Duration timeout) timeout,
+    required TResult Function() noInternetConnection,
   }) {
     return insufficientPermission();
   }
@@ -284,6 +301,7 @@ class _$_InsufficientPermission implements _InsufficientPermission {
     TResult Function()? insufficientPermission,
     TResult Function()? unableToUpdate,
     TResult Function(Duration timeout)? timeout,
+    TResult Function()? noInternetConnection,
   }) {
     return insufficientPermission?.call();
   }
@@ -295,6 +313,7 @@ class _$_InsufficientPermission implements _InsufficientPermission {
     TResult Function()? insufficientPermission,
     TResult Function()? unableToUpdate,
     TResult Function(Duration timeout)? timeout,
+    TResult Function()? noInternetConnection,
     required TResult orElse(),
   }) {
     if (insufficientPermission != null) {
@@ -311,6 +330,7 @@ class _$_InsufficientPermission implements _InsufficientPermission {
         insufficientPermission,
     required TResult Function(_UnableToUpdate value) unableToUpdate,
     required TResult Function(_Timeout value) timeout,
+    required TResult Function(_NoInternetConnection value) noInternetConnection,
   }) {
     return insufficientPermission(this);
   }
@@ -322,6 +342,7 @@ class _$_InsufficientPermission implements _InsufficientPermission {
     TResult Function(_InsufficientPermission value)? insufficientPermission,
     TResult Function(_UnableToUpdate value)? unableToUpdate,
     TResult Function(_Timeout value)? timeout,
+    TResult Function(_NoInternetConnection value)? noInternetConnection,
   }) {
     return insufficientPermission?.call(this);
   }
@@ -333,6 +354,7 @@ class _$_InsufficientPermission implements _InsufficientPermission {
     TResult Function(_InsufficientPermission value)? insufficientPermission,
     TResult Function(_UnableToUpdate value)? unableToUpdate,
     TResult Function(_Timeout value)? timeout,
+    TResult Function(_NoInternetConnection value)? noInternetConnection,
     required TResult orElse(),
   }) {
     if (insufficientPermission != null) {
@@ -391,6 +413,7 @@ class _$_UnableToUpdate implements _UnableToUpdate {
     required TResult Function() insufficientPermission,
     required TResult Function() unableToUpdate,
     required TResult Function(Duration timeout) timeout,
+    required TResult Function() noInternetConnection,
   }) {
     return unableToUpdate();
   }
@@ -402,6 +425,7 @@ class _$_UnableToUpdate implements _UnableToUpdate {
     TResult Function()? insufficientPermission,
     TResult Function()? unableToUpdate,
     TResult Function(Duration timeout)? timeout,
+    TResult Function()? noInternetConnection,
   }) {
     return unableToUpdate?.call();
   }
@@ -413,6 +437,7 @@ class _$_UnableToUpdate implements _UnableToUpdate {
     TResult Function()? insufficientPermission,
     TResult Function()? unableToUpdate,
     TResult Function(Duration timeout)? timeout,
+    TResult Function()? noInternetConnection,
     required TResult orElse(),
   }) {
     if (unableToUpdate != null) {
@@ -429,6 +454,7 @@ class _$_UnableToUpdate implements _UnableToUpdate {
         insufficientPermission,
     required TResult Function(_UnableToUpdate value) unableToUpdate,
     required TResult Function(_Timeout value) timeout,
+    required TResult Function(_NoInternetConnection value) noInternetConnection,
   }) {
     return unableToUpdate(this);
   }
@@ -440,6 +466,7 @@ class _$_UnableToUpdate implements _UnableToUpdate {
     TResult Function(_InsufficientPermission value)? insufficientPermission,
     TResult Function(_UnableToUpdate value)? unableToUpdate,
     TResult Function(_Timeout value)? timeout,
+    TResult Function(_NoInternetConnection value)? noInternetConnection,
   }) {
     return unableToUpdate?.call(this);
   }
@@ -451,6 +478,7 @@ class _$_UnableToUpdate implements _UnableToUpdate {
     TResult Function(_InsufficientPermission value)? insufficientPermission,
     TResult Function(_UnableToUpdate value)? unableToUpdate,
     TResult Function(_Timeout value)? timeout,
+    TResult Function(_NoInternetConnection value)? noInternetConnection,
     required TResult orElse(),
   }) {
     if (unableToUpdate != null) {
@@ -530,6 +558,7 @@ class _$_Timeout implements _Timeout {
     required TResult Function() insufficientPermission,
     required TResult Function() unableToUpdate,
     required TResult Function(Duration timeout) timeout,
+    required TResult Function() noInternetConnection,
   }) {
     return timeout(this.timeout);
   }
@@ -541,6 +570,7 @@ class _$_Timeout implements _Timeout {
     TResult Function()? insufficientPermission,
     TResult Function()? unableToUpdate,
     TResult Function(Duration timeout)? timeout,
+    TResult Function()? noInternetConnection,
   }) {
     return timeout?.call(this.timeout);
   }
@@ -552,6 +582,7 @@ class _$_Timeout implements _Timeout {
     TResult Function()? insufficientPermission,
     TResult Function()? unableToUpdate,
     TResult Function(Duration timeout)? timeout,
+    TResult Function()? noInternetConnection,
     required TResult orElse(),
   }) {
     if (timeout != null) {
@@ -568,6 +599,7 @@ class _$_Timeout implements _Timeout {
         insufficientPermission,
     required TResult Function(_UnableToUpdate value) unableToUpdate,
     required TResult Function(_Timeout value) timeout,
+    required TResult Function(_NoInternetConnection value) noInternetConnection,
   }) {
     return timeout(this);
   }
@@ -579,6 +611,7 @@ class _$_Timeout implements _Timeout {
     TResult Function(_InsufficientPermission value)? insufficientPermission,
     TResult Function(_UnableToUpdate value)? unableToUpdate,
     TResult Function(_Timeout value)? timeout,
+    TResult Function(_NoInternetConnection value)? noInternetConnection,
   }) {
     return timeout?.call(this);
   }
@@ -590,6 +623,7 @@ class _$_Timeout implements _Timeout {
     TResult Function(_InsufficientPermission value)? insufficientPermission,
     TResult Function(_UnableToUpdate value)? unableToUpdate,
     TResult Function(_Timeout value)? timeout,
+    TResult Function(_NoInternetConnection value)? noInternetConnection,
     required TResult orElse(),
   }) {
     if (timeout != null) {
@@ -606,4 +640,128 @@ abstract class _Timeout implements ProductFailure {
   @JsonKey(ignore: true)
   _$TimeoutCopyWith<_Timeout> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$NoInternetConnectionCopyWith<$Res> {
+  factory _$NoInternetConnectionCopyWith(_NoInternetConnection value,
+          $Res Function(_NoInternetConnection) then) =
+      __$NoInternetConnectionCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$NoInternetConnectionCopyWithImpl<$Res>
+    extends _$ProductFailureCopyWithImpl<$Res>
+    implements _$NoInternetConnectionCopyWith<$Res> {
+  __$NoInternetConnectionCopyWithImpl(
+      _NoInternetConnection _value, $Res Function(_NoInternetConnection) _then)
+      : super(_value, (v) => _then(v as _NoInternetConnection));
+
+  @override
+  _NoInternetConnection get _value => super._value as _NoInternetConnection;
+}
+
+/// @nodoc
+
+class _$_NoInternetConnection implements _NoInternetConnection {
+  const _$_NoInternetConnection();
+
+  @override
+  String toString() {
+    return 'ProductFailure.noInternetConnection()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _NoInternetConnection);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() unexpected,
+    required TResult Function() insufficientPermission,
+    required TResult Function() unableToUpdate,
+    required TResult Function(Duration timeout) timeout,
+    required TResult Function() noInternetConnection,
+  }) {
+    return noInternetConnection();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? unexpected,
+    TResult Function()? insufficientPermission,
+    TResult Function()? unableToUpdate,
+    TResult Function(Duration timeout)? timeout,
+    TResult Function()? noInternetConnection,
+  }) {
+    return noInternetConnection?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? unexpected,
+    TResult Function()? insufficientPermission,
+    TResult Function()? unableToUpdate,
+    TResult Function(Duration timeout)? timeout,
+    TResult Function()? noInternetConnection,
+    required TResult orElse(),
+  }) {
+    if (noInternetConnection != null) {
+      return noInternetConnection();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Unexpected value) unexpected,
+    required TResult Function(_InsufficientPermission value)
+        insufficientPermission,
+    required TResult Function(_UnableToUpdate value) unableToUpdate,
+    required TResult Function(_Timeout value) timeout,
+    required TResult Function(_NoInternetConnection value) noInternetConnection,
+  }) {
+    return noInternetConnection(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_InsufficientPermission value)? insufficientPermission,
+    TResult Function(_UnableToUpdate value)? unableToUpdate,
+    TResult Function(_Timeout value)? timeout,
+    TResult Function(_NoInternetConnection value)? noInternetConnection,
+  }) {
+    return noInternetConnection?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_InsufficientPermission value)? insufficientPermission,
+    TResult Function(_UnableToUpdate value)? unableToUpdate,
+    TResult Function(_Timeout value)? timeout,
+    TResult Function(_NoInternetConnection value)? noInternetConnection,
+    required TResult orElse(),
+  }) {
+    if (noInternetConnection != null) {
+      return noInternetConnection(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _NoInternetConnection implements ProductFailure {
+  const factory _NoInternetConnection() = _$_NoInternetConnection;
 }

@@ -9,4 +9,5 @@ class ProductFailure with _$ProductFailure {
       _InsufficientPermission;
   const factory ProductFailure.unableToUpdate() = _UnableToUpdate;
   const factory ProductFailure.timeout(Duration timeout) = _Timeout;
+  const factory ProductFailure.noInternetConnection() = _NoInternetConnection;
 }

@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dartz/dartz.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:kt_dart/kt.dart';
@@ -6,6 +9,8 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:shopify_manager/domain/core/images/photo.dart';
 import 'package:shopify_manager/domain/core/value_objects.dart';
+import 'package:shopify_manager/domain/product/product_failure.dart';
+import 'package:shopify_manager/infrastructure/core/config.dart';
 import 'package:shopify_manager/infrastructure/core/firestore_helpers.dart';
 import 'package:shopify_manager/infrastructure/core/network/network_info.dart';
 import 'package:shopify_manager/infrastructure/product/firebase_product_repository.dart';
@@ -45,8 +50,12 @@ Future<void> main() async {
   // Test Data
   final tProduct = fixtureProduct;
   final file = await getImageFileFromAssets('test_logo.jpg');
+  final invalidFile = await getImageFileFromAssets('test_logo.jpg');
   final photo = ProductPhoto(file);
+  final invalidPhoto = ProductPhoto(invalidFile);
   final photosList = NonEmptyList5(KtList.from([photo, photo, photo]));
+  final invalidPhotosList =
+      NonEmptyList5(KtList.from([photo, photo, photo, invalidPhoto]));
   const photoUrl =
       'https://firebasestorage.googleapis.com/v0/b/shopify-app-6d29d.appspot.com/o/images%2Fshop_logos%2F08049a20-a695-11ec-88bb-77ec623e586e?alt=media&token=fc66e7b0-f2cc-4dfc-94dc-e9e9d35e1929';
   final nonemptyPhotosList = NonEmptyList5<ShopifyUrl>(KtList.from(
@@ -188,6 +197,103 @@ Future<void> main() async {
               .set(ProductDto.fromDomain(tProductWithUploadedPhotos).toJson()));
         },
       );
+
+      group('when Storage throws a', () {
+        group('FirebaseException', () {
+          test(
+            'should attemp to delete photos',
+            () async {
+              // arrange
+              when(mockPhotoReference.putFile(invalidPhoto.getOrCrash()))
+                  .thenThrow(
+                      FirebaseException(plugin: '', code: 'storage/unknown'));
+              // act
+              await repository.create(tProduct, invalidPhotosList);
+              // assert
+              verify(mockPhotoReference.delete()).called(3);
+            },
+          );
+          test(
+            'should return a ValueFailure',
+            () async {
+              // arrange
+              when(mockPhotoReference.putFile(invalidPhoto.getOrCrash()))
+                  .thenThrow(FirebaseException(
+                      plugin: '', code: 'storage/unauthorized'));
+              // act
+              final result =
+                  await repository.create(tProduct, invalidPhotosList);
+              // assert
+              expect(
+                  result, left(const ProductFailure.insufficientPermission()));
+            },
+          );
+        });
+
+        group('TimeoutException', () {
+          test(
+            'should attempt to delete photos',
+            () async {
+              // arrange
+              when(mockPhotoReference.putFile(invalidPhoto.getOrCrash()))
+                  .thenThrow(
+                      TimeoutException('Connection timeout ', timeoutDuration));
+              // act
+              await repository.create(tProduct, invalidPhotosList);
+              // assert
+              verify(mockPhotoReference.delete()).called(3);
+            },
+          );
+
+          test(
+            'should return a ValueFailure',
+            () async {
+              // arrange
+              when(mockPhotoReference.putFile(invalidPhoto.getOrCrash()))
+                  .thenThrow(
+                      TimeoutException('Connection timeout ', timeoutDuration));
+              // act
+              final result =
+                  await repository.create(tProduct, invalidPhotosList);
+              // assert
+              expect(
+                  result, left(const ProductFailure.timeout(timeoutDuration)));
+            },
+          );
+        });
+
+        group('Exception', () {
+          test(
+            'should attempt to delete photos',
+            () async {
+              // arrange
+              when(mockPhotoReference.putFile(invalidPhoto.getOrCrash()))
+                  .thenThrow(UnimplementedError(
+                      'An unimplemented error while creating a new product'));
+              // act
+              final call = repository.create;
+              // assert
+              expect(call(tProduct, invalidPhotosList),
+                  throwsA(isA<UnimplementedError>()));
+              await untilCalled(mockPhotoReference.delete());
+
+              verify(mockPhotoReference.delete());
+            },
+          );
+        });
+      });
     });
+    test(
+      'should return a ValueFailure when not connected to the internet',
+      () async {
+        // arrange
+
+        when(mockNetworkInfo.isConnected).thenAnswer((_) async => false);
+        // act
+        final result = await repository.create(tProduct, photosList);
+        // assert
+        expect(result, left(const ProductFailure.noInternetConnection()));
+      },
+    );
   });
 }

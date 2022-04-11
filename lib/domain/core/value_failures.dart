@@ -13,7 +13,8 @@ abstract class CoreValueFailure<T> with _$CoreValueFailure<T> {
   const factory CoreValueFailure.stringTooShort(
       {required T failedValue, required int minLength}) = StringTooShort<T>;
   const factory CoreValueFailure.stringDoesntContainKeyword(
-      {required T failedValue, required String missingKeyword}) = StringDoesntContainKeyword<T>;
+      {required T failedValue,
+      required String missingKeyword}) = StringDoesntContainKeyword<T>;
   const factory CoreValueFailure.empty({required T failedValue}) = Empty<T>;
   const factory CoreValueFailure.multiline({required T failedValue}) =
       Multiline<T>;
@@ -42,4 +43,6 @@ abstract class CoreValueFailure<T> with _$CoreValueFailure<T> {
       IncorrectPostalCode<T>;
   const factory CoreValueFailure.noAddressNumber({required T failedValue}) =
       NoAddressNumber<T>;
+  const factory CoreValueFailure.noInternetConnection() =
+      NoInternetConnection<T>;
 }
