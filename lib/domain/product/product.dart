@@ -4,6 +4,7 @@ import 'package:kt_dart/kt.dart';
 import 'package:shopify_manager/domain/core/failures.dart';
 import 'package:shopify_manager/domain/core/value_objects.dart';
 import 'package:shopify_manager/domain/product/price.dart';
+import 'package:shopify_manager/domain/product/product_categories.dart';
 import 'package:shopify_manager/domain/product/value_objects.dart';
 import 'package:shopify_manager/domain/product/weight.dart';
 
@@ -26,6 +27,18 @@ abstract class Product with _$Product {
     required ProductDescription ingredients,
     required NonEmptyList5<ShopifyUrl> photos,
   }) = _Product;
+
+  factory Product.empty() => Product(
+      id: UniqueId(),
+      barcode: Barcode(''),
+      weight: Weight.empty(),
+      price: Price.empty(),
+      category: Category(Categories.Unknown),
+      name: ProductName(''),
+      brand: BrandName(''),
+      description: ProductDescription(''),
+      ingredients: ProductDescription(''),
+      photos: NonEmptyList5<ShopifyUrl>.empty());
 
   factory Product.fromPrimitives({
     required String id,

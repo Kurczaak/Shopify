@@ -1,8 +1,23 @@
 part of 'product_form_bloc.dart';
 
-abstract class ProductFormEvent extends Equatable {
-  const ProductFormEvent();
-
-  @override
-  List<Object> get props => [];
+@superEnum
+enum _ProductFormEvent {
+  @Data(fields: [DataField<Category>('category')])
+  CategoryChanged,
+  @Data(fields: [DataField<ProductName>('productName')])
+  ProductNameChanged,
+  @Data(fields: [DataField<BrandName>('brandName')])
+  BrandNameChanged,
+  @Data(fields: [DataField<Weight>('weight')])
+  WeightChanged,
+  @Data(fields: [DataField<Price>('brandName')])
+  PriceChanged,
+  @Data(fields: [DataField<ProductDescription>('productDescription')])
+  ProductDescriptionChanged,
+  @Data(fields: [DataField<ProductDescription>('ingredients')])
+  IngredientsChanged,
+  @Data(fields: [DataField<NonEmptyList5<ProductPhoto>>('photos')])
+  PhotosChanged,
+  @object
+  Saved
 }

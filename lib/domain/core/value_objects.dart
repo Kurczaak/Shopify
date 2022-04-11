@@ -149,6 +149,8 @@ class NonEmptyList5<T> extends ValueObject<KtList<T>> {
 
   static const maxLength = 5;
 
+  factory NonEmptyList5.empty() => NonEmptyList5(KtList<T>.empty());
+
   factory NonEmptyList5(KtList<T> input) {
     return NonEmptyList5._(validateListLength(input, maxLength, minLength: 1));
   }

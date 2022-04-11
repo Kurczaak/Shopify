@@ -10,6 +10,9 @@ part 'price.freezed.dart';
 abstract class Price with _$Price {
   const Price._();
 
+  factory Price.empty() =>
+      Price(price: PositiveNumber(0), currency: Currency(Currencies.zl));
+
   factory Price({
     required PositiveNumber price,
     required Currency currency,
