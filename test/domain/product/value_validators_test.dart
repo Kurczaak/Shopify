@@ -1,4 +1,3 @@
-import 'package:kt_dart/kt.dart';
 import 'package:shopify_manager/domain/product/price.dart';
 import 'package:shopify_manager/domain/product/product_categories.dart';
 import 'package:shopify_manager/domain/product/value_failures.dart';
@@ -18,7 +17,7 @@ void main() {
         // act
         final result = validateCategoryFromString(str);
         // assert
-        expect(result, right(Categories.Diary));
+        expect(result, right(Categories.diary));
       },
     );
 

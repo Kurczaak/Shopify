@@ -24,7 +24,7 @@ part 'shop_registration_bloc.super.dart';
 part 'shop_registration_bloc.freezed.dart';
 
 FutureOr disposeBloc(ShopRegistrationBloc bloc) {
-  print('=========================================');
+  //print('=========================================');
   print('Resetting ShopRegistrationBloc singletons');
   print('=========================================');
   getIt.resetLazySingleton<ShopFormBloc>();

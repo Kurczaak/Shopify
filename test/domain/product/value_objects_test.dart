@@ -201,7 +201,7 @@ void main() {
       'should pass a valid category',
       () async {
         // arrange
-        const category = Categories.Bread;
+        const category = Categories.bread;
         // act
         final result = Category(category);
         // assert

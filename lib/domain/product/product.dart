@@ -33,7 +33,7 @@ abstract class Product with _$Product {
       barcode: Barcode(''),
       weight: Weight.empty(),
       price: Price.empty(),
-      category: Category(Categories.Unknown),
+      category: Category(Categories.unknown),
       name: ProductName(''),
       brand: BrandName(''),
       description: ProductDescription(''),

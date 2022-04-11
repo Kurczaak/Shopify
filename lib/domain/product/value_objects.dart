@@ -61,7 +61,7 @@ class Category extends ValueObject<Categories> {
   @override
   final Either<ValueFailure<Categories>, Categories> value;
   factory Category(Categories category) {
-    return Category._(right(Categories.Diary));
+    return Category._(right(category));
   }
 
   factory Category.fromString(String category) {
