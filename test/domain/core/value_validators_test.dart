@@ -6,6 +6,45 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:dartz/dartz.dart';
 
 void main() {
+  group('validateStringContains', () {
+    test(
+      'should pass a string containing keywords',
+      () async {
+        // arrange
+        const str = 'one two.threewwwwfour-five.com';
+        final keywords = ['one', 'two', 'three', 'four', '.com', 'five'];
+        // act
+        final result = validateStringContains(str, keywords);
+        // assert
+        expect(result, right(str));
+      },
+    );
+
+    test(
+      'should not pass a string not containing keywords',
+      () async {
+        // arrange
+        const str = 'one two.threewwwwfour-five.com';
+        final keywords = [
+          'one',
+          'two',
+          'three',
+          'four',
+          '.com',
+          'five',
+          'error'
+        ];
+        // act
+        final result = validateStringContains(str, keywords);
+        // assert
+        expect(
+            result,
+            left(const ValueFailure.core(
+                CoreValueFailure.stringDoesntContainKeyword(
+                    failedValue: str, missingKeyword: 'error'))));
+      },
+    );
+  });
   group('validateMaxListLength', () {
     test(
       'should return a list with a valid length',
@@ -54,13 +93,13 @@ void main() {
       'should return Empty value failure when given an empty list',
       () async {
         // arrange
-        final emptyList = KtList.empty();
+        const emptyList = KtList.empty();
         // act
         final result = validateListNotEmpty(emptyList);
         // assert
         expect(
             result,
-            left(ValueFailure.core(
+            left(const ValueFailure.core(
                 CoreValueFailure.empty(failedValue: emptyList))));
       },
     );

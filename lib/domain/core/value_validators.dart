@@ -89,6 +89,17 @@ Either<ValueFailure<String>, String> validateStringNotEmpty(String input) {
   }
 }
 
+Either<ValueFailure<String>, String> validateStringContains(
+    String input, List<String> keywords) {
+  for (final keyword in keywords) {
+    if (!input.contains(keyword)) {
+      return left(ValueFailure.core(CoreValueFailure.stringDoesntContainKeyword(
+          failedValue: input, missingKeyword: keyword)));
+    }
+  }
+  return right(input);
+}
+
 Either<ValueFailure<String>, String> validateSingleLine(String input) {
   if (input.contains('\n')) {
     return left(
