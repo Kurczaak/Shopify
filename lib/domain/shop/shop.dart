@@ -20,7 +20,7 @@ abstract class Shop implements _$Shop {
       required Address address,
       required Location location,
       required Week workingWeek,
-      required String logoUrl}) = _Shop;
+      required ShopifyUrl logoUrl}) = _Shop;
 
   factory Shop.empty() => Shop(
         id: UniqueId(),
@@ -28,7 +28,7 @@ abstract class Shop implements _$Shop {
         address: Address.empty(),
         location: Location.empty(),
         workingWeek: Week.empty(),
-        logoUrl: '',
+        logoUrl: ShopifyUrl(''),
       );
 
   Option<ValueFailure<dynamic>> get failureOption {

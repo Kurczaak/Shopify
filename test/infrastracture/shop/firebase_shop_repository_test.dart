@@ -65,7 +65,7 @@ void main() async {
       streetName: StreetName(streetNameStr),
     ),
     location: Location.empty(),
-    logoUrl: logoUrlStr,
+    logoUrl: ShopifyUrl(logoUrlStr),
     workingWeek: Week.empty(),
   );
 
@@ -229,7 +229,7 @@ void main() async {
           .thenReturn(mockCollectionReference);
       when(mockCollectionReference.doc(any)).thenReturn(mockDocumentReference);
       when(mockDocumentReference.set(any)).thenAnswer((_) {
-        return Future.delayed(Duration(seconds: 10));
+        return Future.delayed(const Duration(seconds: 10));
       });
       // act
       final result = await firebaseShopRepository.create(tShop, tShopLogo);

@@ -76,7 +76,8 @@ void main() async {
       address: tShopForm.address,
       shopName: tShopForm.shopName,
       location: Location.empty(),
-      logoUrl: 'https://www.example.com',
+      logoUrl: ShopifyUrl(
+          'https://firebasestorage.googleapis.com/v0/b/shopify-app-6d29d.appspot.com/o/images'),
       workingWeek: Week.empty(),
       id: UniqueId());
 

@@ -23,7 +23,7 @@ class _$ShopTearOff {
       required Address address,
       required Location location,
       required Week workingWeek,
-      required String logoUrl}) {
+      required ShopifyUrl logoUrl}) {
     return _Shop(
       id: id,
       shopName: shopName,
@@ -45,7 +45,7 @@ mixin _$Shop {
   Address get address => throw _privateConstructorUsedError;
   Location get location => throw _privateConstructorUsedError;
   Week get workingWeek => throw _privateConstructorUsedError;
-  String get logoUrl => throw _privateConstructorUsedError;
+  ShopifyUrl get logoUrl => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ShopCopyWith<Shop> get copyWith => throw _privateConstructorUsedError;
@@ -61,7 +61,7 @@ abstract class $ShopCopyWith<$Res> {
       Address address,
       Location location,
       Week workingWeek,
-      String logoUrl});
+      ShopifyUrl logoUrl});
 
   $AddressCopyWith<$Res> get address;
   $LocationCopyWith<$Res> get location;
@@ -109,7 +109,7 @@ class _$ShopCopyWithImpl<$Res> implements $ShopCopyWith<$Res> {
       logoUrl: logoUrl == freezed
           ? _value.logoUrl
           : logoUrl // ignore: cast_nullable_to_non_nullable
-              as String,
+              as ShopifyUrl,
     ));
   }
 
@@ -146,7 +146,7 @@ abstract class _$ShopCopyWith<$Res> implements $ShopCopyWith<$Res> {
       Address address,
       Location location,
       Week workingWeek,
-      String logoUrl});
+      ShopifyUrl logoUrl});
 
   @override
   $AddressCopyWith<$Res> get address;
@@ -198,7 +198,7 @@ class __$ShopCopyWithImpl<$Res> extends _$ShopCopyWithImpl<$Res>
       logoUrl: logoUrl == freezed
           ? _value.logoUrl
           : logoUrl // ignore: cast_nullable_to_non_nullable
-              as String,
+              as ShopifyUrl,
     ));
   }
 }
@@ -226,7 +226,7 @@ class _$_Shop extends _Shop {
   @override
   final Week workingWeek;
   @override
-  final String logoUrl;
+  final ShopifyUrl logoUrl;
 
   @override
   String toString() {
@@ -270,7 +270,7 @@ abstract class _Shop extends Shop {
       required Address address,
       required Location location,
       required Week workingWeek,
-      required String logoUrl}) = _$_Shop;
+      required ShopifyUrl logoUrl}) = _$_Shop;
   const _Shop._() : super._();
 
   @override
@@ -284,7 +284,7 @@ abstract class _Shop extends Shop {
   @override
   Week get workingWeek;
   @override
-  String get logoUrl;
+  ShopifyUrl get logoUrl;
   @override
   @JsonKey(ignore: true)
   _$ShopCopyWith<_Shop> get copyWith => throw _privateConstructorUsedError;

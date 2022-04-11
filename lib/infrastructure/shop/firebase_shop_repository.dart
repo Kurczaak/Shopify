@@ -4,6 +4,7 @@ import 'package:kt_dart/kt.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:shopify_manager/domain/core/images/photo.dart';
+import 'package:shopify_manager/domain/core/value_objects.dart';
 import 'package:shopify_manager/domain/shop/i_shop_repository.dart';
 import 'package:shopify_manager/domain/shop/shop_failure.dart';
 import 'package:shopify_manager/domain/shop/shop.dart';
@@ -31,7 +32,7 @@ class FirebaseShopRepositoryImpl implements IShopRepository {
       });
 
       final uploadUrl = await taskSnapshot.ref.getDownloadURL();
-      final shopWithUpdatedLogo = shop.copyWith(logoUrl: uploadUrl);
+      final shopWithUpdatedLogo = shop.copyWith(logoUrl: ShopifyUrl(uploadUrl));
       final shopsCollection = _firestore.shopsCollection;
       await shopsCollection
           .doc(shop.id.getOrCrash())

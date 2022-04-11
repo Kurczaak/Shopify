@@ -33,7 +33,7 @@ abstract class ShopDto implements _$ShopDto {
       //serverTimeStamp: FieldValue.serverTimestamp(),
       position: LocationDto.fromDomain(shop.location),
       week: WeekDto.fromDomain(shop.workingWeek),
-      logoUrl: shop.logoUrl,
+      logoUrl: shop.logoUrl.getOrCrash(),
     );
   }
 
@@ -49,7 +49,7 @@ abstract class ShopDto implements _$ShopDto {
         streetName: StreetName(address.streetName),
       ),
       location: position.toDomain(),
-      logoUrl: logoUrl,
+      logoUrl: ShopifyUrl(logoUrl),
       workingWeek: week.toDomain(),
     );
   }

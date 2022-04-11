@@ -37,7 +37,7 @@ void main() async {
       streetName: StreetName(streetNameStr),
     ),
     location: Location.empty(),
-    logoUrl: logoUrlStr,
+    logoUrl: ShopifyUrl(logoUrlStr),
     workingWeek: Week.empty(),
   );
 
