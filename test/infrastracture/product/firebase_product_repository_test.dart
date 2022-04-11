@@ -88,6 +88,7 @@ Future<void> main() async {
     mockUploadedPhotoReference = MockReference();
     when(mockPhotoReference.putFile(any))
         .thenAnswer((_) => fake.MockUploadTask(mockUploadedPhotoReference));
+
     when(mockUploadedPhotoReference.getDownloadURL())
         .thenAnswer((_) async => photoUrl);
 
@@ -210,7 +211,7 @@ Future<void> main() async {
               // act
               await repository.create(tProduct, invalidPhotosList);
               // assert
-              verify(mockPhotoReference.delete()).called(3);
+              verify(mockUploadedPhotoReference.delete()).called(3);
             },
           );
           test(
@@ -241,7 +242,7 @@ Future<void> main() async {
               // act
               await repository.create(tProduct, invalidPhotosList);
               // assert
-              verify(mockPhotoReference.delete()).called(3);
+              verify(mockUploadedPhotoReference.delete()).called(3);
             },
           );
 
@@ -275,9 +276,9 @@ Future<void> main() async {
               // assert
               expect(call(tProduct, invalidPhotosList),
                   throwsA(isA<UnimplementedError>()));
-              await untilCalled(mockPhotoReference.delete());
+              await untilCalled(mockUploadedPhotoReference.delete());
 
-              verify(mockPhotoReference.delete());
+              verify(mockUploadedPhotoReference.delete());
             },
           );
         });
@@ -297,7 +298,8 @@ Future<void> main() async {
               // act
               await repository.create(tProduct, photosList);
               // assert
-              verify(mockPhotoReference.delete()).called(photosList.length);
+              verify(mockUploadedPhotoReference.delete())
+                  .called(photosList.length);
             },
           );
 
@@ -331,7 +333,8 @@ Future<void> main() async {
               // act
               await repository.create(tProduct, photosList);
               // assert
-              verify(mockPhotoReference.delete()).called(photosList.length);
+              verify(mockUploadedPhotoReference.delete())
+                  .called(photosList.length);
             },
           );
 
@@ -367,9 +370,9 @@ Future<void> main() async {
               // assert
               expect(call(tProduct, photosList),
                   throwsA(isA<UnimplementedError>()));
-              await untilCalled(mockPhotoReference.delete());
+              await untilCalled(mockUploadedPhotoReference.delete());
 
-              verify(mockPhotoReference.delete());
+              verify(mockUploadedPhotoReference.delete());
             },
           );
         });

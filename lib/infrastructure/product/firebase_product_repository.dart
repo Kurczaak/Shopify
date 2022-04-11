@@ -35,75 +35,98 @@ class FirebaseProductRepositoryImpl implements IProductRepository {
     }
   }
 
+  Future<Either<ProductFailure, List<Reference>>> addPhotosToTheStorage(
+      NonEmptyList5<ProductPhoto> photos, UniqueId id) async {
+    final List<Reference> uploadedFilesReferences = [];
+    try {
+      final allProductsPhotosRef = _storage.productPhotosReference;
+      final thisProductPhotosRef = allProductsPhotosRef.child(id.getOrCrash());
+      int i = 0;
+      for (final photo in photos.getOrCrash().iter) {
+        final fileReference = thisProductPhotosRef.child(i.toString());
+
+        final snapshot = await fileReference
+            .putFile(photo.getOrCrash())
+            .timeout(timeoutDuration, onTimeout: () {
+          throw TimeoutException('Connection timeout ', timeoutDuration);
+        });
+
+        uploadedFilesReferences.add(snapshot.ref);
+        i++;
+      }
+    } on FirebaseException catch (e) {
+      //TODO log those errors
+      await deletePhotos(uploadedFilesReferences);
+      if (e.code.contains('unauthenticated') ||
+          e.code.contains('unauthorized')) {
+        return left(const ProductFailure.insufficientPermission());
+      } else {
+        return left(const ProductFailure.unexpected());
+      }
+    } on TimeoutException catch (_) {
+      await deletePhotos(uploadedFilesReferences);
+      return left(const ProductFailure.timeout(timeoutDuration));
+    } catch (_) {
+      await deletePhotos(uploadedFilesReferences);
+      rethrow;
+    }
+    return right(uploadedFilesReferences);
+  }
+
+  Future<Either<ProductFailure, Unit>> addProductToTheFirestore(
+    Product product,
+    List<Reference> uploadedPhotosReferences,
+  ) async {
+    try {
+      final photosUrls = [];
+
+      for (final uploadedPhotoRef in uploadedPhotosReferences) {
+        final url = await uploadedPhotoRef.getDownloadURL();
+        photosUrls.add(url);
+      }
+
+      final productWithPhotos = product.copyWith(
+          photos: NonEmptyList5(KtList.from(
+              photosUrls.map((stringUrl) => ShopifyUrl(stringUrl)).toList())));
+
+      productWithPhotos.failureOption.fold(() {
+        final productsCollection = _firestore.productsCollection;
+        productsCollection
+            .doc(product.id.getOrCrash())
+            .set(ProductDto.fromDomain(productWithPhotos).toJson());
+      }, (failure) => left(failure));
+      return right(unit);
+    } on FirebaseException catch (e) {
+      await deletePhotos(uploadedPhotosReferences);
+      if (e.code.contains('permission-denied')) {
+        return left(const ProductFailure.insufficientPermission());
+      } else {
+        return left(const ProductFailure.unexpected());
+      }
+    } on TimeoutException catch (_) {
+      await deletePhotos(uploadedPhotosReferences);
+      return left(const ProductFailure.timeout(timeoutDuration));
+    } catch (_) {
+      await deletePhotos(uploadedPhotosReferences);
+      rethrow;
+    }
+  }
+
   @override
   Future<Either<ProductFailure, Unit>> create(
       Product product, NonEmptyList5<ProductPhoto> photos) async {
     final isConnected = await _networkInfo.isConnected;
-    final List<Reference> uploadedFilesReferences = [];
-    final List<String> photosUrls = [];
 
     if (isConnected) {
-      try {
-        final allProductsPhotosRef = _storage.productPhotosReference;
-        final thisProductPhotosRef =
-            allProductsPhotosRef.child(product.id.getOrCrash());
-        int i = 0;
-        for (final photo in photos.getOrCrash().iter) {
-          final fileReference = thisProductPhotosRef.child(i.toString());
-
-          final snapshot = await fileReference
-              .putFile(photo.getOrCrash())
-              .timeout(timeoutDuration, onTimeout: () {
-            throw TimeoutException('Connection timeout ', timeoutDuration);
-          });
-          final photoUrl = await snapshot.ref.getDownloadURL();
-          photosUrls.add(photoUrl);
-          uploadedFilesReferences.add(fileReference);
-          i++;
-        }
-      } on FirebaseException catch (e) {
-        //TODO log those errors
-        await deletePhotos(uploadedFilesReferences);
-        if (e.code.contains('unauthenticated') ||
-            e.code.contains('unauthorized')) {
-          return left(const ProductFailure.insufficientPermission());
-        } else {
-          return left(const ProductFailure.unexpected());
-        }
-      } on TimeoutException catch (_) {
-        await deletePhotos(uploadedFilesReferences);
-        return left(const ProductFailure.timeout(timeoutDuration));
-      } catch (_) {
-        await deletePhotos(uploadedFilesReferences);
-        rethrow;
-      }
+      final uploadedPhotosReferencesOrFailure =
+          await addPhotosToTheStorage(photos, product.id);
+      return await uploadedPhotosReferencesOrFailure.fold((f) async => left(f),
+          (uploadedPhotosReferences) async {
+        return await addProductToTheFirestore(
+            product, uploadedPhotosReferences);
+      });
       // Firestore
-      try {
-        final productWithPhotos = product.copyWith(
-            photos: NonEmptyList5(KtList.from(photosUrls
-                .map((stringUrl) => ShopifyUrl(stringUrl))
-                .toList())));
 
-        productWithPhotos.failureOption.fold(() {
-          final productsCollection = _firestore.productsCollection;
-          productsCollection
-              .doc(product.id.getOrCrash())
-              .set(ProductDto.fromDomain(productWithPhotos).toJson());
-        }, (failure) => left(failure));
-      } on FirebaseException catch (e) {
-        await deletePhotos(uploadedFilesReferences);
-        if (e.code.contains('permission-denied')) {
-          return left(const ProductFailure.insufficientPermission());
-        } else {
-          return left(const ProductFailure.unexpected());
-        }
-      } on TimeoutException catch (_) {
-        await deletePhotos(uploadedFilesReferences);
-        return left(const ProductFailure.timeout(timeoutDuration));
-      } catch (_) {
-        await deletePhotos(uploadedFilesReferences);
-        rethrow;
-      }
     }
 
     return left(const ProductFailure.noInternetConnection());
