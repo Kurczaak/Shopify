@@ -10,7 +10,7 @@ enum _ProductFormEvent {
   BrandNameChanged,
   @Data(fields: [DataField<Weight>('weight')])
   WeightChanged,
-  @Data(fields: [DataField<Price>('brandName')])
+  @Data(fields: [DataField<Price>('price')])
   PriceChanged,
   @Data(fields: [DataField<ProductDescription>('productDescription')])
   ProductDescriptionChanged,

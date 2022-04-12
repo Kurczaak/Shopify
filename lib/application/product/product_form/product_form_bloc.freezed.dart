@@ -21,12 +21,14 @@ class _$ProductFormStateTearOff {
       {required Product product,
       required NonEmptyList5<dynamic> productPhotos,
       required bool isLoading,
+      required bool showErrors,
       required Option<Either<ProductFailure, Unit>>
           saveFailureOrSuccessOption}) {
     return _ProductFormState(
       product: product,
       productPhotos: productPhotos,
       isLoading: isLoading,
+      showErrors: showErrors,
       saveFailureOrSuccessOption: saveFailureOrSuccessOption,
     );
   }
@@ -41,6 +43,7 @@ mixin _$ProductFormState {
   NonEmptyList5<dynamic> get productPhotos =>
       throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
+  bool get showErrors => throw _privateConstructorUsedError;
   Option<Either<ProductFailure, Unit>> get saveFailureOrSuccessOption =>
       throw _privateConstructorUsedError;
 
@@ -58,6 +61,7 @@ abstract class $ProductFormStateCopyWith<$Res> {
       {Product product,
       NonEmptyList5<dynamic> productPhotos,
       bool isLoading,
+      bool showErrors,
       Option<Either<ProductFailure, Unit>> saveFailureOrSuccessOption});
 
   $ProductCopyWith<$Res> get product;
@@ -77,6 +81,7 @@ class _$ProductFormStateCopyWithImpl<$Res>
     Object? product = freezed,
     Object? productPhotos = freezed,
     Object? isLoading = freezed,
+    Object? showErrors = freezed,
     Object? saveFailureOrSuccessOption = freezed,
   }) {
     return _then(_value.copyWith(
@@ -91,6 +96,10 @@ class _$ProductFormStateCopyWithImpl<$Res>
       isLoading: isLoading == freezed
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      showErrors: showErrors == freezed
+          ? _value.showErrors
+          : showErrors // ignore: cast_nullable_to_non_nullable
               as bool,
       saveFailureOrSuccessOption: saveFailureOrSuccessOption == freezed
           ? _value.saveFailureOrSuccessOption
@@ -118,6 +127,7 @@ abstract class _$ProductFormStateCopyWith<$Res>
       {Product product,
       NonEmptyList5<dynamic> productPhotos,
       bool isLoading,
+      bool showErrors,
       Option<Either<ProductFailure, Unit>> saveFailureOrSuccessOption});
 
   @override
@@ -140,6 +150,7 @@ class __$ProductFormStateCopyWithImpl<$Res>
     Object? product = freezed,
     Object? productPhotos = freezed,
     Object? isLoading = freezed,
+    Object? showErrors = freezed,
     Object? saveFailureOrSuccessOption = freezed,
   }) {
     return _then(_ProductFormState(
@@ -154,6 +165,10 @@ class __$ProductFormStateCopyWithImpl<$Res>
       isLoading: isLoading == freezed
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      showErrors: showErrors == freezed
+          ? _value.showErrors
+          : showErrors // ignore: cast_nullable_to_non_nullable
               as bool,
       saveFailureOrSuccessOption: saveFailureOrSuccessOption == freezed
           ? _value.saveFailureOrSuccessOption
@@ -170,6 +185,7 @@ class _$_ProductFormState implements _ProductFormState {
       {required this.product,
       required this.productPhotos,
       required this.isLoading,
+      required this.showErrors,
       required this.saveFailureOrSuccessOption});
 
   @override
@@ -179,11 +195,13 @@ class _$_ProductFormState implements _ProductFormState {
   @override
   final bool isLoading;
   @override
+  final bool showErrors;
+  @override
   final Option<Either<ProductFailure, Unit>> saveFailureOrSuccessOption;
 
   @override
   String toString() {
-    return 'ProductFormState(product: $product, productPhotos: $productPhotos, isLoading: $isLoading, saveFailureOrSuccessOption: $saveFailureOrSuccessOption)';
+    return 'ProductFormState(product: $product, productPhotos: $productPhotos, isLoading: $isLoading, showErrors: $showErrors, saveFailureOrSuccessOption: $saveFailureOrSuccessOption)';
   }
 
   @override
@@ -195,6 +213,8 @@ class _$_ProductFormState implements _ProductFormState {
             const DeepCollectionEquality()
                 .equals(other.productPhotos, productPhotos) &&
             const DeepCollectionEquality().equals(other.isLoading, isLoading) &&
+            const DeepCollectionEquality()
+                .equals(other.showErrors, showErrors) &&
             const DeepCollectionEquality().equals(
                 other.saveFailureOrSuccessOption, saveFailureOrSuccessOption));
   }
@@ -205,6 +225,7 @@ class _$_ProductFormState implements _ProductFormState {
       const DeepCollectionEquality().hash(product),
       const DeepCollectionEquality().hash(productPhotos),
       const DeepCollectionEquality().hash(isLoading),
+      const DeepCollectionEquality().hash(showErrors),
       const DeepCollectionEquality().hash(saveFailureOrSuccessOption));
 
   @JsonKey(ignore: true)
@@ -218,6 +239,7 @@ abstract class _ProductFormState implements ProductFormState {
       {required Product product,
       required NonEmptyList5<dynamic> productPhotos,
       required bool isLoading,
+      required bool showErrors,
       required Option<Either<ProductFailure, Unit>>
           saveFailureOrSuccessOption}) = _$_ProductFormState;
 
@@ -227,6 +249,8 @@ abstract class _ProductFormState implements ProductFormState {
   NonEmptyList5<dynamic> get productPhotos;
   @override
   bool get isLoading;
+  @override
+  bool get showErrors;
   @override
   Option<Either<ProductFailure, Unit>> get saveFailureOrSuccessOption;
   @override

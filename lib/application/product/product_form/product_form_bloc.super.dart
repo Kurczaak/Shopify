@@ -44,7 +44,7 @@ part of 'product_form_bloc.dart';
 //
 // @WithEquality(Equality.data)
 // @WithName('PriceChanged')
-// void priceChanged(Price brandName);
+// void priceChanged(Price price);
 //
 // @WithEquality(Equality.data)
 // @WithName('ProductDescriptionChanged')
@@ -74,7 +74,7 @@ part of 'product_form_bloc.dart';
 ///
 /// ([WeightChanged] weightChanged){[Weight] weight} with data equality
 ///
-/// ([PriceChanged] priceChanged){[Price] brandName} with data equality
+/// ([PriceChanged] priceChanged){[Price] price} with data equality
 ///
 /// ([ProductDescriptionChanged] productDescriptionChanged){[ProductDescription] productDescription} with data equality
 ///
@@ -106,7 +106,7 @@ abstract class ProductFormEvent {
   }) = WeightChanged;
 
   const factory ProductFormEvent.priceChanged({
-    required Price brandName,
+    required Price price,
   }) = PriceChanged;
 
   const factory ProductFormEvent.productDescriptionChanged({
@@ -544,23 +544,23 @@ class WeightChanged extends ProductFormEvent with EquatableMixin {
       ];
 }
 
-/// (([PriceChanged] : [ProductFormEvent]) priceChanged){[Price] brandName}
+/// (([PriceChanged] : [ProductFormEvent]) priceChanged){[Price] price}
 ///
 /// with data equality
 @immutable
 class PriceChanged extends ProductFormEvent with EquatableMixin {
   const PriceChanged({
-    required this.brandName,
+    required this.price,
   }) : super._internal();
 
-  final Price brandName;
+  final Price price;
 
   @override
-  String toString() => 'ProductFormEvent.priceChanged(brandName: $brandName)';
+  String toString() => 'ProductFormEvent.priceChanged(price: $price)';
 
   @override
   List<Object?> get props => [
-        brandName,
+        price,
       ];
 }
 
