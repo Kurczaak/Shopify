@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:kt_dart/kt.dart';
 import 'package:mockito/annotations.dart';
+import 'package:mockito/mockito.dart';
 import 'package:shopify_manager/application/product/product_form/product_form_bloc.dart';
 import 'package:shopify_manager/domain/auth/i_auth_facade.dart';
 import 'package:shopify_manager/domain/core/images/photo.dart';
@@ -228,7 +229,7 @@ void main() async {
     );
 
     blocTest(
-      'if product is valid emit [LOADING]',
+      'if photos are valid emit [LOADING]',
       build: () => ProductFormBloc(
         authFacade: mockIAuthFacade,
         networkInfo: mockNetworkInfo,
@@ -240,6 +241,22 @@ void main() async {
       act: (ProductFormBloc bloc) => bloc.add(const ProductFormEvent.saved()),
       expect: () =>
           [ProductFormState.loading(product: tProduct, productPhotos: tPhotos)],
+    );
+
+    blocTest(
+      'if photos are valid call IProductRepository.create',
+      build: () => ProductFormBloc(
+        authFacade: mockIAuthFacade,
+        networkInfo: mockNetworkInfo,
+        productRepository: mockIProductRepository,
+        shopRepository: mockIShopRepository,
+      ),
+      seed: () =>
+          initialState.copyWith(product: tProduct, productPhotos: tPhotos),
+      act: (ProductFormBloc bloc) => bloc.add(const ProductFormEvent.saved()),
+      verify: (_) {
+        return verify(mockIProductRepository.create(tProduct, tPhotos));
+      },
     );
 
     blocTest(

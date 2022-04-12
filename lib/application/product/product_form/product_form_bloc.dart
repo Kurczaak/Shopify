@@ -40,14 +40,51 @@ class ProductFormBloc extends Bloc<ProductFormEvent, ProductFormState> {
               product:
                   state.product.copyWith(category: changedCategory.category)));
         },
-        productNameChanged: (productNameChanged) {},
-        brandNameChanged: (brandNameChanged) {},
-        weightChanged: (weightChanged) {},
-        priceChanged: (priceChanged) {},
-        productDescriptionChanged: (productDescriptionChanged) {},
-        ingredientsChanged: (ingredientsChanged) {},
-        photosChanged: (photosChanged) {},
-        saved: () {},
+        productNameChanged: (productNameChanged) {
+          emit(state.copyWith(
+              product: state.product
+                  .copyWith(name: productNameChanged.productName)));
+        },
+        brandNameChanged: (brandNameChanged) {
+          emit(state.copyWith(
+              product:
+                  state.product.copyWith(brand: brandNameChanged.brandName)));
+        },
+        weightChanged: (weightChanged) {
+          emit(state.copyWith(
+              product: state.product.copyWith(weight: weightChanged.weight)));
+        },
+        priceChanged: (priceChanged) {
+          emit(state.copyWith(
+              product: state.product.copyWith(price: priceChanged.price)));
+        },
+        productDescriptionChanged: (productDescriptionChanged) {
+          emit(state.copyWith(
+              product: state.product.copyWith(
+                  description: productDescriptionChanged.productDescription)));
+        },
+        ingredientsChanged: (ingredientsChanged) {
+          emit(state.copyWith(
+              product: state.product
+                  .copyWith(ingredients: ingredientsChanged.ingredients)));
+        },
+        photosChanged: (photosChanged) {
+          emit(state.copyWith(productPhotos: photosChanged.photos));
+        },
+        saved: () {
+          final photosFailureOrUnit = state.productPhotos.failureOrUnit;
+
+          photosFailureOrUnit.fold(
+            (f) => emit(ProductFormState.error(
+                product: state.product,
+                productPhotos: state.productPhotos,
+                saveFailureOrSuccessOption: state.saveFailureOrSuccessOption)),
+            (_) {
+              emit(ProductFormState.loading(
+                  product: state.product, productPhotos: state.productPhotos));
+            },
+          );
+        },
       );
     });
   }
