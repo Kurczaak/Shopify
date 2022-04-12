@@ -24,7 +24,8 @@ void main() async {
   const postalCodeStr = "99-400";
   const apartmentNumberStr = '';
   const streetNumberStr = '12A';
-  const logoUrlStr = 'https://www.example.com';
+  const logoUrlStr =
+      'https://firebasestorage.googleapis.com/v0/b/shopify-app-6d29d.appspot.com/o/images/1';
 
   final tShop = Shop(
     id: UniqueId.fromUniqueString(shopDocumentIdStr),

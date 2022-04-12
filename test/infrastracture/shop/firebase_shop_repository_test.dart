@@ -52,7 +52,8 @@ void main() async {
   const postalCodeStr = "99-400";
   const apartmentNumberStr = '1';
   const streetNumberStr = '12A';
-  const logoUrlStr = 'https://www.example.com';
+  const logoUrlStr =
+      'https://firebasestorage.googleapis.com/v0/b/shopify-app-6d29d.appspot.com/o/images/1';
 
   final tShop = Shop(
     id: UniqueId.fromUniqueString(shopDocumentIdStr),
@@ -109,8 +110,7 @@ void main() async {
       when(mockReference.child(any)).thenReturn(mockReference);
       when(mockReference.putFile(any))
           .thenAnswer((_) => fake.MockUploadTask(newReference));
-      when(newReference.getDownloadURL()).thenAnswer(
-          (_) async => 'https://www.example.com/images/shop_logos/1.jpg');
+      when(newReference.getDownloadURL()).thenAnswer((_) async => logoUrlStr);
 
       final listener = newFakeFirestore.collection('shops').snapshots();
       // act
@@ -122,8 +122,7 @@ void main() async {
       verify(newReference.getDownloadURL()).called(1);
       listener.listen(expectAsync1((snap) {
         for (var doc in snap.docs) {
-          expect(doc.data()['logoUrl'],
-              equals('https://www.example.com/images/shop_logos/1.jpg'));
+          expect(doc.data()['logoUrl'], equals(logoUrlStr));
         }
       }, max: -1));
     },
@@ -139,8 +138,7 @@ void main() async {
       when(mockCollectionReference.doc(any)).thenReturn(mockDocumentReference);
       when(mockDocumentReference.set(any))
           .thenAnswer((_) async => shopDcumentReference);
-      _setUpStorage(mockFirebaseStorage,
-          'https://www.example.com/images/shop_logos/1.jpg');
+      _setUpStorage(mockFirebaseStorage, logoUrlStr);
       // act
       await firebaseShopRepository.create(tShop, tShopLogo);
       // assert
@@ -150,7 +148,7 @@ void main() async {
 
   test('should add shop to the collection', () async {
     // arrange
-    _setUpStorage(mockFirebaseStorage, 'https://www.example.com');
+    _setUpStorage(mockFirebaseStorage, logoUrlStr);
     final fakeFirebase = FakeFirebaseFirestore();
     firebaseShopRepository =
         FirebaseShopRepositoryImpl(fakeFirebase, mockFirebaseStorage);
@@ -168,7 +166,7 @@ void main() async {
 
   test('should return right(unit) when succesfully added a new shop', () async {
     // arrange
-    _setUpStorage(mockFirebaseStorage, 'https://www.example.com');
+    _setUpStorage(mockFirebaseStorage, logoUrlStr);
     when(mockFirebaseFirestore.collection('shops'))
         .thenReturn(mockCollectionReference);
     when(mockCollectionReference.doc(any)).thenReturn(mockDocumentReference);
@@ -184,7 +182,7 @@ void main() async {
     'should return ShopFailure when unknown PlatformException is thrown',
     () async {
       // arrange
-      _setUpStorage(mockFirebaseStorage, 'https://www.example.com');
+      _setUpStorage(mockFirebaseStorage, logoUrlStr);
       final MockCollectionReference<Map<String, dynamic>> ref =
           MockCollectionReference();
       when(mockFirebaseFirestore.collection('shops'))
@@ -205,7 +203,7 @@ void main() async {
     'should return ShopFailure when PERMISSION_DENIED PlatformException is thrown',
     () async {
       // arrange
-      _setUpStorage(mockFirebaseStorage, 'https://www.example.com');
+      _setUpStorage(mockFirebaseStorage, logoUrlStr);
       when(mockFirebaseFirestore.collection('shops'))
           .thenReturn(mockCollectionReference);
       when(mockCollectionReference.doc(any)).thenReturn(mockDocumentReference);
@@ -224,7 +222,7 @@ void main() async {
     'should return ShopFailure if firebase uploading timed out',
     () async {
       // arrange
-      _setUpStorage(mockFirebaseStorage, 'https://www.example.com');
+      _setUpStorage(mockFirebaseStorage, logoUrlStr);
       when(mockFirebaseFirestore.collection('shops'))
           .thenReturn(mockCollectionReference);
       when(mockCollectionReference.doc(any)).thenReturn(mockDocumentReference);

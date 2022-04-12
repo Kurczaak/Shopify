@@ -48,6 +48,8 @@ Future<void> main() async {
   late MockDocumentReference<Map<String, dynamic>> mockProductDoc;
 
   // Test Data
+  final tProductForm = await loadProductFormWithPhotos();
+
   final tProduct = fixtureProduct;
   final file = await getImageFileFromAssets('test_logo.jpg');
   final invalidFile = await getImageFileFromAssets('test_logo.jpg');
@@ -56,6 +58,7 @@ Future<void> main() async {
   final photosList = NonEmptyList5(KtList.from([photo, photo, photo]));
   final invalidPhotosList =
       NonEmptyList5(KtList.from([photo, photo, photo, invalidPhoto]));
+  final tInvalidProductForm = tProductForm.copyWith(photos: invalidPhotosList);
   const photoUrl =
       'https://firebasestorage.googleapis.com/v0/b/shopify-app-6d29d.appspot.com/o/images%2Fshop_logos%2F08049a20-a695-11ec-88bb-77ec623e586e?alt=media&token=fc66e7b0-f2cc-4dfc-94dc-e9e9d35e1929';
   final nonemptyPhotosList = NonEmptyList5<ShopifyUrl>(KtList.from(
@@ -107,7 +110,7 @@ Future<void> main() async {
         when(mockNetworkInfo.isConnected)
             .thenAnswer((_) async => Future.value(true));
         // act
-        await repository.create(tProduct, photosList);
+        await repository.create(tProductForm);
         // assert
         verify(mockNetworkInfo.isConnected);
       },
@@ -122,7 +125,7 @@ Future<void> main() async {
         'should get products storage reference',
         () async {
           // act
-          await repository.create(tProduct, photosList);
+          await repository.create(tProductForm);
           // assert
           verify(mockStorage.productPhotosReference);
         },
@@ -132,7 +135,7 @@ Future<void> main() async {
         'should get given product\'s photos storage reference',
         () async {
           // act
-          await repository.create(tProduct, photosList);
+          await repository.create(tProductForm);
           // assert
           verify(mockAllproductPhotosReference.child(tProduct.id.getOrCrash()));
         },
@@ -141,7 +144,7 @@ Future<void> main() async {
         'should get references to all the product photos',
         () async {
           // act
-          await repository.create(tProduct, photosList);
+          await repository.create(tProductForm);
           // assert
           verify(mockProductPhotosReference.child(any))
               .called(photosList.length);
@@ -152,7 +155,7 @@ Future<void> main() async {
         'should put all the photos to the storage',
         () async {
           // act
-          await repository.create(tProduct, photosList);
+          await repository.create(tProductForm);
           // assert
           verify(mockPhotoReference.putFile(any)).called(photosList.length);
         },
@@ -162,7 +165,7 @@ Future<void> main() async {
         'should get download url for the photos',
         () async {
           // act
-          await repository.create(tProduct, photosList);
+          await repository.create(tProductForm);
           // assert
           verify(mockUploadedPhotoReference.getDownloadURL());
         },
@@ -172,7 +175,7 @@ Future<void> main() async {
         'should get products collection',
         () async {
           // act
-          await repository.create(tProduct, photosList);
+          await repository.create(tProductForm);
           // assert
           verify(mockFirestore.productsCollection);
         },
@@ -182,7 +185,7 @@ Future<void> main() async {
         'should call product collection with the product\'s id',
         () async {
           // act
-          await repository.create(tProduct, photosList);
+          await repository.create(tProductForm);
           // assert
           verify(mockProductsReference.doc(tProduct.id.getOrCrash()));
         },
@@ -192,7 +195,7 @@ Future<void> main() async {
         'should set the product in the firestore',
         () async {
           // act
-          await repository.create(tProduct, photosList);
+          await repository.create(tProductForm);
           // assert
           verify(mockProductDoc
               .set(ProductDto.fromDomain(tProductWithUploadedPhotos).toJson()));
@@ -209,7 +212,7 @@ Future<void> main() async {
                   .thenThrow(
                       FirebaseException(plugin: '', code: 'storage/unknown'));
               // act
-              await repository.create(tProduct, invalidPhotosList);
+              await repository.create(tInvalidProductForm);
               // assert
               verify(mockUploadedPhotoReference.delete()).called(3);
             },
@@ -222,8 +225,7 @@ Future<void> main() async {
                   .thenThrow(FirebaseException(
                       plugin: '', code: 'storage/unauthorized'));
               // act
-              final result =
-                  await repository.create(tProduct, invalidPhotosList);
+              final result = await repository.create(tInvalidProductForm);
               // assert
               expect(
                   result, left(const ProductFailure.insufficientPermission()));
@@ -240,7 +242,7 @@ Future<void> main() async {
                   .thenThrow(
                       TimeoutException('Connection timeout ', timeoutDuration));
               // act
-              await repository.create(tProduct, invalidPhotosList);
+              await repository.create(tInvalidProductForm);
               // assert
               verify(mockUploadedPhotoReference.delete()).called(3);
             },
@@ -254,8 +256,7 @@ Future<void> main() async {
                   .thenThrow(
                       TimeoutException('Connection timeout ', timeoutDuration));
               // act
-              final result =
-                  await repository.create(tProduct, invalidPhotosList);
+              final result = await repository.create(tInvalidProductForm);
               // assert
               expect(
                   result, left(const ProductFailure.timeout(timeoutDuration)));
@@ -274,7 +275,7 @@ Future<void> main() async {
               // act
               final call = repository.create;
               // assert
-              expect(call(tProduct, invalidPhotosList),
+              expect(call(tInvalidProductForm),
                   throwsA(isA<UnimplementedError>()));
               await untilCalled(mockUploadedPhotoReference.delete());
 
@@ -296,7 +297,7 @@ Future<void> main() async {
                   .thenThrow(
                       FirebaseException(plugin: '', code: 'permission-denied'));
               // act
-              await repository.create(tProduct, photosList);
+              await repository.create(tProductForm);
               // assert
               verify(mockUploadedPhotoReference.delete())
                   .called(photosList.length);
@@ -313,7 +314,7 @@ Future<void> main() async {
                   .thenThrow(
                       FirebaseException(plugin: '', code: 'permission-denied'));
               // act
-              final result = await repository.create(tProduct, photosList);
+              final result = await repository.create(tProductForm);
               // assert
               expect(result, isA<Left<ProductFailure, Unit>>());
             },
@@ -331,7 +332,7 @@ Future<void> main() async {
                   .thenThrow(
                       TimeoutException('Connection timeout', timeoutDuration));
               // act
-              await repository.create(tProduct, photosList);
+              await repository.create(tProductForm);
               // assert
               verify(mockUploadedPhotoReference.delete())
                   .called(photosList.length);
@@ -348,7 +349,7 @@ Future<void> main() async {
                   .thenThrow(
                       TimeoutException('Connection timeout', timeoutDuration));
               // act
-              final result = await repository.create(tProduct, photosList);
+              final result = await repository.create(tProductForm);
               // assert
               expect(result, isA<Left<ProductFailure, Unit>>());
             },
@@ -368,8 +369,7 @@ Future<void> main() async {
               // act
               final call = repository.create;
               // assert
-              expect(call(tProduct, photosList),
-                  throwsA(isA<UnimplementedError>()));
+              expect(call(tProductForm), throwsA(isA<UnimplementedError>()));
               await untilCalled(mockUploadedPhotoReference.delete());
 
               verify(mockUploadedPhotoReference.delete());
@@ -385,7 +385,7 @@ Future<void> main() async {
 
         when(mockNetworkInfo.isConnected).thenAnswer((_) async => false);
         // act
-        final result = await repository.create(tProduct, photosList);
+        final result = await repository.create(tProductForm);
         // assert
         expect(result, left(const ProductFailure.noInternetConnection()));
       },

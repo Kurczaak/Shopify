@@ -12,7 +12,7 @@ void main() {
   const String weightUnit = 'gram';
   const double price = 21.37;
   const String currency = 'zl';
-  const String category = 'Bread';
+  const String category = 'bread';
   const String name = 'Test Product';
   const String brand = 'Test Brand';
   const String description = 'This is just a test product';

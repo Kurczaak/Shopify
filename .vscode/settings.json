@@ -3,9 +3,12 @@
         "**/.git": true,
         "**/.svn": true,
         "**/.hg": true,
-        "**/CVS": false,
+        "**/CVS": true,
         "**/.DS_Store": true,
-        "**/Thumbs.db": true
+        "*.mocks.dart": true,
+        "*.freezed.dart": true,
+        "*.g.dart": true,
+        "*.super.dart": true
     },
     "explorerExclude.backup": null
 }

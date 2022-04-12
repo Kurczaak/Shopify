@@ -10,6 +10,7 @@ import 'package:dartz/dartz.dart';
 import 'package:shopify_manager/domain/product/i_product_repository.dart';
 import 'package:shopify_manager/domain/product/product_failure.dart';
 import 'package:shopify_manager/domain/product/product.dart';
+import 'package:shopify_manager/domain/product/product_form.dart';
 import 'package:shopify_manager/domain/shop/shop.dart';
 import 'package:shopify_manager/infrastructure/core/config.dart';
 import 'package:shopify_manager/infrastructure/core/firestore_helpers.dart';
@@ -74,7 +75,7 @@ class FirebaseProductRepositoryImpl implements IProductRepository {
   }
 
   Future<Either<ProductFailure, Unit>> addProductToTheFirestore(
-    Product product,
+    ProductForm productForm,
     List<Reference> uploadedPhotosReferences,
   ) async {
     try {
@@ -85,14 +86,23 @@ class FirebaseProductRepositoryImpl implements IProductRepository {
         photosUrls.add(url);
       }
 
-      final productWithPhotos = product.copyWith(
+      final productWithPhotos = Product(
+          id: productForm.id,
+          barcode: productForm.barcode,
+          weight: productForm.weight,
+          price: productForm.price,
+          category: productForm.category,
+          name: productForm.name,
+          brand: productForm.brand,
+          description: productForm.description,
+          ingredients: productForm.ingredients,
           photos: NonEmptyList5(KtList.from(
               photosUrls.map((stringUrl) => ShopifyUrl(stringUrl)).toList())));
 
       productWithPhotos.failureOption.fold(() {
         final productsCollection = _firestore.productsCollection;
         productsCollection
-            .doc(product.id.getOrCrash())
+            .doc(productForm.id.getOrCrash())
             .set(ProductDto.fromDomain(productWithPhotos).toJson());
       }, (failure) => left(failure));
       return right(unit);
@@ -113,13 +123,12 @@ class FirebaseProductRepositoryImpl implements IProductRepository {
   }
 
   @override
-  Future<Either<ProductFailure, Unit>> create(
-      Product product, NonEmptyList5<ProductPhoto> photos) async {
+  Future<Either<ProductFailure, Unit>> create(ProductForm product) async {
     final isConnected = await _networkInfo.isConnected;
 
     if (isConnected) {
       final uploadedPhotosReferencesOrFailure =
-          await addPhotosToTheStorage(photos, product.id);
+          await addPhotosToTheStorage(product.photos, product.id);
       return await uploadedPhotosReferencesOrFailure.fold((f) async => left(f),
           (uploadedPhotosReferences) async {
         return await addProductToTheFirestore(
@@ -158,7 +167,7 @@ class FirebaseProductRepositoryImpl implements IProductRepository {
 
   @override
   Future<Either<ProductFailure, Unit>> createForShop(
-      Product product, NonEmptyList5<ProductPhoto> photos, Shop shop) {
+      ProductForm product, Shop shop) {
     // TODO: implement createForShop
     throw UnimplementedError();
   }

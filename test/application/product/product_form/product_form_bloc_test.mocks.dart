@@ -11,15 +11,15 @@ import 'package:shopify_manager/domain/auth/auth_failure.dart' as _i7;
 import 'package:shopify_manager/domain/auth/i_auth_facade.dart' as _i5;
 import 'package:shopify_manager/domain/auth/user.dart' as _i6;
 import 'package:shopify_manager/domain/auth/value_objects.dart' as _i8;
-import 'package:shopify_manager/domain/core/images/photo.dart' as _i14;
-import 'package:shopify_manager/domain/core/value_objects.dart' as _i13;
+import 'package:shopify_manager/domain/core/images/photo.dart' as _i17;
 import 'package:shopify_manager/domain/product/i_product_repository.dart'
     as _i9;
 import 'package:shopify_manager/domain/product/product.dart' as _i12;
 import 'package:shopify_manager/domain/product/product_failure.dart' as _i10;
-import 'package:shopify_manager/domain/shop/i_shop_repository.dart' as _i16;
-import 'package:shopify_manager/domain/shop/shop.dart' as _i15;
-import 'package:shopify_manager/domain/shop/shop_failure.dart' as _i17;
+import 'package:shopify_manager/domain/product/product_form.dart' as _i13;
+import 'package:shopify_manager/domain/shop/i_shop_repository.dart' as _i15;
+import 'package:shopify_manager/domain/shop/shop.dart' as _i14;
+import 'package:shopify_manager/domain/shop/shop_failure.dart' as _i16;
 import 'package:shopify_manager/infrastructure/core/network/network_info.dart'
     as _i3;
 
@@ -122,19 +122,16 @@ class MockIProductRepository extends _i1.Mock
           .Stream<_i2.Either<_i10.ProductFailure, _i11.KtList<_i12.Product>>>);
   @override
   _i4.Future<_i2.Either<_i10.ProductFailure, _i2.Unit>> create(
-          _i12.Product? product,
-          _i13.NonEmptyList5<_i14.ProductPhoto>? photos) =>
-      (super.noSuchMethod(Invocation.method(#create, [product, photos]),
+          _i13.ProductForm? productForm) =>
+      (super.noSuchMethod(Invocation.method(#create, [productForm]),
           returnValue: Future<_i2.Either<_i10.ProductFailure, _i2.Unit>>.value(
               _FakeEither_1<_i10.ProductFailure, _i2.Unit>())) as _i4
           .Future<_i2.Either<_i10.ProductFailure, _i2.Unit>>);
   @override
   _i4.Future<_i2.Either<_i10.ProductFailure, _i2.Unit>> createForShop(
-          _i12.Product? product,
-          _i13.NonEmptyList5<_i14.ProductPhoto>? photos,
-          _i15.Shop? shop) =>
+          _i13.ProductForm? productForm, _i14.Shop? shop) =>
       (super.noSuchMethod(
-          Invocation.method(#createForShop, [product, photos, shop]),
+          Invocation.method(#createForShop, [productForm, shop]),
           returnValue: Future<_i2.Either<_i10.ProductFailure, _i2.Unit>>.value(
               _FakeEither_1<_i10.ProductFailure, _i2.Unit>())) as _i4
           .Future<_i2.Either<_i10.ProductFailure, _i2.Unit>>);
@@ -157,40 +154,40 @@ class MockIProductRepository extends _i1.Mock
 /// A class which mocks [IShopRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockIShopRepository extends _i1.Mock implements _i16.IShopRepository {
+class MockIShopRepository extends _i1.Mock implements _i15.IShopRepository {
   MockIShopRepository() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i4.Stream<_i2.Either<_i17.ShopFailure, _i11.KtList<_i15.Shop>>> watchAll() =>
+  _i4.Stream<_i2.Either<_i16.ShopFailure, _i11.KtList<_i14.Shop>>> watchAll() =>
       (super.noSuchMethod(Invocation.method(#watchAll, []),
               returnValue: Stream<
-                  _i2.Either<_i17.ShopFailure, _i11.KtList<_i15.Shop>>>.empty())
-          as _i4.Stream<_i2.Either<_i17.ShopFailure, _i11.KtList<_i15.Shop>>>);
+                  _i2.Either<_i16.ShopFailure, _i11.KtList<_i14.Shop>>>.empty())
+          as _i4.Stream<_i2.Either<_i16.ShopFailure, _i11.KtList<_i14.Shop>>>);
   @override
-  _i4.Stream<_i2.Either<_i17.ShopFailure, _i11.KtList<_i15.Shop>>>
+  _i4.Stream<_i2.Either<_i16.ShopFailure, _i11.KtList<_i14.Shop>>>
       watchNearby() => (super.noSuchMethod(Invocation.method(#watchNearby, []),
               returnValue: Stream<
-                  _i2.Either<_i17.ShopFailure, _i11.KtList<_i15.Shop>>>.empty())
-          as _i4.Stream<_i2.Either<_i17.ShopFailure, _i11.KtList<_i15.Shop>>>);
+                  _i2.Either<_i16.ShopFailure, _i11.KtList<_i14.Shop>>>.empty())
+          as _i4.Stream<_i2.Either<_i16.ShopFailure, _i11.KtList<_i14.Shop>>>);
   @override
-  _i4.Future<_i2.Either<_i17.ShopFailure, _i2.Unit>> create(
-          _i15.Shop? shop, _i14.ShopLogo? logo) =>
+  _i4.Future<_i2.Either<_i16.ShopFailure, _i2.Unit>> create(
+          _i14.Shop? shop, _i17.ShopLogo? logo) =>
       (super.noSuchMethod(Invocation.method(#create, [shop, logo]),
-              returnValue: Future<_i2.Either<_i17.ShopFailure, _i2.Unit>>.value(
-                  _FakeEither_1<_i17.ShopFailure, _i2.Unit>()))
-          as _i4.Future<_i2.Either<_i17.ShopFailure, _i2.Unit>>);
+              returnValue: Future<_i2.Either<_i16.ShopFailure, _i2.Unit>>.value(
+                  _FakeEither_1<_i16.ShopFailure, _i2.Unit>()))
+          as _i4.Future<_i2.Either<_i16.ShopFailure, _i2.Unit>>);
   @override
-  _i4.Future<_i2.Either<_i17.ShopFailure, _i2.Unit>> update(_i15.Shop? shop) =>
+  _i4.Future<_i2.Either<_i16.ShopFailure, _i2.Unit>> update(_i14.Shop? shop) =>
       (super.noSuchMethod(Invocation.method(#update, [shop]),
-              returnValue: Future<_i2.Either<_i17.ShopFailure, _i2.Unit>>.value(
-                  _FakeEither_1<_i17.ShopFailure, _i2.Unit>()))
-          as _i4.Future<_i2.Either<_i17.ShopFailure, _i2.Unit>>);
+              returnValue: Future<_i2.Either<_i16.ShopFailure, _i2.Unit>>.value(
+                  _FakeEither_1<_i16.ShopFailure, _i2.Unit>()))
+          as _i4.Future<_i2.Either<_i16.ShopFailure, _i2.Unit>>);
   @override
-  _i4.Future<_i2.Either<_i17.ShopFailure, _i2.Unit>> delete(_i15.Shop? shop) =>
+  _i4.Future<_i2.Either<_i16.ShopFailure, _i2.Unit>> delete(_i14.Shop? shop) =>
       (super.noSuchMethod(Invocation.method(#delete, [shop]),
-              returnValue: Future<_i2.Either<_i17.ShopFailure, _i2.Unit>>.value(
-                  _FakeEither_1<_i17.ShopFailure, _i2.Unit>()))
-          as _i4.Future<_i2.Either<_i17.ShopFailure, _i2.Unit>>);
+              returnValue: Future<_i2.Either<_i16.ShopFailure, _i2.Unit>>.value(
+                  _FakeEither_1<_i16.ShopFailure, _i2.Unit>()))
+          as _i4.Future<_i2.Either<_i16.ShopFailure, _i2.Unit>>);
 }
