@@ -31,8 +31,14 @@ void main() async {
       blocTest(
         'emits [Loading, Error] after [Initial]',
         build: () => ShopLogoPickerBloc(mockImageFacade),
-        setUp: () => when(() => mockImageFacade.getShopLogo()).thenAnswer(
-            (_) async => left(const ImageFailure.noImageSelected())),
+        setUp: () => when(() => mockImageFacade.getPhoto(
+                  maxHeight: ShopLogo.maxHeight,
+                  maxWidth: ShopLogo.maxWidth,
+                  minHeight: ShopLogo.minHeight,
+                  minWidth: ShopLogo.minWidth,
+                ))
+            .thenAnswer(
+                (_) async => left(const ImageFailure.noImageSelected())),
         act: (ShopLogoPickerBloc bloc) => bloc.add(const GetShopLogo()),
         expect: () =>
             const [Loading(), Error(failure: ImageFailure.noImageSelected())],
@@ -40,8 +46,14 @@ void main() async {
       blocTest(
         'emits [Loading] and reemits [Loaded]',
         build: () => ShopLogoPickerBloc(mockImageFacade),
-        setUp: () => when(() => mockImageFacade.getShopLogo()).thenAnswer(
-            (_) async => left(const ImageFailure.noImageSelected())),
+        setUp: () => when(() => mockImageFacade.getPhoto(
+                  maxHeight: ShopLogo.maxHeight,
+                  maxWidth: ShopLogo.maxWidth,
+                  minHeight: ShopLogo.minHeight,
+                  minWidth: ShopLogo.minWidth,
+                ))
+            .thenAnswer(
+                (_) async => left(const ImageFailure.noImageSelected())),
         seed: () => ShopLogoPickerState.loaded(logo: tShopLogo),
         act: (ShopLogoPickerBloc bloc) => bloc.add(const GetShopLogo()),
         expect: () => [const Loading(), Loaded(logo: tShopLogo)],
@@ -50,8 +62,14 @@ void main() async {
       blocTest(
         'emits [Loading] and reemits [Error]',
         build: () => ShopLogoPickerBloc(mockImageFacade),
-        setUp: () => when(() => mockImageFacade.getShopLogo()).thenAnswer(
-            (_) async => left(const ImageFailure.noImageSelected())),
+        setUp: () => when(() => mockImageFacade.getPhoto(
+                  maxHeight: ShopLogo.maxHeight,
+                  maxWidth: ShopLogo.maxWidth,
+                  minHeight: ShopLogo.minHeight,
+                  minWidth: ShopLogo.minWidth,
+                ))
+            .thenAnswer(
+                (_) async => left(const ImageFailure.noImageSelected())),
         seed: () => const ShopLogoPickerState.error(
             failure: ImageFailure.noImageSelected()),
         act: (ShopLogoPickerBloc bloc) => bloc.add(const GetShopLogo()),
@@ -69,15 +87,24 @@ void main() async {
     blocTest(
       'emits [Loading, Loaded] when logo has been chosen',
       build: () => ShopLogoPickerBloc(mockImageFacade),
-      setUp: () => when(() => mockImageFacade.getShopLogo())
-          .thenAnswer((_) async => right(tShopLogo)),
+      setUp: () => when(() => mockImageFacade.getPhoto(
+            maxHeight: ShopLogo.maxHeight,
+            maxWidth: ShopLogo.maxWidth,
+            minHeight: ShopLogo.minHeight,
+            minWidth: ShopLogo.minWidth,
+          )).thenAnswer((_) async => right(tShopLogo)),
       act: (ShopLogoPickerBloc bloc) => bloc.add(const GetShopLogo()),
       expect: () => [const Loading(), Loaded(logo: tShopLogo)],
     );
     blocTest(
       'emits [Loading, Error] when chosen logo has invalid size',
       build: () => ShopLogoPickerBloc(mockImageFacade),
-      setUp: () => when(() => mockImageFacade.getShopLogo())
+      setUp: () => when(() => mockImageFacade.getPhoto(
+                maxHeight: ShopLogo.maxHeight,
+                maxWidth: ShopLogo.maxWidth,
+                minHeight: ShopLogo.minHeight,
+                minWidth: ShopLogo.minWidth,
+              ))
           .thenAnswer((_) async => left(const ImageFailure.invalidImageSize())),
       act: (ShopLogoPickerBloc bloc) => bloc.add(const GetShopLogo()),
       expect: () =>
@@ -87,8 +114,12 @@ void main() async {
     blocTest(
       'emits [Loading, Error] when unexpected failure happens',
       build: () => ShopLogoPickerBloc(mockImageFacade),
-      setUp: () => when(() => mockImageFacade.getShopLogo())
-          .thenAnswer((_) async => left(const ImageFailure.unexpected())),
+      setUp: () => when(() => mockImageFacade.getPhoto(
+            maxHeight: ShopLogo.maxHeight,
+            maxWidth: ShopLogo.maxWidth,
+            minHeight: ShopLogo.minHeight,
+            minWidth: ShopLogo.minWidth,
+          )).thenAnswer((_) async => left(const ImageFailure.unexpected())),
       act: (ShopLogoPickerBloc bloc) => bloc.add(const GetShopLogo()),
       expect: () =>
           const [Loading(), Error(failure: ImageFailure.unexpected())],

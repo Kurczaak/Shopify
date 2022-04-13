@@ -75,7 +75,7 @@ class ProductFormBloc extends Bloc<ProductFormEvent, ProductFormState> {
           emit(ProductFormState.loading(
               productForm: state.productForm,
               saveFailureOrSuccessOption: state.saveFailureOrSuccessOption));
-          await imageFacade.getShopLogo();
+          await imageFacade.getPhoto();
         },
         saved: () async {
           await state.productForm.failureOption.fold(() async {

@@ -16,8 +16,10 @@ class Photo extends ValueObject<File> {
   @override
   final Either<ValueFailure<File>, File> value;
 
-  factory Photo(File file, int maxHeight, int maxWidth) => Photo._(
-      validatePhotoTooBig(file, maxHeight: maxHeight, maxWidth: maxWidth)
+  factory Photo(File file,
+          {int maxPhotoHeight = maxHeight, int maxPhotoWidth = maxWidth}) =>
+      Photo._(validatePhotoTooBig(file,
+              maxHeight: maxPhotoHeight, maxWidth: maxPhotoWidth)
           .andThen(validatePhotoTooSmall(file,
               minWidth: minWidth, minHeight: minHeight)));
   const Photo._(this.value);

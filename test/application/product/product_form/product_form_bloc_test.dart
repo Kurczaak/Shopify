@@ -230,7 +230,7 @@ void main() async {
         shopRepository: mockIShopRepository,
       ),
       setUp: () {
-        when(mockImageFacade.getShopLogo())
+        when(mockImageFacade.getPhoto())
             .thenAnswer((_) async => right(ShopLogo(file)));
       },
       seed: () => initialState,
@@ -254,15 +254,15 @@ void main() async {
         shopRepository: mockIShopRepository,
       ),
       setUp: () {
-        when(mockImageFacade.getShopLogo())
+        when(mockImageFacade.getPhoto())
             .thenAnswer((_) async => right(ShopLogo(file)));
       },
       seed: () => initialState.copyWith(productForm: tProductForm),
       act: (ProductFormBloc bloc) =>
           bloc.add(const ProductFormEvent.photosChanged()),
       verify: (_) async {
-        await untilCalled(mockImageFacade.getShopLogo());
-        return verify(mockImageFacade.getShopLogo());
+        await untilCalled(mockImageFacade.getPhoto());
+        return verify(mockImageFacade.getPhoto());
       },
     );
   });

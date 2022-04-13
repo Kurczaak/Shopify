@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
+import 'package:kt_dart/src/collection/kt_list.dart';
 import 'package:shopify_manager/domain/core/images/i_image_facade.dart';
 import 'package:shopify_manager/domain/core/images/photo.dart';
 import 'package:shopify_manager/domain/core/images/image_failure.dart';
@@ -14,12 +15,16 @@ class ImagePickerImageFacade implements IImageFacade {
   final ImagePicker _imagePicker;
   ImagePickerImageFacade(this._imagePicker);
   @override
-  Future<Either<ImageFailure, ShopLogo>> getShopLogo() async {
+  Future<Either<ImageFailure, Photo>> getPhoto(
+      {int minHeight = 100,
+      int minWidth = 100,
+      int maxHeight = 1000,
+      int maxWidth = 1000}) async {
     try {
       final image = await _imagePicker.pickImage(
         source: ImageSource.gallery,
-        maxHeight: ShopLogo.maxHeight.toDouble(),
-        maxWidth: ShopLogo.maxWidth.toDouble(),
+        maxHeight: maxHeight.toDouble(),
+        maxWidth: maxWidth.toDouble(),
       );
 
       if (image == null || image.path == '') {
@@ -27,18 +32,31 @@ class ImagePickerImageFacade implements IImageFacade {
       } else {
         final imageBytes = await image.readAsBytes();
         final decodedImage = await decodeImageFromList(imageBytes);
-        if (decodedImage.width < ShopLogo.minWidth ||
-            decodedImage.height < ShopLogo.minHeight ||
-            decodedImage.width > ShopLogo.maxHeight ||
-            decodedImage.height > ShopLogo.maxHeight) {
+        if (decodedImage.width < Photo.minWidth ||
+            decodedImage.height < Photo.minHeight ||
+            decodedImage.width > Photo.maxHeight ||
+            decodedImage.height > Photo.maxHeight) {
           return left(const ImageFailure.invalidImageSize());
         }
 
-        return right(ShopLogo(File(image.path)));
+        return right(Photo(File(image.path),
+            maxPhotoHeight: maxHeight, maxPhotoWidth: maxWidth));
       }
     } on PlatformException catch (_) {
       // TODO log error
       return left(const ImageFailure.unexpected());
     }
+  }
+
+  @override
+  Future<Either<ImageFailure, KtList<Photo>>> getPhotos(
+      {required int min,
+      required int max,
+      int minHeight = 100,
+      int minWidth = 100,
+      int maxHeight = 1000,
+      int maxWidth = 1000}) {
+    // TODO: implement getPhotos
+    throw UnimplementedError();
   }
 }

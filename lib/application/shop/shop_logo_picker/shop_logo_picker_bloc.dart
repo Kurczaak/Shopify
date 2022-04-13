@@ -21,9 +21,13 @@ class ShopLogoPickerBloc
         getShopLogo: () async {
           final previousState = state;
           emit(const Loading());
-          final failureOrLogo = await _imageFacade.getShopLogo();
+          final failureOrPhoto = await _imageFacade.getPhoto(
+              maxHeight: ShopLogo.maxHeight,
+              maxWidth: ShopLogo.maxWidth,
+              minHeight: ShopLogo.minHeight,
+              minWidth: ShopLogo.minWidth);
 
-          failureOrLogo.fold((f) {
+          failureOrPhoto.fold((f) {
             f.when(
               invalidImageSize: () {
                 emit(Error(failure: f));
@@ -41,7 +45,7 @@ class ShopLogoPickerBloc
               },
             );
           },
-              (shopLogo) => shopLogo.failureOrUnit.fold(
+              (photo) => photo.failureOrUnit.fold(
                   (failure) => failure.maybeMap(
                       orElse: () {},
                       shop: (shopFialure) {
@@ -55,7 +59,7 @@ class ShopLogoPickerBloc
                               throw UnexpectedValueError(shopFialure);
                             });
                       }),
-                  (_) => emit(Loaded(logo: shopLogo))));
+                  (_) => emit(Loaded(logo: ShopLogo(photo.getOrCrash())))));
         },
       );
     });

@@ -25,24 +25,25 @@ void main() async {
     imagePickerImageFacade = ImagePickerImageFacade(mockImagePicker);
   });
 
-  group('getShopLogo', () {
+  group('getPhoto', () {
     test(
       'should call once imagePicker.pickImage',
       () async {
         // arrange
         when(mockImagePicker.pickImage(
                 source: ImageSource.gallery,
-                maxHeight: ShopLogo.maxHeight.toDouble(),
-                maxWidth: ShopLogo.maxWidth.toDouble()))
+                maxHeight: Photo.maxHeight.toDouble(),
+                maxWidth: Photo.maxWidth.toDouble()))
             .thenAnswer((_) async => tXFileLogo);
 
         // act
-        await imagePickerImageFacade.getShopLogo();
+        await imagePickerImageFacade.getPhoto(
+            maxHeight: Photo.maxHeight, maxWidth: Photo.maxWidth);
         // assert
         verify(mockImagePicker.pickImage(
                 source: ImageSource.gallery,
-                maxHeight: ShopLogo.maxHeight.toDouble(),
-                maxWidth: ShopLogo.maxWidth.toDouble()))
+                maxHeight: Photo.maxHeight.toDouble(),
+                maxWidth: Photo.maxWidth.toDouble()))
             .called(1);
       },
     );
@@ -52,12 +53,13 @@ void main() async {
         // arrange
         when(mockImagePicker.pickImage(
                 source: ImageSource.gallery,
-                maxHeight: ShopLogo.maxHeight.toDouble(),
-                maxWidth: ShopLogo.maxWidth.toDouble()))
+                maxHeight: Photo.maxHeight.toDouble(),
+                maxWidth: Photo.maxWidth.toDouble()))
             .thenThrow(
                 PlatformException(code: '101', message: 'unknown error'));
         // act
-        final result = await imagePickerImageFacade.getShopLogo();
+        final result = await imagePickerImageFacade.getPhoto(
+            maxHeight: Photo.maxHeight, maxWidth: Photo.maxWidth);
         // assert
         expect(result, left(const ImageFailure.unexpected()));
       },
@@ -73,11 +75,12 @@ void main() async {
             path: tLogo.path, lastModified: thisMoment);
         when(mockImagePicker.pickImage(
                 source: ImageSource.gallery,
-                maxHeight: ShopLogo.maxHeight.toDouble(),
-                maxWidth: ShopLogo.maxWidth.toDouble()))
+                maxHeight: Photo.maxHeight.toDouble(),
+                maxWidth: Photo.maxWidth.toDouble()))
             .thenAnswer((_) async => tXFileLogo);
         // act
-        final result = await imagePickerImageFacade.getShopLogo();
+        final result = await imagePickerImageFacade.getPhoto(
+            maxHeight: Photo.maxHeight, maxWidth: Photo.maxWidth);
         // assert
         expect(result, left(const ImageFailure.invalidImageSize()));
       },
@@ -93,30 +96,32 @@ void main() async {
             path: tLogo.path, lastModified: thisMoment);
         when(mockImagePicker.pickImage(
                 source: ImageSource.gallery,
-                maxHeight: ShopLogo.maxHeight.toDouble(),
-                maxWidth: ShopLogo.maxWidth.toDouble()))
+                maxHeight: Photo.maxHeight.toDouble(),
+                maxWidth: Photo.maxWidth.toDouble()))
             .thenAnswer((_) async => tXFileLogo);
         // act
-        final result = await imagePickerImageFacade.getShopLogo();
+        final result = await imagePickerImageFacade.getPhoto(
+            maxHeight: Photo.maxHeight, maxWidth: Photo.maxWidth);
         // assert
         expect(result, left(const ImageFailure.invalidImageSize()));
       },
     );
 
     test(
-      'should return a valid ShopLogo',
+      'should return a valid Photo',
       () async {
         // arrange
-        final tShopLogo = ShopLogo(File(tXFileLogo.path));
+        final tPhoto = Photo(File(tXFileLogo.path));
         when(mockImagePicker.pickImage(
                 source: ImageSource.gallery,
-                maxHeight: ShopLogo.maxHeight.toDouble(),
-                maxWidth: ShopLogo.maxWidth.toDouble()))
+                maxHeight: Photo.maxHeight.toDouble(),
+                maxWidth: Photo.maxWidth.toDouble()))
             .thenAnswer((_) async => tXFileLogo);
         // act
-        final result = await imagePickerImageFacade.getShopLogo();
+        final result = await imagePickerImageFacade.getPhoto(
+            maxHeight: Photo.maxHeight, maxWidth: Photo.maxWidth);
         // assert
-        expect(result, equals(right<ImageFailure, ShopLogo>(tShopLogo)));
+        expect(result, equals(right<ImageFailure, Photo>(tPhoto)));
       },
     );
   });
