@@ -11,18 +11,86 @@ import 'package:shopify_manager/infrastructure/core/images/image_picker_image_fa
 import '../../../utils/image_reader.dart';
 import 'image_picker_image_facade_test.mocks.dart';
 
-@GenerateMocks([ImagePicker])
+@GenerateMocks([ImagePicker, XFile])
 void main() async {
   late ImagePickerImageFacade imagePickerImageFacade;
   late MockImagePicker mockImagePicker;
+  late MockXFile mockXFile;
+  late List<MockXFile> mockedXFilesList;
+
   final thisMoment = DateTime.now();
   final tLogo = await getImageFileFromAssets('test_logo.jpg');
   final logoBytes = tLogo.readAsBytesSync();
   final tXFileLogo =
       XFile.fromData(logoBytes, path: tLogo.path, lastModified: thisMoment);
+
+  const int max = 5;
+  const int minHeight = 100;
+  const int minWidth = 100;
+  const int maxHeight = 1000;
+  const int min = 1;
+  const int maxWidth = 1000;
+
   setUp(() {
     mockImagePicker = MockImagePicker();
     imagePickerImageFacade = ImagePickerImageFacade(mockImagePicker);
+    mockXFile = MockXFile();
+    mockedXFilesList = [mockXFile, mockXFile, mockXFile];
+    when(mockImagePicker.pickMultiImage(
+      maxHeight: maxHeight.toDouble(),
+      maxWidth: maxWidth.toDouble(),
+    )).thenAnswer((_) async => mockedXFilesList);
+    when(mockXFile.readAsBytes()).thenAnswer((_) => tXFileLogo.readAsBytes());
+    when(mockXFile.path).thenReturn(tXFileLogo.path);
+  });
+
+  group('getMultiplePhotos', () {
+    test(
+      'should call pickMultiImage with passed parameters',
+      () async {
+        // act
+        await imagePickerImageFacade.getMultiplePhotos(
+          min: min,
+          max: max,
+          maxHeight: maxHeight,
+          maxWidth: maxWidth,
+          minHeight: minHeight,
+          minWidth: minWidth,
+        );
+        // assert
+        await untilCalled(mockImagePicker.pickMultiImage(
+          maxHeight: maxHeight.toDouble(),
+          maxWidth: maxWidth.toDouble(),
+        ));
+        verify(mockImagePicker.pickMultiImage(
+          maxHeight: maxHeight.toDouble(),
+          maxWidth: maxWidth.toDouble(),
+        ));
+      },
+    );
+
+    test(
+      'should convert all the files to bytes',
+      () async {
+        // arrange
+        when(mockXFile.readAsBytes())
+            .thenAnswer((_) => tXFileLogo.readAsBytes());
+        // act
+        await imagePickerImageFacade.getMultiplePhotos(
+          min: min,
+          max: max,
+          maxHeight: maxHeight,
+          maxWidth: maxWidth,
+          minHeight: minHeight,
+          minWidth: minWidth,
+        );
+        // assert
+        for (final _ in mockedXFilesList) {
+          await untilCalled(mockXFile.readAsBytes());
+        }
+        verify(mockXFile.readAsBytes()).called(mockedXFilesList.length);
+      },
+    );
   });
 
   group('getPhoto', () {

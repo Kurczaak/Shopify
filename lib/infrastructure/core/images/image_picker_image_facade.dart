@@ -55,8 +55,31 @@ class ImagePickerImageFacade implements IImageFacade {
       int minHeight = 100,
       int minWidth = 100,
       int maxHeight = 1000,
-      int maxWidth = 1000}) {
-    // TODO: implement getPhotos
-    throw UnimplementedError();
+      int maxWidth = 1000}) async {
+    try {
+      final xFilesList = await _imagePicker.pickMultiImage(
+          maxHeight: maxHeight.toDouble(), maxWidth: maxWidth.toDouble());
+      if (xFilesList == null || xFilesList.isEmpty) {
+        return left(const ImageFailure.noImageSelected());
+      }
+      final maxLengthxFilesList =
+          xFilesList.length > max ? xFilesList.sublist(0, max) : xFilesList;
+      final List<Photo> photosList = [];
+      for (final xFile in maxLengthxFilesList) {
+        final imageBytes = await xFile.readAsBytes();
+        final decodedImage = await decodeImageFromList(imageBytes);
+        if (decodedImage.width < Photo.minWidth ||
+            decodedImage.height < Photo.minHeight ||
+            decodedImage.width > Photo.maxHeight ||
+            decodedImage.height > Photo.maxHeight) {
+          return left(const ImageFailure.invalidImageSize());
+        }
+        photosList.add(Photo(File(xFile.path)));
+      }
+      return right(KtList.from(photosList));
+    } on PlatformException catch (_) {
+      // TODO log error
+      return left(const ImageFailure.unexpected());
+    }
   }
 }
