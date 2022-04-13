@@ -87,6 +87,7 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       _i26.FirebaseProductRepositoryImpl(get<_i4.FirebaseFirestore>(),
           get<_i5.FirebaseStorage>(), get<_i15.NetworkInfo>()));
   gh.factory<_i27.ProductFormBloc>(() => _i27.ProductFormBloc(
+      imageFacade: get<_i23.IImageFacade>(),
       networkInfo: get<_i15.NetworkInfo>(),
       productRepository: get<_i25.IProductRepository>(),
       shopRepository: get<_i10.IShopRepository>(),

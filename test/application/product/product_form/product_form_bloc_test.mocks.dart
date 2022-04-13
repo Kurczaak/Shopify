@@ -11,6 +11,8 @@ import 'package:shopify_manager/domain/auth/auth_failure.dart' as _i7;
 import 'package:shopify_manager/domain/auth/i_auth_facade.dart' as _i5;
 import 'package:shopify_manager/domain/auth/user.dart' as _i6;
 import 'package:shopify_manager/domain/auth/value_objects.dart' as _i8;
+import 'package:shopify_manager/domain/core/images/i_image_facade.dart' as _i18;
+import 'package:shopify_manager/domain/core/images/image_failure.dart' as _i19;
 import 'package:shopify_manager/domain/core/images/photo.dart' as _i17;
 import 'package:shopify_manager/domain/product/i_product_repository.dart'
     as _i9;
@@ -190,4 +192,22 @@ class MockIShopRepository extends _i1.Mock implements _i15.IShopRepository {
               returnValue: Future<_i2.Either<_i16.ShopFailure, _i2.Unit>>.value(
                   _FakeEither_1<_i16.ShopFailure, _i2.Unit>()))
           as _i4.Future<_i2.Either<_i16.ShopFailure, _i2.Unit>>);
+}
+
+/// A class which mocks [IImageFacade].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockIImageFacade extends _i1.Mock implements _i18.IImageFacade {
+  MockIImageFacade() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i4.Future<_i2.Either<_i19.ImageFailure, _i17.ShopLogo>> getShopLogo() =>
+      (super
+          .noSuchMethod(Invocation.method(#getShopLogo, []),
+              returnValue:
+                  Future<_i2.Either<_i19.ImageFailure, _i17.ShopLogo>>.value(
+                      _FakeEither_1<_i19.ImageFailure, _i17.ShopLogo>())) as _i4
+          .Future<_i2.Either<_i19.ImageFailure, _i17.ShopLogo>>);
 }

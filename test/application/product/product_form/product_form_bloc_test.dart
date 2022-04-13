@@ -5,6 +5,7 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:shopify_manager/application/product/product_form/product_form_bloc.dart';
 import 'package:shopify_manager/domain/auth/i_auth_facade.dart';
+import 'package:shopify_manager/domain/core/images/i_image_facade.dart';
 import 'package:shopify_manager/domain/core/images/photo.dart';
 import 'package:shopify_manager/domain/core/value_objects.dart';
 import 'package:shopify_manager/domain/product/i_product_repository.dart';
@@ -22,12 +23,19 @@ import '../../../utils/image_reader.dart';
 import 'product_form_bloc_test.mocks.dart';
 import './product_form_bloc_test.mocks.dart';
 
-@GenerateMocks([NetworkInfo, IAuthFacade, IProductRepository, IShopRepository])
+@GenerateMocks([
+  NetworkInfo,
+  IAuthFacade,
+  IProductRepository,
+  IShopRepository,
+  IImageFacade,
+])
 void main() async {
   late MockNetworkInfo mockNetworkInfo;
   late MockIAuthFacade mockIAuthFacade;
   late MockIProductRepository mockIProductRepository;
   late MockIShopRepository mockIShopRepository;
+  late MockIImageFacade mockImageFacade;
 
   final initialState = ProductFormState.initial();
   final tInitialProduct = initialState.productForm;
@@ -43,6 +51,7 @@ void main() async {
     mockIAuthFacade = MockIAuthFacade();
     mockIProductRepository = MockIProductRepository();
     mockIShopRepository = MockIShopRepository();
+    mockImageFacade = MockIImageFacade();
     when(mockIProductRepository.create(tProductForm))
         .thenAnswer((_) async => right(unit));
   });
@@ -53,6 +62,7 @@ void main() async {
     blocTest<ProductFormBloc, ProductFormState>(
       'should emit state with modified product category',
       build: () => ProductFormBloc(
+        imageFacade: mockImageFacade,
         authFacade: mockIAuthFacade,
         networkInfo: mockNetworkInfo,
         productRepository: mockIProductRepository,
@@ -74,6 +84,7 @@ void main() async {
     blocTest(
       'should emit state with modified product name',
       build: () => ProductFormBloc(
+        imageFacade: mockImageFacade,
         authFacade: mockIAuthFacade,
         networkInfo: mockNetworkInfo,
         productRepository: mockIProductRepository,
@@ -96,6 +107,7 @@ void main() async {
     blocTest(
       'should emit state with modified product name',
       build: () => ProductFormBloc(
+        imageFacade: mockImageFacade,
         authFacade: mockIAuthFacade,
         networkInfo: mockNetworkInfo,
         productRepository: mockIProductRepository,
@@ -118,6 +130,7 @@ void main() async {
     blocTest(
       'should emit state with modified weight',
       build: () => ProductFormBloc(
+        imageFacade: mockImageFacade,
         authFacade: mockIAuthFacade,
         networkInfo: mockNetworkInfo,
         productRepository: mockIProductRepository,
@@ -140,6 +153,7 @@ void main() async {
     blocTest(
       'should emit state with modified price',
       build: () => ProductFormBloc(
+        imageFacade: mockImageFacade,
         authFacade: mockIAuthFacade,
         networkInfo: mockNetworkInfo,
         productRepository: mockIProductRepository,
@@ -163,6 +177,7 @@ void main() async {
     blocTest(
       'should emit state with modified productDescription',
       build: () => ProductFormBloc(
+        imageFacade: mockImageFacade,
         authFacade: mockIAuthFacade,
         networkInfo: mockNetworkInfo,
         productRepository: mockIProductRepository,
@@ -187,6 +202,7 @@ void main() async {
     blocTest(
       'should emit state with modified ingredients',
       build: () => ProductFormBloc(
+        imageFacade: mockImageFacade,
         authFacade: mockIAuthFacade,
         networkInfo: mockNetworkInfo,
         productRepository: mockIProductRepository,
@@ -205,21 +221,49 @@ void main() async {
 
   group('photosChanged', () {
     blocTest(
-      'should emit state with modified photos',
+      'should emit [LOADING] ',
       build: () => ProductFormBloc(
+        imageFacade: mockImageFacade,
         authFacade: mockIAuthFacade,
         networkInfo: mockNetworkInfo,
         productRepository: mockIProductRepository,
         shopRepository: mockIShopRepository,
       ),
+      setUp: () {
+        when(mockImageFacade.getShopLogo())
+            .thenAnswer((_) async => right(ShopLogo(file)));
+      },
       seed: () => initialState,
       act: (ProductFormBloc bloc) => bloc.add(
-        ProductFormEvent.photosChanged(photos: tPhotos),
+        const ProductFormEvent.photosChanged(),
       ),
       expect: () => [
-        initialState.copyWith(
-            productForm: initialState.productForm.copyWith(photos: tPhotos))
+        ProductFormState.loading(
+            productForm: tInitialProduct,
+            saveFailureOrSuccessOption: initialState.saveFailureOrSuccessOption)
       ],
+    );
+
+    blocTest(
+      'should call',
+      build: () => ProductFormBloc(
+        imageFacade: mockImageFacade,
+        authFacade: mockIAuthFacade,
+        networkInfo: mockNetworkInfo,
+        productRepository: mockIProductRepository,
+        shopRepository: mockIShopRepository,
+      ),
+      setUp: () {
+        when(mockImageFacade.getShopLogo())
+            .thenAnswer((_) async => right(ShopLogo(file)));
+      },
+      seed: () => initialState.copyWith(productForm: tProductForm),
+      act: (ProductFormBloc bloc) =>
+          bloc.add(const ProductFormEvent.photosChanged()),
+      verify: (_) async {
+        await untilCalled(mockImageFacade.getShopLogo());
+        return verify(mockImageFacade.getShopLogo());
+      },
     );
   });
 
@@ -227,6 +271,7 @@ void main() async {
     blocTest(
       'if product is invalid emit [ERROR]',
       build: () => ProductFormBloc(
+        imageFacade: mockImageFacade,
         authFacade: mockIAuthFacade,
         networkInfo: mockNetworkInfo,
         productRepository: mockIProductRepository,
@@ -238,8 +283,9 @@ void main() async {
     );
 
     blocTest(
-      'if photos are valid emit [LOADING]',
+      'if photos are valid emit [LOADING] and [LOADED]',
       build: () => ProductFormBloc(
+        imageFacade: mockImageFacade,
         authFacade: mockIAuthFacade,
         networkInfo: mockNetworkInfo,
         productRepository: mockIProductRepository,
@@ -247,12 +293,19 @@ void main() async {
       ),
       seed: () => initialState.copyWith(productForm: tProductForm),
       act: (ProductFormBloc bloc) => bloc.add(const ProductFormEvent.saved()),
-      expect: () => [ProductFormState.loading(productForm: tProductForm)],
+      expect: () => [
+        ProductFormState.loading(
+            productForm: tProductForm, saveFailureOrSuccessOption: none()),
+        ProductFormState.loaded(
+            productForm: tProductForm,
+            saveFailureOrSuccessOption: some(right(unit)))
+      ],
     );
 
     blocTest(
       'if the form is valid call IProductRepository.create',
       build: () => ProductFormBloc(
+        imageFacade: mockImageFacade,
         authFacade: mockIAuthFacade,
         networkInfo: mockNetworkInfo,
         productRepository: mockIProductRepository,
@@ -268,6 +321,7 @@ void main() async {
     blocTest(
       'should emit [LOADING] and [LOADED] when succesfully uploaded',
       build: () => ProductFormBloc(
+        imageFacade: mockImageFacade,
         authFacade: mockIAuthFacade,
         networkInfo: mockNetworkInfo,
         productRepository: mockIProductRepository,
@@ -276,7 +330,8 @@ void main() async {
       seed: () => initialState.copyWith(productForm: tProductForm),
       act: (ProductFormBloc bloc) => bloc.add(const ProductFormEvent.saved()),
       expect: () => [
-        ProductFormState.loading(productForm: tProductForm),
+        ProductFormState.loading(
+            productForm: tProductForm, saveFailureOrSuccessOption: none()),
         ProductFormState.loaded(
             productForm: tProductForm,
             saveFailureOrSuccessOption: some(right(unit)))
@@ -286,12 +341,14 @@ void main() async {
     blocTest(
       'should emit [ERROR] with a failure after [LOADING] when an error occured',
       build: () => ProductFormBloc(
+        imageFacade: mockImageFacade,
         authFacade: mockIAuthFacade,
         networkInfo: mockNetworkInfo,
         productRepository: mockIProductRepository,
         shopRepository: mockIShopRepository,
       ),
-      seed: () => ProductFormState.loading(productForm: tProductForm),
+      seed: () => ProductFormState.loading(
+          productForm: tProductForm, saveFailureOrSuccessOption: none()),
       setUp: () {
         when(mockIProductRepository.create(tProductForm)).thenAnswer(
             (_) async => left(const ProductFailure.noInternetConnection()));

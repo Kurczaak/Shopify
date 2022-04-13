@@ -16,7 +16,7 @@ enum _ProductFormEvent {
   ProductDescriptionChanged,
   @Data(fields: [DataField<ProductDescription>('ingredients')])
   IngredientsChanged,
-  @Data(fields: [DataField<NonEmptyList5<ProductPhoto>>('photos')])
+  @object
   PhotosChanged,
   @object
   Saved

@@ -16,10 +16,14 @@ abstract class ProductFormState with _$ProductFormState {
         showErrors: false,
       );
 
-  factory ProductFormState.loading({required productForm}) => ProductFormState(
+  factory ProductFormState.loading(
+          {required ProductForm productForm,
+          required Option<Either<ProductFailure, Unit>>
+              saveFailureOrSuccessOption}) =>
+      ProductFormState(
         productForm: productForm,
         isLoading: true,
-        saveFailureOrSuccessOption: none(),
+        saveFailureOrSuccessOption: saveFailureOrSuccessOption,
         showErrors: false,
       );
 

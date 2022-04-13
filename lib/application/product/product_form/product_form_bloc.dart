@@ -2,8 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shopify_manager/domain/auth/i_auth_facade.dart';
-import 'package:shopify_manager/domain/core/images/photo.dart';
-import 'package:shopify_manager/domain/core/value_objects.dart';
+import 'package:shopify_manager/domain/core/images/i_image_facade.dart';
 import 'package:shopify_manager/domain/product/i_product_repository.dart';
 import 'package:shopify_manager/domain/product/price.dart';
 import 'package:shopify_manager/domain/product/product_failure.dart';
@@ -26,9 +25,11 @@ class ProductFormBloc extends Bloc<ProductFormEvent, ProductFormState> {
   final IProductRepository productRepository;
   final IShopRepository shopRepository;
   final IAuthFacade authFacade;
+  final IImageFacade imageFacade;
 
   ProductFormBloc(
-      {required this.networkInfo,
+      {required this.imageFacade,
+      required this.networkInfo,
       required this.productRepository,
       required this.shopRepository,
       required this.authFacade})
@@ -70,16 +71,17 @@ class ProductFormBloc extends Bloc<ProductFormEvent, ProductFormState> {
               productForm: state.productForm
                   .copyWith(ingredients: ingredientsChanged.ingredients)));
         },
-        photosChanged: (photosChanged) {
-          emit(state.copyWith(
-              productForm:
-                  state.productForm.copyWith(photos: photosChanged.photos)));
+        photosChanged: () async {
+          emit(ProductFormState.loading(
+              productForm: state.productForm,
+              saveFailureOrSuccessOption: state.saveFailureOrSuccessOption));
+          await imageFacade.getShopLogo();
         },
         saved: () async {
           await state.productForm.failureOption.fold(() async {
             emit(ProductFormState.loading(
-              productForm: state.productForm,
-            ));
+                productForm: state.productForm,
+                saveFailureOrSuccessOption: state.saveFailureOrSuccessOption));
             final failureOrUnit =
                 await productRepository.create(state.productForm);
 

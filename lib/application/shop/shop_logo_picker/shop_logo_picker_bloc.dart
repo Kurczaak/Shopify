@@ -33,8 +33,8 @@ class ShopLogoPickerBloc
               },
               noImageSelected: () {
                 previousState.when(
-                    initial: () =>
-                        emit(const Error(failure: NoImageSelected())),
+                    initial: () => emit(
+                        const Error(failure: ImageFailure.noImageSelected())),
                     loading: () => emit(const Initial()),
                     loaded: (loaded) => emit(loaded),
                     error: (error) => emit(error));
