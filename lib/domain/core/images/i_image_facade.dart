@@ -9,9 +9,9 @@ abstract class IImageFacade {
       int minWidth = 100,
       int maxHeight = 1000,
       int maxWidth = 1000});
-  Future<Either<ImageFailure, KtList<Photo>>> getPhotos(
-      {required int min,
-      required int max,
+  Future<Either<ImageFailure, KtList<Photo>>> getMultiplePhotos(
+      {int min = 1,
+      int max = 5,
       int minHeight = 100,
       int minWidth = 100,
       int maxHeight = 1000,

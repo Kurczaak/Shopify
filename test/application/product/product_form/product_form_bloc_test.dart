@@ -6,6 +6,7 @@ import 'package:mockito/mockito.dart';
 import 'package:shopify_manager/application/product/product_form/product_form_bloc.dart';
 import 'package:shopify_manager/domain/auth/i_auth_facade.dart';
 import 'package:shopify_manager/domain/core/images/i_image_facade.dart';
+import 'package:shopify_manager/domain/core/images/image_failure.dart';
 import 'package:shopify_manager/domain/core/images/photo.dart';
 import 'package:shopify_manager/domain/core/value_objects.dart';
 import 'package:shopify_manager/domain/product/i_product_repository.dart';
@@ -221,7 +222,7 @@ void main() async {
 
   group('photosChanged', () {
     blocTest(
-      'should emit [LOADING] ',
+      'should call image facade to get multiple product photos',
       build: () => ProductFormBloc(
         imageFacade: mockImageFacade,
         authFacade: mockIAuthFacade,
@@ -230,8 +231,58 @@ void main() async {
         shopRepository: mockIShopRepository,
       ),
       setUp: () {
-        when(mockImageFacade.getPhoto())
-            .thenAnswer((_) async => right(ShopLogo(file)));
+        when(mockImageFacade.getMultiplePhotos(
+          max: 5,
+          min: 1,
+          maxHeight: ProductPhoto.maxHeight,
+          minHeight: ProductPhoto.minHeight,
+          maxWidth: ProductPhoto.maxWidth,
+          minWidth: ProductPhoto.minWidth,
+        )).thenAnswer((_) async =>
+            right(KtList.from([Photo(file), Photo(file), Photo(file)])));
+      },
+      seed: () => initialState.copyWith(productForm: tProductForm),
+      act: (ProductFormBloc bloc) =>
+          bloc.add(const ProductFormEvent.photosChanged()),
+      verify: (_) async {
+        await untilCalled(mockImageFacade.getMultiplePhotos(
+          max: 5,
+          min: 1,
+          maxHeight: ProductPhoto.maxHeight,
+          minHeight: ProductPhoto.minHeight,
+          maxWidth: ProductPhoto.maxWidth,
+          minWidth: ProductPhoto.minWidth,
+        ));
+        return verify(mockImageFacade.getMultiplePhotos(
+          max: 5,
+          min: 1,
+          maxHeight: ProductPhoto.maxHeight,
+          minHeight: ProductPhoto.minHeight,
+          maxWidth: ProductPhoto.maxWidth,
+          minWidth: ProductPhoto.minWidth,
+        ));
+      },
+    );
+
+    blocTest(
+      'should emit [LOADING] and [LOADED] after successfully loading photos',
+      build: () => ProductFormBloc(
+        imageFacade: mockImageFacade,
+        authFacade: mockIAuthFacade,
+        networkInfo: mockNetworkInfo,
+        productRepository: mockIProductRepository,
+        shopRepository: mockIShopRepository,
+      ),
+      setUp: () {
+        when(mockImageFacade.getMultiplePhotos(
+          max: 5,
+          min: 1,
+          maxHeight: ProductPhoto.maxHeight,
+          minHeight: ProductPhoto.minHeight,
+          maxWidth: ProductPhoto.maxWidth,
+          minWidth: ProductPhoto.minWidth,
+        )).thenAnswer((_) async =>
+            right(KtList.from([Photo(file), Photo(file), Photo(file)])));
       },
       seed: () => initialState,
       act: (ProductFormBloc bloc) => bloc.add(
@@ -240,12 +291,21 @@ void main() async {
       expect: () => [
         ProductFormState.loading(
             productForm: tInitialProduct,
+            saveFailureOrSuccessOption:
+                initialState.saveFailureOrSuccessOption),
+        ProductFormState.loaded(
+            productForm: tInitialProduct.copyWith(
+                photos: NonEmptyList5((KtList.from([
+              ProductPhoto(file),
+              ProductPhoto(file),
+              ProductPhoto(file)
+            ])))),
             saveFailureOrSuccessOption: initialState.saveFailureOrSuccessOption)
       ],
     );
 
     blocTest(
-      'should call',
+      'should emit [LOADING] and [ERROR] if imagePicker returned a failure',
       build: () => ProductFormBloc(
         imageFacade: mockImageFacade,
         authFacade: mockIAuthFacade,
@@ -254,16 +314,29 @@ void main() async {
         shopRepository: mockIShopRepository,
       ),
       setUp: () {
-        when(mockImageFacade.getPhoto())
-            .thenAnswer((_) async => right(ShopLogo(file)));
+        when(mockImageFacade.getMultiplePhotos(
+          max: 5,
+          min: 1,
+          maxHeight: ProductPhoto.maxHeight,
+          minHeight: ProductPhoto.minHeight,
+          maxWidth: ProductPhoto.maxWidth,
+          minWidth: ProductPhoto.minWidth,
+        )).thenAnswer((_) async => left(const ImageFailure.noImageSelected()));
       },
-      seed: () => initialState.copyWith(productForm: tProductForm),
-      act: (ProductFormBloc bloc) =>
-          bloc.add(const ProductFormEvent.photosChanged()),
-      verify: (_) async {
-        await untilCalled(mockImageFacade.getPhoto());
-        return verify(mockImageFacade.getPhoto());
-      },
+      seed: () => initialState,
+      act: (ProductFormBloc bloc) => bloc.add(
+        const ProductFormEvent.photosChanged(),
+      ),
+      expect: () => [
+        ProductFormState.loading(
+            productForm: tInitialProduct,
+            saveFailureOrSuccessOption:
+                initialState.saveFailureOrSuccessOption),
+        ProductFormState.error(
+            productForm: tInitialProduct,
+            saveFailureOrSuccessOption:
+                initialState.saveFailureOrSuccessOption),
+      ],
     );
   });
 

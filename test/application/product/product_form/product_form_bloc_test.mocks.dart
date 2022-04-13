@@ -219,26 +219,25 @@ class MockIImageFacade extends _i1.Mock implements _i18.IImageFacade {
               _FakeEither_1<_i19.ImageFailure, _i17.Photo>())) as _i4
           .Future<_i2.Either<_i19.ImageFailure, _i17.Photo>>);
   @override
-  _i4.Future<_i2.Either<_i19.ImageFailure, _i11.KtList<_i17.Photo>>> getPhotos(
-          {int? min,
-          int? max,
+  _i4.Future<
+      _i2.Either<_i19.ImageFailure, _i11.KtList<_i17.Photo>>> getMultiplePhotos(
+          {int? min = 1,
+          int? max = 5,
           int? minHeight = 100,
           int? minWidth = 100,
           int? maxHeight = 1000,
           int? maxWidth = 1000}) =>
       (super.noSuchMethod(
-              Invocation.method(#getPhotos, [], {
-                #min: min,
-                #max: max,
-                #minHeight: minHeight,
-                #minWidth: minWidth,
-                #maxHeight: maxHeight,
-                #maxWidth: maxWidth
-              }),
-              returnValue: Future<
-                      _i2.Either<_i19.ImageFailure,
-                          _i11.KtList<_i17.Photo>>>.value(
-                  _FakeEither_1<_i19.ImageFailure, _i11.KtList<_i17.Photo>>()))
-          as _i4
-              .Future<_i2.Either<_i19.ImageFailure, _i11.KtList<_i17.Photo>>>);
+          Invocation.method(#getMultiplePhotos, [], {
+            #min: min,
+            #max: max,
+            #minHeight: minHeight,
+            #minWidth: minWidth,
+            #maxHeight: maxHeight,
+            #maxWidth: maxWidth
+          }),
+          returnValue: Future<
+                  _i2.Either<_i19.ImageFailure, _i11.KtList<_i17.Photo>>>.value(
+              _FakeEither_1<_i19.ImageFailure, _i11.KtList<_i17.Photo>>())) as _i4
+          .Future<_i2.Either<_i19.ImageFailure, _i11.KtList<_i17.Photo>>>);
 }

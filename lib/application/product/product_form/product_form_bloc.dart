@@ -1,8 +1,11 @@
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
+import 'package:kt_dart/kt.dart';
 import 'package:shopify_manager/domain/auth/i_auth_facade.dart';
 import 'package:shopify_manager/domain/core/images/i_image_facade.dart';
+import 'package:shopify_manager/domain/core/images/photo.dart';
+import 'package:shopify_manager/domain/core/value_objects.dart';
 import 'package:shopify_manager/domain/product/i_product_repository.dart';
 import 'package:shopify_manager/domain/product/price.dart';
 import 'package:shopify_manager/domain/product/product_failure.dart';
@@ -75,7 +78,28 @@ class ProductFormBloc extends Bloc<ProductFormEvent, ProductFormState> {
           emit(ProductFormState.loading(
               productForm: state.productForm,
               saveFailureOrSuccessOption: state.saveFailureOrSuccessOption));
-          await imageFacade.getPhoto();
+          final failureOrPhotos = await imageFacade.getMultiplePhotos(
+            max: 5,
+            min: 1,
+            maxHeight: ProductPhoto.maxHeight,
+            minHeight: ProductPhoto.minHeight,
+            maxWidth: ProductPhoto.maxWidth,
+            minWidth: ProductPhoto.minWidth,
+          );
+          failureOrPhotos.fold(
+              (f) => emit(ProductFormState.error(
+                  productForm: state.productForm,
+                  saveFailureOrSuccessOption:
+                      state.saveFailureOrSuccessOption)), (photos) {
+            final productPhotosList = photos
+                .asList()
+                .map((photo) => ProductPhoto(photo.getOrCrash()))
+                .toList();
+            final productPhotos = NonEmptyList5(KtList.from(productPhotosList));
+            emit(ProductFormState.loaded(
+                productForm: state.productForm.copyWith(photos: productPhotos),
+                saveFailureOrSuccessOption: state.saveFailureOrSuccessOption));
+          });
         },
         saved: () async {
           await state.productForm.failureOption.fold(() async {

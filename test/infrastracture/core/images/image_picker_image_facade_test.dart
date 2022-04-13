@@ -8,7 +8,7 @@ import 'package:dartz/dartz.dart';
 import 'package:shopify_manager/domain/core/images/image_failure.dart';
 import 'package:shopify_manager/domain/core/images/photo.dart';
 import 'package:shopify_manager/infrastructure/core/images/image_picker_image_facade.dart';
-import '../../utils/image_reader.dart';
+import '../../../utils/image_reader.dart';
 import 'image_picker_image_facade_test.mocks.dart';
 
 @GenerateMocks([ImagePicker])

@@ -49,9 +49,9 @@ class ImagePickerImageFacade implements IImageFacade {
   }
 
   @override
-  Future<Either<ImageFailure, KtList<Photo>>> getPhotos(
-      {required int min,
-      required int max,
+  Future<Either<ImageFailure, KtList<Photo>>> getMultiplePhotos(
+      {int min = 1,
+      int max = 5,
       int minHeight = 100,
       int minWidth = 100,
       int maxHeight = 1000,
