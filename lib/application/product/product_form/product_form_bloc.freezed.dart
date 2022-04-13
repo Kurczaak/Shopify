@@ -18,15 +18,13 @@ class _$ProductFormStateTearOff {
   const _$ProductFormStateTearOff();
 
   _ProductFormState call(
-      {required Product product,
-      required NonEmptyList5<dynamic> productPhotos,
+      {required ProductForm productForm,
       required bool isLoading,
       required bool showErrors,
       required Option<Either<ProductFailure, Unit>>
           saveFailureOrSuccessOption}) {
     return _ProductFormState(
-      product: product,
-      productPhotos: productPhotos,
+      productForm: productForm,
       isLoading: isLoading,
       showErrors: showErrors,
       saveFailureOrSuccessOption: saveFailureOrSuccessOption,
@@ -39,9 +37,7 @@ const $ProductFormState = _$ProductFormStateTearOff();
 
 /// @nodoc
 mixin _$ProductFormState {
-  Product get product => throw _privateConstructorUsedError;
-  NonEmptyList5<dynamic> get productPhotos =>
-      throw _privateConstructorUsedError;
+  ProductForm get productForm => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
   bool get showErrors => throw _privateConstructorUsedError;
   Option<Either<ProductFailure, Unit>> get saveFailureOrSuccessOption =>
@@ -58,13 +54,10 @@ abstract class $ProductFormStateCopyWith<$Res> {
           ProductFormState value, $Res Function(ProductFormState) then) =
       _$ProductFormStateCopyWithImpl<$Res>;
   $Res call(
-      {Product product,
-      NonEmptyList5<dynamic> productPhotos,
+      {ProductForm productForm,
       bool isLoading,
       bool showErrors,
       Option<Either<ProductFailure, Unit>> saveFailureOrSuccessOption});
-
-  $ProductCopyWith<$Res> get product;
 }
 
 /// @nodoc
@@ -78,21 +71,16 @@ class _$ProductFormStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? product = freezed,
-    Object? productPhotos = freezed,
+    Object? productForm = freezed,
     Object? isLoading = freezed,
     Object? showErrors = freezed,
     Object? saveFailureOrSuccessOption = freezed,
   }) {
     return _then(_value.copyWith(
-      product: product == freezed
-          ? _value.product
-          : product // ignore: cast_nullable_to_non_nullable
-              as Product,
-      productPhotos: productPhotos == freezed
-          ? _value.productPhotos
-          : productPhotos // ignore: cast_nullable_to_non_nullable
-              as NonEmptyList5<dynamic>,
+      productForm: productForm == freezed
+          ? _value.productForm
+          : productForm // ignore: cast_nullable_to_non_nullable
+              as ProductForm,
       isLoading: isLoading == freezed
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
@@ -107,13 +95,6 @@ class _$ProductFormStateCopyWithImpl<$Res>
               as Option<Either<ProductFailure, Unit>>,
     ));
   }
-
-  @override
-  $ProductCopyWith<$Res> get product {
-    return $ProductCopyWith<$Res>(_value.product, (value) {
-      return _then(_value.copyWith(product: value));
-    });
-  }
 }
 
 /// @nodoc
@@ -124,14 +105,10 @@ abstract class _$ProductFormStateCopyWith<$Res>
       __$ProductFormStateCopyWithImpl<$Res>;
   @override
   $Res call(
-      {Product product,
-      NonEmptyList5<dynamic> productPhotos,
+      {ProductForm productForm,
       bool isLoading,
       bool showErrors,
       Option<Either<ProductFailure, Unit>> saveFailureOrSuccessOption});
-
-  @override
-  $ProductCopyWith<$Res> get product;
 }
 
 /// @nodoc
@@ -147,21 +124,16 @@ class __$ProductFormStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? product = freezed,
-    Object? productPhotos = freezed,
+    Object? productForm = freezed,
     Object? isLoading = freezed,
     Object? showErrors = freezed,
     Object? saveFailureOrSuccessOption = freezed,
   }) {
     return _then(_ProductFormState(
-      product: product == freezed
-          ? _value.product
-          : product // ignore: cast_nullable_to_non_nullable
-              as Product,
-      productPhotos: productPhotos == freezed
-          ? _value.productPhotos
-          : productPhotos // ignore: cast_nullable_to_non_nullable
-              as NonEmptyList5<dynamic>,
+      productForm: productForm == freezed
+          ? _value.productForm
+          : productForm // ignore: cast_nullable_to_non_nullable
+              as ProductForm,
       isLoading: isLoading == freezed
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
@@ -182,16 +154,13 @@ class __$ProductFormStateCopyWithImpl<$Res>
 
 class _$_ProductFormState implements _ProductFormState {
   const _$_ProductFormState(
-      {required this.product,
-      required this.productPhotos,
+      {required this.productForm,
       required this.isLoading,
       required this.showErrors,
       required this.saveFailureOrSuccessOption});
 
   @override
-  final Product product;
-  @override
-  final NonEmptyList5<dynamic> productPhotos;
+  final ProductForm productForm;
   @override
   final bool isLoading;
   @override
@@ -201,7 +170,7 @@ class _$_ProductFormState implements _ProductFormState {
 
   @override
   String toString() {
-    return 'ProductFormState(product: $product, productPhotos: $productPhotos, isLoading: $isLoading, showErrors: $showErrors, saveFailureOrSuccessOption: $saveFailureOrSuccessOption)';
+    return 'ProductFormState(productForm: $productForm, isLoading: $isLoading, showErrors: $showErrors, saveFailureOrSuccessOption: $saveFailureOrSuccessOption)';
   }
 
   @override
@@ -209,9 +178,8 @@ class _$_ProductFormState implements _ProductFormState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _ProductFormState &&
-            const DeepCollectionEquality().equals(other.product, product) &&
             const DeepCollectionEquality()
-                .equals(other.productPhotos, productPhotos) &&
+                .equals(other.productForm, productForm) &&
             const DeepCollectionEquality().equals(other.isLoading, isLoading) &&
             const DeepCollectionEquality()
                 .equals(other.showErrors, showErrors) &&
@@ -222,8 +190,7 @@ class _$_ProductFormState implements _ProductFormState {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(product),
-      const DeepCollectionEquality().hash(productPhotos),
+      const DeepCollectionEquality().hash(productForm),
       const DeepCollectionEquality().hash(isLoading),
       const DeepCollectionEquality().hash(showErrors),
       const DeepCollectionEquality().hash(saveFailureOrSuccessOption));
@@ -236,17 +203,14 @@ class _$_ProductFormState implements _ProductFormState {
 
 abstract class _ProductFormState implements ProductFormState {
   const factory _ProductFormState(
-      {required Product product,
-      required NonEmptyList5<dynamic> productPhotos,
+      {required ProductForm productForm,
       required bool isLoading,
       required bool showErrors,
       required Option<Either<ProductFailure, Unit>>
           saveFailureOrSuccessOption}) = _$_ProductFormState;
 
   @override
-  Product get product;
-  @override
-  NonEmptyList5<dynamic> get productPhotos;
+  ProductForm get productForm;
   @override
   bool get isLoading;
   @override

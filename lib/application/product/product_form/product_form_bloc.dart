@@ -6,8 +6,8 @@ import 'package:shopify_manager/domain/core/images/photo.dart';
 import 'package:shopify_manager/domain/core/value_objects.dart';
 import 'package:shopify_manager/domain/product/i_product_repository.dart';
 import 'package:shopify_manager/domain/product/price.dart';
-import 'package:shopify_manager/domain/product/product.dart';
 import 'package:shopify_manager/domain/product/product_failure.dart';
+import 'package:shopify_manager/domain/product/product_form.dart';
 import 'package:shopify_manager/domain/product/value_objects.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:shopify_manager/domain/product/weight.dart';
@@ -33,57 +33,68 @@ class ProductFormBloc extends Bloc<ProductFormEvent, ProductFormState> {
       required this.shopRepository,
       required this.authFacade})
       : super(ProductFormState.initial()) {
-    on<ProductFormEvent>((event, emit) {
-      event.when(
+    on<ProductFormEvent>((event, emit) async {
+      await event.when(
         categoryChanged: (changedCategory) {
           emit(state.copyWith(
-              product:
-                  state.product.copyWith(category: changedCategory.category)));
+              productForm: state.productForm
+                  .copyWith(category: changedCategory.category)));
         },
         productNameChanged: (productNameChanged) {
           emit(state.copyWith(
-              product: state.product
+              productForm: state.productForm
                   .copyWith(name: productNameChanged.productName)));
         },
         brandNameChanged: (brandNameChanged) {
           emit(state.copyWith(
-              product:
-                  state.product.copyWith(brand: brandNameChanged.brandName)));
+              productForm: state.productForm
+                  .copyWith(brand: brandNameChanged.brandName)));
         },
         weightChanged: (weightChanged) {
           emit(state.copyWith(
-              product: state.product.copyWith(weight: weightChanged.weight)));
+              productForm:
+                  state.productForm.copyWith(weight: weightChanged.weight)));
         },
         priceChanged: (priceChanged) {
           emit(state.copyWith(
-              product: state.product.copyWith(price: priceChanged.price)));
+              productForm:
+                  state.productForm.copyWith(price: priceChanged.price)));
         },
         productDescriptionChanged: (productDescriptionChanged) {
           emit(state.copyWith(
-              product: state.product.copyWith(
+              productForm: state.productForm.copyWith(
                   description: productDescriptionChanged.productDescription)));
         },
         ingredientsChanged: (ingredientsChanged) {
           emit(state.copyWith(
-              product: state.product
+              productForm: state.productForm
                   .copyWith(ingredients: ingredientsChanged.ingredients)));
         },
         photosChanged: (photosChanged) {
-          emit(state.copyWith(productPhotos: photosChanged.photos));
+          emit(state.copyWith(
+              productForm:
+                  state.productForm.copyWith(photos: photosChanged.photos)));
         },
-        saved: () {
-          final photosFailureOrUnit = state.productPhotos.failureOrUnit;
+        saved: () async {
+          await state.productForm.failureOption.fold(() async {
+            emit(ProductFormState.loading(
+              productForm: state.productForm,
+            ));
+            final failureOrUnit =
+                await productRepository.create(state.productForm);
 
-          photosFailureOrUnit.fold(
-            (f) => emit(ProductFormState.error(
-                product: state.product,
-                productPhotos: state.productPhotos,
-                saveFailureOrSuccessOption: state.saveFailureOrSuccessOption)),
-            (_) {
-              emit(ProductFormState.loading(
-                  product: state.product, productPhotos: state.productPhotos));
-            },
-          );
+            failureOrUnit.fold(
+                (f) => emit(ProductFormState.error(
+                    productForm: state.productForm,
+                    saveFailureOrSuccessOption: some(left(f)))),
+                (r) => emit(ProductFormState.loaded(
+                    productForm: state.productForm,
+                    saveFailureOrSuccessOption: some(right(r)))));
+          },
+              (f) async => emit(ProductFormState.error(
+                  productForm: state.productForm,
+                  saveFailureOrSuccessOption:
+                      state.saveFailureOrSuccessOption)));
         },
       );
     });

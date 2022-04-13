@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:kt_dart/kt.dart';
 import 'package:mockito/annotations.dart';
+import 'package:mockito/mockito.dart';
 import 'package:shopify_manager/application/product/product_form/product_form_bloc.dart';
 import 'package:shopify_manager/domain/auth/i_auth_facade.dart';
 import 'package:shopify_manager/domain/core/images/photo.dart';
@@ -28,20 +29,23 @@ void main() async {
   late MockIProductRepository mockIProductRepository;
   late MockIShopRepository mockIShopRepository;
 
+  final initialState = ProductFormState.initial();
+  final tInitialProduct = initialState.productForm;
+  final tProduct = fixtureProduct;
+  final tProductForm = await loadProductFormWithPhotos();
+  final file = await getImageFileFromAssets('test_logo.jpg');
+  final tPhoto = ProductPhoto(file);
+  final tPhotos =
+      NonEmptyList5<ProductPhoto>(KtList.from([tPhoto, tPhoto, tPhoto]));
+
   setUp(() {
     mockNetworkInfo = MockNetworkInfo();
     mockIAuthFacade = MockIAuthFacade();
     mockIProductRepository = MockIProductRepository();
     mockIShopRepository = MockIShopRepository();
+    when(mockIProductRepository.create(tProductForm))
+        .thenAnswer((_) async => right(unit));
   });
-
-  final initialState = ProductFormState.initial();
-  final tInitialProduct = initialState.product;
-  final tProduct = fixtureProduct;
-  final file = await getImageFileFromAssets('test_logo.jpg');
-  final tPhoto = ProductPhoto(file);
-  final tPhotos =
-      NonEmptyList5<ProductPhoto>(KtList.from([tPhoto, tPhoto, tPhoto]));
 
   group('categoryChanged', () {
     // arrange
@@ -59,7 +63,7 @@ void main() async {
           bloc.add(ProductFormEvent.categoryChanged(category: category)),
       expect: () => [
         initialState.copyWith(
-            product: tInitialProduct.copyWith(category: category))
+            productForm: tInitialProduct.copyWith(category: category))
       ],
     );
   });
@@ -81,7 +85,7 @@ void main() async {
       ),
       expect: () => [
         initialState.copyWith(
-            product: tInitialProduct.copyWith(name: productName))
+            productForm: tInitialProduct.copyWith(name: productName))
       ],
     );
   });
@@ -103,7 +107,7 @@ void main() async {
       ),
       expect: () => [
         initialState.copyWith(
-            product: tInitialProduct.copyWith(brand: brandName))
+            productForm: tInitialProduct.copyWith(brand: brandName))
       ],
     );
   });
@@ -124,7 +128,8 @@ void main() async {
         ProductFormEvent.weightChanged(weight: weight),
       ),
       expect: () => [
-        initialState.copyWith(product: tInitialProduct.copyWith(weight: weight))
+        initialState.copyWith(
+            productForm: tInitialProduct.copyWith(weight: weight))
       ],
     );
   });
@@ -145,7 +150,8 @@ void main() async {
         ProductFormEvent.priceChanged(price: price),
       ),
       expect: () => [
-        initialState.copyWith(product: tInitialProduct.copyWith(price: price))
+        initialState.copyWith(
+            productForm: tInitialProduct.copyWith(price: price))
       ],
     );
   });
@@ -169,7 +175,8 @@ void main() async {
       ),
       expect: () => [
         initialState.copyWith(
-            product: tInitialProduct.copyWith(description: productDescription))
+            productForm:
+                tInitialProduct.copyWith(description: productDescription))
       ],
     );
   });
@@ -191,7 +198,7 @@ void main() async {
       ),
       expect: () => [
         initialState.copyWith(
-            product: tInitialProduct.copyWith(ingredients: ingredients))
+            productForm: tInitialProduct.copyWith(ingredients: ingredients))
       ],
     );
   });
@@ -209,7 +216,10 @@ void main() async {
       act: (ProductFormBloc bloc) => bloc.add(
         ProductFormEvent.photosChanged(photos: tPhotos),
       ),
-      expect: () => [initialState.copyWith(productPhotos: tPhotos)],
+      expect: () => [
+        initialState.copyWith(
+            productForm: initialState.productForm.copyWith(photos: tPhotos))
+      ],
     );
   });
 
@@ -235,70 +245,61 @@ void main() async {
         productRepository: mockIProductRepository,
         shopRepository: mockIShopRepository,
       ),
-      seed: () =>
-          initialState.copyWith(product: tProduct, productPhotos: tPhotos),
+      seed: () => initialState.copyWith(productForm: tProductForm),
       act: (ProductFormBloc bloc) => bloc.add(const ProductFormEvent.saved()),
-      expect: () =>
-          [ProductFormState.loading(product: tProduct, productPhotos: tPhotos)],
+      expect: () => [ProductFormState.loading(productForm: tProductForm)],
     );
 
-//TODO
-    // blocTest(
-    //   'if photos are valid call IProductRepository.create',
-    //   build: () => ProductFormBloc(
-    //     authFacade: mockIAuthFacade,
-    //     networkInfo: mockNetworkInfo,
-    //     productRepository: mockIProductRepository,
-    //     shopRepository: mockIShopRepository,
-    //   ),
-    //   seed: () =>
-    //       initialState.copyWith(product: tProduct, productPhotos: tPhotos),
-    //   act: (ProductFormBloc bloc) => bloc.add(const ProductFormEvent.saved()),
-    //   verify: (_) {
-    //     return verify(mockIProductRepository.create(tProduct));
-    //   },
-    // );
-
     blocTest(
-      """after [ERROR] shoud reset saveFailureOrSuccessOption to none, 
-      and hide errors if the product is valid""",
+      'if the form is valid call IProductRepository.create',
       build: () => ProductFormBloc(
         authFacade: mockIAuthFacade,
         networkInfo: mockNetworkInfo,
         productRepository: mockIProductRepository,
         shopRepository: mockIShopRepository,
       ),
-      seed: () => initialState.copyWith(
-          product: tProduct,
-          productPhotos: tPhotos,
-          showErrors: true,
-          saveFailureOrSuccessOption:
-              some(left(const ProductFailure.noInternetConnection()))),
+      seed: () => initialState.copyWith(productForm: tProductForm),
+      act: (ProductFormBloc bloc) => bloc.add(const ProductFormEvent.saved()),
+      verify: (_) {
+        return verify(mockIProductRepository.create(tProductForm));
+      },
+    );
+
+    blocTest(
+      'should emit [LOADING] and [LOADED] when succesfully uploaded',
+      build: () => ProductFormBloc(
+        authFacade: mockIAuthFacade,
+        networkInfo: mockNetworkInfo,
+        productRepository: mockIProductRepository,
+        shopRepository: mockIShopRepository,
+      ),
+      seed: () => initialState.copyWith(productForm: tProductForm),
       act: (ProductFormBloc bloc) => bloc.add(const ProductFormEvent.saved()),
       expect: () => [
-        initialState.copyWith(
-            product: tProduct,
-            productPhotos: tPhotos,
-            showErrors: false,
-            saveFailureOrSuccessOption: none())
+        ProductFormState.loading(productForm: tProductForm),
+        ProductFormState.loaded(
+            productForm: tProductForm,
+            saveFailureOrSuccessOption: some(right(unit)))
       ],
     );
 
     blocTest(
-      'should emit [LOADED] with a failure after [LOADING] when an error occured',
+      'should emit [ERROR] with a failure after [LOADING] when an error occured',
       build: () => ProductFormBloc(
         authFacade: mockIAuthFacade,
         networkInfo: mockNetworkInfo,
         productRepository: mockIProductRepository,
         shopRepository: mockIShopRepository,
       ),
-      seed: () =>
-          ProductFormState.loading(product: tProduct, productPhotos: tPhotos),
+      seed: () => ProductFormState.loading(productForm: tProductForm),
+      setUp: () {
+        when(mockIProductRepository.create(tProductForm)).thenAnswer(
+            (_) async => left(const ProductFailure.noInternetConnection()));
+      },
       act: (ProductFormBloc bloc) => bloc.add(const ProductFormEvent.saved()),
       expect: () => [
-        ProductFormState.loaded(
-          product: tProduct,
-          productPhotos: tPhotos,
+        ProductFormState.error(
+          productForm: tProductForm,
           saveFailureOrSuccessOption:
               some(left(const ProductFailure.noInternetConnection())),
         )
