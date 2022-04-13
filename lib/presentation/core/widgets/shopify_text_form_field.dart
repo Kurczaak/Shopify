@@ -5,17 +5,21 @@ import 'package:shopify_manager/domain/core/failures.dart';
 class ShopifyTextFormField extends StatelessWidget {
   const ShopifyTextFormField({
     Key? key,
-    required this.controller,
+    this.controller,
     required this.fieldName,
     required this.value,
     required this.onChanged,
-    required this.showErrorMessages,
+    this.showErrorMessages = false,
     this.textInputAction = TextInputAction.next,
     this.keyboardType,
+    this.maxLines = 1,
+    this.minLines,
   }) : super(key: key);
 
+  final int? maxLines;
+  final int? minLines;
   final TextInputAction textInputAction;
-  final TextEditingController controller;
+  final TextEditingController? controller;
   final String fieldName;
   final Either<ValueFailure<String>, String> value;
   final void Function(String value) onChanged;
@@ -25,6 +29,8 @@ class ShopifyTextFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      maxLines: maxLines,
+      minLines: minLines,
       textInputAction: textInputAction,
       autovalidateMode: showErrorMessages
           ? AutovalidateMode.always
@@ -51,6 +57,8 @@ class ShopifyTextFormField extends StatelessWidget {
           (r) => null),
       controller: controller,
       decoration: InputDecoration(
+        contentPadding:
+            const EdgeInsets.symmetric(horizontal: 25.0, vertical: 23),
         labelText: fieldName,
       ),
       keyboardType: keyboardType,

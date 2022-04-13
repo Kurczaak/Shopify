@@ -58,6 +58,8 @@ abstract class $ProductFormStateCopyWith<$Res> {
       bool isLoading,
       bool showErrors,
       Option<Either<ProductFailure, Unit>> saveFailureOrSuccessOption});
+
+  $ProductFormCopyWith<$Res> get productForm;
 }
 
 /// @nodoc
@@ -95,6 +97,13 @@ class _$ProductFormStateCopyWithImpl<$Res>
               as Option<Either<ProductFailure, Unit>>,
     ));
   }
+
+  @override
+  $ProductFormCopyWith<$Res> get productForm {
+    return $ProductFormCopyWith<$Res>(_value.productForm, (value) {
+      return _then(_value.copyWith(productForm: value));
+    });
+  }
 }
 
 /// @nodoc
@@ -109,6 +118,9 @@ abstract class _$ProductFormStateCopyWith<$Res>
       bool isLoading,
       bool showErrors,
       Option<Either<ProductFailure, Unit>> saveFailureOrSuccessOption});
+
+  @override
+  $ProductFormCopyWith<$Res> get productForm;
 }
 
 /// @nodoc

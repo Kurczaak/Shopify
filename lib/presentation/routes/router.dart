@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:shopify_manager/presentation/debug_dashboard_page.dart';
+import 'package:shopify_manager/presentation/debug_page.dart';
 import 'package:shopify_manager/presentation/register_shop/logo_picker/logo_picker_page.dart';
 import 'package:shopify_manager/presentation/register_shop/registration_wrapping_page.dart';
 import 'package:shopify_manager/presentation/register_shop/location_picker/location_picker_page.dart';
@@ -13,26 +14,22 @@ import 'package:shopify_manager/presentation/splash/splash_page.dart';
 @MaterialAutoRouter(
   replaceInRouteName: 'Page,Route',
   routes: <AutoRoute>[
-    // AutoRoute(
-    //   page: DebugPage,
-    // ),
     AutoRoute(
-      page: SplashPage,
+      page: DebugPage,
       initial: true,
     ),
-
+    AutoRoute(
+      page: SplashPage,
+    ),
     AutoRoute(
       page: SignInPage,
     ),
-
     AutoRoute(
       page: SignUpPage,
     ),
-
     AutoRoute(
       page: DebugDashboardPage,
     ),
-
     AutoRoute(
       page: RegistrationWrappingPage,
       children: [

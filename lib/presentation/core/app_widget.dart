@@ -33,7 +33,7 @@ class AppWidget extends StatelessWidget {
         title: 'Flutter Demo',
         theme: ThemeData(
           textTheme: const TextTheme(
-            bodyText1: TextStyle(),
+            bodyText1: TextStyle(fontSize: 18, fontWeight: FontWeight.normal),
             bodyText2: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 15,
