@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'dart:typed_data';
 import 'package:dartz/dartz.dart';
+import 'package:shopify_manager/domain/core/errors.dart';
 import 'package:shopify_manager/domain/core/failures.dart';
 import 'package:shopify_manager/domain/core/images/validators.dart';
 import 'package:shopify_manager/domain/core/value_objects.dart';
@@ -20,6 +21,12 @@ class Photo extends ValueObject<File> {
           .andThen(validatePhotoTooSmall(file,
               minWidth: minWidth, minHeight: minHeight)));
   const Photo._(this.value);
+
+  @override
+  File getOrCrash() {
+    return value.fold(
+        (failure) => throw UnexpectedValueError(failure), (file) => file);
+  }
 
   @override
   List<Object> get props => [value.fold((l) => l, (r) => r.readAsBytesSync())];
