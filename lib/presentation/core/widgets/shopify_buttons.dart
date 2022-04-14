@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-enum ButtonType { success, warning }
+enum ButtonType { success, warning, info }
 
 class ShopifySecondaryButton extends StatelessWidget {
   final void Function()? onPressed;
@@ -55,7 +55,9 @@ class ShopifyPrimaryButton extends StatelessWidget {
       style: ElevatedButton.styleFrom(
         primary: type == ButtonType.success
             ? Theme.of(context).primaryColor
-            : Theme.of(context).errorColor,
+            : type == ButtonType.info
+                ? Theme.of(context).colorScheme.secondary
+                : Theme.of(context).errorColor,
       ),
       onPressed: onPressed,
       child: Text(

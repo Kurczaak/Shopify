@@ -33,44 +33,66 @@ class AppWidget extends StatelessWidget {
         title: 'Flutter Demo',
         theme: ThemeData(
           textTheme: const TextTheme(
-            bodyText1: TextStyle(fontSize: 18, fontWeight: FontWeight.normal),
-            bodyText2: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 15,
-            ),
-          ).apply(
-            bodyColor: const Color.fromRGBO(73, 72, 72, 1),
-            displayColor: const Color.fromRGBO(73, 72, 72, 1),
+                  titleLarge: TextStyle(fontWeight: FontWeight.bold))
+              .apply(
+            bodyColor: LightThemeColors.primaryDarkColor,
+            displayColor: LightThemeColors.primaryDarkColor,
+            fontFamily: 'Poppins',
+            //decorationColor: LightThemeColors.primaryDarkColor,
           ),
-          backgroundColor: const Color(0x00F4F5F7),
-          secondaryHeaderColor: const Color.fromRGBO(81, 81, 81, 1),
-          disabledColor: const Color.fromRGBO(81, 81, 81, .5),
+          backgroundColor: LightThemeColors.background,
+          colorScheme: const ColorScheme(
+            brightness: Brightness.light,
+            background: LightThemeColors.background,
+            onBackground: LightThemeColors.primaryDarkColor,
+            primary: LightThemeColors.primary,
+            onPrimary: LightThemeColors.iconsColor,
+            secondary: LightThemeColors.accentColor,
+            onSecondary: LightThemeColors.iconsColor,
+            error: LightThemeColors.errorColor,
+            onError: LightThemeColors.iconsColor,
+            surface: LightThemeColors.iconsColor,
+            onSurface: LightThemeColors.secondaryDarkColor,
+            outline: LightThemeColors.primaryDarkColor,
+            inversePrimary: LightThemeColors.disabledColor,
+          ),
           brightness: Brightness.light,
           fontFamily: 'Poppins',
           primarySwatch: MaterialColor(0xFF337331, color),
           iconTheme: const IconThemeData(
-            color: Colors.white,
+            color: LightThemeColors.iconsColor,
             opacity: 1,
             size: 30,
           ),
+          textButtonTheme: TextButtonThemeData(
+              style: TextButton.styleFrom(
+            textStyle:
+                const TextStyle(color: LightThemeColors.primaryDarkColor),
+          )),
+          primaryTextTheme: const TextTheme().apply(
+            bodyColor: LightThemeColors.primaryDarkColor,
+            displayColor: LightThemeColors.secondaryDarkColor,
+          ),
           outlinedButtonTheme: OutlinedButtonThemeData(
             style: OutlinedButton.styleFrom(
+              textStyle:
+                  const TextStyle(color: LightThemeColors.primaryDarkColor),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(8.0),
               ),
               padding: const EdgeInsets.all(5),
               side: const BorderSide(
                 width: 1,
-                color: Color.fromRGBO(73, 72, 72, 1),
+                color: LightThemeColors.primaryDarkColor,
               ),
             ),
           ),
           inputDecorationTheme: InputDecorationTheme(
-            border: OutlineInputBorder(
+            enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(100),
               borderSide: const BorderSide(
-                color: Color(0x00818181),
-                width: 2,
+                color: LightThemeColors.primaryDarkColor,
+                width: 1,
               ),
             ),
           ),
@@ -78,6 +100,17 @@ class AppWidget extends StatelessWidget {
       ),
     );
   }
+}
+
+class LightThemeColors {
+  static const Color primary = Color(0xFF337331);
+  static const Color background = Color.fromARGB(255, 231, 231, 231);
+  static const Color iconsColor = Colors.white;
+  static const Color primaryDarkColor = Color.fromARGB(255, 71, 71, 71);
+  static const Color secondaryDarkColor = Color.fromRGBO(129, 129, 129, 1);
+  static const Color errorColor = Color.fromRGBO(184, 52, 74, 1);
+  static const Color accentColor = Color.fromRGBO(0, 112, 193, 1);
+  static const Color disabledColor = Color(0xFFA2AF9F);
 }
 
 Map<int, Color> color = {

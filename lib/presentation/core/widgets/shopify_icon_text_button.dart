@@ -17,10 +17,15 @@ class ShopifyIconTextButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return OutlinedButton(
-      onPressed: onPressed,
+    return InkWell(
       child: Container(
-        color: Colors.white,
+        decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(9),
+            border: Border.all(
+                color: Theme.of(context).colorScheme.outline,
+                width: 1,
+                style: BorderStyle.solid)),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -31,18 +36,11 @@ class ShopifyIconTextButton extends StatelessWidget {
                 children: [
                   Text(
                     title,
-                    style: TextStyle(
-                      color: Theme.of(context).secondaryHeaderColor,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
-                    ),
+                    style: Theme.of(context).textTheme.titleLarge,
                   ),
                   Text(
                     subtitle,
-                    style: TextStyle(
-                      color: Theme.of(context).secondaryHeaderColor,
-                      fontWeight: FontWeight.normal,
-                    ),
+                    style: Theme.of(context).textTheme.subtitle2,
                   ),
                 ],
               ),

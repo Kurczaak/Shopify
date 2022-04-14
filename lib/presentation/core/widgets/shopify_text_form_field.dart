@@ -29,6 +29,7 @@ class ShopifyTextFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      style: Theme.of(context).textTheme.bodyText1,
       maxLines: maxLines,
       minLines: minLines,
       textInputAction: textInputAction,
@@ -57,6 +58,9 @@ class ShopifyTextFormField extends StatelessWidget {
           (r) => null),
       controller: controller,
       decoration: InputDecoration(
+        labelStyle: Theme.of(context).textTheme.bodyText1,
+        enabled: true,
+        enabledBorder: Theme.of(context).inputDecorationTheme.enabledBorder,
         contentPadding:
             const EdgeInsets.symmetric(horizontal: 25.0, vertical: 23),
         labelText: fieldName,
