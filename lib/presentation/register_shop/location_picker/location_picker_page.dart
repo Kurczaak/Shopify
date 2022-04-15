@@ -58,7 +58,7 @@ class LocationPickerPage extends StatelessWidget {
                                         'No location chosen. Please try to refresh')
                                 .show(context);
                           }, (_) {
-                            context.router.navigate(OpeningHoursRoute());
+                            context.router.navigate(const OpeningHoursRoute());
 
                             context
                                 .read<ShopLocationPickerBloc>()
