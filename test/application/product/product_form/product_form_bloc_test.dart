@@ -127,7 +127,7 @@ void main() async {
 
   group('weightChanged', () {
     // arrange
-    final weight = Weight.fromPrimitives(10, 'gram');
+    final weight = Weight.fromPrimitives(99.2, 'gram');
     blocTest(
       'should emit state with modified weight',
       build: () => ProductFormBloc(

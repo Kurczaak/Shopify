@@ -33,8 +33,9 @@ class AppWidget extends StatelessWidget {
         title: 'Flutter Demo',
         theme: ThemeData(
           textTheme: const TextTheme(
-                  titleLarge: TextStyle(fontWeight: FontWeight.bold))
-              .apply(
+            titleLarge: TextStyle(fontWeight: FontWeight.bold),
+            headlineLarge: TextStyle(fontWeight: FontWeight.bold),
+          ).apply(
             bodyColor: LightThemeColors.primaryDarkColor,
             displayColor: LightThemeColors.primaryDarkColor,
             fontFamily: 'Poppins',
@@ -71,7 +72,7 @@ class AppWidget extends StatelessWidget {
           )),
           primaryTextTheme: const TextTheme().apply(
             bodyColor: LightThemeColors.primaryDarkColor,
-            displayColor: LightThemeColors.secondaryDarkColor,
+            displayColor: LightThemeColors.primaryDarkColor,
           ),
           outlinedButtonTheme: OutlinedButtonThemeData(
             style: OutlinedButton.styleFrom(
@@ -89,6 +90,13 @@ class AppWidget extends StatelessWidget {
           ),
           inputDecorationTheme: InputDecorationTheme(
             enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(100),
+              borderSide: const BorderSide(
+                color: LightThemeColors.primaryDarkColor,
+                width: 1,
+              ),
+            ),
+            border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(100),
               borderSide: const BorderSide(
                 color: LightThemeColors.primaryDarkColor,

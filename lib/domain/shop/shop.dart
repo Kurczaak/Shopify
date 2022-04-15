@@ -37,4 +37,29 @@ abstract class Shop implements _$Shop {
             .fold(() => right(unit), (failure) => left(failure)))
         .fold((f) => some(f), (_) => none());
   }
+
+  // Option<String> get failureToStringOption {
+  //   return failureOption.fold(
+  //       () => none(),
+  //       (failure) => failure.maybeWhen(
+  //           orElse: () => throw UnexpectedValueError(failure),
+  //           shop: (shopFailure) => shopFailure.map(
+  //               exceedingLength: exceedingLength,
+  //               stringTooShort: stringTooShort,
+  //               empty: empty,
+  //               multiline: multiline,
+  //               incorrectPostalCode: incorrectPostalCode,
+  //               shopClosedAllWeekLong: shopClosedAllWeekLong,
+  //               noPhotoSelected: noPhotoSelected,
+  //               nonPositiveValue: nonPositiveValue,
+  //               noAddressNumber: noAddressNumber,
+  //               incorrectHour: incorrectHour,
+  //               numberOutsideInterval: numberOutsideInterval,
+  //               invalidTimeInterval: invalidTimeInterval,
+  //               listTooLong: listTooLong,
+  //               listTooShort: listTooShort,
+  //               emptyList: emptyList,
+  //               imageTooBig: imageTooBig,
+  //               imageTooSmall: imageTooSmall)));
+  // }
 }

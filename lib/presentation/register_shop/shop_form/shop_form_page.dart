@@ -111,17 +111,25 @@ class _ShopFormPageState extends State<ShopFormPage> {
                             .read<ShopFormBloc>()
                             .add(ShopFormEvent.nameChanged(value)),
                         showErrorMessages: state.showErrorMessages,
-                        value: state.shop.shopName.value,
+                        validator: (_) => state.shop.shopName.failureOrUnit
+                            .fold(
+                                (failure) => failure.stringifyValueFailure(
+                                    fieldName: 'Shop Name'),
+                                (_) => null),
                       ),
                       const SizedBox(height: 20),
                       ShopifyTextFormField(
+                        validator: (_) =>
+                            state.shop.address.streetName.failureOrUnit.fold(
+                                (failure) => failure.stringifyValueFailure(
+                                    fieldName: 'Street Name'),
+                                (_) => null),
                         controller: _streetNameController,
                         fieldName: 'Street Name',
                         onChanged: (value) => context
                             .read<ShopFormBloc>()
                             .add(ShopFormEvent.streetNameChanged(value)),
                         showErrorMessages: state.showErrorMessages,
-                        value: state.shop.address.streetName.value,
                       ),
                       const SizedBox(height: 20),
                       Row(
@@ -129,6 +137,13 @@ class _ShopFormPageState extends State<ShopFormPage> {
                           Flexible(
                             flex: 5,
                             child: ShopifyTextFormField(
+                              validator: (_) => state
+                                  .shop.address.streetNumber.failureOrUnit
+                                  .fold(
+                                      (failure) =>
+                                          failure.stringifyValueFailure(
+                                              fieldName: 'Street Number'),
+                                      (_) => null),
                               keyboardType: TextInputType.number,
                               controller: _streetNumberController,
                               fieldName: 'Street Number',
@@ -137,13 +152,19 @@ class _ShopFormPageState extends State<ShopFormPage> {
                                   .add(
                                       ShopFormEvent.streetNumberChanged(value)),
                               showErrorMessages: state.showErrorMessages,
-                              value: state.shop.address.streetNumber.value,
                             ),
                           ),
                           const SizedBox(width: 10),
                           Flexible(
                             flex: 4,
                             child: ShopifyTextFormField(
+                              validator: (_) => state
+                                  .shop.address.apartmentNumber.failureOrUnit
+                                  .fold(
+                                      (failure) =>
+                                          failure.stringifyValueFailure(
+                                              fieldName: 'Apartment Number'),
+                                      (_) => null),
                               keyboardType: TextInputType.streetAddress,
                               controller: _apartmentNumberController,
                               fieldName: 'Apartment Number',
@@ -152,13 +173,17 @@ class _ShopFormPageState extends State<ShopFormPage> {
                                   .add(ShopFormEvent.apartmentNumberChanged(
                                       value)),
                               showErrorMessages: state.showErrorMessages,
-                              value: state.shop.address.apartmentNumber.value,
                             ),
                           ),
                         ],
                       ),
                       const SizedBox(height: 20),
                       ShopifyTextFormField(
+                        validator: (_) =>
+                            state.shop.address.postalCode.failureOrUnit.fold(
+                                (failure) => failure.stringifyValueFailure(
+                                    fieldName: 'Postal Code'),
+                                (_) => null),
                         controller: _postalCodeController,
                         keyboardType: TextInputType.number,
                         fieldName: 'Postal Code',
@@ -173,17 +198,20 @@ class _ShopFormPageState extends State<ShopFormPage> {
                                   _postalCodeController.text));
                         },
                         showErrorMessages: state.showErrorMessages,
-                        value: state.shop.address.postalCode.value,
                       ),
                       const SizedBox(height: 20),
                       ShopifyTextFormField(
+                        validator: (_) => state.shop.address.city.failureOrUnit
+                            .fold(
+                                (failure) => failure.stringifyValueFailure(
+                                    fieldName: 'City'),
+                                (_) => null),
                         controller: _cityNameController,
                         fieldName: 'City',
                         onChanged: (value) => context
                             .read<ShopFormBloc>()
                             .add(ShopFormEvent.cityChanged(value)),
                         showErrorMessages: state.showErrorMessages,
-                        value: state.shop.address.city.value,
                       ),
                       const SizedBox(height: 30),
                     ],
@@ -195,7 +223,10 @@ class _ShopFormPageState extends State<ShopFormPage> {
                 child: ShopifyPrimaryButton(
                     onPressed: () async {
                       FocusManager.instance.primaryFocus?.unfocus();
-                      await context.router.navigate(LocationPickerRoute());
+                      if (state.shop.failureOption.isNone()) {
+                        await context.router.navigate(LocationPickerRoute());
+                      }
+
                       context
                           .read<ShopFormBloc>()
                           .add(const ShopFormEvent.proceeded());

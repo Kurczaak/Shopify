@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'failures.freezed.dart';
+part 'value_failures.freezed.dart';
 
 @freezed
 class ShopValueFailure<T> with _$ShopValueFailure<T> {

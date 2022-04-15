@@ -156,8 +156,8 @@ class __$AuthCopyWithImpl<T, $Res> extends _$ValueFailureCopyWithImpl<T, $Res>
 
 /// @nodoc
 
-class _$_Auth<T> implements _Auth<T> {
-  const _$_Auth(this.f);
+class _$_Auth<T> extends _Auth<T> {
+  const _$_Auth(this.f) : super._();
 
   @override
   final AuthValueFailure<T> f;
@@ -259,8 +259,9 @@ class _$_Auth<T> implements _Auth<T> {
   }
 }
 
-abstract class _Auth<T> implements ValueFailure<T> {
+abstract class _Auth<T> extends ValueFailure<T> {
   const factory _Auth(AuthValueFailure<T> f) = _$_Auth<T>;
+  const _Auth._() : super._();
 
   AuthValueFailure<T> get f;
   @JsonKey(ignore: true)
@@ -308,8 +309,8 @@ class __$ShopCopyWithImpl<T, $Res> extends _$ValueFailureCopyWithImpl<T, $Res>
 
 /// @nodoc
 
-class _$_Shop<T> implements _Shop<T> {
-  const _$_Shop(this.f);
+class _$_Shop<T> extends _Shop<T> {
+  const _$_Shop(this.f) : super._();
 
   @override
   final ShopValueFailure<T> f;
@@ -411,8 +412,9 @@ class _$_Shop<T> implements _Shop<T> {
   }
 }
 
-abstract class _Shop<T> implements ValueFailure<T> {
+abstract class _Shop<T> extends ValueFailure<T> {
   const factory _Shop(ShopValueFailure<T> f) = _$_Shop<T>;
+  const _Shop._() : super._();
 
   ShopValueFailure<T> get f;
   @JsonKey(ignore: true)
@@ -462,8 +464,8 @@ class __$ProductCopyWithImpl<T, $Res>
 
 /// @nodoc
 
-class _$_Product<T> implements _Product<T> {
-  const _$_Product(this.f);
+class _$_Product<T> extends _Product<T> {
+  const _$_Product(this.f) : super._();
 
   @override
   final ProductValueFailure<T> f;
@@ -565,8 +567,9 @@ class _$_Product<T> implements _Product<T> {
   }
 }
 
-abstract class _Product<T> implements ValueFailure<T> {
+abstract class _Product<T> extends ValueFailure<T> {
   const factory _Product(ProductValueFailure<T> f) = _$_Product<T>;
+  const _Product._() : super._();
 
   ProductValueFailure<T> get f;
   @JsonKey(ignore: true)
@@ -614,8 +617,8 @@ class __$CoreCopyWithImpl<T, $Res> extends _$ValueFailureCopyWithImpl<T, $Res>
 
 /// @nodoc
 
-class _$_Core<T> implements _Core<T> {
-  const _$_Core(this.f);
+class _$_Core<T> extends _Core<T> {
+  const _$_Core(this.f) : super._();
 
   @override
   final CoreValueFailure<T> f;
@@ -717,8 +720,9 @@ class _$_Core<T> implements _Core<T> {
   }
 }
 
-abstract class _Core<T> implements ValueFailure<T> {
+abstract class _Core<T> extends ValueFailure<T> {
   const factory _Core(CoreValueFailure<T> f) = _$_Core<T>;
+  const _Core._() : super._();
 
   CoreValueFailure<T> get f;
   @JsonKey(ignore: true)

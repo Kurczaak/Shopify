@@ -1,4 +1,3 @@
-import 'package:dartz/dartz.dart' as drtz;
 import 'package:flutter/material.dart';
 import 'package:barcode_widget/barcode_widget.dart' as widget;
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -7,7 +6,6 @@ import 'package:shopify_manager/domain/product/product_categories.dart';
 import 'package:shopify_manager/injection.dart';
 import 'package:shopify_manager/presentation/core/widgets/shopify_buttons.dart';
 import 'package:shopify_manager/presentation/core/widgets/shopify_icon_text_button.dart';
-import 'package:shopify_manager/presentation/core/widgets/shopify_text_form_field.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
 class DebugPage extends StatefulWidget {
@@ -85,49 +83,49 @@ class _DebugPageState extends State<DebugPage> {
                           height: DebugPage.itemsSpacing,
                         ),
                         const Text('ASDASDASD'),
-                        ShopifyTextFormField(
-                            fieldName: 'Product Name',
-                            value: drtz.right(''),
-                            onChanged: (_) {}),
-                        const SizedBox(
-                          height: DebugPage.itemsSpacing,
-                        ),
-                        ShopifyTextFormField(
-                            fieldName: 'Brand',
-                            value: drtz.right(''),
-                            onChanged: (_) {}),
-                        const SizedBox(
-                          height: DebugPage.itemsSpacing,
-                        ),
-                        ShopifyTextFormField(
-                            fieldName: 'Net Weight',
-                            value: drtz.right(''),
-                            onChanged: (_) {}),
-                        const SizedBox(
-                          height: DebugPage.itemsSpacing,
-                        ),
-                        ShopifyTextFormField(
-                            fieldName: 'Price',
-                            value: drtz.right(''),
-                            onChanged: (_) {}),
-                        const SizedBox(
-                          height: DebugPage.itemsSpacing,
-                        ),
-                        ShopifyTextFormField(
-                            fieldName: 'Description',
-                            minLines: 3,
-                            maxLines: 3,
-                            value: drtz.right(''),
-                            onChanged: (_) {}),
-                        const SizedBox(
-                          height: DebugPage.itemsSpacing,
-                        ),
-                        ShopifyTextFormField(
-                            fieldName: 'Ingredients',
-                            minLines: 3,
-                            maxLines: 3,
-                            value: drtz.right(''),
-                            onChanged: (_) {}),
+                        // ShopifyTextFormField(
+                        //     fieldName: 'Product Name',
+                        //     value: ' ',
+                        //     onChanged: (_) {}),
+                        // const SizedBox(
+                        //   height: DebugPage.itemsSpacing,
+                        // ),
+                        // ShopifyTextFormField(
+                        //     fieldName: 'Brand',
+                        //     value: ' ',
+                        //     onChanged: (_) {}),
+                        // const SizedBox(
+                        //   height: DebugPage.itemsSpacing,
+                        // ),
+                        // ShopifyTextFormField(
+                        //     fieldName: 'Net Weight',
+                        //     value: ' ',
+                        //     onChanged: (_) {}),
+                        // const SizedBox(
+                        //   height: DebugPage.itemsSpacing,
+                        // ),
+                        // ShopifyTextFormField(
+                        //     fieldName: 'Price',
+                        //     value: ' ',
+                        //     onChanged: (_) {}),
+                        // const SizedBox(
+                        //   height: DebugPage.itemsSpacing,
+                        // ),
+                        // ShopifyTextFormField(
+                        //     fieldName: 'Description',
+                        //     minLines: 3,
+                        //     maxLines: 3,
+                        //     value: ' ',
+                        //     onChanged: (_) {}),
+                        // const SizedBox(
+                        //   height: DebugPage.itemsSpacing,
+                        // ),
+                        // ShopifyTextFormField(
+                        //     fieldName: 'Ingredients',
+                        //     minLines: 3,
+                        //     maxLines: 3,
+                        //     value: ' ',
+                        //     onChanged: (_) {}),
                         const SizedBox(
                           height: DebugPage.itemsSpacing,
                         ),

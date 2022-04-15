@@ -48,7 +48,7 @@ class _HourDropdownPickerState extends State<HourDropdownPicker> {
                           ? Theme.of(context).disabledColor
                           : widget.error
                               ? Theme.of(context).errorColor
-                              : Theme.of(context).secondaryHeaderColor,
+                              : Theme.of(context).colorScheme.outline,
                       fontWeight: hour.contains(':00')
                           ? FontWeight.bold
                           : FontWeight.normal,

@@ -22,23 +22,12 @@ class RegistrationProgressRow extends StatelessWidget {
         Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(
-              title,
-              style: const TextStyle(
-                fontSize: 30,
-              ),
-            ),
+            Text(title, style: Theme.of(context).textTheme.titleLarge),
             const Spacer(),
             Text('$pageNum/5'),
           ],
         ),
-        Text(
-          subtitle,
-          style: TextStyle(
-            color: Theme.of(context).secondaryHeaderColor,
-            fontWeight: FontWeight.normal,
-          ),
-        ),
+        Text(subtitle, style: Theme.of(context).textTheme.titleMedium),
       ],
     );
   }

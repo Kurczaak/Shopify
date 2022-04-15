@@ -48,15 +48,15 @@ class ShopLogoPickerBloc
               (photo) => photo.failureOrUnit.fold(
                   (failure) => failure.maybeMap(
                       orElse: () {},
-                      shop: (shopFialure) {
-                        shopFialure.f.maybeMap(
+                      core: (imageFailure) {
+                        imageFailure.f.maybeMap(
                             imageTooBig: (_) => emit(const Error(
                                 failure: ImageFailure.invalidImageSize())),
                             imageTooSmall: (_) => emit(const Error(
                                 failure: ImageFailure.invalidImageSize())),
                             // ignore: void_checks
                             orElse: () {
-                              throw UnexpectedValueError(shopFialure);
+                              throw UnexpectedValueError(imageFailure);
                             });
                       }),
                   (_) => emit(Loaded(logo: ShopLogo(photo.getOrCrash())))));

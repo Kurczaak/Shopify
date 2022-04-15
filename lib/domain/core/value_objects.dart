@@ -69,6 +69,19 @@ class ShopifyUrl extends ValueObject<String> {
           .flatMap(validateStringNotEmpty)
           .flatMap(validateSingleLine));
 
+  // Option<String> get stringFailureOption {
+  //   return value.fold(
+  //       (failure) => failure.maybeWhen(
+  //           orElse: () => throw UnexpectedValueError(failure),
+  //           core: (coreFailure) => some(coreFailure.maybeMap(
+  //                 orElse: () => 'Unexpected value failure',
+  //                 empty: (_) => 'URL should not be empty',
+  //                 stringDoesntContainKeyword: (_) => 'Invalid URL string',
+  //                 multiline: (_) => 'URLs cannot be multiline',
+  //               ))),
+  //       (_) => none());
+  // }
+
   const ShopifyUrl._(this.value);
 }
 
@@ -89,6 +102,20 @@ class AddressNumber extends ValueObject<String> {
     return AddressNumber._(
         validateMaxStringLength(input, maxLength).flatMap(validateSingleLine));
   }
+
+  // Option<String> get stringFailureOption {
+  //   return value.fold(
+  //       (failure) => failure.maybeWhen(
+  //           orElse: () => throw UnexpectedValueError(failure),
+  //           core: (coreFailure) => some(coreFailure.maybeMap(
+  //                 orElse: () => 'Unexpected value failure',
+  //                 exceedingLength: (_) =>
+  //                     'Adress number is too long. Max $maxLength characters',
+  //                 multiline: (_) => 'Address Number cannot be multiline',
+  //               ))),
+  //       (_) => none());
+  // }
+
   const AddressNumber._(this.value);
 }
 
@@ -115,6 +142,23 @@ class StreetName extends Name {
           .flatMap(validateSingleLine),
     );
   }
+
+  // Option<String> get stringFailureOption {
+  //   return value.fold(
+  //       (failure) => failure.maybeWhen(
+  //           orElse: () => throw UnexpectedValueError(failure),
+  //           core: (coreFailure) => some(coreFailure.maybeMap(
+  //                 orElse: () => 'Unexpected value failure',
+  //                 empty: (_) => 'Street name should not be empty',
+  //                 exceedingLength: (_) =>
+  //                     'Street name is too long. Max $maxLength characters',
+  //                 multiline: (_) => 'Street name cannot be multiline',
+  //                 stringTooShort: (_) =>
+  //                     'Street name is too short. Min $minLength characters',
+  //               ))),
+  //       (_) => none());
+  // }
+
   const StreetName._(this.value);
 }
 

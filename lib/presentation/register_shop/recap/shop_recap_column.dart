@@ -49,7 +49,7 @@ class _ShopRecapState extends State<ShopRecap> {
             const SizedBox(width: 5),
             Icon(
               Icons.store,
-              color: Theme.of(context).secondaryHeaderColor,
+              color: Theme.of(context).colorScheme.onBackground,
               size: 40,
             ),
             Text(
@@ -64,7 +64,7 @@ class _ShopRecapState extends State<ShopRecap> {
           children: [
             Icon(
               Icons.location_on,
-              color: Theme.of(context).secondaryHeaderColor,
+              color: Theme.of(context).colorScheme.onBackground,
               size: 50,
             ),
             Expanded(
