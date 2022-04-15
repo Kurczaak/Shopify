@@ -1,12 +1,16 @@
+import 'package:another_flushbar/flushbar_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:barcode_widget/barcode_widget.dart' as widget;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopify_manager/application/product/product_form/product_form_bloc.dart';
 import 'package:shopify_manager/domain/product/product_categories.dart';
+import 'package:shopify_manager/domain/product/value_objects.dart';
+import 'package:shopify_manager/domain/product/weight.dart';
 import 'package:shopify_manager/injection.dart';
 import 'package:shopify_manager/presentation/core/widgets/shopify_buttons.dart';
 import 'package:shopify_manager/presentation/core/widgets/shopify_icon_text_button.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:shopify_manager/presentation/core/widgets/shopify_text_form_field.dart';
 
 class DebugPage extends StatefulWidget {
   const DebugPage({Key? key}) : super(key: key);
@@ -25,7 +29,16 @@ class _DebugPageState extends State<DebugPage> {
     return BlocProvider<ProductFormBloc>(
       create: (context) => getIt<ProductFormBloc>(),
       child: BlocConsumer<ProductFormBloc, ProductFormState>(
-        listener: ((context, state) {}),
+        listener: ((context, state) {
+          if (state.showErrors) {
+            state.productForm.photos.failureOrUnit.fold(
+                (failure) => FlushbarHelper.createError(
+                        message:
+                            failure.stringifyValueFailure(fieldName: 'Photos'))
+                    .show(context),
+                (_) => null);
+          }
+        }),
         builder: (context, state) => Scaffold(
           body: Center(
             child: SingleChildScrollView(
@@ -82,50 +95,99 @@ class _DebugPageState extends State<DebugPage> {
                         const SizedBox(
                           height: DebugPage.itemsSpacing,
                         ),
-                        const Text('ASDASDASD'),
+                        ShopifyTextFormField(
+                          fieldName: 'Product Name',
+                          showErrorMessages: state.showErrors,
+                          validator: (_) => state.productForm.name.failureOrUnit
+                              .fold(
+                                  (failure) => failure.stringifyValueFailure(
+                                      fieldName: 'Product Name'),
+                                  (_) => null),
+                          onChanged: (value) {
+                            context.read<ProductFormBloc>().add(
+                                ProductFormEvent.productNameChanged(
+                                    productName: ProductName(value)));
+                          },
+                        ),
+                        const SizedBox(
+                          height: DebugPage.itemsSpacing,
+                        ),
+                        ShopifyTextFormField(
+                          fieldName: 'Brand',
+                          showErrorMessages: state.showErrors,
+                          validator: (_) =>
+                              state.productForm.brand.failureOrUnit.fold(
+                                  (failure) => failure.stringifyValueFailure(
+                                      fieldName: 'BrandName'),
+                                  (_) => null),
+                          onChanged: (value) {
+                            context.read<ProductFormBloc>().add(
+                                ProductFormEvent.brandNameChanged(
+                                    brandName: BrandName(value)));
+                          },
+                        ),
+                        const SizedBox(
+                          height: DebugPage.itemsSpacing,
+                        ),
+                        ShopifyTextFormField(
+                          fieldName: 'Net Weight',
+                          showErrorMessages: state.showErrors,
+                          validator: (_) =>
+                              state.productForm.weight.failureOrUnit.fold(
+                                  (failure) => failure.stringifyValueFailure(
+                                      fieldName: 'Net Weight'),
+                                  (_) => null),
+                          onChanged: (value) {
+                            context.read<ProductFormBloc>().add(
+                                ProductFormEvent.weightChanged(
+                                    weight: Weight.fromPrimitives(
+                                        double.parse(value), 'kilogram')));
+                          },
+                        ),
+                        const SizedBox(
+                          height: DebugPage.itemsSpacing,
+                        ),
                         // ShopifyTextFormField(
-                        //     fieldName: 'Product Name',
-                        //     value: ' ',
-                        //     onChanged: (_) {}),
-                        // const SizedBox(
-                        //   height: DebugPage.itemsSpacing,
-                        // ),
-                        // ShopifyTextFormField(
-                        //     fieldName: 'Brand',
-                        //     value: ' ',
-                        //     onChanged: (_) {}),
-                        // const SizedBox(
-                        //   height: DebugPage.itemsSpacing,
-                        // ),
-                        // ShopifyTextFormField(
-                        //     fieldName: 'Net Weight',
-                        //     value: ' ',
-                        //     onChanged: (_) {}),
-                        // const SizedBox(
-                        //   height: DebugPage.itemsSpacing,
-                        // ),
-                        // ShopifyTextFormField(
-                        //     fieldName: 'Price',
-                        //     value: ' ',
-                        //     onChanged: (_) {}),
-                        // const SizedBox(
-                        //   height: DebugPage.itemsSpacing,
-                        // ),
-                        // ShopifyTextFormField(
-                        //     fieldName: 'Description',
-                        //     minLines: 3,
-                        //     maxLines: 3,
-                        //     value: ' ',
-                        //     onChanged: (_) {}),
-                        // const SizedBox(
-                        //   height: DebugPage.itemsSpacing,
-                        // ),
-                        // ShopifyTextFormField(
-                        //     fieldName: 'Ingredients',
-                        //     minLines: 3,
-                        //     maxLines: 3,
-                        //     value: ' ',
-                        //     onChanged: (_) {}),
+                        //     fieldName: 'Price', onChanged: (_) {}),
+                        const SizedBox(
+                          height: DebugPage.itemsSpacing,
+                        ),
+                        ShopifyTextFormField(
+                          fieldName: 'Description',
+                          minLines: 3,
+                          maxLines: 3,
+                          showErrorMessages: state.showErrors,
+                          validator: (_) =>
+                              state.productForm.description.failureOrUnit.fold(
+                                  (failure) => failure.stringifyValueFailure(
+                                      fieldName: 'Product Description'),
+                                  (_) => null),
+                          onChanged: (value) {
+                            context.read<ProductFormBloc>().add(
+                                ProductFormEvent.productDescriptionChanged(
+                                    productDescription:
+                                        ProductDescription(value)));
+                          },
+                        ),
+                        const SizedBox(
+                          height: DebugPage.itemsSpacing,
+                        ),
+                        ShopifyTextFormField(
+                          fieldName: 'Ingredients',
+                          minLines: 3,
+                          maxLines: 3,
+                          showErrorMessages: state.showErrors,
+                          validator: (_) =>
+                              state.productForm.ingredients.failureOrUnit.fold(
+                                  (failure) => failure.stringifyValueFailure(
+                                      fieldName: 'Product Ingredients'),
+                                  (_) => null),
+                          onChanged: (value) {
+                            context.read<ProductFormBloc>().add(
+                                ProductFormEvent.ingredientsChanged(
+                                    ingredients: ProductDescription(value)));
+                          },
+                        ),
                         const SizedBox(
                           height: DebugPage.itemsSpacing,
                         ),
@@ -133,6 +195,7 @@ class _DebugPageState extends State<DebugPage> {
                             title: 'Photos',
                             subtitle: 'Upload product\'s photos',
                             icon: Icons.photo,
+                            error: !state.productForm.photos.isValid(),
                             onPressed: () {
                               context
                                   .read<ProductFormBloc>()
