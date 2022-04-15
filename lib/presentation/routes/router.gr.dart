@@ -81,11 +81,12 @@ class AppRouter extends _i12.RootStackRouter {
 
   @override
   List<_i12.RouteConfig> get routes => [
-        _i12.RouteConfig(DebugRoute.name, path: '/debug-page'),
+        _i12.RouteConfig(DebugRoute.name, path: '/'),
         _i12.RouteConfig(SplashRoute.name, path: '/splash-page'),
         _i12.RouteConfig(SignInRoute.name, path: '/sign-in-page'),
         _i12.RouteConfig(SignUpRoute.name, path: '/sign-up-page'),
-        _i12.RouteConfig(DebugDashboardRoute.name, path: '/'),
+        _i12.RouteConfig(DebugDashboardRoute.name,
+            path: '/debug-dashboard-page'),
         _i12.RouteConfig(RegistrationWrappingRoute.name,
             path: '/registration-wrapping-page',
             children: [
@@ -110,7 +111,7 @@ class AppRouter extends _i12.RootStackRouter {
 /// generated route for
 /// [_i1.DebugPage]
 class DebugRoute extends _i12.PageRouteInfo<void> {
-  const DebugRoute() : super(DebugRoute.name, path: '/debug-page');
+  const DebugRoute() : super(DebugRoute.name, path: '/');
 
   static const String name = 'DebugRoute';
 }
@@ -142,7 +143,8 @@ class SignUpRoute extends _i12.PageRouteInfo<void> {
 /// generated route for
 /// [_i5.DebugDashboardPage]
 class DebugDashboardRoute extends _i12.PageRouteInfo<void> {
-  const DebugDashboardRoute() : super(DebugDashboardRoute.name, path: '/');
+  const DebugDashboardRoute()
+      : super(DebugDashboardRoute.name, path: '/debug-dashboard-page');
 
   static const String name = 'DebugDashboardRoute';
 }
