@@ -1,0 +1,8 @@
+import 'package:dartz/dartz.dart';
+import 'barcode_failure.dart';
+import 'package:shopify_manager/domain/product/value_objects.dart';
+
+abstract class IBarcodeScannerFacade {
+  Future<Either<BarcodeFailure, Barcode>> scanSingleBarcode();
+  Stream<Either<BarcodeFailure, Barcode>> scanBarcodesContinously();
+}
