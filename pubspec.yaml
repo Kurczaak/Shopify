@@ -63,6 +63,7 @@ dependencies:
   json_annotation: ^4.4.0
   kt_dart: ^0.10.0
   loading_overlay: ^0.3.0
+  mobile_scanner: ^1.0.0
   path_provider: ^2.0.9
   permission_handler: ^9.2.0
   progress_indicators: ^1.0.0
