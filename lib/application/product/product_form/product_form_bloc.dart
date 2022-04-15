@@ -102,10 +102,7 @@ class ProductFormBloc extends Bloc<ProductFormEvent, ProductFormState> {
           });
         },
         saved: () async {
-          print('saving xd');
-          print(state.productForm.failureOption);
           await state.productForm.failureOption.fold(() async {
-            print('Correct product');
             emit(ProductFormState.loading(
                 productForm: state.productForm,
                 saveFailureOrSuccessOption: state.saveFailureOrSuccessOption));
