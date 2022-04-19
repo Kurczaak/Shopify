@@ -130,7 +130,7 @@ class _ScannerWidgetState extends State<ScannerWidget> {
                                     noImageSelected: (_) =>
                                         'No image has been selected',
                                     invalidImageSize: (_) =>
-                                        ' Invalid image size')).show(context),
+                                        'Invalid image size')).show(context),
                             (photo) async {
                           await photo.failureOrUnit.fold(
                               (failure) async => FlushbarHelper.createError(
