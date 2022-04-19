@@ -52,9 +52,9 @@ class AppRouter extends _i13.RootStackRouter {
       return _i13.MaterialPageX<dynamic>(
           routeData: routeData, child: const _i5.DebugDashboardPage());
     },
-    ScannerWidget.name: (routeData) {
+    BarcodeScannerWidget.name: (routeData) {
       return _i13.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i6.ScannerWidget());
+          routeData: routeData, child: const _i6.BarcodeScannerWidget());
     },
     RegistrationWrappingRoute.name: (routeData) {
       return _i13.MaterialPageX<dynamic>(
@@ -92,7 +92,7 @@ class AppRouter extends _i13.RootStackRouter {
         _i13.RouteConfig(SignUpRoute.name, path: '/sign-up-page'),
         _i13.RouteConfig(DebugDashboardRoute.name,
             path: '/debug-dashboard-page'),
-        _i13.RouteConfig(ScannerWidget.name, path: '/'),
+        _i13.RouteConfig(BarcodeScannerWidget.name, path: '/'),
         _i13.RouteConfig(RegistrationWrappingRoute.name,
             path: '/registration-wrapping-page',
             children: [
@@ -156,11 +156,11 @@ class DebugDashboardRoute extends _i13.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i6.ScannerWidget]
-class ScannerWidget extends _i13.PageRouteInfo<void> {
-  const ScannerWidget() : super(ScannerWidget.name, path: '/');
+/// [_i6.BarcodeScannerWidget]
+class BarcodeScannerWidget extends _i13.PageRouteInfo<void> {
+  const BarcodeScannerWidget() : super(BarcodeScannerWidget.name, path: '/');
 
-  static const String name = 'ScannerWidget';
+  static const String name = 'BarcodeScannerWidget';
 }
 
 /// generated route for

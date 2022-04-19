@@ -32,7 +32,7 @@ import 'package:shopify_manager/presentation/splash/splash_page.dart';
       page: DebugDashboardPage,
     ),
     AutoRoute(
-      page: ScannerWidget,
+      page: BarcodeScannerWidget,
       initial: true,
     ),
     AutoRoute(

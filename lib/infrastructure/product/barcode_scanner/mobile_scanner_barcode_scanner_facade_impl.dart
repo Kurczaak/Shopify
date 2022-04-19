@@ -5,7 +5,7 @@ import 'package:dartz/dartz.dart';
 import 'package:shopify_manager/domain/product/barcode_scanner/i_barcode_scanner_facade.dart';
 import 'package:shopify_manager/domain/product/value_objects.dart';
 
-@injectable
+@Injectable(as: IBarcodeScannerFacade)
 class MobileScannerBarcodeScannerFacadeImpl implements IBarcodeScannerFacade {
   MobileScannerBarcodeScannerFacadeImpl();
   @override
