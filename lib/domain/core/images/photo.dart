@@ -8,8 +8,8 @@ import 'package:shopify_manager/domain/core/value_objects.dart';
 import 'package:shopify_manager/domain/core/value_failures.dart';
 
 class Photo extends ValueObject<File> {
-  static const int maxHeight = 768;
-  static const int maxWidth = 1024;
+  static const int maxHeight = 5000;
+  static const int maxWidth = 3000;
   static const int minHeight = 24;
   static const int minWidth = 24;
 

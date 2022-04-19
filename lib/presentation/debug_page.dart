@@ -304,10 +304,10 @@ class _DebugPageState extends State<DebugPage> {
                         height: 60,
                         child: ShopifyPrimaryButton(
                             onPressed: () {
-                              print('click');
-                              context
-                                  .read<ProductFormBloc>()
-                                  .add(const ProductFormEvent.saved());
+                              // print('click');
+                              // context
+                              //     .read<ProductFormBloc>()
+                              //     .add(const ProductFormEvent.saved());
                             },
                             text: 'Register Now')),
                   )
