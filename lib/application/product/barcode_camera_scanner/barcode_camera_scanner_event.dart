@@ -6,10 +6,9 @@ enum $BarcodeCameraScannerEvent {
   ToggleFlashlight,
   @object
   ToggleCamera,
-  @object
-  OpenGallery,
+
   @object
   TogglePause,
-  @object
-  Exit,
+  @Data(fields: [DataField<Barcode>('barcode')])
+  ScannedBarcode,
 }

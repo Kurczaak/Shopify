@@ -2,9 +2,12 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shopify_manager/application/product/barcode_camera_scanner/barcode_camera_scanner_bloc.dart';
+import 'package:shopify_manager/domain/product/value_objects.dart';
 
 void main() {
   late BarcodeCameraScannerBloc bloc;
+
+  final tBarcode = Barcode('123-ABC-345');
   setUp(() {
     bloc = BarcodeCameraScannerBloc();
   });
@@ -55,4 +58,14 @@ void main() {
             bloc.state.copyWith(paused: !bloc.state.paused),
             bloc.state.copyWith(paused: bloc.state.paused),
           ]);
+
+  blocTest(
+    'scannedBarcode shout emit a state with the barcode',
+    build: () => bloc,
+    act: (BarcodeCameraScannerBloc bloc) =>
+        bloc.add(BarcodeCameraScannerEvent.scannedBarcode(barcode: tBarcode)),
+    expect: () => [
+      bloc.state.copyWith(barcodeOption: some(tBarcode)),
+    ],
+  );
 }

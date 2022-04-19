@@ -38,18 +38,12 @@ part of 'barcode_camera_scanner_bloc.dart';
 //
 // @WithWrap()
 // @WithEquality(Equality.data)
-// @WithName('OpenGallery')
-// void openGallery();
-//
-// @WithWrap()
-// @WithEquality(Equality.data)
 // @WithName('TogglePause')
 // void togglePause();
 //
-// @WithWrap()
 // @WithEquality(Equality.data)
-// @WithName('Exit')
-// void exit();
+// @WithName('ScannedBarcode')
+// void scannedBarcode(Barcode barcode);
 // }
 
 /// [BarcodeCameraScannerEvent] {
@@ -58,11 +52,9 @@ part of 'barcode_camera_scanner_bloc.dart';
 ///
 /// ([ToggleCamera] toggleCamera){} with data equality with wrap
 ///
-/// ([OpenGallery] openGallery){} with data equality with wrap
-///
 /// ([TogglePause] togglePause){} with data equality with wrap
 ///
-/// ([Exit] exit){} with data equality with wrap
+/// ([ScannedBarcode] scannedBarcode){[Barcode] barcode} with data equality
 ///
 /// }
 @immutable
@@ -73,31 +65,27 @@ abstract class BarcodeCameraScannerEvent {
 
   const factory BarcodeCameraScannerEvent.toggleCamera() = ToggleCamera;
 
-  const factory BarcodeCameraScannerEvent.openGallery() = OpenGallery;
-
   const factory BarcodeCameraScannerEvent.togglePause() = TogglePause;
 
-  const factory BarcodeCameraScannerEvent.exit() = Exit;
+  const factory BarcodeCameraScannerEvent.scannedBarcode({
+    required Barcode barcode,
+  }) = ScannedBarcode;
 
   bool isToggleFlashlight() => this is ToggleFlashlight;
 
   bool isToggleCamera() => this is ToggleCamera;
 
-  bool isOpenGallery() => this is OpenGallery;
-
   bool isTogglePause() => this is TogglePause;
 
-  bool isExit() => this is Exit;
+  bool isScannedBarcode() => this is ScannedBarcode;
 
   ToggleFlashlight asToggleFlashlight() => this as ToggleFlashlight;
 
   ToggleCamera asToggleCamera() => this as ToggleCamera;
 
-  OpenGallery asOpenGallery() => this as OpenGallery;
-
   TogglePause asTogglePause() => this as TogglePause;
 
-  Exit asExit() => this as Exit;
+  ScannedBarcode asScannedBarcode() => this as ScannedBarcode;
 
   ToggleFlashlight? asToggleFlashlightOrNull() {
     final barcodeCameraScannerEvent = this;
@@ -113,13 +101,6 @@ abstract class BarcodeCameraScannerEvent {
         : null;
   }
 
-  OpenGallery? asOpenGalleryOrNull() {
-    final barcodeCameraScannerEvent = this;
-    return barcodeCameraScannerEvent is OpenGallery
-        ? barcodeCameraScannerEvent
-        : null;
-  }
-
   TogglePause? asTogglePauseOrNull() {
     final barcodeCameraScannerEvent = this;
     return barcodeCameraScannerEvent is TogglePause
@@ -127,29 +108,28 @@ abstract class BarcodeCameraScannerEvent {
         : null;
   }
 
-  Exit? asExitOrNull() {
+  ScannedBarcode? asScannedBarcodeOrNull() {
     final barcodeCameraScannerEvent = this;
-    return barcodeCameraScannerEvent is Exit ? barcodeCameraScannerEvent : null;
+    return barcodeCameraScannerEvent is ScannedBarcode
+        ? barcodeCameraScannerEvent
+        : null;
   }
 
   R when<R extends Object?>({
     required R Function() toggleFlashlight,
     required R Function() toggleCamera,
-    required R Function() openGallery,
     required R Function() togglePause,
-    required R Function() exit,
+    required R Function(ScannedBarcode scannedBarcode) scannedBarcode,
   }) {
     final barcodeCameraScannerEvent = this;
     if (barcodeCameraScannerEvent is ToggleFlashlight) {
       return toggleFlashlight();
     } else if (barcodeCameraScannerEvent is ToggleCamera) {
       return toggleCamera();
-    } else if (barcodeCameraScannerEvent is OpenGallery) {
-      return openGallery();
     } else if (barcodeCameraScannerEvent is TogglePause) {
       return togglePause();
-    } else if (barcodeCameraScannerEvent is Exit) {
-      return exit();
+    } else if (barcodeCameraScannerEvent is ScannedBarcode) {
+      return scannedBarcode(barcodeCameraScannerEvent);
     } else {
       throw AssertionError();
     }
@@ -158,9 +138,8 @@ abstract class BarcodeCameraScannerEvent {
   R whenOrElse<R extends Object?>({
     R Function()? toggleFlashlight,
     R Function()? toggleCamera,
-    R Function()? openGallery,
     R Function()? togglePause,
-    R Function()? exit,
+    R Function(ScannedBarcode scannedBarcode)? scannedBarcode,
     required R Function(BarcodeCameraScannerEvent barcodeCameraScannerEvent)
         orElse,
   }) {
@@ -173,16 +152,14 @@ abstract class BarcodeCameraScannerEvent {
       return toggleCamera != null
           ? toggleCamera()
           : orElse(barcodeCameraScannerEvent);
-    } else if (barcodeCameraScannerEvent is OpenGallery) {
-      return openGallery != null
-          ? openGallery()
-          : orElse(barcodeCameraScannerEvent);
     } else if (barcodeCameraScannerEvent is TogglePause) {
       return togglePause != null
           ? togglePause()
           : orElse(barcodeCameraScannerEvent);
-    } else if (barcodeCameraScannerEvent is Exit) {
-      return exit != null ? exit() : orElse(barcodeCameraScannerEvent);
+    } else if (barcodeCameraScannerEvent is ScannedBarcode) {
+      return scannedBarcode != null
+          ? scannedBarcode(barcodeCameraScannerEvent)
+          : orElse(barcodeCameraScannerEvent);
     } else {
       throw AssertionError();
     }
@@ -191,9 +168,8 @@ abstract class BarcodeCameraScannerEvent {
   R whenOrDefault<R extends Object?>({
     R Function()? toggleFlashlight,
     R Function()? toggleCamera,
-    R Function()? openGallery,
     R Function()? togglePause,
-    R Function()? exit,
+    R Function(ScannedBarcode scannedBarcode)? scannedBarcode,
     required R orDefault,
   }) {
     final barcodeCameraScannerEvent = this;
@@ -201,12 +177,12 @@ abstract class BarcodeCameraScannerEvent {
       return toggleFlashlight != null ? toggleFlashlight() : orDefault;
     } else if (barcodeCameraScannerEvent is ToggleCamera) {
       return toggleCamera != null ? toggleCamera() : orDefault;
-    } else if (barcodeCameraScannerEvent is OpenGallery) {
-      return openGallery != null ? openGallery() : orDefault;
     } else if (barcodeCameraScannerEvent is TogglePause) {
       return togglePause != null ? togglePause() : orDefault;
-    } else if (barcodeCameraScannerEvent is Exit) {
-      return exit != null ? exit() : orDefault;
+    } else if (barcodeCameraScannerEvent is ScannedBarcode) {
+      return scannedBarcode != null
+          ? scannedBarcode(barcodeCameraScannerEvent)
+          : orDefault;
     } else {
       throw AssertionError();
     }
@@ -215,21 +191,18 @@ abstract class BarcodeCameraScannerEvent {
   R? whenOrNull<R extends Object?>({
     R Function()? toggleFlashlight,
     R Function()? toggleCamera,
-    R Function()? openGallery,
     R Function()? togglePause,
-    R Function()? exit,
+    R Function(ScannedBarcode scannedBarcode)? scannedBarcode,
   }) {
     final barcodeCameraScannerEvent = this;
     if (barcodeCameraScannerEvent is ToggleFlashlight) {
       return toggleFlashlight?.call();
     } else if (barcodeCameraScannerEvent is ToggleCamera) {
       return toggleCamera?.call();
-    } else if (barcodeCameraScannerEvent is OpenGallery) {
-      return openGallery?.call();
     } else if (barcodeCameraScannerEvent is TogglePause) {
       return togglePause?.call();
-    } else if (barcodeCameraScannerEvent is Exit) {
-      return exit?.call();
+    } else if (barcodeCameraScannerEvent is ScannedBarcode) {
+      return scannedBarcode?.call(barcodeCameraScannerEvent);
     } else {
       throw AssertionError();
     }
@@ -238,9 +211,8 @@ abstract class BarcodeCameraScannerEvent {
   R whenOrThrow<R extends Object?>({
     R Function()? toggleFlashlight,
     R Function()? toggleCamera,
-    R Function()? openGallery,
     R Function()? togglePause,
-    R Function()? exit,
+    R Function(ScannedBarcode scannedBarcode)? scannedBarcode,
   }) {
     final barcodeCameraScannerEvent = this;
     if (barcodeCameraScannerEvent is ToggleFlashlight &&
@@ -249,14 +221,12 @@ abstract class BarcodeCameraScannerEvent {
     } else if (barcodeCameraScannerEvent is ToggleCamera &&
         toggleCamera != null) {
       return toggleCamera();
-    } else if (barcodeCameraScannerEvent is OpenGallery &&
-        openGallery != null) {
-      return openGallery();
     } else if (barcodeCameraScannerEvent is TogglePause &&
         togglePause != null) {
       return togglePause();
-    } else if (barcodeCameraScannerEvent is Exit && exit != null) {
-      return exit();
+    } else if (barcodeCameraScannerEvent is ScannedBarcode &&
+        scannedBarcode != null) {
+      return scannedBarcode(barcodeCameraScannerEvent);
     } else {
       throw AssertionError();
     }
@@ -265,21 +235,18 @@ abstract class BarcodeCameraScannerEvent {
   void whenPartial({
     void Function()? toggleFlashlight,
     void Function()? toggleCamera,
-    void Function()? openGallery,
     void Function()? togglePause,
-    void Function()? exit,
+    void Function(ScannedBarcode scannedBarcode)? scannedBarcode,
   }) {
     final barcodeCameraScannerEvent = this;
     if (barcodeCameraScannerEvent is ToggleFlashlight) {
       toggleFlashlight?.call();
     } else if (barcodeCameraScannerEvent is ToggleCamera) {
       toggleCamera?.call();
-    } else if (barcodeCameraScannerEvent is OpenGallery) {
-      openGallery?.call();
     } else if (barcodeCameraScannerEvent is TogglePause) {
       togglePause?.call();
-    } else if (barcodeCameraScannerEvent is Exit) {
-      exit?.call();
+    } else if (barcodeCameraScannerEvent is ScannedBarcode) {
+      scannedBarcode?.call(barcodeCameraScannerEvent);
     } else {
       throw AssertionError();
     }
@@ -318,22 +285,6 @@ class ToggleCamera extends BarcodeCameraScannerEvent with EquatableMixin {
   List<Object?> get props => [];
 }
 
-/// (([OpenGallery] : [BarcodeCameraScannerEvent]) openGallery){}
-///
-/// with data equality
-///
-/// with wrap
-@immutable
-class OpenGallery extends BarcodeCameraScannerEvent with EquatableMixin {
-  const OpenGallery() : super._internal();
-
-  @override
-  String toString() => 'BarcodeCameraScannerEvent.openGallery()';
-
-  @override
-  List<Object?> get props => [];
-}
-
 /// (([TogglePause] : [BarcodeCameraScannerEvent]) togglePause){}
 ///
 /// with data equality
@@ -350,18 +301,23 @@ class TogglePause extends BarcodeCameraScannerEvent with EquatableMixin {
   List<Object?> get props => [];
 }
 
-/// (([Exit] : [BarcodeCameraScannerEvent]) exit){}
+/// (([ScannedBarcode] : [BarcodeCameraScannerEvent]) scannedBarcode){[Barcode] barcode}
 ///
 /// with data equality
-///
-/// with wrap
 @immutable
-class Exit extends BarcodeCameraScannerEvent with EquatableMixin {
-  const Exit() : super._internal();
+class ScannedBarcode extends BarcodeCameraScannerEvent with EquatableMixin {
+  const ScannedBarcode({
+    required this.barcode,
+  }) : super._internal();
+
+  final Barcode barcode;
 
   @override
-  String toString() => 'BarcodeCameraScannerEvent.exit()';
+  String toString() =>
+      'BarcodeCameraScannerEvent.scannedBarcode(barcode: $barcode)';
 
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [
+        barcode,
+      ];
 }
