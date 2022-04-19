@@ -1,10 +1,14 @@
 part of 'barcode_camera_scanner_bloc.dart';
 
-abstract class BarcodeCameraScannerState extends Equatable {
-  const BarcodeCameraScannerState();
-  
-  @override
-  List<Object> get props => [];
-}
+@superEnum
+enum $BarcodeCameraScannerState {
+  @object
+  Initial,
+  @object
+  Loading,
+  @Data(fields: [DataField<Barcode>('barcode')])
+  Loaded,
 
-class BarcodeCameraScannerInitial extends BarcodeCameraScannerState {}
+  @Data(fields: [DataField<ValueFailure>('failure')])
+  Error,
+}

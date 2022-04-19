@@ -1,8 +1,19 @@
 part of 'barcode_camera_scanner_bloc.dart';
 
-abstract class BarcodeCameraScannerEvent extends Equatable {
-  const BarcodeCameraScannerEvent();
-
-  @override
-  List<Object> get props => [];
+@superEnum
+enum $BarcodeCameraScannerEvent {
+  @object
+  FlashlightOn,
+  @object
+  FlashlightOff,
+  @object
+  CloseCameras,
+  @object
+  OpenCameras,
+  @object
+  SwitchCamera,
+  @object
+  OpenGallery,
+  @object
+  Exit,
 }
