@@ -1,14 +1,19 @@
 part of 'barcode_camera_scanner_bloc.dart';
 
-@superEnum
-enum $BarcodeCameraScannerState {
-  @object
-  Initial,
-  @object
-  Loading,
-  @Data(fields: [DataField<Barcode>('barcode')])
-  Loaded,
+@freezed
+abstract class BarcodeCameraScannerState with _$BarcodeCameraScannerState {
+  const factory BarcodeCameraScannerState({
+    required bool flashlightOn,
+    required bool paused,
+    required bool rearCamera,
+    required Option<ValueFailure> failureOption,
+    required Option<Barcode> barcodeOption,
+  }) = _BarcodeCameraScannerState;
 
-  @Data(fields: [DataField<ValueFailure>('failure')])
-  Error,
+  factory BarcodeCameraScannerState.initial() => BarcodeCameraScannerState(
+      flashlightOn: false,
+      paused: false,
+      rearCamera: true,
+      failureOption: none(),
+      barcodeOption: none());
 }

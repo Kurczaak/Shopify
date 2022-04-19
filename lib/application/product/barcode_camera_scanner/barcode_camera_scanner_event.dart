@@ -3,17 +3,13 @@ part of 'barcode_camera_scanner_bloc.dart';
 @superEnum
 enum $BarcodeCameraScannerEvent {
   @object
-  FlashlightOn,
+  ToggleFlashlight,
   @object
-  FlashlightOff,
-  @object
-  CloseCameras,
-  @object
-  OpenCameras,
-  @object
-  SwitchCamera,
+  ToggleCamera,
   @object
   OpenGallery,
+  @object
+  TogglePause,
   @object
   Exit,
 }
