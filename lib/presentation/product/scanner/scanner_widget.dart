@@ -7,7 +7,9 @@ import 'package:shopify_manager/domain/product/value_objects.dart';
 import 'package:shopify_manager/injection.dart';
 
 class BarcodeScannerWidget extends StatelessWidget {
-  const BarcodeScannerWidget({Key? key}) : super(key: key);
+  final void Function(Barcode barcode) onBarcodeDeteced;
+  const BarcodeScannerWidget({Key? key, required this.onBarcodeDeteced})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +45,10 @@ class BarcodeScannerWidget extends StatelessWidget {
             }
             return true;
           },
-          listener: ((context, state) {}),
+          listener: ((context, state) {
+            state.barcodeOption
+                .fold(() => null, (barcode) => onBarcodeDeteced(barcode));
+          }),
           builder: (context, state) => Stack(
             children: [
               scanner.MobileScanner(

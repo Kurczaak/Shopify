@@ -13,6 +13,7 @@
 import 'package:auto_route/auto_route.dart' as _i13;
 import 'package:flutter/material.dart' as _i14;
 
+import '../../domain/product/value_objects.dart' as _i15;
 import '../debug_dashboard_page.dart' as _i5;
 import '../debug_page.dart' as _i1;
 import '../product/scanner/scanner_widget.dart' as _i6;
@@ -53,8 +54,11 @@ class AppRouter extends _i13.RootStackRouter {
           routeData: routeData, child: const _i5.DebugDashboardPage());
     },
     BarcodeScannerWidget.name: (routeData) {
+      final args = routeData.argsAs<BarcodeScannerWidgetArgs>();
       return _i13.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i6.BarcodeScannerWidget());
+          routeData: routeData,
+          child: _i6.BarcodeScannerWidget(
+              key: args.key, onBarcodeDeteced: args.onBarcodeDeteced));
     },
     RegistrationWrappingRoute.name: (routeData) {
       return _i13.MaterialPageX<dynamic>(
@@ -157,10 +161,29 @@ class DebugDashboardRoute extends _i13.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i6.BarcodeScannerWidget]
-class BarcodeScannerWidget extends _i13.PageRouteInfo<void> {
-  const BarcodeScannerWidget() : super(BarcodeScannerWidget.name, path: '/');
+class BarcodeScannerWidget
+    extends _i13.PageRouteInfo<BarcodeScannerWidgetArgs> {
+  BarcodeScannerWidget(
+      {_i14.Key? key, required void Function(_i15.Barcode) onBarcodeDeteced})
+      : super(BarcodeScannerWidget.name,
+            path: '/',
+            args: BarcodeScannerWidgetArgs(
+                key: key, onBarcodeDeteced: onBarcodeDeteced));
 
   static const String name = 'BarcodeScannerWidget';
+}
+
+class BarcodeScannerWidgetArgs {
+  const BarcodeScannerWidgetArgs({this.key, required this.onBarcodeDeteced});
+
+  final _i14.Key? key;
+
+  final void Function(_i15.Barcode) onBarcodeDeteced;
+
+  @override
+  String toString() {
+    return 'BarcodeScannerWidgetArgs{key: $key, onBarcodeDeteced: $onBarcodeDeteced}';
+  }
 }
 
 /// generated route for
