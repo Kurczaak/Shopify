@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:shopify_manager/domain/product/barcode_scanner/i_barcode_scanner_facade.dart';
+import 'package:shopify_manager/injection.dart';
 import 'routes/router.gr.dart';
 
 class DebugDashboardPage extends StatelessWidget {
@@ -18,6 +20,14 @@ class DebugDashboardPage extends StatelessWidget {
                   context.router.push(const RegistrationWrappingRoute());
                 },
                 child: const Text('Register Shop')),
+            ElevatedButton(
+                onPressed: () async {
+                  final xd =
+                      await getIt<IBarcodeScannerFacade>().scanSingleBarcode();
+                  xd.fold((l) => print('failure ${l.toString()}'),
+                      (r) => print(r.getOrCrash()));
+                },
+                child: const Text('Scan a barcode')),
           ],
         ),
       ),

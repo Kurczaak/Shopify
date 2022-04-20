@@ -7,7 +7,7 @@ import 'package:responsive_framework/responsive_framework.dart';
 
 class AppWidget extends StatelessWidget {
   AppWidget({Key? key}) : super(key: key);
-  final _appRouter = AppRouter();
+  final _appRouter = getIt<AppRouter>();
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(

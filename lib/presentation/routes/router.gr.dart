@@ -94,9 +94,9 @@ class AppRouter extends _i13.RootStackRouter {
         _i13.RouteConfig(SplashRoute.name, path: '/splash-page'),
         _i13.RouteConfig(SignInRoute.name, path: '/sign-in-page'),
         _i13.RouteConfig(SignUpRoute.name, path: '/sign-up-page'),
-        _i13.RouteConfig(DebugDashboardRoute.name,
-            path: '/debug-dashboard-page'),
-        _i13.RouteConfig(BarcodeScannerWidget.name, path: '/'),
+        _i13.RouteConfig(DebugDashboardRoute.name, path: '/'),
+        _i13.RouteConfig(BarcodeScannerWidget.name,
+            path: '/barcode-scanner-widget'),
         _i13.RouteConfig(RegistrationWrappingRoute.name,
             path: '/registration-wrapping-page',
             children: [
@@ -153,8 +153,7 @@ class SignUpRoute extends _i13.PageRouteInfo<void> {
 /// generated route for
 /// [_i5.DebugDashboardPage]
 class DebugDashboardRoute extends _i13.PageRouteInfo<void> {
-  const DebugDashboardRoute()
-      : super(DebugDashboardRoute.name, path: '/debug-dashboard-page');
+  const DebugDashboardRoute() : super(DebugDashboardRoute.name, path: '/');
 
   static const String name = 'DebugDashboardRoute';
 }
@@ -166,7 +165,7 @@ class BarcodeScannerWidget
   BarcodeScannerWidget(
       {_i14.Key? key, required void Function(_i15.Barcode) onBarcodeDeteced})
       : super(BarcodeScannerWidget.name,
-            path: '/',
+            path: '/barcode-scanner-widget',
             args: BarcodeScannerWidgetArgs(
                 key: key, onBarcodeDeteced: onBarcodeDeteced));
 

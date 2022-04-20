@@ -21,7 +21,9 @@ void main() async {
       projectId: projectId,
     ),
   );
+
   configureInjection(Environment.prod);
+
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
       .then((value) => runApp(AppWidget()));
 }
