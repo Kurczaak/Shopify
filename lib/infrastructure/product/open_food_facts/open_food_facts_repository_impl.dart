@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:injectable/injectable.dart';
 import 'package:openfoodfacts/openfoodfacts.dart' as off;
 import 'package:shopify_manager/domain/product/open_food_facts/i_open_food_facts_repository.dart';
 import 'package:shopify_manager/domain/product/value_objects.dart';
@@ -7,6 +8,7 @@ import 'package:shopify_manager/domain/product/product.dart';
 import 'package:shopify_manager/infrastructure/core/network/network_info.dart';
 import 'open_food_facts_product_mapper.dart';
 
+@Injectable(as: IOpenFoodFactsRepository)
 class OpenFoodFactsRepositoryImpl implements IOpenFoodFactsRepository {
   final NetworkInfo _networkInfo;
 
