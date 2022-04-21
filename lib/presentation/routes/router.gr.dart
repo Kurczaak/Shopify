@@ -34,8 +34,10 @@ class AppRouter extends _i13.RootStackRouter {
   @override
   final Map<String, _i13.PageFactory> pagesMap = {
     DebugRoute.name: (routeData) {
+      final args = routeData.argsAs<DebugRouteArgs>();
       return _i13.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i1.DebugPage());
+          routeData: routeData,
+          child: _i1.DebugPage(key: args.key, barcode: args.barcode));
     },
     SplashRoute.name: (routeData) {
       return _i13.MaterialPageX<dynamic>(
@@ -120,10 +122,26 @@ class AppRouter extends _i13.RootStackRouter {
 
 /// generated route for
 /// [_i1.DebugPage]
-class DebugRoute extends _i13.PageRouteInfo<void> {
-  const DebugRoute() : super(DebugRoute.name, path: '/debug-page');
+class DebugRoute extends _i13.PageRouteInfo<DebugRouteArgs> {
+  DebugRoute({_i14.Key? key, required _i15.Barcode barcode})
+      : super(DebugRoute.name,
+            path: '/debug-page',
+            args: DebugRouteArgs(key: key, barcode: barcode));
 
   static const String name = 'DebugRoute';
+}
+
+class DebugRouteArgs {
+  const DebugRouteArgs({this.key, required this.barcode});
+
+  final _i14.Key? key;
+
+  final _i15.Barcode barcode;
+
+  @override
+  String toString() {
+    return 'DebugRouteArgs{key: $key, barcode: $barcode}';
+  }
 }
 
 /// generated route for

@@ -1,6 +1,6 @@
 import 'package:another_flushbar/flushbar_helper.dart';
 import 'package:flutter/material.dart';
-import 'package:barcode_widget/barcode_widget.dart' as widget;
+import 'package:barcode_widget/barcode_widget.dart' as barcodeWidget;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopify_manager/application/product/product_form/product_form_bloc.dart';
 import 'package:shopify_manager/domain/product/product_categories.dart';
@@ -13,7 +13,8 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:shopify_manager/presentation/core/widgets/shopify_text_form_field.dart';
 
 class DebugPage extends StatefulWidget {
-  const DebugPage({Key? key}) : super(key: key);
+  final Barcode barcode;
+  const DebugPage({Key? key, required this.barcode}) : super(key: key);
   static const double itemsSpacing = 20;
 
   @override
@@ -56,9 +57,9 @@ class _DebugPageState extends State<DebugPage> {
                         SizedBox(
                           height: 100,
                           width: 150,
-                          child: widget.BarcodeWidget(
-                            barcode: widget.Barcode.code128(),
-                            data: 'Hello Flutter',
+                          child: barcodeWidget.BarcodeWidget(
+                            barcode: barcodeWidget.Barcode.code128(),
+                            data: widget.barcode.getOrCrash(),
                           ),
                         ),
                         const SizedBox(

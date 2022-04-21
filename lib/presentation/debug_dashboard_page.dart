@@ -25,7 +25,7 @@ class DebugDashboardPage extends StatelessWidget {
                   final xd =
                       await getIt<IBarcodeScannerFacade>().scanSingleBarcode();
                   xd.fold((l) => print('failure ${l.toString()}'),
-                      (r) => print(r.getOrCrash()));
+                      (r) => context.router.push(DebugRoute(barcode: r)));
                 },
                 child: const Text('Scan a barcode')),
           ],
