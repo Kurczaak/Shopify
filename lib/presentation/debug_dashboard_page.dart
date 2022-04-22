@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:shopify_manager/domain/product/barcode_scanner/i_barcode_scanner_facade.dart';
@@ -31,7 +29,10 @@ class DebugDashboardPage extends StatelessWidget {
                       (r) async {
                     final prod = await getIt<IOpenFoodFactsRepository>()
                         .getProductByBarcode(r);
-                    log(prod.fold((l) => '', (r) => r.toString()));
+                    prod.fold(
+                        (l) => '',
+                        (r) => context.router
+                            .push(DebugRoute(barcode: r.barcode, product: r)));
                   });
                 },
                 child: const Text('Scan a barcode')),

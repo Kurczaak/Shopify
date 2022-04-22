@@ -7,6 +7,7 @@ import 'package:shopify_manager/domain/core/failures.dart';
 import 'package:shopify_manager/domain/core/images/photo.dart';
 import 'package:shopify_manager/domain/core/value_objects.dart';
 import 'package:shopify_manager/domain/product/price.dart';
+import 'package:shopify_manager/domain/product/product.dart';
 import 'package:shopify_manager/domain/product/product_categories.dart';
 import 'package:shopify_manager/domain/product/value_objects.dart';
 import 'package:shopify_manager/domain/product/weight.dart';
@@ -28,7 +29,8 @@ abstract class ProductForm with _$ProductForm {
     required BrandName brand,
     required ProductDescription description,
     required ProductDescription ingredients,
-    required NonEmptyList5<ProductPhoto> photos,
+    required Either<NonEmptyList5<ShopifyUrl>, NonEmptyList5<ProductPhoto>>
+        photos,
   }) = _Product;
 
   factory ProductForm.empty() => ProductForm(
@@ -41,7 +43,22 @@ abstract class ProductForm with _$ProductForm {
       brand: BrandName(''),
       description: ProductDescription(''),
       ingredients: ProductDescription(''),
-      photos: NonEmptyList5<ProductPhoto>.empty());
+      photos: right(NonEmptyList5<ProductPhoto>.empty()));
+
+  factory ProductForm.fromProduct(Product product) {
+    return ProductForm(
+      id: product.id,
+      barcode: product.barcode,
+      weight: product.weight,
+      price: product.price,
+      category: product.category,
+      name: product.name,
+      brand: product.brand,
+      description: product.description,
+      ingredients: product.ingredients,
+      photos: left(product.photos),
+    );
+  }
 
   factory ProductForm.fromPrimitives({
     required String id,
@@ -55,7 +72,7 @@ abstract class ProductForm with _$ProductForm {
     required String brand,
     required String description,
     required String ingredients,
-    required List<File> photosFiles,
+    required Either<List<String>, List<File>> photos,
   }) =>
       ProductForm(
         id: UniqueId.fromUniqueString(id),
@@ -67,8 +84,13 @@ abstract class ProductForm with _$ProductForm {
         brand: BrandName(brand),
         description: ProductDescription(description),
         ingredients: ProductDescription(ingredients),
-        photos: NonEmptyList5(KtList.from(
-            photosFiles.map((file) => ProductPhoto(file)).toList())),
+        photos: photos.fold((strings) {
+          final shopifyUrlList = strings.map((url) => ShopifyUrl(url)).toList();
+          return left(NonEmptyList5(KtList.from(shopifyUrlList)));
+        }, (files) {
+          final photosList = files.map((file) => ProductPhoto(file)).toList();
+          return right(NonEmptyList5(KtList.from(photosList)));
+        }),
       );
 
   Option<ValueFailure<dynamic>> get failureOption {
@@ -81,7 +103,8 @@ abstract class ProductForm with _$ProductForm {
                   brand.failureOrUnit.andThen(
                     description.failureOrUnit.andThen(
                       ingredients.failureOrUnit.andThen(
-                        photos.failureOrUnit,
+                        photos.fold(
+                            (l) => l.failureOrUnit, (r) => r.failureOrUnit),
                       ),
                     ),
                   ),

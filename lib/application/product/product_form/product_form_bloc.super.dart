@@ -56,8 +56,16 @@ part of 'product_form_bloc.dart';
 //
 // @WithWrap()
 // @WithEquality(Equality.data)
-// @WithName('PhotosChanged')
-// void photosChanged();
+// @WithName('PhotosFilesChanged')
+// void photosFilesChanged();
+//
+// @WithEquality(Equality.data)
+// @WithName('PhotosUrlsChanged')
+// void photosUrlsChanged(NonEmptyList5<ShopifyUrl> photosUrls);
+//
+// @WithEquality(Equality.data)
+// @WithName('ProductFound')
+// void productFound(Product product);
 //
 // @WithWrap()
 // @WithEquality(Equality.data)
@@ -81,7 +89,11 @@ part of 'product_form_bloc.dart';
 ///
 /// ([IngredientsChanged] ingredientsChanged){[ProductDescription] ingredients} with data equality
 ///
-/// ([PhotosChanged] photosChanged){} with data equality with wrap
+/// ([PhotosFilesChanged] photosFilesChanged){} with data equality with wrap
+///
+/// ([PhotosUrlsChanged] photosUrlsChanged){[NonEmptyList5<ShopifyUrl>] photosUrls} with data equality
+///
+/// ([ProductFound] productFound){[Product] product} with data equality
 ///
 /// ([Saved] saved){} with data equality with wrap
 ///
@@ -118,7 +130,15 @@ abstract class ProductFormEvent {
     required ProductDescription ingredients,
   }) = IngredientsChanged;
 
-  const factory ProductFormEvent.photosChanged() = PhotosChanged;
+  const factory ProductFormEvent.photosFilesChanged() = PhotosFilesChanged;
+
+  const factory ProductFormEvent.photosUrlsChanged({
+    required NonEmptyList5<ShopifyUrl> photosUrls,
+  }) = PhotosUrlsChanged;
+
+  const factory ProductFormEvent.productFound({
+    required Product product,
+  }) = ProductFound;
 
   const factory ProductFormEvent.saved() = Saved;
 
@@ -136,7 +156,11 @@ abstract class ProductFormEvent {
 
   bool isIngredientsChanged() => this is IngredientsChanged;
 
-  bool isPhotosChanged() => this is PhotosChanged;
+  bool isPhotosFilesChanged() => this is PhotosFilesChanged;
+
+  bool isPhotosUrlsChanged() => this is PhotosUrlsChanged;
+
+  bool isProductFound() => this is ProductFound;
 
   bool isSaved() => this is Saved;
 
@@ -155,7 +179,11 @@ abstract class ProductFormEvent {
 
   IngredientsChanged asIngredientsChanged() => this as IngredientsChanged;
 
-  PhotosChanged asPhotosChanged() => this as PhotosChanged;
+  PhotosFilesChanged asPhotosFilesChanged() => this as PhotosFilesChanged;
+
+  PhotosUrlsChanged asPhotosUrlsChanged() => this as PhotosUrlsChanged;
+
+  ProductFound asProductFound() => this as ProductFound;
 
   Saved asSaved() => this as Saved;
 
@@ -196,9 +224,19 @@ abstract class ProductFormEvent {
     return productFormEvent is IngredientsChanged ? productFormEvent : null;
   }
 
-  PhotosChanged? asPhotosChangedOrNull() {
+  PhotosFilesChanged? asPhotosFilesChangedOrNull() {
     final productFormEvent = this;
-    return productFormEvent is PhotosChanged ? productFormEvent : null;
+    return productFormEvent is PhotosFilesChanged ? productFormEvent : null;
+  }
+
+  PhotosUrlsChanged? asPhotosUrlsChangedOrNull() {
+    final productFormEvent = this;
+    return productFormEvent is PhotosUrlsChanged ? productFormEvent : null;
+  }
+
+  ProductFound? asProductFoundOrNull() {
+    final productFormEvent = this;
+    return productFormEvent is ProductFound ? productFormEvent : null;
   }
 
   Saved? asSavedOrNull() {
@@ -217,7 +255,9 @@ abstract class ProductFormEvent {
         productDescriptionChanged,
     required R Function(IngredientsChanged ingredientsChanged)
         ingredientsChanged,
-    required R Function() photosChanged,
+    required R Function() photosFilesChanged,
+    required R Function(PhotosUrlsChanged photosUrlsChanged) photosUrlsChanged,
+    required R Function(ProductFound productFound) productFound,
     required R Function() saved,
   }) {
     final productFormEvent = this;
@@ -235,8 +275,12 @@ abstract class ProductFormEvent {
       return productDescriptionChanged(productFormEvent);
     } else if (productFormEvent is IngredientsChanged) {
       return ingredientsChanged(productFormEvent);
-    } else if (productFormEvent is PhotosChanged) {
-      return photosChanged();
+    } else if (productFormEvent is PhotosFilesChanged) {
+      return photosFilesChanged();
+    } else if (productFormEvent is PhotosUrlsChanged) {
+      return photosUrlsChanged(productFormEvent);
+    } else if (productFormEvent is ProductFound) {
+      return productFound(productFormEvent);
     } else if (productFormEvent is Saved) {
       return saved();
     } else {
@@ -253,7 +297,9 @@ abstract class ProductFormEvent {
     R Function(ProductDescriptionChanged productDescriptionChanged)?
         productDescriptionChanged,
     R Function(IngredientsChanged ingredientsChanged)? ingredientsChanged,
-    R Function()? photosChanged,
+    R Function()? photosFilesChanged,
+    R Function(PhotosUrlsChanged photosUrlsChanged)? photosUrlsChanged,
+    R Function(ProductFound productFound)? productFound,
     R Function()? saved,
     required R Function(ProductFormEvent productFormEvent) orElse,
   }) {
@@ -286,8 +332,18 @@ abstract class ProductFormEvent {
       return ingredientsChanged != null
           ? ingredientsChanged(productFormEvent)
           : orElse(productFormEvent);
-    } else if (productFormEvent is PhotosChanged) {
-      return photosChanged != null ? photosChanged() : orElse(productFormEvent);
+    } else if (productFormEvent is PhotosFilesChanged) {
+      return photosFilesChanged != null
+          ? photosFilesChanged()
+          : orElse(productFormEvent);
+    } else if (productFormEvent is PhotosUrlsChanged) {
+      return photosUrlsChanged != null
+          ? photosUrlsChanged(productFormEvent)
+          : orElse(productFormEvent);
+    } else if (productFormEvent is ProductFound) {
+      return productFound != null
+          ? productFound(productFormEvent)
+          : orElse(productFormEvent);
     } else if (productFormEvent is Saved) {
       return saved != null ? saved() : orElse(productFormEvent);
     } else {
@@ -304,7 +360,9 @@ abstract class ProductFormEvent {
     R Function(ProductDescriptionChanged productDescriptionChanged)?
         productDescriptionChanged,
     R Function(IngredientsChanged ingredientsChanged)? ingredientsChanged,
-    R Function()? photosChanged,
+    R Function()? photosFilesChanged,
+    R Function(PhotosUrlsChanged photosUrlsChanged)? photosUrlsChanged,
+    R Function(ProductFound productFound)? productFound,
     R Function()? saved,
     required R orDefault,
   }) {
@@ -335,8 +393,14 @@ abstract class ProductFormEvent {
       return ingredientsChanged != null
           ? ingredientsChanged(productFormEvent)
           : orDefault;
-    } else if (productFormEvent is PhotosChanged) {
-      return photosChanged != null ? photosChanged() : orDefault;
+    } else if (productFormEvent is PhotosFilesChanged) {
+      return photosFilesChanged != null ? photosFilesChanged() : orDefault;
+    } else if (productFormEvent is PhotosUrlsChanged) {
+      return photosUrlsChanged != null
+          ? photosUrlsChanged(productFormEvent)
+          : orDefault;
+    } else if (productFormEvent is ProductFound) {
+      return productFound != null ? productFound(productFormEvent) : orDefault;
     } else if (productFormEvent is Saved) {
       return saved != null ? saved() : orDefault;
     } else {
@@ -353,7 +417,9 @@ abstract class ProductFormEvent {
     R Function(ProductDescriptionChanged productDescriptionChanged)?
         productDescriptionChanged,
     R Function(IngredientsChanged ingredientsChanged)? ingredientsChanged,
-    R Function()? photosChanged,
+    R Function()? photosFilesChanged,
+    R Function(PhotosUrlsChanged photosUrlsChanged)? photosUrlsChanged,
+    R Function(ProductFound productFound)? productFound,
     R Function()? saved,
   }) {
     final productFormEvent = this;
@@ -371,8 +437,12 @@ abstract class ProductFormEvent {
       return productDescriptionChanged?.call(productFormEvent);
     } else if (productFormEvent is IngredientsChanged) {
       return ingredientsChanged?.call(productFormEvent);
-    } else if (productFormEvent is PhotosChanged) {
-      return photosChanged?.call();
+    } else if (productFormEvent is PhotosFilesChanged) {
+      return photosFilesChanged?.call();
+    } else if (productFormEvent is PhotosUrlsChanged) {
+      return photosUrlsChanged?.call(productFormEvent);
+    } else if (productFormEvent is ProductFound) {
+      return productFound?.call(productFormEvent);
     } else if (productFormEvent is Saved) {
       return saved?.call();
     } else {
@@ -389,7 +459,9 @@ abstract class ProductFormEvent {
     R Function(ProductDescriptionChanged productDescriptionChanged)?
         productDescriptionChanged,
     R Function(IngredientsChanged ingredientsChanged)? ingredientsChanged,
-    R Function()? photosChanged,
+    R Function()? photosFilesChanged,
+    R Function(PhotosUrlsChanged photosUrlsChanged)? photosUrlsChanged,
+    R Function(ProductFound productFound)? productFound,
     R Function()? saved,
   }) {
     final productFormEvent = this;
@@ -411,8 +483,14 @@ abstract class ProductFormEvent {
     } else if (productFormEvent is IngredientsChanged &&
         ingredientsChanged != null) {
       return ingredientsChanged(productFormEvent);
-    } else if (productFormEvent is PhotosChanged && photosChanged != null) {
-      return photosChanged();
+    } else if (productFormEvent is PhotosFilesChanged &&
+        photosFilesChanged != null) {
+      return photosFilesChanged();
+    } else if (productFormEvent is PhotosUrlsChanged &&
+        photosUrlsChanged != null) {
+      return photosUrlsChanged(productFormEvent);
+    } else if (productFormEvent is ProductFound && productFound != null) {
+      return productFound(productFormEvent);
     } else if (productFormEvent is Saved && saved != null) {
       return saved();
     } else {
@@ -429,7 +507,9 @@ abstract class ProductFormEvent {
     void Function(ProductDescriptionChanged productDescriptionChanged)?
         productDescriptionChanged,
     void Function(IngredientsChanged ingredientsChanged)? ingredientsChanged,
-    void Function()? photosChanged,
+    void Function()? photosFilesChanged,
+    void Function(PhotosUrlsChanged photosUrlsChanged)? photosUrlsChanged,
+    void Function(ProductFound productFound)? productFound,
     void Function()? saved,
   }) {
     final productFormEvent = this;
@@ -447,8 +527,12 @@ abstract class ProductFormEvent {
       productDescriptionChanged?.call(productFormEvent);
     } else if (productFormEvent is IngredientsChanged) {
       ingredientsChanged?.call(productFormEvent);
-    } else if (productFormEvent is PhotosChanged) {
-      photosChanged?.call();
+    } else if (productFormEvent is PhotosFilesChanged) {
+      photosFilesChanged?.call();
+    } else if (productFormEvent is PhotosUrlsChanged) {
+      photosUrlsChanged?.call(productFormEvent);
+    } else if (productFormEvent is ProductFound) {
+      productFound?.call(productFormEvent);
     } else if (productFormEvent is Saved) {
       saved?.call();
     } else {
@@ -601,20 +685,61 @@ class IngredientsChanged extends ProductFormEvent with EquatableMixin {
       ];
 }
 
-/// (([PhotosChanged] : [ProductFormEvent]) photosChanged){}
+/// (([PhotosFilesChanged] : [ProductFormEvent]) photosFilesChanged){}
 ///
 /// with data equality
 ///
 /// with wrap
 @immutable
-class PhotosChanged extends ProductFormEvent with EquatableMixin {
-  const PhotosChanged() : super._internal();
+class PhotosFilesChanged extends ProductFormEvent with EquatableMixin {
+  const PhotosFilesChanged() : super._internal();
 
   @override
-  String toString() => 'ProductFormEvent.photosChanged()';
+  String toString() => 'ProductFormEvent.photosFilesChanged()';
 
   @override
   List<Object?> get props => [];
+}
+
+/// (([PhotosUrlsChanged] : [ProductFormEvent]) photosUrlsChanged){[NonEmptyList5<ShopifyUrl>] photosUrls}
+///
+/// with data equality
+@immutable
+class PhotosUrlsChanged extends ProductFormEvent with EquatableMixin {
+  const PhotosUrlsChanged({
+    required this.photosUrls,
+  }) : super._internal();
+
+  final NonEmptyList5<ShopifyUrl> photosUrls;
+
+  @override
+  String toString() =>
+      'ProductFormEvent.photosUrlsChanged(photosUrls: $photosUrls)';
+
+  @override
+  List<Object?> get props => [
+        photosUrls,
+      ];
+}
+
+/// (([ProductFound] : [ProductFormEvent]) productFound){[Product] product}
+///
+/// with data equality
+@immutable
+class ProductFound extends ProductFormEvent with EquatableMixin {
+  const ProductFound({
+    required this.product,
+  }) : super._internal();
+
+  final Product product;
+
+  @override
+  String toString() => 'ProductFormEvent.productFound(product: $product)';
+
+  @override
+  List<Object?> get props => [
+        product,
+      ];
 }
 
 /// (([Saved] : [ProductFormEvent]) saved){}

@@ -13,6 +13,7 @@
 import 'package:auto_route/auto_route.dart' as _i13;
 import 'package:flutter/material.dart' as _i14;
 
+import '../../domain/product/product.dart' as _i16;
 import '../../domain/product/value_objects.dart' as _i15;
 import '../debug_dashboard_page.dart' as _i5;
 import '../debug_page.dart' as _i1;
@@ -37,7 +38,8 @@ class AppRouter extends _i13.RootStackRouter {
       final args = routeData.argsAs<DebugRouteArgs>();
       return _i13.MaterialPageX<dynamic>(
           routeData: routeData,
-          child: _i1.DebugPage(key: args.key, barcode: args.barcode));
+          child: _i1.DebugPage(
+              key: args.key, barcode: args.barcode, product: args.product));
     },
     SplashRoute.name: (routeData) {
       return _i13.MaterialPageX<dynamic>(
@@ -123,24 +125,27 @@ class AppRouter extends _i13.RootStackRouter {
 /// generated route for
 /// [_i1.DebugPage]
 class DebugRoute extends _i13.PageRouteInfo<DebugRouteArgs> {
-  DebugRoute({_i14.Key? key, required _i15.Barcode barcode})
+  DebugRoute(
+      {_i14.Key? key, required _i15.Barcode barcode, _i16.Product? product})
       : super(DebugRoute.name,
             path: '/debug-page',
-            args: DebugRouteArgs(key: key, barcode: barcode));
+            args: DebugRouteArgs(key: key, barcode: barcode, product: product));
 
   static const String name = 'DebugRoute';
 }
 
 class DebugRouteArgs {
-  const DebugRouteArgs({this.key, required this.barcode});
+  const DebugRouteArgs({this.key, required this.barcode, this.product});
 
   final _i14.Key? key;
 
   final _i15.Barcode barcode;
 
+  final _i16.Product? product;
+
   @override
   String toString() {
-    return 'DebugRouteArgs{key: $key, barcode: $barcode}';
+    return 'DebugRouteArgs{key: $key, barcode: $barcode, product: $product}';
   }
 }
 

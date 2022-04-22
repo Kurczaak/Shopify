@@ -72,4 +72,4 @@ final tProductForm = ProductForm.fromPrimitives(
     brand: brand,
     description: description,
     ingredients: ingredients,
-    photosFiles: []);
+    photos: right([]));

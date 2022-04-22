@@ -8,6 +8,7 @@ import 'package:shopify_manager/domain/core/images/photo.dart';
 import 'package:shopify_manager/domain/core/value_objects.dart';
 import 'package:shopify_manager/domain/product/i_product_repository.dart';
 import 'package:shopify_manager/domain/product/price.dart';
+import 'package:shopify_manager/domain/product/product.dart';
 import 'package:shopify_manager/domain/product/product_failure.dart';
 import 'package:shopify_manager/domain/product/product_form.dart';
 import 'package:shopify_manager/domain/product/value_objects.dart';
@@ -39,6 +40,12 @@ class ProductFormBloc extends Bloc<ProductFormEvent, ProductFormState> {
       : super(ProductFormState.initial()) {
     on<ProductFormEvent>((event, emit) async {
       await event.when(
+        productFound: (productFound) {
+          final product = productFound.product;
+          emit(ProductFormState.loaded(
+              productForm: ProductForm.fromProduct(product),
+              saveFailureOrSuccessOption: none()));
+        },
         categoryChanged: (changedCategory) {
           emit(state.copyWith(
               productForm: state.productForm
@@ -74,7 +81,12 @@ class ProductFormBloc extends Bloc<ProductFormEvent, ProductFormState> {
               productForm: state.productForm
                   .copyWith(ingredients: ingredientsChanged.ingredients)));
         },
-        photosChanged: () async {
+        photosUrlsChanged: (changedUrls) {
+          emit(state.copyWith(
+              productForm: state.productForm
+                  .copyWith(photos: left(changedUrls.photosUrls))));
+        },
+        photosFilesChanged: () async {
           emit(ProductFormState.loading(
               productForm: state.productForm,
               saveFailureOrSuccessOption: state.saveFailureOrSuccessOption));
@@ -97,7 +109,8 @@ class ProductFormBloc extends Bloc<ProductFormEvent, ProductFormState> {
                 .toList();
             final productPhotos = NonEmptyList5(KtList.from(productPhotosList));
             emit(ProductFormState.loaded(
-                productForm: state.productForm.copyWith(photos: productPhotos),
+                productForm:
+                    state.productForm.copyWith(photos: right(productPhotos)),
                 saveFailureOrSuccessOption: state.saveFailureOrSuccessOption));
           });
         },

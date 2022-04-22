@@ -243,7 +243,7 @@ void main() async {
       },
       seed: () => initialState.copyWith(productForm: tProductForm),
       act: (ProductFormBloc bloc) =>
-          bloc.add(const ProductFormEvent.photosChanged()),
+          bloc.add(const ProductFormEvent.photosFilesChanged()),
       verify: (_) async {
         await untilCalled(mockImageFacade.getMultiplePhotos(
           max: 5,
@@ -286,7 +286,7 @@ void main() async {
       },
       seed: () => initialState,
       act: (ProductFormBloc bloc) => bloc.add(
-        const ProductFormEvent.photosChanged(),
+        const ProductFormEvent.photosFilesChanged(),
       ),
       expect: () => [
         ProductFormState.loading(
@@ -295,11 +295,11 @@ void main() async {
                 initialState.saveFailureOrSuccessOption),
         ProductFormState.loaded(
             productForm: tInitialProduct.copyWith(
-                photos: NonEmptyList5((KtList.from([
+                photos: right(NonEmptyList5((KtList.from([
               ProductPhoto(file),
               ProductPhoto(file),
               ProductPhoto(file)
-            ])))),
+            ]))))),
             saveFailureOrSuccessOption: initialState.saveFailureOrSuccessOption)
       ],
     );
@@ -325,7 +325,7 @@ void main() async {
       },
       seed: () => initialState,
       act: (ProductFormBloc bloc) => bloc.add(
-        const ProductFormEvent.photosChanged(),
+        const ProductFormEvent.photosFilesChanged(),
       ),
       expect: () => [
         ProductFormState.loading(

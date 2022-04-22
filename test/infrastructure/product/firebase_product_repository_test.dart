@@ -58,7 +58,8 @@ Future<void> main() async {
   final photosList = NonEmptyList5(KtList.from([photo, photo, photo]));
   final invalidPhotosList =
       NonEmptyList5(KtList.from([photo, photo, photo, invalidPhoto]));
-  final tInvalidProductForm = tProductForm.copyWith(photos: invalidPhotosList);
+  final tInvalidProductForm =
+      tProductForm.copyWith(photos: right(invalidPhotosList));
   const photoUrl =
       'https://firebasestorage.googleapis.com/v0/b/shopify-app-6d29d.appspot.com/o/images%2Fshop_logos%2F08049a20-a695-11ec-88bb-77ec623e586e?alt=media&token=fc66e7b0-f2cc-4dfc-94dc-e9e9d35e1929';
   final nonemptyPhotosList = NonEmptyList5<ShopifyUrl>(KtList.from(
@@ -366,6 +367,8 @@ Future<void> main() async {
                           .toJson()))
                   .thenThrow(UnimplementedError(
                       'An unimplemented error while creating a new product'));
+              when(mockStorage.refFromURL(any))
+                  .thenReturn(mockUploadedPhotoReference);
               // act
               final call = repository.create;
               // assert

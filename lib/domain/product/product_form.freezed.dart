@@ -27,7 +27,8 @@ class _$ProductFormTearOff {
       required BrandName brand,
       required ProductDescription description,
       required ProductDescription ingredients,
-      required NonEmptyList5<ProductPhoto> photos}) {
+      required Either<NonEmptyList5<ShopifyUrl>, NonEmptyList5<ProductPhoto>>
+          photos}) {
     return _Product(
       id: id,
       barcode: barcode,
@@ -57,7 +58,8 @@ mixin _$ProductForm {
   BrandName get brand => throw _privateConstructorUsedError;
   ProductDescription get description => throw _privateConstructorUsedError;
   ProductDescription get ingredients => throw _privateConstructorUsedError;
-  NonEmptyList5<ProductPhoto> get photos => throw _privateConstructorUsedError;
+  Either<NonEmptyList5<ShopifyUrl>, NonEmptyList5<ProductPhoto>> get photos =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ProductFormCopyWith<ProductForm> get copyWith =>
@@ -79,7 +81,7 @@ abstract class $ProductFormCopyWith<$Res> {
       BrandName brand,
       ProductDescription description,
       ProductDescription ingredients,
-      NonEmptyList5<ProductPhoto> photos});
+      Either<NonEmptyList5<ShopifyUrl>, NonEmptyList5<ProductPhoto>> photos});
 
   $WeightCopyWith<$Res> get weight;
   $PriceCopyWith<$Res> get price;
@@ -146,7 +148,7 @@ class _$ProductFormCopyWithImpl<$Res> implements $ProductFormCopyWith<$Res> {
       photos: photos == freezed
           ? _value.photos
           : photos // ignore: cast_nullable_to_non_nullable
-              as NonEmptyList5<ProductPhoto>,
+              as Either<NonEmptyList5<ShopifyUrl>, NonEmptyList5<ProductPhoto>>,
     ));
   }
 
@@ -180,7 +182,7 @@ abstract class _$ProductCopyWith<$Res> implements $ProductFormCopyWith<$Res> {
       BrandName brand,
       ProductDescription description,
       ProductDescription ingredients,
-      NonEmptyList5<ProductPhoto> photos});
+      Either<NonEmptyList5<ShopifyUrl>, NonEmptyList5<ProductPhoto>> photos});
 
   @override
   $WeightCopyWith<$Res> get weight;
@@ -250,7 +252,7 @@ class __$ProductCopyWithImpl<$Res> extends _$ProductFormCopyWithImpl<$Res>
       photos: photos == freezed
           ? _value.photos
           : photos // ignore: cast_nullable_to_non_nullable
-              as NonEmptyList5<ProductPhoto>,
+              as Either<NonEmptyList5<ShopifyUrl>, NonEmptyList5<ProductPhoto>>,
     ));
   }
 }
@@ -290,7 +292,7 @@ class _$_Product extends _Product {
   @override
   final ProductDescription ingredients;
   @override
-  final NonEmptyList5<ProductPhoto> photos;
+  final Either<NonEmptyList5<ShopifyUrl>, NonEmptyList5<ProductPhoto>> photos;
 
   @override
   String toString() {
@@ -347,7 +349,8 @@ abstract class _Product extends ProductForm {
       required BrandName brand,
       required ProductDescription description,
       required ProductDescription ingredients,
-      required NonEmptyList5<ProductPhoto> photos}) = _$_Product;
+      required Either<NonEmptyList5<ShopifyUrl>, NonEmptyList5<ProductPhoto>>
+          photos}) = _$_Product;
   const _Product._() : super._();
 
   @override
@@ -369,7 +372,7 @@ abstract class _Product extends ProductForm {
   @override
   ProductDescription get ingredients;
   @override
-  NonEmptyList5<ProductPhoto> get photos;
+  Either<NonEmptyList5<ShopifyUrl>, NonEmptyList5<ProductPhoto>> get photos;
   @override
   @JsonKey(ignore: true)
   _$ProductCopyWith<_Product> get copyWith =>

@@ -65,7 +65,7 @@ class ShopifyUrl extends ValueObject<String> {
   final Either<ValueFailure<String>, String> value;
 
   factory ShopifyUrl(String url) =>
-      ShopifyUrl._(validateStringContains(url, ['shopify', 'https'])
+      ShopifyUrl._(validateStringContains(url, ['https'])
           .flatMap(validateStringNotEmpty)
           .flatMap(validateSingleLine));
 

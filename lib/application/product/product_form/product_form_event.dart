@@ -17,7 +17,11 @@ enum _ProductFormEvent {
   @Data(fields: [DataField<ProductDescription>('ingredients')])
   IngredientsChanged,
   @object
-  PhotosChanged,
+  PhotosFilesChanged,
+  @Data(fields: [DataField<NonEmptyList5<ShopifyUrl>>('photosUrls')])
+  PhotosUrlsChanged,
+  @Data(fields: [DataField<Product>('product')])
+  ProductFound,
   @object
   Saved
 }

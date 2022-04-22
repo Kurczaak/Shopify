@@ -1,3 +1,4 @@
+import 'package:dartz/dartz.dart';
 import 'package:shopify_manager/domain/core/value_objects.dart';
 import 'package:shopify_manager/domain/product/price.dart';
 import 'package:shopify_manager/domain/product/product.dart';
@@ -56,5 +57,5 @@ Future<ProductForm> loadProductFormWithPhotos() async {
       brand: brand,
       description: description,
       ingredients: ingredients,
-      photosFiles: photosList);
+      photos: right(photosList));
 }
