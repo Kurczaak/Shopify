@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:barcode_widget/barcode_widget.dart' as barcodeWidget;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopify_manager/application/product/product_form/product_form_bloc.dart';
+import 'package:shopify_manager/domain/core/enum_stringify_extension.dart';
+import 'package:shopify_manager/domain/core/value_objects.dart';
 import 'package:shopify_manager/domain/product/product.dart';
 import 'package:shopify_manager/domain/product/product_categories.dart';
 import 'package:shopify_manager/domain/product/value_objects.dart';
@@ -10,6 +12,8 @@ import 'package:shopify_manager/domain/product/weight.dart';
 import 'package:shopify_manager/injection.dart';
 import 'package:shopify_manager/presentation/core/widgets/shopify_buttons.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:shopify_manager/presentation/core/widgets/shopify_dropdown_menu_button.dart';
+import 'package:shopify_manager/presentation/core/widgets/shopify_icon_text_button.dart';
 import 'package:shopify_manager/presentation/core/widgets/shopify_text_form_field.dart';
 
 class DebugPage extends StatefulWidget {
@@ -40,10 +44,12 @@ class _DebugPageState extends State<DebugPage> {
         if (product != null) {
           bloc.add(ProductFormEvent.productFound(product: widget.product!));
 
-          if (product.name.isValid())
+          if (product.name.isValid()) {
             _productNameController.text = product.name.getOrCrash();
-          if (product.brand.isValid())
+          }
+          if (product.brand.isValid()) {
             _brandNameController.text = product.brand.getOrCrash();
+          }
           if (product.weight.weight.isValid()) {
             _weightController.text =
                 product.weight.weight.getOrCrash().toString();
@@ -98,34 +104,18 @@ class _DebugPageState extends State<DebugPage> {
                         const SizedBox(
                           height: DebugPage.itemsSpacing,
                         ),
-                        Container(
-                          width: double.maxFinite,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(100),
-                              border: Border.all(
-                                  color: Theme.of(context).colorScheme.outline,
-                                  width: 1,
-                                  style: BorderStyle.solid)),
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 25.0, vertical: 10),
-                            child: DropdownButton<Categories>(
-                                isExpanded: true,
-                                underline: Container(),
-                                value: Categories.bread,
-                                items: Categories.values
-                                    .map((category) => DropdownMenuItem(
-                                        value: category,
-                                        child: Text(
-                                          category.name,
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyText1,
-                                        )))
-                                    .toList(),
-                                onChanged: (_) {}),
-                          ),
-                        ),
+                        ShopifyDropdownMenuButton<Categories>(
+                            initalText: 'Choose a Category',
+                            onChanged: (newValue) {
+                              context.read<ProductFormBloc>().add(
+                                  ProductFormEvent.categoryChanged(
+                                      category: Category(newValue)));
+                            },
+                            items: Categories.values
+                                .map((category) => ShopifyDropdownMenuItem(
+                                    value: category,
+                                    valueString: category.stringify))
+                                .toList()),
                         const SizedBox(
                           height: DebugPage.itemsSpacing,
                         ),
@@ -154,7 +144,7 @@ class _DebugPageState extends State<DebugPage> {
                           validator: (_) =>
                               state.productForm.brand.failureOrUnit.fold(
                                   (failure) => failure.stringifyValueFailure(
-                                      fieldName: 'BrandName'),
+                                      fieldName: 'Brand Name'),
                                   (_) => null),
                           onChanged: (value) {
                             context.read<ProductFormBloc>().add(
@@ -165,21 +155,55 @@ class _DebugPageState extends State<DebugPage> {
                         const SizedBox(
                           height: DebugPage.itemsSpacing,
                         ),
-                        ShopifyTextFormField(
-                          controller: _weightController,
-                          fieldName: 'Net Weight',
-                          showErrorMessages: state.showErrors,
-                          validator: (_) =>
-                              state.productForm.weight.failureOrUnit.fold(
-                                  (failure) => failure.stringifyValueFailure(
-                                      fieldName: 'Net Weight'),
-                                  (_) => null),
-                          onChanged: (value) {
-                            context.read<ProductFormBloc>().add(
-                                ProductFormEvent.weightChanged(
-                                    weight: Weight.fromPrimitives(
-                                        double.parse(value), 'kilogram')));
-                          },
+                        SizedBox(
+                          height: 70,
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: ShopifyTextFormField(
+                                  keyboardType: TextInputType.number,
+                                  controller: _weightController,
+                                  fieldName: 'Net Weight',
+                                  showErrorMessages: state.showErrors,
+                                  validator: (_) => state
+                                      .productForm.weight.failureOrUnit
+                                      .fold(
+                                          (failure) =>
+                                              failure.stringifyValueFailure(
+                                                  fieldName: 'Net Weight'),
+                                          (_) => null),
+                                  onChanged: (value) {
+                                    context.read<ProductFormBloc>().add(
+                                        ProductFormEvent.weightChanged(
+                                            weight: state.productForm.weight
+                                                .copyWith(
+                                                    weight: PositiveNumber(
+                                                        double.parse(value)))));
+                                  },
+                                ),
+                              ),
+                              SizedBox(
+                                width: 100,
+                                child: ShopifyDropdownMenuButton<WeightUnits>(
+                                    initalText: 'Choose weight unit',
+                                    onChanged: (newValue) {
+                                      context.read<ProductFormBloc>().add(
+                                          ProductFormEvent.weightChanged(
+                                              weight: state.productForm.weight
+                                                  .copyWith(
+                                                      weightUnit: WeightUnit(
+                                                          newValue))));
+                                    },
+                                    initialValue: WeightUnits.gram,
+                                    items: WeightUnits.values
+                                        .map((unit) => ShopifyDropdownMenuItem(
+                                              value: unit,
+                                              valueString: unit.symbol,
+                                            ))
+                                        .toList()),
+                              )
+                            ],
+                          ),
                         ),
                         const SizedBox(
                           height: DebugPage.itemsSpacing,
@@ -340,12 +364,42 @@ class _DebugPageState extends State<DebugPage> {
                               );
                             }).toList(),
                           ),
+                          ShopifyIconTextButton(
+                              title: 'Photos',
+                              subtitle: 'Upload product\'s photos',
+                              icon: Icons.photo,
+                              error: !state.productForm.photos
+                                  .fold((l) => l.isValid(), (r) => r.isValid()),
+                              onPressed: () {
+                                context.read<ProductFormBloc>().add(
+                                    const ProductFormEvent
+                                        .photosFilesChanged());
+                              })
                         ],
                       );
                     } else {
-                      return Container();
+                      return ShopifyIconTextButton(
+                          title: 'Photos',
+                          subtitle: 'Upload product\'s photos',
+                          icon: Icons.photo,
+                          error: !state.productForm.photos
+                              .fold((l) => l.isValid(), (r) => r.isValid()),
+                          onPressed: () {
+                            context.read<ProductFormBloc>().add(
+                                const ProductFormEvent.photosFilesChanged());
+                          });
                     }
-                  }, (filePhotos) => Container()),
+                  },
+                      (filePhotos) => ShopifyIconTextButton(
+                          title: 'Photos',
+                          subtitle: 'Upload product\'s photos',
+                          icon: Icons.photo,
+                          error: !state.productForm.photos
+                              .fold((l) => l.isValid(), (r) => r.isValid()),
+                          onPressed: () {
+                            context.read<ProductFormBloc>().add(
+                                const ProductFormEvent.photosFilesChanged());
+                          })),
                   Padding(
                     padding: const EdgeInsets.all(28.0),
                     child: SizedBox(
