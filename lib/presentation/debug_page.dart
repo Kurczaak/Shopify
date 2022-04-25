@@ -286,19 +286,6 @@ class _DebugPageState extends State<DebugPage> {
                         const SizedBox(
                           height: DebugPage.itemsSpacing,
                         ),
-                        state.productForm.photos.fold(
-                          (shopifyUrls) => shopifyUrls.failureOrUnit.fold(
-                              (failure) => Container(),
-                              (_) => PhotosCarouselSlider.network(
-                                  shopifyUrls.getOrCrash())),
-                          (photos) => photos.failureOrUnit.fold(
-                              (failure) => Container(),
-                              (_) => PhotosCarouselSlider.photos(
-                                  photos.getOrCrash())),
-                        ),
-                        const SizedBox(
-                          height: DebugPage.itemsSpacing,
-                        ),
                         ShopifyIconTextButton(
                             title: 'Photos',
                             subtitle: 'Upload product\'s photos',
@@ -311,6 +298,19 @@ class _DebugPageState extends State<DebugPage> {
                             })
                       ],
                     ),
+                  ),
+                  state.productForm.photos.fold(
+                    (shopifyUrls) => shopifyUrls.failureOrUnit.fold(
+                        (failure) => Container(),
+                        (_) => PhotosCarouselSlider.network(
+                            shopifyUrls.getOrCrash())),
+                    (photos) => photos.failureOrUnit.fold(
+                        (failure) => Container(),
+                        (_) =>
+                            PhotosCarouselSlider.photos(photos.getOrCrash())),
+                  ),
+                  const SizedBox(
+                    height: DebugPage.itemsSpacing,
                   ),
                   Padding(
                     padding: const EdgeInsets.all(28.0),
