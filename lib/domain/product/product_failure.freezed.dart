@@ -38,6 +38,10 @@ class _$ProductFailureTearOff {
   _NoInternetConnection noInternetConnection() {
     return const _NoInternetConnection();
   }
+
+  _ProductNotFound productNotFound() {
+    return const _ProductNotFound();
+  }
 }
 
 /// @nodoc
@@ -52,6 +56,7 @@ mixin _$ProductFailure {
     required TResult Function() unableToUpdate,
     required TResult Function(Duration timeout) timeout,
     required TResult Function() noInternetConnection,
+    required TResult Function() productNotFound,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -61,6 +66,7 @@ mixin _$ProductFailure {
     TResult Function()? unableToUpdate,
     TResult Function(Duration timeout)? timeout,
     TResult Function()? noInternetConnection,
+    TResult Function()? productNotFound,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -70,6 +76,7 @@ mixin _$ProductFailure {
     TResult Function()? unableToUpdate,
     TResult Function(Duration timeout)? timeout,
     TResult Function()? noInternetConnection,
+    TResult Function()? productNotFound,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -81,6 +88,7 @@ mixin _$ProductFailure {
     required TResult Function(_UnableToUpdate value) unableToUpdate,
     required TResult Function(_Timeout value) timeout,
     required TResult Function(_NoInternetConnection value) noInternetConnection,
+    required TResult Function(_ProductNotFound value) productNotFound,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -90,6 +98,7 @@ mixin _$ProductFailure {
     TResult Function(_UnableToUpdate value)? unableToUpdate,
     TResult Function(_Timeout value)? timeout,
     TResult Function(_NoInternetConnection value)? noInternetConnection,
+    TResult Function(_ProductNotFound value)? productNotFound,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -99,6 +108,7 @@ mixin _$ProductFailure {
     TResult Function(_UnableToUpdate value)? unableToUpdate,
     TResult Function(_Timeout value)? timeout,
     TResult Function(_NoInternetConnection value)? noInternetConnection,
+    TResult Function(_ProductNotFound value)? productNotFound,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -166,6 +176,7 @@ class _$_Unexpected implements _Unexpected {
     required TResult Function() unableToUpdate,
     required TResult Function(Duration timeout) timeout,
     required TResult Function() noInternetConnection,
+    required TResult Function() productNotFound,
   }) {
     return unexpected();
   }
@@ -178,6 +189,7 @@ class _$_Unexpected implements _Unexpected {
     TResult Function()? unableToUpdate,
     TResult Function(Duration timeout)? timeout,
     TResult Function()? noInternetConnection,
+    TResult Function()? productNotFound,
   }) {
     return unexpected?.call();
   }
@@ -190,6 +202,7 @@ class _$_Unexpected implements _Unexpected {
     TResult Function()? unableToUpdate,
     TResult Function(Duration timeout)? timeout,
     TResult Function()? noInternetConnection,
+    TResult Function()? productNotFound,
     required TResult orElse(),
   }) {
     if (unexpected != null) {
@@ -207,6 +220,7 @@ class _$_Unexpected implements _Unexpected {
     required TResult Function(_UnableToUpdate value) unableToUpdate,
     required TResult Function(_Timeout value) timeout,
     required TResult Function(_NoInternetConnection value) noInternetConnection,
+    required TResult Function(_ProductNotFound value) productNotFound,
   }) {
     return unexpected(this);
   }
@@ -219,6 +233,7 @@ class _$_Unexpected implements _Unexpected {
     TResult Function(_UnableToUpdate value)? unableToUpdate,
     TResult Function(_Timeout value)? timeout,
     TResult Function(_NoInternetConnection value)? noInternetConnection,
+    TResult Function(_ProductNotFound value)? productNotFound,
   }) {
     return unexpected?.call(this);
   }
@@ -231,6 +246,7 @@ class _$_Unexpected implements _Unexpected {
     TResult Function(_UnableToUpdate value)? unableToUpdate,
     TResult Function(_Timeout value)? timeout,
     TResult Function(_NoInternetConnection value)? noInternetConnection,
+    TResult Function(_ProductNotFound value)? productNotFound,
     required TResult orElse(),
   }) {
     if (unexpected != null) {
@@ -290,6 +306,7 @@ class _$_InsufficientPermission implements _InsufficientPermission {
     required TResult Function() unableToUpdate,
     required TResult Function(Duration timeout) timeout,
     required TResult Function() noInternetConnection,
+    required TResult Function() productNotFound,
   }) {
     return insufficientPermission();
   }
@@ -302,6 +319,7 @@ class _$_InsufficientPermission implements _InsufficientPermission {
     TResult Function()? unableToUpdate,
     TResult Function(Duration timeout)? timeout,
     TResult Function()? noInternetConnection,
+    TResult Function()? productNotFound,
   }) {
     return insufficientPermission?.call();
   }
@@ -314,6 +332,7 @@ class _$_InsufficientPermission implements _InsufficientPermission {
     TResult Function()? unableToUpdate,
     TResult Function(Duration timeout)? timeout,
     TResult Function()? noInternetConnection,
+    TResult Function()? productNotFound,
     required TResult orElse(),
   }) {
     if (insufficientPermission != null) {
@@ -331,6 +350,7 @@ class _$_InsufficientPermission implements _InsufficientPermission {
     required TResult Function(_UnableToUpdate value) unableToUpdate,
     required TResult Function(_Timeout value) timeout,
     required TResult Function(_NoInternetConnection value) noInternetConnection,
+    required TResult Function(_ProductNotFound value) productNotFound,
   }) {
     return insufficientPermission(this);
   }
@@ -343,6 +363,7 @@ class _$_InsufficientPermission implements _InsufficientPermission {
     TResult Function(_UnableToUpdate value)? unableToUpdate,
     TResult Function(_Timeout value)? timeout,
     TResult Function(_NoInternetConnection value)? noInternetConnection,
+    TResult Function(_ProductNotFound value)? productNotFound,
   }) {
     return insufficientPermission?.call(this);
   }
@@ -355,6 +376,7 @@ class _$_InsufficientPermission implements _InsufficientPermission {
     TResult Function(_UnableToUpdate value)? unableToUpdate,
     TResult Function(_Timeout value)? timeout,
     TResult Function(_NoInternetConnection value)? noInternetConnection,
+    TResult Function(_ProductNotFound value)? productNotFound,
     required TResult orElse(),
   }) {
     if (insufficientPermission != null) {
@@ -414,6 +436,7 @@ class _$_UnableToUpdate implements _UnableToUpdate {
     required TResult Function() unableToUpdate,
     required TResult Function(Duration timeout) timeout,
     required TResult Function() noInternetConnection,
+    required TResult Function() productNotFound,
   }) {
     return unableToUpdate();
   }
@@ -426,6 +449,7 @@ class _$_UnableToUpdate implements _UnableToUpdate {
     TResult Function()? unableToUpdate,
     TResult Function(Duration timeout)? timeout,
     TResult Function()? noInternetConnection,
+    TResult Function()? productNotFound,
   }) {
     return unableToUpdate?.call();
   }
@@ -438,6 +462,7 @@ class _$_UnableToUpdate implements _UnableToUpdate {
     TResult Function()? unableToUpdate,
     TResult Function(Duration timeout)? timeout,
     TResult Function()? noInternetConnection,
+    TResult Function()? productNotFound,
     required TResult orElse(),
   }) {
     if (unableToUpdate != null) {
@@ -455,6 +480,7 @@ class _$_UnableToUpdate implements _UnableToUpdate {
     required TResult Function(_UnableToUpdate value) unableToUpdate,
     required TResult Function(_Timeout value) timeout,
     required TResult Function(_NoInternetConnection value) noInternetConnection,
+    required TResult Function(_ProductNotFound value) productNotFound,
   }) {
     return unableToUpdate(this);
   }
@@ -467,6 +493,7 @@ class _$_UnableToUpdate implements _UnableToUpdate {
     TResult Function(_UnableToUpdate value)? unableToUpdate,
     TResult Function(_Timeout value)? timeout,
     TResult Function(_NoInternetConnection value)? noInternetConnection,
+    TResult Function(_ProductNotFound value)? productNotFound,
   }) {
     return unableToUpdate?.call(this);
   }
@@ -479,6 +506,7 @@ class _$_UnableToUpdate implements _UnableToUpdate {
     TResult Function(_UnableToUpdate value)? unableToUpdate,
     TResult Function(_Timeout value)? timeout,
     TResult Function(_NoInternetConnection value)? noInternetConnection,
+    TResult Function(_ProductNotFound value)? productNotFound,
     required TResult orElse(),
   }) {
     if (unableToUpdate != null) {
@@ -559,6 +587,7 @@ class _$_Timeout implements _Timeout {
     required TResult Function() unableToUpdate,
     required TResult Function(Duration timeout) timeout,
     required TResult Function() noInternetConnection,
+    required TResult Function() productNotFound,
   }) {
     return timeout(this.timeout);
   }
@@ -571,6 +600,7 @@ class _$_Timeout implements _Timeout {
     TResult Function()? unableToUpdate,
     TResult Function(Duration timeout)? timeout,
     TResult Function()? noInternetConnection,
+    TResult Function()? productNotFound,
   }) {
     return timeout?.call(this.timeout);
   }
@@ -583,6 +613,7 @@ class _$_Timeout implements _Timeout {
     TResult Function()? unableToUpdate,
     TResult Function(Duration timeout)? timeout,
     TResult Function()? noInternetConnection,
+    TResult Function()? productNotFound,
     required TResult orElse(),
   }) {
     if (timeout != null) {
@@ -600,6 +631,7 @@ class _$_Timeout implements _Timeout {
     required TResult Function(_UnableToUpdate value) unableToUpdate,
     required TResult Function(_Timeout value) timeout,
     required TResult Function(_NoInternetConnection value) noInternetConnection,
+    required TResult Function(_ProductNotFound value) productNotFound,
   }) {
     return timeout(this);
   }
@@ -612,6 +644,7 @@ class _$_Timeout implements _Timeout {
     TResult Function(_UnableToUpdate value)? unableToUpdate,
     TResult Function(_Timeout value)? timeout,
     TResult Function(_NoInternetConnection value)? noInternetConnection,
+    TResult Function(_ProductNotFound value)? productNotFound,
   }) {
     return timeout?.call(this);
   }
@@ -624,6 +657,7 @@ class _$_Timeout implements _Timeout {
     TResult Function(_UnableToUpdate value)? unableToUpdate,
     TResult Function(_Timeout value)? timeout,
     TResult Function(_NoInternetConnection value)? noInternetConnection,
+    TResult Function(_ProductNotFound value)? productNotFound,
     required TResult orElse(),
   }) {
     if (timeout != null) {
@@ -688,6 +722,7 @@ class _$_NoInternetConnection implements _NoInternetConnection {
     required TResult Function() unableToUpdate,
     required TResult Function(Duration timeout) timeout,
     required TResult Function() noInternetConnection,
+    required TResult Function() productNotFound,
   }) {
     return noInternetConnection();
   }
@@ -700,6 +735,7 @@ class _$_NoInternetConnection implements _NoInternetConnection {
     TResult Function()? unableToUpdate,
     TResult Function(Duration timeout)? timeout,
     TResult Function()? noInternetConnection,
+    TResult Function()? productNotFound,
   }) {
     return noInternetConnection?.call();
   }
@@ -712,6 +748,7 @@ class _$_NoInternetConnection implements _NoInternetConnection {
     TResult Function()? unableToUpdate,
     TResult Function(Duration timeout)? timeout,
     TResult Function()? noInternetConnection,
+    TResult Function()? productNotFound,
     required TResult orElse(),
   }) {
     if (noInternetConnection != null) {
@@ -729,6 +766,7 @@ class _$_NoInternetConnection implements _NoInternetConnection {
     required TResult Function(_UnableToUpdate value) unableToUpdate,
     required TResult Function(_Timeout value) timeout,
     required TResult Function(_NoInternetConnection value) noInternetConnection,
+    required TResult Function(_ProductNotFound value) productNotFound,
   }) {
     return noInternetConnection(this);
   }
@@ -741,6 +779,7 @@ class _$_NoInternetConnection implements _NoInternetConnection {
     TResult Function(_UnableToUpdate value)? unableToUpdate,
     TResult Function(_Timeout value)? timeout,
     TResult Function(_NoInternetConnection value)? noInternetConnection,
+    TResult Function(_ProductNotFound value)? productNotFound,
   }) {
     return noInternetConnection?.call(this);
   }
@@ -753,6 +792,7 @@ class _$_NoInternetConnection implements _NoInternetConnection {
     TResult Function(_UnableToUpdate value)? unableToUpdate,
     TResult Function(_Timeout value)? timeout,
     TResult Function(_NoInternetConnection value)? noInternetConnection,
+    TResult Function(_ProductNotFound value)? productNotFound,
     required TResult orElse(),
   }) {
     if (noInternetConnection != null) {
@@ -764,4 +804,134 @@ class _$_NoInternetConnection implements _NoInternetConnection {
 
 abstract class _NoInternetConnection implements ProductFailure {
   const factory _NoInternetConnection() = _$_NoInternetConnection;
+}
+
+/// @nodoc
+abstract class _$ProductNotFoundCopyWith<$Res> {
+  factory _$ProductNotFoundCopyWith(
+          _ProductNotFound value, $Res Function(_ProductNotFound) then) =
+      __$ProductNotFoundCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$ProductNotFoundCopyWithImpl<$Res>
+    extends _$ProductFailureCopyWithImpl<$Res>
+    implements _$ProductNotFoundCopyWith<$Res> {
+  __$ProductNotFoundCopyWithImpl(
+      _ProductNotFound _value, $Res Function(_ProductNotFound) _then)
+      : super(_value, (v) => _then(v as _ProductNotFound));
+
+  @override
+  _ProductNotFound get _value => super._value as _ProductNotFound;
+}
+
+/// @nodoc
+
+class _$_ProductNotFound implements _ProductNotFound {
+  const _$_ProductNotFound();
+
+  @override
+  String toString() {
+    return 'ProductFailure.productNotFound()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _ProductNotFound);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() unexpected,
+    required TResult Function() insufficientPermission,
+    required TResult Function() unableToUpdate,
+    required TResult Function(Duration timeout) timeout,
+    required TResult Function() noInternetConnection,
+    required TResult Function() productNotFound,
+  }) {
+    return productNotFound();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? unexpected,
+    TResult Function()? insufficientPermission,
+    TResult Function()? unableToUpdate,
+    TResult Function(Duration timeout)? timeout,
+    TResult Function()? noInternetConnection,
+    TResult Function()? productNotFound,
+  }) {
+    return productNotFound?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? unexpected,
+    TResult Function()? insufficientPermission,
+    TResult Function()? unableToUpdate,
+    TResult Function(Duration timeout)? timeout,
+    TResult Function()? noInternetConnection,
+    TResult Function()? productNotFound,
+    required TResult orElse(),
+  }) {
+    if (productNotFound != null) {
+      return productNotFound();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Unexpected value) unexpected,
+    required TResult Function(_InsufficientPermission value)
+        insufficientPermission,
+    required TResult Function(_UnableToUpdate value) unableToUpdate,
+    required TResult Function(_Timeout value) timeout,
+    required TResult Function(_NoInternetConnection value) noInternetConnection,
+    required TResult Function(_ProductNotFound value) productNotFound,
+  }) {
+    return productNotFound(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_InsufficientPermission value)? insufficientPermission,
+    TResult Function(_UnableToUpdate value)? unableToUpdate,
+    TResult Function(_Timeout value)? timeout,
+    TResult Function(_NoInternetConnection value)? noInternetConnection,
+    TResult Function(_ProductNotFound value)? productNotFound,
+  }) {
+    return productNotFound?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_InsufficientPermission value)? insufficientPermission,
+    TResult Function(_UnableToUpdate value)? unableToUpdate,
+    TResult Function(_Timeout value)? timeout,
+    TResult Function(_NoInternetConnection value)? noInternetConnection,
+    TResult Function(_ProductNotFound value)? productNotFound,
+    required TResult orElse(),
+  }) {
+    if (productNotFound != null) {
+      return productNotFound(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ProductNotFound implements ProductFailure {
+  const factory _ProductNotFound() = _$_ProductNotFound;
 }

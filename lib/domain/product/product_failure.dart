@@ -10,4 +10,5 @@ class ProductFailure with _$ProductFailure {
   const factory ProductFailure.unableToUpdate() = _UnableToUpdate;
   const factory ProductFailure.timeout(Duration timeout) = _Timeout;
   const factory ProductFailure.noInternetConnection() = _NoInternetConnection;
+  const factory ProductFailure.productNotFound() = _ProductNotFound;
 }
