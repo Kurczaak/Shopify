@@ -57,10 +57,8 @@ class _$CoreValueFailureTearOff {
     );
   }
 
-  Empty<T> empty<T>({required T failedValue}) {
-    return Empty<T>(
-      failedValue: failedValue,
-    );
+  Empty<T> empty<T>() {
+    return Empty<T>();
   }
 
   Multiline<T> multiline<T>({required T failedValue}) {
@@ -144,7 +142,7 @@ mixin _$CoreValueFailure<T> {
     required TResult Function(T failedValue, int minLength) stringTooShort,
     required TResult Function(T failedValue, String missingKeyword)
         stringDoesntContainKeyword,
-    required TResult Function(T failedValue) empty,
+    required TResult Function() empty,
     required TResult Function(T failedValue) multiline,
     required TResult Function(T failedValue) nonNumeric,
     required TResult Function(T failedValue) noNumericValuePresent,
@@ -168,7 +166,7 @@ mixin _$CoreValueFailure<T> {
     TResult Function(T failedValue, int minLength)? stringTooShort,
     TResult Function(T failedValue, String missingKeyword)?
         stringDoesntContainKeyword,
-    TResult Function(T failedValue)? empty,
+    TResult Function()? empty,
     TResult Function(T failedValue)? multiline,
     TResult Function(T failedValue)? nonNumeric,
     TResult Function(T failedValue)? noNumericValuePresent,
@@ -189,7 +187,7 @@ mixin _$CoreValueFailure<T> {
     TResult Function(T failedValue, int minLength)? stringTooShort,
     TResult Function(T failedValue, String missingKeyword)?
         stringDoesntContainKeyword,
-    TResult Function(T failedValue)? empty,
+    TResult Function()? empty,
     TResult Function(T failedValue)? multiline,
     TResult Function(T failedValue)? nonNumeric,
     TResult Function(T failedValue)? noNumericValuePresent,
@@ -371,7 +369,7 @@ class _$ListTooLong<T> implements ListTooLong<T> {
     required TResult Function(T failedValue, int minLength) stringTooShort,
     required TResult Function(T failedValue, String missingKeyword)
         stringDoesntContainKeyword,
-    required TResult Function(T failedValue) empty,
+    required TResult Function() empty,
     required TResult Function(T failedValue) multiline,
     required TResult Function(T failedValue) nonNumeric,
     required TResult Function(T failedValue) noNumericValuePresent,
@@ -398,7 +396,7 @@ class _$ListTooLong<T> implements ListTooLong<T> {
     TResult Function(T failedValue, int minLength)? stringTooShort,
     TResult Function(T failedValue, String missingKeyword)?
         stringDoesntContainKeyword,
-    TResult Function(T failedValue)? empty,
+    TResult Function()? empty,
     TResult Function(T failedValue)? multiline,
     TResult Function(T failedValue)? nonNumeric,
     TResult Function(T failedValue)? noNumericValuePresent,
@@ -422,7 +420,7 @@ class _$ListTooLong<T> implements ListTooLong<T> {
     TResult Function(T failedValue, int minLength)? stringTooShort,
     TResult Function(T failedValue, String missingKeyword)?
         stringDoesntContainKeyword,
-    TResult Function(T failedValue)? empty,
+    TResult Function()? empty,
     TResult Function(T failedValue)? multiline,
     TResult Function(T failedValue)? nonNumeric,
     TResult Function(T failedValue)? noNumericValuePresent,
@@ -614,7 +612,7 @@ class _$ListTooShort<T> implements ListTooShort<T> {
     required TResult Function(T failedValue, int minLength) stringTooShort,
     required TResult Function(T failedValue, String missingKeyword)
         stringDoesntContainKeyword,
-    required TResult Function(T failedValue) empty,
+    required TResult Function() empty,
     required TResult Function(T failedValue) multiline,
     required TResult Function(T failedValue) nonNumeric,
     required TResult Function(T failedValue) noNumericValuePresent,
@@ -641,7 +639,7 @@ class _$ListTooShort<T> implements ListTooShort<T> {
     TResult Function(T failedValue, int minLength)? stringTooShort,
     TResult Function(T failedValue, String missingKeyword)?
         stringDoesntContainKeyword,
-    TResult Function(T failedValue)? empty,
+    TResult Function()? empty,
     TResult Function(T failedValue)? multiline,
     TResult Function(T failedValue)? nonNumeric,
     TResult Function(T failedValue)? noNumericValuePresent,
@@ -665,7 +663,7 @@ class _$ListTooShort<T> implements ListTooShort<T> {
     TResult Function(T failedValue, int minLength)? stringTooShort,
     TResult Function(T failedValue, String missingKeyword)?
         stringDoesntContainKeyword,
-    TResult Function(T failedValue)? empty,
+    TResult Function()? empty,
     TResult Function(T failedValue)? multiline,
     TResult Function(T failedValue)? nonNumeric,
     TResult Function(T failedValue)? noNumericValuePresent,
@@ -857,7 +855,7 @@ class _$ExceedingLength<T> implements ExceedingLength<T> {
     required TResult Function(T failedValue, int minLength) stringTooShort,
     required TResult Function(T failedValue, String missingKeyword)
         stringDoesntContainKeyword,
-    required TResult Function(T failedValue) empty,
+    required TResult Function() empty,
     required TResult Function(T failedValue) multiline,
     required TResult Function(T failedValue) nonNumeric,
     required TResult Function(T failedValue) noNumericValuePresent,
@@ -884,7 +882,7 @@ class _$ExceedingLength<T> implements ExceedingLength<T> {
     TResult Function(T failedValue, int minLength)? stringTooShort,
     TResult Function(T failedValue, String missingKeyword)?
         stringDoesntContainKeyword,
-    TResult Function(T failedValue)? empty,
+    TResult Function()? empty,
     TResult Function(T failedValue)? multiline,
     TResult Function(T failedValue)? nonNumeric,
     TResult Function(T failedValue)? noNumericValuePresent,
@@ -908,7 +906,7 @@ class _$ExceedingLength<T> implements ExceedingLength<T> {
     TResult Function(T failedValue, int minLength)? stringTooShort,
     TResult Function(T failedValue, String missingKeyword)?
         stringDoesntContainKeyword,
-    TResult Function(T failedValue)? empty,
+    TResult Function()? empty,
     TResult Function(T failedValue)? multiline,
     TResult Function(T failedValue)? nonNumeric,
     TResult Function(T failedValue)? noNumericValuePresent,
@@ -1100,7 +1098,7 @@ class _$StringTooShort<T> implements StringTooShort<T> {
     required TResult Function(T failedValue, int minLength) stringTooShort,
     required TResult Function(T failedValue, String missingKeyword)
         stringDoesntContainKeyword,
-    required TResult Function(T failedValue) empty,
+    required TResult Function() empty,
     required TResult Function(T failedValue) multiline,
     required TResult Function(T failedValue) nonNumeric,
     required TResult Function(T failedValue) noNumericValuePresent,
@@ -1127,7 +1125,7 @@ class _$StringTooShort<T> implements StringTooShort<T> {
     TResult Function(T failedValue, int minLength)? stringTooShort,
     TResult Function(T failedValue, String missingKeyword)?
         stringDoesntContainKeyword,
-    TResult Function(T failedValue)? empty,
+    TResult Function()? empty,
     TResult Function(T failedValue)? multiline,
     TResult Function(T failedValue)? nonNumeric,
     TResult Function(T failedValue)? noNumericValuePresent,
@@ -1151,7 +1149,7 @@ class _$StringTooShort<T> implements StringTooShort<T> {
     TResult Function(T failedValue, int minLength)? stringTooShort,
     TResult Function(T failedValue, String missingKeyword)?
         stringDoesntContainKeyword,
-    TResult Function(T failedValue)? empty,
+    TResult Function()? empty,
     TResult Function(T failedValue)? multiline,
     TResult Function(T failedValue)? nonNumeric,
     TResult Function(T failedValue)? noNumericValuePresent,
@@ -1348,7 +1346,7 @@ class _$StringDoesntContainKeyword<T> implements StringDoesntContainKeyword<T> {
     required TResult Function(T failedValue, int minLength) stringTooShort,
     required TResult Function(T failedValue, String missingKeyword)
         stringDoesntContainKeyword,
-    required TResult Function(T failedValue) empty,
+    required TResult Function() empty,
     required TResult Function(T failedValue) multiline,
     required TResult Function(T failedValue) nonNumeric,
     required TResult Function(T failedValue) noNumericValuePresent,
@@ -1375,7 +1373,7 @@ class _$StringDoesntContainKeyword<T> implements StringDoesntContainKeyword<T> {
     TResult Function(T failedValue, int minLength)? stringTooShort,
     TResult Function(T failedValue, String missingKeyword)?
         stringDoesntContainKeyword,
-    TResult Function(T failedValue)? empty,
+    TResult Function()? empty,
     TResult Function(T failedValue)? multiline,
     TResult Function(T failedValue)? nonNumeric,
     TResult Function(T failedValue)? noNumericValuePresent,
@@ -1399,7 +1397,7 @@ class _$StringDoesntContainKeyword<T> implements StringDoesntContainKeyword<T> {
     TResult Function(T failedValue, int minLength)? stringTooShort,
     TResult Function(T failedValue, String missingKeyword)?
         stringDoesntContainKeyword,
-    TResult Function(T failedValue)? empty,
+    TResult Function()? empty,
     TResult Function(T failedValue)? multiline,
     TResult Function(T failedValue)? nonNumeric,
     TResult Function(T failedValue)? noNumericValuePresent,
@@ -1514,7 +1512,6 @@ abstract class StringDoesntContainKeyword<T> implements CoreValueFailure<T> {
 abstract class $EmptyCopyWith<T, $Res> {
   factory $EmptyCopyWith(Empty<T> value, $Res Function(Empty<T>) then) =
       _$EmptyCopyWithImpl<T, $Res>;
-  $Res call({T failedValue});
 }
 
 /// @nodoc
@@ -1526,50 +1523,26 @@ class _$EmptyCopyWithImpl<T, $Res>
 
   @override
   Empty<T> get _value => super._value as Empty<T>;
-
-  @override
-  $Res call({
-    Object? failedValue = freezed,
-  }) {
-    return _then(Empty<T>(
-      failedValue: failedValue == freezed
-          ? _value.failedValue
-          : failedValue // ignore: cast_nullable_to_non_nullable
-              as T,
-    ));
-  }
 }
 
 /// @nodoc
 
 class _$Empty<T> implements Empty<T> {
-  const _$Empty({required this.failedValue});
-
-  @override
-  final T failedValue;
+  const _$Empty();
 
   @override
   String toString() {
-    return 'CoreValueFailure<$T>.empty(failedValue: $failedValue)';
+    return 'CoreValueFailure<$T>.empty()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is Empty<T> &&
-            const DeepCollectionEquality()
-                .equals(other.failedValue, failedValue));
+        (other.runtimeType == runtimeType && other is Empty<T>);
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(failedValue));
-
-  @JsonKey(ignore: true)
-  @override
-  $EmptyCopyWith<T, Empty<T>> get copyWith =>
-      _$EmptyCopyWithImpl<T, Empty<T>>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
@@ -1580,7 +1553,7 @@ class _$Empty<T> implements Empty<T> {
     required TResult Function(T failedValue, int minLength) stringTooShort,
     required TResult Function(T failedValue, String missingKeyword)
         stringDoesntContainKeyword,
-    required TResult Function(T failedValue) empty,
+    required TResult Function() empty,
     required TResult Function(T failedValue) multiline,
     required TResult Function(T failedValue) nonNumeric,
     required TResult Function(T failedValue) noNumericValuePresent,
@@ -1595,7 +1568,7 @@ class _$Empty<T> implements Empty<T> {
     required TResult Function(T failedValue) noAddressNumber,
     required TResult Function() noInternetConnection,
   }) {
-    return empty(failedValue);
+    return empty();
   }
 
   @override
@@ -1607,7 +1580,7 @@ class _$Empty<T> implements Empty<T> {
     TResult Function(T failedValue, int minLength)? stringTooShort,
     TResult Function(T failedValue, String missingKeyword)?
         stringDoesntContainKeyword,
-    TResult Function(T failedValue)? empty,
+    TResult Function()? empty,
     TResult Function(T failedValue)? multiline,
     TResult Function(T failedValue)? nonNumeric,
     TResult Function(T failedValue)? noNumericValuePresent,
@@ -1619,7 +1592,7 @@ class _$Empty<T> implements Empty<T> {
     TResult Function(T failedValue)? noAddressNumber,
     TResult Function()? noInternetConnection,
   }) {
-    return empty?.call(failedValue);
+    return empty?.call();
   }
 
   @override
@@ -1631,7 +1604,7 @@ class _$Empty<T> implements Empty<T> {
     TResult Function(T failedValue, int minLength)? stringTooShort,
     TResult Function(T failedValue, String missingKeyword)?
         stringDoesntContainKeyword,
-    TResult Function(T failedValue)? empty,
+    TResult Function()? empty,
     TResult Function(T failedValue)? multiline,
     TResult Function(T failedValue)? nonNumeric,
     TResult Function(T failedValue)? noNumericValuePresent,
@@ -1645,7 +1618,7 @@ class _$Empty<T> implements Empty<T> {
     required TResult orElse(),
   }) {
     if (empty != null) {
-      return empty(failedValue);
+      return empty();
     }
     return orElse();
   }
@@ -1731,12 +1704,7 @@ class _$Empty<T> implements Empty<T> {
 }
 
 abstract class Empty<T> implements CoreValueFailure<T> {
-  const factory Empty({required T failedValue}) = _$Empty<T>;
-
-  T get failedValue;
-  @JsonKey(ignore: true)
-  $EmptyCopyWith<T, Empty<T>> get copyWith =>
-      throw _privateConstructorUsedError;
+  const factory Empty() = _$Empty<T>;
 }
 
 /// @nodoc
@@ -1811,7 +1779,7 @@ class _$Multiline<T> implements Multiline<T> {
     required TResult Function(T failedValue, int minLength) stringTooShort,
     required TResult Function(T failedValue, String missingKeyword)
         stringDoesntContainKeyword,
-    required TResult Function(T failedValue) empty,
+    required TResult Function() empty,
     required TResult Function(T failedValue) multiline,
     required TResult Function(T failedValue) nonNumeric,
     required TResult Function(T failedValue) noNumericValuePresent,
@@ -1838,7 +1806,7 @@ class _$Multiline<T> implements Multiline<T> {
     TResult Function(T failedValue, int minLength)? stringTooShort,
     TResult Function(T failedValue, String missingKeyword)?
         stringDoesntContainKeyword,
-    TResult Function(T failedValue)? empty,
+    TResult Function()? empty,
     TResult Function(T failedValue)? multiline,
     TResult Function(T failedValue)? nonNumeric,
     TResult Function(T failedValue)? noNumericValuePresent,
@@ -1862,7 +1830,7 @@ class _$Multiline<T> implements Multiline<T> {
     TResult Function(T failedValue, int minLength)? stringTooShort,
     TResult Function(T failedValue, String missingKeyword)?
         stringDoesntContainKeyword,
-    TResult Function(T failedValue)? empty,
+    TResult Function()? empty,
     TResult Function(T failedValue)? multiline,
     TResult Function(T failedValue)? nonNumeric,
     TResult Function(T failedValue)? noNumericValuePresent,
@@ -2042,7 +2010,7 @@ class _$NonNumeric<T> implements NonNumeric<T> {
     required TResult Function(T failedValue, int minLength) stringTooShort,
     required TResult Function(T failedValue, String missingKeyword)
         stringDoesntContainKeyword,
-    required TResult Function(T failedValue) empty,
+    required TResult Function() empty,
     required TResult Function(T failedValue) multiline,
     required TResult Function(T failedValue) nonNumeric,
     required TResult Function(T failedValue) noNumericValuePresent,
@@ -2069,7 +2037,7 @@ class _$NonNumeric<T> implements NonNumeric<T> {
     TResult Function(T failedValue, int minLength)? stringTooShort,
     TResult Function(T failedValue, String missingKeyword)?
         stringDoesntContainKeyword,
-    TResult Function(T failedValue)? empty,
+    TResult Function()? empty,
     TResult Function(T failedValue)? multiline,
     TResult Function(T failedValue)? nonNumeric,
     TResult Function(T failedValue)? noNumericValuePresent,
@@ -2093,7 +2061,7 @@ class _$NonNumeric<T> implements NonNumeric<T> {
     TResult Function(T failedValue, int minLength)? stringTooShort,
     TResult Function(T failedValue, String missingKeyword)?
         stringDoesntContainKeyword,
-    TResult Function(T failedValue)? empty,
+    TResult Function()? empty,
     TResult Function(T failedValue)? multiline,
     TResult Function(T failedValue)? nonNumeric,
     TResult Function(T failedValue)? noNumericValuePresent,
@@ -2275,7 +2243,7 @@ class _$NoNumericValuePresent<T> implements NoNumericValuePresent<T> {
     required TResult Function(T failedValue, int minLength) stringTooShort,
     required TResult Function(T failedValue, String missingKeyword)
         stringDoesntContainKeyword,
-    required TResult Function(T failedValue) empty,
+    required TResult Function() empty,
     required TResult Function(T failedValue) multiline,
     required TResult Function(T failedValue) nonNumeric,
     required TResult Function(T failedValue) noNumericValuePresent,
@@ -2302,7 +2270,7 @@ class _$NoNumericValuePresent<T> implements NoNumericValuePresent<T> {
     TResult Function(T failedValue, int minLength)? stringTooShort,
     TResult Function(T failedValue, String missingKeyword)?
         stringDoesntContainKeyword,
-    TResult Function(T failedValue)? empty,
+    TResult Function()? empty,
     TResult Function(T failedValue)? multiline,
     TResult Function(T failedValue)? nonNumeric,
     TResult Function(T failedValue)? noNumericValuePresent,
@@ -2326,7 +2294,7 @@ class _$NoNumericValuePresent<T> implements NoNumericValuePresent<T> {
     TResult Function(T failedValue, int minLength)? stringTooShort,
     TResult Function(T failedValue, String missingKeyword)?
         stringDoesntContainKeyword,
-    TResult Function(T failedValue)? empty,
+    TResult Function()? empty,
     TResult Function(T failedValue)? multiline,
     TResult Function(T failedValue)? nonNumeric,
     TResult Function(T failedValue)? noNumericValuePresent,
@@ -2507,7 +2475,7 @@ class _$NonPositive<T> implements NonPositive<T> {
     required TResult Function(T failedValue, int minLength) stringTooShort,
     required TResult Function(T failedValue, String missingKeyword)
         stringDoesntContainKeyword,
-    required TResult Function(T failedValue) empty,
+    required TResult Function() empty,
     required TResult Function(T failedValue) multiline,
     required TResult Function(T failedValue) nonNumeric,
     required TResult Function(T failedValue) noNumericValuePresent,
@@ -2534,7 +2502,7 @@ class _$NonPositive<T> implements NonPositive<T> {
     TResult Function(T failedValue, int minLength)? stringTooShort,
     TResult Function(T failedValue, String missingKeyword)?
         stringDoesntContainKeyword,
-    TResult Function(T failedValue)? empty,
+    TResult Function()? empty,
     TResult Function(T failedValue)? multiline,
     TResult Function(T failedValue)? nonNumeric,
     TResult Function(T failedValue)? noNumericValuePresent,
@@ -2558,7 +2526,7 @@ class _$NonPositive<T> implements NonPositive<T> {
     TResult Function(T failedValue, int minLength)? stringTooShort,
     TResult Function(T failedValue, String missingKeyword)?
         stringDoesntContainKeyword,
-    TResult Function(T failedValue)? empty,
+    TResult Function()? empty,
     TResult Function(T failedValue)? multiline,
     TResult Function(T failedValue)? nonNumeric,
     TResult Function(T failedValue)? noNumericValuePresent,
@@ -2760,7 +2728,7 @@ class _$NumberOutsideInterval<T> implements NumberOutsideInterval<T> {
     required TResult Function(T failedValue, int minLength) stringTooShort,
     required TResult Function(T failedValue, String missingKeyword)
         stringDoesntContainKeyword,
-    required TResult Function(T failedValue) empty,
+    required TResult Function() empty,
     required TResult Function(T failedValue) multiline,
     required TResult Function(T failedValue) nonNumeric,
     required TResult Function(T failedValue) noNumericValuePresent,
@@ -2787,7 +2755,7 @@ class _$NumberOutsideInterval<T> implements NumberOutsideInterval<T> {
     TResult Function(T failedValue, int minLength)? stringTooShort,
     TResult Function(T failedValue, String missingKeyword)?
         stringDoesntContainKeyword,
-    TResult Function(T failedValue)? empty,
+    TResult Function()? empty,
     TResult Function(T failedValue)? multiline,
     TResult Function(T failedValue)? nonNumeric,
     TResult Function(T failedValue)? noNumericValuePresent,
@@ -2811,7 +2779,7 @@ class _$NumberOutsideInterval<T> implements NumberOutsideInterval<T> {
     TResult Function(T failedValue, int minLength)? stringTooShort,
     TResult Function(T failedValue, String missingKeyword)?
         stringDoesntContainKeyword,
-    TResult Function(T failedValue)? empty,
+    TResult Function()? empty,
     TResult Function(T failedValue)? multiline,
     TResult Function(T failedValue)? nonNumeric,
     TResult Function(T failedValue)? noNumericValuePresent,
@@ -3018,7 +2986,7 @@ class _$ImageTooBig<T> implements ImageTooBig<T> {
     required TResult Function(T failedValue, int minLength) stringTooShort,
     required TResult Function(T failedValue, String missingKeyword)
         stringDoesntContainKeyword,
-    required TResult Function(T failedValue) empty,
+    required TResult Function() empty,
     required TResult Function(T failedValue) multiline,
     required TResult Function(T failedValue) nonNumeric,
     required TResult Function(T failedValue) noNumericValuePresent,
@@ -3045,7 +3013,7 @@ class _$ImageTooBig<T> implements ImageTooBig<T> {
     TResult Function(T failedValue, int minLength)? stringTooShort,
     TResult Function(T failedValue, String missingKeyword)?
         stringDoesntContainKeyword,
-    TResult Function(T failedValue)? empty,
+    TResult Function()? empty,
     TResult Function(T failedValue)? multiline,
     TResult Function(T failedValue)? nonNumeric,
     TResult Function(T failedValue)? noNumericValuePresent,
@@ -3069,7 +3037,7 @@ class _$ImageTooBig<T> implements ImageTooBig<T> {
     TResult Function(T failedValue, int minLength)? stringTooShort,
     TResult Function(T failedValue, String missingKeyword)?
         stringDoesntContainKeyword,
-    TResult Function(T failedValue)? empty,
+    TResult Function()? empty,
     TResult Function(T failedValue)? multiline,
     TResult Function(T failedValue)? nonNumeric,
     TResult Function(T failedValue)? noNumericValuePresent,
@@ -3276,7 +3244,7 @@ class _$ImageTooSmall<T> implements ImageTooSmall<T> {
     required TResult Function(T failedValue, int minLength) stringTooShort,
     required TResult Function(T failedValue, String missingKeyword)
         stringDoesntContainKeyword,
-    required TResult Function(T failedValue) empty,
+    required TResult Function() empty,
     required TResult Function(T failedValue) multiline,
     required TResult Function(T failedValue) nonNumeric,
     required TResult Function(T failedValue) noNumericValuePresent,
@@ -3303,7 +3271,7 @@ class _$ImageTooSmall<T> implements ImageTooSmall<T> {
     TResult Function(T failedValue, int minLength)? stringTooShort,
     TResult Function(T failedValue, String missingKeyword)?
         stringDoesntContainKeyword,
-    TResult Function(T failedValue)? empty,
+    TResult Function()? empty,
     TResult Function(T failedValue)? multiline,
     TResult Function(T failedValue)? nonNumeric,
     TResult Function(T failedValue)? noNumericValuePresent,
@@ -3327,7 +3295,7 @@ class _$ImageTooSmall<T> implements ImageTooSmall<T> {
     TResult Function(T failedValue, int minLength)? stringTooShort,
     TResult Function(T failedValue, String missingKeyword)?
         stringDoesntContainKeyword,
-    TResult Function(T failedValue)? empty,
+    TResult Function()? empty,
     TResult Function(T failedValue)? multiline,
     TResult Function(T failedValue)? nonNumeric,
     TResult Function(T failedValue)? noNumericValuePresent,
@@ -3513,7 +3481,7 @@ class _$IncorrectPostalCode<T> implements IncorrectPostalCode<T> {
     required TResult Function(T failedValue, int minLength) stringTooShort,
     required TResult Function(T failedValue, String missingKeyword)
         stringDoesntContainKeyword,
-    required TResult Function(T failedValue) empty,
+    required TResult Function() empty,
     required TResult Function(T failedValue) multiline,
     required TResult Function(T failedValue) nonNumeric,
     required TResult Function(T failedValue) noNumericValuePresent,
@@ -3540,7 +3508,7 @@ class _$IncorrectPostalCode<T> implements IncorrectPostalCode<T> {
     TResult Function(T failedValue, int minLength)? stringTooShort,
     TResult Function(T failedValue, String missingKeyword)?
         stringDoesntContainKeyword,
-    TResult Function(T failedValue)? empty,
+    TResult Function()? empty,
     TResult Function(T failedValue)? multiline,
     TResult Function(T failedValue)? nonNumeric,
     TResult Function(T failedValue)? noNumericValuePresent,
@@ -3564,7 +3532,7 @@ class _$IncorrectPostalCode<T> implements IncorrectPostalCode<T> {
     TResult Function(T failedValue, int minLength)? stringTooShort,
     TResult Function(T failedValue, String missingKeyword)?
         stringDoesntContainKeyword,
-    TResult Function(T failedValue)? empty,
+    TResult Function()? empty,
     TResult Function(T failedValue)? multiline,
     TResult Function(T failedValue)? nonNumeric,
     TResult Function(T failedValue)? noNumericValuePresent,
@@ -3745,7 +3713,7 @@ class _$NoAddressNumber<T> implements NoAddressNumber<T> {
     required TResult Function(T failedValue, int minLength) stringTooShort,
     required TResult Function(T failedValue, String missingKeyword)
         stringDoesntContainKeyword,
-    required TResult Function(T failedValue) empty,
+    required TResult Function() empty,
     required TResult Function(T failedValue) multiline,
     required TResult Function(T failedValue) nonNumeric,
     required TResult Function(T failedValue) noNumericValuePresent,
@@ -3772,7 +3740,7 @@ class _$NoAddressNumber<T> implements NoAddressNumber<T> {
     TResult Function(T failedValue, int minLength)? stringTooShort,
     TResult Function(T failedValue, String missingKeyword)?
         stringDoesntContainKeyword,
-    TResult Function(T failedValue)? empty,
+    TResult Function()? empty,
     TResult Function(T failedValue)? multiline,
     TResult Function(T failedValue)? nonNumeric,
     TResult Function(T failedValue)? noNumericValuePresent,
@@ -3796,7 +3764,7 @@ class _$NoAddressNumber<T> implements NoAddressNumber<T> {
     TResult Function(T failedValue, int minLength)? stringTooShort,
     TResult Function(T failedValue, String missingKeyword)?
         stringDoesntContainKeyword,
-    TResult Function(T failedValue)? empty,
+    TResult Function()? empty,
     TResult Function(T failedValue)? multiline,
     TResult Function(T failedValue)? nonNumeric,
     TResult Function(T failedValue)? noNumericValuePresent,
@@ -3952,7 +3920,7 @@ class _$NoInternetConnection<T> implements NoInternetConnection<T> {
     required TResult Function(T failedValue, int minLength) stringTooShort,
     required TResult Function(T failedValue, String missingKeyword)
         stringDoesntContainKeyword,
-    required TResult Function(T failedValue) empty,
+    required TResult Function() empty,
     required TResult Function(T failedValue) multiline,
     required TResult Function(T failedValue) nonNumeric,
     required TResult Function(T failedValue) noNumericValuePresent,
@@ -3979,7 +3947,7 @@ class _$NoInternetConnection<T> implements NoInternetConnection<T> {
     TResult Function(T failedValue, int minLength)? stringTooShort,
     TResult Function(T failedValue, String missingKeyword)?
         stringDoesntContainKeyword,
-    TResult Function(T failedValue)? empty,
+    TResult Function()? empty,
     TResult Function(T failedValue)? multiline,
     TResult Function(T failedValue)? nonNumeric,
     TResult Function(T failedValue)? noNumericValuePresent,
@@ -4003,7 +3971,7 @@ class _$NoInternetConnection<T> implements NoInternetConnection<T> {
     TResult Function(T failedValue, int minLength)? stringTooShort,
     TResult Function(T failedValue, String missingKeyword)?
         stringDoesntContainKeyword,
-    TResult Function(T failedValue)? empty,
+    TResult Function()? empty,
     TResult Function(T failedValue)? multiline,
     TResult Function(T failedValue)? nonNumeric,
     TResult Function(T failedValue)? noNumericValuePresent,

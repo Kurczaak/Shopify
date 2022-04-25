@@ -15,7 +15,7 @@ abstract class CoreValueFailure<T> with _$CoreValueFailure<T> {
   const factory CoreValueFailure.stringDoesntContainKeyword(
       {required T failedValue,
       required String missingKeyword}) = StringDoesntContainKeyword<T>;
-  const factory CoreValueFailure.empty({required T failedValue}) = Empty<T>;
+  const factory CoreValueFailure.empty() = Empty<T>;
   const factory CoreValueFailure.multiline({required T failedValue}) =
       Multiline<T>;
   const factory CoreValueFailure.nonNumeric({required T failedValue}) =

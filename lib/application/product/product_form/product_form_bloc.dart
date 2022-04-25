@@ -9,6 +9,7 @@ import 'package:shopify_manager/domain/core/value_objects.dart';
 import 'package:shopify_manager/domain/product/i_product_repository.dart';
 import 'package:shopify_manager/domain/product/price.dart';
 import 'package:shopify_manager/domain/product/product.dart';
+import 'package:shopify_manager/domain/product/product_categories.dart';
 import 'package:shopify_manager/domain/product/product_failure.dart';
 import 'package:shopify_manager/domain/product/product_form.dart';
 import 'package:shopify_manager/domain/product/value_objects.dart';
@@ -49,42 +50,58 @@ class ProductFormBloc extends Bloc<ProductFormEvent, ProductFormState> {
         categoryChanged: (changedCategory) {
           emit(state.copyWith(
               productForm: state.productForm
-                  .copyWith(category: changedCategory.category)));
+                  .copyWith(category: Category(changedCategory.category))));
         },
         productNameChanged: (productNameChanged) {
           emit(state.copyWith(
-              productForm: state.productForm
-                  .copyWith(name: productNameChanged.productName)));
+              productForm: state.productForm.copyWith(
+                  name: ProductName(productNameChanged.productName))));
         },
         brandNameChanged: (brandNameChanged) {
           emit(state.copyWith(
               productForm: state.productForm
-                  .copyWith(brand: brandNameChanged.brandName)));
+                  .copyWith(brand: BrandName(brandNameChanged.brandName))));
         },
-        weightChanged: (weightChanged) {
+        weightNumberChanged: (weightNumberChanged) {
+          final currentWeight = state.productForm.weight;
+          final newWeight = currentWeight.copyWith(
+              weight:
+                  PositiveNumber.fromString(weightNumberChanged.weightNumber));
           emit(state.copyWith(
-              productForm:
-                  state.productForm.copyWith(weight: weightChanged.weight)));
+              productForm: state.productForm.copyWith(weight: newWeight)));
+        },
+        weightUnitChanged: (weightUnitChanged) {
+          final currentWeight = state.productForm.weight;
+          final newWeight = currentWeight.copyWith(
+              weightUnit: WeightUnit(weightUnitChanged.weightUnit));
+          emit(state.copyWith(
+              productForm: state.productForm.copyWith(weight: newWeight)));
         },
         priceChanged: (priceChanged) {
+          final currentPrice = state.productForm.price;
+          final newPrice = currentPrice.copyWith(
+              price: PositiveNumber.fromString(priceChanged.price));
           emit(state.copyWith(
-              productForm:
-                  state.productForm.copyWith(price: priceChanged.price)));
+              productForm: state.productForm.copyWith(price: newPrice)));
+        },
+        currencyChanged: (currencyChanged) {
+          final currentPrice = state.productForm.price;
+          final newPrice = currentPrice.copyWith(
+              currency: Currency(currencyChanged.currency));
+          emit(state.copyWith(
+              productForm: state.productForm.copyWith(price: newPrice)));
         },
         productDescriptionChanged: (productDescriptionChanged) {
           emit(state.copyWith(
               productForm: state.productForm.copyWith(
-                  description: productDescriptionChanged.productDescription)));
+                  description: ProductDescription(
+                      productDescriptionChanged.productDescription))));
         },
         ingredientsChanged: (ingredientsChanged) {
           emit(state.copyWith(
-              productForm: state.productForm
-                  .copyWith(ingredients: ingredientsChanged.ingredients)));
-        },
-        photosUrlsChanged: (changedUrls) {
-          emit(state.copyWith(
-              productForm: state.productForm
-                  .copyWith(photos: left(changedUrls.photosUrls))));
+              productForm: state.productForm.copyWith(
+                  ingredients:
+                      ProductDescription(ingredientsChanged.ingredients))));
         },
         photosFilesChanged: () async {
           emit(ProductFormState.loading(

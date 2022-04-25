@@ -4,7 +4,6 @@ import 'package:barcode_widget/barcode_widget.dart' as barcodeWidget;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopify_manager/application/product/product_form/product_form_bloc.dart';
 import 'package:shopify_manager/domain/core/enum_stringify_extension.dart';
-import 'package:shopify_manager/domain/core/value_objects.dart';
 import 'package:shopify_manager/domain/product/product.dart';
 import 'package:shopify_manager/domain/product/product_categories.dart';
 import 'package:shopify_manager/domain/product/value_objects.dart';
@@ -109,7 +108,7 @@ class _DebugPageState extends State<DebugPage> {
                             onChanged: (newValue) {
                               context.read<ProductFormBloc>().add(
                                   ProductFormEvent.categoryChanged(
-                                      category: Category(newValue)));
+                                      category: newValue));
                             },
                             items: Categories.values
                                 .map((category) => ShopifyDropdownMenuItem(
@@ -131,7 +130,7 @@ class _DebugPageState extends State<DebugPage> {
                           onChanged: (value) {
                             context.read<ProductFormBloc>().add(
                                 ProductFormEvent.productNameChanged(
-                                    productName: ProductName(value)));
+                                    productName: value));
                           },
                         ),
                         const SizedBox(
@@ -149,7 +148,7 @@ class _DebugPageState extends State<DebugPage> {
                           onChanged: (value) {
                             context.read<ProductFormBloc>().add(
                                 ProductFormEvent.brandNameChanged(
-                                    brandName: BrandName(value)));
+                                    brandName: value));
                           },
                         ),
                         const SizedBox(
@@ -174,11 +173,8 @@ class _DebugPageState extends State<DebugPage> {
                                           (_) => null),
                                   onChanged: (value) {
                                     context.read<ProductFormBloc>().add(
-                                        ProductFormEvent.weightChanged(
-                                            weight: state.productForm.weight
-                                                .copyWith(
-                                                    weight: PositiveNumber(
-                                                        double.parse(value)))));
+                                        ProductFormEvent.weightNumberChanged(
+                                            weightNumber: value));
                                   },
                                 ),
                               ),
@@ -188,11 +184,8 @@ class _DebugPageState extends State<DebugPage> {
                                     initalText: 'Choose weight unit',
                                     onChanged: (newValue) {
                                       context.read<ProductFormBloc>().add(
-                                          ProductFormEvent.weightChanged(
-                                              weight: state.productForm.weight
-                                                  .copyWith(
-                                                      weightUnit: WeightUnit(
-                                                          newValue))));
+                                          ProductFormEvent.weightUnitChanged(
+                                              weightUnit: newValue));
                                     },
                                     initialValue: WeightUnits.gram,
                                     items: WeightUnits.values
@@ -226,8 +219,7 @@ class _DebugPageState extends State<DebugPage> {
                           onChanged: (value) {
                             context.read<ProductFormBloc>().add(
                                 ProductFormEvent.productDescriptionChanged(
-                                    productDescription:
-                                        ProductDescription(value)));
+                                    productDescription: value));
                           },
                         ),
                         const SizedBox(
@@ -247,7 +239,7 @@ class _DebugPageState extends State<DebugPage> {
                           onChanged: (value) {
                             context.read<ProductFormBloc>().add(
                                 ProductFormEvent.ingredientsChanged(
-                                    ingredients: ProductDescription(value)));
+                                    ingredients: value));
                           },
                         ),
                         const SizedBox(

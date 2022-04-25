@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:kt_dart/kt.dart';
+import 'package:shopify_manager/domain/core/value_failures.dart';
 import 'package:shopify_manager/domain/core/value_validators.dart';
 import 'package:uuid/uuid.dart';
 import 'package:shopify_manager/domain/core/errors.dart';
@@ -57,6 +58,17 @@ class PositiveNumber extends ValueObject<double> {
       validateDoubleRange(input, minPositiveNumber, maxPositiveNumber),
     );
   }
+
+  factory PositiveNumber.fromString(String input) {
+    final parsedNum = double.tryParse(input);
+    if (parsedNum == null) {
+      return PositiveNumber._(
+          left(const ValueFailure.core(CoreValueFailure.empty())));
+    } else {
+      return PositiveNumber(parsedNum);
+    }
+  }
+
   const PositiveNumber._(this.value);
 }
 

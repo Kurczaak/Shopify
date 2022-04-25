@@ -2,24 +2,26 @@ part of 'product_form_bloc.dart';
 
 @superEnum
 enum _ProductFormEvent {
-  @Data(fields: [DataField<Category>('category')])
+  @Data(fields: [DataField<Categories>('category')])
   CategoryChanged,
-  @Data(fields: [DataField<ProductName>('productName')])
+  @Data(fields: [DataField<String>('productName')])
   ProductNameChanged,
-  @Data(fields: [DataField<BrandName>('brandName')])
+  @Data(fields: [DataField<String>('brandName')])
   BrandNameChanged,
-  @Data(fields: [DataField<Weight>('weight')])
-  WeightChanged,
-  @Data(fields: [DataField<Price>('price')])
+  @Data(fields: [DataField<String>('weightNumber')])
+  WeightNumberChanged,
+  @Data(fields: [DataField<WeightUnits>('weightUnit')])
+  WeightUnitChanged,
+  @Data(fields: [DataField<String>('price')])
   PriceChanged,
-  @Data(fields: [DataField<ProductDescription>('productDescription')])
+  @Data(fields: [DataField<Currencies>('currency')])
+  CurrencyChanged,
+  @Data(fields: [DataField<String>('productDescription')])
   ProductDescriptionChanged,
-  @Data(fields: [DataField<ProductDescription>('ingredients')])
+  @Data(fields: [DataField<String>('ingredients')])
   IngredientsChanged,
   @object
   PhotosFilesChanged,
-  @Data(fields: [DataField<NonEmptyList5<ShopifyUrl>>('photosUrls')])
-  PhotosUrlsChanged,
   @Data(fields: [DataField<Product>('product')])
   ProductFound,
   @object

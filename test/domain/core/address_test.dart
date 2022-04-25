@@ -32,10 +32,8 @@ void main() {
         // act
         final failureOrOption = tIncorrectAddress.failureOrOption;
         // assert
-        expect(
-            failureOrOption,
-            equals(some(const ValueFailure.core(
-                CoreValueFailure.empty(failedValue: '')))));
+        expect(failureOrOption,
+            equals(some(const ValueFailure.core(CoreValueFailure.empty()))));
       },
     );
   });

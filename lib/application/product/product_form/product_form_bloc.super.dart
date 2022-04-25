@@ -28,40 +28,44 @@ part of 'product_form_bloc.dart';
 // {
 // @WithEquality(Equality.data)
 // @WithName('CategoryChanged')
-// void categoryChanged(Category category);
+// void categoryChanged(Categories category);
 //
 // @WithEquality(Equality.data)
 // @WithName('ProductNameChanged')
-// void productNameChanged(ProductName productName);
+// void productNameChanged(String productName);
 //
 // @WithEquality(Equality.data)
 // @WithName('BrandNameChanged')
-// void brandNameChanged(BrandName brandName);
+// void brandNameChanged(String brandName);
 //
 // @WithEquality(Equality.data)
-// @WithName('WeightChanged')
-// void weightChanged(Weight weight);
+// @WithName('WeightNumberChanged')
+// void weightNumberChanged(String weightNumber);
+//
+// @WithEquality(Equality.data)
+// @WithName('WeightUnitChanged')
+// void weightUnitChanged(WeightUnits weightUnit);
 //
 // @WithEquality(Equality.data)
 // @WithName('PriceChanged')
-// void priceChanged(Price price);
+// void priceChanged(String price);
+//
+// @WithEquality(Equality.data)
+// @WithName('CurrencyChanged')
+// void currencyChanged(Currencies currency);
 //
 // @WithEquality(Equality.data)
 // @WithName('ProductDescriptionChanged')
-// void productDescriptionChanged(ProductDescription productDescription);
+// void productDescriptionChanged(String productDescription);
 //
 // @WithEquality(Equality.data)
 // @WithName('IngredientsChanged')
-// void ingredientsChanged(ProductDescription ingredients);
+// void ingredientsChanged(String ingredients);
 //
 // @WithWrap()
 // @WithEquality(Equality.data)
 // @WithName('PhotosFilesChanged')
 // void photosFilesChanged();
-//
-// @WithEquality(Equality.data)
-// @WithName('PhotosUrlsChanged')
-// void photosUrlsChanged(NonEmptyList5<ShopifyUrl> photosUrls);
 //
 // @WithEquality(Equality.data)
 // @WithName('ProductFound')
@@ -75,23 +79,25 @@ part of 'product_form_bloc.dart';
 
 /// [ProductFormEvent] {
 ///
-/// ([CategoryChanged] categoryChanged){[Category] category} with data equality
+/// ([CategoryChanged] categoryChanged){[Categories] category} with data equality
 ///
-/// ([ProductNameChanged] productNameChanged){[ProductName] productName} with data equality
+/// ([ProductNameChanged] productNameChanged){[String] productName} with data equality
 ///
-/// ([BrandNameChanged] brandNameChanged){[BrandName] brandName} with data equality
+/// ([BrandNameChanged] brandNameChanged){[String] brandName} with data equality
 ///
-/// ([WeightChanged] weightChanged){[Weight] weight} with data equality
+/// ([WeightNumberChanged] weightNumberChanged){[String] weightNumber} with data equality
 ///
-/// ([PriceChanged] priceChanged){[Price] price} with data equality
+/// ([WeightUnitChanged] weightUnitChanged){[WeightUnits] weightUnit} with data equality
 ///
-/// ([ProductDescriptionChanged] productDescriptionChanged){[ProductDescription] productDescription} with data equality
+/// ([PriceChanged] priceChanged){[String] price} with data equality
 ///
-/// ([IngredientsChanged] ingredientsChanged){[ProductDescription] ingredients} with data equality
+/// ([CurrencyChanged] currencyChanged){[Currencies] currency} with data equality
+///
+/// ([ProductDescriptionChanged] productDescriptionChanged){[String] productDescription} with data equality
+///
+/// ([IngredientsChanged] ingredientsChanged){[String] ingredients} with data equality
 ///
 /// ([PhotosFilesChanged] photosFilesChanged){} with data equality with wrap
-///
-/// ([PhotosUrlsChanged] photosUrlsChanged){[NonEmptyList5<ShopifyUrl>] photosUrls} with data equality
 ///
 /// ([ProductFound] productFound){[Product] product} with data equality
 ///
@@ -103,38 +109,42 @@ abstract class ProductFormEvent {
   const ProductFormEvent._internal();
 
   const factory ProductFormEvent.categoryChanged({
-    required Category category,
+    required Categories category,
   }) = CategoryChanged;
 
   const factory ProductFormEvent.productNameChanged({
-    required ProductName productName,
+    required String productName,
   }) = ProductNameChanged;
 
   const factory ProductFormEvent.brandNameChanged({
-    required BrandName brandName,
+    required String brandName,
   }) = BrandNameChanged;
 
-  const factory ProductFormEvent.weightChanged({
-    required Weight weight,
-  }) = WeightChanged;
+  const factory ProductFormEvent.weightNumberChanged({
+    required String weightNumber,
+  }) = WeightNumberChanged;
+
+  const factory ProductFormEvent.weightUnitChanged({
+    required WeightUnits weightUnit,
+  }) = WeightUnitChanged;
 
   const factory ProductFormEvent.priceChanged({
-    required Price price,
+    required String price,
   }) = PriceChanged;
 
+  const factory ProductFormEvent.currencyChanged({
+    required Currencies currency,
+  }) = CurrencyChanged;
+
   const factory ProductFormEvent.productDescriptionChanged({
-    required ProductDescription productDescription,
+    required String productDescription,
   }) = ProductDescriptionChanged;
 
   const factory ProductFormEvent.ingredientsChanged({
-    required ProductDescription ingredients,
+    required String ingredients,
   }) = IngredientsChanged;
 
   const factory ProductFormEvent.photosFilesChanged() = PhotosFilesChanged;
-
-  const factory ProductFormEvent.photosUrlsChanged({
-    required NonEmptyList5<ShopifyUrl> photosUrls,
-  }) = PhotosUrlsChanged;
 
   const factory ProductFormEvent.productFound({
     required Product product,
@@ -148,17 +158,19 @@ abstract class ProductFormEvent {
 
   bool isBrandNameChanged() => this is BrandNameChanged;
 
-  bool isWeightChanged() => this is WeightChanged;
+  bool isWeightNumberChanged() => this is WeightNumberChanged;
+
+  bool isWeightUnitChanged() => this is WeightUnitChanged;
 
   bool isPriceChanged() => this is PriceChanged;
+
+  bool isCurrencyChanged() => this is CurrencyChanged;
 
   bool isProductDescriptionChanged() => this is ProductDescriptionChanged;
 
   bool isIngredientsChanged() => this is IngredientsChanged;
 
   bool isPhotosFilesChanged() => this is PhotosFilesChanged;
-
-  bool isPhotosUrlsChanged() => this is PhotosUrlsChanged;
 
   bool isProductFound() => this is ProductFound;
 
@@ -170,9 +182,13 @@ abstract class ProductFormEvent {
 
   BrandNameChanged asBrandNameChanged() => this as BrandNameChanged;
 
-  WeightChanged asWeightChanged() => this as WeightChanged;
+  WeightNumberChanged asWeightNumberChanged() => this as WeightNumberChanged;
+
+  WeightUnitChanged asWeightUnitChanged() => this as WeightUnitChanged;
 
   PriceChanged asPriceChanged() => this as PriceChanged;
+
+  CurrencyChanged asCurrencyChanged() => this as CurrencyChanged;
 
   ProductDescriptionChanged asProductDescriptionChanged() =>
       this as ProductDescriptionChanged;
@@ -180,8 +196,6 @@ abstract class ProductFormEvent {
   IngredientsChanged asIngredientsChanged() => this as IngredientsChanged;
 
   PhotosFilesChanged asPhotosFilesChanged() => this as PhotosFilesChanged;
-
-  PhotosUrlsChanged asPhotosUrlsChanged() => this as PhotosUrlsChanged;
 
   ProductFound asProductFound() => this as ProductFound;
 
@@ -202,14 +216,24 @@ abstract class ProductFormEvent {
     return productFormEvent is BrandNameChanged ? productFormEvent : null;
   }
 
-  WeightChanged? asWeightChangedOrNull() {
+  WeightNumberChanged? asWeightNumberChangedOrNull() {
     final productFormEvent = this;
-    return productFormEvent is WeightChanged ? productFormEvent : null;
+    return productFormEvent is WeightNumberChanged ? productFormEvent : null;
+  }
+
+  WeightUnitChanged? asWeightUnitChangedOrNull() {
+    final productFormEvent = this;
+    return productFormEvent is WeightUnitChanged ? productFormEvent : null;
   }
 
   PriceChanged? asPriceChangedOrNull() {
     final productFormEvent = this;
     return productFormEvent is PriceChanged ? productFormEvent : null;
+  }
+
+  CurrencyChanged? asCurrencyChangedOrNull() {
+    final productFormEvent = this;
+    return productFormEvent is CurrencyChanged ? productFormEvent : null;
   }
 
   ProductDescriptionChanged? asProductDescriptionChangedOrNull() {
@@ -229,11 +253,6 @@ abstract class ProductFormEvent {
     return productFormEvent is PhotosFilesChanged ? productFormEvent : null;
   }
 
-  PhotosUrlsChanged? asPhotosUrlsChangedOrNull() {
-    final productFormEvent = this;
-    return productFormEvent is PhotosUrlsChanged ? productFormEvent : null;
-  }
-
   ProductFound? asProductFoundOrNull() {
     final productFormEvent = this;
     return productFormEvent is ProductFound ? productFormEvent : null;
@@ -249,14 +268,16 @@ abstract class ProductFormEvent {
     required R Function(ProductNameChanged productNameChanged)
         productNameChanged,
     required R Function(BrandNameChanged brandNameChanged) brandNameChanged,
-    required R Function(WeightChanged weightChanged) weightChanged,
+    required R Function(WeightNumberChanged weightNumberChanged)
+        weightNumberChanged,
+    required R Function(WeightUnitChanged weightUnitChanged) weightUnitChanged,
     required R Function(PriceChanged priceChanged) priceChanged,
+    required R Function(CurrencyChanged currencyChanged) currencyChanged,
     required R Function(ProductDescriptionChanged productDescriptionChanged)
         productDescriptionChanged,
     required R Function(IngredientsChanged ingredientsChanged)
         ingredientsChanged,
     required R Function() photosFilesChanged,
-    required R Function(PhotosUrlsChanged photosUrlsChanged) photosUrlsChanged,
     required R Function(ProductFound productFound) productFound,
     required R Function() saved,
   }) {
@@ -267,18 +288,20 @@ abstract class ProductFormEvent {
       return productNameChanged(productFormEvent);
     } else if (productFormEvent is BrandNameChanged) {
       return brandNameChanged(productFormEvent);
-    } else if (productFormEvent is WeightChanged) {
-      return weightChanged(productFormEvent);
+    } else if (productFormEvent is WeightNumberChanged) {
+      return weightNumberChanged(productFormEvent);
+    } else if (productFormEvent is WeightUnitChanged) {
+      return weightUnitChanged(productFormEvent);
     } else if (productFormEvent is PriceChanged) {
       return priceChanged(productFormEvent);
+    } else if (productFormEvent is CurrencyChanged) {
+      return currencyChanged(productFormEvent);
     } else if (productFormEvent is ProductDescriptionChanged) {
       return productDescriptionChanged(productFormEvent);
     } else if (productFormEvent is IngredientsChanged) {
       return ingredientsChanged(productFormEvent);
     } else if (productFormEvent is PhotosFilesChanged) {
       return photosFilesChanged();
-    } else if (productFormEvent is PhotosUrlsChanged) {
-      return photosUrlsChanged(productFormEvent);
     } else if (productFormEvent is ProductFound) {
       return productFound(productFormEvent);
     } else if (productFormEvent is Saved) {
@@ -292,13 +315,14 @@ abstract class ProductFormEvent {
     R Function(CategoryChanged categoryChanged)? categoryChanged,
     R Function(ProductNameChanged productNameChanged)? productNameChanged,
     R Function(BrandNameChanged brandNameChanged)? brandNameChanged,
-    R Function(WeightChanged weightChanged)? weightChanged,
+    R Function(WeightNumberChanged weightNumberChanged)? weightNumberChanged,
+    R Function(WeightUnitChanged weightUnitChanged)? weightUnitChanged,
     R Function(PriceChanged priceChanged)? priceChanged,
+    R Function(CurrencyChanged currencyChanged)? currencyChanged,
     R Function(ProductDescriptionChanged productDescriptionChanged)?
         productDescriptionChanged,
     R Function(IngredientsChanged ingredientsChanged)? ingredientsChanged,
     R Function()? photosFilesChanged,
-    R Function(PhotosUrlsChanged photosUrlsChanged)? photosUrlsChanged,
     R Function(ProductFound productFound)? productFound,
     R Function()? saved,
     required R Function(ProductFormEvent productFormEvent) orElse,
@@ -316,13 +340,21 @@ abstract class ProductFormEvent {
       return brandNameChanged != null
           ? brandNameChanged(productFormEvent)
           : orElse(productFormEvent);
-    } else if (productFormEvent is WeightChanged) {
-      return weightChanged != null
-          ? weightChanged(productFormEvent)
+    } else if (productFormEvent is WeightNumberChanged) {
+      return weightNumberChanged != null
+          ? weightNumberChanged(productFormEvent)
+          : orElse(productFormEvent);
+    } else if (productFormEvent is WeightUnitChanged) {
+      return weightUnitChanged != null
+          ? weightUnitChanged(productFormEvent)
           : orElse(productFormEvent);
     } else if (productFormEvent is PriceChanged) {
       return priceChanged != null
           ? priceChanged(productFormEvent)
+          : orElse(productFormEvent);
+    } else if (productFormEvent is CurrencyChanged) {
+      return currencyChanged != null
+          ? currencyChanged(productFormEvent)
           : orElse(productFormEvent);
     } else if (productFormEvent is ProductDescriptionChanged) {
       return productDescriptionChanged != null
@@ -335,10 +367,6 @@ abstract class ProductFormEvent {
     } else if (productFormEvent is PhotosFilesChanged) {
       return photosFilesChanged != null
           ? photosFilesChanged()
-          : orElse(productFormEvent);
-    } else if (productFormEvent is PhotosUrlsChanged) {
-      return photosUrlsChanged != null
-          ? photosUrlsChanged(productFormEvent)
           : orElse(productFormEvent);
     } else if (productFormEvent is ProductFound) {
       return productFound != null
@@ -355,13 +383,14 @@ abstract class ProductFormEvent {
     R Function(CategoryChanged categoryChanged)? categoryChanged,
     R Function(ProductNameChanged productNameChanged)? productNameChanged,
     R Function(BrandNameChanged brandNameChanged)? brandNameChanged,
-    R Function(WeightChanged weightChanged)? weightChanged,
+    R Function(WeightNumberChanged weightNumberChanged)? weightNumberChanged,
+    R Function(WeightUnitChanged weightUnitChanged)? weightUnitChanged,
     R Function(PriceChanged priceChanged)? priceChanged,
+    R Function(CurrencyChanged currencyChanged)? currencyChanged,
     R Function(ProductDescriptionChanged productDescriptionChanged)?
         productDescriptionChanged,
     R Function(IngredientsChanged ingredientsChanged)? ingredientsChanged,
     R Function()? photosFilesChanged,
-    R Function(PhotosUrlsChanged photosUrlsChanged)? photosUrlsChanged,
     R Function(ProductFound productFound)? productFound,
     R Function()? saved,
     required R orDefault,
@@ -379,12 +408,20 @@ abstract class ProductFormEvent {
       return brandNameChanged != null
           ? brandNameChanged(productFormEvent)
           : orDefault;
-    } else if (productFormEvent is WeightChanged) {
-      return weightChanged != null
-          ? weightChanged(productFormEvent)
+    } else if (productFormEvent is WeightNumberChanged) {
+      return weightNumberChanged != null
+          ? weightNumberChanged(productFormEvent)
+          : orDefault;
+    } else if (productFormEvent is WeightUnitChanged) {
+      return weightUnitChanged != null
+          ? weightUnitChanged(productFormEvent)
           : orDefault;
     } else if (productFormEvent is PriceChanged) {
       return priceChanged != null ? priceChanged(productFormEvent) : orDefault;
+    } else if (productFormEvent is CurrencyChanged) {
+      return currencyChanged != null
+          ? currencyChanged(productFormEvent)
+          : orDefault;
     } else if (productFormEvent is ProductDescriptionChanged) {
       return productDescriptionChanged != null
           ? productDescriptionChanged(productFormEvent)
@@ -395,10 +432,6 @@ abstract class ProductFormEvent {
           : orDefault;
     } else if (productFormEvent is PhotosFilesChanged) {
       return photosFilesChanged != null ? photosFilesChanged() : orDefault;
-    } else if (productFormEvent is PhotosUrlsChanged) {
-      return photosUrlsChanged != null
-          ? photosUrlsChanged(productFormEvent)
-          : orDefault;
     } else if (productFormEvent is ProductFound) {
       return productFound != null ? productFound(productFormEvent) : orDefault;
     } else if (productFormEvent is Saved) {
@@ -412,13 +445,14 @@ abstract class ProductFormEvent {
     R Function(CategoryChanged categoryChanged)? categoryChanged,
     R Function(ProductNameChanged productNameChanged)? productNameChanged,
     R Function(BrandNameChanged brandNameChanged)? brandNameChanged,
-    R Function(WeightChanged weightChanged)? weightChanged,
+    R Function(WeightNumberChanged weightNumberChanged)? weightNumberChanged,
+    R Function(WeightUnitChanged weightUnitChanged)? weightUnitChanged,
     R Function(PriceChanged priceChanged)? priceChanged,
+    R Function(CurrencyChanged currencyChanged)? currencyChanged,
     R Function(ProductDescriptionChanged productDescriptionChanged)?
         productDescriptionChanged,
     R Function(IngredientsChanged ingredientsChanged)? ingredientsChanged,
     R Function()? photosFilesChanged,
-    R Function(PhotosUrlsChanged photosUrlsChanged)? photosUrlsChanged,
     R Function(ProductFound productFound)? productFound,
     R Function()? saved,
   }) {
@@ -429,18 +463,20 @@ abstract class ProductFormEvent {
       return productNameChanged?.call(productFormEvent);
     } else if (productFormEvent is BrandNameChanged) {
       return brandNameChanged?.call(productFormEvent);
-    } else if (productFormEvent is WeightChanged) {
-      return weightChanged?.call(productFormEvent);
+    } else if (productFormEvent is WeightNumberChanged) {
+      return weightNumberChanged?.call(productFormEvent);
+    } else if (productFormEvent is WeightUnitChanged) {
+      return weightUnitChanged?.call(productFormEvent);
     } else if (productFormEvent is PriceChanged) {
       return priceChanged?.call(productFormEvent);
+    } else if (productFormEvent is CurrencyChanged) {
+      return currencyChanged?.call(productFormEvent);
     } else if (productFormEvent is ProductDescriptionChanged) {
       return productDescriptionChanged?.call(productFormEvent);
     } else if (productFormEvent is IngredientsChanged) {
       return ingredientsChanged?.call(productFormEvent);
     } else if (productFormEvent is PhotosFilesChanged) {
       return photosFilesChanged?.call();
-    } else if (productFormEvent is PhotosUrlsChanged) {
-      return photosUrlsChanged?.call(productFormEvent);
     } else if (productFormEvent is ProductFound) {
       return productFound?.call(productFormEvent);
     } else if (productFormEvent is Saved) {
@@ -454,13 +490,14 @@ abstract class ProductFormEvent {
     R Function(CategoryChanged categoryChanged)? categoryChanged,
     R Function(ProductNameChanged productNameChanged)? productNameChanged,
     R Function(BrandNameChanged brandNameChanged)? brandNameChanged,
-    R Function(WeightChanged weightChanged)? weightChanged,
+    R Function(WeightNumberChanged weightNumberChanged)? weightNumberChanged,
+    R Function(WeightUnitChanged weightUnitChanged)? weightUnitChanged,
     R Function(PriceChanged priceChanged)? priceChanged,
+    R Function(CurrencyChanged currencyChanged)? currencyChanged,
     R Function(ProductDescriptionChanged productDescriptionChanged)?
         productDescriptionChanged,
     R Function(IngredientsChanged ingredientsChanged)? ingredientsChanged,
     R Function()? photosFilesChanged,
-    R Function(PhotosUrlsChanged photosUrlsChanged)? photosUrlsChanged,
     R Function(ProductFound productFound)? productFound,
     R Function()? saved,
   }) {
@@ -473,10 +510,16 @@ abstract class ProductFormEvent {
     } else if (productFormEvent is BrandNameChanged &&
         brandNameChanged != null) {
       return brandNameChanged(productFormEvent);
-    } else if (productFormEvent is WeightChanged && weightChanged != null) {
-      return weightChanged(productFormEvent);
+    } else if (productFormEvent is WeightNumberChanged &&
+        weightNumberChanged != null) {
+      return weightNumberChanged(productFormEvent);
+    } else if (productFormEvent is WeightUnitChanged &&
+        weightUnitChanged != null) {
+      return weightUnitChanged(productFormEvent);
     } else if (productFormEvent is PriceChanged && priceChanged != null) {
       return priceChanged(productFormEvent);
+    } else if (productFormEvent is CurrencyChanged && currencyChanged != null) {
+      return currencyChanged(productFormEvent);
     } else if (productFormEvent is ProductDescriptionChanged &&
         productDescriptionChanged != null) {
       return productDescriptionChanged(productFormEvent);
@@ -486,9 +529,6 @@ abstract class ProductFormEvent {
     } else if (productFormEvent is PhotosFilesChanged &&
         photosFilesChanged != null) {
       return photosFilesChanged();
-    } else if (productFormEvent is PhotosUrlsChanged &&
-        photosUrlsChanged != null) {
-      return photosUrlsChanged(productFormEvent);
     } else if (productFormEvent is ProductFound && productFound != null) {
       return productFound(productFormEvent);
     } else if (productFormEvent is Saved && saved != null) {
@@ -502,13 +542,14 @@ abstract class ProductFormEvent {
     void Function(CategoryChanged categoryChanged)? categoryChanged,
     void Function(ProductNameChanged productNameChanged)? productNameChanged,
     void Function(BrandNameChanged brandNameChanged)? brandNameChanged,
-    void Function(WeightChanged weightChanged)? weightChanged,
+    void Function(WeightNumberChanged weightNumberChanged)? weightNumberChanged,
+    void Function(WeightUnitChanged weightUnitChanged)? weightUnitChanged,
     void Function(PriceChanged priceChanged)? priceChanged,
+    void Function(CurrencyChanged currencyChanged)? currencyChanged,
     void Function(ProductDescriptionChanged productDescriptionChanged)?
         productDescriptionChanged,
     void Function(IngredientsChanged ingredientsChanged)? ingredientsChanged,
     void Function()? photosFilesChanged,
-    void Function(PhotosUrlsChanged photosUrlsChanged)? photosUrlsChanged,
     void Function(ProductFound productFound)? productFound,
     void Function()? saved,
   }) {
@@ -519,18 +560,20 @@ abstract class ProductFormEvent {
       productNameChanged?.call(productFormEvent);
     } else if (productFormEvent is BrandNameChanged) {
       brandNameChanged?.call(productFormEvent);
-    } else if (productFormEvent is WeightChanged) {
-      weightChanged?.call(productFormEvent);
+    } else if (productFormEvent is WeightNumberChanged) {
+      weightNumberChanged?.call(productFormEvent);
+    } else if (productFormEvent is WeightUnitChanged) {
+      weightUnitChanged?.call(productFormEvent);
     } else if (productFormEvent is PriceChanged) {
       priceChanged?.call(productFormEvent);
+    } else if (productFormEvent is CurrencyChanged) {
+      currencyChanged?.call(productFormEvent);
     } else if (productFormEvent is ProductDescriptionChanged) {
       productDescriptionChanged?.call(productFormEvent);
     } else if (productFormEvent is IngredientsChanged) {
       ingredientsChanged?.call(productFormEvent);
     } else if (productFormEvent is PhotosFilesChanged) {
       photosFilesChanged?.call();
-    } else if (productFormEvent is PhotosUrlsChanged) {
-      photosUrlsChanged?.call(productFormEvent);
     } else if (productFormEvent is ProductFound) {
       productFound?.call(productFormEvent);
     } else if (productFormEvent is Saved) {
@@ -541,7 +584,7 @@ abstract class ProductFormEvent {
   }
 }
 
-/// (([CategoryChanged] : [ProductFormEvent]) categoryChanged){[Category] category}
+/// (([CategoryChanged] : [ProductFormEvent]) categoryChanged){[Categories] category}
 ///
 /// with data equality
 @immutable
@@ -550,7 +593,7 @@ class CategoryChanged extends ProductFormEvent with EquatableMixin {
     required this.category,
   }) : super._internal();
 
-  final Category category;
+  final Categories category;
 
   @override
   String toString() => 'ProductFormEvent.categoryChanged(category: $category)';
@@ -561,7 +604,7 @@ class CategoryChanged extends ProductFormEvent with EquatableMixin {
       ];
 }
 
-/// (([ProductNameChanged] : [ProductFormEvent]) productNameChanged){[ProductName] productName}
+/// (([ProductNameChanged] : [ProductFormEvent]) productNameChanged){[String] productName}
 ///
 /// with data equality
 @immutable
@@ -570,7 +613,7 @@ class ProductNameChanged extends ProductFormEvent with EquatableMixin {
     required this.productName,
   }) : super._internal();
 
-  final ProductName productName;
+  final String productName;
 
   @override
   String toString() =>
@@ -582,7 +625,7 @@ class ProductNameChanged extends ProductFormEvent with EquatableMixin {
       ];
 }
 
-/// (([BrandNameChanged] : [ProductFormEvent]) brandNameChanged){[BrandName] brandName}
+/// (([BrandNameChanged] : [ProductFormEvent]) brandNameChanged){[String] brandName}
 ///
 /// with data equality
 @immutable
@@ -591,7 +634,7 @@ class BrandNameChanged extends ProductFormEvent with EquatableMixin {
     required this.brandName,
   }) : super._internal();
 
-  final BrandName brandName;
+  final String brandName;
 
   @override
   String toString() =>
@@ -603,27 +646,49 @@ class BrandNameChanged extends ProductFormEvent with EquatableMixin {
       ];
 }
 
-/// (([WeightChanged] : [ProductFormEvent]) weightChanged){[Weight] weight}
+/// (([WeightNumberChanged] : [ProductFormEvent]) weightNumberChanged){[String] weightNumber}
 ///
 /// with data equality
 @immutable
-class WeightChanged extends ProductFormEvent with EquatableMixin {
-  const WeightChanged({
-    required this.weight,
+class WeightNumberChanged extends ProductFormEvent with EquatableMixin {
+  const WeightNumberChanged({
+    required this.weightNumber,
   }) : super._internal();
 
-  final Weight weight;
+  final String weightNumber;
 
   @override
-  String toString() => 'ProductFormEvent.weightChanged(weight: $weight)';
+  String toString() =>
+      'ProductFormEvent.weightNumberChanged(weightNumber: $weightNumber)';
 
   @override
   List<Object?> get props => [
-        weight,
+        weightNumber,
       ];
 }
 
-/// (([PriceChanged] : [ProductFormEvent]) priceChanged){[Price] price}
+/// (([WeightUnitChanged] : [ProductFormEvent]) weightUnitChanged){[WeightUnits] weightUnit}
+///
+/// with data equality
+@immutable
+class WeightUnitChanged extends ProductFormEvent with EquatableMixin {
+  const WeightUnitChanged({
+    required this.weightUnit,
+  }) : super._internal();
+
+  final WeightUnits weightUnit;
+
+  @override
+  String toString() =>
+      'ProductFormEvent.weightUnitChanged(weightUnit: $weightUnit)';
+
+  @override
+  List<Object?> get props => [
+        weightUnit,
+      ];
+}
+
+/// (([PriceChanged] : [ProductFormEvent]) priceChanged){[String] price}
 ///
 /// with data equality
 @immutable
@@ -632,7 +697,7 @@ class PriceChanged extends ProductFormEvent with EquatableMixin {
     required this.price,
   }) : super._internal();
 
-  final Price price;
+  final String price;
 
   @override
   String toString() => 'ProductFormEvent.priceChanged(price: $price)';
@@ -643,7 +708,27 @@ class PriceChanged extends ProductFormEvent with EquatableMixin {
       ];
 }
 
-/// (([ProductDescriptionChanged] : [ProductFormEvent]) productDescriptionChanged){[ProductDescription] productDescription}
+/// (([CurrencyChanged] : [ProductFormEvent]) currencyChanged){[Currencies] currency}
+///
+/// with data equality
+@immutable
+class CurrencyChanged extends ProductFormEvent with EquatableMixin {
+  const CurrencyChanged({
+    required this.currency,
+  }) : super._internal();
+
+  final Currencies currency;
+
+  @override
+  String toString() => 'ProductFormEvent.currencyChanged(currency: $currency)';
+
+  @override
+  List<Object?> get props => [
+        currency,
+      ];
+}
+
+/// (([ProductDescriptionChanged] : [ProductFormEvent]) productDescriptionChanged){[String] productDescription}
 ///
 /// with data equality
 @immutable
@@ -652,7 +737,7 @@ class ProductDescriptionChanged extends ProductFormEvent with EquatableMixin {
     required this.productDescription,
   }) : super._internal();
 
-  final ProductDescription productDescription;
+  final String productDescription;
 
   @override
   String toString() =>
@@ -664,7 +749,7 @@ class ProductDescriptionChanged extends ProductFormEvent with EquatableMixin {
       ];
 }
 
-/// (([IngredientsChanged] : [ProductFormEvent]) ingredientsChanged){[ProductDescription] ingredients}
+/// (([IngredientsChanged] : [ProductFormEvent]) ingredientsChanged){[String] ingredients}
 ///
 /// with data equality
 @immutable
@@ -673,7 +758,7 @@ class IngredientsChanged extends ProductFormEvent with EquatableMixin {
     required this.ingredients,
   }) : super._internal();
 
-  final ProductDescription ingredients;
+  final String ingredients;
 
   @override
   String toString() =>
@@ -699,27 +784,6 @@ class PhotosFilesChanged extends ProductFormEvent with EquatableMixin {
 
   @override
   List<Object?> get props => [];
-}
-
-/// (([PhotosUrlsChanged] : [ProductFormEvent]) photosUrlsChanged){[NonEmptyList5<ShopifyUrl>] photosUrls}
-///
-/// with data equality
-@immutable
-class PhotosUrlsChanged extends ProductFormEvent with EquatableMixin {
-  const PhotosUrlsChanged({
-    required this.photosUrls,
-  }) : super._internal();
-
-  final NonEmptyList5<ShopifyUrl> photosUrls;
-
-  @override
-  String toString() =>
-      'ProductFormEvent.photosUrlsChanged(photosUrls: $photosUrls)';
-
-  @override
-  List<Object?> get props => [
-        photosUrls,
-      ];
 }
 
 /// (([ProductFound] : [ProductFormEvent]) productFound){[Product] product}

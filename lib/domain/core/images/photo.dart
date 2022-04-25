@@ -46,8 +46,7 @@ class ShopLogo extends Photo {
   static const int minWidth = Photo.minWidth;
 
   ShopLogo.empty()
-      : super._(left(ValueFailure.core(CoreValueFailure.empty(
-            failedValue: File.fromRawPath(Uint8List.fromList([]))))));
+      : super._(left(const ValueFailure.core(CoreValueFailure.empty())));
 
   ShopLogo(File file)
       : super._(
@@ -63,8 +62,7 @@ class ProductPhoto extends Photo {
   static const int minWidth = Photo.minWidth;
 
   ProductPhoto.empty()
-      : super._(left(ValueFailure.core(CoreValueFailure.empty(
-            failedValue: File.fromRawPath(Uint8List.fromList([]))))));
+      : super._(left(const ValueFailure.core(CoreValueFailure.empty())));
 
   ProductPhoto(File file)
       : super._(

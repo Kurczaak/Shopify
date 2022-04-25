@@ -38,7 +38,7 @@ class ValueFailure<T> with _$ValueFailure<T> {
               '$fieldName too short. At least $min characters',
           stringDoesntContainKeyword: (_, keyword) =>
               'Incorrect $fieldName. It should contain \'$keyword\'',
-          empty: (_) => '$fieldName should not be empty',
+          empty: () => '$fieldName should not be empty',
           multiline: (_) => '$fieldName cannot be multiline',
           nonNumeric: (_) => '$fieldName is not a numeric value',
           noNumericValuePresent: (_) =>

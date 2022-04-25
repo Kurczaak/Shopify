@@ -59,7 +59,7 @@ void main() async {
 
   group('categoryChanged', () {
     // arrange
-    final category = Category(Categories.fish);
+    const category = Categories.fish;
     blocTest<ProductFormBloc, ProductFormState>(
       'should emit state with modified product category',
       build: () => ProductFormBloc(
@@ -74,14 +74,15 @@ void main() async {
           bloc.add(ProductFormEvent.categoryChanged(category: category)),
       expect: () => [
         initialState.copyWith(
-            productForm: tInitialProduct.copyWith(category: category))
+            productForm: tInitialProduct.copyWith(category: Category(category)))
       ],
     );
   });
 
   group('productNameChanged', () {
     // arrange
-    final productName = ProductName('New Product Name');
+    const productNameStr = 'New Product Name';
+    final productName = ProductName(productNameStr);
     blocTest(
       'should emit state with modified product name',
       build: () => ProductFormBloc(
@@ -93,7 +94,7 @@ void main() async {
       ),
       seed: () => initialState,
       act: (ProductFormBloc bloc) => bloc.add(
-        ProductFormEvent.productNameChanged(productName: productName),
+        ProductFormEvent.productNameChanged(productName: productNameStr),
       ),
       expect: () => [
         initialState.copyWith(
@@ -104,7 +105,8 @@ void main() async {
 
   group('brandNameChanged', () {
     // arrange
-    final brandName = BrandName('New Brand Name');
+    var brandNameStr = 'New Brand Name';
+    final brandName = BrandName(brandNameStr);
     blocTest(
       'should emit state with modified product name',
       build: () => ProductFormBloc(
@@ -116,7 +118,7 @@ void main() async {
       ),
       seed: () => initialState,
       act: (ProductFormBloc bloc) => bloc.add(
-        ProductFormEvent.brandNameChanged(brandName: brandName),
+        ProductFormEvent.brandNameChanged(brandName: brandNameStr),
       ),
       expect: () => [
         initialState.copyWith(
@@ -127,7 +129,9 @@ void main() async {
 
   group('weightChanged', () {
     // arrange
-    final weight = Weight.fromPrimitives(99.2, 'gram');
+    const weightNumberStr = '99.2';
+    const weightNumber = 99.2;
+    final weight = Weight.fromPrimitives(weightNumber, 'gram');
     blocTest(
       'should emit state with modified weight',
       build: () => ProductFormBloc(
@@ -139,7 +143,7 @@ void main() async {
       ),
       seed: () => initialState,
       act: (ProductFormBloc bloc) => bloc.add(
-        ProductFormEvent.weightChanged(weight: weight),
+        ProductFormEvent.weightNumberChanged(weightNumber: weightNumberStr),
       ),
       expect: () => [
         initialState.copyWith(
@@ -150,7 +154,9 @@ void main() async {
 
   group('priceChanged', () {
     // arrange
-    final price = Price.fromPrimitives(10, 'gram');
+    const priceStr = '10.0';
+    const priceDouble = 10.0;
+    final price = Price.fromPrimitives(priceDouble, 'gram');
     blocTest(
       'should emit state with modified price',
       build: () => ProductFormBloc(
@@ -162,7 +168,7 @@ void main() async {
       ),
       seed: () => initialState,
       act: (ProductFormBloc bloc) => bloc.add(
-        ProductFormEvent.priceChanged(price: price),
+        ProductFormEvent.priceChanged(price: priceStr),
       ),
       expect: () => [
         initialState.copyWith(
@@ -173,8 +179,9 @@ void main() async {
 
   group('productDescriptionChanged', () {
     // arrange
-    final productDescription = ProductDescription(
-        'This is an exemplary, yet valid product description');
+    const descriptionStr =
+        'This is an exemplary, yet valid product description';
+    final productDescription = ProductDescription(descriptionStr);
     blocTest(
       'should emit state with modified productDescription',
       build: () => ProductFormBloc(
@@ -187,7 +194,7 @@ void main() async {
       seed: () => initialState,
       act: (ProductFormBloc bloc) => bloc.add(
         ProductFormEvent.productDescriptionChanged(
-            productDescription: productDescription),
+            productDescription: descriptionStr),
       ),
       expect: () => [
         initialState.copyWith(
@@ -198,8 +205,9 @@ void main() async {
   });
   group('ingredientsChanged', () {
     // arrange
-    final ingredients = ProductDescription(
-        'Salt, Almonds, Olive Oil \n May contain a lot of bugs');
+    const ingredientsStr =
+        'Salt, Almonds, Olive Oil \n May contain a lot of bugs';
+    final ingredients = ProductDescription(ingredientsStr);
     blocTest(
       'should emit state with modified ingredients',
       build: () => ProductFormBloc(
@@ -211,7 +219,7 @@ void main() async {
       ),
       seed: () => initialState,
       act: (ProductFormBloc bloc) => bloc.add(
-        ProductFormEvent.ingredientsChanged(ingredients: ingredients),
+        ProductFormEvent.ingredientsChanged(ingredients: ingredientsStr),
       ),
       expect: () => [
         initialState.copyWith(

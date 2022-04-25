@@ -36,9 +36,7 @@ Either<ValueFailure<KtList<T>>, KtList<T>> validateListNotEmpty<T>(
   if (input.size > 0) {
     return right(input);
   } else {
-    return left(ValueFailure.core(CoreValueFailure.empty(
-      failedValue: input,
-    )));
+    return left(const ValueFailure.core(CoreValueFailure.empty()));
   }
 }
 
@@ -81,8 +79,8 @@ Either<ValueFailure<String>, String> validateMinStringLength(
 Either<ValueFailure<String>, String> validateStringNotEmpty(String input) {
   final noWhiteCharsStr = input.replaceAll(' ', '');
   if (noWhiteCharsStr.isEmpty) {
-    return left(ValueFailure.core(
-      CoreValueFailure.empty(failedValue: input),
+    return left(const ValueFailure.core(
+      CoreValueFailure.empty(),
     ));
   } else {
     return right(input);

@@ -1,5 +1,4 @@
 import 'package:kt_dart/kt.dart';
-import 'package:shopify_manager/domain/shop/value_failures.dart';
 import 'package:shopify_manager/domain/core/value_failures.dart';
 import 'package:shopify_manager/domain/core/failures.dart';
 import 'package:shopify_manager/domain/core/value_validators.dart';
@@ -124,7 +123,7 @@ void main() {
             result,
             left(
               const ValueFailure.core(
-                CoreValueFailure.empty(failedValue: emptyString),
+                CoreValueFailure.empty(),
               ),
             ),
           );
