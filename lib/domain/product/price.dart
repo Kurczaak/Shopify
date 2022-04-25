@@ -36,3 +36,14 @@ enum Currencies {
   zl,
   eur,
 }
+
+@override
+extension StringifyExtension on Currencies {
+  String get stringify {
+    if (this == Currencies.zl) {
+      return 'Zł';
+    } else {
+      return name.replaceRange(0, 1, name[0].toUpperCase());
+    }
+  }
+}

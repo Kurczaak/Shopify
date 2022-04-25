@@ -4,11 +4,13 @@ import 'package:barcode_widget/barcode_widget.dart' as barcodeWidget;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopify_manager/application/product/product_form/product_form_bloc.dart';
 import 'package:shopify_manager/domain/core/enum_stringify_extension.dart';
+import 'package:shopify_manager/domain/product/price.dart';
 import 'package:shopify_manager/domain/product/product.dart';
 import 'package:shopify_manager/domain/product/product_categories.dart';
 import 'package:shopify_manager/domain/product/value_objects.dart';
 import 'package:shopify_manager/domain/product/weight.dart';
 import 'package:shopify_manager/injection.dart';
+import 'package:shopify_manager/presentation/core/widgets/photos_carousel_slider.dart';
 import 'package:shopify_manager/presentation/core/widgets/shopify_buttons.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:shopify_manager/presentation/core/widgets/shopify_dropdown_menu_button.dart';
@@ -28,7 +30,7 @@ class DebugPage extends StatefulWidget {
 
 class _DebugPageState extends State<DebugPage> {
   final CarouselController _controller = CarouselController();
-  int _current = 0;
+  final int _current = 0;
   final _productNameController = TextEditingController();
   final _brandNameController = TextEditingController();
   final _weightController = TextEditingController();
@@ -154,55 +156,49 @@ class _DebugPageState extends State<DebugPage> {
                         const SizedBox(
                           height: DebugPage.itemsSpacing,
                         ),
-                        SizedBox(
-                          height: 70,
-                          child: Row(
-                            children: [
-                              Expanded(
-                                child: ShopifyTextFormField(
-                                  keyboardType: TextInputType.number,
-                                  controller: _weightController,
-                                  fieldName: 'Net Weight',
-                                  showErrorMessages: state.showErrors,
-                                  validator: (_) => state
-                                      .productForm.weight.failureOrUnit
-                                      .fold(
-                                          (failure) =>
-                                              failure.stringifyValueFailure(
-                                                  fieldName: 'Net Weight'),
-                                          (_) => null),
-                                  onChanged: (value) {
-                                    context.read<ProductFormBloc>().add(
-                                        ProductFormEvent.weightNumberChanged(
-                                            weightNumber: value));
-                                  },
-                                ),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: ShopifyTextFormField(
+                                keyboardType: TextInputType.number,
+                                controller: _weightController,
+                                fieldName: 'Net Weight',
+                                showErrorMessages: state.showErrors,
+                                validator: (_) =>
+                                    state.productForm.weight.failureOrUnit.fold(
+                                        (failure) =>
+                                            failure.stringifyValueFailure(
+                                                fieldName: 'Net Weight'),
+                                        (_) => null),
+                                onChanged: (value) {
+                                  context.read<ProductFormBloc>().add(
+                                      ProductFormEvent.weightNumberChanged(
+                                          weightNumber: value));
+                                },
                               ),
-                              SizedBox(
-                                width: 100,
-                                child: ShopifyDropdownMenuButton<WeightUnits>(
-                                    initalText: 'Choose weight unit',
-                                    onChanged: (newValue) {
-                                      context.read<ProductFormBloc>().add(
-                                          ProductFormEvent.weightUnitChanged(
-                                              weightUnit: newValue));
-                                    },
-                                    initialValue: WeightUnits.gram,
-                                    items: WeightUnits.values
-                                        .map((unit) => ShopifyDropdownMenuItem(
-                                              value: unit,
-                                              valueString: unit.symbol,
-                                            ))
-                                        .toList()),
-                              )
-                            ],
-                          ),
+                            ),
+                            const SizedBox(
+                              width: DebugPage.itemsSpacing,
+                            ),
+                            SizedBox(
+                              width: 100,
+                              child: ShopifyDropdownMenuButton<WeightUnits>(
+                                  initalText: 'Choose weight unit',
+                                  onChanged: (newValue) {
+                                    context.read<ProductFormBloc>().add(
+                                        ProductFormEvent.weightUnitChanged(
+                                            weightUnit: newValue));
+                                  },
+                                  initialValue: WeightUnits.gram,
+                                  items: WeightUnits.values
+                                      .map((unit) => ShopifyDropdownMenuItem(
+                                            value: unit,
+                                            valueString: unit.symbol,
+                                          ))
+                                      .toList()),
+                            )
+                          ],
                         ),
-                        const SizedBox(
-                          height: DebugPage.itemsSpacing,
-                        ),
-                        // ShopifyTextFormField(
-                        //     fieldName: 'Price', onChanged: (_) {}),
                         const SizedBox(
                           height: DebugPage.itemsSpacing,
                         ),
@@ -245,153 +241,77 @@ class _DebugPageState extends State<DebugPage> {
                         const SizedBox(
                           height: DebugPage.itemsSpacing,
                         ),
-                        // ShopifyIconTextButton(
-                        //     title: 'Photos',
-                        //     subtitle: 'Upload product\'s photos',
-                        //     icon: Icons.photo,
-                        //     error: !state.productForm.photos.isValid(),
-                        //     onPressed: () {
-                        //       context
-                        //           .read<ProductFormBloc>()
-                        //           .add(const ProductFormEvent.photosChanged());
-                        //     }),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: ShopifyTextFormField(
+                                  fieldName: 'Price',
+                                  showErrorMessages: state.showErrors,
+                                  validator: (_) => state
+                                      .productForm.price.failureOrUnit
+                                      .fold(
+                                          (failure) =>
+                                              failure.stringifyValueFailure(
+                                                  fieldName: 'Price'),
+                                          (_) => null),
+                                  onChanged: (value) {
+                                    context.read<ProductFormBloc>().add(
+                                        ProductFormEvent.priceChanged(
+                                            price: value));
+                                  }),
+                            ),
+                            const SizedBox(
+                              width: DebugPage.itemsSpacing,
+                            ),
+                            SizedBox(
+                              width: 100,
+                              child: ShopifyDropdownMenuButton<Currencies>(
+                                  initalText: 'Choose Currency',
+                                  onChanged: (newValue) {
+                                    context.read<ProductFormBloc>().add(
+                                        ProductFormEvent.currencyChanged(
+                                            currency: newValue));
+                                  },
+                                  initialValue: Currencies.zl,
+                                  items: Currencies.values
+                                      .map((currency) =>
+                                          ShopifyDropdownMenuItem<Currencies>(
+                                            value: currency,
+                                            valueString: currency.stringify,
+                                          ))
+                                      .toList()),
+                            )
+                          ],
+                        ),
                         const SizedBox(
                           height: DebugPage.itemsSpacing,
                         ),
+                        state.productForm.photos.fold(
+                          (shopifyUrls) => shopifyUrls.failureOrUnit.fold(
+                              (failure) => Container(),
+                              (_) => PhotosCarouselSlider.network(
+                                  shopifyUrls.getOrCrash())),
+                          (photos) => photos.failureOrUnit.fold(
+                              (failure) => Container(),
+                              (_) => PhotosCarouselSlider.photos(
+                                  photos.getOrCrash())),
+                        ),
+                        const SizedBox(
+                          height: DebugPage.itemsSpacing,
+                        ),
+                        ShopifyIconTextButton(
+                            title: 'Photos',
+                            subtitle: 'Upload product\'s photos',
+                            icon: Icons.photo,
+                            error: !state.productForm.photos
+                                .fold((l) => l.isValid(), (r) => r.isValid()),
+                            onPressed: () {
+                              context.read<ProductFormBloc>().add(
+                                  const ProductFormEvent.photosFilesChanged());
+                            })
                       ],
                     ),
                   ),
-                  state.productForm.photos.fold((urls) {
-                    if (urls.failureOrUnit.isRight()) {
-                      return Column(
-                        children: [
-                          CarouselSlider.builder(
-                            carouselController: _controller,
-                            itemCount: urls.length,
-                            itemBuilder: (context, index, pageViewIndex) =>
-                                Container(
-                              margin: const EdgeInsets.all(5.0),
-                              child: ClipRRect(
-                                  borderRadius: const BorderRadius.all(
-                                      Radius.circular(5.0)),
-                                  child: Stack(
-                                    children: <Widget>[
-                                      Image.network(
-                                        urls
-                                            .getOrCrash()
-                                            .get(index)
-                                            .getOrCrash(),
-                                        fit: BoxFit.fitWidth,
-                                      ),
-                                      Positioned(
-                                        bottom: 0.0,
-                                        left: 0.0,
-                                        right: 0.0,
-                                        child: Container(
-                                          decoration: const BoxDecoration(
-                                            gradient: LinearGradient(
-                                              colors: [
-                                                Color.fromARGB(200, 0, 0, 0),
-                                                Color.fromARGB(0, 0, 0, 0)
-                                              ],
-                                              begin: Alignment.bottomCenter,
-                                              end: Alignment.topCenter,
-                                            ),
-                                          ),
-                                          padding: const EdgeInsets.symmetric(
-                                              vertical: 10.0, horizontal: 20.0),
-                                          child: Text(
-                                            '#${index + 1}',
-                                            style: const TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 20.0,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  )),
-                            ),
-                            options: CarouselOptions(
-                              onPageChanged: (index, reason) {
-                                setState(() {
-                                  _current = index;
-                                });
-                              },
-                              aspectRatio: 2.0,
-                              enableInfiniteScroll: false,
-                              autoPlay: false,
-                              enlargeCenterPage: true,
-                              viewportFraction: 0.5,
-                              initialPage: 0,
-                            ),
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: urls
-                                .getOrCrash()
-                                .asList()
-                                .asMap()
-                                .entries
-                                .map((entry) {
-                              return GestureDetector(
-                                onTap: () =>
-                                    _controller.animateToPage(entry.key),
-                                child: Container(
-                                  width: 12.0,
-                                  height: 12.0,
-                                  margin: const EdgeInsets.symmetric(
-                                      vertical: 8.0, horizontal: 4.0),
-                                  decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      color: (Theme.of(context).brightness ==
-                                                  Brightness.dark
-                                              ? Colors.white
-                                              : Theme.of(context).primaryColor)
-                                          .withOpacity(_current == entry.key
-                                              ? 0.9
-                                              : 0.4)),
-                                ),
-                              );
-                            }).toList(),
-                          ),
-                          ShopifyIconTextButton(
-                              title: 'Photos',
-                              subtitle: 'Upload product\'s photos',
-                              icon: Icons.photo,
-                              error: !state.productForm.photos
-                                  .fold((l) => l.isValid(), (r) => r.isValid()),
-                              onPressed: () {
-                                context.read<ProductFormBloc>().add(
-                                    const ProductFormEvent
-                                        .photosFilesChanged());
-                              })
-                        ],
-                      );
-                    } else {
-                      return ShopifyIconTextButton(
-                          title: 'Photos',
-                          subtitle: 'Upload product\'s photos',
-                          icon: Icons.photo,
-                          error: !state.productForm.photos
-                              .fold((l) => l.isValid(), (r) => r.isValid()),
-                          onPressed: () {
-                            context.read<ProductFormBloc>().add(
-                                const ProductFormEvent.photosFilesChanged());
-                          });
-                    }
-                  },
-                      (filePhotos) => ShopifyIconTextButton(
-                          title: 'Photos',
-                          subtitle: 'Upload product\'s photos',
-                          icon: Icons.photo,
-                          error: !state.productForm.photos
-                              .fold((l) => l.isValid(), (r) => r.isValid()),
-                          onPressed: () {
-                            context.read<ProductFormBloc>().add(
-                                const ProductFormEvent.photosFilesChanged());
-                          })),
                   Padding(
                     padding: const EdgeInsets.all(28.0),
                     child: SizedBox(
