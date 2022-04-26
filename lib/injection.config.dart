@@ -20,12 +20,13 @@ import 'application/auth/sign_in_form/sign_in_form_bloc.dart' as _i24;
 import 'application/product/barcode_camera_scanner/barcode_camera_scanner_bloc.dart'
     as _i3;
 import 'application/product/product_form/product_form_bloc.dart' as _i32;
+import 'application/product/search_product/search_product_bloc.dart' as _i33;
 import 'application/shop/shop_actor/shop_actor_bloc.dart' as _i22;
 import 'application/shop/shop_form/shop_form_bloc.dart' as _i19;
 import 'application/shop/shop_location_picker/shop_location_picker_bloc.dart'
     as _i20;
-import 'application/shop/shop_logo_picker/shop_logo_picker_bloc.dart' as _i33;
-import 'application/shop/shop_registration/shop_registration_bloc.dart' as _i34;
+import 'application/shop/shop_logo_picker/shop_logo_picker_bloc.dart' as _i34;
+import 'application/shop/shop_registration/shop_registration_bloc.dart' as _i35;
 import 'application/shop/shop_time_picker/shop_time_picker_bloc.dart' as _i21;
 import 'application/shop/shop_watcher/shop_watcher_bloc.dart' as _i23;
 import 'domain/auth/i_auth_facade.dart' as _i9;
@@ -38,9 +39,9 @@ import 'domain/product/open_food_facts/i_open_food_facts_repository.dart'
 import 'domain/shop/i_shop_repository.dart' as _i13;
 import 'infrastructure/auth/firebase_auth_facade.dart' as _i10;
 import 'infrastructure/core/images/image_picker_image_facade.dart' as _i27;
-import 'infrastructure/core/images/image_picker_injectable_module.dart' as _i37;
-import 'infrastructure/core/injectable_module.dart' as _i35;
-import 'infrastructure/core/location/location_injectable_module.dart' as _i36;
+import 'infrastructure/core/images/image_picker_injectable_module.dart' as _i38;
+import 'infrastructure/core/injectable_module.dart' as _i36;
+import 'infrastructure/core/location/location_injectable_module.dart' as _i37;
 import 'infrastructure/core/network/network_info.dart' as _i18;
 import 'infrastructure/product/barcode_scanner/mobile_scanner_barcode_scanner_facade_impl.dart'
     as _i12;
@@ -107,22 +108,24 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       productRepository: get<_i30.IProductRepository>(),
       shopRepository: get<_i13.IShopRepository>(),
       authFacade: get<_i9.IAuthFacade>()));
-  gh.lazySingleton<_i33.ShopLogoPickerBloc>(
-      () => _i33.ShopLogoPickerBloc(get<_i26.IImageFacade>()));
-  gh.lazySingleton<_i34.ShopRegistrationBloc>(
-      () => _i34.ShopRegistrationBloc(
+  gh.factory<_i33.SearchProductBloc>(
+      () => _i33.SearchProductBloc(get<_i28.IOpenFoodFactsRepository>()));
+  gh.lazySingleton<_i34.ShopLogoPickerBloc>(
+      () => _i34.ShopLogoPickerBloc(get<_i26.IImageFacade>()));
+  gh.lazySingleton<_i35.ShopRegistrationBloc>(
+      () => _i35.ShopRegistrationBloc(
           shopFormBloc: get<_i19.ShopFormBloc>(),
           shopLocationPickerBloc: get<_i20.ShopLocationPickerBloc>(),
           shopTimePickerBloc: get<_i21.ShopTimePickerBloc>(),
-          shopLogoPickerBloc: get<_i33.ShopLogoPickerBloc>(),
+          shopLogoPickerBloc: get<_i34.ShopLogoPickerBloc>(),
           locationInfo: get<_i17.LocationInfo>(),
           shopRepository: get<_i13.IShopRepository>()),
-      dispose: _i34.disposeBloc);
+      dispose: _i35.disposeBloc);
   return get;
 }
 
-class _$FirebaseInjectableModule extends _i35.FirebaseInjectableModule {}
+class _$FirebaseInjectableModule extends _i36.FirebaseInjectableModule {}
 
-class _$GeocodingInjectableModule extends _i36.GeocodingInjectableModule {}
+class _$GeocodingInjectableModule extends _i37.GeocodingInjectableModule {}
 
-class _$ImagePikcerInjectableModule extends _i37.ImagePikcerInjectableModule {}
+class _$ImagePikcerInjectableModule extends _i38.ImagePikcerInjectableModule {}

@@ -43,13 +43,8 @@ void main() {
         act: (SearchProductBloc bloc) => bloc.add(
             const SearchProductEvent.searchForProduct(barcode: barcodeString)),
         expect: () => [
-              SearchProductState(
-                  isLoading: true,
-                  failureOption: none(),
-                  productOption: none(),
-                  productExists: false),
-              SearchProductState(
-                  isLoading: false,
+              const Loading(),
+              Loaded(
                   failureOption: none(),
                   productOption: some(fixtureProduct),
                   productExists: false),
@@ -66,13 +61,8 @@ void main() {
                   (_) async => left(const ProductFailure.productNotFound()));
         },
         expect: () => [
-              SearchProductState(
-                  isLoading: true,
-                  failureOption: none(),
-                  productOption: none(),
-                  productExists: false),
-              SearchProductState(
-                  isLoading: false,
+              const Loading(),
+              Loaded(
                   failureOption: some(const ProductFailure.productNotFound()),
                   productOption: none(),
                   productExists: false),
@@ -88,13 +78,8 @@ void main() {
                   left(const ProductFailure.timeout(timeoutDuration)));
         },
         expect: () => [
-              SearchProductState(
-                  isLoading: true,
-                  failureOption: none(),
-                  productOption: none(),
-                  productExists: false),
-              SearchProductState(
-                  isLoading: false,
+              const Loading(),
+              Loaded(
                   failureOption:
                       some(const ProductFailure.timeout(timeoutDuration)),
                   productOption: none(),

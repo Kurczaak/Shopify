@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:shopify_manager/presentation/debug_dashboard_page.dart';
 import 'package:shopify_manager/presentation/debug_page.dart';
+import 'package:shopify_manager/presentation/product/product_searching_screen.dart';
 import 'package:shopify_manager/presentation/product/scanner/scanner_widget.dart';
 import 'package:shopify_manager/presentation/register_shop/logo_picker/logo_picker_page.dart';
 import 'package:shopify_manager/presentation/register_shop/registration_wrapping_page.dart';
@@ -34,6 +35,9 @@ import 'package:shopify_manager/presentation/splash/splash_page.dart';
     ),
     AutoRoute(
       page: BarcodeScannerWidget,
+    ),
+    AutoRoute(
+      page: ProductSearchingScreen,
     ),
     AutoRoute(
       page: RegistrationWrappingPage,
