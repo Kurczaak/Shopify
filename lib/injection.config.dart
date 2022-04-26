@@ -114,6 +114,7 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => _i34.ShopLogoPickerBloc(get<_i26.IImageFacade>()));
   gh.lazySingleton<_i35.ShopRegistrationBloc>(
       () => _i35.ShopRegistrationBloc(
+          authFacade: get<_i9.IAuthFacade>(),
           shopFormBloc: get<_i19.ShopFormBloc>(),
           shopLocationPickerBloc: get<_i20.ShopLocationPickerBloc>(),
           shopTimePickerBloc: get<_i21.ShopTimePickerBloc>(),

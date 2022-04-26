@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
+import 'package:shopify_manager/domain/auth/i_auth_facade.dart';
 import 'package:shopify_manager/domain/core/images/photo.dart';
 import 'package:shopify_manager/domain/core/location.dart';
 import 'package:shopify_manager/domain/core/location/location_info.dart';
@@ -36,6 +37,7 @@ FutureOr disposeBloc(ShopRegistrationBloc bloc) {
 @LazySingleton(dispose: disposeBloc)
 class ShopRegistrationBloc
     extends Bloc<ShopRegistrationEvent, ShopRegistrationState> {
+  final IAuthFacade authFacade;
   final ShopFormBloc shopFormBloc;
   final ShopLocationPickerBloc shopLocationPickerBloc;
   final ShopTimePickerBloc shopTimePickerBloc;
@@ -49,6 +51,7 @@ class ShopRegistrationBloc
   late final StreamSubscription _shopLogoPickerBlocSubscription;
 
   ShopRegistrationBloc({
+    required this.authFacade,
     required this.shopFormBloc,
     required this.shopLocationPickerBloc,
     required this.shopTimePickerBloc,
@@ -123,17 +126,27 @@ class ShopRegistrationBloc
           emit(state.copyWith(
             isSaving: true,
           ));
-          final failureOrUnit = await shopRepository.create(state.shop,
-              state.shopLogo.getOrElse(() => throw UnimplementedError()));
-          failureOrUnit.fold(
-              (f) => emit(state.copyWith(
+          final userOption = await authFacade.getSignedInUser();
+          await userOption.fold(
+              () async => emit(state.copyWith(
                     isSaving: false,
-                    saveFailureOrSuccessOption: some(left(f)),
-                  )),
-              (r) => emit(state.copyWith(
-                    isSaving: false,
-                    saveFailureOrSuccessOption: some(right(r)),
-                  )));
+                    saveFailureOrSuccessOption:
+                        some(left(const ShopFailure.insufficientPermission())),
+                  )), (user) async {
+            final failureOrUnit = await shopRepository.create(
+                state.shop,
+                state.shopLogo.getOrElse(() => throw UnimplementedError()),
+                user);
+            failureOrUnit.fold(
+                (f) => emit(state.copyWith(
+                      isSaving: false,
+                      saveFailureOrSuccessOption: some(left(f)),
+                    )),
+                (r) => emit(state.copyWith(
+                      isSaving: false,
+                      saveFailureOrSuccessOption: some(right(r)),
+                    )));
+          });
         },
       );
     });

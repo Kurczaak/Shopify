@@ -3,6 +3,7 @@ import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
+import 'package:shopify_manager/domain/auth/user.dart';
 import 'package:shopify_manager/domain/core/images/photo.dart';
 import 'package:shopify_manager/domain/core/value_objects.dart';
 import 'package:shopify_manager/domain/shop/i_shop_repository.dart';
@@ -22,7 +23,8 @@ class FirebaseShopRepositoryImpl implements IShopRepository {
   FirebaseShopRepositoryImpl(this._firestore, this._storage);
 
   @override
-  Future<Either<ShopFailure, Unit>> create(Shop shop, ShopLogo logo) async {
+  Future<Either<ShopFailure, Unit>> create(
+      Shop shop, ShopLogo logo, ShopifyUser user) async {
     try {
       final taskSnapshot = await _storage.shopLogosReference
           .child(shop.id.getOrCrash())

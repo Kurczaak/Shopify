@@ -6,6 +6,8 @@ import 'package:shopify_manager/application/shop/shop_location_picker/shop_locat
 import 'package:shopify_manager/application/shop/shop_logo_picker/shop_logo_picker_bloc.dart';
 import 'package:shopify_manager/application/shop/shop_registration/shop_registration_bloc.dart';
 import 'package:shopify_manager/application/shop/shop_time_picker/shop_time_picker_bloc.dart';
+import 'package:shopify_manager/domain/auth/i_auth_facade.dart';
+import 'package:shopify_manager/domain/auth/user.dart';
 import 'package:shopify_manager/domain/core/address.dart';
 import 'package:shopify_manager/domain/core/errors.dart';
 import 'package:shopify_manager/domain/core/images/photo.dart';
@@ -44,7 +46,10 @@ class MockLocationInfo extends Mock implements LocationInfo {}
 
 class MockIShopRepository extends Mock implements IShopRepository {}
 
+class MockIAuthFacade extends Mock implements IAuthFacade {}
+
 void main() async {
+  late MockIAuthFacade mockAuthFacade;
   late MockShopFormBloc mockShopFormBloc;
   late MockShopTimePickerBloc mockShopTimePickerBloc;
   late MockShopLocationPickerBloc mockShopLocationPickerBloc;
@@ -87,6 +92,7 @@ void main() async {
   final tTooSmallShopLogo = ShopLogo(tTooSmallLogo);
 
   setUp(() {
+    mockAuthFacade = MockIAuthFacade();
     mockShopFormBloc = MockShopFormBloc();
     mockShopTimePickerBloc = MockShopTimePickerBloc();
     mockShopLocationPickerBloc = MockShopLocationPickerBloc();
@@ -95,6 +101,7 @@ void main() async {
     mockShopRepository = MockIShopRepository();
 
     shopRegistrationBloc = ShopRegistrationBloc(
+        authFacade: mockAuthFacade,
         shopFormBloc: mockShopFormBloc,
         shopLocationPickerBloc: mockShopLocationPickerBloc,
         shopLogoPickerBloc: mockShopLogoPickerBloc,
@@ -120,6 +127,7 @@ void main() async {
           ]),
         );
         final bloc = ShopRegistrationBloc(
+            authFacade: mockAuthFacade,
             shopFormBloc: mockShopFormBloc,
             shopLocationPickerBloc: mockShopLocationPickerBloc,
             shopLogoPickerBloc: mockShopLogoPickerBloc,
@@ -213,6 +221,7 @@ void main() async {
           ]),
         );
         final bloc = ShopRegistrationBloc(
+            authFacade: mockAuthFacade,
             shopFormBloc: mockShopFormBloc,
             shopLocationPickerBloc: mockShopLocationPickerBloc,
             shopLogoPickerBloc: mockShopLogoPickerBloc,
@@ -242,6 +251,7 @@ void main() async {
           ]),
         );
         final bloc = ShopRegistrationBloc(
+            authFacade: mockAuthFacade,
             shopFormBloc: mockShopFormBloc,
             shopLocationPickerBloc: mockShopLocationPickerBloc,
             shopLogoPickerBloc: mockShopLogoPickerBloc,
@@ -274,6 +284,7 @@ void main() async {
           ]),
         );
         final bloc = ShopRegistrationBloc(
+            authFacade: mockAuthFacade,
             shopFormBloc: mockShopFormBloc,
             shopLocationPickerBloc: mockShopLocationPickerBloc,
             shopLogoPickerBloc: mockShopLogoPickerBloc,
@@ -304,6 +315,7 @@ void main() async {
           ]),
         );
         final bloc = ShopRegistrationBloc(
+            authFacade: mockAuthFacade,
             shopFormBloc: mockShopFormBloc,
             shopLocationPickerBloc: mockShopLocationPickerBloc,
             shopLogoPickerBloc: mockShopLogoPickerBloc,
@@ -330,6 +342,7 @@ void main() async {
           ]),
         );
         final bloc = ShopRegistrationBloc(
+            authFacade: mockAuthFacade,
             shopFormBloc: mockShopFormBloc,
             shopLocationPickerBloc: mockShopLocationPickerBloc,
             shopLogoPickerBloc: mockShopLogoPickerBloc,
@@ -353,6 +366,7 @@ void main() async {
             ]),
             initialState: ShopLogoPickerState.loaded(logo: tTooSmallShopLogo));
         return ShopRegistrationBloc(
+            authFacade: mockAuthFacade,
             shopFormBloc: mockShopFormBloc,
             shopLocationPickerBloc: mockShopLocationPickerBloc,
             shopLogoPickerBloc: mockShopLogoPickerBloc,
@@ -365,13 +379,47 @@ void main() async {
   });
 
   group('shopSaved', () {
+    final tUser = ShopifyUser(id: UniqueId());
+    setUp(() {
+      when(() => mockAuthFacade.getSignedInUser())
+          .thenAnswer((_) async => some(tUser));
+    });
+
+    blocTest('should emit [LOADING] and [ERROR] when user not signed in',
+        build: () => shopRegistrationBloc,
+        setUp: () {
+          when(() => mockAuthFacade.getSignedInUser())
+              .thenAnswer((_) async => none());
+        },
+        seed: () => shopRegistrationBloc.state.copyWith(
+              shop: tShop,
+              shopLogo: some(tShopLogo),
+              saveFailureOrSuccessOption: none(),
+            ),
+        act: (ShopRegistrationBloc bloc) =>
+            bloc.add(const ShopRegistrationEvent.shopSaved()),
+        expect: () => [
+              shopRegistrationBloc.state.copyWith(
+                isSaving: true,
+                shop: tShop,
+                shopLogo: some(tShopLogo),
+                saveFailureOrSuccessOption: none(),
+              ),
+              shopRegistrationBloc.state.copyWith(
+                isSaving: false,
+                saveFailureOrSuccessOption:
+                    some(left(const ShopFailure.insufficientPermission())),
+                shop: tShop,
+                shopLogo: some(tShopLogo),
+              ),
+            ]);
     blocTest(
       'should emit saving and saved states when shop has been successfully uploaded',
       build: () => shopRegistrationBloc,
       act: (ShopRegistrationBloc bloc) =>
           bloc.add(const ShopRegistrationEvent.shopSaved()),
       setUp: () {
-        when(() => mockShopRepository.create(tShop, tShopLogo))
+        when(() => mockShopRepository.create(tShop, tShopLogo, tUser))
             .thenAnswer((_) async => right(unit));
       },
       seed: () => shopRegistrationBloc.state.copyWith(
@@ -392,7 +440,7 @@ void main() async {
       act: (ShopRegistrationBloc bloc) =>
           bloc.add(const ShopRegistrationEvent.shopSaved()),
       setUp: () {
-        when(() => mockShopRepository.create(tShop, tShopLogo))
+        when(() => mockShopRepository.create(tShop, tShopLogo, tUser))
             .thenAnswer((_) async => left(const ShopFailure.unexpected()));
       },
       seed: () => shopRegistrationBloc.state.copyWith(
@@ -418,11 +466,12 @@ void main() async {
               shopLogo: some(tShopLogo),
             ),
         setUp: () {
-          when(() => mockShopRepository.create(tShop, tShopLogo))
+          when(() => mockShopRepository.create(tShop, tShopLogo, tUser))
               .thenAnswer((_) async => right(unit));
         },
         verify: (bloc) {
-          verify(() => mockShopRepository.create(tShop, tShopLogo)).called(1);
+          verify(() => mockShopRepository.create(tShop, tShopLogo, tUser))
+              .called(1);
         });
   });
 }
