@@ -8,9 +8,12 @@ extension FirestoreX on FirebaseFirestore {
   Future<DocumentReference> userDocument() async {
     final userOption = await getIt<IAuthFacade>().getSignedInUser();
     final user = userOption.getOrElse(() => throw NotAuthenticatedError());
-    return FirebaseFirestore.instance
-        .collection('users')
-        .doc(user.id.getOrCrash());
+    return collection('users').doc(user.id.getOrCrash());
+  }
+
+  Future<CollectionReference> userShops() async {
+    final userDoc = await userDocument();
+    return userDoc.shopCollection;
   }
 
   CollectionReference get usersCollection => collection('users');

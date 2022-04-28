@@ -1,9 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:get_it/get_it.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:shopify_manager/domain/auth/i_auth_facade.dart';
+import 'package:shopify_manager/domain/auth/user.dart';
 import 'package:shopify_manager/domain/core/address.dart';
 import 'package:shopify_manager/domain/core/images/photo.dart';
 import 'package:shopify_manager/domain/core/location.dart';
@@ -30,7 +32,7 @@ import 'firebase_shop_repository_test.mocks.dart';
   FirebaseStorage,
   TaskSnapshot,
   UploadTask,
-  DocumentReference
+  DocumentReference,
 ])
 void main() async {
   final fakeFirestore = FakeFirebaseFirestore();
@@ -38,12 +40,15 @@ void main() async {
   late MockFirebaseStorage mockFirebaseStorage;
   late MockFirebaseFirestore mockFirebaseFirestore;
   late FirebaseShopRepositoryImpl firebaseShopRepository;
+  final MockIAuthFacade mockAuthFacade = MockIAuthFacade();
 
-  late MockCollectionReference<Map<String, dynamic>> mockCollectionReference;
-  late MockDocumentReference<Map<String, dynamic>> mockDocumentReference;
+  late MockCollectionReference<Map<String, dynamic>> shopsCollection;
+  late MockDocumentReference<Map<String, dynamic>> shopDocument;
   late MockReference mockReference;
-  late MockTaskSnapshot mockTaskSnapshot;
-  late MockUploadTask mockUploadTask;
+  late MockCollectionReference<Map<String, dynamic>> usersCollection;
+  late MockDocumentReference<Map<String, dynamic>> userDoc;
+  late MockCollectionReference<Map<String, dynamic>> userShopsCollection;
+  late MockReference uploadedFileReference;
 
   const shopDocumentIdStr = "ad5d60d0-7844-11ec-a53d-03c2fc2917f5";
   const shopNameStr = "Shop Name";
@@ -70,6 +75,8 @@ void main() async {
     workingWeek: Week.empty(),
   );
 
+  final tUser = ShopifyUser(id: UniqueId());
+
   final tShopDto = ShopDto.fromDomain(tShop);
   final logoFile = await getImageFileFromAssets('test_logo.jpg');
   final tShopLogo = ShopLogo(logoFile);
@@ -84,20 +91,34 @@ void main() async {
     firebaseShopRepository =
         FirebaseShopRepositoryImpl(mockFirebaseFirestore, mockFirebaseStorage);
     // helpers
-    mockCollectionReference = MockCollectionReference();
-    mockDocumentReference = MockDocumentReference();
+    shopsCollection = MockCollectionReference();
+    shopDocument = MockDocumentReference();
     mockReference = MockReference();
-    mockTaskSnapshot = MockTaskSnapshot();
-    mockUploadTask = MockUploadTask();
+    usersCollection = MockCollectionReference<Map<String, dynamic>>();
+    userDoc = MockDocumentReference<Map<String, dynamic>>();
+    userShopsCollection = MockCollectionReference<Map<String, dynamic>>();
+    uploadedFileReference = MockReference();
   });
 
-  void _setUpStorage(MockFirebaseStorage storage, String logoUrl) {
-    final newReference = MockReference();
-    when(storage.ref(any)).thenReturn(mockReference);
+  void _setUpStorage() {
+    when(mockFirebaseStorage.ref(any)).thenReturn(mockReference);
     when(mockReference.child(any)).thenReturn(mockReference);
     when(mockReference.putFile(any))
-        .thenAnswer((_) => fake.MockUploadTask(newReference));
-    when(newReference.getDownloadURL()).thenAnswer((_) async => logoUrl);
+        .thenAnswer((_) => fake.MockUploadTask(uploadedFileReference));
+    when(uploadedFileReference.getDownloadURL())
+        .thenAnswer((_) async => logoUrlStr);
+  }
+
+  GetIt.instance.registerSingleton<IAuthFacade>(mockAuthFacade);
+
+  void _setUpFirestore() {
+    when(mockAuthFacade.getSignedInUser()).thenAnswer((_) async => some(tUser));
+    when(mockFirebaseFirestore.collection('shops')).thenReturn(shopsCollection);
+    when(shopsCollection.doc(any)).thenReturn(shopDocument);
+    when(shopDocument.set(any)).thenAnswer((_) async => shopDcumentReference);
+    when(mockFirebaseFirestore.collection('users')).thenReturn(usersCollection);
+    when(usersCollection.doc(tUser.id.getOrCrash())).thenReturn(userDoc);
+    when(userDoc.collection('shops')).thenReturn(userShopsCollection);
   }
 
   test(
@@ -105,21 +126,17 @@ void main() async {
     () async {
       // arrange
       final newFakeFirestore = FakeFirebaseFirestore();
-      final newReference = MockReference();
-      when(mockFirebaseStorage.ref(any)).thenReturn(mockReference);
-      when(mockReference.child(any)).thenReturn(mockReference);
-      when(mockReference.putFile(any))
-          .thenAnswer((_) => fake.MockUploadTask(newReference));
-      when(newReference.getDownloadURL()).thenAnswer((_) async => logoUrlStr);
-
       final listener = newFakeFirestore.collection('shops').snapshots();
+      _setUpFirestore();
+      _setUpStorage();
+
       // act
       await FirebaseShopRepositoryImpl(newFakeFirestore, mockFirebaseStorage)
-          .create(tShop, tShopLogo);
+          .create(tShop, tShopLogo, tUser);
       // assert
       verify(mockFirebaseStorage.ref('images/shop_logos')).called(1);
       verify(mockReference.putFile(tShopLogo.getOrCrash())).called(1);
-      verify(newReference.getDownloadURL()).called(1);
+      verify(uploadedFileReference.getDownloadURL()).called(1);
       listener.listen(expectAsync1((snap) {
         for (var doc in snap.docs) {
           expect(doc.data()['logoUrl'], equals(logoUrlStr));
@@ -132,15 +149,10 @@ void main() async {
     'should get shops collection, then add a new shop to it',
     () async {
       // arrange
-      final imageReference = MockReference();
-      when(mockFirebaseFirestore.collection('shops'))
-          .thenReturn(mockCollectionReference);
-      when(mockCollectionReference.doc(any)).thenReturn(mockDocumentReference);
-      when(mockDocumentReference.set(any))
-          .thenAnswer((_) async => shopDcumentReference);
-      _setUpStorage(mockFirebaseStorage, logoUrlStr);
+      _setUpFirestore();
+      _setUpStorage();
       // act
-      await firebaseShopRepository.create(tShop, tShopLogo);
+      await firebaseShopRepository.create(tShop, tShopLogo, tUser);
       // assert
       verify(mockFirebaseFirestore.collection('shops')).called(1);
     },
@@ -148,14 +160,13 @@ void main() async {
 
   test('should add shop to the collection', () async {
     // arrange
-    _setUpStorage(mockFirebaseStorage, logoUrlStr);
+    _setUpStorage();
     final fakeFirebase = FakeFirebaseFirestore();
-    firebaseShopRepository =
-        FirebaseShopRepositoryImpl(fakeFirebase, mockFirebaseStorage);
+    _setUpFirestore();
     // act
     final listener = fakeFirebase.collection('shops').snapshots();
 
-    await firebaseShopRepository.create(tShop, tShopLogo);
+    await firebaseShopRepository.create(tShop, tShopLogo, tUser);
     // assert
     listener.listen(expectAsync1((snap) {
       for (var doc in snap.docs) {
@@ -166,14 +177,10 @@ void main() async {
 
   test('should return right(unit) when succesfully added a new shop', () async {
     // arrange
-    _setUpStorage(mockFirebaseStorage, logoUrlStr);
-    when(mockFirebaseFirestore.collection('shops'))
-        .thenReturn(mockCollectionReference);
-    when(mockCollectionReference.doc(any)).thenReturn(mockDocumentReference);
-    when(mockDocumentReference.set(any))
-        .thenAnswer((_) async => shopDcumentReference);
+    _setUpStorage();
+    _setUpFirestore();
     // act
-    final result = await firebaseShopRepository.create(tShop, tShopLogo);
+    final result = await firebaseShopRepository.create(tShop, tShopLogo, tUser);
     // assert
     expect(result, right(unit));
   });
@@ -182,18 +189,15 @@ void main() async {
     'should return ShopFailure when unknown PlatformException is thrown',
     () async {
       // arrange
-      _setUpStorage(mockFirebaseStorage, logoUrlStr);
-      final MockCollectionReference<Map<String, dynamic>> ref =
-          MockCollectionReference();
-      when(mockFirebaseFirestore.collection('shops'))
-          .thenReturn(mockCollectionReference);
-      when(mockCollectionReference.doc(any)).thenReturn(mockDocumentReference);
-      when(mockDocumentReference.set(any)).thenThrow(FirebaseException(
+      _setUpStorage();
+      _setUpFirestore();
+      when(shopDocument.set(any)).thenThrow(FirebaseException(
         plugin: '1',
         code: 'unknown',
       ));
       // act
-      final result = await firebaseShopRepository.create(tShop, tShopLogo);
+      final result =
+          await firebaseShopRepository.create(tShop, tShopLogo, tUser);
       // assert
       expect(result, left(const ShopFailure.unexpected()));
     },
@@ -203,16 +207,15 @@ void main() async {
     'should return ShopFailure when PERMISSION_DENIED PlatformException is thrown',
     () async {
       // arrange
-      _setUpStorage(mockFirebaseStorage, logoUrlStr);
-      when(mockFirebaseFirestore.collection('shops'))
-          .thenReturn(mockCollectionReference);
-      when(mockCollectionReference.doc(any)).thenReturn(mockDocumentReference);
-      when(mockDocumentReference.set(any)).thenThrow(FirebaseException(
+      _setUpStorage();
+      _setUpFirestore();
+      when(shopDocument.set(any)).thenThrow(FirebaseException(
         plugin: '1',
         code: 'permission-denied',
       ));
       // act
-      final result = await firebaseShopRepository.create(tShop, tShopLogo);
+      final result =
+          await firebaseShopRepository.create(tShop, tShopLogo, tUser);
       // assert
       expect(result, left(const ShopFailure.insufficientPermission()));
     },
@@ -222,17 +225,42 @@ void main() async {
     'should return ShopFailure if firebase uploading timed out',
     () async {
       // arrange
-      _setUpStorage(mockFirebaseStorage, logoUrlStr);
-      when(mockFirebaseFirestore.collection('shops'))
-          .thenReturn(mockCollectionReference);
-      when(mockCollectionReference.doc(any)).thenReturn(mockDocumentReference);
-      when(mockDocumentReference.set(any)).thenAnswer((_) {
+      _setUpStorage();
+      _setUpFirestore();
+      when(shopDocument.set(any)).thenAnswer((_) {
         return Future.delayed(const Duration(seconds: 10));
       });
       // act
-      final result = await firebaseShopRepository.create(tShop, tShopLogo);
+      final result =
+          await firebaseShopRepository.create(tShop, tShopLogo, tUser);
       // assert
       expect(result, left(const ShopFailure.timeout(timeoutDuration)));
+    },
+  );
+
+  test(
+    'should get user\'s shops collection',
+    () async {
+      // arrange
+      _setUpFirestore();
+      _setUpStorage();
+      // act
+      await firebaseShopRepository.create(tShop, tShopLogo, tUser);
+      // assert
+      verify(userDoc.collection('shops'));
+    },
+  );
+
+  test(
+    'should add the shop to user\'s shops collection',
+    () async {
+      // arrange
+      _setUpFirestore();
+      _setUpStorage();
+      // act
+      await firebaseShopRepository.create(tShop, tShopLogo, tUser);
+      // assert
+      //userShopsCollection.doc(tShop.id.getOrCrash()).set(data)
     },
   );
 }

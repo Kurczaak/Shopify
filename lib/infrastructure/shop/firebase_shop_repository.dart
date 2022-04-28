@@ -40,12 +40,12 @@ class FirebaseShopRepositoryImpl implements IShopRepository {
           .doc(shop.id.getOrCrash())
           .set(ShopDto.fromDomain(shopWithUpdatedLogo).toJson())
           .timeout(timeoutDuration);
+      final userShopsCollection = await _firestore.userShops();
+      //userShopsCollection.
+
       return right(unit);
     } on FirebaseException catch (e) {
       //TODO log this error
-
-      // log.error(e.toString());
-
       if (e.code.contains('permission-denied')) {
         return left(const ShopFailure.insufficientPermission());
       } else {
@@ -55,24 +55,6 @@ class FirebaseShopRepositoryImpl implements IShopRepository {
       return left(const ShopFailure.timeout(timeoutDuration));
     }
   }
-
-  // @override
-  // Future<Either<ShopFailure, Unit>> create(Shop shop) async {
-  //   try {
-  //     final userDoc = await _firestore.userDocument();
-  //     final shopDto = ShopDto.fromDomain(shop);
-  //     await userDoc.shopCollection.doc(shopDto.id).set(shopDto.toJson());
-  //     return right(unit);
-  //   } on PlatformException catch (e) {
-  //     if (e.message != null && e.message!.contains('PERMISSION_DENIED')) {
-  //       return left(const ShopFailure.insufficientPermission());
-  //     } else {
-  //       //TODO log this error
-  //       // log.error(e.toString());
-  //       return left(const ShopFailure.unexpected());
-  //     }
-  //   }
-  // }
 
   @override
   Future<Either<ShopFailure, Unit>> delete(Shop shop) async {
