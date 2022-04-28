@@ -153,4 +153,27 @@ class FirebaseShopRepositoryImpl implements IShopRepository {
     // TODO: implement watchNearby
     throw UnimplementedError();
   }
+
+  @override
+  Stream<Either<ShopFailure, KtList<Shop>>> watchYourShops() async* {
+    final shops = await _firestore.userShops();
+    yield* shops
+        .snapshots()
+        .map(
+          (snapshot) => right<ShopFailure, KtList<Shop>>(
+            snapshot.docs
+                .map((doc) => ShopDto.fromFirestore(doc).toDomain())
+                .toImmutableList(),
+          ),
+        )
+        .onErrorReturnWith((e, _) {
+      if (e is FirebaseException && e.code.contains('permission-denied')) {
+        return left(const ShopFailure.insufficientPermission());
+      } else {
+        //TODO log this error
+        // log.error(e.toString());
+        return left(const ShopFailure.unexpected());
+      }
+    });
+  }
 }

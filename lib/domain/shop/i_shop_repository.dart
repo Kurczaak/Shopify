@@ -12,8 +12,10 @@ abstract class IShopRepository {
   // CUD
   Stream<Either<ShopFailure, KtList<Shop>>> watchAll();
   Stream<Either<ShopFailure, KtList<Shop>>> watchNearby();
+  Stream<Either<ShopFailure, KtList<Shop>>> watchYourShops();
   Future<Either<ShopFailure, Unit>> create(
       Shop shop, ShopLogo logo, ShopifyUser user);
+
   Future<Either<ShopFailure, Unit>> update(Shop shop);
   Future<Either<ShopFailure, Unit>> delete(Shop shop);
 }
