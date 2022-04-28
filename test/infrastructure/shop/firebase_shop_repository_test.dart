@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -49,6 +51,8 @@ void main() async {
   late MockDocumentReference<Map<String, dynamic>> userDoc;
   late MockCollectionReference<Map<String, dynamic>> userShopsCollection;
   late MockReference uploadedFileReference;
+  late MockDocumentReference<Map<String, dynamic>> userShopDocument;
+  late MockDocumentReference<Map<String, dynamic>> userUploadedShopDocument;
 
   const shopDocumentIdStr = "ad5d60d0-7844-11ec-a53d-03c2fc2917f5";
   const shopNameStr = "Shop Name";
@@ -98,6 +102,8 @@ void main() async {
     userDoc = MockDocumentReference<Map<String, dynamic>>();
     userShopsCollection = MockCollectionReference<Map<String, dynamic>>();
     uploadedFileReference = MockReference();
+    userShopDocument = MockDocumentReference<Map<String, dynamic>>();
+    userUploadedShopDocument = MockDocumentReference<Map<String, dynamic>>();
   });
 
   void _setUpStorage() {
@@ -119,6 +125,10 @@ void main() async {
     when(mockFirebaseFirestore.collection('users')).thenReturn(usersCollection);
     when(usersCollection.doc(tUser.id.getOrCrash())).thenReturn(userDoc);
     when(userDoc.collection('shops')).thenReturn(userShopsCollection);
+    when(userShopsCollection.doc(tShop.id.getOrCrash()))
+        .thenReturn(userShopDocument);
+    when(userShopDocument.set(tShopDto.toJson()))
+        .thenAnswer((_) async => userUploadedShopDocument);
   }
 
   test(
@@ -260,7 +270,51 @@ void main() async {
       // act
       await firebaseShopRepository.create(tShop, tShopLogo, tUser);
       // assert
-      //userShopsCollection.doc(tShop.id.getOrCrash()).set(data)
+      verify(userShopDocument.set(ShopDto.fromDomain(tShop).toJson()));
+    },
+  );
+
+  test(
+    'should not add to user\'s collection if failed to add the shop',
+    () async {
+      // arrange
+      _setUpFirestore();
+      _setUpStorage();
+      when(shopDocument.set(tShopDto.toJson()))
+          .thenThrow(TimeoutException('timed out'));
+      // act
+      await firebaseShopRepository.create(tShop, tShopLogo, tUser);
+      // assert
+      verifyNever(userShopDocument.set(ShopDto.fromDomain(tShop).toJson()));
+    },
+  );
+  test(
+    'should delete shop\'s logo if failed to add the shop to the shops collection',
+    () async {
+      // arrange
+      _setUpFirestore();
+      _setUpStorage();
+      when(shopDocument.set(tShopDto.toJson()))
+          .thenThrow(TimeoutException('timed out'));
+      // act
+      await firebaseShopRepository.create(tShop, tShopLogo, tUser);
+      // assert
+      verify(uploadedFileReference.delete());
+    },
+  );
+
+  test(
+    'should delete shop if failed to add the shop to the shops collection',
+    () async {
+      // arrange
+      _setUpFirestore();
+      _setUpStorage();
+      when(shopDocument.set(tShopDto.toJson()))
+          .thenThrow(TimeoutException('timed out'));
+      // act
+      await firebaseShopRepository.create(tShop, tShopLogo, tUser);
+      // assert
+      verify(shopDocument.delete());
     },
   );
 }

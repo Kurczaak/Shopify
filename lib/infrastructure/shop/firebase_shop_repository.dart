@@ -22,9 +22,22 @@ class FirebaseShopRepositoryImpl implements IShopRepository {
 
   FirebaseShopRepositoryImpl(this._firestore, this._storage);
 
+  Future<void> _deleteFileAndDocument(
+      {Reference? fileReference, DocumentReference? docReference}) async {
+    if (fileReference != null) {
+      await fileReference.delete();
+    }
+    if (docReference != null) {
+      await docReference.delete();
+    }
+  }
+
   @override
   Future<Either<ShopFailure, Unit>> create(
       Shop shop, ShopLogo logo, ShopifyUser user) async {
+    Reference? uploadedLogoReference;
+    DocumentReference? shopReference;
+
     try {
       final taskSnapshot = await _storage.shopLogosReference
           .child(shop.id.getOrCrash())
@@ -32,26 +45,31 @@ class FirebaseShopRepositoryImpl implements IShopRepository {
           .timeout(timeoutDuration, onTimeout: () {
         throw TimeoutException('Connection timeout ', timeoutDuration);
       });
-
-      final uploadUrl = await taskSnapshot.ref.getDownloadURL();
+      uploadedLogoReference = taskSnapshot.ref;
+      final uploadUrl = await uploadedLogoReference.getDownloadURL();
       final shopWithUpdatedLogo = shop.copyWith(logoUrl: ShopifyUrl(uploadUrl));
       final shopsCollection = _firestore.shopsCollection;
-      await shopsCollection
-          .doc(shop.id.getOrCrash())
+      shopReference = shopsCollection.doc(shop.id.getOrCrash());
+      await shopReference
           .set(ShopDto.fromDomain(shopWithUpdatedLogo).toJson())
           .timeout(timeoutDuration);
       final userShopsCollection = await _firestore.userShops();
-      //userShopsCollection.
-
+      userShopsCollection
+          .doc(shop.id.getOrCrash())
+          .set(ShopDto.fromDomain(shopWithUpdatedLogo).toJson())
+          .timeout(timeoutDuration);
       return right(unit);
     } on FirebaseException catch (e) {
-      //TODO log this error
+      await _deleteFileAndDocument(
+          fileReference: uploadedLogoReference, docReference: shopReference);
       if (e.code.contains('permission-denied')) {
         return left(const ShopFailure.insufficientPermission());
       } else {
         return left(const ShopFailure.unexpected());
       }
     } on TimeoutException catch (_) {
+      await _deleteFileAndDocument(
+          fileReference: uploadedLogoReference, docReference: shopReference);
       return left(const ShopFailure.timeout(timeoutDuration));
     }
   }
