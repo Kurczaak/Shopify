@@ -101,7 +101,7 @@ class AppRouter extends _i14.RootStackRouter {
 
   @override
   List<_i14.RouteConfig> get routes => [
-        _i14.RouteConfig(DebugRoute.name, path: '/'),
+        _i14.RouteConfig(DebugRoute.name, path: '/debug-page'),
         _i14.RouteConfig(SplashRoute.name, path: '/splash-page'),
         _i14.RouteConfig(SignInRoute.name, path: '/sign-in-page'),
         _i14.RouteConfig(SignUpRoute.name, path: '/sign-up-page'),
@@ -137,7 +137,7 @@ class DebugRoute extends _i14.PageRouteInfo<DebugRouteArgs> {
   DebugRoute(
       {_i15.Key? key, required _i16.Barcode barcode, _i17.Product? product})
       : super(DebugRoute.name,
-            path: '/',
+            path: '/debug-page',
             args: DebugRouteArgs(key: key, barcode: barcode, product: product));
 
   static const String name = 'DebugRoute';

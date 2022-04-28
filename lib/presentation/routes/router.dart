@@ -18,7 +18,6 @@ import 'package:shopify_manager/presentation/splash/splash_page.dart';
   routes: <AutoRoute>[
     AutoRoute(
       page: DebugPage,
-      initial: true,
     ),
     AutoRoute(
       page: SplashPage,
