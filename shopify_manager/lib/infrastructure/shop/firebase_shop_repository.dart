@@ -28,7 +28,9 @@ class FirebaseShopRepositoryImpl implements IShopRepository {
       await fileReference.delete();
     }
     if (docReference != null) {
-      await docReference.delete();
+      try {
+        await docReference.delete();
+      } catch (_) {}
     }
   }
 
