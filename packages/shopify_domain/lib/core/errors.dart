@@ -1,4 +1,4 @@
-import 'package:shopify_manager/domain/core/failures.dart';
+import 'package:shopify_domain/core/failures.dart';
 
 class NotAuthenticatedError extends Error {}
 
