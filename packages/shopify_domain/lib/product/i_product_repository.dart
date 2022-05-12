@@ -1,9 +1,9 @@
 import 'package:dartz/dartz.dart';
-import 'package:shopify_manager/domain/product/product.dart';
-import 'package:shopify_manager/domain/product/product_failure.dart';
-import 'package:shopify_manager/domain/product/product_form.dart';
-import 'package:shopify_manager/domain/product/value_objects.dart';
-import 'package:shopify_manager/domain/shop/shop.dart';
+import 'package:shopify_domain/product/product.dart';
+import 'package:shopify_domain/product/product_failure.dart';
+import 'package:shopify_domain/product/product_form.dart';
+import 'package:shopify_domain/product/value_objects.dart';
+import 'package:shopify_domain/shop/shop.dart';
 
 abstract class IProductRepository {
 // watch Products
