@@ -2,10 +2,10 @@ import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kt_dart/collection.dart';
-import 'package:shopify_manager/domain/core/failures.dart';
-import 'package:shopify_manager/domain/core/value_objects.dart';
-import 'package:shopify_manager/domain/core/value_validators.dart';
-import 'package:shopify_manager/domain/product/weight.dart';
+import 'package:shopify_domain/core/failures.dart';
+import 'package:shopify_domain/core/value_objects.dart';
+import 'package:shopify_domain/core/value_validators.dart';
+import 'package:shopify_domain/product/weight.dart';
 
 class NutrientName extends Name {
   static const maxLength = 50;
