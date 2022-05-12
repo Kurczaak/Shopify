@@ -1,9 +1,9 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:shopify_manager/domain/auth/value_objects.dart';
-import 'package:shopify_manager/domain/core/value_failures.dart';
-import 'package:shopify_manager/domain/product/value_failures.dart';
-import '../auth/value_failures.dart';
-import '../shop/value_failures.dart';
+import 'package:shopify_domain/auth/value_objects.dart';
+import 'package:shopify_domain/core/value_failures.dart';
+import 'package:shopify_domain/product/value_failures.dart';
+import 'package:shopify_domain/auth/value_failures.dart';
+import 'package:shopify_domain/shop/value_failures.dart';
 
 part 'failures.freezed.dart';
 
@@ -57,11 +57,3 @@ class ValueFailure<T> with _$ValueFailure<T> {
     );
   }
 }
-
-// @freezed
-// class CoreValueFailure<T> with _$CoreValueFailure<T> {
-//   const factory CoreValueFailure.incorrectAddress({required T input}) =
-//       IncorrectAddress<T>;
-// }
-
-
