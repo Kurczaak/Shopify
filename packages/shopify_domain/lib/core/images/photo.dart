@@ -1,11 +1,10 @@
 import 'dart:io';
-import 'dart:typed_data';
 import 'package:dartz/dartz.dart';
-import 'package:shopify_manager/domain/core/errors.dart';
-import 'package:shopify_manager/domain/core/failures.dart';
-import 'package:shopify_manager/domain/core/images/validators.dart';
-import 'package:shopify_manager/domain/core/value_objects.dart';
-import 'package:shopify_manager/domain/core/value_failures.dart';
+import 'package:shopify_domain/core/errors.dart';
+import 'package:shopify_domain/core/failures.dart';
+import 'package:shopify_domain/core/images/validators.dart';
+import 'package:shopify_domain/core/value_objects.dart';
+import 'package:shopify_domain/core/value_failures.dart';
 
 class Photo extends ValueObject<File> {
   static const int maxHeight = 5000;
