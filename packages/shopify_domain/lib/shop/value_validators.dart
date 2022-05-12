@@ -1,7 +1,7 @@
 // ignore_for_file: import_of_legacy_library_into_null_safe
 
 import 'package:dartz/dartz.dart';
-import 'package:shopify_manager/domain/shop/time/week.dart';
+import 'package:shopify_domain/shop/time/week.dart';
 import '../core/failures.dart';
 import 'value_failures.dart';
 

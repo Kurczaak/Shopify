@@ -19,8 +19,12 @@ dependencies:
   image_size_getter: ^2.1.1
   kt_dart: ^0.10.0
   uuid: ^3.0.6
+  super_enum_sealed_annotations: ^1.4.0
+  injectable: ^1.5.3
+  geocoding: ^2.0.4
 
 dev_dependencies:
+  super_enum_sealed_generators: ^1.4.0
   build_runner: ^2.1.7
   flutter_lints: ^1.0.0
   flutter_test:

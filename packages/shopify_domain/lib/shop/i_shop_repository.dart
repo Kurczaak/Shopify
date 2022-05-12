@@ -1,10 +1,10 @@
 import 'package:dartz/dartz.dart';
-import 'package:shopify_manager/domain/auth/user.dart';
-import 'package:shopify_manager/domain/core/images/photo.dart';
-import 'package:shopify_manager/domain/shop/shop.dart';
+import 'package:shopify_domain/auth/user.dart';
+import 'package:shopify_domain/core/images/photo.dart';
+import 'package:shopify_domain/shop/shop.dart';
 
 import 'package:kt_dart/kt.dart';
-import 'package:shopify_manager/domain/shop/shop_failure.dart';
+import 'package:shopify_domain/shop/shop_failure.dart';
 
 abstract class IShopRepository {
   // watch Shops

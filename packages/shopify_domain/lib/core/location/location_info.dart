@@ -4,10 +4,11 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter/services.dart';
 import 'package:geocoding/geocoding.dart' as g;
 import 'package:injectable/injectable.dart';
-import 'package:shopify_manager/domain/core/address.dart';
-import 'package:shopify_manager/domain/core/location.dart';
-import 'package:shopify_manager/domain/core/location/location_failure.dart';
-import 'package:shopify_manager/infrastructure/core/config.dart';
+import 'package:shopify_domain/core/address.dart';
+import 'package:shopify_domain/core/location.dart';
+import 'package:shopify_domain/core/location/location_failure.dart';
+
+const timeoutDuration = Duration(seconds: 5);
 
 abstract class LocationInfo {
   Future<Either<LocationFailure, Location>> getLocationFromAddress(

@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:shopify_manager/domain/core/failures.dart';
-import 'package:shopify_manager/domain/shop/time/day.dart';
-import 'package:shopify_manager/domain/shop/value_validators.dart';
+import 'package:shopify_domain/core/failures.dart';
+import 'package:shopify_domain/shop/time/day.dart';
+import 'package:shopify_domain/shop/value_validators.dart';
 
 part 'week.freezed.dart';
 

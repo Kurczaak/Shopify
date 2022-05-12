@@ -1,10 +1,10 @@
 import 'package:dartz/dartz.dart';
 import 'package:kt_dart/kt.dart';
-import 'package:shopify_manager/domain/core/errors.dart';
-import 'package:shopify_manager/domain/core/failures.dart';
-import 'package:shopify_manager/domain/core/value_objects.dart';
-import 'package:shopify_manager/domain/shop/time/primitive_hour.dart';
-import 'package:shopify_manager/domain/shop/time/time_validators.dart';
+import 'package:shopify_domain/core/errors.dart';
+import 'package:shopify_domain/core/failures.dart';
+import 'package:shopify_domain/core/value_objects.dart';
+import 'package:shopify_domain/shop/time/primitive_hour.dart';
+import 'package:shopify_domain/shop/time/time_validators.dart';
 
 class Hour extends ValueObject<PrimitiveHour> {
   @override
