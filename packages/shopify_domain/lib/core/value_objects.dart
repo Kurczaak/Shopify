@@ -2,12 +2,12 @@ import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:kt_dart/kt.dart';
-import 'package:shopify_manager/domain/core/value_failures.dart';
-import 'package:shopify_manager/domain/core/value_validators.dart';
+import 'package:shopify_domain/core/value_failures.dart';
+import 'package:shopify_domain/core/value_validators.dart';
 import 'package:uuid/uuid.dart';
-import 'package:shopify_manager/domain/core/errors.dart';
+import 'package:shopify_domain/core/errors.dart';
 
-import 'package:shopify_manager/domain/core/failures.dart';
+import 'package:shopify_domain/core/failures.dart';
 
 @immutable
 abstract class ValueObject<T> extends Equatable {
