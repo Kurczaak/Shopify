@@ -1,13 +1,13 @@
+import 'package:bloc_test/bloc_test.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:shopify_client/application/auth/auth_bloc.dart';
-import 'package:shopify_client/domain/auth/i_auth_facade.dart';
-import 'package:mockito/annotations.dart';
-import 'package:shopify_client/domain/auth/user.dart';
-import 'package:shopify_client/domain/core/value_objects.dart';
+import 'package:shopify_domain/auth/i_auth_facade.dart';
+import 'package:shopify_domain/auth/user.dart';
+import 'package:shopify_domain/core/value_objects.dart';
 import 'auth_bloc_test.mocks.dart';
-import 'package:bloc_test/bloc_test.dart';
 
 @GenerateMocks([IAuthFacade])
 void main() {

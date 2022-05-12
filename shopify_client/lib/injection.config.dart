@@ -14,11 +14,11 @@ import 'package:google_sign_in/google_sign_in.dart' as _i8;
 import 'package:image_picker/image_picker.dart' as _i13;
 import 'package:injectable/injectable.dart' as _i2;
 import 'package:location/location.dart' as _i14;
+import 'package:shopify_domain/auth/i_auth_facade.dart' as _i9;
 
 import 'application/auth/auth_bloc.dart' as _i16;
 import 'application/auth/sign_in_form/sign_in_form_bloc.dart' as _i15;
 import 'application/shop_watcher/shop_watcher_bloc.dart' as _i21;
-import 'domain/auth/i_auth_facade.dart' as _i9;
 import 'domain/core/images/i_image_facade.dart' as _i17;
 import 'domain/core/location/i_location_facade.dart' as _i19;
 import 'domain/shopping/i_shop_repository.dart' as _i11;

@@ -4,12 +4,12 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:shopify_client/domain/auth/auth_failure.dart';
-import 'package:shopify_client/domain/auth/user.dart';
-import 'package:shopify_client/domain/auth/value_objects.dart';
-import 'package:shopify_client/domain/core/errors.dart';
-import 'package:shopify_client/domain/core/value_objects.dart';
 import 'package:shopify_client/infrastructure/auth/firebase_auth_facade.dart';
+import 'package:shopify_domain/auth/auth_failure.dart';
+import 'package:shopify_domain/auth/user.dart';
+import 'package:shopify_domain/auth/value_objects.dart';
+import 'package:shopify_domain/core/errors.dart';
+import 'package:shopify_domain/core/value_objects.dart';
 
 import 'firebase_auth_facade_test.mocks.dart';
 
@@ -38,6 +38,7 @@ class MockUser extends Mock implements User {
 
 class FakeUserCredential extends Fake implements UserCredential {}
 
+// ignore: must_be_immutable
 class MockGoogleSignInAccount extends Mock
     with LegacyEquality
     implements GoogleSignInAccount {

@@ -1,9 +1,9 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:shopify_client/domain/auth/user.dart';
-import 'package:shopify_client/domain/core/value_objects.dart';
 import 'package:shopify_client/infrastructure/auth/firebase_user_mapper.dart';
+import 'package:shopify_domain/auth/user.dart';
+import 'package:shopify_domain/core/value_objects.dart';
 
 const uniqueId = 'thisIsAUniqueId123';
 

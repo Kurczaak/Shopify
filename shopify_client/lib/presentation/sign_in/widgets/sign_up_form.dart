@@ -54,7 +54,9 @@ class SignUpForm extends StatelessWidget {
                         labelText: 'name and surname',
                       ),
                       onChanged: (value) {},
-                      validator: (_) {},
+                      validator: (_) {
+                        return null;
+                      },
                     ),
                     const SizedBox(height: 20),
                     TextFormField(
@@ -70,7 +72,9 @@ class SignUpForm extends StatelessWidget {
                       onChanged: (value) => context.read<SignInFormBloc>().add(
                             SignInFormEvent.emailChanged(value),
                           ),
-                      validator: (_) {},
+                      validator: (_) {
+                        return null;
+                      },
                     ),
                     const SizedBox(height: 20),
                     TextFormField(
@@ -86,7 +90,9 @@ class SignUpForm extends StatelessWidget {
                       onChanged: (value) => context.read<SignInFormBloc>().add(
                             SignInFormEvent.passwordChanged(value),
                           ),
-                      validator: (_) {},
+                      validator: (_) {
+                        return null;
+                      },
                     ),
                     const SizedBox(height: 20),
                     SizedBox(
