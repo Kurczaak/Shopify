@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:dartz/dartz.dart';
-import 'package:shopify_manager/domain/core/failures.dart';
-import 'package:shopify_manager/domain/core/value_failures.dart';
+import 'package:shopify_domain/core/failures.dart';
+import 'package:shopify_domain/core/value_failures.dart';
 import 'package:image_size_getter/image_size_getter.dart';
 import 'package:image_size_getter/file_input.dart'; // For compatibility with flutter web.
 
