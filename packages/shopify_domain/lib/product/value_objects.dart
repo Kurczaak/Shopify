@@ -1,11 +1,11 @@
-import 'package:shopify_manager/domain/core/failures.dart';
+import 'package:shopify_domain/core/failures.dart';
 import 'package:dartz/dartz.dart';
-import 'package:shopify_manager/domain/core/value_objects.dart';
-import 'package:shopify_manager/domain/product/price.dart';
-import 'package:shopify_manager/domain/product/product_categories.dart';
-import 'package:shopify_manager/domain/core/value_validators.dart';
-import 'package:shopify_manager/domain/product/value_validators.dart';
-import 'package:shopify_manager/domain/product/weight.dart';
+import 'package:shopify_domain/core/value_objects.dart';
+import 'package:shopify_domain/product/price.dart';
+import 'package:shopify_domain/product/product_categories.dart';
+import 'package:shopify_domain/core/value_validators.dart';
+import 'package:shopify_domain/product/value_validators.dart';
+import 'package:shopify_domain/product/weight.dart';
 
 class ProductName extends Name {
   static const maxLength = 40;
