@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
-import 'package:shopify_manager/domain/auth/user.dart';
-import 'package:shopify_manager/domain/auth/value_objects.dart';
+import 'package:shopify_domain/auth/user.dart';
+import 'package:shopify_domain/auth/value_objects.dart';
 
 import 'auth_failure.dart';
 
