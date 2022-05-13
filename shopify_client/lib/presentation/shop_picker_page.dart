@@ -6,8 +6,8 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:kt_dart/kt.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:shopify_client/application/shop_watcher/shop_watcher_bloc.dart';
-import 'package:shopify_client/domain/core/location/location.dart';
-import 'package:shopify_client/domain/shopping/shop.dart';
+import 'package:shopify_domain/core/location/location.dart';
+import 'package:shopify_domain/shop/shop.dart';
 import 'package:shopify_client/injection.dart';
 import 'package:shopify_client/presentation/core/widgets/shop_preview_dialog.dart';
 import 'package:shopify_client/presentation/core/widgets/shopify_appbar.dart';
@@ -92,7 +92,7 @@ class _ShopPickerPageState extends State<ShopPickerPage> {
                                 'Insufficient Permissions',
                             unableToUpdate: (_) => 'Unable to update',
                             timeout: (_) => 'Connection has timed out',
-                            noLocation: (_) =>
+                            noShopFound: (_) =>
                                 'Your location could not be found'),
                         style: const TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 22),

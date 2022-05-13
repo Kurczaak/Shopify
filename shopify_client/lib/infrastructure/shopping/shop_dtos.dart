@@ -1,8 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:shopify_client/domain/core/address.dart';
-import 'package:shopify_client/domain/core/value_objects.dart';
-import 'package:shopify_client/domain/shopping/shop.dart';
-import 'package:shopify_client/domain/shopping/value_objects.dart';
+import 'package:shopify_domain/core/address.dart';
+import 'package:shopify_domain/core/value_objects.dart';
+import 'package:shopify_domain/shop/shop.dart';
+import 'package:shopify_domain/shop/value_objects.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:shopify_client/infrastructure/core/address_dto.dart';
 import 'package:shopify_client/infrastructure/core/location/location_dtos.dart';
@@ -33,7 +33,7 @@ abstract class ShopDto implements _$ShopDto {
       //serverTimeStamp: FieldValue.serverTimestamp(),
       position: LocationDto.fromDomain(shop.location),
       week: WeekDto.fromDomain(shop.workingWeek),
-      logoUrl: shop.logoUrl,
+      logoUrl: shop.logoUrl.getOrCrash(),
     );
   }
 
@@ -49,7 +49,7 @@ abstract class ShopDto implements _$ShopDto {
         streetName: StreetName(address.streetName),
       ),
       location: position.toDomain(),
-      logoUrl: logoUrl,
+      logoUrl: ShopifyUrl(logoUrl),
       workingWeek: week.toDomain(),
     );
   }

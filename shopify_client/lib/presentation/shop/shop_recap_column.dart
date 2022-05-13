@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:shopify_client/domain/core/images/photo.dart';
-import 'package:shopify_client/domain/shopping/shop.dart';
+import 'package:shopify_domain/core/images/photo.dart';
+import 'package:shopify_domain/shop/shop.dart';
 import 'package:shopify_domain/core/enum_stringify_extension.dart';
 import 'package:shopify_domain/shop/time/week.dart';
 

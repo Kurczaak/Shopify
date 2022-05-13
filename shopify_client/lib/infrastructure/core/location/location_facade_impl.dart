@@ -1,11 +1,11 @@
 import 'package:flutter/services.dart';
 import 'package:injectable/injectable.dart';
-import 'package:shopify_client/domain/core/address.dart';
+import 'package:shopify_domain/core/address.dart';
 import 'package:dartz/dartz.dart';
-import 'package:shopify_client/domain/core/errors.dart';
-import 'package:shopify_client/domain/core/location/i_location_facade.dart';
-import 'package:shopify_client/domain/core/location/location.dart';
-import 'package:shopify_client/domain/core/location/location_failure.dart';
+import 'package:shopify_domain/core/errors.dart';
+import 'package:shopify_domain/core/location/i_location_facade.dart';
+import 'package:shopify_domain/core/location/location.dart';
+import 'package:shopify_domain/core/location/location_failure.dart';
 import 'package:location/location.dart' as loc;
 import 'location_data_mapper.dart';
 
@@ -42,6 +42,13 @@ class LocationFacadeImpl implements ILocationFacade {
   @override
   Future<Either<LocationFailure, Unit>> setUserAddress(Address address) {
     // TODO: implement setUserAddress
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<Either<LocationFailure, Location>> getLocationFromAddress(
+      Address address) {
+    // TODO: implement getLocationFromAddress
     throw UnimplementedError();
   }
 }

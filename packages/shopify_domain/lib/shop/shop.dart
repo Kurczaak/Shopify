@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:shopify_domain/core/address.dart';
 import 'package:shopify_domain/core/failures.dart';
-import 'package:shopify_domain/core/location.dart';
+import 'package:shopify_domain/core/location/location.dart';
 import 'package:shopify_domain/shop/time/week.dart';
 import 'package:shopify_domain/shop/value_objects.dart';
 

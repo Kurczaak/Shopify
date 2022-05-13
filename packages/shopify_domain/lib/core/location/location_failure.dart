@@ -10,4 +10,6 @@ enum _LocationFailure {
   NoLocationFound,
   @object
   Timeout,
+  @object
+  PermissionDenied,
 }

@@ -64,7 +64,6 @@ abstract class $ShopCopyWith<$Res> {
       ShopifyUrl logoUrl});
 
   $AddressCopyWith<$Res> get address;
-  $LocationCopyWith<$Res> get location;
   $WeekCopyWith<$Res> get workingWeek;
 }
 
@@ -121,13 +120,6 @@ class _$ShopCopyWithImpl<$Res> implements $ShopCopyWith<$Res> {
   }
 
   @override
-  $LocationCopyWith<$Res> get location {
-    return $LocationCopyWith<$Res>(_value.location, (value) {
-      return _then(_value.copyWith(location: value));
-    });
-  }
-
-  @override
   $WeekCopyWith<$Res> get workingWeek {
     return $WeekCopyWith<$Res>(_value.workingWeek, (value) {
       return _then(_value.copyWith(workingWeek: value));
@@ -150,8 +142,6 @@ abstract class _$ShopCopyWith<$Res> implements $ShopCopyWith<$Res> {
 
   @override
   $AddressCopyWith<$Res> get address;
-  @override
-  $LocationCopyWith<$Res> get location;
   @override
   $WeekCopyWith<$Res> get workingWeek;
 }

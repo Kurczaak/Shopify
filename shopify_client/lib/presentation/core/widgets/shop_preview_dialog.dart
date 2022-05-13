@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:shopify_client/domain/shopping/shop.dart';
+import 'package:shopify_domain/shop/shop.dart';
 import 'package:shopify_client/presentation/shop/shop_recap_column.dart';
 
 class ShopPreviewDialog extends StatelessWidget {
@@ -34,7 +34,7 @@ class ShopPreviewDialog extends StatelessWidget {
             child: Container(
               padding: const EdgeInsets.all(5),
               height: 100,
-              child: CachedNetworkImage(imageUrl: shop.logoUrl),
+              child: CachedNetworkImage(imageUrl: shop.logoUrl.getOrCrash()),
             ),
             top: -70,
           ),

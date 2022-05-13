@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:kt_dart/kt.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
-import 'package:shopify_client/domain/shopping/shop.dart';
+import 'package:shopify_domain/shop/shop.dart';
 
 class ShopsLogosScrollableList extends StatelessWidget {
   const ShopsLogosScrollableList({
@@ -35,7 +35,7 @@ class ShopsLogosScrollableList extends StatelessWidget {
           child: InkWell(
             onTap: () => onTap(shops[index]),
             child: CachedNetworkImage(
-              imageUrl: shops[index].logoUrl,
+              imageUrl: shops[index].logoUrl.getOrCrash(),
               placeholder: (context, url) => Image.asset('images/logo.png'),
               errorWidget: (context, url, error) => const Icon(Icons.error),
             ),
