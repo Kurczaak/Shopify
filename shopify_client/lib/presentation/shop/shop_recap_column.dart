@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shopify_client/domain/core/images/photo.dart';
 import 'package:shopify_client/domain/shopping/shop.dart';
-import 'package:shopify_client/domain/shopping/time/week.dart';
-import 'package:shopify_client/domain/shopping/time/day.dart';
+import 'package:shopify_domain/core/enum_stringify_extension.dart';
+import 'package:shopify_domain/shop/time/week.dart';
 
 class ShopRecap extends StatefulWidget {
   const ShopRecap({Key? key, required this.shop}) : super(key: key);

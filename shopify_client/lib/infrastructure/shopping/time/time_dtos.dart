@@ -1,8 +1,9 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:shopify_client/domain/shopping/time/value_objects.dart';
-import 'package:shopify_client/domain/shopping/time/week.dart';
-import 'package:shopify_client/domain/shopping/time/day.dart';
-import 'package:shopify_client/domain/shopping/time/primitive_hour.dart';
+import 'package:shopify_domain/core/enum_stringify_extension.dart';
+import 'package:shopify_domain/shop/time/day.dart';
+import 'package:shopify_domain/shop/time/primitive_hour.dart';
+import 'package:shopify_domain/shop/time/value_objects.dart';
+import 'package:shopify_domain/shop/time/week.dart';
 
 part 'time_dtos.freezed.dart';
 part 'time_dtos.g.dart';
