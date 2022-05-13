@@ -4,12 +4,12 @@ import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
-import 'package:shopify_domain/core/images/photo.dart';
-import 'package:shopify_domain/auth/user.dart';
-import 'package:shopify_domain/core/location/location.dart';
-import 'package:shopify_domain/shop/i_shop_repository.dart';
-import 'package:shopify_domain/shop/shop_failure.dart';
-import 'package:shopify_domain/shop/shop.dart';
+import 'package:shopify_domain/core.dart';
+import 'package:shopify_domain/auth.dart';
+import 'package:shopify_domain/core.dart';
+import 'package:shopify_domain/shop.dart';
+import 'package:shopify_domain/shop.dart';
+import 'package:shopify_domain/shop.dart';
 import 'package:shopify_client/infrastructure/shopping/shop_dtos.dart';
 import 'package:rxdart/rxdart.dart';
 

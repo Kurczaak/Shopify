@@ -6,10 +6,7 @@ import 'dart:async' as _i4;
 
 import 'package:dartz/dartz.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:shopify_domain/auth/auth_failure.dart' as _i6;
-import 'package:shopify_domain/auth/i_auth_facade.dart' as _i3;
-import 'package:shopify_domain/auth/user.dart' as _i5;
-import 'package:shopify_domain/auth/value_objects.dart' as _i7;
+import 'package:shopify_domain/auth.dart';
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values

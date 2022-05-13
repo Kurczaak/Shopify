@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:shopify_domain/core/location/location.dart';
+import 'package:shopify_domain/core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:shopify_domain/core/value_transformers.dart';
+import 'package:shopify_domain/core.dart';
 
 part 'location_dtos.freezed.dart';
 part 'location_dtos.g.dart';

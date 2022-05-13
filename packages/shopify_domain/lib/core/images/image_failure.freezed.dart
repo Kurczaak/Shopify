@@ -17,16 +17,16 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$ImageFailureTearOff {
   const _$ImageFailureTearOff();
 
-  Unexpected unexpected() {
-    return const Unexpected();
+  _Unexpected unexpected() {
+    return const _Unexpected();
   }
 
-  NoImageSelected noImageSelected() {
-    return const NoImageSelected();
+  _NoImageSelected noImageSelected() {
+    return const _NoImageSelected();
   }
 
-  InvalidImageSize invalidImageSize() {
-    return const InvalidImageSize();
+  _InvalidImageSize invalidImageSize() {
+    return const _InvalidImageSize();
   }
 }
 
@@ -59,23 +59,23 @@ mixin _$ImageFailure {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Unexpected value) unexpected,
-    required TResult Function(NoImageSelected value) noImageSelected,
-    required TResult Function(InvalidImageSize value) invalidImageSize,
+    required TResult Function(_Unexpected value) unexpected,
+    required TResult Function(_NoImageSelected value) noImageSelected,
+    required TResult Function(_InvalidImageSize value) invalidImageSize,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Unexpected value)? unexpected,
-    TResult Function(NoImageSelected value)? noImageSelected,
-    TResult Function(InvalidImageSize value)? invalidImageSize,
+    TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_NoImageSelected value)? noImageSelected,
+    TResult Function(_InvalidImageSize value)? invalidImageSize,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Unexpected value)? unexpected,
-    TResult Function(NoImageSelected value)? noImageSelected,
-    TResult Function(InvalidImageSize value)? invalidImageSize,
+    TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_NoImageSelected value)? noImageSelected,
+    TResult Function(_InvalidImageSize value)? invalidImageSize,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -98,26 +98,27 @@ class _$ImageFailureCopyWithImpl<$Res> implements $ImageFailureCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class $UnexpectedCopyWith<$Res> {
-  factory $UnexpectedCopyWith(
-          Unexpected value, $Res Function(Unexpected) then) =
-      _$UnexpectedCopyWithImpl<$Res>;
+abstract class _$UnexpectedCopyWith<$Res> {
+  factory _$UnexpectedCopyWith(
+          _Unexpected value, $Res Function(_Unexpected) then) =
+      __$UnexpectedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$UnexpectedCopyWithImpl<$Res> extends _$ImageFailureCopyWithImpl<$Res>
-    implements $UnexpectedCopyWith<$Res> {
-  _$UnexpectedCopyWithImpl(Unexpected _value, $Res Function(Unexpected) _then)
-      : super(_value, (v) => _then(v as Unexpected));
+class __$UnexpectedCopyWithImpl<$Res> extends _$ImageFailureCopyWithImpl<$Res>
+    implements _$UnexpectedCopyWith<$Res> {
+  __$UnexpectedCopyWithImpl(
+      _Unexpected _value, $Res Function(_Unexpected) _then)
+      : super(_value, (v) => _then(v as _Unexpected));
 
   @override
-  Unexpected get _value => super._value as Unexpected;
+  _Unexpected get _value => super._value as _Unexpected;
 }
 
 /// @nodoc
 
-class _$Unexpected implements Unexpected {
-  const _$Unexpected();
+class _$_Unexpected implements _Unexpected {
+  const _$_Unexpected();
 
   @override
   String toString() {
@@ -127,7 +128,7 @@ class _$Unexpected implements Unexpected {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is Unexpected);
+        (other.runtimeType == runtimeType && other is _Unexpected);
   }
 
   @override
@@ -170,9 +171,9 @@ class _$Unexpected implements Unexpected {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Unexpected value) unexpected,
-    required TResult Function(NoImageSelected value) noImageSelected,
-    required TResult Function(InvalidImageSize value) invalidImageSize,
+    required TResult Function(_Unexpected value) unexpected,
+    required TResult Function(_NoImageSelected value) noImageSelected,
+    required TResult Function(_InvalidImageSize value) invalidImageSize,
   }) {
     return unexpected(this);
   }
@@ -180,9 +181,9 @@ class _$Unexpected implements Unexpected {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Unexpected value)? unexpected,
-    TResult Function(NoImageSelected value)? noImageSelected,
-    TResult Function(InvalidImageSize value)? invalidImageSize,
+    TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_NoImageSelected value)? noImageSelected,
+    TResult Function(_InvalidImageSize value)? invalidImageSize,
   }) {
     return unexpected?.call(this);
   }
@@ -190,9 +191,9 @@ class _$Unexpected implements Unexpected {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Unexpected value)? unexpected,
-    TResult Function(NoImageSelected value)? noImageSelected,
-    TResult Function(InvalidImageSize value)? invalidImageSize,
+    TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_NoImageSelected value)? noImageSelected,
+    TResult Function(_InvalidImageSize value)? invalidImageSize,
     required TResult orElse(),
   }) {
     if (unexpected != null) {
@@ -202,33 +203,33 @@ class _$Unexpected implements Unexpected {
   }
 }
 
-abstract class Unexpected implements ImageFailure {
-  const factory Unexpected() = _$Unexpected;
+abstract class _Unexpected implements ImageFailure {
+  const factory _Unexpected() = _$_Unexpected;
 }
 
 /// @nodoc
-abstract class $NoImageSelectedCopyWith<$Res> {
-  factory $NoImageSelectedCopyWith(
-          NoImageSelected value, $Res Function(NoImageSelected) then) =
-      _$NoImageSelectedCopyWithImpl<$Res>;
+abstract class _$NoImageSelectedCopyWith<$Res> {
+  factory _$NoImageSelectedCopyWith(
+          _NoImageSelected value, $Res Function(_NoImageSelected) then) =
+      __$NoImageSelectedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$NoImageSelectedCopyWithImpl<$Res>
+class __$NoImageSelectedCopyWithImpl<$Res>
     extends _$ImageFailureCopyWithImpl<$Res>
-    implements $NoImageSelectedCopyWith<$Res> {
-  _$NoImageSelectedCopyWithImpl(
-      NoImageSelected _value, $Res Function(NoImageSelected) _then)
-      : super(_value, (v) => _then(v as NoImageSelected));
+    implements _$NoImageSelectedCopyWith<$Res> {
+  __$NoImageSelectedCopyWithImpl(
+      _NoImageSelected _value, $Res Function(_NoImageSelected) _then)
+      : super(_value, (v) => _then(v as _NoImageSelected));
 
   @override
-  NoImageSelected get _value => super._value as NoImageSelected;
+  _NoImageSelected get _value => super._value as _NoImageSelected;
 }
 
 /// @nodoc
 
-class _$NoImageSelected implements NoImageSelected {
-  const _$NoImageSelected();
+class _$_NoImageSelected implements _NoImageSelected {
+  const _$_NoImageSelected();
 
   @override
   String toString() {
@@ -238,7 +239,7 @@ class _$NoImageSelected implements NoImageSelected {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is NoImageSelected);
+        (other.runtimeType == runtimeType && other is _NoImageSelected);
   }
 
   @override
@@ -281,9 +282,9 @@ class _$NoImageSelected implements NoImageSelected {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Unexpected value) unexpected,
-    required TResult Function(NoImageSelected value) noImageSelected,
-    required TResult Function(InvalidImageSize value) invalidImageSize,
+    required TResult Function(_Unexpected value) unexpected,
+    required TResult Function(_NoImageSelected value) noImageSelected,
+    required TResult Function(_InvalidImageSize value) invalidImageSize,
   }) {
     return noImageSelected(this);
   }
@@ -291,9 +292,9 @@ class _$NoImageSelected implements NoImageSelected {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Unexpected value)? unexpected,
-    TResult Function(NoImageSelected value)? noImageSelected,
-    TResult Function(InvalidImageSize value)? invalidImageSize,
+    TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_NoImageSelected value)? noImageSelected,
+    TResult Function(_InvalidImageSize value)? invalidImageSize,
   }) {
     return noImageSelected?.call(this);
   }
@@ -301,9 +302,9 @@ class _$NoImageSelected implements NoImageSelected {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Unexpected value)? unexpected,
-    TResult Function(NoImageSelected value)? noImageSelected,
-    TResult Function(InvalidImageSize value)? invalidImageSize,
+    TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_NoImageSelected value)? noImageSelected,
+    TResult Function(_InvalidImageSize value)? invalidImageSize,
     required TResult orElse(),
   }) {
     if (noImageSelected != null) {
@@ -313,33 +314,33 @@ class _$NoImageSelected implements NoImageSelected {
   }
 }
 
-abstract class NoImageSelected implements ImageFailure {
-  const factory NoImageSelected() = _$NoImageSelected;
+abstract class _NoImageSelected implements ImageFailure {
+  const factory _NoImageSelected() = _$_NoImageSelected;
 }
 
 /// @nodoc
-abstract class $InvalidImageSizeCopyWith<$Res> {
-  factory $InvalidImageSizeCopyWith(
-          InvalidImageSize value, $Res Function(InvalidImageSize) then) =
-      _$InvalidImageSizeCopyWithImpl<$Res>;
+abstract class _$InvalidImageSizeCopyWith<$Res> {
+  factory _$InvalidImageSizeCopyWith(
+          _InvalidImageSize value, $Res Function(_InvalidImageSize) then) =
+      __$InvalidImageSizeCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$InvalidImageSizeCopyWithImpl<$Res>
+class __$InvalidImageSizeCopyWithImpl<$Res>
     extends _$ImageFailureCopyWithImpl<$Res>
-    implements $InvalidImageSizeCopyWith<$Res> {
-  _$InvalidImageSizeCopyWithImpl(
-      InvalidImageSize _value, $Res Function(InvalidImageSize) _then)
-      : super(_value, (v) => _then(v as InvalidImageSize));
+    implements _$InvalidImageSizeCopyWith<$Res> {
+  __$InvalidImageSizeCopyWithImpl(
+      _InvalidImageSize _value, $Res Function(_InvalidImageSize) _then)
+      : super(_value, (v) => _then(v as _InvalidImageSize));
 
   @override
-  InvalidImageSize get _value => super._value as InvalidImageSize;
+  _InvalidImageSize get _value => super._value as _InvalidImageSize;
 }
 
 /// @nodoc
 
-class _$InvalidImageSize implements InvalidImageSize {
-  const _$InvalidImageSize();
+class _$_InvalidImageSize implements _InvalidImageSize {
+  const _$_InvalidImageSize();
 
   @override
   String toString() {
@@ -349,7 +350,7 @@ class _$InvalidImageSize implements InvalidImageSize {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is InvalidImageSize);
+        (other.runtimeType == runtimeType && other is _InvalidImageSize);
   }
 
   @override
@@ -392,9 +393,9 @@ class _$InvalidImageSize implements InvalidImageSize {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Unexpected value) unexpected,
-    required TResult Function(NoImageSelected value) noImageSelected,
-    required TResult Function(InvalidImageSize value) invalidImageSize,
+    required TResult Function(_Unexpected value) unexpected,
+    required TResult Function(_NoImageSelected value) noImageSelected,
+    required TResult Function(_InvalidImageSize value) invalidImageSize,
   }) {
     return invalidImageSize(this);
   }
@@ -402,9 +403,9 @@ class _$InvalidImageSize implements InvalidImageSize {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Unexpected value)? unexpected,
-    TResult Function(NoImageSelected value)? noImageSelected,
-    TResult Function(InvalidImageSize value)? invalidImageSize,
+    TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_NoImageSelected value)? noImageSelected,
+    TResult Function(_InvalidImageSize value)? invalidImageSize,
   }) {
     return invalidImageSize?.call(this);
   }
@@ -412,9 +413,9 @@ class _$InvalidImageSize implements InvalidImageSize {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Unexpected value)? unexpected,
-    TResult Function(NoImageSelected value)? noImageSelected,
-    TResult Function(InvalidImageSize value)? invalidImageSize,
+    TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_NoImageSelected value)? noImageSelected,
+    TResult Function(_InvalidImageSize value)? invalidImageSize,
     required TResult orElse(),
   }) {
     if (invalidImageSize != null) {
@@ -424,6 +425,6 @@ class _$InvalidImageSize implements InvalidImageSize {
   }
 }
 
-abstract class InvalidImageSize implements ImageFailure {
-  const factory InvalidImageSize() = _$InvalidImageSize;
+abstract class _InvalidImageSize implements ImageFailure {
+  const factory _InvalidImageSize() = _$_InvalidImageSize;
 }

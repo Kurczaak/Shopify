@@ -4,10 +4,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:injectable/injectable.dart';
 
 import 'package:shopify_client/infrastructure/auth/firebase_user_mapper.dart';
-import 'package:shopify_domain/auth/auth_failure.dart';
-import 'package:shopify_domain/auth/i_auth_facade.dart';
-import 'package:shopify_domain/auth/user.dart';
-import 'package:shopify_domain/auth/value_objects.dart';
+import 'package:shopify_domain/auth.dart';
 
 @LazySingleton(as: IAuthFacade)
 class FirebaseAuthFacade implements IAuthFacade {

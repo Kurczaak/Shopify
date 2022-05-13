@@ -3,9 +3,7 @@ import 'dart:io';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/services.dart';
 import 'package:kt_dart/kt.dart';
-import 'package:shopify_domain/core/images/i_image_facade.dart';
-import 'package:shopify_domain/core/images/photo.dart';
-import 'package:shopify_domain/core/images/image_failure.dart';
+import 'package:shopify_domain/core.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:injectable/injectable.dart';
 

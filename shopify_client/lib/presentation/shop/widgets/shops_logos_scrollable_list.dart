@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:kt_dart/kt.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
-import 'package:shopify_domain/shop/shop.dart';
+import 'package:shopify_domain/shop.dart';
 
 class ShopsLogosScrollableList extends StatelessWidget {
   const ShopsLogosScrollableList({

@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:shopify_domain/shop/shop.dart';
+import 'package:shopify_domain/shop.dart';
 import 'package:shopify_client/presentation/shop/shop_recap_column.dart';
 
 class ShopPreviewDialog extends StatelessWidget {

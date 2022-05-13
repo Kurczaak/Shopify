@@ -1,11 +1,11 @@
 import 'package:flutter/services.dart';
 import 'package:injectable/injectable.dart';
-import 'package:shopify_domain/core/address.dart';
+import 'package:shopify_domain/core.dart';
 import 'package:dartz/dartz.dart';
-import 'package:shopify_domain/core/errors.dart';
-import 'package:shopify_domain/core/location/i_location_facade.dart';
-import 'package:shopify_domain/core/location/location.dart';
-import 'package:shopify_domain/core/location/location_failure.dart';
+import 'package:shopify_domain/core.dart';
+import 'package:shopify_domain/core.dart';
+import 'package:shopify_domain/core.dart';
+import 'package:shopify_domain/core.dart';
 import 'package:location/location.dart' as loc;
 import 'location_data_mapper.dart';
 

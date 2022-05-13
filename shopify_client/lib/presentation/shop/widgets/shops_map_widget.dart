@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:kt_dart/kt.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:loading_overlay/loading_overlay.dart';
-import 'package:shopify_domain/core/location/location.dart';
-import 'package:shopify_domain/shop/shop.dart';
+import 'package:shopify_domain/core.dart';
+import 'package:shopify_domain/shop.dart';
 
 class ShopsMapWidget extends StatefulWidget {
   final bool isLoading;

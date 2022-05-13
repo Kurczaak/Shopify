@@ -1,6 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:shopify_domain/core/address.dart';
-import 'package:shopify_domain/core/value_objects.dart';
+import 'package:shopify_domain/core.dart';
 
 part 'address_dto.freezed.dart';
 part 'address_dto.g.dart';

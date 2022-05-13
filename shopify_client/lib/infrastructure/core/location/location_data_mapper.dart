@@ -1,8 +1,8 @@
 import 'package:location/location.dart' as loc;
-import 'package:shopify_domain/core/errors.dart';
-import 'package:shopify_domain/core/failures.dart';
-import 'package:shopify_domain/core/location/location.dart';
-import 'package:shopify_domain/core/value_failures.dart';
+import 'package:shopify_domain/core.dart';
+import 'package:shopify_domain/core.dart';
+import 'package:shopify_domain/core.dart';
+import 'package:shopify_domain/core.dart';
 
 extension LocationDataDomainX on loc.LocationData {
   Location toDomain() {
