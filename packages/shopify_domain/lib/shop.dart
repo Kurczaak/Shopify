@@ -1,7 +1,7 @@
 library shopify_domain;
 
 export 'shop/shop.dart';
-export 'shop/i_shop_repository.dart';
+export 'shop/shopify_shop_repository.dart';
 export 'shop/shop_failure.dart';
 export 'shop/shop_form.dart';
 export 'shop/value_failures.dart';
