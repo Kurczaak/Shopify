@@ -3,15 +3,15 @@ import 'dart:io';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
-import 'package:kt_dart/src/collection/kt_list.dart';
+import 'package:kt_dart/kt.dart';
 import 'package:shopify_domain/core.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:injectable/injectable.dart';
 
 @LazySingleton(as: PhotoPicker)
-class ImagePickerImageFacade implements PhotoPicker {
+class ImagePickerImagePickerPhotoPickerImpl implements PhotoPicker {
   final ImagePicker _imagePicker;
-  ImagePickerImageFacade(this._imagePicker);
+  ImagePickerImagePickerPhotoPickerImpl(this._imagePicker);
   @override
   Future<Either<ImageFailure, Photo>> getPhoto(
       {int minHeight = 100,

@@ -22,7 +22,7 @@ import 'core/location/location_info.dart' as _i17;
 import 'product.dart' as _i11;
 import 'shop.dart' as _i13;
 import 'src/auth/firebase_auth_facade.dart' as _i10;
-import 'src/core/images/image_picker_image_facade.dart' as _i20;
+import 'src/core/images/image_picker_photo_picker_implementation.dart' as _i20;
 import 'src/core/images/image_picker_injectable_module.dart' as _i25;
 import 'src/core/injectable_module.dart' as _i23;
 import 'src/core/location/location_injectable_module.dart' as _i24;
@@ -66,8 +66,8 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => _i17.LocationInfoImpl(get<_i6.GeocodingPlatform>()));
   gh.factory<_i18.NetworkInfo>(
       () => _i18.NetworkInfoImpl(get<_i16.InternetConnectionChecker>()));
-  gh.lazySingleton<_i19.PhotoPicker>(
-      () => _i20.ImagePickerImageFacade(get<_i15.ImagePicker>()));
+  gh.lazySingleton<_i19.PhotoPicker>(() =>
+      _i20.ImagePickerImagePickerPhotoPickerImpl(get<_i15.ImagePicker>()));
   gh.factory<_i11.OpenFoodFactsRepository>(
       () => _i21.OpenFoodFactsRepositoryImpl(get<_i18.NetworkInfo>()));
   gh.lazySingleton<_i11.ShopifyProductRepository>(() =>
