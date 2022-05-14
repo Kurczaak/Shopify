@@ -1,11 +1,10 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:shopify_domain/core.dart';
 import 'package:shopify_domain/shop.dart';
-import 'package:shopify_domain/shop.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:shopify_client/infrastructure/core/address_dto.dart';
-import 'package:shopify_client/infrastructure/core/location/location_dtos.dart';
-import 'package:shopify_client/infrastructure/shopping/time/time_dtos.dart';
+import 'package:shopify_domain/src/core/address_dto.dart';
+import 'package:shopify_domain/src/core/location/location_dtos.dart';
+import 'package:shopify_domain/src/shop/time/time_dtos.dart';
 
 part 'shop_dtos.freezed.dart';
 part 'shop_dtos.g.dart';

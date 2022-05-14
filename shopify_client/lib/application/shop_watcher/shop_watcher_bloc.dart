@@ -4,11 +4,8 @@ import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kt_dart/collection.dart';
-import 'package:shopify_domain/core/location/i_location_facade.dart';
-import 'package:shopify_domain/core/location/location.dart';
-import 'package:shopify_domain/shop/i_shop_repository.dart';
-import 'package:shopify_domain/shop/shop.dart';
-import 'package:shopify_domain/shop/shop_failure.dart';
+import 'package:shopify_domain/core.dart';
+import 'package:shopify_domain/shop.dart';
 import 'package:super_enum_sealed_annotations/super_enum_sealed_annotations.dart';
 
 part 'shop_watcher_event.dart';

@@ -1,8 +1,4 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:shopify_domain/core.dart';
-import 'package:shopify_domain/shop.dart';
-import 'package:shopify_domain/shop.dart';
-import 'package:shopify_domain/shop.dart';
 import 'package:shopify_domain/shop.dart';
 
 part 'time_dtos.freezed.dart';
@@ -59,7 +55,7 @@ abstract class DayDto with _$DayDto {
 
   factory DayDto.fromDomain(Day day) {
     return DayDto(
-      day: day.day.stringify,
+      day: day.day.name,
       isOpen: day.isOpen,
       timeInterval: TimeIntervalDto.fromDomain(day.openingInterval),
     );

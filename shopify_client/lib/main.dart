@@ -20,6 +20,6 @@ void main() async {
       projectId: projectId,
     ),
   );
-  configureInjection(Environment.prod);
+  configureXDInjection(Environment.prod);
   runApp(AppWidget());
 }

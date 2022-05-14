@@ -40,3 +40,14 @@ abstract class AddressDto with _$AddressDto {
   factory AddressDto.fromJson(Map<String, dynamic> json) =>
       _$AddressDtoFromJson(json);
 }
+
+// class AddressDtoConverter
+//     implements JsonConverter<AddressDto, Map<String, dynamic>> {
+//   const AddressDtoConverter();
+
+//   @override
+//   Map<String, dynamic> toJson(AddressDto object) => object.toJson();
+
+//   @override
+//   AddressDto fromJson(Map<String, dynamic> json) => fromJson(json);
+// }
