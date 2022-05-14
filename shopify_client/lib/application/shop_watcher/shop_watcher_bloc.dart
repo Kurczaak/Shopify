@@ -4,6 +4,8 @@ import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kt_dart/collection.dart';
+import 'package:shopify_client/domain/core/i_location_facade.dart';
+import 'package:shopify_client/domain/shop/i_shop_repository.dart';
 import 'package:shopify_domain/core.dart';
 import 'package:shopify_domain/shop.dart';
 import 'package:super_enum_sealed_annotations/super_enum_sealed_annotations.dart';

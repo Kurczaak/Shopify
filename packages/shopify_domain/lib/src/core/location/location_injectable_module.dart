@@ -1,8 +1,8 @@
 import 'package:injectable/injectable.dart';
-import 'package:geocoding/geocoding.dart';
+import 'package:location/location.dart';
 
 @module
-abstract class GeocodingInjectableModule {
+abstract class LocationInjectableModule {
   @LazySingleton()
-  GeocodingPlatform get geocodingPlatform => GeocodingPlatform.instance;
+  Location get geocodingPlatform => Location.instance;
 }

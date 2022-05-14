@@ -2,7 +2,6 @@ import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shopify_client/domain/auth/i_auth_facade.dart';
 import 'package:shopify_domain/auth.dart';
-import 'package:shopify_domain/auth/i_auth_facade.dart';
 
 @LazySingleton(as: IAuthFacade)
 class AuthFacadeImpl implements IAuthFacade {
