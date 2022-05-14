@@ -2,11 +2,13 @@ import 'package:dartz/dartz.dart';
 import 'package:shopify_domain/core/address.dart';
 import 'package:shopify_domain/core/location/location.dart';
 import 'package:shopify_domain/core/location/location_failure.dart';
+import 'package:shopify_domain/injection.dart';
 
-abstract class ILocationFacade {
+abstract class ShopifyLocation {
   Future<Either<LocationFailure, Location>> getCurrentLocation();
   Future<Either<LocationFailure, Location>> getUserLocation();
   Future<Either<LocationFailure, Location>> getLocationFromAddress(
       Address address);
   Future<Either<LocationFailure, Unit>> setUserAddress(Address address);
+  static ShopifyLocation get instance => getIt<ShopifyLocation>();
 }

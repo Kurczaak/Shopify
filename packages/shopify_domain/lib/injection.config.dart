@@ -55,10 +55,9 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.lazySingleton<_i9.ShopifyAuth>(() => _i10.FirebaseAuthFacade(
       get<_i3.FirebaseAuth>(), get<_i8.GoogleSignIn>()));
 
-  gh.lazySingleton<_i13.IShopRepository>(() => _i14.FirebaseShopRepositoryImpl(
-      get<_i4.FirebaseFirestore>(),
-      get<_i5.FirebaseStorage>(),
-      get<_i7.Geoflutterfire>()));
+  gh.lazySingleton<_i13.ShopifyShopRepository>(() =>
+      _i14.FirebaseShopRepositoryImpl(get<_i4.FirebaseFirestore>(),
+          get<_i5.FirebaseStorage>(), get<_i7.Geoflutterfire>()));
   gh.lazySingleton<_i15.ImagePicker>(
       () => imagePikcerInjectableModule.imagePicker);
   gh.lazySingleton<_i16.InternetConnectionChecker>(
@@ -67,11 +66,11 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => _i17.LocationInfoImpl(get<_i6.GeocodingPlatform>()));
   gh.factory<_i18.NetworkInfo>(
       () => _i18.NetworkInfoImpl(get<_i16.InternetConnectionChecker>()));
-  gh.lazySingleton<_i19.IImageFacade>(
+  gh.lazySingleton<_i19.PhotoPicker>(
       () => _i20.ImagePickerImageFacade(get<_i15.ImagePicker>()));
-  gh.factory<_i11.IOpenFoodFactsRepository>(
+  gh.factory<_i11.OpenFoodFactsRepository>(
       () => _i21.OpenFoodFactsRepositoryImpl(get<_i18.NetworkInfo>()));
-  gh.lazySingleton<_i11.IProductRepository>(() =>
+  gh.lazySingleton<_i11.ShopifyProductRepository>(() =>
       _i22.FirebaseProductRepositoryImpl(get<_i4.FirebaseFirestore>(),
           get<_i5.FirebaseStorage>(), get<_i18.NetworkInfo>()));
   return get;

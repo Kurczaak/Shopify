@@ -13,8 +13,8 @@ import 'package:shopify_domain/src/shop/shop_dtos.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 
-@LazySingleton(as: IShopRepository)
-class FirebaseShopRepositoryImpl implements IShopRepository {
+@LazySingleton(as: ShopifyShopRepository)
+class FirebaseShopRepositoryImpl implements ShopifyShopRepository {
   final FirebaseFirestore _firestore;
   final FirebaseStorage _storage;
   final Geoflutterfire _geo;

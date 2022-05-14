@@ -12,8 +12,8 @@ import 'package:shopify_domain/src/core/firestore_helpers.dart';
 import 'package:shopify_domain/src/core/network/network_info.dart';
 import 'package:shopify_domain/src/product/product_dtos.dart';
 
-@LazySingleton(as: IProductRepository)
-class FirebaseProductRepositoryImpl implements IProductRepository {
+@LazySingleton(as: ShopifyProductRepository)
+class FirebaseProductRepositoryImpl implements ShopifyProductRepository {
   final FirebaseFirestore _firestore;
   final FirebaseStorage _storage;
   final NetworkInfo _networkInfo;

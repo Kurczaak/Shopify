@@ -2,12 +2,13 @@ import 'package:dartz/dartz.dart';
 import 'package:shopify_domain/auth/user.dart';
 import 'package:shopify_domain/core/images/photo.dart';
 import 'package:shopify_domain/core/location/location.dart';
+import 'package:shopify_domain/injection.dart';
 import 'package:shopify_domain/shop/shop.dart';
 
 import 'package:kt_dart/kt.dart';
 import 'package:shopify_domain/shop/shop_failure.dart';
 
-abstract class IShopRepository {
+abstract class ShopifyShopRepository {
   // watch Shops
   // watch nearby shops
   // CUD
@@ -20,4 +21,5 @@ abstract class IShopRepository {
 
   Future<Either<ShopFailure, Unit>> update(Shop shop);
   Future<Either<ShopFailure, Unit>> delete(Shop shop);
+  static ShopifyShopRepository get instance => getIt<ShopifyShopRepository>();
 }

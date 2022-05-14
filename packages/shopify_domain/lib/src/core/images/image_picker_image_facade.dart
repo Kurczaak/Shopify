@@ -8,8 +8,8 @@ import 'package:shopify_domain/core.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:injectable/injectable.dart';
 
-@LazySingleton(as: IImageFacade)
-class ImagePickerImageFacade implements IImageFacade {
+@LazySingleton(as: PhotoPicker)
+class ImagePickerImageFacade implements PhotoPicker {
   final ImagePicker _imagePicker;
   ImagePickerImageFacade(this._imagePicker);
   @override

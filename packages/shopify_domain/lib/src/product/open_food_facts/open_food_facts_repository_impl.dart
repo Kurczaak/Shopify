@@ -8,8 +8,8 @@ import 'package:shopify_domain/src/core/network/network_info.dart';
 import 'package:shopify_domain/src/core/config.dart';
 import 'package:shopify_domain/src/product/open_food_facts/open_food_facts_product_mapper.dart';
 
-@Injectable(as: IOpenFoodFactsRepository)
-class OpenFoodFactsRepositoryImpl implements IOpenFoodFactsRepository {
+@Injectable(as: OpenFoodFactsRepository)
+class OpenFoodFactsRepositoryImpl implements OpenFoodFactsRepository {
   final NetworkInfo _networkInfo;
 
   OpenFoodFactsRepositoryImpl(this._networkInfo);

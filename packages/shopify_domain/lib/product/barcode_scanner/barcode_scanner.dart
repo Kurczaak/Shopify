@@ -1,10 +1,11 @@
 import 'package:dartz/dartz.dart';
-import 'package:shopify_domain/core/images/photo.dart';
+import 'package:shopify_domain/injection.dart';
 import 'barcode_failure.dart';
 import 'package:shopify_domain/product/value_objects.dart';
 
-abstract class IBarcodeScannerFacade {
+abstract class BarcodeScanner {
   Future<Either<BarcodeFailure, Barcode>> scanSingleBarcode();
   Stream<Either<BarcodeFailure, Barcode>> scanBarcodesContinously();
-  Future<Either<BarcodeFailure, Barcode>> getBarcodeFromPhoto(Photo photo);
+  //Future<Either<BarcodeFailure, Barcode>> getBarcodeFromPhoto(Photo photo);
+  static BarcodeScanner get instance => getIt<BarcodeScanner>();
 }
