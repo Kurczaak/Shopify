@@ -1,17 +1,20 @@
+import 'dart:async';
 import 'package:flutter/services.dart';
 import 'package:injectable/injectable.dart';
 
 import 'package:dartz/dartz.dart';
 
 import 'package:location/location.dart' as loc;
+import 'package:geocoding/geocoding.dart' as g;
 import 'package:shopify_domain/core.dart';
 import 'location_data_mapper.dart';
 
 @LazySingleton(as: ShopifyLocationFacade)
 class ShopifyLocationFacadeImpl implements ShopifyLocationFacade {
   final loc.Location _locationService;
+  final g.GeocodingPlatform geocodingPlatform;
 
-  ShopifyLocationFacadeImpl(this._locationService);
+  ShopifyLocationFacadeImpl(this._locationService, this.geocodingPlatform);
   @override
   Future<Either<LocationFailure, Location>> getCurrentLocation() async {
     await _locationService.requestPermission();
@@ -41,5 +44,27 @@ class ShopifyLocationFacadeImpl implements ShopifyLocationFacade {
   Future<Either<LocationFailure, Unit>> setUserAddress(Address address) {
     // TODO: implement setUserAddress
     throw UnimplementedError();
+  }
+
+  @override
+  Future<Either<LocationFailure, Location>> getLocationFromAddress(
+      Address address) async {
+    try {
+      final locations = await geocodingPlatform
+          .locationFromAddress(address.toString())
+          .timeout(timeoutDuration);
+      if (locations.isEmpty) {
+        return left(const LocationFailure.noLocationFound());
+      } else {
+        final location = locations.first;
+        return right(Location.fromLatLang(
+            latitude: location.latitude, longitude: location.longitude));
+      }
+    } on PlatformException catch (_) {
+      //TODO LOG THIS ERROR
+      return left(const LocationFailure.unexpected());
+    } on TimeoutException catch (_) {
+      return left(const LocationFailure.timeout());
+    }
   }
 }

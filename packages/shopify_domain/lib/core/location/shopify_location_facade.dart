@@ -7,9 +7,8 @@ import 'package:shopify_domain/injection.dart';
 abstract class ShopifyLocationFacade {
   Future<Either<LocationFailure, Location>> getCurrentLocation();
   Future<Either<LocationFailure, Location>> getUserLocation();
-  //TODO
-  // Future<Either<LocationFailure, Location>> getLocationFromAddress(
-  //     Address address);
+  Future<Either<LocationFailure, Location>> getLocationFromAddress(
+      Address address);
   Future<Either<LocationFailure, Unit>> setUserAddress(Address address);
   static ShopifyLocationFacade get instance => getIt<ShopifyLocationFacade>();
 }

@@ -72,8 +72,9 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => _i17.ImagePickerImagePickerPhotoPickerImpl(get<_i9.ImagePicker>()));
   gh.lazySingleton<_i18.ShopifyAuth>(() => _i19.FirebaseAuthFacade(
       get<_i3.FirebaseAuth>(), get<_i8.GoogleSignIn>()));
-  gh.lazySingleton<_i16.ShopifyLocationFacade>(
-      () => _i20.ShopifyLocationFacadeImpl(get<_i11.Location>()));
+  gh.lazySingleton<_i16.ShopifyLocationFacade>(() =>
+      _i20.ShopifyLocationFacadeImpl(
+          get<_i11.Location>(), get<_i6.GeocodingPlatform>()));
   gh.lazySingleton<_i14.ShopifyProductRepository>(() =>
       _i21.FirebaseProductRepositoryImpl(get<_i4.FirebaseFirestore>(),
           get<_i5.FirebaseStorage>(), get<_i13.NetworkInfo>()));
