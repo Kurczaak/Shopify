@@ -1,5 +1,8 @@
 library shopify_domain;
 
+import 'package:get_it/get_it.dart';
+import 'package:shopify_domain/src/injection.dart';
+
 export 'core/images/photo_picker.dart';
 export 'core/images/image_failure.dart';
 export 'core/images/photo.dart';
@@ -15,3 +18,7 @@ export 'core/failures.dart';
 export 'core/value_failures.dart';
 export 'core/value_objects.dart';
 export 'core/value_transformers.dart';
+
+abstract class Shopify {
+  static GetIt get initialize => configureInjection('prod');
+}

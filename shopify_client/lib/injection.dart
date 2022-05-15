@@ -1,12 +1,10 @@
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shopify_client/injection.config.dart';
-import 'package:shopify_domain/injection.dart';
 
-late GetIt getIt;
+late GetIt getIt = GetIt.instance;
 
 @injectableInit
-void configureXDInjection(String env) {
-  getIt = configureInjection(env);
+void configureInjection(String env) {
   $initGetIt(getIt, environment: env);
 }
