@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:shopify_domain/auth.dart';
 import 'package:shopify_domain/core.dart';
-import 'package:shopify_domain/injection.dart';
+import 'package:shopify_domain/src/injection.dart';
 
 extension FirestoreX on FirebaseFirestore {
   Future<DocumentReference> userDocument() async {

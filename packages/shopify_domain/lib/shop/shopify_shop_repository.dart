@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:shopify_domain/auth/user.dart';
 import 'package:shopify_domain/core/images/photo.dart';
 import 'package:shopify_domain/core/location/location.dart';
-import 'package:shopify_domain/injection.dart';
+import 'package:shopify_domain/src/injection.dart';
 import 'package:shopify_domain/shop/shop.dart';
 
 import 'package:kt_dart/kt.dart';

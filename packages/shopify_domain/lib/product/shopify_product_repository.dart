@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:shopify_domain/injection.dart';
+import 'package:shopify_domain/src/injection.dart';
 import 'package:shopify_domain/product/product.dart';
 import 'package:shopify_domain/product/product_failure.dart';
 import 'package:shopify_domain/product/product_form.dart';

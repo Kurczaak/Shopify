@@ -17,23 +17,22 @@ import 'package:internet_connection_checker/internet_connection_checker.dart'
     as _i10;
 import 'package:location/location.dart' as _i11;
 
-import 'auth.dart' as _i18;
-import 'core.dart' as _i16;
-import 'core/location/location_info.dart' as _i12;
-import 'core/location/location_injectable_module.dart' as _i25;
-import 'product.dart' as _i14;
-import 'shop.dart' as _i22;
-import 'src/auth/firebase_auth_facade.dart' as _i19;
-import 'src/core/images/image_picker_injectable_module.dart' as _i26;
-import 'src/core/images/image_picker_photo_picker_implementation.dart' as _i17;
-import 'src/core/injectable_module.dart' as _i24;
-import 'src/core/location/location_injectable_module.dart' as _i27;
-import 'src/core/location/shopify_location_facade_implementation.dart' as _i20;
-import 'src/core/network/network_info.dart' as _i13;
-import 'src/product/firebase_product_repository.dart' as _i21;
-import 'src/product/open_food_facts/open_food_facts_repository_impl.dart'
-    as _i15;
-import 'src/shop/firebase_shop_repository.dart'
+import '../auth.dart' as _i18;
+import '../core.dart' as _i16;
+import '../core/location/location_info.dart' as _i12;
+import '../core/location/location_injectable_module.dart' as _i25;
+import '../product.dart' as _i14;
+import '../shop.dart' as _i22;
+import 'auth/firebase_auth_facade.dart' as _i19;
+import 'core/images/image_picker_injectable_module.dart' as _i26;
+import 'core/images/image_picker_photo_picker_implementation.dart' as _i17;
+import 'core/injectable_module.dart' as _i24;
+import 'core/location/location_injectable_module.dart' as _i27;
+import 'core/location/shopify_location_facade_implementation.dart' as _i20;
+import 'core/network/network_info.dart' as _i13;
+import 'product/firebase_product_repository.dart' as _i21;
+import 'product/open_food_facts/open_food_facts_repository_impl.dart' as _i15;
+import 'shop/firebase_shop_repository.dart'
     as _i23; // ignore_for_file: unnecessary_lambdas
 
 // ignore_for_file: lines_longer_than_80_chars

@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:kt_dart/kt.dart';
 import 'package:shopify_domain/core/images/image_failure.dart';
 import 'package:shopify_domain/core/images/photo.dart';
-import 'package:shopify_domain/injection.dart';
+import 'package:shopify_domain/src/injection.dart';
 
 abstract class PhotoPicker {
   Future<Either<ImageFailure, Photo>> getPhoto(

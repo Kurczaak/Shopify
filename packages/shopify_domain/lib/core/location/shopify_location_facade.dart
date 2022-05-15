@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:shopify_domain/core/address.dart';
 import 'package:shopify_domain/core/location/location.dart';
 import 'package:shopify_domain/core/location/location_failure.dart';
-import 'package:shopify_domain/injection.dart';
+import 'package:shopify_domain/src/injection.dart';
 
 abstract class ShopifyLocationFacade {
   Future<Either<LocationFailure, Location>> getCurrentLocation();

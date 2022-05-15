@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:shopify_domain/auth/user.dart';
 import 'package:shopify_domain/auth/value_objects.dart';
-import 'package:shopify_domain/injection.dart';
+import 'package:shopify_domain/src/injection.dart';
 
 import 'auth_failure.dart';
 
