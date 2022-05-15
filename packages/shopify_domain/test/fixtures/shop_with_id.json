@@ -1,0 +1,95 @@
+{
+    "shopName": "Shop Name",
+    "id": "incorrect_id",
+    "address": {
+        "streetName": "Street Name",
+        "streetNumber": "12A",
+        "apartmentNumber": "",
+        "postalCode": "99-400",
+        "city": "Łowicz"
+    },
+    "position":{
+        "geopoint":{
+            "latitude": 37.421764,
+            "longitude":  -122.084614
+        },
+        "geohash": "9q9hvuktw"
+    },
+    "logoUrl": "https://www.example.com",
+    "week": {
+        "monday":{
+            "day": "Monday",
+            "isOpen": true,
+            "timeInterval":{
+                "openingHour": 8,
+                "openingMinutes": 0,
+                "closingHour": 22,
+                "closingMinutes": 0
+            }
+        },
+        "tuesday":{
+            "day": "Tuesday",
+            "isOpen": true,
+            "timeInterval":{
+                "openingHour": 8,
+                "openingMinutes": 0,
+                "closingHour": 22,
+                "closingMinutes": 0
+            }
+        },
+        "wednesday":{
+            "day": "Wednesday",
+            "isOpen": true,
+            "timeInterval":{
+                "openingHour": 8,
+                "openingMinutes": 0,
+                "closingHour": 22,
+                "closingMinutes": 0
+            }
+        },
+        "thursday":{
+            "day": "Thursday",
+            "isOpen": true,
+            "timeInterval":{
+                "openingHour": 8,
+                "openingMinutes": 0,
+                "closingHour": 22,
+                "closingMinutes": 0
+            }
+        },
+        "friday":{
+            "day": "Friday",
+            "isOpen": true,
+            "timeInterval":{
+                "openingHour": 8,
+                "openingMinutes": 0,
+                "closingHour": 22,
+                "closingMinutes": 0
+            }
+        },
+        "saturday":{
+            "day": "Saturday",
+            "isOpen": true,
+            "timeInterval":{
+                "openingHour": 8,
+                "openingMinutes": 0,
+                "closingHour": 22,
+                "closingMinutes": 0
+            }
+        },
+        "sunday":{
+            "day": "Sunday",
+            "isOpen": true,
+            "timeInterval":{
+                "openingHour": 8,
+                "openingMinutes": 0,
+                "closingHour": 22,
+                "closingMinutes": 0
+            }
+        }
+    },
+    "serverTimeStamp": "January 18, 2022 at 10:51:38 AM UTC+1"
+}
+
+
+
