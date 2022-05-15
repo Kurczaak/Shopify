@@ -4,7 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shopify_domain/core.dart';
-import 'package:kt_dart/src/collection/kt_list.dart';
+import 'package:kt_dart/kt.dart';
 import 'package:dartz/dartz.dart';
 import 'package:shopify_domain/product.dart';
 import 'package:shopify_domain/shop.dart';
@@ -62,18 +62,6 @@ class FirebaseProductRepositoryImpl implements ShopifyProductRepository {
   }
 
   @override
-  Stream<Either<ProductFailure, KtList<Product>>> watchAll() {
-    // TODO: implement watchAll
-    throw UnimplementedError();
-  }
-
-  @override
-  Stream<Either<ProductFailure, KtList<Product>>> watchNearby() {
-    // TODO: implement watchNearby
-    throw UnimplementedError();
-  }
-
-  @override
   Future<Either<ProductFailure, Product>> getByBarcode(Barcode barcode) {
     // TODO: implement getByBarcode
     throw UnimplementedError();
@@ -93,7 +81,7 @@ class FirebaseProductRepositoryImpl implements ShopifyProductRepository {
         await photoRef.delete();
       }
     } catch (e) {
-      print('Error while deleting a photo $e');
+      //TODO: log this error
     }
   }
 
