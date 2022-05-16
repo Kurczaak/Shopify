@@ -8,6 +8,7 @@ import 'package:kt_dart/kt.dart';
 import 'package:dartz/dartz.dart';
 import 'package:shopify_domain/product.dart';
 import 'package:shopify_domain/shop.dart';
+import 'package:shopify_domain/src/core/config.dart';
 import 'package:shopify_domain/src/core/firestore_helpers.dart';
 import 'package:shopify_domain/src/core/network/network_info.dart';
 import 'package:shopify_domain/src/product/product_dtos.dart';

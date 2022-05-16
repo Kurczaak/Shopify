@@ -7,8 +7,7 @@ import 'package:injectable/injectable.dart';
 import 'package:shopify_domain/core/address.dart';
 import 'package:shopify_domain/core/location/location.dart';
 import 'package:shopify_domain/core/location/location_failure.dart';
-
-const timeoutDuration = Duration(seconds: 5);
+import 'package:shopify_domain/src/core/config.dart';
 
 abstract class LocationInfo {
   Future<Either<LocationFailure, Location>> getLocationFromAddress(
