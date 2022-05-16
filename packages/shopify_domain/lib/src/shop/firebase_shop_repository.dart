@@ -8,6 +8,7 @@ import 'package:shopify_domain/core.dart';
 import 'package:shopify_domain/shop.dart';
 
 import 'package:geoflutterfire/geoflutterfire.dart';
+import 'package:shopify_domain/src/core/config.dart';
 import 'package:shopify_domain/src/core/firestore_helpers.dart';
 import 'package:shopify_domain/src/shop/shop_dtos.dart';
 import 'package:rxdart/rxdart.dart';
