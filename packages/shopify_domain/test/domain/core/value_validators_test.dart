@@ -97,7 +97,7 @@ void main() {
         // act
         final result = validateListNotEmpty(emptyList);
         // assert
-        expect(result, left(const ValueFailure.core(CoreValueFailure.empty())));
+        expect(result, isA<Left>());
       },
     );
   });
@@ -218,7 +218,7 @@ void main() {
             result,
             left(
               const ValueFailure.core(
-                CoreValueFailure.empty(),
+                CoreValueFailure<String>.empty(),
               ),
             ),
           );
