@@ -5,32 +5,35 @@ import 'package:shopify_domain/auth.dart';
 
 @LazySingleton(as: IAuthFacade)
 class AuthFacadeImpl implements IAuthFacade {
+  final ShopifyAuth shopifyAuth;
+
+  AuthFacadeImpl(this.shopifyAuth);
   @override
   Future<Option<ShopifyUser>> getSignedInUser() {
-    return ShopifyAuth.instance.getSignedInUser();
+    return shopifyAuth.getSignedInUser();
   }
 
   @override
   Future<Either<AuthFailure, Unit>> registerWithEmailAndPassword(
       {required EmailAddress emailAddress, required Password password}) {
-    return ShopifyAuth.instance.registerWithEmailAndPassword(
+    return shopifyAuth.registerWithEmailAndPassword(
         emailAddress: emailAddress, password: password);
   }
 
   @override
   Future<Either<AuthFailure, Unit>> signInWithEmailAndPassword(
       {required EmailAddress emailAddress, required Password password}) {
-    return ShopifyAuth.instance.signInWithEmailAndPassword(
+    return shopifyAuth.signInWithEmailAndPassword(
         emailAddress: emailAddress, password: password);
   }
 
   @override
   Future<Either<AuthFailure, Unit>> signInWithGoogle() {
-    return ShopifyAuth.instance.signInWithGoogle();
+    return shopifyAuth.signInWithGoogle();
   }
 
   @override
   Future<void> signOut() {
-    return ShopifyAuth.instance.signOut();
+    return shopifyAuth.signOut();
   }
 }
