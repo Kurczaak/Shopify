@@ -114,23 +114,6 @@ void main() {
       );
 
       test(
-        'should return empty ValueFailure when a string is empty',
-        () async {
-          // act
-          final result = validateStringNotEmpty(emptyString);
-          // assert
-          expect(
-            result,
-            left(
-              const ValueFailure.core(
-                CoreValueFailure.empty(),
-              ),
-            ),
-          );
-        },
-      );
-
-      test(
         'should return a valid, non empty string',
         () async {
           // act
