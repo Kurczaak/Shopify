@@ -5,6 +5,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:geoflutterfire/geoflutterfire.dart';
 import 'package:get_it/get_it.dart';
+import 'package:kt_dart/kt.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:shopify_domain/auth/shopify_auth.dart';
@@ -60,9 +61,6 @@ void main() async {
   late MockReference uploadedFileReference;
   late MockDocumentReference<Map<String, dynamic>> userShopDocument;
   late MockDocumentReference<Map<String, dynamic>> userUploadedShopDocument;
-  late MockDocumentSnapshot<Map<String, dynamic>> shopsDocumentSnapsthot;
-  late List<MockDocumentSnapshot<Map<String, dynamic>>>
-      listOfShopDocumentSnapshots;
 
   const shopDocumentIdStr = "ad5d60d0-7844-11ec-a53d-03c2fc2917f5";
   const shopNameStr = "Shop Name";
@@ -100,38 +98,25 @@ void main() async {
   final logoFile = await getImageFileFromAssets('test_logo.jpg');
   final tShopLogo = ShopLogo(logoFile);
 
-  final shopDcumentReference =
-      await fakeFirestore.collection('shops').add(tShopDto.toJson());
-
-  setUp(() {
-    // main setup
-    mockGeo = MockGeoflutterfire();
-    mockFirebaseFirestore = MockFirebaseFirestore();
-    mockFirebaseStorage = MockFirebaseStorage();
-    firebaseShopRepository = FirebaseShopRepositoryImpl(
-        mockFirebaseFirestore, mockFirebaseStorage, mockGeo);
-    // helpers
-    mockGeoFireCollectionRef = MockGeoFireCollectionRef();
-    shopsCollection = MockCollectionReference();
-    shopDocument = MockDocumentReference();
-    mockReference = MockReference();
-    usersCollection = MockCollectionReference<Map<String, dynamic>>();
-    userDoc = MockDocumentReference<Map<String, dynamic>>();
-    userShopsCollection = MockCollectionReference<Map<String, dynamic>>();
-    uploadedFileReference = MockReference();
-    userShopDocument = MockDocumentReference<Map<String, dynamic>>();
-    userUploadedShopDocument = MockDocumentReference<Map<String, dynamic>>();
-    shopsDocumentSnapsthot = MockDocumentSnapshot<Map<String, dynamic>>();
-    listOfShopDocumentSnapshots = [
-      shopsDocumentSnapsthot,
-      shopsDocumentSnapsthot,
-      shopsDocumentSnapsthot
-    ];
-  });
+  final shopDcumentReference = await fakeFirestore
+      .collection('shops')
+      .doc(shopDocumentIdStr)
+      .set(tShopDto.toJson());
+  final shopsDocumentSnapsthot =
+      await fakeFirestore.collection('shops').doc(shopDocumentIdStr).get();
+  final listOfShopDocumentSnapshots = [
+    shopsDocumentSnapsthot,
+    shopsDocumentSnapsthot,
+    shopsDocumentSnapsthot
+  ];
 
   void _setUpGeo() {
     when(mockGeo.collection(collectionRef: shopsCollection))
         .thenReturn(mockGeoFireCollectionRef);
+    when(mockGeo.point(
+            latitude: Location.empty().latitude,
+            longitude: Location.empty().longitude))
+        .thenReturn(geoPoint);
 
     when(mockGeoFireCollectionRef.within(
             center: geoPoint, radius: radius, field: field, strictMode: true))
@@ -162,6 +147,68 @@ void main() async {
     when(userShopDocument.set(tShopDto.toJson()))
         .thenAnswer((_) async => userUploadedShopDocument);
   }
+
+  setUp(() {
+    // main setup
+    mockGeo = MockGeoflutterfire();
+    mockFirebaseFirestore = MockFirebaseFirestore();
+    mockFirebaseStorage = MockFirebaseStorage();
+    firebaseShopRepository = FirebaseShopRepositoryImpl(
+        mockFirebaseFirestore, mockFirebaseStorage, mockGeo);
+    // helpers
+    mockGeoFireCollectionRef = MockGeoFireCollectionRef();
+    shopsCollection = MockCollectionReference();
+    shopDocument = MockDocumentReference();
+    mockReference = MockReference();
+    usersCollection = MockCollectionReference<Map<String, dynamic>>();
+    userDoc = MockDocumentReference<Map<String, dynamic>>();
+    userShopsCollection = MockCollectionReference<Map<String, dynamic>>();
+    uploadedFileReference = MockReference();
+    userShopDocument = MockDocumentReference<Map<String, dynamic>>();
+    userUploadedShopDocument = MockDocumentReference<Map<String, dynamic>>();
+
+    _setUpGeo();
+    _setUpStorage();
+    _setUpFirestore();
+  });
+
+  group('watchNearby', () {
+    test(
+      'should call geoflutterfire functions',
+      () async {
+        // act
+        final result =
+            firebaseShopRepository.watchNearby(Location.empty(), 10.0);
+        result.listen((event) {});
+
+        // assert
+        await untilCalled(mockGeo.point(
+            latitude: Location.empty().latitude,
+            longitude: Location.empty().longitude));
+        verify(mockGeo.point(
+            latitude: Location.empty().latitude,
+            longitude: Location.empty().longitude));
+        verify(mockGeo.collection(collectionRef: shopsCollection));
+        verify(mockGeoFireCollectionRef.within(
+            center: geoPoint, radius: radius, field: field, strictMode: true));
+      },
+    );
+
+    test(
+      'should emit a stream of matching shops',
+      () async {
+        // act
+        final result =
+            firebaseShopRepository.watchNearby(Location.empty(), 10.0);
+        // assert
+        expectLater(
+            result.asBroadcastStream(),
+            emitsInOrder([
+              right(KtList.from([tShop, tShop, tShop]))
+            ]));
+      },
+    );
+  });
 
   group('create', () {
     test(

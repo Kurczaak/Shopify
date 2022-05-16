@@ -175,6 +175,7 @@ class FirebaseShopRepositoryImpl implements ShopifyShopRepository {
           return left(const ShopFailure.insufficientPermission());
         }
       }
+      print(error);
       return left(const ShopFailure.unexpected());
     });
   }
