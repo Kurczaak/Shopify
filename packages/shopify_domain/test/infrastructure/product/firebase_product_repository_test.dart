@@ -259,8 +259,7 @@ Future<void> main() async {
               // act
               final result = await repository.create(tInvalidProductForm);
               // assert
-              expect(
-                  result, left(const ProductFailure.timeout(timeoutDuration)));
+              expect(result, isA<Left<ProductFailure, Unit>>());
             },
           );
         });
