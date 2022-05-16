@@ -59,8 +59,7 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => imagePikcerInjectableModule.imagePicker);
   gh.lazySingleton<_i10.InternetConnectionChecker>(
       () => firebaseInjectableModule.connectionChecker);
-  gh.lazySingleton<_i11.Location>(
-      () => locationInjectableModule.geocodingPlatform);
+  gh.lazySingleton<_i11.Location>(() => locationInjectableModule.location);
   gh.lazySingleton<_i12.LocationInfo>(
       () => _i12.LocationInfoImpl(get<_i6.GeocodingPlatform>()));
   gh.factory<_i13.NetworkInfo>(

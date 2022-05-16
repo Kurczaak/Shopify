@@ -8,18 +8,21 @@ import 'package:shopify_domain/core/location/shopify_location_facade.dart';
 
 @LazySingleton(as: ILocationFacade)
 class LocationFacadeImpl implements ILocationFacade {
+  final ShopifyLocationFacade shopifyLocation;
+
+  LocationFacadeImpl(this.shopifyLocation);
   @override
   Future<Either<LocationFailure, Location>> getCurrentLocation() {
-    return ShopifyLocationFacade.instance.getCurrentLocation();
+    return shopifyLocation.getCurrentLocation();
   }
 
   @override
   Future<Either<LocationFailure, Location>> getUserLocation() {
-    return ShopifyLocationFacade.instance.getUserLocation();
+    return shopifyLocation.getUserLocation();
   }
 
   @override
   Future<Either<LocationFailure, Unit>> setUserAddress(Address address) {
-    return ShopifyLocationFacade.instance.setUserAddress(address);
+    return shopifyLocation.setUserAddress(address);
   }
 }
