@@ -51,7 +51,7 @@ void main() {
     final callOutput = right<LocationFailure, Location>(mockLocation);
 
     test(
-      'getUserLocation should call ShopifyLocationFacade.getUserLocation',
+      'should call ShopifyLocationFacade.getUserLocation',
       () async {
         // arrange
         when(mockShopifyLocation.getUserLocation())
@@ -80,7 +80,7 @@ void main() {
     final callOutput = right<LocationFailure, Unit>(unit);
 
     test(
-      'setUserAddress should call ShopifyLocationFacade.setUserAddress',
+      'should call ShopifyLocationFacade.setUserAddress',
       () async {
         // arrange
         final tAddress = Address.empty();
@@ -106,18 +106,4 @@ void main() {
       },
     );
   });
-
-  test(
-    'setUserAddress should call ShopifyLocationFacade.setUserAddress',
-    () async {
-      // arrange
-      final tAddress = Address.empty();
-      when(mockShopifyLocation.setUserAddress(tAddress))
-          .thenAnswer((_) async => right(unit));
-      // act
-      locationFacadeImpl.setUserAddress(tAddress);
-      // assert
-      verify(mockShopifyLocation.setUserAddress(tAddress)).called(1);
-    },
-  );
 }
