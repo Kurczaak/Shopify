@@ -1,3 +1,5 @@
+// ignore_for_file: unused_element, unused_field, constant_identifier_names
+
 part of 'shop_watcher_bloc.dart';
 
 @superEnum
