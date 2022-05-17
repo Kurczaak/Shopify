@@ -1,5 +1,5 @@
 import 'package:injectable/injectable.dart';
-import 'package:kt_dart/src/collection/kt_list.dart';
+import 'package:kt_dart/kt.dart';
 import 'package:dartz/dartz.dart';
 import 'package:shopify_client/domain/shop/i_shop_repository.dart';
 import 'package:shopify_domain/shop/shop_failure.dart';
@@ -11,30 +11,33 @@ import 'package:shopify_domain/shop/shopify_shop_repository.dart';
 
 @LazySingleton(as: IShopRepository)
 class ShopRepositoryImpl implements IShopRepository {
+  final ShopifyShopRepository shopRepository;
+
+  ShopRepositoryImpl(this.shopRepository);
   @override
   Future<Either<ShopFailure, Unit>> create(
       Shop shop, ShopLogo logo, ShopifyUser user) {
-    return ShopifyShopRepository.instance.create(shop, logo, user);
+    return shopRepository.create(shop, logo, user);
   }
 
   @override
   Future<Either<ShopFailure, Unit>> delete(Shop shop) {
-    return ShopifyShopRepository.instance.delete(shop);
+    return shopRepository.delete(shop);
   }
 
   @override
   Future<Either<ShopFailure, Unit>> update(Shop shop) {
-    return ShopifyShopRepository.instance.update(shop);
+    return shopRepository.update(shop);
   }
 
   @override
   Stream<Either<ShopFailure, KtList<Shop>>> watchAll() {
-    return ShopifyShopRepository.instance.watchAll();
+    return shopRepository.watchAll();
   }
 
   @override
   Stream<Either<ShopFailure, KtList<Shop>>> watchNearby(
       Location location, double radius) {
-    return ShopifyShopRepository.instance.watchNearby(location, radius);
+    return shopRepository.watchNearby(location, radius);
   }
 }
