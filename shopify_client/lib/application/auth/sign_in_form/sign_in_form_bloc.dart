@@ -3,7 +3,9 @@ import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+import 'package:shopify_client/application/auth/auth_bloc.dart';
 import 'package:shopify_client/domain/auth/i_auth_facade.dart';
+import 'package:shopify_client/injection.dart';
 import 'package:shopify_domain/auth.dart';
 
 part 'sign_in_form_event.dart';
@@ -44,12 +46,16 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
             isSubmitting: true,
             authFailureOrSuccessOption: none(),
           ));
-          final valueOrFailure = await _authFacade.signInWithGoogle();
+          final failureOrUnit = await _authFacade.signInWithGoogle();
           emit.isDone;
           emit(state.copyWith(
             isSubmitting: false,
-            authFailureOrSuccessOption: some(valueOrFailure),
+            authFailureOrSuccessOption: some(failureOrUnit),
           ));
+          failureOrUnit.fold(
+              (_) => null,
+              (_) =>
+                  getIt<AuthBloc>().add(const AuthEvent.authCheckRequested()));
         },
       );
     });

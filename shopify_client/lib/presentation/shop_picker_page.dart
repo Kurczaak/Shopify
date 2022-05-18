@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:kt_dart/kt.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
+import 'package:shopify_client/application/auth/auth_bloc.dart';
 import 'package:shopify_client/application/shop_watcher/shop_watcher_bloc.dart';
 import 'package:shopify_domain/core.dart';
 import 'package:shopify_domain/shop.dart';
@@ -51,7 +52,15 @@ class _ShopPickerPageState extends State<ShopPickerPage> {
         builder: (context, state) {
           return Scaffold(
             drawer: Drawer(
-              child: ListView(children: const [Card()]),
+              child: ListView(children: [
+                Card(
+                  child: TextButton(
+                      onPressed: () {
+                        getIt<AuthBloc>().add(const AuthEvent.signedOut());
+                      },
+                      child: const Text('log out')),
+                )
+              ]),
             ),
             appBar: ShopifyAppBar(
               appBar: AppBar(),

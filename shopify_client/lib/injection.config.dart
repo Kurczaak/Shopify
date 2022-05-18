@@ -37,6 +37,6 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       get<_i9.IShopRepository>(), get<_i6.ILocationFacade>()));
   gh.factory<_i13.SignInFormBloc>(
       () => _i13.SignInFormBloc(get<_i3.IAuthFacade>()));
-  gh.factory<_i14.AuthBloc>(() => _i14.AuthBloc(get<_i3.IAuthFacade>()));
+  gh.lazySingleton<_i14.AuthBloc>(() => _i14.AuthBloc(get<_i3.IAuthFacade>()));
   return get;
 }
