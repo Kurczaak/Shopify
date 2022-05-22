@@ -23,3 +23,44 @@ jobs:
         working-directory: ./shopify_client
       - run: flutter test
         working-directory: ./shopify_client
+
+  
+  build_ios:
+    name: Build Flutter (iOS)
+    needs: [flutter_test]
+    runs-on: macoc-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-java@v2
+        with:
+          distribution: 'zulu'
+          java-version: '11'
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: "stable"
+      - run: flutter pub get
+        working-directory: ./shopify_client
+      - run: flutter clean
+        working-directory: ./shopify_client
+      - run: flutter build ios --no-codesign
+        working-directory: ./shopify_client
+
+  build_appbundle:
+    name: Build Flutter (Android)
+    needs: [flutter_test]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-java@v2
+        with:
+          distribution: 'zulu'
+          java-version: '11'
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: "stable"
+      - run: flutter pub get
+        working-directory: ./shopify_client
+      - run: flutter clean
+        working-directory: ./shopify_client
+      - run: flutter build appbundle
+        working-directory: ./shopify_client
