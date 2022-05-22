@@ -46,6 +46,7 @@ class SignInForm extends StatelessWidget {
                     const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
                 children: [
                   TextFormField(
+                    key: const Key('email-text-form-field'),
                     autofillHints: const [
                       AutofillHints.email,
                     ],
@@ -78,6 +79,7 @@ class SignInForm extends StatelessWidget {
                   ),
                   const SizedBox(height: 20),
                   TextFormField(
+                    key: const Key('password-text-form-field'),
                     autofillHints: const [
                       AutofillHints.password,
                     ],
@@ -116,6 +118,7 @@ class SignInForm extends StatelessWidget {
                   SizedBox(
                     height: buttonResponsiveValue.value,
                     child: ElevatedButton(
+                      key: const Key('log-in-button'),
                       onPressed: () {
                         context.read<SignInFormBloc>().add(
                               const SignInFormEvent
