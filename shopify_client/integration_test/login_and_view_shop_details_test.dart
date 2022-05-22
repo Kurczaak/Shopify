@@ -21,7 +21,6 @@ import 'package:shopify_domain/shop/value_objects.dart';
 
 import 'core/app_widget.dart';
 
-//class MockUser extends Mock implements ShopifyUser {}
 
 class MockShop extends Mock implements Shop {}
 
@@ -128,8 +127,8 @@ void main() {
     await tester.tap(find.byKey(Key(tShopId.getOrCrash())));
     await tester.pumpAndSettle();
     await tester.tap(find.byKey(const Key('shop-details-button')));
-    //await tester.pump();
-    //await tester.pumpAndSettle();
+    
+    await tester.pumpAndSettle();
     expect(find.byType(ShopPreviewDialog), findsOneWidget);
   });
 }
