@@ -19,7 +19,7 @@ jobs:
           channel: "stable"
       - run: flutter pub get
         working-directory: ./shopify_client
-      - run: flutter analyze
+      - run: flutter analyze --no-fatal-infos --no-fatal-warnings
         working-directory: ./shopify_client
       - run: flutter test
         working-directory: ./shopify_client

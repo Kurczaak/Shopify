@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_framework.dart';
-import '../../lib/presentation/routes/router.gr.dart';
+import 'package:shopify_client/presentation/routes/router.gr.dart';
 
 Widget createWidgetUnderTest() {
   final _appRouter = AppRouter();
