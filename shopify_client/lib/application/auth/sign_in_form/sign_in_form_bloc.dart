@@ -36,10 +36,12 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
         registerWithEmailAndPasswordPressed: (e) {
           _performActionOnAuthFacadeWithEmailAndPassword(
               _authFacade.registerWithEmailAndPassword);
+          getIt<AuthBloc>().add(const AuthEvent.authCheckRequested());
         },
         signInWithEmailAndPasswordPressed: (e) {
           _performActionOnAuthFacadeWithEmailAndPassword(
               _authFacade.signInWithEmailAndPassword);
+          getIt<AuthBloc>().add(const AuthEvent.authCheckRequested());
         },
         signInWithGooglePressed: (e) async {
           emit(state.copyWith(
