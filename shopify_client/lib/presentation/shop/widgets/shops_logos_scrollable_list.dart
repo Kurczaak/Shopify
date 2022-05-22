@@ -27,6 +27,7 @@ class ShopsLogosScrollableList extends StatelessWidget {
       itemCount: shops.size,
       scrollDirection: Axis.horizontal,
       itemBuilder: (context, index) => SizedBox(
+        key: Key(shops[index].id.getOrCrash()),
         height: 92,
         width: 184,
         child: Card(
