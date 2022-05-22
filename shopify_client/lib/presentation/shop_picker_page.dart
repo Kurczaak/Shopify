@@ -70,6 +70,7 @@ class _ShopPickerPageState extends State<ShopPickerPage> {
                 FloatingActionButtonLocation.centerFloat,
             floatingActionButton: selectedShop != null
                 ? FloatingActionButton.extended(
+                    key: const Key('shop-details-button'),
                     label: const Text('Open shop details'),
                     icon: const Icon(
                       Icons.info,
