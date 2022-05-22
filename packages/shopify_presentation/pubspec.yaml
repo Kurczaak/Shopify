@@ -11,6 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^8.0.1
+  path_provider: ^2.0.10
   responsive_framework: ^0.2.0
 
 dev_dependencies:
@@ -23,6 +24,13 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
+  assets:
+    - images/corner_shape.png
+    - images/undraw_gone_shopping.png
+    - images/logo.png
+    - images/test/test_logo.jpg
+    - images/test/too_small_logo.jpg
+    - images/test/too_big_logo.jpg
 
   # To add assets to your package, add an assets section, like this:
   # assets:
