@@ -128,7 +128,7 @@ void main() {
     await tester.tap(find.byKey(Key(tShopId.getOrCrash())));
     await tester.pumpAndSettle();
     await tester.tap(find.byKey(const Key('shop-details-button')));
-    await tester.pump();
+    //await tester.pump();
     //await tester.pumpAndSettle();
     expect(find.byType(ShopPreviewDialog), findsOneWidget);
   });
