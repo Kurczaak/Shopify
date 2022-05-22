@@ -16,8 +16,6 @@ jobs:
           java-version: '11'
       - uses: subosito/flutter-action@v2
         with:
-          flutter-version: '2.10.4'
-        with:
           channel: "stable"
       - run: cd shopify_client
       - run: flutter pub get
