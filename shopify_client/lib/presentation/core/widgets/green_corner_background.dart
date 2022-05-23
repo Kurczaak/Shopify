@@ -7,18 +7,8 @@ class GreenCornerBackground extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-          alignment: Alignment.topLeft,
-          repeat: ImageRepeat.noRepeat,
-          image: AssetImage('images/corner_shape.png'),
-          fit: BoxFit.scaleDown,
-          matchTextDirection: false,
-        ),
-        shape: BoxShape.rectangle,
-      ),
-      child: child,
+    return Stack(
+      children: [Image.asset('images/corner_shape.png'), child],
     );
   }
 }
