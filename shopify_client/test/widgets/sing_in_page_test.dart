@@ -73,10 +73,4 @@ void main() {
     await tester.pump(const Duration(milliseconds: 200));
     expect(find.widgetWithText(InkWell, 'Sign Up'), findsOneWidget);
   });
-
-  testWidgets('Kurwa XD', (WidgetTester tester) async {
-    await tester.pumpWidget(testWidget);
-    await tester.pump(const Duration(milliseconds: 200));
-    expect(find.byType(SignInPage), findsOneWidget);
-  });
 }
