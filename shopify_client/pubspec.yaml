@@ -83,6 +83,7 @@ dev_dependencies:
   json_serializable: ^6.2.0
   mockito: ^5.1.0
   super_enum_sealed_generators: ^1.4.0
+  dependency_validator: ^3.0.0
 
 # The following section is specific to Flutter.
 flutter:
