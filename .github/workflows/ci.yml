@@ -23,4 +23,18 @@ jobs:
         working-directory: ./shopify_client
       - run: flutter test
         working-directory: ./shopify_client
+      
+      - run: flutter pub get
+        working-directory: ./packages/shopify_presentation
+      - run: flutter analyze --no-fatal-infos --no-fatal-warnings
+        working-directory: ./shopify_presentation
+      - run: flutter test
+        working-directory: ./shopify_presentation
+
+      - run: flutter pub get
+        working-directory: ./packages/shopify_domain
+      - run: flutter analyze --no-fatal-infos --no-fatal-warnings
+        working-directory: ./shopify_domain
+      - run: flutter test
+        working-directory: ./shopify_domain
 
