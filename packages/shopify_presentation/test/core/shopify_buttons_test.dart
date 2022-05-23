@@ -14,6 +14,7 @@ void main() {
   late MockOnPressedFunction mockOnPressedFunction;
   late MaterialApp shopifyPrimaryButtonApp;
   late MaterialApp shopifySecondaryButtonApp;
+  late MaterialApp shopifyIconTextButtonApp;
   setUp(() {
     mockOnPressedFunction = MockOnPressedFunction();
     shopifyPrimaryButtonApp = MaterialApp(
@@ -33,6 +34,16 @@ void main() {
                 child: ShopifySecondaryButton(
                     key: const Key('secondary-button'),
                     text: "Test Text",
+                    onPressed: mockOnPressedFunction.handler))));
+
+    shopifyIconTextButtonApp = MaterialApp(
+        home: Scaffold(
+            body: Center(
+                child: ShopifyIconTextButton(
+                    key: const Key('icon-text-button'),
+                    title: 'Test Title',
+                    subtitle: 'Test Subtitle',
+                    icon: Icons.abc,
                     onPressed: mockOnPressedFunction.handler))));
   });
 
@@ -56,6 +67,24 @@ void main() {
     testWidgets('should call tap function', (tester) async {
       await tester.pumpWidget(shopifySecondaryButtonApp);
       await tester.tap(find.byKey(const Key('secondary-button')));
+      expect(mockOnPressedFunction.called, 1);
+    });
+  });
+
+  group('ShopifyIconTextButton', () {
+    testWidgets('should show given texts', (tester) async {
+      await tester.pumpWidget(shopifyIconTextButtonApp);
+      expect(find.text('Test Title'), findsOneWidget);
+      expect(find.text('Test Subtitle'), findsOneWidget);
+    });
+
+    testWidgets('should show given icon', (tester) async {
+      await tester.pumpWidget(shopifyIconTextButtonApp);
+      expect(find.byIcon(Icons.abc), findsOneWidget);
+    });
+    testWidgets('should call tap function', (tester) async {
+      await tester.pumpWidget(shopifyIconTextButtonApp);
+      await tester.tap(find.byKey(const Key('icon-text-button')));
       expect(mockOnPressedFunction.called, 1);
     });
   });
