@@ -1,6 +1,7 @@
 name: shopify_presentation
 description: A new Flutter package project.
 version: 0.0.1
+publish_to: none
 homepage:
 
 environment:
@@ -8,17 +9,21 @@ environment:
   flutter: ">=1.17.0"
 
 dependencies:
+  carousel_slider: ^4.1.1
   flutter:
     sdk: flutter
   flutter_bloc: ^8.0.1
+  kt_dart: ^0.10.0
   path_provider: ^2.0.10
   progress_indicators: ^1.0.0
   responsive_framework: ^0.2.0
+  shopify_domain:
+    path: ../shopify_domain
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.0
+  flutter_lints: ^1.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
