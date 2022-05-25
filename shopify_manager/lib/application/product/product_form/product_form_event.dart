@@ -27,9 +27,3 @@ enum _ProductFormEvent {
   @object
   Saved
 }
-
-// @freezed
-// class ProductFormEvent with _$ProductFormEvent {
-//   const factory ProductFormEvent.categoryChanged(Category category) =
-//       CategoryChanged;
-// }
