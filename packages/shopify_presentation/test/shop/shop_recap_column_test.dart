@@ -38,18 +38,7 @@ void main() async {
   final tLogoFile = await getImageFileFromAssets('test_logo.jpg');
   final tShopLogo = ShopLogo(tLogoFile);
 
-  final testWidgetWithoutLogoFile = MaterialApp(
-    home: Scaffold(
-        body: SizedBox(
-      height: 900,
-      width: 900,
-      child: ShopRecap(
-        shop: tShop,
-      ),
-    )),
-  );
-
-  final testWidgetWithLogoFile = MaterialApp(
+  final testWidget = MaterialApp(
     home: Scaffold(
         body: SizedBox(
       height: 900,
@@ -62,52 +51,52 @@ void main() async {
   );
 
   testWidgets('should display logo file', (tester) async {
-    await tester.pumpWidget(testWidgetWithLogoFile);
+    await tester.pumpWidget(testWidget);
     await tester.pump(const Duration(seconds: 1));
     expect(find.image(FileImage(tShopLogo.getOrCrash())), findsOneWidget);
   });
 
   testWidgets('should display store icon', (tester) async {
-    await tester.pumpWidget(testWidgetWithLogoFile);
+    await tester.pumpWidget(testWidget);
     expect(find.byIcon(Icons.store), findsOneWidget);
   });
   testWidgets('should display location_on icon', (tester) async {
-    await tester.pumpWidget(testWidgetWithLogoFile);
+    await tester.pumpWidget(testWidget);
     expect(find.byIcon(Icons.location_on), findsOneWidget);
   });
 
   testWidgets('should display shopName', (tester) async {
-    await tester.pumpWidget(testWidgetWithLogoFile);
+    await tester.pumpWidget(testWidget);
     expect(find.text(shopNameStr), findsOneWidget);
   });
 
   testWidgets('should display postalCode', (tester) async {
-    await tester.pumpWidget(testWidgetWithLogoFile);
+    await tester.pumpWidget(testWidget);
     expect(find.textContaining(postalCodeStr), findsOneWidget);
   });
 
   testWidgets('should display cityName', (tester) async {
-    await tester.pumpWidget(testWidgetWithLogoFile);
+    await tester.pumpWidget(testWidget);
     expect(find.textContaining(cityNameStr), findsOneWidget);
   });
 
   testWidgets('should display streetName', (tester) async {
-    await tester.pumpWidget(testWidgetWithLogoFile);
+    await tester.pumpWidget(testWidget);
     expect(find.textContaining(streetNameStr), findsOneWidget);
   });
 
   testWidgets('should display streetNumber', (tester) async {
-    await tester.pumpWidget(testWidgetWithLogoFile);
+    await tester.pumpWidget(testWidget);
     expect(find.textContaining(streetNumberStr), findsOneWidget);
   });
 
   testWidgets('should display apartmentNumber', (tester) async {
-    await tester.pumpWidget(testWidgetWithLogoFile);
+    await tester.pumpWidget(testWidget);
     expect(find.textContaining(apartmentNumberStr), findsOneWidget);
   });
 
   testWidgets('should display opening days', (tester) async {
-    await tester.pumpWidget(testWidgetWithLogoFile);
+    await tester.pumpWidget(testWidget);
     await tester.pump(const Duration(milliseconds: 100));
     for (final day in tShop.workingWeek.asList) {
       expect(find.text(day.day.name), findsOneWidget);
@@ -115,7 +104,7 @@ void main() async {
   });
 
   testWidgets('should display opening intervals', (tester) async {
-    await tester.pumpWidget(testWidgetWithLogoFile);
+    await tester.pumpWidget(testWidget);
 
     expect(
         find.text(
@@ -124,7 +113,7 @@ void main() async {
   });
 
   testWidgets('should display closed day', (tester) async {
-    await tester.pumpWidget(testWidgetWithLogoFile);
+    await tester.pumpWidget(testWidget);
 
     expect(find.text('closed'), findsOneWidget);
   });
