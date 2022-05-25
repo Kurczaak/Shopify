@@ -60,11 +60,13 @@ dependencies:
   location: ^4.4.0
   path_provider: ^2.0.10
   progress_indicators: ^1.0.0
-  responsive_framework: ^0.1.8
+  responsive_framework: ^0.2.0
   rxdart: ^0.27.3
   scrollable_positioned_list: ^0.3.2
   shopify_domain:
     path: ../packages/shopify_domain
+  shopify_presentation:
+    path: ../packages/shopify_presentation
   super_enum_sealed_annotations: ^1.4.0
   uuid: ^3.0.6
 
