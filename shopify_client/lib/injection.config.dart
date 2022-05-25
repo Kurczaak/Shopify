@@ -11,8 +11,8 @@ import 'package:shopify_domain/core/location/shopify_location_facade.dart'
     as _i8;
 import 'package:shopify_domain/shop/shopify_shop_repository.dart' as _i11;
 
-import 'application/auth/auth_bloc.dart' as _i14;
-import 'application/auth/sign_in_form/sign_in_form_bloc.dart' as _i13;
+import 'application/auth/auth_bloc.dart' as _i13;
+import 'application/auth/sign_in_form/sign_in_form_bloc.dart' as _i14;
 import 'application/shop_watcher/shop_watcher_bloc.dart' as _i12;
 import 'domain/auth/i_auth_facade.dart' as _i3;
 import 'domain/core/i_location_facade.dart' as _i6;
@@ -35,8 +35,8 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => _i10.ShopRepositoryImpl(get<_i11.ShopifyShopRepository>()));
   gh.factory<_i12.ShopWatcherBloc>(() => _i12.ShopWatcherBloc(
       get<_i9.IShopRepository>(), get<_i6.ILocationFacade>()));
-  gh.factory<_i13.SignInFormBloc>(
-      () => _i13.SignInFormBloc(get<_i3.IAuthFacade>()));
-  gh.lazySingleton<_i14.AuthBloc>(() => _i14.AuthBloc(get<_i3.IAuthFacade>()));
+  gh.lazySingleton<_i13.AuthBloc>(() => _i13.AuthBloc(get<_i3.IAuthFacade>()));
+  gh.factory<_i14.SignInFormBloc>(
+      () => _i14.SignInFormBloc(get<_i3.IAuthFacade>(), get<_i13.AuthBloc>()));
   return get;
 }

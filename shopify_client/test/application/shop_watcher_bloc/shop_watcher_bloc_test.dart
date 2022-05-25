@@ -28,8 +28,15 @@ void main() {
     blocTest(
       'Should call IShopRepository.watchNearby',
       build: () => ShopWatcherBloc(mockShopRepository, mockLocationFacade),
-      setUp: () => when(mockLocationFacade.getCurrentLocation())
-          .thenAnswer((_) async => right(tLocation)),
+      setUp: () {
+        when(mockShopRepository.watchNearby(tLocation, tRadius)).thenAnswer(
+            (_) => Stream.fromIterable([
+                  left<ShopFailure, KtList<Shop>>(
+                      const ShopFailure.noShopFound())
+                ]));
+        when(mockLocationFacade.getCurrentLocation())
+            .thenAnswer((_) async => right(tLocation));
+      },
       act: (ShopWatcherBloc bloc) => bloc.add(
         const ShopWatcherEvent.watchNearbyShops(
           radius: tRadius,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:shopify_client/application/auth/auth_bloc.dart';
 import 'package:shopify_client/application/auth/sign_in_form/sign_in_form_bloc.dart';
 import 'package:shopify_domain/auth/auth_failure.dart';
 import 'package:shopify_client/domain/auth/i_auth_facade.dart';
@@ -10,10 +11,12 @@ import 'package:mockito/mockito.dart';
 import 'sign_in_form_bloc_test.mocks.dart';
 import 'package:bloc_test/bloc_test.dart';
 
-@GenerateMocks([IAuthFacade])
+@GenerateMocks([IAuthFacade, AuthBloc])
 void main() {
+  final mockAuthBloc = MockAuthBloc();
+
   MockIAuthFacade mockIAuthFacade = MockIAuthFacade();
-  SignInFormBloc signInFormBloc = SignInFormBloc(mockIAuthFacade);
+  SignInFormBloc signInFormBloc = SignInFormBloc(mockIAuthFacade, mockAuthBloc);
   const correctPasswordStr = '123ABcd!@#';
   const incorrectPasswordStr = 'abcde';
   final correctPassword = Password(correctPasswordStr);
@@ -25,7 +28,7 @@ void main() {
 
   setUp(() {
     mockIAuthFacade = MockIAuthFacade();
-    signInFormBloc = SignInFormBloc(mockIAuthFacade);
+    signInFormBloc = SignInFormBloc(mockIAuthFacade, mockAuthBloc);
   });
 
   dynamic _loadingAndLoadedStates(
@@ -44,7 +47,7 @@ void main() {
     required Either<AuthFailure, Unit> failureOrSuccess,
   }) {
     when(call()).thenAnswer((_) async => failureOrSuccess);
-    return SignInFormBloc(mockIAuthFacade);
+    return SignInFormBloc(mockIAuthFacade, mockAuthBloc);
   }
 
   SignInFormBloc _mockActionOnEmailAndPasswordAndBuild({
@@ -57,14 +60,14 @@ void main() {
   }) {
     when(call(emailAddress: emailAddress, password: password))
         .thenAnswer((_) async => failureOrSuccess);
-    return SignInFormBloc(mockIAuthFacade);
+    return SignInFormBloc(mockIAuthFacade, mockAuthBloc);
   }
 
   group('Email changed', () {
     blocTest(
       'should emit a state with correct email address',
       build: () {
-        return SignInFormBloc(mockIAuthFacade);
+        return SignInFormBloc(mockIAuthFacade, mockAuthBloc);
       },
       act: (SignInFormBloc bloc) =>
           bloc.add(const SignInFormEvent.emailChanged(correctEmailStr)),
@@ -76,7 +79,7 @@ void main() {
     blocTest(
       'should emit a state with incorrect email address',
       build: () {
-        return SignInFormBloc(mockIAuthFacade);
+        return SignInFormBloc(mockIAuthFacade, mockAuthBloc);
       },
       act: (SignInFormBloc bloc) =>
           bloc.add(const SignInFormEvent.emailChanged(incorrectEmailStr)),
@@ -90,7 +93,7 @@ void main() {
     blocTest(
       'should emit a state with none authFailureOrSuccessOption when email addres changes',
       build: () {
-        return SignInFormBloc(mockIAuthFacade);
+        return SignInFormBloc(mockIAuthFacade, mockAuthBloc);
       },
       seed: () => SignInFormState.initial().copyWith(
         authFailureOrSuccessOption:
@@ -110,7 +113,7 @@ void main() {
     blocTest(
       'should emit a state with correct email address',
       build: () {
-        return SignInFormBloc(mockIAuthFacade);
+        return SignInFormBloc(mockIAuthFacade, mockAuthBloc);
       },
       act: (SignInFormBloc bloc) =>
           bloc.add(const SignInFormEvent.passwordChanged(correctPasswordStr)),
@@ -122,7 +125,7 @@ void main() {
     blocTest(
       'should emit a state with incorrect email address',
       build: () {
-        return SignInFormBloc(mockIAuthFacade);
+        return SignInFormBloc(mockIAuthFacade, mockAuthBloc);
       },
       act: (SignInFormBloc bloc) =>
           bloc.add(const SignInFormEvent.passwordChanged(incorrectPasswordStr)),
@@ -136,7 +139,7 @@ void main() {
     blocTest(
       'should emit a state with none authFailureOrSuccessOption when password changes',
       build: () {
-        return SignInFormBloc(mockIAuthFacade);
+        return SignInFormBloc(mockIAuthFacade, mockAuthBloc);
       },
       seed: () => SignInFormState.initial().copyWith(
         authFailureOrSuccessOption:
@@ -227,7 +230,7 @@ void main() {
 
     blocTest(
         'should emit error messages state when incorrect email is inputted',
-        build: () => SignInFormBloc(mockIAuthFacade),
+        build: () => SignInFormBloc(mockIAuthFacade, mockAuthBloc),
         seed: () => SignInFormState.initial()
             .copyWith(emailAddress: incorrectEmail, password: correctPassword),
         act: registerWithEmailAndPassword,
@@ -240,7 +243,7 @@ void main() {
 
     blocTest(
         'should emit error messages state when incorrect password is inputted',
-        build: () => SignInFormBloc(mockIAuthFacade),
+        build: () => SignInFormBloc(mockIAuthFacade, mockAuthBloc),
         seed: () => SignInFormState.initial()
             .copyWith(emailAddress: correctEmail, password: incorrectPassword),
         act: registerWithEmailAndPassword,
@@ -252,7 +255,7 @@ void main() {
             ]);
     blocTest(
       'should verify no registerWithEmailAndPassword call when incorrect passowrd is inputted',
-      build: () => SignInFormBloc(mockIAuthFacade),
+      build: () => SignInFormBloc(mockIAuthFacade, mockAuthBloc),
       seed: () => SignInFormState.initial()
           .copyWith(emailAddress: correctEmail, password: incorrectPassword),
       act: registerWithEmailAndPassword,
@@ -288,7 +291,7 @@ void main() {
 
     blocTest(
         'should emit error messages state when incorrect email is inputted',
-        build: () => SignInFormBloc(mockIAuthFacade),
+        build: () => SignInFormBloc(mockIAuthFacade, mockAuthBloc),
         seed: () => SignInFormState.initial()
             .copyWith(emailAddress: incorrectEmail, password: correctPassword),
         act: signInWithEmailAndPassword,
@@ -301,7 +304,7 @@ void main() {
 
     blocTest(
         'should emit error messages state when incorrect password is inputted',
-        build: () => SignInFormBloc(mockIAuthFacade),
+        build: () => SignInFormBloc(mockIAuthFacade, mockAuthBloc),
         seed: () => SignInFormState.initial()
             .copyWith(emailAddress: correctEmail, password: incorrectPassword),
         act: signInWithEmailAndPassword,
@@ -313,7 +316,7 @@ void main() {
             ]);
     blocTest(
       'should verify no registerWithEmailAndPassword call when incorrect passowrd is inputted',
-      build: () => SignInFormBloc(mockIAuthFacade),
+      build: () => SignInFormBloc(mockIAuthFacade, mockAuthBloc),
       seed: () => SignInFormState.initial()
           .copyWith(emailAddress: correctEmail, password: incorrectPassword),
       act: signInWithEmailAndPassword,

@@ -31,6 +31,21 @@ class AppWidget extends StatelessWidget {
           bodyColor: const Color.fromRGBO(73, 72, 72, 1),
           displayColor: const Color.fromRGBO(73, 72, 72, 1),
         ),
+        colorScheme: const ColorScheme(
+          brightness: Brightness.light,
+          background: LightThemeColors.background,
+          onBackground: LightThemeColors.primaryDarkColor,
+          primary: LightThemeColors.primary,
+          onPrimary: LightThemeColors.iconsColor,
+          secondary: LightThemeColors.accentColor,
+          onSecondary: LightThemeColors.iconsColor,
+          error: LightThemeColors.errorColor,
+          onError: LightThemeColors.iconsColor,
+          surface: LightThemeColors.iconsColor,
+          onSurface: LightThemeColors.secondaryDarkColor,
+          outline: LightThemeColors.primaryDarkColor,
+          inversePrimary: LightThemeColors.disabledColor,
+        ),
         backgroundColor: const Color(0x00F4F5F7),
         secondaryHeaderColor: const Color.fromRGBO(81, 81, 81, 1),
         brightness: Brightness.light,
@@ -48,6 +63,17 @@ class AppWidget extends StatelessWidget {
       ),
     );
   }
+}
+
+class LightThemeColors {
+  static const Color primary = Color(0xFF337331);
+  static const Color background = Color.fromARGB(255, 231, 231, 231);
+  static const Color iconsColor = Colors.white;
+  static const Color primaryDarkColor = Color.fromARGB(255, 71, 71, 71);
+  static const Color secondaryDarkColor = Color.fromRGBO(129, 129, 129, 1);
+  static const Color errorColor = Color.fromRGBO(184, 52, 74, 1);
+  static const Color accentColor = Color.fromRGBO(0, 112, 193, 1);
+  static const Color disabledColor = Color(0xFFA2AF9F);
 }
 
 Map<int, Color> color = {

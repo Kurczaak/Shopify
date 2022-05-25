@@ -5,7 +5,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shopify_client/application/auth/auth_bloc.dart';
 import 'package:shopify_client/domain/auth/i_auth_facade.dart';
-import 'package:shopify_client/injection.dart';
 import 'package:shopify_domain/auth.dart';
 
 part 'sign_in_form_event.dart';
@@ -15,10 +14,12 @@ part 'sign_in_form_bloc.freezed.dart';
 @injectable
 class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
   final IAuthFacade _authFacade;
+  final AuthBloc _authBloc;
 
   SignInFormState get initialState => SignInFormState.initial();
 
-  SignInFormBloc(this._authFacade) : super(SignInFormState.initial()) {
+  SignInFormBloc(this._authFacade, this._authBloc)
+      : super(SignInFormState.initial()) {
     on<SignInFormEvent>((event, emit) async {
       await event.map(
         emailChanged: (e) {
@@ -36,12 +37,12 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
         registerWithEmailAndPasswordPressed: (e) {
           _performActionOnAuthFacadeWithEmailAndPassword(
               _authFacade.registerWithEmailAndPassword);
-          getIt<AuthBloc>().add(const AuthEvent.authCheckRequested());
+          _authBloc.add(const AuthEvent.authCheckRequested());
         },
         signInWithEmailAndPasswordPressed: (e) {
           _performActionOnAuthFacadeWithEmailAndPassword(
               _authFacade.signInWithEmailAndPassword);
-          getIt<AuthBloc>().add(const AuthEvent.authCheckRequested());
+          _authBloc.add(const AuthEvent.authCheckRequested());
         },
         signInWithGooglePressed: (e) async {
           emit(state.copyWith(
@@ -54,10 +55,8 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
             isSubmitting: false,
             authFailureOrSuccessOption: some(failureOrUnit),
           ));
-          failureOrUnit.fold(
-              (_) => null,
-              (_) =>
-                  getIt<AuthBloc>().add(const AuthEvent.authCheckRequested()));
+          failureOrUnit.fold((_) => null,
+              (_) => _authBloc.add(const AuthEvent.authCheckRequested()));
         },
       );
     });

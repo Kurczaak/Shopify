@@ -85,8 +85,8 @@ void main() {
   }
 
   // Blocs
-  final signInFormBloc = SignInFormBloc(mockAuthFacade);
   final authBloc = AuthBloc(mockAuthFacade);
+  final signInFormBloc = SignInFormBloc(mockAuthFacade, authBloc);
   final shopWatcherBloc =
       ShopWatcherBloc(mockShopRepository, mockLocationFacade);
 
@@ -118,11 +118,9 @@ void main() {
     await tester.pump();
     await tester
         .tap(find.byKey(const Key('log-in-button'), skipOffstage: false));
-    await tester.pump();
     await tester.pumpAndSettle();
     // Find shop
     await tester.pump(const Duration(milliseconds: 200));
-
     await tester.tap(find.byKey(Key(tShopId.getOrCrash())));
     await tester.pumpAndSettle();
     await tester.tap(find.byKey(const Key('shop-details-button')));

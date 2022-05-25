@@ -21,12 +21,16 @@ class MockIAuthFacade extends Mock implements IAuthFacade {
   }
 }
 
+@LazySingleton()
+class MockAuthBloc extends Mock implements AuthBloc {}
+
 void main() {
   // set up mocks
   final GetIt getIt = GetIt.instance;
   final mockAuthFacade = MockIAuthFacade();
+  final mockAuthBloc = MockAuthBloc();
   final authBloc = AuthBloc(mockAuthFacade);
-  final signInFormBloc = SignInFormBloc(mockAuthFacade);
+  final signInFormBloc = SignInFormBloc(mockAuthFacade, mockAuthBloc);
   getIt.registerFactory<AuthBloc>(() => authBloc);
   getIt.registerFactory<SignInFormBloc>(() => signInFormBloc);
 

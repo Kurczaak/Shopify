@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:shopify_domain/core/images/photo.dart';
-import 'package:shopify_domain/core/value_objects.dart';
 import 'package:shopify_domain/shop/shop.dart';
 import 'package:shopify_domain/shop/time/week.dart';
 import 'package:shopify_domain/shop/time/day.dart';
@@ -18,7 +17,6 @@ class ShopRecap extends StatefulWidget {
 class _ShopRecapState extends State<ShopRecap> {
   late Shop shop;
   late ShopLogo? fileLogo;
-  late ShopifyUrl? urlLogo;
   late String shopName;
   late String postalCode;
   late String city;
@@ -30,7 +28,7 @@ class _ShopRecapState extends State<ShopRecap> {
   void initState() {
     shop = widget.shop;
     fileLogo = widget.fileLogo;
-    urlLogo = shop.logoUrl;
+
     shopName = shop.shopName.getOrCrash();
     postalCode = shop.address.postalCode.getOrCrash();
     city = shop.address.city.getOrCrash();
@@ -82,24 +80,6 @@ class _ShopRecapState extends State<ShopRecap> {
           ],
         ),
         const SizedBox(height: 20),
-        if (fileLogo == null && urlLogo != null)
-          urlLogo!.value.fold(
-            (f) => FittedBox(
-                alignment: Alignment.centerLeft,
-                fit: BoxFit.contain,
-                child: Image.asset('images/logo.png')),
-            (url) => FittedBox(
-              alignment: Alignment.centerLeft,
-              fit: BoxFit.contain,
-              child: Image.network(
-                url,
-                errorBuilder: (_, __, ___) => Image.asset('images/logo.png'),
-                loadingBuilder: (_, __, ___) => const Center(
-                  child: CircularProgressIndicator(),
-                ),
-              ),
-            ),
-          ),
         if (fileLogo != null)
           fileLogo!.value.fold(
             (f) => Container(),
