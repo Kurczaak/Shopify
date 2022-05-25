@@ -34,7 +34,7 @@ class ShopifyAppBar extends StatelessWidget implements PreferredSizeWidget {
                   iconSize: 50,
                   onPressed: onTapBack,
                   icon: const FaIcon(
-                    FontAwesomeIcons.circleArrowLeft,
+                    FontAwesomeIcons.arrowCircleLeft,
                   ),
                 ),
               ),
