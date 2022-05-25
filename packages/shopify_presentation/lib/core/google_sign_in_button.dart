@@ -17,8 +17,8 @@ class GoogleSignInButton extends StatelessWidget {
       ),
       onPressed: onPressed,
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
+        // mainAxisAlignment: MainAxisAlignment.center,
+        // crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           const Image(
             fit: BoxFit.fitHeight,
