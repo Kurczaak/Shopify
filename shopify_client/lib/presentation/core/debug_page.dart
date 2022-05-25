@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:shopify_client/presentation/core/widgets/green_corner_background.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:shopify_client/presentation/sign_in/widgets/sign_up_form.dart';
+import 'package:shopify_presentation/shopify_presentation.dart';
 
 class DebugPage extends StatelessWidget {
   const DebugPage({Key? key}) : super(key: key);

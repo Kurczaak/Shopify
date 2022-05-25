@@ -10,10 +10,7 @@ import 'package:shopify_client/application/shop_watcher/shop_watcher_bloc.dart';
 import 'package:shopify_domain/core.dart';
 import 'package:shopify_domain/shop.dart';
 import 'package:shopify_client/injection.dart';
-import 'package:shopify_client/presentation/core/widgets/shop_preview_dialog.dart';
-import 'package:shopify_client/presentation/core/widgets/shopify_appbar.dart';
-import 'package:shopify_client/presentation/shop/widgets/shops_logos_scrollable_list.dart';
-import 'package:shopify_client/presentation/shop/widgets/shops_map_widget.dart';
+import 'package:shopify_presentation/shopify_presentation.dart';
 
 class ShopPickerPage extends StatefulWidget {
   const ShopPickerPage({Key? key}) : super(key: key);

@@ -5,7 +5,7 @@ import 'package:shopify_client/application/auth/sign_in_form/sign_in_form_bloc.d
 import 'package:another_flushbar/flushbar_helper.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:shopify_client/presentation/routes/router.gr.dart';
-import 'package:shopify_client/presentation/sign_in/widgets/google_sign_in_button.dart';
+import 'package:shopify_presentation/shopify_presentation.dart';
 
 class SignInForm extends StatelessWidget {
   const SignInForm({Key? key}) : super(key: key);

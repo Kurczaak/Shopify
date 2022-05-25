@@ -13,3 +13,4 @@ export 'core/splash_widget.dart';
 export 'shop/shop_recap_column.dart';
 export 'shop/shops_logos_scrollable_list.dart';
 export 'shop/shops_map_widget.dart';
+export 'shop/shop_preview_dialog.dart';

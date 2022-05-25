@@ -11,7 +11,7 @@ import 'package:shopify_client/domain/auth/i_auth_facade.dart';
 import 'package:shopify_client/domain/core/i_location_facade.dart';
 import 'package:shopify_client/domain/shop/i_shop_repository.dart';
 import 'package:shopify_client/injection.dart';
-import 'package:shopify_client/presentation/core/widgets/shop_preview_dialog.dart';
+import 'package:shopify_presentation/shopify_presentation.dart';
 import 'package:shopify_domain/auth/user.dart';
 import 'package:shopify_domain/auth/value_objects.dart';
 import 'package:shopify_domain/core.dart';
@@ -20,7 +20,6 @@ import 'package:shopify_domain/shop/time/week.dart';
 import 'package:shopify_domain/shop/value_objects.dart';
 
 import 'core/app_widget.dart';
-
 
 class MockShop extends Mock implements Shop {}
 
@@ -127,7 +126,7 @@ void main() {
     await tester.tap(find.byKey(Key(tShopId.getOrCrash())));
     await tester.pumpAndSettle();
     await tester.tap(find.byKey(const Key('shop-details-button')));
-    
+
     await tester.pumpAndSettle();
     expect(find.byType(ShopPreviewDialog), findsOneWidget);
   });
