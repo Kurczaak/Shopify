@@ -1,10 +1,8 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:shopify_manager/domain/product/open_food_facts/i_open_food_facts_repository.dart';
-import 'package:shopify_manager/domain/product/product.dart';
-import 'package:shopify_manager/domain/product/product_failure.dart';
-import 'package:shopify_manager/domain/product/value_objects.dart';
+import 'package:shopify_domain/product.dart';
+import 'package:shopify_manager/domain/product/i_open_food_facts_repository.dart';
 import 'package:super_enum_sealed_annotations/super_enum_sealed_annotations.dart';
 
 part 'search_product_event.dart';
