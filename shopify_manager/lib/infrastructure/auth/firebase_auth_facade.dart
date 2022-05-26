@@ -9,38 +9,36 @@ import 'package:shopify_manager/domain/auth/i_auth_facade.dart';
 class FirebaseAuthFacade implements IAuthFacade {
   final FirebaseAuth _firebaseAuth;
   final GoogleSignIn _googleSignIn;
+  final ShopifyAuth _shopifyAuth;
 
-  FirebaseAuthFacade(this._firebaseAuth, this._googleSignIn);
+  FirebaseAuthFacade(this._firebaseAuth, this._googleSignIn, this._shopifyAuth);
 
   @override
   Future<Option<ShopifyUser>> getSignedInUser() {
-    // TODO: implement getSignedInUser
-    throw UnimplementedError();
+    return _shopifyAuth.getSignedInUser();
   }
 
   @override
   Future<Either<AuthFailure, Unit>> registerWithEmailAndPassword(
       {required EmailAddress emailAddress, required Password password}) {
-    // TODO: implement registerWithEmailAndPassword
-    throw UnimplementedError();
+    return _shopifyAuth.registerWithEmailAndPassword(
+        emailAddress: emailAddress, password: password);
   }
 
   @override
   Future<Either<AuthFailure, Unit>> signInWithEmailAndPassword(
       {required EmailAddress emailAddress, required Password password}) {
-    // TODO: implement signInWithEmailAndPassword
-    throw UnimplementedError();
+    return _shopifyAuth.signInWithEmailAndPassword(
+        emailAddress: emailAddress, password: password);
   }
 
   @override
   Future<Either<AuthFailure, Unit>> signInWithGoogle() {
-    // TODO: implement signInWithGoogle
-    throw UnimplementedError();
+    return _shopifyAuth.signInWithGoogle();
   }
 
   @override
   Future<void> signOut() {
-    // TODO: implement signOut
-    throw UnimplementedError();
+    return _shopifyAuth.signOut();
   }
 }
