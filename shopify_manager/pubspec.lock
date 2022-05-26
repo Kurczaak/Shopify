@@ -170,7 +170,7 @@ packages:
     source: hosted
     version: "1.0.1"
   carousel_slider:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: carousel_slider
       url: "https://pub.dartlang.org"
@@ -205,7 +205,7 @@ packages:
     source: hosted
     version: "1.1.0"
   cloud_firestore:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: cloud_firestore
       url: "https://pub.dartlang.org"
@@ -274,15 +274,8 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.17.1"
-  cupertino_icons:
-    dependency: "direct main"
-    description:
-      name: cupertino_icons
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.4"
   dart_geohash:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: dart_geohash
       url: "https://pub.dartlang.org"
@@ -302,6 +295,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.10.1"
+  dependency_validator:
+    dependency: "direct dev"
+    description:
+      name: dependency_validator
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.2.0"
   diff_match_patch:
     dependency: transitive
     description:
@@ -310,14 +310,14 @@ packages:
     source: hosted
     version: "0.4.1"
   email_validator:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: email_validator
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.1"
   equatable:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: equatable
       url: "https://pub.dartlang.org"
@@ -351,29 +351,8 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "6.1.2"
-  firebase_analytics:
-    dependency: "direct main"
-    description:
-      name: firebase_analytics
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "9.1.2"
-  firebase_analytics_platform_interface:
-    dependency: transitive
-    description:
-      name: firebase_analytics_platform_interface
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "3.1.1"
-  firebase_analytics_web:
-    dependency: transitive
-    description:
-      name: firebase_analytics_web
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.4.0+8"
   firebase_auth:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: firebase_auth
       url: "https://pub.dartlang.org"
@@ -394,7 +373,7 @@ packages:
     source: hosted
     version: "3.3.15"
   firebase_core:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: firebase_core
       url: "https://pub.dartlang.org"
@@ -415,7 +394,7 @@ packages:
     source: hosted
     version: "1.6.4"
   firebase_storage:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: firebase_storage
       url: "https://pub.dartlang.org"
@@ -490,7 +469,7 @@ packages:
     source: hosted
     version: "2.0.5"
   flutter_signin_button:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: flutter_signin_button
       url: "https://pub.dartlang.org"
@@ -507,7 +486,7 @@ packages:
     source: sdk
     version: "0.0.0"
   font_awesome_flutter:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: font_awesome_flutter
       url: "https://pub.dartlang.org"
@@ -535,7 +514,7 @@ packages:
     source: hosted
     version: "2.1.2"
   geocoding:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: geocoding
       url: "https://pub.dartlang.org"
@@ -549,54 +528,12 @@ packages:
     source: hosted
     version: "2.0.1"
   geoflutterfire:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: geoflutterfire
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.3"
-  geolocator:
-    dependency: "direct main"
-    description:
-      name: geolocator
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "8.2.0"
-  geolocator_android:
-    dependency: transitive
-    description:
-      name: geolocator_android
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "3.1.0"
-  geolocator_apple:
-    dependency: transitive
-    description:
-      name: geolocator_apple
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.1.1+1"
-  geolocator_platform_interface:
-    dependency: transitive
-    description:
-      name: geolocator_platform_interface
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "4.0.3"
-  geolocator_web:
-    dependency: "direct main"
-    description:
-      name: geolocator_web
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.1.4"
-  geolocator_windows:
-    dependency: transitive
-    description:
-      name: geolocator_windows
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.1.0"
   get_it:
     dependency: "direct main"
     description:
@@ -612,7 +549,7 @@ packages:
     source: hosted
     version: "2.0.2"
   google_maps_flutter:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: google_maps_flutter
       url: "https://pub.dartlang.org"
@@ -625,15 +562,8 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.3"
-  google_place:
-    dependency: "direct main"
-    description:
-      name: google_place
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.4.7"
   google_sign_in:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: google_sign_in
       url: "https://pub.dartlang.org"
@@ -661,7 +591,7 @@ packages:
     source: hosted
     version: "2.1.0"
   google_sign_in_web:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: google_sign_in_web
       url: "https://pub.dartlang.org"
@@ -717,7 +647,7 @@ packages:
     source: hosted
     version: "3.1.3"
   image_picker:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: image_picker
       url: "https://pub.dartlang.org"
@@ -773,7 +703,7 @@ packages:
     source: hosted
     version: "1.5.3"
   internet_connection_checker:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: internet_connection_checker
       url: "https://pub.dartlang.org"
@@ -801,7 +731,7 @@ packages:
     source: hosted
     version: "0.6.4"
   json_annotation:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: json_annotation
       url: "https://pub.dartlang.org"
@@ -897,7 +827,7 @@ packages:
       name: mobile_scanner
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.0"
+    version: "1.1.1"
   mockito:
     dependency: "direct dev"
     description:
@@ -934,7 +864,7 @@ packages:
     source: hosted
     version: "1.0.2"
   openfoodfacts:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: openfoodfacts
       url: "https://pub.dartlang.org"
@@ -955,7 +885,7 @@ packages:
     source: hosted
     version: "1.8.1"
   path_provider:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: path_provider
       url: "https://pub.dartlang.org"
@@ -1010,41 +940,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.11.1"
-  permission_handler:
-    dependency: "direct main"
-    description:
-      name: permission_handler
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "9.2.0"
-  permission_handler_android:
-    dependency: transitive
-    description:
-      name: permission_handler_android
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "9.0.2+1"
-  permission_handler_apple:
-    dependency: transitive
-    description:
-      name: permission_handler_apple
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "9.0.3"
-  permission_handler_platform_interface:
-    dependency: transitive
-    description:
-      name: permission_handler_platform_interface
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "3.7.0"
-  permission_handler_windows:
-    dependency: transitive
-    description:
-      name: permission_handler_windows
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.1.0"
   petitparser:
     dependency: transitive
     description:
@@ -1081,7 +976,7 @@ packages:
     source: hosted
     version: "4.2.4"
   progress_indicators:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: progress_indicators
       url: "https://pub.dartlang.org"
@@ -1130,7 +1025,7 @@ packages:
     source: hosted
     version: "0.2.0"
   rxdart:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: rxdart
       url: "https://pub.dartlang.org"
@@ -1359,7 +1254,7 @@ packages:
     source: hosted
     version: "2.0.4"
   uuid:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: uuid
       url: "https://pub.dartlang.org"
