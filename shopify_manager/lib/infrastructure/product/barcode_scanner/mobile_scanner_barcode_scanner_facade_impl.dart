@@ -5,14 +5,17 @@ import 'package:shopify_manager/domain/product/barcode_scanner/i_barcode_scanner
 
 @Injectable(as: IBarcodeScannerFacade)
 class MobileScannerBarcodeScannerFacadeImpl implements IBarcodeScannerFacade {
+  final BarcodeScanner _barcodeScanner;
+
+  MobileScannerBarcodeScannerFacadeImpl(this._barcodeScanner);
+
   @override
   Stream<Either<BarcodeFailure, Barcode>> scanBarcodesContinously() {
-    throw UnimplementedError();
+    return _barcodeScanner.scanBarcodesContinously();
   }
 
   @override
   Future<Either<BarcodeFailure, Barcode>> scanSingleBarcode() {
-    // TODO: implement scanSingleBarcode
-    throw UnimplementedError();
+    return _barcodeScanner.scanSingleBarcode();
   }
 }
