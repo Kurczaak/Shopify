@@ -2,10 +2,8 @@ import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:injectable/injectable.dart';
-import 'package:shopify_manager/domain/auth/auth_failure.dart';
+import 'package:shopify_domain/auth.dart';
 import 'package:shopify_manager/domain/auth/i_auth_facade.dart';
-import 'package:shopify_manager/domain/auth/user.dart';
-import 'package:shopify_manager/domain/auth/value_objects.dart';
 import 'package:shopify_manager/infrastructure/auth/firebase_user_mapper.dart';
 
 @LazySingleton(as: IAuthFacade)

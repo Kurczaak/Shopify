@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:shopify_manager/domain/core/location.dart';
+import 'package:shopify_domain/core.dart';
 import 'package:injectable/injectable.dart';
 
 part 'shop_location_picker_bloc.freezed.dart';

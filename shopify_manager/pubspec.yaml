@@ -56,7 +56,6 @@ dependencies:
   google_sign_in: ^5.2.4
   google_sign_in_web: ^0.10.0+5
   image_picker: ^0.8.4+10
-  image_size_getter: ^1.0.0
   injectable: ^1.5.3
   internet_connection_checker: ^0.0.1+3
   json_annotation: ^4.4.0
@@ -67,10 +66,14 @@ dependencies:
   path_provider: ^2.0.9
   permission_handler: ^9.2.0
   progress_indicators: ^1.0.0
-  responsive_framework: ^0.1.7
+  responsive_framework: ^0.2.0
   rxdart: ^0.27.3
   super_enum_sealed_annotations: ^1.4.0
   uuid: ^3.0.6
+  shopify_domain:
+    path: ../packages/shopify_domain
+  shopify_presentation:
+    path: ../packages/shopify_presentation
 
 dev_dependencies:
   auto_route_generator: ^3.2.3

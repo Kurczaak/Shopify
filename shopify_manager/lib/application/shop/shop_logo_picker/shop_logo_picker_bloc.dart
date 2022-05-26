@@ -1,11 +1,8 @@
 import 'package:bloc/bloc.dart';
-import 'package:shopify_manager/domain/core/errors.dart';
+import 'package:shopify_domain/core.dart';
 import 'package:shopify_manager/domain/core/images/i_image_facade.dart';
-import 'package:shopify_manager/domain/core/images/image_failure.dart';
-import 'package:shopify_manager/domain/core/images/photo.dart';
 import 'package:super_enum_sealed_annotations/super_enum_sealed_annotations.dart';
 import 'package:injectable/injectable.dart';
-
 part 'shop_logo_picker_event.dart';
 part 'shop_logo_picker_state.dart';
 part 'shop_logo_picker_bloc.super.dart';
