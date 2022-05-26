@@ -2,22 +2,22 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
+import 'package:sealed_annotations/sealed_annotations.dart';
 import 'package:shopify_domain/core.dart';
 import 'package:shopify_manager/domain/auth/i_auth_facade.dart';
 import 'package:shopify_manager/domain/shop/i_shop_repository.dart';
 import 'package:shopify_domain/shop.dart';
 import 'package:shopify_manager/injection.dart';
-import 'package:super_enum_sealed_annotations/super_enum_sealed_annotations.dart';
 import 'package:shopify_manager/application/shop/shop_form/shop_form_bloc.dart';
 import 'package:shopify_manager/application/shop/shop_location_picker/shop_location_picker_bloc.dart';
 import 'package:shopify_manager/application/shop/shop_logo_picker/shop_logo_picker_bloc.dart';
 import 'package:shopify_manager/application/shop/shop_time_picker/shop_time_picker_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+part 'shop_registration_bloc.sealed.dart';
+part 'shop_registration_bloc.freezed.dart';
 part 'shop_registration_event.dart';
 part 'shop_registration_state.dart';
-part 'shop_registration_bloc.super.dart';
-part 'shop_registration_bloc.freezed.dart';
 
 FutureOr disposeBloc(ShopRegistrationBloc bloc) {
   //print('=========================================');
@@ -79,22 +79,22 @@ class ShopRegistrationBloc
     });
 
     _shopLogoPickerBlocSubscription = shopLogoPickerBloc.stream.listen((state) {
-      if (state.isLoaded()) {
-        add(ShopRegistrationEvent.logoSaved(logo: state.asLoaded().logo));
+      if (state.isLoaded) {
+        add(ShopRegistrationEvent.logoSaved(logo: state.asLoaded.logo));
       }
     });
 
     on<ShopRegistrationEvent>((event, emit) async {
       await event.when(
-        formSaved: (formSavedState) async {
+        formSaved: (shopForm) async {
           emit(state.copyWith(
               shop: state.shop.copyWith(
-                address: formSavedState.shopForm.address,
-                shopName: formSavedState.shopForm.shopName,
+                address: shopForm.address,
+                shopName: shopForm.shopName,
               ),
               isSaving: true));
-          final failureOrLocation = await locationInfo
-              .getLocationFromAddress(formSavedState.shopForm.address);
+          final failureOrLocation =
+              await locationInfo.getLocationFromAddress(shopForm.address);
           emit(state.copyWith(isSaving: false));
           failureOrLocation.fold(
               (f) => shopLocationPickerBloc
@@ -104,18 +104,14 @@ class ShopRegistrationBloc
                       latitude: location.latitude,
                       longitude: location.longitude)));
         },
-        locationSaved: (locationSavedState) {
-          emit(state.copyWith(
-              shop:
-                  state.shop.copyWith(location: locationSavedState.location)));
+        locationSaved: (location) {
+          emit(state.copyWith(shop: state.shop.copyWith(location: location)));
         },
-        weekSaved: (weekSavedState) {
-          emit(state.copyWith(
-              shop: state.shop.copyWith(workingWeek: weekSavedState.week)));
+        weekSaved: (week) {
+          emit(state.copyWith(shop: state.shop.copyWith(workingWeek: week)));
         },
-        logoSaved: (logoSavedState) {
-          emit(state.copyWith(
-              shopLogo: some(ShopLogo(logoSavedState.logo.getOrCrash()))));
+        logoSaved: (logo) {
+          emit(state.copyWith(shopLogo: some(ShopLogo(logo.getOrCrash()))));
         },
         shopSaved: () async {
           emit(state.copyWith(

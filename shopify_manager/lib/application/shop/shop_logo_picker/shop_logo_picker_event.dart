@@ -1,7 +1,6 @@
 part of 'shop_logo_picker_bloc.dart';
 
-@superEnum
-enum _ShopLogoPickerEvent {
-  @object
-  GetShopLogo,
+@Sealed()
+abstract class _ShopLogoPickerEvent {
+  void getShopLogo();
 }

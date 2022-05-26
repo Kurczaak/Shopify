@@ -10,12 +10,12 @@ import 'package:shopify_manager/domain/product/i_product_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:shopify_manager/domain/shop/i_shop_repository.dart';
 import 'package:shopify_manager/infrastructure/core/network/network_info.dart';
-import 'package:super_enum_sealed_annotations/super_enum_sealed_annotations.dart';
+import 'package:sealed_annotations/sealed_annotations.dart';
 
+part 'product_form_bloc.sealed.dart';
+part 'product_form_bloc.freezed.dart';
 part 'product_form_event.dart';
 part 'product_form_state.dart';
-part 'product_form_bloc.super.dart';
-part 'product_form_bloc.freezed.dart';
 
 @injectable
 class ProductFormBloc extends Bloc<ProductFormEvent, ProductFormState> {
@@ -34,8 +34,7 @@ class ProductFormBloc extends Bloc<ProductFormEvent, ProductFormState> {
       : super(ProductFormState.initial()) {
     on<ProductFormEvent>((event, emit) async {
       await event.when(
-        productFound: (productFound) {
-          final product = productFound.product;
+        productFound: (product) {
           emit(ProductFormState.loaded(
               productForm: ProductForm.fromProduct(product),
               saveFailureOrSuccessOption: none()));
@@ -43,58 +42,54 @@ class ProductFormBloc extends Bloc<ProductFormEvent, ProductFormState> {
         categoryChanged: (changedCategory) {
           emit(state.copyWith(
               productForm: state.productForm
-                  .copyWith(category: Category(changedCategory.category))));
+                  .copyWith(category: Category(changedCategory))));
         },
-        productNameChanged: (productNameChanged) {
+        productNameChanged: (productName) {
+          emit(state.copyWith(
+              productForm:
+                  state.productForm.copyWith(name: ProductName(productName))));
+        },
+        brandNameChanged: (brandName) {
+          emit(state.copyWith(
+              productForm:
+                  state.productForm.copyWith(brand: BrandName(brandName))));
+        },
+        weightNumberChanged: (weightNumber) {
+          final currentWeight = state.productForm.weight;
+          final newWeight = currentWeight.copyWith(
+              weight: PositiveNumber.fromString(weightNumber));
+          emit(state.copyWith(
+              productForm: state.productForm.copyWith(weight: newWeight)));
+        },
+        weightUnitChanged: (weightUnit) {
+          final currentWeight = state.productForm.weight;
+          final newWeight =
+              currentWeight.copyWith(weightUnit: WeightUnit(weightUnit));
+          emit(state.copyWith(
+              productForm: state.productForm.copyWith(weight: newWeight)));
+        },
+        priceChanged: (price) {
+          final currentPrice = state.productForm.price;
+          final newPrice =
+              currentPrice.copyWith(price: PositiveNumber.fromString(price));
+          emit(state.copyWith(
+              productForm: state.productForm.copyWith(price: newPrice)));
+        },
+        currencyChanged: (currency) {
+          final currentPrice = state.productForm.price;
+          final newPrice = currentPrice.copyWith(currency: Currency(currency));
+          emit(state.copyWith(
+              productForm: state.productForm.copyWith(price: newPrice)));
+        },
+        productDescriptionChanged: (productDescription) {
           emit(state.copyWith(
               productForm: state.productForm.copyWith(
-                  name: ProductName(productNameChanged.productName))));
+                  description: ProductDescription(productDescription))));
         },
-        brandNameChanged: (brandNameChanged) {
+        ingredientsChanged: (ingredients) {
           emit(state.copyWith(
               productForm: state.productForm
-                  .copyWith(brand: BrandName(brandNameChanged.brandName))));
-        },
-        weightNumberChanged: (weightNumberChanged) {
-          final currentWeight = state.productForm.weight;
-          final newWeight = currentWeight.copyWith(
-              weight:
-                  PositiveNumber.fromString(weightNumberChanged.weightNumber));
-          emit(state.copyWith(
-              productForm: state.productForm.copyWith(weight: newWeight)));
-        },
-        weightUnitChanged: (weightUnitChanged) {
-          final currentWeight = state.productForm.weight;
-          final newWeight = currentWeight.copyWith(
-              weightUnit: WeightUnit(weightUnitChanged.weightUnit));
-          emit(state.copyWith(
-              productForm: state.productForm.copyWith(weight: newWeight)));
-        },
-        priceChanged: (priceChanged) {
-          final currentPrice = state.productForm.price;
-          final newPrice = currentPrice.copyWith(
-              price: PositiveNumber.fromString(priceChanged.price));
-          emit(state.copyWith(
-              productForm: state.productForm.copyWith(price: newPrice)));
-        },
-        currencyChanged: (currencyChanged) {
-          final currentPrice = state.productForm.price;
-          final newPrice = currentPrice.copyWith(
-              currency: Currency(currencyChanged.currency));
-          emit(state.copyWith(
-              productForm: state.productForm.copyWith(price: newPrice)));
-        },
-        productDescriptionChanged: (productDescriptionChanged) {
-          emit(state.copyWith(
-              productForm: state.productForm.copyWith(
-                  description: ProductDescription(
-                      productDescriptionChanged.productDescription))));
-        },
-        ingredientsChanged: (ingredientsChanged) {
-          emit(state.copyWith(
-              productForm: state.productForm.copyWith(
-                  ingredients:
-                      ProductDescription(ingredientsChanged.ingredients))));
+                  .copyWith(ingredients: ProductDescription(ingredients))));
         },
         photosFilesChanged: () async {
           emit(ProductFormState.loading(

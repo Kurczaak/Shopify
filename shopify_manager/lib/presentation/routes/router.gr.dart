@@ -12,6 +12,7 @@
 
 import 'package:auto_route/auto_route.dart' as _i14;
 import 'package:flutter/material.dart' as _i15;
+import 'package:shopify_domain/product.dart' as _i16;
 
 import '../debug_dashboard_page.dart' as _i5;
 import '../debug_page.dart' as _i1;
@@ -103,7 +104,8 @@ class AppRouter extends _i14.RootStackRouter {
         _i14.RouteConfig(SplashRoute.name, path: '/splash-page'),
         _i14.RouteConfig(SignInRoute.name, path: '/sign-in-page'),
         _i14.RouteConfig(SignUpRoute.name, path: '/sign-up-page'),
-        _i14.RouteConfig(DebugDashboardRoute.name, path: '/'),
+        _i14.RouteConfig(DebugDashboardRoute.name,
+            path: '/debug-dashboard-page'),
         _i14.RouteConfig(BarcodeScannerWidget.name,
             path: '/barcode-scanner-widget'),
         _i14.RouteConfig(ProductSearchingScreen.name,
@@ -132,7 +134,8 @@ class AppRouter extends _i14.RootStackRouter {
 /// generated route for
 /// [_i1.DebugPage]
 class DebugRoute extends _i14.PageRouteInfo<DebugRouteArgs> {
-  DebugRoute({_i15.Key? key, required dynamic barcode, dynamic product})
+  DebugRoute(
+      {_i15.Key? key, required _i16.Barcode barcode, _i16.Product? product})
       : super(DebugRoute.name,
             path: '/debug-page',
             args: DebugRouteArgs(key: key, barcode: barcode, product: product));
@@ -145,9 +148,9 @@ class DebugRouteArgs {
 
   final _i15.Key? key;
 
-  final dynamic barcode;
+  final _i16.Barcode barcode;
 
-  final dynamic product;
+  final _i16.Product? product;
 
   @override
   String toString() {
@@ -182,7 +185,8 @@ class SignUpRoute extends _i14.PageRouteInfo<void> {
 /// generated route for
 /// [_i5.DebugDashboardPage]
 class DebugDashboardRoute extends _i14.PageRouteInfo<void> {
-  const DebugDashboardRoute() : super(DebugDashboardRoute.name, path: '/');
+  const DebugDashboardRoute()
+      : super(DebugDashboardRoute.name, path: '/debug-dashboard-page');
 
   static const String name = 'DebugDashboardRoute';
 }
@@ -192,7 +196,7 @@ class DebugDashboardRoute extends _i14.PageRouteInfo<void> {
 class BarcodeScannerWidget
     extends _i14.PageRouteInfo<BarcodeScannerWidgetArgs> {
   BarcodeScannerWidget(
-      {_i15.Key? key, required void Function(dynamic) onBarcodeDeteced})
+      {_i15.Key? key, required void Function(_i16.Barcode) onBarcodeDeteced})
       : super(BarcodeScannerWidget.name,
             path: '/barcode-scanner-widget',
             args: BarcodeScannerWidgetArgs(
@@ -206,7 +210,7 @@ class BarcodeScannerWidgetArgs {
 
   final _i15.Key? key;
 
-  final void Function(dynamic) onBarcodeDeteced;
+  final void Function(_i16.Barcode) onBarcodeDeteced;
 
   @override
   String toString() {
@@ -218,7 +222,7 @@ class BarcodeScannerWidgetArgs {
 /// [_i7.ProductSearchingScreen]
 class ProductSearchingScreen
     extends _i14.PageRouteInfo<ProductSearchingScreenArgs> {
-  ProductSearchingScreen({required dynamic barcode, _i15.Key? key})
+  ProductSearchingScreen({required _i16.Barcode barcode, _i15.Key? key})
       : super(ProductSearchingScreen.name,
             path: '/product-searching-screen',
             args: ProductSearchingScreenArgs(barcode: barcode, key: key));
@@ -229,7 +233,7 @@ class ProductSearchingScreen
 class ProductSearchingScreenArgs {
   const ProductSearchingScreenArgs({required this.barcode, this.key});
 
-  final dynamic barcode;
+  final _i16.Barcode barcode;
 
   final _i15.Key? key;
 

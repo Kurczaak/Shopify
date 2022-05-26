@@ -1,2 +1,0 @@
-const String reallyLongDescription =
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean pulvinar nunc eget mi porta, et elementum tortor consectetur. Vestibulum varius semper fringilla. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Integer non erat ut orci vehicula semper. Donec ultrices nulla ac neque gravida, vel commodo magna auctor. Morbi condimentum diam lectus, vel cursus nibh egestas non. Proin dignissim velit sapien, nec lobortis metus sollicitudin a. In pharetra tellus.';

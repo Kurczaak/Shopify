@@ -3,11 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shopify_domain/product.dart';
 import 'package:shopify_manager/domain/product/i_open_food_facts_repository.dart';
-import 'package:super_enum_sealed_annotations/super_enum_sealed_annotations.dart';
+import 'package:sealed_annotations/sealed_annotations.dart';
 
+part 'search_product_bloc.sealed.dart';
 part 'search_product_event.dart';
 part 'search_product_state.dart';
-part 'search_product_bloc.super.dart';
 
 @injectable
 class SearchProductBloc extends Bloc<SearchProductEvent, SearchProductState> {
@@ -15,16 +15,16 @@ class SearchProductBloc extends Bloc<SearchProductEvent, SearchProductState> {
   SearchProductBloc(this.openFoodFactsRepository)
       : super(const SearchProductState.initial()) {
     on<SearchProductEvent>((event, emit) async {
-      await event.when(searchForProduct: (searchForProduct) async {
-        emit(const Loading());
-        final failureOrProduct = await openFoodFactsRepository
-            .getProductByBarcode(Barcode(searchForProduct.barcode));
+      await event.when(searchForProduct: (barcode) async {
+        emit(const SearchProductStateLoading());
+        final failureOrProduct =
+            await openFoodFactsRepository.getProductByBarcode(Barcode(barcode));
         failureOrProduct.fold(
-            (failure) => emit(Loaded(
+            (failure) => emit(SearchProductStateLoaded(
                 failureOption: some(failure),
                 productOption: none(),
                 productExists: false)),
-            (product) => emit(Loaded(
+            (product) => emit(SearchProductStateLoaded(
                 failureOption: none(),
                 productExists: false,
                 productOption: some(product))));

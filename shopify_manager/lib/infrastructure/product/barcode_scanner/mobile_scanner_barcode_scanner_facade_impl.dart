@@ -9,4 +9,10 @@ class MobileScannerBarcodeScannerFacadeImpl implements IBarcodeScannerFacade {
   Stream<Either<BarcodeFailure, Barcode>> scanBarcodesContinously() {
     throw UnimplementedError();
   }
+
+  @override
+  Future<Either<BarcodeFailure, Barcode>> scanSingleBarcode() {
+    // TODO: implement scanSingleBarcode
+    throw UnimplementedError();
+  }
 }

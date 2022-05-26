@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shopify_manager/domain/shop/time/week.dart';
+import 'package:shopify_domain/shop.dart';
 import 'package:shopify_manager/presentation/register_shop/opening_hours/misc/day_presentation_classes.dart';
 import 'package:shopify_manager/presentation/register_shop/widgets/day_row.dart';
 

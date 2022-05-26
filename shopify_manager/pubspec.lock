@@ -7,14 +7,14 @@ packages:
       name: _fe_analyzer_shared
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "31.0.0"
+    version: "38.0.0"
   analyzer:
-    dependency: transitive
+    dependency: "direct dev"
     description:
       name: analyzer
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.8.0"
+    version: "3.4.1"
   another_flushbar:
     dependency: "direct main"
     description:
@@ -197,13 +197,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.1"
-  cli_util:
-    dependency: transitive
-    description:
-      name: cli_util
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.3.5"
   clock:
     dependency: transitive
     description:
@@ -526,7 +519,7 @@ packages:
       name: freezed
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.1.0"
+    version: "1.1.1"
   freezed_annotation:
     dependency: transitive
     description:
@@ -778,7 +771,7 @@ packages:
       name: injectable_generator
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.5.2"
+    version: "1.5.3"
   internet_connection_checker:
     dependency: "direct main"
     description:
@@ -1150,13 +1143,27 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.3.2"
+  sealed_annotations:
+    dependency: "direct main"
+    description:
+      name: sealed_annotations
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.13.0"
+  sealed_generators:
+    dependency: "direct dev"
+    description:
+      name: sealed_generators
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.13.0"
   sealed_writer:
     dependency: transitive
     description:
       name: sealed_writer
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.4.0"
+    version: "1.13.0"
   shelf:
     dependency: transitive
     description:
@@ -1282,16 +1289,9 @@ packages:
     source: hosted
     version: "1.1.0"
   super_enum_sealed_annotations:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: super_enum_sealed_annotations
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.4.0"
-  super_enum_sealed_generators:
-    dependency: "direct dev"
-    description:
-      name: super_enum_sealed_generators
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.4.0"

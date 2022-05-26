@@ -2,7 +2,7 @@ import 'package:another_flushbar/flushbar_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:shopify_manager/application/shop/shop_form/shop_form_bloc.dart';
 import 'package:shopify_manager/application/shop/shop_location_picker/shop_location_picker_bloc.dart';
-import 'package:shopify_manager/presentation/core/widgets/shopify_buttons.dart';
+import 'package:shopify_presentation/shopify_presentation.dart';
 import 'package:shopify_manager/presentation/register_shop/widgets/registration_progress_bar.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';

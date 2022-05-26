@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_scanner/mobile_scanner.dart' as scanner;
+import 'package:shopify_domain/product.dart';
 import 'package:shopify_manager/application/product/barcode_camera_scanner/barcode_camera_scanner_bloc.dart';
 
-import 'package:shopify_manager/domain/product/value_objects.dart';
 import 'package:shopify_manager/injection.dart';
 
 class BarcodeScannerWidget extends StatelessWidget {
@@ -64,7 +64,7 @@ class BarcodeScannerWidget extends StatelessWidget {
                     allowDuplicates: false,
                     onDetect: (barcode, args) {
                       context.read<BarcodeCameraScannerBloc>().add(
-                          BarcodeCameraScannerEvent.scannedBarcode(
+                          BarcodeCameraScannerEvent.scanBarcode(
                               barcode: Barcode(barcode.rawValue ?? '')));
                     }),
                 Align(

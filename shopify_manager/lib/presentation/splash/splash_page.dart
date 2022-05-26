@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopify_manager/application/auth/auth_bloc.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:shopify_manager/presentation/core/widgets/shopify_progress_indicator.dart';
+import 'package:shopify_presentation/shopify_presentation.dart';
 import 'package:progress_indicators/progress_indicators.dart';
 import 'package:shopify_manager/presentation/routes/router.gr.dart';
 
@@ -26,24 +26,8 @@ class SplashPage extends StatelessWidget {
               context.router.replace(const SignInRoute());
             });
       },
-      child: Scaffold(
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const ShopifyProgressIndicator(),
-              const SizedBox(height: 20),
-              HeartbeatProgressIndicator(
-                startScale: .5,
-                endScale: 1,
-                child: const Text(
-                  'SHOPIFY MANAGER',
-                  style: TextStyle(fontSize: 30),
-                ),
-              ),
-            ],
-          ),
-        ),
+      child: const Scaffold(
+        body: SplashWidget(title: 'SHOPIFY MANAGER'),
       ),
     );
   }

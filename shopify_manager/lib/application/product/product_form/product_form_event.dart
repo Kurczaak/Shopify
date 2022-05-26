@@ -1,29 +1,17 @@
 part of 'product_form_bloc.dart';
 
-@superEnum
-enum _ProductFormEvent {
-  @Data(fields: [DataField<Categories>('category')])
-  CategoryChanged,
-  @Data(fields: [DataField<String>('productName')])
-  ProductNameChanged,
-  @Data(fields: [DataField<String>('brandName')])
-  BrandNameChanged,
-  @Data(fields: [DataField<String>('weightNumber')])
-  WeightNumberChanged,
-  @Data(fields: [DataField<WeightUnits>('weightUnit')])
-  WeightUnitChanged,
-  @Data(fields: [DataField<String>('price')])
-  PriceChanged,
-  @Data(fields: [DataField<Currencies>('currency')])
-  CurrencyChanged,
-  @Data(fields: [DataField<String>('productDescription')])
-  ProductDescriptionChanged,
-  @Data(fields: [DataField<String>('ingredients')])
-  IngredientsChanged,
-  @object
-  PhotosFilesChanged,
-  @Data(fields: [DataField<Product>('product')])
-  ProductFound,
-  @object
-  Saved
+@Sealed()
+abstract class _ProductFormEvent {
+  void categoryChanged(Categories category);
+  void productNameChanged(String productName);
+  void brandNameChanged(String brandName);
+  void weightNumberChanged(String weightNumber);
+  void weightUnitChanged(WeightUnits weightUnit);
+  void priceChanged(String price);
+  void currencyChanged(Currencies currency);
+  void productDescriptionChanged(String productDescription);
+  void ingredientsChanged(String ingredients);
+  void photosFilesChanged();
+  void productFound(Product product);
+  void saved();
 }
