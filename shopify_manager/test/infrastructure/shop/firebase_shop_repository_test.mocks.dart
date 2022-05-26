@@ -3,8 +3,8 @@
 // Do not manually edit this file.
 
 import 'dart:async' as _i9;
-import 'dart:io' as _i14;
-import 'dart:typed_data' as _i13;
+import 'dart:io' as _i12;
+import 'dart:typed_data' as _i11;
 
 import 'package:cloud_firestore/cloud_firestore.dart' as _i5;
 import 'package:cloud_firestore_platform_interface/cloud_firestore_platform_interface.dart'
@@ -15,10 +15,8 @@ import 'package:firebase_storage/firebase_storage.dart' as _i6;
 import 'package:firebase_storage_platform_interface/firebase_storage_platform_interface.dart'
     as _i7;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:shopify_manager/domain/auth/auth_failure.dart' as _i11;
+import 'package:shopify_domain/auth.dart' as _i10;
 import 'package:shopify_manager/domain/auth/i_auth_facade.dart' as _i8;
-import 'package:shopify_manager/domain/auth/user.dart' as _i10;
-import 'package:shopify_manager/domain/auth/value_objects.dart' as _i12;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -91,30 +89,30 @@ class MockIAuthFacade extends _i1.Mock implements _i8.IAuthFacade {
                   _FakeOption_0<_i10.ShopifyUser>()))
           as _i9.Future<_i2.Option<_i10.ShopifyUser>>);
   @override
-  _i9.Future<_i2.Either<_i11.AuthFailure, _i2.Unit>>
+  _i9.Future<_i2.Either<_i10.AuthFailure, _i2.Unit>>
       registerWithEmailAndPassword(
-              {_i12.EmailAddress? emailAddress, _i12.Password? password}) =>
+              {_i10.EmailAddress? emailAddress, _i10.Password? password}) =>
           (super.noSuchMethod(
               Invocation.method(#registerWithEmailAndPassword, [],
                   {#emailAddress: emailAddress, #password: password}),
-              returnValue: Future<_i2.Either<_i11.AuthFailure, _i2.Unit>>.value(
-                  _FakeEither_1<_i11.AuthFailure, _i2.Unit>())) as _i9
-              .Future<_i2.Either<_i11.AuthFailure, _i2.Unit>>);
+              returnValue: Future<_i2.Either<_i10.AuthFailure, _i2.Unit>>.value(
+                  _FakeEither_1<_i10.AuthFailure, _i2.Unit>())) as _i9
+              .Future<_i2.Either<_i10.AuthFailure, _i2.Unit>>);
   @override
-  _i9.Future<_i2.Either<_i11.AuthFailure, _i2.Unit>> signInWithEmailAndPassword(
-          {_i12.EmailAddress? emailAddress, _i12.Password? password}) =>
+  _i9.Future<_i2.Either<_i10.AuthFailure, _i2.Unit>> signInWithEmailAndPassword(
+          {_i10.EmailAddress? emailAddress, _i10.Password? password}) =>
       (super.noSuchMethod(
               Invocation.method(#signInWithEmailAndPassword, [],
                   {#emailAddress: emailAddress, #password: password}),
-              returnValue: Future<_i2.Either<_i11.AuthFailure, _i2.Unit>>.value(
-                  _FakeEither_1<_i11.AuthFailure, _i2.Unit>()))
-          as _i9.Future<_i2.Either<_i11.AuthFailure, _i2.Unit>>);
+              returnValue: Future<_i2.Either<_i10.AuthFailure, _i2.Unit>>.value(
+                  _FakeEither_1<_i10.AuthFailure, _i2.Unit>()))
+          as _i9.Future<_i2.Either<_i10.AuthFailure, _i2.Unit>>);
   @override
-  _i9.Future<_i2.Either<_i11.AuthFailure, _i2.Unit>> signInWithGoogle() =>
+  _i9.Future<_i2.Either<_i10.AuthFailure, _i2.Unit>> signInWithGoogle() =>
       (super.noSuchMethod(Invocation.method(#signInWithGoogle, []),
-              returnValue: Future<_i2.Either<_i11.AuthFailure, _i2.Unit>>.value(
-                  _FakeEither_1<_i11.AuthFailure, _i2.Unit>()))
-          as _i9.Future<_i2.Either<_i11.AuthFailure, _i2.Unit>>);
+              returnValue: Future<_i2.Either<_i10.AuthFailure, _i2.Unit>>.value(
+                  _FakeEither_1<_i10.AuthFailure, _i2.Unit>()))
+          as _i9.Future<_i2.Either<_i10.AuthFailure, _i2.Unit>>);
   @override
   _i9.Future<void> signOut() =>
       (super.noSuchMethod(Invocation.method(#signOut, []),
@@ -170,7 +168,7 @@ class MockFirebaseFirestore extends _i1.Mock implements _i5.FirebaseFirestore {
           returnValue: Future<void>.value(),
           returnValueForMissingStub: Future<void>.value()) as _i9.Future<void>);
   @override
-  _i5.LoadBundleTask loadBundle(_i13.Uint8List? bundle) =>
+  _i5.LoadBundleTask loadBundle(_i11.Uint8List? bundle) =>
       (super.noSuchMethod(Invocation.method(#loadBundle, [bundle]),
           returnValue: _FakeLoadBundleTask_6()) as _i5.LoadBundleTask);
   @override
@@ -427,12 +425,12 @@ class MockReference extends _i1.Mock implements _i6.Reference {
               returnValue: Future<_i6.ListResult>.value(_FakeListResult_14()))
           as _i9.Future<_i6.ListResult>);
   @override
-  _i9.Future<_i13.Uint8List?> getData([int? maxSize = 10485760]) =>
+  _i9.Future<_i11.Uint8List?> getData([int? maxSize = 10485760]) =>
       (super.noSuchMethod(Invocation.method(#getData, [maxSize]),
-              returnValue: Future<_i13.Uint8List?>.value())
-          as _i9.Future<_i13.Uint8List?>);
+              returnValue: Future<_i11.Uint8List?>.value())
+          as _i9.Future<_i11.Uint8List?>);
   @override
-  _i6.UploadTask putData(_i13.Uint8List? data,
+  _i6.UploadTask putData(_i11.Uint8List? data,
           [_i7.SettableMetadata? metadata]) =>
       (super.noSuchMethod(Invocation.method(#putData, [data, metadata]),
           returnValue: _FakeUploadTask_15()) as _i6.UploadTask);
@@ -441,7 +439,7 @@ class MockReference extends _i1.Mock implements _i6.Reference {
       (super.noSuchMethod(Invocation.method(#putBlob, [blob, metadata]),
           returnValue: _FakeUploadTask_15()) as _i6.UploadTask);
   @override
-  _i6.UploadTask putFile(_i14.File? file, [_i7.SettableMetadata? metadata]) =>
+  _i6.UploadTask putFile(_i12.File? file, [_i7.SettableMetadata? metadata]) =>
       (super.noSuchMethod(Invocation.method(#putFile, [file, metadata]),
           returnValue: _FakeUploadTask_15()) as _i6.UploadTask);
   @override
@@ -459,7 +457,7 @@ class MockReference extends _i1.Mock implements _i6.Reference {
                   Future<_i7.FullMetadata>.value(_FakeFullMetadata_13()))
           as _i9.Future<_i7.FullMetadata>);
   @override
-  _i6.DownloadTask writeToFile(_i14.File? file) =>
+  _i6.DownloadTask writeToFile(_i12.File? file) =>
       (super.noSuchMethod(Invocation.method(#writeToFile, [file]),
           returnValue: _FakeDownloadTask_16()) as _i6.DownloadTask);
 }

@@ -5,24 +5,17 @@
 import 'dart:async' as _i4;
 
 import 'package:dartz/dartz.dart' as _i2;
-import 'package:kt_dart/kt.dart' as _i17;
+import 'package:kt_dart/kt.dart' as _i11;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:shopify_manager/domain/auth/auth_failure.dart' as _i7;
+import 'package:shopify_domain/auth.dart' as _i6;
+import 'package:shopify_domain/core.dart' as _i12;
+import 'package:shopify_domain/product.dart' as _i8;
+import 'package:shopify_domain/shop.dart' as _i9;
 import 'package:shopify_manager/domain/auth/i_auth_facade.dart' as _i5;
-import 'package:shopify_manager/domain/auth/user.dart' as _i6;
-import 'package:shopify_manager/domain/auth/value_objects.dart' as _i8;
-import 'package:shopify_manager/domain/core/images/i_image_facade.dart' as _i19;
-import 'package:shopify_manager/domain/core/images/image_failure.dart' as _i20;
-import 'package:shopify_manager/domain/core/images/photo.dart' as _i18;
+import 'package:shopify_manager/domain/core/images/i_image_facade.dart' as _i13;
 import 'package:shopify_manager/domain/product/i_product_repository.dart'
-    as _i9;
-import 'package:shopify_manager/domain/product/product.dart' as _i11;
-import 'package:shopify_manager/domain/product/product_failure.dart' as _i10;
-import 'package:shopify_manager/domain/product/product_form.dart' as _i14;
-import 'package:shopify_manager/domain/product/value_objects.dart' as _i12;
-import 'package:shopify_manager/domain/shop/i_shop_repository.dart' as _i15;
-import 'package:shopify_manager/domain/shop/shop.dart' as _i13;
-import 'package:shopify_manager/domain/shop/shop_failure.dart' as _i16;
+    as _i7;
+import 'package:shopify_manager/domain/shop/i_shop_repository.dart' as _i10;
 import 'package:shopify_manager/infrastructure/core/network/network_info.dart'
     as _i3;
 
@@ -69,30 +62,30 @@ class MockIAuthFacade extends _i1.Mock implements _i5.IAuthFacade {
                   _FakeOption_0<_i6.ShopifyUser>()))
           as _i4.Future<_i2.Option<_i6.ShopifyUser>>);
   @override
-  _i4.Future<_i2.Either<_i7.AuthFailure, _i2.Unit>>
+  _i4.Future<_i2.Either<_i6.AuthFailure, _i2.Unit>>
       registerWithEmailAndPassword(
-              {_i8.EmailAddress? emailAddress, _i8.Password? password}) =>
+              {_i6.EmailAddress? emailAddress, _i6.Password? password}) =>
           (super.noSuchMethod(
               Invocation.method(#registerWithEmailAndPassword, [],
                   {#emailAddress: emailAddress, #password: password}),
-              returnValue: Future<_i2.Either<_i7.AuthFailure, _i2.Unit>>.value(
-                  _FakeEither_1<_i7.AuthFailure, _i2.Unit>())) as _i4
-              .Future<_i2.Either<_i7.AuthFailure, _i2.Unit>>);
+              returnValue: Future<_i2.Either<_i6.AuthFailure, _i2.Unit>>.value(
+                  _FakeEither_1<_i6.AuthFailure, _i2.Unit>())) as _i4
+              .Future<_i2.Either<_i6.AuthFailure, _i2.Unit>>);
   @override
-  _i4.Future<_i2.Either<_i7.AuthFailure, _i2.Unit>> signInWithEmailAndPassword(
-          {_i8.EmailAddress? emailAddress, _i8.Password? password}) =>
+  _i4.Future<_i2.Either<_i6.AuthFailure, _i2.Unit>> signInWithEmailAndPassword(
+          {_i6.EmailAddress? emailAddress, _i6.Password? password}) =>
       (super.noSuchMethod(
               Invocation.method(#signInWithEmailAndPassword, [],
                   {#emailAddress: emailAddress, #password: password}),
-              returnValue: Future<_i2.Either<_i7.AuthFailure, _i2.Unit>>.value(
-                  _FakeEither_1<_i7.AuthFailure, _i2.Unit>()))
-          as _i4.Future<_i2.Either<_i7.AuthFailure, _i2.Unit>>);
+              returnValue: Future<_i2.Either<_i6.AuthFailure, _i2.Unit>>.value(
+                  _FakeEither_1<_i6.AuthFailure, _i2.Unit>()))
+          as _i4.Future<_i2.Either<_i6.AuthFailure, _i2.Unit>>);
   @override
-  _i4.Future<_i2.Either<_i7.AuthFailure, _i2.Unit>> signInWithGoogle() =>
+  _i4.Future<_i2.Either<_i6.AuthFailure, _i2.Unit>> signInWithGoogle() =>
       (super.noSuchMethod(Invocation.method(#signInWithGoogle, []),
-              returnValue: Future<_i2.Either<_i7.AuthFailure, _i2.Unit>>.value(
-                  _FakeEither_1<_i7.AuthFailure, _i2.Unit>()))
-          as _i4.Future<_i2.Either<_i7.AuthFailure, _i2.Unit>>);
+              returnValue: Future<_i2.Either<_i6.AuthFailure, _i2.Unit>>.value(
+                  _FakeEither_1<_i6.AuthFailure, _i2.Unit>()))
+          as _i4.Future<_i2.Either<_i6.AuthFailure, _i2.Unit>>);
   @override
   _i4.Future<void> signOut() =>
       (super.noSuchMethod(Invocation.method(#signOut, []),
@@ -104,111 +97,117 @@ class MockIAuthFacade extends _i1.Mock implements _i5.IAuthFacade {
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockIProductRepository extends _i1.Mock
-    implements _i9.IProductRepository {
+    implements _i7.IProductRepository {
   MockIProductRepository() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i4.Future<_i2.Either<_i10.ProductFailure, _i11.Product>> getByBarcode(
-          _i12.Barcode? barcode) =>
+  _i4.Future<_i2.Either<_i8.ProductFailure, _i8.Product>> getByBarcode(
+          _i8.Barcode? barcode) =>
       (super.noSuchMethod(Invocation.method(#getByBarcode, [barcode]),
               returnValue:
-                  Future<_i2.Either<_i10.ProductFailure, _i11.Product>>.value(
-                      _FakeEither_1<_i10.ProductFailure, _i11.Product>()))
-          as _i4.Future<_i2.Either<_i10.ProductFailure, _i11.Product>>);
+                  Future<_i2.Either<_i8.ProductFailure, _i8.Product>>.value(
+                      _FakeEither_1<_i8.ProductFailure, _i8.Product>()))
+          as _i4.Future<_i2.Either<_i8.ProductFailure, _i8.Product>>);
   @override
-  _i4.Future<
-      _i2.Either<_i10.ProductFailure, _i11.Product>> getFromShopByBarcode(
-          _i13.Shop? shop, _i12.Barcode? barcode) =>
+  _i4.Future<_i2.Either<_i8.ProductFailure, _i8.Product>> getFromShopByBarcode(
+          _i9.Shop? shop, _i8.Barcode? barcode) =>
       (super.noSuchMethod(
               Invocation.method(#getFromShopByBarcode, [shop, barcode]),
               returnValue:
-                  Future<_i2.Either<_i10.ProductFailure, _i11.Product>>.value(
-                      _FakeEither_1<_i10.ProductFailure, _i11.Product>()))
-          as _i4.Future<_i2.Either<_i10.ProductFailure, _i11.Product>>);
+                  Future<_i2.Either<_i8.ProductFailure, _i8.Product>>.value(
+                      _FakeEither_1<_i8.ProductFailure, _i8.Product>()))
+          as _i4.Future<_i2.Either<_i8.ProductFailure, _i8.Product>>);
   @override
-  _i4.Future<_i2.Either<_i10.ProductFailure, _i2.Unit>> create(
-          _i14.ProductForm? productForm) =>
+  _i4.Future<_i2.Either<_i8.ProductFailure, _i2.Unit>> create(
+          _i8.ProductForm? productForm) =>
       (super.noSuchMethod(Invocation.method(#create, [productForm]),
-          returnValue: Future<_i2.Either<_i10.ProductFailure, _i2.Unit>>.value(
-              _FakeEither_1<_i10.ProductFailure, _i2.Unit>())) as _i4
-          .Future<_i2.Either<_i10.ProductFailure, _i2.Unit>>);
+          returnValue: Future<_i2.Either<_i8.ProductFailure, _i2.Unit>>.value(
+              _FakeEither_1<_i8.ProductFailure, _i2.Unit>())) as _i4
+          .Future<_i2.Either<_i8.ProductFailure, _i2.Unit>>);
   @override
-  _i4.Future<_i2.Either<_i10.ProductFailure, _i2.Unit>> createForShop(
-          _i14.ProductForm? productForm, _i13.Shop? shop) =>
+  _i4.Future<_i2.Either<_i8.ProductFailure, _i2.Unit>> createForShop(
+          _i8.ProductForm? productForm, _i9.Shop? shop) =>
       (super.noSuchMethod(
           Invocation.method(#createForShop, [productForm, shop]),
-          returnValue: Future<_i2.Either<_i10.ProductFailure, _i2.Unit>>.value(
-              _FakeEither_1<_i10.ProductFailure, _i2.Unit>())) as _i4
-          .Future<_i2.Either<_i10.ProductFailure, _i2.Unit>>);
+          returnValue: Future<_i2.Either<_i8.ProductFailure, _i2.Unit>>.value(
+              _FakeEither_1<_i8.ProductFailure, _i2.Unit>())) as _i4
+          .Future<_i2.Either<_i8.ProductFailure, _i2.Unit>>);
   @override
-  _i4.Future<_i2.Either<_i10.ProductFailure, _i2.Unit>> update(
-          _i11.Product? product) =>
+  _i4.Future<_i2.Either<_i8.ProductFailure, _i2.Unit>> update(
+          _i8.Product? product) =>
       (super.noSuchMethod(Invocation.method(#update, [product]),
-          returnValue: Future<_i2.Either<_i10.ProductFailure, _i2.Unit>>.value(
-              _FakeEither_1<_i10.ProductFailure, _i2.Unit>())) as _i4
-          .Future<_i2.Either<_i10.ProductFailure, _i2.Unit>>);
+          returnValue: Future<_i2.Either<_i8.ProductFailure, _i2.Unit>>.value(
+              _FakeEither_1<_i8.ProductFailure, _i2.Unit>())) as _i4
+          .Future<_i2.Either<_i8.ProductFailure, _i2.Unit>>);
   @override
-  _i4.Future<_i2.Either<_i10.ProductFailure, _i2.Unit>> delete(
-          _i11.Product? product) =>
+  _i4.Future<_i2.Either<_i8.ProductFailure, _i2.Unit>> delete(
+          _i8.Product? product) =>
       (super.noSuchMethod(Invocation.method(#delete, [product]),
-          returnValue: Future<_i2.Either<_i10.ProductFailure, _i2.Unit>>.value(
-              _FakeEither_1<_i10.ProductFailure, _i2.Unit>())) as _i4
-          .Future<_i2.Either<_i10.ProductFailure, _i2.Unit>>);
+          returnValue: Future<_i2.Either<_i8.ProductFailure, _i2.Unit>>.value(
+              _FakeEither_1<_i8.ProductFailure, _i2.Unit>())) as _i4
+          .Future<_i2.Either<_i8.ProductFailure, _i2.Unit>>);
 }
 
 /// A class which mocks [IShopRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockIShopRepository extends _i1.Mock implements _i15.IShopRepository {
+class MockIShopRepository extends _i1.Mock implements _i10.IShopRepository {
   MockIShopRepository() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i4.Stream<_i2.Either<_i16.ShopFailure, _i17.KtList<_i13.Shop>>> watchAll() =>
+  _i4.Stream<_i2.Either<_i9.ShopFailure, _i11.KtList<_i9.Shop>>> watchAll() =>
       (super.noSuchMethod(Invocation.method(#watchAll, []),
               returnValue: Stream<
-                  _i2.Either<_i16.ShopFailure, _i17.KtList<_i13.Shop>>>.empty())
-          as _i4.Stream<_i2.Either<_i16.ShopFailure, _i17.KtList<_i13.Shop>>>);
+                  _i2.Either<_i9.ShopFailure, _i11.KtList<_i9.Shop>>>.empty())
+          as _i4.Stream<_i2.Either<_i9.ShopFailure, _i11.KtList<_i9.Shop>>>);
   @override
-  _i4.Stream<_i2.Either<_i16.ShopFailure, _i17.KtList<_i13.Shop>>>
+  _i4.Stream<_i2.Either<_i9.ShopFailure, _i11.KtList<_i9.Shop>>>
       watchNearby() => (super.noSuchMethod(Invocation.method(#watchNearby, []),
               returnValue: Stream<
-                  _i2.Either<_i16.ShopFailure, _i17.KtList<_i13.Shop>>>.empty())
-          as _i4.Stream<_i2.Either<_i16.ShopFailure, _i17.KtList<_i13.Shop>>>);
+                  _i2.Either<_i9.ShopFailure, _i11.KtList<_i9.Shop>>>.empty())
+          as _i4.Stream<_i2.Either<_i9.ShopFailure, _i11.KtList<_i9.Shop>>>);
   @override
-  _i4.Future<_i2.Either<_i16.ShopFailure, _i2.Unit>> create(
-          _i13.Shop? shop, _i18.ShopLogo? logo, _i6.ShopifyUser? user) =>
+  _i4.Stream<_i2.Either<_i9.ShopFailure, _i11.KtList<_i9.Shop>>>
+      watchYourShops() => (super.noSuchMethod(
+              Invocation.method(#watchYourShops, []),
+              returnValue: Stream<
+                  _i2.Either<_i9.ShopFailure, _i11.KtList<_i9.Shop>>>.empty())
+          as _i4.Stream<_i2.Either<_i9.ShopFailure, _i11.KtList<_i9.Shop>>>);
+  @override
+  _i4.Future<_i2.Either<_i9.ShopFailure, _i2.Unit>> create(
+          _i9.Shop? shop, _i12.ShopLogo? logo, _i6.ShopifyUser? user) =>
       (super.noSuchMethod(Invocation.method(#create, [shop, logo, user]),
-              returnValue: Future<_i2.Either<_i16.ShopFailure, _i2.Unit>>.value(
-                  _FakeEither_1<_i16.ShopFailure, _i2.Unit>()))
-          as _i4.Future<_i2.Either<_i16.ShopFailure, _i2.Unit>>);
+              returnValue: Future<_i2.Either<_i9.ShopFailure, _i2.Unit>>.value(
+                  _FakeEither_1<_i9.ShopFailure, _i2.Unit>()))
+          as _i4.Future<_i2.Either<_i9.ShopFailure, _i2.Unit>>);
   @override
-  _i4.Future<_i2.Either<_i16.ShopFailure, _i2.Unit>> update(_i13.Shop? shop) =>
+  _i4.Future<_i2.Either<_i9.ShopFailure, _i2.Unit>> update(_i9.Shop? shop) =>
       (super.noSuchMethod(Invocation.method(#update, [shop]),
-              returnValue: Future<_i2.Either<_i16.ShopFailure, _i2.Unit>>.value(
-                  _FakeEither_1<_i16.ShopFailure, _i2.Unit>()))
-          as _i4.Future<_i2.Either<_i16.ShopFailure, _i2.Unit>>);
+              returnValue: Future<_i2.Either<_i9.ShopFailure, _i2.Unit>>.value(
+                  _FakeEither_1<_i9.ShopFailure, _i2.Unit>()))
+          as _i4.Future<_i2.Either<_i9.ShopFailure, _i2.Unit>>);
   @override
-  _i4.Future<_i2.Either<_i16.ShopFailure, _i2.Unit>> delete(_i13.Shop? shop) =>
+  _i4.Future<_i2.Either<_i9.ShopFailure, _i2.Unit>> delete(_i9.Shop? shop) =>
       (super.noSuchMethod(Invocation.method(#delete, [shop]),
-              returnValue: Future<_i2.Either<_i16.ShopFailure, _i2.Unit>>.value(
-                  _FakeEither_1<_i16.ShopFailure, _i2.Unit>()))
-          as _i4.Future<_i2.Either<_i16.ShopFailure, _i2.Unit>>);
+              returnValue: Future<_i2.Either<_i9.ShopFailure, _i2.Unit>>.value(
+                  _FakeEither_1<_i9.ShopFailure, _i2.Unit>()))
+          as _i4.Future<_i2.Either<_i9.ShopFailure, _i2.Unit>>);
 }
 
 /// A class which mocks [IImageFacade].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockIImageFacade extends _i1.Mock implements _i19.IImageFacade {
+class MockIImageFacade extends _i1.Mock implements _i13.IImageFacade {
   MockIImageFacade() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i4.Future<_i2.Either<_i20.ImageFailure, _i18.Photo>> getPhoto(
+  _i4.Future<_i2.Either<_i12.ImageFailure, _i12.Photo>> getPhoto(
           {int? minHeight = 100,
           int? minWidth = 100,
           int? maxHeight = 1000,
@@ -220,12 +219,12 @@ class MockIImageFacade extends _i1.Mock implements _i19.IImageFacade {
             #maxHeight: maxHeight,
             #maxWidth: maxWidth
           }),
-          returnValue: Future<_i2.Either<_i20.ImageFailure, _i18.Photo>>.value(
-              _FakeEither_1<_i20.ImageFailure, _i18.Photo>())) as _i4
-          .Future<_i2.Either<_i20.ImageFailure, _i18.Photo>>);
+          returnValue: Future<_i2.Either<_i12.ImageFailure, _i12.Photo>>.value(
+              _FakeEither_1<_i12.ImageFailure, _i12.Photo>())) as _i4
+          .Future<_i2.Either<_i12.ImageFailure, _i12.Photo>>);
   @override
   _i4.Future<
-      _i2.Either<_i20.ImageFailure, _i17.KtList<_i18.Photo>>> getMultiplePhotos(
+      _i2.Either<_i12.ImageFailure, _i11.KtList<_i12.Photo>>> getMultiplePhotos(
           {int? min = 1,
           int? max = 5,
           int? minHeight = 100,
@@ -242,7 +241,7 @@ class MockIImageFacade extends _i1.Mock implements _i19.IImageFacade {
             #maxWidth: maxWidth
           }),
           returnValue: Future<
-                  _i2.Either<_i20.ImageFailure, _i17.KtList<_i18.Photo>>>.value(
-              _FakeEither_1<_i20.ImageFailure, _i17.KtList<_i18.Photo>>())) as _i4
-          .Future<_i2.Either<_i20.ImageFailure, _i17.KtList<_i18.Photo>>>);
+                  _i2.Either<_i12.ImageFailure, _i11.KtList<_i12.Photo>>>.value(
+              _FakeEither_1<_i12.ImageFailure, _i11.KtList<_i12.Photo>>())) as _i4
+          .Future<_i2.Either<_i12.ImageFailure, _i11.KtList<_i12.Photo>>>);
 }
