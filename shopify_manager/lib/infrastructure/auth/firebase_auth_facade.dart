@@ -4,7 +4,6 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shopify_domain/auth.dart';
 import 'package:shopify_manager/domain/auth/i_auth_facade.dart';
-import 'package:shopify_manager/infrastructure/auth/firebase_user_mapper.dart';
 
 @LazySingleton(as: IAuthFacade)
 class FirebaseAuthFacade implements IAuthFacade {
@@ -14,72 +13,34 @@ class FirebaseAuthFacade implements IAuthFacade {
   FirebaseAuthFacade(this._firebaseAuth, this._googleSignIn);
 
   @override
-  Future<Option<ShopifyUser>> getSignedInUser() async {
-    final firebaseUser = _firebaseAuth.currentUser;
-    return optionOf(firebaseUser?.toDomain());
+  Future<Option<ShopifyUser>> getSignedInUser() {
+    // TODO: implement getSignedInUser
+    throw UnimplementedError();
   }
 
   @override
-  Future<Either<AuthFailure, Unit>> registerWithEmailAndPassword({
-    required EmailAddress emailAddress,
-    required Password password,
-  }) async {
-    final emailAddressString = emailAddress.getOrCrash();
-    final passwordString = password.getOrCrash();
-    try {
-      await _firebaseAuth.createUserWithEmailAndPassword(
-          email: emailAddressString, password: passwordString);
-      return right(unit);
-    } on FirebaseAuthException catch (e) {
-      if (e.code == "email-already-in-use") {
-        return left(const AuthFailure.emailAlreadyInUse());
-      } else {
-        return left(const AuthFailure.serverSerror());
-      }
-    }
+  Future<Either<AuthFailure, Unit>> registerWithEmailAndPassword(
+      {required EmailAddress emailAddress, required Password password}) {
+    // TODO: implement registerWithEmailAndPassword
+    throw UnimplementedError();
   }
 
   @override
-  Future<Either<AuthFailure, Unit>> signInWithEmailAndPassword({
-    required EmailAddress emailAddress,
-    required Password password,
-  }) async {
-    final emailAddressString = emailAddress.getOrCrash();
-    final passwordString = password.getOrCrash();
-    try {
-      await _firebaseAuth.signInWithEmailAndPassword(
-          email: emailAddressString, password: passwordString);
-      return right(unit);
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'wrong-password' || e.code == 'user-not-found') {
-        return left(const AuthFailure.invalidEmailAndPasswordCombination());
-      } else {
-        return left(const AuthFailure.serverSerror());
-      }
-    }
+  Future<Either<AuthFailure, Unit>> signInWithEmailAndPassword(
+      {required EmailAddress emailAddress, required Password password}) {
+    // TODO: implement signInWithEmailAndPassword
+    throw UnimplementedError();
   }
 
   @override
-  Future<Either<AuthFailure, Unit>> signInWithGoogle() async {
-    try {
-      final accountOrNull = await _googleSignIn.signIn();
-      if (accountOrNull != null) {
-        final authentication = await accountOrNull.authentication;
-        final authCredential = GoogleAuthProvider.credential(
-            accessToken: authentication.accessToken,
-            idToken: authentication.idToken);
-
-        await _firebaseAuth.signInWithCredential(authCredential);
-        return right(unit);
-      } else {
-        return left(const AuthFailure.cancelledByUser());
-      }
-    } on FirebaseAuthException catch (_) {
-      return left(const AuthFailure.serverSerror());
-    }
+  Future<Either<AuthFailure, Unit>> signInWithGoogle() {
+    // TODO: implement signInWithGoogle
+    throw UnimplementedError();
   }
 
   @override
-  Future<void> signOut() =>
-      Future.wait([_firebaseAuth.signOut(), _googleSignIn.signOut()]);
+  Future<void> signOut() {
+    // TODO: implement signOut
+    throw UnimplementedError();
+  }
 }
