@@ -34,7 +34,7 @@ dependencies:
     sdk: flutter
   flutter_bloc: ^8.0.1
   get_it: ^7.2.0
-  google_maps_flutter: ^2.1.5
+  google_maps_flutter: ^2.1.6
   google_sign_in_web: ^0.10.1+2
   injectable: ^1.5.3
   kt_dart: ^0.10.0
@@ -45,24 +45,25 @@ dependencies:
     path: ../packages/shopify_domain
   shopify_presentation:
     path: ../packages/shopify_presentation
-  super_enum_sealed_annotations: ^1.4.0
+  sealed_annotations: ^1.13.0
 
 dev_dependencies:
   darq: ^1.2.1
   auto_route_generator: ^4.0.0
   bloc_test: ^9.0.3
-  build_runner: ^2.1.7
-  flutter_lints: ^1.0.4
+  build_runner: ^2.1.11
+  flutter_lints: ^1.0.0
   integration_test:
     sdk: flutter
   flutter_test:
     sdk: flutter
-  freezed: ^1.1.0
-  injectable_generator: ^1.5.2
+  freezed: ^2.0.3+1
+  injectable_generator: ^1.5.3
   json_serializable: ^6.2.0
-  mockito: ^5.1.0
-  super_enum_sealed_generators: ^1.4.0
-  dependency_validator: ^3.0.0
+  mockito: ^5.2.0
+  sealed_generators: ^1.13.0
+  
+  dependency_validator: ^3.2.0
 
 # The following section is specific to Flutter.
 flutter:
