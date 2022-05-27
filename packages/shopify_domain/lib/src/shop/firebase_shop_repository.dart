@@ -25,10 +25,14 @@ class FirebaseShopRepositoryImpl implements ShopifyShopRepository {
   Future<void> _deleteFileAndDocument(
       {Reference? fileReference, DocumentReference? docReference}) async {
     if (fileReference != null) {
-      await fileReference.delete();
+      try {
+        await fileReference.delete();
+      } catch (_) {}
     }
     if (docReference != null) {
-      await docReference.delete();
+      try {
+        await docReference.delete();
+      } catch (_) {}
     }
   }
 
