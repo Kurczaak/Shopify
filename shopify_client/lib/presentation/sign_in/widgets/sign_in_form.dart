@@ -19,6 +19,7 @@ class SignInForm extends StatelessWidget {
             (either) => either.fold((failure) {
                   FlushbarHelper.createError(
                     message: failure.map(
+                        timeOut: (_) => 'Connection timed out',
                         cancelledByUser: (_) => 'Cancelled',
                         serverSerror: (_) => 'Server error',
                         emailAlreadyInUse: (_) => 'Email already in use',
