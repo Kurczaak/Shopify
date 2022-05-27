@@ -34,24 +34,27 @@ class MockILocationFacade extends _i1.Mock implements _i3.ILocationFacade {
   }
 
   @override
-  _i4.Future<_i2.Either<dynamic, _i5.Location>> getCurrentLocation() =>
-      (super.noSuchMethod(Invocation.method(#getCurrentLocation, []),
-              returnValue: Future<_i2.Either<dynamic, _i5.Location>>.value(
-                  _FakeEither_0<dynamic, _i5.Location>()))
-          as _i4.Future<_i2.Either<dynamic, _i5.Location>>);
+  _i4.Future<_i2.Either<_i5.LocationFailure, _i5.Location>>
+      getCurrentLocation() => (super.noSuchMethod(
+              Invocation.method(#getCurrentLocation, []),
+              returnValue:
+                  Future<_i2.Either<_i5.LocationFailure, _i5.Location>>.value(
+                      _FakeEither_0<_i5.LocationFailure, _i5.Location>()))
+          as _i4.Future<_i2.Either<_i5.LocationFailure, _i5.Location>>);
   @override
-  _i4.Future<_i2.Either<dynamic, _i5.Location>> getUserLocation() =>
+  _i4.Future<_i2.Either<_i5.LocationFailure, _i5.Location>> getUserLocation() =>
       (super.noSuchMethod(Invocation.method(#getUserLocation, []),
-              returnValue: Future<_i2.Either<dynamic, _i5.Location>>.value(
-                  _FakeEither_0<dynamic, _i5.Location>()))
-          as _i4.Future<_i2.Either<dynamic, _i5.Location>>);
+              returnValue:
+                  Future<_i2.Either<_i5.LocationFailure, _i5.Location>>.value(
+                      _FakeEither_0<_i5.LocationFailure, _i5.Location>()))
+          as _i4.Future<_i2.Either<_i5.LocationFailure, _i5.Location>>);
   @override
-  _i4.Future<_i2.Either<dynamic, _i2.Unit>> setUserAddress(
+  _i4.Future<_i2.Either<_i5.LocationFailure, _i2.Unit>> setUserAddress(
           _i5.Address? address) =>
       (super.noSuchMethod(Invocation.method(#setUserAddress, [address]),
-              returnValue: Future<_i2.Either<dynamic, _i2.Unit>>.value(
-                  _FakeEither_0<dynamic, _i2.Unit>()))
-          as _i4.Future<_i2.Either<dynamic, _i2.Unit>>);
+          returnValue: Future<_i2.Either<_i5.LocationFailure, _i2.Unit>>.value(
+              _FakeEither_0<_i5.LocationFailure, _i2.Unit>())) as _i4
+          .Future<_i2.Either<_i5.LocationFailure, _i2.Unit>>);
 }
 
 /// A class which mocks [IShopRepository].
