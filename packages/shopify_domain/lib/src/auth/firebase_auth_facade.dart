@@ -1,9 +1,12 @@
+import 'dart:async';
+
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shopify_domain/auth.dart';
 import 'package:shopify_domain/src/auth/firebase_user_mapper.dart';
+import 'package:shopify_domain/src/core/config.dart';
 
 @LazySingleton(as: ShopifyAuth)
 class FirebaseAuthFacade implements ShopifyAuth {
@@ -26,8 +29,12 @@ class FirebaseAuthFacade implements ShopifyAuth {
     final emailAddressString = emailAddress.getOrCrash();
     final passwordString = password.getOrCrash();
     try {
-      await _firebaseAuth.createUserWithEmailAndPassword(
-          email: emailAddressString, password: passwordString);
+      await _firebaseAuth
+          .createUserWithEmailAndPassword(
+              email: emailAddressString, password: passwordString)
+          .timeout(timeoutDuration, onTimeout: () {
+        throw TimeoutException('Connection timeout ', timeoutDuration);
+      });
       return right(unit);
     } on FirebaseAuthException catch (e) {
       if (e.code == "email-already-in-use") {
@@ -35,6 +42,8 @@ class FirebaseAuthFacade implements ShopifyAuth {
       } else {
         return left(const AuthFailure.serverSerror());
       }
+    } on TimeoutException catch (_) {
+      return left(const AuthFailure.timeOut(timeoutDuration));
     }
   }
 
@@ -46,8 +55,12 @@ class FirebaseAuthFacade implements ShopifyAuth {
     final emailAddressString = emailAddress.getOrCrash();
     final passwordString = password.getOrCrash();
     try {
-      await _firebaseAuth.signInWithEmailAndPassword(
-          email: emailAddressString, password: passwordString);
+      await _firebaseAuth
+          .signInWithEmailAndPassword(
+              email: emailAddressString, password: passwordString)
+          .timeout(timeoutDuration, onTimeout: () {
+        throw TimeoutException('Connection timeout ', timeoutDuration);
+      });
       return right(unit);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'wrong-password' || e.code == 'user-not-found') {
@@ -55,6 +68,8 @@ class FirebaseAuthFacade implements ShopifyAuth {
       } else {
         return left(const AuthFailure.serverSerror());
       }
+    } on TimeoutException catch (_) {
+      return left(const AuthFailure.timeOut(timeoutDuration));
     }
   }
 
@@ -68,13 +83,19 @@ class FirebaseAuthFacade implements ShopifyAuth {
             accessToken: authentication.accessToken,
             idToken: authentication.idToken);
 
-        await _firebaseAuth.signInWithCredential(authCredential);
+        await _firebaseAuth
+            .signInWithCredential(authCredential)
+            .timeout(timeoutDuration, onTimeout: () {
+          throw TimeoutException('Connection timeout ', timeoutDuration);
+        });
         return right(unit);
       } else {
         return left(const AuthFailure.cancelledByUser());
       }
     } on FirebaseAuthException catch (_) {
       return left(const AuthFailure.serverSerror());
+    } on TimeoutException catch (_) {
+      return left(const AuthFailure.timeOut(timeoutDuration));
     }
   }
 

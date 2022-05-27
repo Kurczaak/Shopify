@@ -19,6 +19,7 @@ mixin _$AuthFailure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() cancelledByUser,
+    required TResult Function(Duration timeout) timeOut,
     required TResult Function() serverSerror,
     required TResult Function() emailAlreadyInUse,
     required TResult Function() invalidEmailAndPasswordCombination,
@@ -27,6 +28,7 @@ mixin _$AuthFailure {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? cancelledByUser,
+    TResult Function(Duration timeout)? timeOut,
     TResult Function()? serverSerror,
     TResult Function()? emailAlreadyInUse,
     TResult Function()? invalidEmailAndPasswordCombination,
@@ -35,6 +37,7 @@ mixin _$AuthFailure {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? cancelledByUser,
+    TResult Function(Duration timeout)? timeOut,
     TResult Function()? serverSerror,
     TResult Function()? emailAlreadyInUse,
     TResult Function()? invalidEmailAndPasswordCombination,
@@ -44,6 +47,7 @@ mixin _$AuthFailure {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(CancelledByUser value) cancelledByUser,
+    required TResult Function(TimeOut value) timeOut,
     required TResult Function(ServerError value) serverSerror,
     required TResult Function(EmailAlreadyInUse value) emailAlreadyInUse,
     required TResult Function(InvalidEmailAndPasswordCombination value)
@@ -53,6 +57,7 @@ mixin _$AuthFailure {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(CancelledByUser value)? cancelledByUser,
+    TResult Function(TimeOut value)? timeOut,
     TResult Function(ServerError value)? serverSerror,
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
     TResult Function(InvalidEmailAndPasswordCombination value)?
@@ -62,6 +67,7 @@ mixin _$AuthFailure {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(CancelledByUser value)? cancelledByUser,
+    TResult Function(TimeOut value)? timeOut,
     TResult Function(ServerError value)? serverSerror,
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
     TResult Function(InvalidEmailAndPasswordCombination value)?
@@ -129,6 +135,7 @@ class _$CancelledByUser implements CancelledByUser {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() cancelledByUser,
+    required TResult Function(Duration timeout) timeOut,
     required TResult Function() serverSerror,
     required TResult Function() emailAlreadyInUse,
     required TResult Function() invalidEmailAndPasswordCombination,
@@ -140,6 +147,7 @@ class _$CancelledByUser implements CancelledByUser {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? cancelledByUser,
+    TResult Function(Duration timeout)? timeOut,
     TResult Function()? serverSerror,
     TResult Function()? emailAlreadyInUse,
     TResult Function()? invalidEmailAndPasswordCombination,
@@ -151,6 +159,7 @@ class _$CancelledByUser implements CancelledByUser {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? cancelledByUser,
+    TResult Function(Duration timeout)? timeOut,
     TResult Function()? serverSerror,
     TResult Function()? emailAlreadyInUse,
     TResult Function()? invalidEmailAndPasswordCombination,
@@ -166,6 +175,7 @@ class _$CancelledByUser implements CancelledByUser {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(CancelledByUser value) cancelledByUser,
+    required TResult Function(TimeOut value) timeOut,
     required TResult Function(ServerError value) serverSerror,
     required TResult Function(EmailAlreadyInUse value) emailAlreadyInUse,
     required TResult Function(InvalidEmailAndPasswordCombination value)
@@ -178,6 +188,7 @@ class _$CancelledByUser implements CancelledByUser {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(CancelledByUser value)? cancelledByUser,
+    TResult Function(TimeOut value)? timeOut,
     TResult Function(ServerError value)? serverSerror,
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
     TResult Function(InvalidEmailAndPasswordCombination value)?
@@ -190,6 +201,7 @@ class _$CancelledByUser implements CancelledByUser {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(CancelledByUser value)? cancelledByUser,
+    TResult Function(TimeOut value)? timeOut,
     TResult Function(ServerError value)? serverSerror,
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
     TResult Function(InvalidEmailAndPasswordCombination value)?
@@ -205,6 +217,158 @@ class _$CancelledByUser implements CancelledByUser {
 
 abstract class CancelledByUser implements AuthFailure {
   const factory CancelledByUser() = _$CancelledByUser;
+}
+
+/// @nodoc
+abstract class _$$TimeOutCopyWith<$Res> {
+  factory _$$TimeOutCopyWith(_$TimeOut value, $Res Function(_$TimeOut) then) =
+      __$$TimeOutCopyWithImpl<$Res>;
+  $Res call({Duration timeout});
+}
+
+/// @nodoc
+class __$$TimeOutCopyWithImpl<$Res> extends _$AuthFailureCopyWithImpl<$Res>
+    implements _$$TimeOutCopyWith<$Res> {
+  __$$TimeOutCopyWithImpl(_$TimeOut _value, $Res Function(_$TimeOut) _then)
+      : super(_value, (v) => _then(v as _$TimeOut));
+
+  @override
+  _$TimeOut get _value => super._value as _$TimeOut;
+
+  @override
+  $Res call({
+    Object? timeout = freezed,
+  }) {
+    return _then(_$TimeOut(
+      timeout == freezed
+          ? _value.timeout
+          : timeout // ignore: cast_nullable_to_non_nullable
+              as Duration,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$TimeOut implements TimeOut {
+  const _$TimeOut(this.timeout);
+
+  @override
+  final Duration timeout;
+
+  @override
+  String toString() {
+    return 'AuthFailure.timeOut(timeout: $timeout)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$TimeOut &&
+            const DeepCollectionEquality().equals(other.timeout, timeout));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(timeout));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$TimeOutCopyWith<_$TimeOut> get copyWith =>
+      __$$TimeOutCopyWithImpl<_$TimeOut>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() cancelledByUser,
+    required TResult Function(Duration timeout) timeOut,
+    required TResult Function() serverSerror,
+    required TResult Function() emailAlreadyInUse,
+    required TResult Function() invalidEmailAndPasswordCombination,
+  }) {
+    return timeOut(timeout);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? cancelledByUser,
+    TResult Function(Duration timeout)? timeOut,
+    TResult Function()? serverSerror,
+    TResult Function()? emailAlreadyInUse,
+    TResult Function()? invalidEmailAndPasswordCombination,
+  }) {
+    return timeOut?.call(timeout);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? cancelledByUser,
+    TResult Function(Duration timeout)? timeOut,
+    TResult Function()? serverSerror,
+    TResult Function()? emailAlreadyInUse,
+    TResult Function()? invalidEmailAndPasswordCombination,
+    required TResult orElse(),
+  }) {
+    if (timeOut != null) {
+      return timeOut(timeout);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(CancelledByUser value) cancelledByUser,
+    required TResult Function(TimeOut value) timeOut,
+    required TResult Function(ServerError value) serverSerror,
+    required TResult Function(EmailAlreadyInUse value) emailAlreadyInUse,
+    required TResult Function(InvalidEmailAndPasswordCombination value)
+        invalidEmailAndPasswordCombination,
+  }) {
+    return timeOut(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(CancelledByUser value)? cancelledByUser,
+    TResult Function(TimeOut value)? timeOut,
+    TResult Function(ServerError value)? serverSerror,
+    TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
+    TResult Function(InvalidEmailAndPasswordCombination value)?
+        invalidEmailAndPasswordCombination,
+  }) {
+    return timeOut?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(CancelledByUser value)? cancelledByUser,
+    TResult Function(TimeOut value)? timeOut,
+    TResult Function(ServerError value)? serverSerror,
+    TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
+    TResult Function(InvalidEmailAndPasswordCombination value)?
+        invalidEmailAndPasswordCombination,
+    required TResult orElse(),
+  }) {
+    if (timeOut != null) {
+      return timeOut(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class TimeOut implements AuthFailure {
+  const factory TimeOut(final Duration timeout) = _$TimeOut;
+
+  Duration get timeout => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$$TimeOutCopyWith<_$TimeOut> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -248,6 +412,7 @@ class _$ServerError implements ServerError {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() cancelledByUser,
+    required TResult Function(Duration timeout) timeOut,
     required TResult Function() serverSerror,
     required TResult Function() emailAlreadyInUse,
     required TResult Function() invalidEmailAndPasswordCombination,
@@ -259,6 +424,7 @@ class _$ServerError implements ServerError {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? cancelledByUser,
+    TResult Function(Duration timeout)? timeOut,
     TResult Function()? serverSerror,
     TResult Function()? emailAlreadyInUse,
     TResult Function()? invalidEmailAndPasswordCombination,
@@ -270,6 +436,7 @@ class _$ServerError implements ServerError {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? cancelledByUser,
+    TResult Function(Duration timeout)? timeOut,
     TResult Function()? serverSerror,
     TResult Function()? emailAlreadyInUse,
     TResult Function()? invalidEmailAndPasswordCombination,
@@ -285,6 +452,7 @@ class _$ServerError implements ServerError {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(CancelledByUser value) cancelledByUser,
+    required TResult Function(TimeOut value) timeOut,
     required TResult Function(ServerError value) serverSerror,
     required TResult Function(EmailAlreadyInUse value) emailAlreadyInUse,
     required TResult Function(InvalidEmailAndPasswordCombination value)
@@ -297,6 +465,7 @@ class _$ServerError implements ServerError {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(CancelledByUser value)? cancelledByUser,
+    TResult Function(TimeOut value)? timeOut,
     TResult Function(ServerError value)? serverSerror,
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
     TResult Function(InvalidEmailAndPasswordCombination value)?
@@ -309,6 +478,7 @@ class _$ServerError implements ServerError {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(CancelledByUser value)? cancelledByUser,
+    TResult Function(TimeOut value)? timeOut,
     TResult Function(ServerError value)? serverSerror,
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
     TResult Function(InvalidEmailAndPasswordCombination value)?
@@ -368,6 +538,7 @@ class _$EmailAlreadyInUse implements EmailAlreadyInUse {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() cancelledByUser,
+    required TResult Function(Duration timeout) timeOut,
     required TResult Function() serverSerror,
     required TResult Function() emailAlreadyInUse,
     required TResult Function() invalidEmailAndPasswordCombination,
@@ -379,6 +550,7 @@ class _$EmailAlreadyInUse implements EmailAlreadyInUse {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? cancelledByUser,
+    TResult Function(Duration timeout)? timeOut,
     TResult Function()? serverSerror,
     TResult Function()? emailAlreadyInUse,
     TResult Function()? invalidEmailAndPasswordCombination,
@@ -390,6 +562,7 @@ class _$EmailAlreadyInUse implements EmailAlreadyInUse {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? cancelledByUser,
+    TResult Function(Duration timeout)? timeOut,
     TResult Function()? serverSerror,
     TResult Function()? emailAlreadyInUse,
     TResult Function()? invalidEmailAndPasswordCombination,
@@ -405,6 +578,7 @@ class _$EmailAlreadyInUse implements EmailAlreadyInUse {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(CancelledByUser value) cancelledByUser,
+    required TResult Function(TimeOut value) timeOut,
     required TResult Function(ServerError value) serverSerror,
     required TResult Function(EmailAlreadyInUse value) emailAlreadyInUse,
     required TResult Function(InvalidEmailAndPasswordCombination value)
@@ -417,6 +591,7 @@ class _$EmailAlreadyInUse implements EmailAlreadyInUse {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(CancelledByUser value)? cancelledByUser,
+    TResult Function(TimeOut value)? timeOut,
     TResult Function(ServerError value)? serverSerror,
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
     TResult Function(InvalidEmailAndPasswordCombination value)?
@@ -429,6 +604,7 @@ class _$EmailAlreadyInUse implements EmailAlreadyInUse {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(CancelledByUser value)? cancelledByUser,
+    TResult Function(TimeOut value)? timeOut,
     TResult Function(ServerError value)? serverSerror,
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
     TResult Function(InvalidEmailAndPasswordCombination value)?
@@ -493,6 +669,7 @@ class _$InvalidEmailAndPasswordCombination
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() cancelledByUser,
+    required TResult Function(Duration timeout) timeOut,
     required TResult Function() serverSerror,
     required TResult Function() emailAlreadyInUse,
     required TResult Function() invalidEmailAndPasswordCombination,
@@ -504,6 +681,7 @@ class _$InvalidEmailAndPasswordCombination
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? cancelledByUser,
+    TResult Function(Duration timeout)? timeOut,
     TResult Function()? serverSerror,
     TResult Function()? emailAlreadyInUse,
     TResult Function()? invalidEmailAndPasswordCombination,
@@ -515,6 +693,7 @@ class _$InvalidEmailAndPasswordCombination
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? cancelledByUser,
+    TResult Function(Duration timeout)? timeOut,
     TResult Function()? serverSerror,
     TResult Function()? emailAlreadyInUse,
     TResult Function()? invalidEmailAndPasswordCombination,
@@ -530,6 +709,7 @@ class _$InvalidEmailAndPasswordCombination
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(CancelledByUser value) cancelledByUser,
+    required TResult Function(TimeOut value) timeOut,
     required TResult Function(ServerError value) serverSerror,
     required TResult Function(EmailAlreadyInUse value) emailAlreadyInUse,
     required TResult Function(InvalidEmailAndPasswordCombination value)
@@ -542,6 +722,7 @@ class _$InvalidEmailAndPasswordCombination
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(CancelledByUser value)? cancelledByUser,
+    TResult Function(TimeOut value)? timeOut,
     TResult Function(ServerError value)? serverSerror,
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
     TResult Function(InvalidEmailAndPasswordCombination value)?
@@ -554,6 +735,7 @@ class _$InvalidEmailAndPasswordCombination
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(CancelledByUser value)? cancelledByUser,
+    TResult Function(TimeOut value)? timeOut,
     TResult Function(ServerError value)? serverSerror,
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
     TResult Function(InvalidEmailAndPasswordCombination value)?
