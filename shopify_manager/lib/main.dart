@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shopify_manager/injection.dart';
+import 'package:shopify_domain/core.dart';
 import 'presentation/core/app_widget.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -12,7 +13,7 @@ const projectId = 'shopify-app-6d29d';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
+  Shopify.initialize;
   await Firebase.initializeApp(
     options: const FirebaseOptions(
       apiKey: apiKey,
