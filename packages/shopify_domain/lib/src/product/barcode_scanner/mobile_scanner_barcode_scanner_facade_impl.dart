@@ -2,11 +2,11 @@
 // import 'package:shopify_domain/core.dart';
 // import 'package:shopify_domain/product.dart';
 // import 'package:dartz/dartz.dart';
-// import 'package:shopify_manager/injection.dart';
-// import 'package:shopify_manager/presentation/routes/router.gr.dart';
+// import 'package:shopify_domain/src/injection.dart';
 
-// @Injectable(as: IBarcodeScannerFacade)
-// class MobileScannerBarcodeScannerFacadeImpl implements IBarcodeScannerFacade {
+
+// @Injectable(as: BarcodeScanner)
+// class MobileScannerBarcodeScannerFacadeImpl implements BarcodeScanner {
 //   @override
 //   Stream<Either<BarcodeFailure, Barcode>> scanBarcodesContinously() {
 //     throw UnimplementedError();

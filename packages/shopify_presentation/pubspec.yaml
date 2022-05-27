@@ -17,8 +17,10 @@ dependencies:
   flutter_signin_button: ^2.0.0
   font_awesome_flutter: ^9.0.0
   freezed: ^2.0.3+1
+  get_it: ^7.2.0
   kt_dart: ^0.10.0
   loading_overlay: ^0.3.0
+  mobile_scanner: ^1.1.1
   mocktail: ^0.3.0
   path_provider: ^2.0.10
   progress_indicators: ^1.0.0
@@ -28,6 +30,8 @@ dependencies:
     path: ../shopify_domain
 
 dev_dependencies:
+  bloc_test: ^9.0.3
+  build_runner: ^2.1.11
   flutter_lints: ^1.0.0
   flutter_test:
     sdk: flutter
