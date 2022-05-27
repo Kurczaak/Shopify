@@ -12,32 +12,11 @@ part of 'location_dtos.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 LocationDto _$LocationDtoFromJson(Map<String, dynamic> json) {
   return _LocationDto.fromJson(json);
 }
-
-/// @nodoc
-class _$LocationDtoTearOff {
-  const _$LocationDtoTearOff();
-
-  _LocationDto call(
-      {@GeoPointConverter() required GeoPoint geopoint,
-      required String geohash}) {
-    return _LocationDto(
-      geopoint: geopoint,
-      geohash: geohash,
-    );
-  }
-
-  LocationDto fromJson(Map<String, Object?> json) {
-    return LocationDto.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $LocationDto = _$LocationDtoTearOff();
 
 /// @nodoc
 mixin _$LocationDto {
@@ -86,31 +65,31 @@ class _$LocationDtoCopyWithImpl<$Res> implements $LocationDtoCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$LocationDtoCopyWith<$Res>
+abstract class _$$_LocationDtoCopyWith<$Res>
     implements $LocationDtoCopyWith<$Res> {
-  factory _$LocationDtoCopyWith(
-          _LocationDto value, $Res Function(_LocationDto) then) =
-      __$LocationDtoCopyWithImpl<$Res>;
+  factory _$$_LocationDtoCopyWith(
+          _$_LocationDto value, $Res Function(_$_LocationDto) then) =
+      __$$_LocationDtoCopyWithImpl<$Res>;
   @override
   $Res call({@GeoPointConverter() GeoPoint geopoint, String geohash});
 }
 
 /// @nodoc
-class __$LocationDtoCopyWithImpl<$Res> extends _$LocationDtoCopyWithImpl<$Res>
-    implements _$LocationDtoCopyWith<$Res> {
-  __$LocationDtoCopyWithImpl(
-      _LocationDto _value, $Res Function(_LocationDto) _then)
-      : super(_value, (v) => _then(v as _LocationDto));
+class __$$_LocationDtoCopyWithImpl<$Res> extends _$LocationDtoCopyWithImpl<$Res>
+    implements _$$_LocationDtoCopyWith<$Res> {
+  __$$_LocationDtoCopyWithImpl(
+      _$_LocationDto _value, $Res Function(_$_LocationDto) _then)
+      : super(_value, (v) => _then(v as _$_LocationDto));
 
   @override
-  _LocationDto get _value => super._value as _LocationDto;
+  _$_LocationDto get _value => super._value as _$_LocationDto;
 
   @override
   $Res call({
     Object? geopoint = freezed,
     Object? geohash = freezed,
   }) {
-    return _then(_LocationDto(
+    return _then(_$_LocationDto(
       geopoint: geopoint == freezed
           ? _value.geopoint
           : geopoint // ignore: cast_nullable_to_non_nullable
@@ -148,11 +127,12 @@ class _$_LocationDto extends _LocationDto {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _LocationDto &&
+            other is _$_LocationDto &&
             const DeepCollectionEquality().equals(other.geopoint, geopoint) &&
             const DeepCollectionEquality().equals(other.geohash, geohash));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -161,8 +141,8 @@ class _$_LocationDto extends _LocationDto {
 
   @JsonKey(ignore: true)
   @override
-  _$LocationDtoCopyWith<_LocationDto> get copyWith =>
-      __$LocationDtoCopyWithImpl<_LocationDto>(this, _$identity);
+  _$$_LocationDtoCopyWith<_$_LocationDto> get copyWith =>
+      __$$_LocationDtoCopyWithImpl<_$_LocationDto>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -172,8 +152,8 @@ class _$_LocationDto extends _LocationDto {
 
 abstract class _LocationDto extends LocationDto {
   const factory _LocationDto(
-      {@GeoPointConverter() required GeoPoint geopoint,
-      required String geohash}) = _$_LocationDto;
+      {@GeoPointConverter() required final GeoPoint geopoint,
+      required final String geohash}) = _$_LocationDto;
   const _LocationDto._() : super._();
 
   factory _LocationDto.fromJson(Map<String, dynamic> json) =
@@ -181,11 +161,11 @@ abstract class _LocationDto extends LocationDto {
 
   @override
   @GeoPointConverter()
-  GeoPoint get geopoint;
+  GeoPoint get geopoint => throw _privateConstructorUsedError;
   @override
-  String get geohash;
+  String get geohash => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$LocationDtoCopyWith<_LocationDto> get copyWith =>
+  _$$_LocationDtoCopyWith<_$_LocationDto> get copyWith =>
       throw _privateConstructorUsedError;
 }

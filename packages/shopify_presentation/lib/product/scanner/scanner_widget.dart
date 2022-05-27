@@ -6,9 +6,9 @@ import 'package:shopify_presentation/src/barcode_camera_scanner/barcode_camera_s
 
 import 'package:shopify_presentation/src/injection.dart';
 
-class BarcodeScannerWidget extends StatelessWidget {
+class BarcodeScannerPage extends StatelessWidget {
   final void Function(Barcode barcode) onBarcodeDeteced;
-  const BarcodeScannerWidget({Key? key, required this.onBarcodeDeteced})
+  const BarcodeScannerPage({Key? key, required this.onBarcodeDeteced})
       : super(key: key);
 
   @override

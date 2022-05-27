@@ -12,26 +12,7 @@ part of 'day.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$DayTearOff {
-  const _$DayTearOff();
-
-  _Day call(
-      {required DayName day,
-      required bool isOpen,
-      required TimeInterval openingInterval}) {
-    return _Day(
-      day: day,
-      isOpen: isOpen,
-      openingInterval: openingInterval,
-    );
-  }
-}
-
-/// @nodoc
-const $Day = _$DayTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$Day {
@@ -82,21 +63,21 @@ class _$DayCopyWithImpl<$Res> implements $DayCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$DayCopyWith<$Res> implements $DayCopyWith<$Res> {
-  factory _$DayCopyWith(_Day value, $Res Function(_Day) then) =
-      __$DayCopyWithImpl<$Res>;
+abstract class _$$_DayCopyWith<$Res> implements $DayCopyWith<$Res> {
+  factory _$$_DayCopyWith(_$_Day value, $Res Function(_$_Day) then) =
+      __$$_DayCopyWithImpl<$Res>;
   @override
   $Res call({DayName day, bool isOpen, TimeInterval openingInterval});
 }
 
 /// @nodoc
-class __$DayCopyWithImpl<$Res> extends _$DayCopyWithImpl<$Res>
-    implements _$DayCopyWith<$Res> {
-  __$DayCopyWithImpl(_Day _value, $Res Function(_Day) _then)
-      : super(_value, (v) => _then(v as _Day));
+class __$$_DayCopyWithImpl<$Res> extends _$DayCopyWithImpl<$Res>
+    implements _$$_DayCopyWith<$Res> {
+  __$$_DayCopyWithImpl(_$_Day _value, $Res Function(_$_Day) _then)
+      : super(_value, (v) => _then(v as _$_Day));
 
   @override
-  _Day get _value => super._value as _Day;
+  _$_Day get _value => super._value as _$_Day;
 
   @override
   $Res call({
@@ -104,7 +85,7 @@ class __$DayCopyWithImpl<$Res> extends _$DayCopyWithImpl<$Res>
     Object? isOpen = freezed,
     Object? openingInterval = freezed,
   }) {
-    return _then(_Day(
+    return _then(_$_Day(
       day: day == freezed
           ? _value.day
           : day // ignore: cast_nullable_to_non_nullable
@@ -144,7 +125,7 @@ class _$_Day extends _Day {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _Day &&
+            other is _$_Day &&
             const DeepCollectionEquality().equals(other.day, day) &&
             const DeepCollectionEquality().equals(other.isOpen, isOpen) &&
             const DeepCollectionEquality()
@@ -160,24 +141,24 @@ class _$_Day extends _Day {
 
   @JsonKey(ignore: true)
   @override
-  _$DayCopyWith<_Day> get copyWith =>
-      __$DayCopyWithImpl<_Day>(this, _$identity);
+  _$$_DayCopyWith<_$_Day> get copyWith =>
+      __$$_DayCopyWithImpl<_$_Day>(this, _$identity);
 }
 
 abstract class _Day extends Day {
   const factory _Day(
-      {required DayName day,
-      required bool isOpen,
-      required TimeInterval openingInterval}) = _$_Day;
+      {required final DayName day,
+      required final bool isOpen,
+      required final TimeInterval openingInterval}) = _$_Day;
   const _Day._() : super._();
 
   @override
-  DayName get day;
+  DayName get day => throw _privateConstructorUsedError;
   @override
-  bool get isOpen;
+  bool get isOpen => throw _privateConstructorUsedError;
   @override
-  TimeInterval get openingInterval;
+  TimeInterval get openingInterval => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$DayCopyWith<_Day> get copyWith => throw _privateConstructorUsedError;
+  _$$_DayCopyWith<_$_Day> get copyWith => throw _privateConstructorUsedError;
 }

@@ -12,37 +12,7 @@ part of 'shop_failure.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$ShopFailureTearOff {
-  const _$ShopFailureTearOff();
-
-  _Unexpected unexpected() {
-    return const _Unexpected();
-  }
-
-  _InsufficientPermission insufficientPermission() {
-    return const _InsufficientPermission();
-  }
-
-  _UnableToUpdate unableToUpdate() {
-    return const _UnableToUpdate();
-  }
-
-  _Timeout timeout(Duration timeout) {
-    return _Timeout(
-      timeout,
-    );
-  }
-
-  _NoShopFound noShopFound() {
-    return const _NoShopFound();
-  }
-}
-
-/// @nodoc
-const $ShopFailure = _$ShopFailureTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$ShopFailure {
@@ -122,21 +92,21 @@ class _$ShopFailureCopyWithImpl<$Res> implements $ShopFailureCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$UnexpectedCopyWith<$Res> {
-  factory _$UnexpectedCopyWith(
-          _Unexpected value, $Res Function(_Unexpected) then) =
-      __$UnexpectedCopyWithImpl<$Res>;
+abstract class _$$_UnexpectedCopyWith<$Res> {
+  factory _$$_UnexpectedCopyWith(
+          _$_Unexpected value, $Res Function(_$_Unexpected) then) =
+      __$$_UnexpectedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$UnexpectedCopyWithImpl<$Res> extends _$ShopFailureCopyWithImpl<$Res>
-    implements _$UnexpectedCopyWith<$Res> {
-  __$UnexpectedCopyWithImpl(
-      _Unexpected _value, $Res Function(_Unexpected) _then)
-      : super(_value, (v) => _then(v as _Unexpected));
+class __$$_UnexpectedCopyWithImpl<$Res> extends _$ShopFailureCopyWithImpl<$Res>
+    implements _$$_UnexpectedCopyWith<$Res> {
+  __$$_UnexpectedCopyWithImpl(
+      _$_Unexpected _value, $Res Function(_$_Unexpected) _then)
+      : super(_value, (v) => _then(v as _$_Unexpected));
 
   @override
-  _Unexpected get _value => super._value as _Unexpected;
+  _$_Unexpected get _value => super._value as _$_Unexpected;
 }
 
 /// @nodoc
@@ -152,7 +122,7 @@ class _$_Unexpected implements _Unexpected {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _Unexpected);
+        (other.runtimeType == runtimeType && other is _$_Unexpected);
   }
 
   @override
@@ -245,22 +215,23 @@ abstract class _Unexpected implements ShopFailure {
 }
 
 /// @nodoc
-abstract class _$InsufficientPermissionCopyWith<$Res> {
-  factory _$InsufficientPermissionCopyWith(_InsufficientPermission value,
-          $Res Function(_InsufficientPermission) then) =
-      __$InsufficientPermissionCopyWithImpl<$Res>;
+abstract class _$$_InsufficientPermissionCopyWith<$Res> {
+  factory _$$_InsufficientPermissionCopyWith(_$_InsufficientPermission value,
+          $Res Function(_$_InsufficientPermission) then) =
+      __$$_InsufficientPermissionCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$InsufficientPermissionCopyWithImpl<$Res>
+class __$$_InsufficientPermissionCopyWithImpl<$Res>
     extends _$ShopFailureCopyWithImpl<$Res>
-    implements _$InsufficientPermissionCopyWith<$Res> {
-  __$InsufficientPermissionCopyWithImpl(_InsufficientPermission _value,
-      $Res Function(_InsufficientPermission) _then)
-      : super(_value, (v) => _then(v as _InsufficientPermission));
+    implements _$$_InsufficientPermissionCopyWith<$Res> {
+  __$$_InsufficientPermissionCopyWithImpl(_$_InsufficientPermission _value,
+      $Res Function(_$_InsufficientPermission) _then)
+      : super(_value, (v) => _then(v as _$_InsufficientPermission));
 
   @override
-  _InsufficientPermission get _value => super._value as _InsufficientPermission;
+  _$_InsufficientPermission get _value =>
+      super._value as _$_InsufficientPermission;
 }
 
 /// @nodoc
@@ -276,7 +247,8 @@ class _$_InsufficientPermission implements _InsufficientPermission {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _InsufficientPermission);
+        (other.runtimeType == runtimeType &&
+            other is _$_InsufficientPermission);
   }
 
   @override
@@ -369,22 +341,22 @@ abstract class _InsufficientPermission implements ShopFailure {
 }
 
 /// @nodoc
-abstract class _$UnableToUpdateCopyWith<$Res> {
-  factory _$UnableToUpdateCopyWith(
-          _UnableToUpdate value, $Res Function(_UnableToUpdate) then) =
-      __$UnableToUpdateCopyWithImpl<$Res>;
+abstract class _$$_UnableToUpdateCopyWith<$Res> {
+  factory _$$_UnableToUpdateCopyWith(
+          _$_UnableToUpdate value, $Res Function(_$_UnableToUpdate) then) =
+      __$$_UnableToUpdateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$UnableToUpdateCopyWithImpl<$Res>
+class __$$_UnableToUpdateCopyWithImpl<$Res>
     extends _$ShopFailureCopyWithImpl<$Res>
-    implements _$UnableToUpdateCopyWith<$Res> {
-  __$UnableToUpdateCopyWithImpl(
-      _UnableToUpdate _value, $Res Function(_UnableToUpdate) _then)
-      : super(_value, (v) => _then(v as _UnableToUpdate));
+    implements _$$_UnableToUpdateCopyWith<$Res> {
+  __$$_UnableToUpdateCopyWithImpl(
+      _$_UnableToUpdate _value, $Res Function(_$_UnableToUpdate) _then)
+      : super(_value, (v) => _then(v as _$_UnableToUpdate));
 
   @override
-  _UnableToUpdate get _value => super._value as _UnableToUpdate;
+  _$_UnableToUpdate get _value => super._value as _$_UnableToUpdate;
 }
 
 /// @nodoc
@@ -400,7 +372,7 @@ class _$_UnableToUpdate implements _UnableToUpdate {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _UnableToUpdate);
+        (other.runtimeType == runtimeType && other is _$_UnableToUpdate);
   }
 
   @override
@@ -493,26 +465,27 @@ abstract class _UnableToUpdate implements ShopFailure {
 }
 
 /// @nodoc
-abstract class _$TimeoutCopyWith<$Res> {
-  factory _$TimeoutCopyWith(_Timeout value, $Res Function(_Timeout) then) =
-      __$TimeoutCopyWithImpl<$Res>;
+abstract class _$$_TimeoutCopyWith<$Res> {
+  factory _$$_TimeoutCopyWith(
+          _$_Timeout value, $Res Function(_$_Timeout) then) =
+      __$$_TimeoutCopyWithImpl<$Res>;
   $Res call({Duration timeout});
 }
 
 /// @nodoc
-class __$TimeoutCopyWithImpl<$Res> extends _$ShopFailureCopyWithImpl<$Res>
-    implements _$TimeoutCopyWith<$Res> {
-  __$TimeoutCopyWithImpl(_Timeout _value, $Res Function(_Timeout) _then)
-      : super(_value, (v) => _then(v as _Timeout));
+class __$$_TimeoutCopyWithImpl<$Res> extends _$ShopFailureCopyWithImpl<$Res>
+    implements _$$_TimeoutCopyWith<$Res> {
+  __$$_TimeoutCopyWithImpl(_$_Timeout _value, $Res Function(_$_Timeout) _then)
+      : super(_value, (v) => _then(v as _$_Timeout));
 
   @override
-  _Timeout get _value => super._value as _Timeout;
+  _$_Timeout get _value => super._value as _$_Timeout;
 
   @override
   $Res call({
     Object? timeout = freezed,
   }) {
-    return _then(_Timeout(
+    return _then(_$_Timeout(
       timeout == freezed
           ? _value.timeout
           : timeout // ignore: cast_nullable_to_non_nullable
@@ -538,7 +511,7 @@ class _$_Timeout implements _Timeout {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _Timeout &&
+            other is _$_Timeout &&
             const DeepCollectionEquality().equals(other.timeout, timeout));
   }
 
@@ -548,8 +521,8 @@ class _$_Timeout implements _Timeout {
 
   @JsonKey(ignore: true)
   @override
-  _$TimeoutCopyWith<_Timeout> get copyWith =>
-      __$TimeoutCopyWithImpl<_Timeout>(this, _$identity);
+  _$$_TimeoutCopyWith<_$_Timeout> get copyWith =>
+      __$$_TimeoutCopyWithImpl<_$_Timeout>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -634,30 +607,30 @@ class _$_Timeout implements _Timeout {
 }
 
 abstract class _Timeout implements ShopFailure {
-  const factory _Timeout(Duration timeout) = _$_Timeout;
+  const factory _Timeout(final Duration timeout) = _$_Timeout;
 
-  Duration get timeout;
+  Duration get timeout => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  _$TimeoutCopyWith<_Timeout> get copyWith =>
+  _$$_TimeoutCopyWith<_$_Timeout> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$NoShopFoundCopyWith<$Res> {
-  factory _$NoShopFoundCopyWith(
-          _NoShopFound value, $Res Function(_NoShopFound) then) =
-      __$NoShopFoundCopyWithImpl<$Res>;
+abstract class _$$_NoShopFoundCopyWith<$Res> {
+  factory _$$_NoShopFoundCopyWith(
+          _$_NoShopFound value, $Res Function(_$_NoShopFound) then) =
+      __$$_NoShopFoundCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$NoShopFoundCopyWithImpl<$Res> extends _$ShopFailureCopyWithImpl<$Res>
-    implements _$NoShopFoundCopyWith<$Res> {
-  __$NoShopFoundCopyWithImpl(
-      _NoShopFound _value, $Res Function(_NoShopFound) _then)
-      : super(_value, (v) => _then(v as _NoShopFound));
+class __$$_NoShopFoundCopyWithImpl<$Res> extends _$ShopFailureCopyWithImpl<$Res>
+    implements _$$_NoShopFoundCopyWith<$Res> {
+  __$$_NoShopFoundCopyWithImpl(
+      _$_NoShopFound _value, $Res Function(_$_NoShopFound) _then)
+      : super(_value, (v) => _then(v as _$_NoShopFound));
 
   @override
-  _NoShopFound get _value => super._value as _NoShopFound;
+  _$_NoShopFound get _value => super._value as _$_NoShopFound;
 }
 
 /// @nodoc
@@ -673,7 +646,7 @@ class _$_NoShopFound implements _NoShopFound {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _NoShopFound);
+        (other.runtimeType == runtimeType && other is _$_NoShopFound);
   }
 
   @override

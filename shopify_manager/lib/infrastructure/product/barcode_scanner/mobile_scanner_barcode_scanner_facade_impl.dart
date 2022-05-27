@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:injectable/injectable.dart';
 import 'package:dartz/dartz.dart';
 import 'package:shopify_domain/product.dart';
@@ -15,7 +16,8 @@ class MobileScannerBarcodeScannerFacadeImpl implements IBarcodeScannerFacade {
   }
 
   @override
-  Future<Either<BarcodeFailure, Barcode>> scanSingleBarcode() {
-    return _barcodeScanner.scanSingleBarcode();
+  Future<Either<BarcodeFailure, Barcode>> scanSingleBarcode(
+      BuildContext context) {
+    return _barcodeScanner.scanSingleBarcode(context);
   }
 }

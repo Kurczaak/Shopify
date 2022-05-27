@@ -12,32 +12,7 @@ part of 'shop.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$ShopTearOff {
-  const _$ShopTearOff();
-
-  _Shop call(
-      {required UniqueId id,
-      required ShopName shopName,
-      required Address address,
-      required Location location,
-      required Week workingWeek,
-      required ShopifyUrl logoUrl}) {
-    return _Shop(
-      id: id,
-      shopName: shopName,
-      address: address,
-      location: location,
-      workingWeek: workingWeek,
-      logoUrl: logoUrl,
-    );
-  }
-}
-
-/// @nodoc
-const $Shop = _$ShopTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$Shop {
@@ -137,9 +112,9 @@ class _$ShopCopyWithImpl<$Res> implements $ShopCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$ShopCopyWith<$Res> implements $ShopCopyWith<$Res> {
-  factory _$ShopCopyWith(_Shop value, $Res Function(_Shop) then) =
-      __$ShopCopyWithImpl<$Res>;
+abstract class _$$_ShopCopyWith<$Res> implements $ShopCopyWith<$Res> {
+  factory _$$_ShopCopyWith(_$_Shop value, $Res Function(_$_Shop) then) =
+      __$$_ShopCopyWithImpl<$Res>;
   @override
   $Res call(
       {UniqueId id,
@@ -158,13 +133,13 @@ abstract class _$ShopCopyWith<$Res> implements $ShopCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$ShopCopyWithImpl<$Res> extends _$ShopCopyWithImpl<$Res>
-    implements _$ShopCopyWith<$Res> {
-  __$ShopCopyWithImpl(_Shop _value, $Res Function(_Shop) _then)
-      : super(_value, (v) => _then(v as _Shop));
+class __$$_ShopCopyWithImpl<$Res> extends _$ShopCopyWithImpl<$Res>
+    implements _$$_ShopCopyWith<$Res> {
+  __$$_ShopCopyWithImpl(_$_Shop _value, $Res Function(_$_Shop) _then)
+      : super(_value, (v) => _then(v as _$_Shop));
 
   @override
-  _Shop get _value => super._value as _Shop;
+  _$_Shop get _value => super._value as _$_Shop;
 
   @override
   $Res call({
@@ -175,7 +150,7 @@ class __$ShopCopyWithImpl<$Res> extends _$ShopCopyWithImpl<$Res>
     Object? workingWeek = freezed,
     Object? logoUrl = freezed,
   }) {
-    return _then(_Shop(
+    return _then(_$_Shop(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -238,7 +213,7 @@ class _$_Shop extends _Shop {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _Shop &&
+            other is _$_Shop &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.shopName, shopName) &&
             const DeepCollectionEquality().equals(other.address, address) &&
@@ -260,33 +235,33 @@ class _$_Shop extends _Shop {
 
   @JsonKey(ignore: true)
   @override
-  _$ShopCopyWith<_Shop> get copyWith =>
-      __$ShopCopyWithImpl<_Shop>(this, _$identity);
+  _$$_ShopCopyWith<_$_Shop> get copyWith =>
+      __$$_ShopCopyWithImpl<_$_Shop>(this, _$identity);
 }
 
 abstract class _Shop extends Shop {
   const factory _Shop(
-      {required UniqueId id,
-      required ShopName shopName,
-      required Address address,
-      required Location location,
-      required Week workingWeek,
-      required ShopifyUrl logoUrl}) = _$_Shop;
+      {required final UniqueId id,
+      required final ShopName shopName,
+      required final Address address,
+      required final Location location,
+      required final Week workingWeek,
+      required final ShopifyUrl logoUrl}) = _$_Shop;
   const _Shop._() : super._();
 
   @override
-  UniqueId get id;
+  UniqueId get id => throw _privateConstructorUsedError;
   @override
-  ShopName get shopName;
+  ShopName get shopName => throw _privateConstructorUsedError;
   @override
-  Address get address;
+  Address get address => throw _privateConstructorUsedError;
   @override
-  Location get location;
+  Location get location => throw _privateConstructorUsedError;
   @override
-  Week get workingWeek;
+  Week get workingWeek => throw _privateConstructorUsedError;
   @override
-  ShopifyUrl get logoUrl;
+  ShopifyUrl get logoUrl => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$ShopCopyWith<_Shop> get copyWith => throw _privateConstructorUsedError;
+  _$$_ShopCopyWith<_$_Shop> get copyWith => throw _privateConstructorUsedError;
 }

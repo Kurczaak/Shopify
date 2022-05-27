@@ -1,17 +1,13 @@
 import 'package:dartz/dartz.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shopify_domain/auth.dart';
 import 'package:shopify_manager/domain/auth/i_auth_facade.dart';
 
 @LazySingleton(as: IAuthFacade)
 class FirebaseAuthFacade implements IAuthFacade {
-  final FirebaseAuth _firebaseAuth;
-  final GoogleSignIn _googleSignIn;
   final ShopifyAuth _shopifyAuth;
 
-  FirebaseAuthFacade(this._firebaseAuth, this._googleSignIn, this._shopifyAuth);
+  FirebaseAuthFacade(this._shopifyAuth);
 
   @override
   Future<Option<ShopifyUser>> getSignedInUser() {

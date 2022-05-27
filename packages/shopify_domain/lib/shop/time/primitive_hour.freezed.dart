@@ -12,22 +12,7 @@ part of 'primitive_hour.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$PrimitiveHourTearOff {
-  const _$PrimitiveHourTearOff();
-
-  _PrimitiveHour call({required int hours, required int minutes}) {
-    return _PrimitiveHour(
-      hours: hours,
-      minutes: minutes,
-    );
-  }
-}
-
-/// @nodoc
-const $PrimitiveHour = _$PrimitiveHourTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$PrimitiveHour {
@@ -75,32 +60,32 @@ class _$PrimitiveHourCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$PrimitiveHourCopyWith<$Res>
+abstract class _$$_PrimitiveHourCopyWith<$Res>
     implements $PrimitiveHourCopyWith<$Res> {
-  factory _$PrimitiveHourCopyWith(
-          _PrimitiveHour value, $Res Function(_PrimitiveHour) then) =
-      __$PrimitiveHourCopyWithImpl<$Res>;
+  factory _$$_PrimitiveHourCopyWith(
+          _$_PrimitiveHour value, $Res Function(_$_PrimitiveHour) then) =
+      __$$_PrimitiveHourCopyWithImpl<$Res>;
   @override
   $Res call({int hours, int minutes});
 }
 
 /// @nodoc
-class __$PrimitiveHourCopyWithImpl<$Res>
+class __$$_PrimitiveHourCopyWithImpl<$Res>
     extends _$PrimitiveHourCopyWithImpl<$Res>
-    implements _$PrimitiveHourCopyWith<$Res> {
-  __$PrimitiveHourCopyWithImpl(
-      _PrimitiveHour _value, $Res Function(_PrimitiveHour) _then)
-      : super(_value, (v) => _then(v as _PrimitiveHour));
+    implements _$$_PrimitiveHourCopyWith<$Res> {
+  __$$_PrimitiveHourCopyWithImpl(
+      _$_PrimitiveHour _value, $Res Function(_$_PrimitiveHour) _then)
+      : super(_value, (v) => _then(v as _$_PrimitiveHour));
 
   @override
-  _PrimitiveHour get _value => super._value as _PrimitiveHour;
+  _$_PrimitiveHour get _value => super._value as _$_PrimitiveHour;
 
   @override
   $Res call({
     Object? hours = freezed,
     Object? minutes = freezed,
   }) {
-    return _then(_PrimitiveHour(
+    return _then(_$_PrimitiveHour(
       hours: hours == freezed
           ? _value.hours
           : hours // ignore: cast_nullable_to_non_nullable
@@ -128,7 +113,7 @@ class _$_PrimitiveHour extends _PrimitiveHour {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _PrimitiveHour &&
+            other is _$_PrimitiveHour &&
             const DeepCollectionEquality().equals(other.hours, hours) &&
             const DeepCollectionEquality().equals(other.minutes, minutes));
   }
@@ -141,21 +126,22 @@ class _$_PrimitiveHour extends _PrimitiveHour {
 
   @JsonKey(ignore: true)
   @override
-  _$PrimitiveHourCopyWith<_PrimitiveHour> get copyWith =>
-      __$PrimitiveHourCopyWithImpl<_PrimitiveHour>(this, _$identity);
+  _$$_PrimitiveHourCopyWith<_$_PrimitiveHour> get copyWith =>
+      __$$_PrimitiveHourCopyWithImpl<_$_PrimitiveHour>(this, _$identity);
 }
 
 abstract class _PrimitiveHour extends PrimitiveHour {
-  const factory _PrimitiveHour({required int hours, required int minutes}) =
-      _$_PrimitiveHour;
+  const factory _PrimitiveHour(
+      {required final int hours,
+      required final int minutes}) = _$_PrimitiveHour;
   const _PrimitiveHour._() : super._();
 
   @override
-  int get hours;
+  int get hours => throw _privateConstructorUsedError;
   @override
-  int get minutes;
+  int get minutes => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$PrimitiveHourCopyWith<_PrimitiveHour> get copyWith =>
+  _$$_PrimitiveHourCopyWith<_$_PrimitiveHour> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -12,48 +12,11 @@ part of 'product_dtos.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 ProductDto _$ProductDtoFromJson(Map<String, dynamic> json) {
   return _ProductDto.fromJson(json);
 }
-
-/// @nodoc
-class _$ProductDtoTearOff {
-  const _$ProductDtoTearOff();
-
-  _ProductDto call(
-      {@JsonKey(ignore: true) String id = '',
-      required String barcode,
-      required WeightDto weight,
-      required PriceDto price,
-      required String category,
-      required String name,
-      required String brand,
-      required String description,
-      required String ingredients,
-      required List<String> photosUrls}) {
-    return _ProductDto(
-      id: id,
-      barcode: barcode,
-      weight: weight,
-      price: price,
-      category: category,
-      name: name,
-      brand: brand,
-      description: description,
-      ingredients: ingredients,
-      photosUrls: photosUrls,
-    );
-  }
-
-  ProductDto fromJson(Map<String, Object?> json) {
-    return ProductDto.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $ProductDto = _$ProductDtoTearOff();
 
 /// @nodoc
 mixin _$ProductDto {
@@ -178,10 +141,11 @@ class _$ProductDtoCopyWithImpl<$Res> implements $ProductDtoCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$ProductDtoCopyWith<$Res> implements $ProductDtoCopyWith<$Res> {
-  factory _$ProductDtoCopyWith(
-          _ProductDto value, $Res Function(_ProductDto) then) =
-      __$ProductDtoCopyWithImpl<$Res>;
+abstract class _$$_ProductDtoCopyWith<$Res>
+    implements $ProductDtoCopyWith<$Res> {
+  factory _$$_ProductDtoCopyWith(
+          _$_ProductDto value, $Res Function(_$_ProductDto) then) =
+      __$$_ProductDtoCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(ignore: true) String id,
@@ -202,14 +166,14 @@ abstract class _$ProductDtoCopyWith<$Res> implements $ProductDtoCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$ProductDtoCopyWithImpl<$Res> extends _$ProductDtoCopyWithImpl<$Res>
-    implements _$ProductDtoCopyWith<$Res> {
-  __$ProductDtoCopyWithImpl(
-      _ProductDto _value, $Res Function(_ProductDto) _then)
-      : super(_value, (v) => _then(v as _ProductDto));
+class __$$_ProductDtoCopyWithImpl<$Res> extends _$ProductDtoCopyWithImpl<$Res>
+    implements _$$_ProductDtoCopyWith<$Res> {
+  __$$_ProductDtoCopyWithImpl(
+      _$_ProductDto _value, $Res Function(_$_ProductDto) _then)
+      : super(_value, (v) => _then(v as _$_ProductDto));
 
   @override
-  _ProductDto get _value => super._value as _ProductDto;
+  _$_ProductDto get _value => super._value as _$_ProductDto;
 
   @override
   $Res call({
@@ -224,7 +188,7 @@ class __$ProductDtoCopyWithImpl<$Res> extends _$ProductDtoCopyWithImpl<$Res>
     Object? ingredients = freezed,
     Object? photosUrls = freezed,
   }) {
-    return _then(_ProductDto(
+    return _then(_$_ProductDto(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -262,7 +226,7 @@ class __$ProductDtoCopyWithImpl<$Res> extends _$ProductDtoCopyWithImpl<$Res>
           : ingredients // ignore: cast_nullable_to_non_nullable
               as String,
       photosUrls: photosUrls == freezed
-          ? _value.photosUrls
+          ? _value._photosUrls
           : photosUrls // ignore: cast_nullable_to_non_nullable
               as List<String>,
     ));
@@ -282,8 +246,9 @@ class _$_ProductDto extends _ProductDto {
       required this.brand,
       required this.description,
       required this.ingredients,
-      required this.photosUrls})
-      : super._();
+      required final List<String> photosUrls})
+      : _photosUrls = photosUrls,
+        super._();
 
   factory _$_ProductDto.fromJson(Map<String, dynamic> json) =>
       _$$_ProductDtoFromJson(json);
@@ -295,7 +260,8 @@ class _$_ProductDto extends _ProductDto {
   final String barcode;
   @override
   final WeightDto weight;
-  @override //required NutrientsGroupDto fats,
+//required NutrientsGroupDto fats,
+  @override
   final PriceDto price;
   @override
   final String category;
@@ -307,8 +273,12 @@ class _$_ProductDto extends _ProductDto {
   final String description;
   @override
   final String ingredients;
+  final List<String> _photosUrls;
   @override
-  final List<String> photosUrls;
+  List<String> get photosUrls {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_photosUrls);
+  }
 
   @override
   String toString() {
@@ -319,7 +289,7 @@ class _$_ProductDto extends _ProductDto {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _ProductDto &&
+            other is _$_ProductDto &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.barcode, barcode) &&
             const DeepCollectionEquality().equals(other.weight, weight) &&
@@ -332,9 +302,10 @@ class _$_ProductDto extends _ProductDto {
             const DeepCollectionEquality()
                 .equals(other.ingredients, ingredients) &&
             const DeepCollectionEquality()
-                .equals(other.photosUrls, photosUrls));
+                .equals(other._photosUrls, _photosUrls));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -347,12 +318,12 @@ class _$_ProductDto extends _ProductDto {
       const DeepCollectionEquality().hash(brand),
       const DeepCollectionEquality().hash(description),
       const DeepCollectionEquality().hash(ingredients),
-      const DeepCollectionEquality().hash(photosUrls));
+      const DeepCollectionEquality().hash(_photosUrls));
 
   @JsonKey(ignore: true)
   @override
-  _$ProductDtoCopyWith<_ProductDto> get copyWith =>
-      __$ProductDtoCopyWithImpl<_ProductDto>(this, _$identity);
+  _$$_ProductDtoCopyWith<_$_ProductDto> get copyWith =>
+      __$$_ProductDtoCopyWithImpl<_$_ProductDto>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -362,16 +333,16 @@ class _$_ProductDto extends _ProductDto {
 
 abstract class _ProductDto extends ProductDto {
   const factory _ProductDto(
-      {@JsonKey(ignore: true) String id,
-      required String barcode,
-      required WeightDto weight,
-      required PriceDto price,
-      required String category,
-      required String name,
-      required String brand,
-      required String description,
-      required String ingredients,
-      required List<String> photosUrls}) = _$_ProductDto;
+      {@JsonKey(ignore: true) final String id,
+      required final String barcode,
+      required final WeightDto weight,
+      required final PriceDto price,
+      required final String category,
+      required final String name,
+      required final String brand,
+      required final String description,
+      required final String ingredients,
+      required final List<String> photosUrls}) = _$_ProductDto;
   const _ProductDto._() : super._();
 
   factory _ProductDto.fromJson(Map<String, dynamic> json) =
@@ -379,53 +350,34 @@ abstract class _ProductDto extends ProductDto {
 
   @override
   @JsonKey(ignore: true)
-  String get id;
+  String get id => throw _privateConstructorUsedError;
   @override
-  String get barcode;
+  String get barcode => throw _privateConstructorUsedError;
   @override
-  WeightDto get weight;
+  WeightDto get weight => throw _privateConstructorUsedError;
   @override //required NutrientsGroupDto fats,
-  PriceDto get price;
+  PriceDto get price => throw _privateConstructorUsedError;
   @override
-  String get category;
+  String get category => throw _privateConstructorUsedError;
   @override
-  String get name;
+  String get name => throw _privateConstructorUsedError;
   @override
-  String get brand;
+  String get brand => throw _privateConstructorUsedError;
   @override
-  String get description;
+  String get description => throw _privateConstructorUsedError;
   @override
-  String get ingredients;
+  String get ingredients => throw _privateConstructorUsedError;
   @override
-  List<String> get photosUrls;
+  List<String> get photosUrls => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$ProductDtoCopyWith<_ProductDto> get copyWith =>
+  _$$_ProductDtoCopyWith<_$_ProductDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 WeightDto _$WeightDtoFromJson(Map<String, dynamic> json) {
   return _WeightDto.fromJson(json);
 }
-
-/// @nodoc
-class _$WeightDtoTearOff {
-  const _$WeightDtoTearOff();
-
-  _WeightDto call({required double weight, required String weightUnit}) {
-    return _WeightDto(
-      weight: weight,
-      weightUnit: weightUnit,
-    );
-  }
-
-  WeightDto fromJson(Map<String, Object?> json) {
-    return WeightDto.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $WeightDto = _$WeightDtoTearOff();
 
 /// @nodoc
 mixin _$WeightDto {
@@ -472,29 +424,30 @@ class _$WeightDtoCopyWithImpl<$Res> implements $WeightDtoCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$WeightDtoCopyWith<$Res> implements $WeightDtoCopyWith<$Res> {
-  factory _$WeightDtoCopyWith(
-          _WeightDto value, $Res Function(_WeightDto) then) =
-      __$WeightDtoCopyWithImpl<$Res>;
+abstract class _$$_WeightDtoCopyWith<$Res> implements $WeightDtoCopyWith<$Res> {
+  factory _$$_WeightDtoCopyWith(
+          _$_WeightDto value, $Res Function(_$_WeightDto) then) =
+      __$$_WeightDtoCopyWithImpl<$Res>;
   @override
   $Res call({double weight, String weightUnit});
 }
 
 /// @nodoc
-class __$WeightDtoCopyWithImpl<$Res> extends _$WeightDtoCopyWithImpl<$Res>
-    implements _$WeightDtoCopyWith<$Res> {
-  __$WeightDtoCopyWithImpl(_WeightDto _value, $Res Function(_WeightDto) _then)
-      : super(_value, (v) => _then(v as _WeightDto));
+class __$$_WeightDtoCopyWithImpl<$Res> extends _$WeightDtoCopyWithImpl<$Res>
+    implements _$$_WeightDtoCopyWith<$Res> {
+  __$$_WeightDtoCopyWithImpl(
+      _$_WeightDto _value, $Res Function(_$_WeightDto) _then)
+      : super(_value, (v) => _then(v as _$_WeightDto));
 
   @override
-  _WeightDto get _value => super._value as _WeightDto;
+  _$_WeightDto get _value => super._value as _$_WeightDto;
 
   @override
   $Res call({
     Object? weight = freezed,
     Object? weightUnit = freezed,
   }) {
-    return _then(_WeightDto(
+    return _then(_$_WeightDto(
       weight: weight == freezed
           ? _value.weight
           : weight // ignore: cast_nullable_to_non_nullable
@@ -530,12 +483,13 @@ class _$_WeightDto extends _WeightDto {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _WeightDto &&
+            other is _$_WeightDto &&
             const DeepCollectionEquality().equals(other.weight, weight) &&
             const DeepCollectionEquality()
                 .equals(other.weightUnit, weightUnit));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -544,8 +498,8 @@ class _$_WeightDto extends _WeightDto {
 
   @JsonKey(ignore: true)
   @override
-  _$WeightDtoCopyWith<_WeightDto> get copyWith =>
-      __$WeightDtoCopyWithImpl<_WeightDto>(this, _$identity);
+  _$$_WeightDtoCopyWith<_$_WeightDto> get copyWith =>
+      __$$_WeightDtoCopyWithImpl<_$_WeightDto>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -555,44 +509,26 @@ class _$_WeightDto extends _WeightDto {
 
 abstract class _WeightDto extends WeightDto {
   const factory _WeightDto(
-      {required double weight, required String weightUnit}) = _$_WeightDto;
+      {required final double weight,
+      required final String weightUnit}) = _$_WeightDto;
   const _WeightDto._() : super._();
 
   factory _WeightDto.fromJson(Map<String, dynamic> json) =
       _$_WeightDto.fromJson;
 
   @override
-  double get weight;
+  double get weight => throw _privateConstructorUsedError;
   @override
-  String get weightUnit;
+  String get weightUnit => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$WeightDtoCopyWith<_WeightDto> get copyWith =>
+  _$$_WeightDtoCopyWith<_$_WeightDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 PriceDto _$PriceDtoFromJson(Map<String, dynamic> json) {
   return _PriceDto.fromJson(json);
 }
-
-/// @nodoc
-class _$PriceDtoTearOff {
-  const _$PriceDtoTearOff();
-
-  _PriceDto call({required double price, required String currency}) {
-    return _PriceDto(
-      price: price,
-      currency: currency,
-    );
-  }
-
-  PriceDto fromJson(Map<String, Object?> json) {
-    return PriceDto.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $PriceDto = _$PriceDtoTearOff();
 
 /// @nodoc
 mixin _$PriceDto {
@@ -639,28 +575,30 @@ class _$PriceDtoCopyWithImpl<$Res> implements $PriceDtoCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$PriceDtoCopyWith<$Res> implements $PriceDtoCopyWith<$Res> {
-  factory _$PriceDtoCopyWith(_PriceDto value, $Res Function(_PriceDto) then) =
-      __$PriceDtoCopyWithImpl<$Res>;
+abstract class _$$_PriceDtoCopyWith<$Res> implements $PriceDtoCopyWith<$Res> {
+  factory _$$_PriceDtoCopyWith(
+          _$_PriceDto value, $Res Function(_$_PriceDto) then) =
+      __$$_PriceDtoCopyWithImpl<$Res>;
   @override
   $Res call({double price, String currency});
 }
 
 /// @nodoc
-class __$PriceDtoCopyWithImpl<$Res> extends _$PriceDtoCopyWithImpl<$Res>
-    implements _$PriceDtoCopyWith<$Res> {
-  __$PriceDtoCopyWithImpl(_PriceDto _value, $Res Function(_PriceDto) _then)
-      : super(_value, (v) => _then(v as _PriceDto));
+class __$$_PriceDtoCopyWithImpl<$Res> extends _$PriceDtoCopyWithImpl<$Res>
+    implements _$$_PriceDtoCopyWith<$Res> {
+  __$$_PriceDtoCopyWithImpl(
+      _$_PriceDto _value, $Res Function(_$_PriceDto) _then)
+      : super(_value, (v) => _then(v as _$_PriceDto));
 
   @override
-  _PriceDto get _value => super._value as _PriceDto;
+  _$_PriceDto get _value => super._value as _$_PriceDto;
 
   @override
   $Res call({
     Object? price = freezed,
     Object? currency = freezed,
   }) {
-    return _then(_PriceDto(
+    return _then(_$_PriceDto(
       price: price == freezed
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
@@ -695,11 +633,12 @@ class _$_PriceDto extends _PriceDto {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _PriceDto &&
+            other is _$_PriceDto &&
             const DeepCollectionEquality().equals(other.price, price) &&
             const DeepCollectionEquality().equals(other.currency, currency));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -708,8 +647,8 @@ class _$_PriceDto extends _PriceDto {
 
   @JsonKey(ignore: true)
   @override
-  _$PriceDtoCopyWith<_PriceDto> get copyWith =>
-      __$PriceDtoCopyWithImpl<_PriceDto>(this, _$identity);
+  _$$_PriceDtoCopyWith<_$_PriceDto> get copyWith =>
+      __$$_PriceDtoCopyWithImpl<_$_PriceDto>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -718,18 +657,19 @@ class _$_PriceDto extends _PriceDto {
 }
 
 abstract class _PriceDto extends PriceDto {
-  const factory _PriceDto({required double price, required String currency}) =
-      _$_PriceDto;
+  const factory _PriceDto(
+      {required final double price,
+      required final String currency}) = _$_PriceDto;
   const _PriceDto._() : super._();
 
   factory _PriceDto.fromJson(Map<String, dynamic> json) = _$_PriceDto.fromJson;
 
   @override
-  double get price;
+  double get price => throw _privateConstructorUsedError;
   @override
-  String get currency;
+  String get currency => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$PriceDtoCopyWith<_PriceDto> get copyWith =>
+  _$$_PriceDtoCopyWith<_$_PriceDto> get copyWith =>
       throw _privateConstructorUsedError;
 }

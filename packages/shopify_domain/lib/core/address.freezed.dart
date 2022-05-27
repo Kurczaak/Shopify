@@ -12,30 +12,7 @@ part of 'address.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$AddressTearOff {
-  const _$AddressTearOff();
-
-  _Address call(
-      {required StreetName streetName,
-      required StreetNumber streetNumber,
-      required AddressNumber apartmentNumber,
-      required CityName city,
-      required PostalCode postalCode}) {
-    return _Address(
-      streetName: streetName,
-      streetNumber: streetNumber,
-      apartmentNumber: apartmentNumber,
-      city: city,
-      postalCode: postalCode,
-    );
-  }
-}
-
-/// @nodoc
-const $Address = _$AddressTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$Address {
@@ -103,9 +80,10 @@ class _$AddressCopyWithImpl<$Res> implements $AddressCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$AddressCopyWith<$Res> implements $AddressCopyWith<$Res> {
-  factory _$AddressCopyWith(_Address value, $Res Function(_Address) then) =
-      __$AddressCopyWithImpl<$Res>;
+abstract class _$$_AddressCopyWith<$Res> implements $AddressCopyWith<$Res> {
+  factory _$$_AddressCopyWith(
+          _$_Address value, $Res Function(_$_Address) then) =
+      __$$_AddressCopyWithImpl<$Res>;
   @override
   $Res call(
       {StreetName streetName,
@@ -116,13 +94,13 @@ abstract class _$AddressCopyWith<$Res> implements $AddressCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$AddressCopyWithImpl<$Res> extends _$AddressCopyWithImpl<$Res>
-    implements _$AddressCopyWith<$Res> {
-  __$AddressCopyWithImpl(_Address _value, $Res Function(_Address) _then)
-      : super(_value, (v) => _then(v as _Address));
+class __$$_AddressCopyWithImpl<$Res> extends _$AddressCopyWithImpl<$Res>
+    implements _$$_AddressCopyWith<$Res> {
+  __$$_AddressCopyWithImpl(_$_Address _value, $Res Function(_$_Address) _then)
+      : super(_value, (v) => _then(v as _$_Address));
 
   @override
-  _Address get _value => super._value as _Address;
+  _$_Address get _value => super._value as _$_Address;
 
   @override
   $Res call({
@@ -132,7 +110,7 @@ class __$AddressCopyWithImpl<$Res> extends _$AddressCopyWithImpl<$Res>
     Object? city = freezed,
     Object? postalCode = freezed,
   }) {
-    return _then(_Address(
+    return _then(_$_Address(
       streetName: streetName == freezed
           ? _value.streetName
           : streetName // ignore: cast_nullable_to_non_nullable
@@ -183,7 +161,7 @@ class _$_Address extends _Address {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _Address &&
+            other is _$_Address &&
             const DeepCollectionEquality()
                 .equals(other.streetName, streetName) &&
             const DeepCollectionEquality()
@@ -206,31 +184,31 @@ class _$_Address extends _Address {
 
   @JsonKey(ignore: true)
   @override
-  _$AddressCopyWith<_Address> get copyWith =>
-      __$AddressCopyWithImpl<_Address>(this, _$identity);
+  _$$_AddressCopyWith<_$_Address> get copyWith =>
+      __$$_AddressCopyWithImpl<_$_Address>(this, _$identity);
 }
 
 abstract class _Address extends Address {
   const factory _Address(
-      {required StreetName streetName,
-      required StreetNumber streetNumber,
-      required AddressNumber apartmentNumber,
-      required CityName city,
-      required PostalCode postalCode}) = _$_Address;
+      {required final StreetName streetName,
+      required final StreetNumber streetNumber,
+      required final AddressNumber apartmentNumber,
+      required final CityName city,
+      required final PostalCode postalCode}) = _$_Address;
   const _Address._() : super._();
 
   @override
-  StreetName get streetName;
+  StreetName get streetName => throw _privateConstructorUsedError;
   @override
-  StreetNumber get streetNumber;
+  StreetNumber get streetNumber => throw _privateConstructorUsedError;
   @override
-  AddressNumber get apartmentNumber;
+  AddressNumber get apartmentNumber => throw _privateConstructorUsedError;
   @override
-  CityName get city;
+  CityName get city => throw _privateConstructorUsedError;
   @override
-  PostalCode get postalCode;
+  PostalCode get postalCode => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$AddressCopyWith<_Address> get copyWith =>
+  _$$_AddressCopyWith<_$_Address> get copyWith =>
       throw _privateConstructorUsedError;
 }

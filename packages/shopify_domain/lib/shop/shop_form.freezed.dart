@@ -12,22 +12,7 @@ part of 'shop_form.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$ShopFormTearOff {
-  const _$ShopFormTearOff();
-
-  _ShopForm call({required ShopName shopName, required Address address}) {
-    return _ShopForm(
-      shopName: shopName,
-      address: address,
-    );
-  }
-}
-
-/// @nodoc
-const $ShopForm = _$ShopFormTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$ShopForm {
@@ -82,9 +67,10 @@ class _$ShopFormCopyWithImpl<$Res> implements $ShopFormCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$ShopFormCopyWith<$Res> implements $ShopFormCopyWith<$Res> {
-  factory _$ShopFormCopyWith(_ShopForm value, $Res Function(_ShopForm) then) =
-      __$ShopFormCopyWithImpl<$Res>;
+abstract class _$$_ShopFormCopyWith<$Res> implements $ShopFormCopyWith<$Res> {
+  factory _$$_ShopFormCopyWith(
+          _$_ShopForm value, $Res Function(_$_ShopForm) then) =
+      __$$_ShopFormCopyWithImpl<$Res>;
   @override
   $Res call({ShopName shopName, Address address});
 
@@ -93,20 +79,21 @@ abstract class _$ShopFormCopyWith<$Res> implements $ShopFormCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$ShopFormCopyWithImpl<$Res> extends _$ShopFormCopyWithImpl<$Res>
-    implements _$ShopFormCopyWith<$Res> {
-  __$ShopFormCopyWithImpl(_ShopForm _value, $Res Function(_ShopForm) _then)
-      : super(_value, (v) => _then(v as _ShopForm));
+class __$$_ShopFormCopyWithImpl<$Res> extends _$ShopFormCopyWithImpl<$Res>
+    implements _$$_ShopFormCopyWith<$Res> {
+  __$$_ShopFormCopyWithImpl(
+      _$_ShopForm _value, $Res Function(_$_ShopForm) _then)
+      : super(_value, (v) => _then(v as _$_ShopForm));
 
   @override
-  _ShopForm get _value => super._value as _ShopForm;
+  _$_ShopForm get _value => super._value as _$_ShopForm;
 
   @override
   $Res call({
     Object? shopName = freezed,
     Object? address = freezed,
   }) {
-    return _then(_ShopForm(
+    return _then(_$_ShopForm(
       shopName: shopName == freezed
           ? _value.shopName
           : shopName // ignore: cast_nullable_to_non_nullable
@@ -139,7 +126,7 @@ class _$_ShopForm extends _ShopForm {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _ShopForm &&
+            other is _$_ShopForm &&
             const DeepCollectionEquality().equals(other.shopName, shopName) &&
             const DeepCollectionEquality().equals(other.address, address));
   }
@@ -152,21 +139,22 @@ class _$_ShopForm extends _ShopForm {
 
   @JsonKey(ignore: true)
   @override
-  _$ShopFormCopyWith<_ShopForm> get copyWith =>
-      __$ShopFormCopyWithImpl<_ShopForm>(this, _$identity);
+  _$$_ShopFormCopyWith<_$_ShopForm> get copyWith =>
+      __$$_ShopFormCopyWithImpl<_$_ShopForm>(this, _$identity);
 }
 
 abstract class _ShopForm extends ShopForm {
   const factory _ShopForm(
-      {required ShopName shopName, required Address address}) = _$_ShopForm;
+      {required final ShopName shopName,
+      required final Address address}) = _$_ShopForm;
   const _ShopForm._() : super._();
 
   @override
-  ShopName get shopName;
+  ShopName get shopName => throw _privateConstructorUsedError;
   @override
-  Address get address;
+  Address get address => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$ShopFormCopyWith<_ShopForm> get copyWith =>
+  _$$_ShopFormCopyWith<_$_ShopForm> get copyWith =>
       throw _privateConstructorUsedError;
 }

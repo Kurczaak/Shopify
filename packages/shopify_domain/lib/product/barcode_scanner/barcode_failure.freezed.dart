@@ -12,19 +12,7 @@ part of 'barcode_failure.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$BarcodeFailureTearOff {
-  const _$BarcodeFailureTearOff();
-
-  Unexpected unexpected() {
-    return const Unexpected();
-  }
-}
-
-/// @nodoc
-const $BarcodeFailure = _$BarcodeFailureTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$BarcodeFailure {
@@ -80,20 +68,22 @@ class _$BarcodeFailureCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class $UnexpectedCopyWith<$Res> {
-  factory $UnexpectedCopyWith(
-          Unexpected value, $Res Function(Unexpected) then) =
-      _$UnexpectedCopyWithImpl<$Res>;
+abstract class _$$UnexpectedCopyWith<$Res> {
+  factory _$$UnexpectedCopyWith(
+          _$Unexpected value, $Res Function(_$Unexpected) then) =
+      __$$UnexpectedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$UnexpectedCopyWithImpl<$Res> extends _$BarcodeFailureCopyWithImpl<$Res>
-    implements $UnexpectedCopyWith<$Res> {
-  _$UnexpectedCopyWithImpl(Unexpected _value, $Res Function(Unexpected) _then)
-      : super(_value, (v) => _then(v as Unexpected));
+class __$$UnexpectedCopyWithImpl<$Res>
+    extends _$BarcodeFailureCopyWithImpl<$Res>
+    implements _$$UnexpectedCopyWith<$Res> {
+  __$$UnexpectedCopyWithImpl(
+      _$Unexpected _value, $Res Function(_$Unexpected) _then)
+      : super(_value, (v) => _then(v as _$Unexpected));
 
   @override
-  Unexpected get _value => super._value as Unexpected;
+  _$Unexpected get _value => super._value as _$Unexpected;
 }
 
 /// @nodoc
@@ -109,7 +99,7 @@ class _$Unexpected implements Unexpected {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is Unexpected);
+        (other.runtimeType == runtimeType && other is _$Unexpected);
   }
 
   @override

@@ -36,6 +36,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   sealed_annotations: ^1.13.0
+  injectable_generator: ^1.5.3
 
 uses-material-design: true
 

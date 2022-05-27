@@ -12,40 +12,11 @@ part of 'value_failures.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$ShopValueFailureTearOff {
-  const _$ShopValueFailureTearOff();
-
-  ShopClosedAllWeekLong<T> shopClosedAllWeekLong<T>({required T failedValue}) {
-    return ShopClosedAllWeekLong<T>(
-      failedValue: failedValue,
-    );
-  }
-
-  IncorrectHour<T> incorrectHour<T>(
-      {required T failedValue, required bool twelveHourFormat}) {
-    return IncorrectHour<T>(
-      failedValue: failedValue,
-      twelveHourFormat: twelveHourFormat,
-    );
-  }
-
-  InvalidTimeInterval<T> invalidTimeInterval<T>({required T failedValue}) {
-    return InvalidTimeInterval<T>(
-      failedValue: failedValue,
-    );
-  }
-}
-
-/// @nodoc
-const $ShopValueFailure = _$ShopValueFailureTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$ShopValueFailure<T> {
   T get failedValue => throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(T failedValue) shopClosedAllWeekLong,
@@ -129,32 +100,32 @@ class _$ShopValueFailureCopyWithImpl<T, $Res>
 }
 
 /// @nodoc
-abstract class $ShopClosedAllWeekLongCopyWith<T, $Res>
+abstract class _$$ShopClosedAllWeekLongCopyWith<T, $Res>
     implements $ShopValueFailureCopyWith<T, $Res> {
-  factory $ShopClosedAllWeekLongCopyWith(ShopClosedAllWeekLong<T> value,
-          $Res Function(ShopClosedAllWeekLong<T>) then) =
-      _$ShopClosedAllWeekLongCopyWithImpl<T, $Res>;
+  factory _$$ShopClosedAllWeekLongCopyWith(_$ShopClosedAllWeekLong<T> value,
+          $Res Function(_$ShopClosedAllWeekLong<T>) then) =
+      __$$ShopClosedAllWeekLongCopyWithImpl<T, $Res>;
   @override
   $Res call({T failedValue});
 }
 
 /// @nodoc
-class _$ShopClosedAllWeekLongCopyWithImpl<T, $Res>
+class __$$ShopClosedAllWeekLongCopyWithImpl<T, $Res>
     extends _$ShopValueFailureCopyWithImpl<T, $Res>
-    implements $ShopClosedAllWeekLongCopyWith<T, $Res> {
-  _$ShopClosedAllWeekLongCopyWithImpl(ShopClosedAllWeekLong<T> _value,
-      $Res Function(ShopClosedAllWeekLong<T>) _then)
-      : super(_value, (v) => _then(v as ShopClosedAllWeekLong<T>));
+    implements _$$ShopClosedAllWeekLongCopyWith<T, $Res> {
+  __$$ShopClosedAllWeekLongCopyWithImpl(_$ShopClosedAllWeekLong<T> _value,
+      $Res Function(_$ShopClosedAllWeekLong<T>) _then)
+      : super(_value, (v) => _then(v as _$ShopClosedAllWeekLong<T>));
 
   @override
-  ShopClosedAllWeekLong<T> get _value =>
-      super._value as ShopClosedAllWeekLong<T>;
+  _$ShopClosedAllWeekLong<T> get _value =>
+      super._value as _$ShopClosedAllWeekLong<T>;
 
   @override
   $Res call({
     Object? failedValue = freezed,
   }) {
-    return _then(ShopClosedAllWeekLong<T>(
+    return _then(_$ShopClosedAllWeekLong<T>(
       failedValue: failedValue == freezed
           ? _value.failedValue
           : failedValue // ignore: cast_nullable_to_non_nullable
@@ -180,7 +151,7 @@ class _$ShopClosedAllWeekLong<T> implements ShopClosedAllWeekLong<T> {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is ShopClosedAllWeekLong<T> &&
+            other is _$ShopClosedAllWeekLong<T> &&
             const DeepCollectionEquality()
                 .equals(other.failedValue, failedValue));
   }
@@ -191,9 +162,10 @@ class _$ShopClosedAllWeekLong<T> implements ShopClosedAllWeekLong<T> {
 
   @JsonKey(ignore: true)
   @override
-  $ShopClosedAllWeekLongCopyWith<T, ShopClosedAllWeekLong<T>> get copyWith =>
-      _$ShopClosedAllWeekLongCopyWithImpl<T, ShopClosedAllWeekLong<T>>(
-          this, _$identity);
+  _$$ShopClosedAllWeekLongCopyWith<T, _$ShopClosedAllWeekLong<T>>
+      get copyWith =>
+          __$$ShopClosedAllWeekLongCopyWithImpl<T, _$ShopClosedAllWeekLong<T>>(
+              this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -267,44 +239,44 @@ class _$ShopClosedAllWeekLong<T> implements ShopClosedAllWeekLong<T> {
 }
 
 abstract class ShopClosedAllWeekLong<T> implements ShopValueFailure<T> {
-  const factory ShopClosedAllWeekLong({required T failedValue}) =
+  const factory ShopClosedAllWeekLong({required final T failedValue}) =
       _$ShopClosedAllWeekLong<T>;
 
   @override
-  T get failedValue;
+  T get failedValue => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  $ShopClosedAllWeekLongCopyWith<T, ShopClosedAllWeekLong<T>> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$ShopClosedAllWeekLongCopyWith<T, _$ShopClosedAllWeekLong<T>>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $IncorrectHourCopyWith<T, $Res>
+abstract class _$$IncorrectHourCopyWith<T, $Res>
     implements $ShopValueFailureCopyWith<T, $Res> {
-  factory $IncorrectHourCopyWith(
-          IncorrectHour<T> value, $Res Function(IncorrectHour<T>) then) =
-      _$IncorrectHourCopyWithImpl<T, $Res>;
+  factory _$$IncorrectHourCopyWith(
+          _$IncorrectHour<T> value, $Res Function(_$IncorrectHour<T>) then) =
+      __$$IncorrectHourCopyWithImpl<T, $Res>;
   @override
   $Res call({T failedValue, bool twelveHourFormat});
 }
 
 /// @nodoc
-class _$IncorrectHourCopyWithImpl<T, $Res>
+class __$$IncorrectHourCopyWithImpl<T, $Res>
     extends _$ShopValueFailureCopyWithImpl<T, $Res>
-    implements $IncorrectHourCopyWith<T, $Res> {
-  _$IncorrectHourCopyWithImpl(
-      IncorrectHour<T> _value, $Res Function(IncorrectHour<T>) _then)
-      : super(_value, (v) => _then(v as IncorrectHour<T>));
+    implements _$$IncorrectHourCopyWith<T, $Res> {
+  __$$IncorrectHourCopyWithImpl(
+      _$IncorrectHour<T> _value, $Res Function(_$IncorrectHour<T>) _then)
+      : super(_value, (v) => _then(v as _$IncorrectHour<T>));
 
   @override
-  IncorrectHour<T> get _value => super._value as IncorrectHour<T>;
+  _$IncorrectHour<T> get _value => super._value as _$IncorrectHour<T>;
 
   @override
   $Res call({
     Object? failedValue = freezed,
     Object? twelveHourFormat = freezed,
   }) {
-    return _then(IncorrectHour<T>(
+    return _then(_$IncorrectHour<T>(
       failedValue: failedValue == freezed
           ? _value.failedValue
           : failedValue // ignore: cast_nullable_to_non_nullable
@@ -337,7 +309,7 @@ class _$IncorrectHour<T> implements IncorrectHour<T> {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is IncorrectHour<T> &&
+            other is _$IncorrectHour<T> &&
             const DeepCollectionEquality()
                 .equals(other.failedValue, failedValue) &&
             const DeepCollectionEquality()
@@ -352,8 +324,8 @@ class _$IncorrectHour<T> implements IncorrectHour<T> {
 
   @JsonKey(ignore: true)
   @override
-  $IncorrectHourCopyWith<T, IncorrectHour<T>> get copyWith =>
-      _$IncorrectHourCopyWithImpl<T, IncorrectHour<T>>(this, _$identity);
+  _$$IncorrectHourCopyWith<T, _$IncorrectHour<T>> get copyWith =>
+      __$$IncorrectHourCopyWithImpl<T, _$IncorrectHour<T>>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -428,44 +400,45 @@ class _$IncorrectHour<T> implements IncorrectHour<T> {
 
 abstract class IncorrectHour<T> implements ShopValueFailure<T> {
   const factory IncorrectHour(
-      {required T failedValue,
-      required bool twelveHourFormat}) = _$IncorrectHour<T>;
+      {required final T failedValue,
+      required final bool twelveHourFormat}) = _$IncorrectHour<T>;
 
   @override
-  T get failedValue;
-  bool get twelveHourFormat;
+  T get failedValue => throw _privateConstructorUsedError;
+  bool get twelveHourFormat => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  $IncorrectHourCopyWith<T, IncorrectHour<T>> get copyWith =>
+  _$$IncorrectHourCopyWith<T, _$IncorrectHour<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $InvalidTimeIntervalCopyWith<T, $Res>
+abstract class _$$InvalidTimeIntervalCopyWith<T, $Res>
     implements $ShopValueFailureCopyWith<T, $Res> {
-  factory $InvalidTimeIntervalCopyWith(InvalidTimeInterval<T> value,
-          $Res Function(InvalidTimeInterval<T>) then) =
-      _$InvalidTimeIntervalCopyWithImpl<T, $Res>;
+  factory _$$InvalidTimeIntervalCopyWith(_$InvalidTimeInterval<T> value,
+          $Res Function(_$InvalidTimeInterval<T>) then) =
+      __$$InvalidTimeIntervalCopyWithImpl<T, $Res>;
   @override
   $Res call({T failedValue});
 }
 
 /// @nodoc
-class _$InvalidTimeIntervalCopyWithImpl<T, $Res>
+class __$$InvalidTimeIntervalCopyWithImpl<T, $Res>
     extends _$ShopValueFailureCopyWithImpl<T, $Res>
-    implements $InvalidTimeIntervalCopyWith<T, $Res> {
-  _$InvalidTimeIntervalCopyWithImpl(InvalidTimeInterval<T> _value,
-      $Res Function(InvalidTimeInterval<T>) _then)
-      : super(_value, (v) => _then(v as InvalidTimeInterval<T>));
+    implements _$$InvalidTimeIntervalCopyWith<T, $Res> {
+  __$$InvalidTimeIntervalCopyWithImpl(_$InvalidTimeInterval<T> _value,
+      $Res Function(_$InvalidTimeInterval<T>) _then)
+      : super(_value, (v) => _then(v as _$InvalidTimeInterval<T>));
 
   @override
-  InvalidTimeInterval<T> get _value => super._value as InvalidTimeInterval<T>;
+  _$InvalidTimeInterval<T> get _value =>
+      super._value as _$InvalidTimeInterval<T>;
 
   @override
   $Res call({
     Object? failedValue = freezed,
   }) {
-    return _then(InvalidTimeInterval<T>(
+    return _then(_$InvalidTimeInterval<T>(
       failedValue: failedValue == freezed
           ? _value.failedValue
           : failedValue // ignore: cast_nullable_to_non_nullable
@@ -491,7 +464,7 @@ class _$InvalidTimeInterval<T> implements InvalidTimeInterval<T> {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is InvalidTimeInterval<T> &&
+            other is _$InvalidTimeInterval<T> &&
             const DeepCollectionEquality()
                 .equals(other.failedValue, failedValue));
   }
@@ -502,8 +475,8 @@ class _$InvalidTimeInterval<T> implements InvalidTimeInterval<T> {
 
   @JsonKey(ignore: true)
   @override
-  $InvalidTimeIntervalCopyWith<T, InvalidTimeInterval<T>> get copyWith =>
-      _$InvalidTimeIntervalCopyWithImpl<T, InvalidTimeInterval<T>>(
+  _$$InvalidTimeIntervalCopyWith<T, _$InvalidTimeInterval<T>> get copyWith =>
+      __$$InvalidTimeIntervalCopyWithImpl<T, _$InvalidTimeInterval<T>>(
           this, _$identity);
 
   @override
@@ -578,13 +551,13 @@ class _$InvalidTimeInterval<T> implements InvalidTimeInterval<T> {
 }
 
 abstract class InvalidTimeInterval<T> implements ShopValueFailure<T> {
-  const factory InvalidTimeInterval({required T failedValue}) =
+  const factory InvalidTimeInterval({required final T failedValue}) =
       _$InvalidTimeInterval<T>;
 
   @override
-  T get failedValue;
+  T get failedValue => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  $InvalidTimeIntervalCopyWith<T, InvalidTimeInterval<T>> get copyWith =>
+  _$$InvalidTimeIntervalCopyWith<T, _$InvalidTimeInterval<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
