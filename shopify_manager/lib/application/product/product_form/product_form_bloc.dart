@@ -9,7 +9,7 @@ import 'package:shopify_manager/domain/core/images/i_image_facade.dart';
 import 'package:shopify_manager/domain/product/i_product_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:shopify_manager/domain/shop/i_shop_repository.dart';
-import 'package:shopify_manager/infrastructure/core/network/network_info.dart';
+import 'package:shopify_domain/core/network/network_info.dart';
 import 'package:sealed_annotations/sealed_annotations.dart';
 
 part 'product_form_bloc.sealed.dart';
