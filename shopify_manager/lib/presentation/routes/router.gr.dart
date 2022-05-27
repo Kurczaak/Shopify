@@ -104,8 +104,7 @@ class AppRouter extends _i14.RootStackRouter {
         _i14.RouteConfig(SplashRoute.name, path: '/splash-page'),
         _i14.RouteConfig(SignInRoute.name, path: '/sign-in-page'),
         _i14.RouteConfig(SignUpRoute.name, path: '/sign-up-page'),
-        _i14.RouteConfig(DebugDashboardRoute.name,
-            path: '/debug-dashboard-page'),
+        _i14.RouteConfig(DebugDashboardRoute.name, path: '/'),
         _i14.RouteConfig(BarcodeScannerWidget.name,
             path: '/barcode-scanner-widget'),
         _i14.RouteConfig(ProductSearchingScreen.name,
@@ -185,8 +184,7 @@ class SignUpRoute extends _i14.PageRouteInfo<void> {
 /// generated route for
 /// [_i5.DebugDashboardPage]
 class DebugDashboardRoute extends _i14.PageRouteInfo<void> {
-  const DebugDashboardRoute()
-      : super(DebugDashboardRoute.name, path: '/debug-dashboard-page');
+  const DebugDashboardRoute() : super(DebugDashboardRoute.name, path: '/');
 
   static const String name = 'DebugDashboardRoute';
 }

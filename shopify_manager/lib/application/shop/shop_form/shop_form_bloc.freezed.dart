@@ -12,55 +12,7 @@ part of 'shop_form_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$ShopFormEventTearOff {
-  const _$ShopFormEventTearOff();
-
-  _NameChanged nameChanged(String nameStr) {
-    return _NameChanged(
-      nameStr,
-    );
-  }
-
-  _StreetNameChanged streetNameChanged(String streetNameStr) {
-    return _StreetNameChanged(
-      streetNameStr,
-    );
-  }
-
-  _StreetNumberChanged streetNumberChanged(String streetNumberStr) {
-    return _StreetNumberChanged(
-      streetNumberStr,
-    );
-  }
-
-  _ApartmentNumberChanged apartmentNumberChanged(String apartmentNumberStr) {
-    return _ApartmentNumberChanged(
-      apartmentNumberStr,
-    );
-  }
-
-  _PostalCodeChanged postalCodeChanged(String postalCodeStr) {
-    return _PostalCodeChanged(
-      postalCodeStr,
-    );
-  }
-
-  _CityChanged cityChanged(String cityStr) {
-    return _CityChanged(
-      cityStr,
-    );
-  }
-
-  _Proceeded proceeded() {
-    return const _Proceeded();
-  }
-}
-
-/// @nodoc
-const $ShopFormEvent = _$ShopFormEventTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$ShopFormEvent {
@@ -153,28 +105,29 @@ class _$ShopFormEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$NameChangedCopyWith<$Res> {
-  factory _$NameChangedCopyWith(
-          _NameChanged value, $Res Function(_NameChanged) then) =
-      __$NameChangedCopyWithImpl<$Res>;
+abstract class _$$_NameChangedCopyWith<$Res> {
+  factory _$$_NameChangedCopyWith(
+          _$_NameChanged value, $Res Function(_$_NameChanged) then) =
+      __$$_NameChangedCopyWithImpl<$Res>;
   $Res call({String nameStr});
 }
 
 /// @nodoc
-class __$NameChangedCopyWithImpl<$Res> extends _$ShopFormEventCopyWithImpl<$Res>
-    implements _$NameChangedCopyWith<$Res> {
-  __$NameChangedCopyWithImpl(
-      _NameChanged _value, $Res Function(_NameChanged) _then)
-      : super(_value, (v) => _then(v as _NameChanged));
+class __$$_NameChangedCopyWithImpl<$Res>
+    extends _$ShopFormEventCopyWithImpl<$Res>
+    implements _$$_NameChangedCopyWith<$Res> {
+  __$$_NameChangedCopyWithImpl(
+      _$_NameChanged _value, $Res Function(_$_NameChanged) _then)
+      : super(_value, (v) => _then(v as _$_NameChanged));
 
   @override
-  _NameChanged get _value => super._value as _NameChanged;
+  _$_NameChanged get _value => super._value as _$_NameChanged;
 
   @override
   $Res call({
     Object? nameStr = freezed,
   }) {
-    return _then(_NameChanged(
+    return _then(_$_NameChanged(
       nameStr == freezed
           ? _value.nameStr
           : nameStr // ignore: cast_nullable_to_non_nullable
@@ -200,7 +153,7 @@ class _$_NameChanged implements _NameChanged {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _NameChanged &&
+            other is _$_NameChanged &&
             const DeepCollectionEquality().equals(other.nameStr, nameStr));
   }
 
@@ -210,8 +163,8 @@ class _$_NameChanged implements _NameChanged {
 
   @JsonKey(ignore: true)
   @override
-  _$NameChangedCopyWith<_NameChanged> get copyWith =>
-      __$NameChangedCopyWithImpl<_NameChanged>(this, _$identity);
+  _$$_NameChangedCopyWith<_$_NameChanged> get copyWith =>
+      __$$_NameChangedCopyWithImpl<_$_NameChanged>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -308,38 +261,38 @@ class _$_NameChanged implements _NameChanged {
 }
 
 abstract class _NameChanged implements ShopFormEvent {
-  const factory _NameChanged(String nameStr) = _$_NameChanged;
+  const factory _NameChanged(final String nameStr) = _$_NameChanged;
 
-  String get nameStr;
+  String get nameStr => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  _$NameChangedCopyWith<_NameChanged> get copyWith =>
+  _$$_NameChangedCopyWith<_$_NameChanged> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$StreetNameChangedCopyWith<$Res> {
-  factory _$StreetNameChangedCopyWith(
-          _StreetNameChanged value, $Res Function(_StreetNameChanged) then) =
-      __$StreetNameChangedCopyWithImpl<$Res>;
+abstract class _$$_StreetNameChangedCopyWith<$Res> {
+  factory _$$_StreetNameChangedCopyWith(_$_StreetNameChanged value,
+          $Res Function(_$_StreetNameChanged) then) =
+      __$$_StreetNameChangedCopyWithImpl<$Res>;
   $Res call({String streetNameStr});
 }
 
 /// @nodoc
-class __$StreetNameChangedCopyWithImpl<$Res>
+class __$$_StreetNameChangedCopyWithImpl<$Res>
     extends _$ShopFormEventCopyWithImpl<$Res>
-    implements _$StreetNameChangedCopyWith<$Res> {
-  __$StreetNameChangedCopyWithImpl(
-      _StreetNameChanged _value, $Res Function(_StreetNameChanged) _then)
-      : super(_value, (v) => _then(v as _StreetNameChanged));
+    implements _$$_StreetNameChangedCopyWith<$Res> {
+  __$$_StreetNameChangedCopyWithImpl(
+      _$_StreetNameChanged _value, $Res Function(_$_StreetNameChanged) _then)
+      : super(_value, (v) => _then(v as _$_StreetNameChanged));
 
   @override
-  _StreetNameChanged get _value => super._value as _StreetNameChanged;
+  _$_StreetNameChanged get _value => super._value as _$_StreetNameChanged;
 
   @override
   $Res call({
     Object? streetNameStr = freezed,
   }) {
-    return _then(_StreetNameChanged(
+    return _then(_$_StreetNameChanged(
       streetNameStr == freezed
           ? _value.streetNameStr
           : streetNameStr // ignore: cast_nullable_to_non_nullable
@@ -365,7 +318,7 @@ class _$_StreetNameChanged implements _StreetNameChanged {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _StreetNameChanged &&
+            other is _$_StreetNameChanged &&
             const DeepCollectionEquality()
                 .equals(other.streetNameStr, streetNameStr));
   }
@@ -376,8 +329,9 @@ class _$_StreetNameChanged implements _StreetNameChanged {
 
   @JsonKey(ignore: true)
   @override
-  _$StreetNameChangedCopyWith<_StreetNameChanged> get copyWith =>
-      __$StreetNameChangedCopyWithImpl<_StreetNameChanged>(this, _$identity);
+  _$$_StreetNameChangedCopyWith<_$_StreetNameChanged> get copyWith =>
+      __$$_StreetNameChangedCopyWithImpl<_$_StreetNameChanged>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -474,38 +428,39 @@ class _$_StreetNameChanged implements _StreetNameChanged {
 }
 
 abstract class _StreetNameChanged implements ShopFormEvent {
-  const factory _StreetNameChanged(String streetNameStr) = _$_StreetNameChanged;
+  const factory _StreetNameChanged(final String streetNameStr) =
+      _$_StreetNameChanged;
 
-  String get streetNameStr;
+  String get streetNameStr => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  _$StreetNameChangedCopyWith<_StreetNameChanged> get copyWith =>
+  _$$_StreetNameChangedCopyWith<_$_StreetNameChanged> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$StreetNumberChangedCopyWith<$Res> {
-  factory _$StreetNumberChangedCopyWith(_StreetNumberChanged value,
-          $Res Function(_StreetNumberChanged) then) =
-      __$StreetNumberChangedCopyWithImpl<$Res>;
+abstract class _$$_StreetNumberChangedCopyWith<$Res> {
+  factory _$$_StreetNumberChangedCopyWith(_$_StreetNumberChanged value,
+          $Res Function(_$_StreetNumberChanged) then) =
+      __$$_StreetNumberChangedCopyWithImpl<$Res>;
   $Res call({String streetNumberStr});
 }
 
 /// @nodoc
-class __$StreetNumberChangedCopyWithImpl<$Res>
+class __$$_StreetNumberChangedCopyWithImpl<$Res>
     extends _$ShopFormEventCopyWithImpl<$Res>
-    implements _$StreetNumberChangedCopyWith<$Res> {
-  __$StreetNumberChangedCopyWithImpl(
-      _StreetNumberChanged _value, $Res Function(_StreetNumberChanged) _then)
-      : super(_value, (v) => _then(v as _StreetNumberChanged));
+    implements _$$_StreetNumberChangedCopyWith<$Res> {
+  __$$_StreetNumberChangedCopyWithImpl(_$_StreetNumberChanged _value,
+      $Res Function(_$_StreetNumberChanged) _then)
+      : super(_value, (v) => _then(v as _$_StreetNumberChanged));
 
   @override
-  _StreetNumberChanged get _value => super._value as _StreetNumberChanged;
+  _$_StreetNumberChanged get _value => super._value as _$_StreetNumberChanged;
 
   @override
   $Res call({
     Object? streetNumberStr = freezed,
   }) {
-    return _then(_StreetNumberChanged(
+    return _then(_$_StreetNumberChanged(
       streetNumberStr == freezed
           ? _value.streetNumberStr
           : streetNumberStr // ignore: cast_nullable_to_non_nullable
@@ -531,7 +486,7 @@ class _$_StreetNumberChanged implements _StreetNumberChanged {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _StreetNumberChanged &&
+            other is _$_StreetNumberChanged &&
             const DeepCollectionEquality()
                 .equals(other.streetNumberStr, streetNumberStr));
   }
@@ -542,8 +497,8 @@ class _$_StreetNumberChanged implements _StreetNumberChanged {
 
   @JsonKey(ignore: true)
   @override
-  _$StreetNumberChangedCopyWith<_StreetNumberChanged> get copyWith =>
-      __$StreetNumberChangedCopyWithImpl<_StreetNumberChanged>(
+  _$$_StreetNumberChangedCopyWith<_$_StreetNumberChanged> get copyWith =>
+      __$$_StreetNumberChangedCopyWithImpl<_$_StreetNumberChanged>(
           this, _$identity);
 
   @override
@@ -641,39 +596,40 @@ class _$_StreetNumberChanged implements _StreetNumberChanged {
 }
 
 abstract class _StreetNumberChanged implements ShopFormEvent {
-  const factory _StreetNumberChanged(String streetNumberStr) =
+  const factory _StreetNumberChanged(final String streetNumberStr) =
       _$_StreetNumberChanged;
 
-  String get streetNumberStr;
+  String get streetNumberStr => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  _$StreetNumberChangedCopyWith<_StreetNumberChanged> get copyWith =>
+  _$$_StreetNumberChangedCopyWith<_$_StreetNumberChanged> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$ApartmentNumberChangedCopyWith<$Res> {
-  factory _$ApartmentNumberChangedCopyWith(_ApartmentNumberChanged value,
-          $Res Function(_ApartmentNumberChanged) then) =
-      __$ApartmentNumberChangedCopyWithImpl<$Res>;
+abstract class _$$_ApartmentNumberChangedCopyWith<$Res> {
+  factory _$$_ApartmentNumberChangedCopyWith(_$_ApartmentNumberChanged value,
+          $Res Function(_$_ApartmentNumberChanged) then) =
+      __$$_ApartmentNumberChangedCopyWithImpl<$Res>;
   $Res call({String apartmentNumberStr});
 }
 
 /// @nodoc
-class __$ApartmentNumberChangedCopyWithImpl<$Res>
+class __$$_ApartmentNumberChangedCopyWithImpl<$Res>
     extends _$ShopFormEventCopyWithImpl<$Res>
-    implements _$ApartmentNumberChangedCopyWith<$Res> {
-  __$ApartmentNumberChangedCopyWithImpl(_ApartmentNumberChanged _value,
-      $Res Function(_ApartmentNumberChanged) _then)
-      : super(_value, (v) => _then(v as _ApartmentNumberChanged));
+    implements _$$_ApartmentNumberChangedCopyWith<$Res> {
+  __$$_ApartmentNumberChangedCopyWithImpl(_$_ApartmentNumberChanged _value,
+      $Res Function(_$_ApartmentNumberChanged) _then)
+      : super(_value, (v) => _then(v as _$_ApartmentNumberChanged));
 
   @override
-  _ApartmentNumberChanged get _value => super._value as _ApartmentNumberChanged;
+  _$_ApartmentNumberChanged get _value =>
+      super._value as _$_ApartmentNumberChanged;
 
   @override
   $Res call({
     Object? apartmentNumberStr = freezed,
   }) {
-    return _then(_ApartmentNumberChanged(
+    return _then(_$_ApartmentNumberChanged(
       apartmentNumberStr == freezed
           ? _value.apartmentNumberStr
           : apartmentNumberStr // ignore: cast_nullable_to_non_nullable
@@ -699,7 +655,7 @@ class _$_ApartmentNumberChanged implements _ApartmentNumberChanged {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _ApartmentNumberChanged &&
+            other is _$_ApartmentNumberChanged &&
             const DeepCollectionEquality()
                 .equals(other.apartmentNumberStr, apartmentNumberStr));
   }
@@ -710,8 +666,8 @@ class _$_ApartmentNumberChanged implements _ApartmentNumberChanged {
 
   @JsonKey(ignore: true)
   @override
-  _$ApartmentNumberChangedCopyWith<_ApartmentNumberChanged> get copyWith =>
-      __$ApartmentNumberChangedCopyWithImpl<_ApartmentNumberChanged>(
+  _$$_ApartmentNumberChangedCopyWith<_$_ApartmentNumberChanged> get copyWith =>
+      __$$_ApartmentNumberChangedCopyWithImpl<_$_ApartmentNumberChanged>(
           this, _$identity);
 
   @override
@@ -809,39 +765,39 @@ class _$_ApartmentNumberChanged implements _ApartmentNumberChanged {
 }
 
 abstract class _ApartmentNumberChanged implements ShopFormEvent {
-  const factory _ApartmentNumberChanged(String apartmentNumberStr) =
+  const factory _ApartmentNumberChanged(final String apartmentNumberStr) =
       _$_ApartmentNumberChanged;
 
-  String get apartmentNumberStr;
+  String get apartmentNumberStr => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  _$ApartmentNumberChangedCopyWith<_ApartmentNumberChanged> get copyWith =>
+  _$$_ApartmentNumberChangedCopyWith<_$_ApartmentNumberChanged> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$PostalCodeChangedCopyWith<$Res> {
-  factory _$PostalCodeChangedCopyWith(
-          _PostalCodeChanged value, $Res Function(_PostalCodeChanged) then) =
-      __$PostalCodeChangedCopyWithImpl<$Res>;
+abstract class _$$_PostalCodeChangedCopyWith<$Res> {
+  factory _$$_PostalCodeChangedCopyWith(_$_PostalCodeChanged value,
+          $Res Function(_$_PostalCodeChanged) then) =
+      __$$_PostalCodeChangedCopyWithImpl<$Res>;
   $Res call({String postalCodeStr});
 }
 
 /// @nodoc
-class __$PostalCodeChangedCopyWithImpl<$Res>
+class __$$_PostalCodeChangedCopyWithImpl<$Res>
     extends _$ShopFormEventCopyWithImpl<$Res>
-    implements _$PostalCodeChangedCopyWith<$Res> {
-  __$PostalCodeChangedCopyWithImpl(
-      _PostalCodeChanged _value, $Res Function(_PostalCodeChanged) _then)
-      : super(_value, (v) => _then(v as _PostalCodeChanged));
+    implements _$$_PostalCodeChangedCopyWith<$Res> {
+  __$$_PostalCodeChangedCopyWithImpl(
+      _$_PostalCodeChanged _value, $Res Function(_$_PostalCodeChanged) _then)
+      : super(_value, (v) => _then(v as _$_PostalCodeChanged));
 
   @override
-  _PostalCodeChanged get _value => super._value as _PostalCodeChanged;
+  _$_PostalCodeChanged get _value => super._value as _$_PostalCodeChanged;
 
   @override
   $Res call({
     Object? postalCodeStr = freezed,
   }) {
-    return _then(_PostalCodeChanged(
+    return _then(_$_PostalCodeChanged(
       postalCodeStr == freezed
           ? _value.postalCodeStr
           : postalCodeStr // ignore: cast_nullable_to_non_nullable
@@ -867,7 +823,7 @@ class _$_PostalCodeChanged implements _PostalCodeChanged {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _PostalCodeChanged &&
+            other is _$_PostalCodeChanged &&
             const DeepCollectionEquality()
                 .equals(other.postalCodeStr, postalCodeStr));
   }
@@ -878,8 +834,9 @@ class _$_PostalCodeChanged implements _PostalCodeChanged {
 
   @JsonKey(ignore: true)
   @override
-  _$PostalCodeChangedCopyWith<_PostalCodeChanged> get copyWith =>
-      __$PostalCodeChangedCopyWithImpl<_PostalCodeChanged>(this, _$identity);
+  _$$_PostalCodeChangedCopyWith<_$_PostalCodeChanged> get copyWith =>
+      __$$_PostalCodeChangedCopyWithImpl<_$_PostalCodeChanged>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -976,37 +933,39 @@ class _$_PostalCodeChanged implements _PostalCodeChanged {
 }
 
 abstract class _PostalCodeChanged implements ShopFormEvent {
-  const factory _PostalCodeChanged(String postalCodeStr) = _$_PostalCodeChanged;
+  const factory _PostalCodeChanged(final String postalCodeStr) =
+      _$_PostalCodeChanged;
 
-  String get postalCodeStr;
+  String get postalCodeStr => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  _$PostalCodeChangedCopyWith<_PostalCodeChanged> get copyWith =>
+  _$$_PostalCodeChangedCopyWith<_$_PostalCodeChanged> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$CityChangedCopyWith<$Res> {
-  factory _$CityChangedCopyWith(
-          _CityChanged value, $Res Function(_CityChanged) then) =
-      __$CityChangedCopyWithImpl<$Res>;
+abstract class _$$_CityChangedCopyWith<$Res> {
+  factory _$$_CityChangedCopyWith(
+          _$_CityChanged value, $Res Function(_$_CityChanged) then) =
+      __$$_CityChangedCopyWithImpl<$Res>;
   $Res call({String cityStr});
 }
 
 /// @nodoc
-class __$CityChangedCopyWithImpl<$Res> extends _$ShopFormEventCopyWithImpl<$Res>
-    implements _$CityChangedCopyWith<$Res> {
-  __$CityChangedCopyWithImpl(
-      _CityChanged _value, $Res Function(_CityChanged) _then)
-      : super(_value, (v) => _then(v as _CityChanged));
+class __$$_CityChangedCopyWithImpl<$Res>
+    extends _$ShopFormEventCopyWithImpl<$Res>
+    implements _$$_CityChangedCopyWith<$Res> {
+  __$$_CityChangedCopyWithImpl(
+      _$_CityChanged _value, $Res Function(_$_CityChanged) _then)
+      : super(_value, (v) => _then(v as _$_CityChanged));
 
   @override
-  _CityChanged get _value => super._value as _CityChanged;
+  _$_CityChanged get _value => super._value as _$_CityChanged;
 
   @override
   $Res call({
     Object? cityStr = freezed,
   }) {
-    return _then(_CityChanged(
+    return _then(_$_CityChanged(
       cityStr == freezed
           ? _value.cityStr
           : cityStr // ignore: cast_nullable_to_non_nullable
@@ -1032,7 +991,7 @@ class _$_CityChanged implements _CityChanged {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _CityChanged &&
+            other is _$_CityChanged &&
             const DeepCollectionEquality().equals(other.cityStr, cityStr));
   }
 
@@ -1042,8 +1001,8 @@ class _$_CityChanged implements _CityChanged {
 
   @JsonKey(ignore: true)
   @override
-  _$CityChangedCopyWith<_CityChanged> get copyWith =>
-      __$CityChangedCopyWithImpl<_CityChanged>(this, _$identity);
+  _$$_CityChangedCopyWith<_$_CityChanged> get copyWith =>
+      __$$_CityChangedCopyWithImpl<_$_CityChanged>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1140,29 +1099,30 @@ class _$_CityChanged implements _CityChanged {
 }
 
 abstract class _CityChanged implements ShopFormEvent {
-  const factory _CityChanged(String cityStr) = _$_CityChanged;
+  const factory _CityChanged(final String cityStr) = _$_CityChanged;
 
-  String get cityStr;
+  String get cityStr => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  _$CityChangedCopyWith<_CityChanged> get copyWith =>
+  _$$_CityChangedCopyWith<_$_CityChanged> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$ProceededCopyWith<$Res> {
-  factory _$ProceededCopyWith(
-          _Proceeded value, $Res Function(_Proceeded) then) =
-      __$ProceededCopyWithImpl<$Res>;
+abstract class _$$_ProceededCopyWith<$Res> {
+  factory _$$_ProceededCopyWith(
+          _$_Proceeded value, $Res Function(_$_Proceeded) then) =
+      __$$_ProceededCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$ProceededCopyWithImpl<$Res> extends _$ShopFormEventCopyWithImpl<$Res>
-    implements _$ProceededCopyWith<$Res> {
-  __$ProceededCopyWithImpl(_Proceeded _value, $Res Function(_Proceeded) _then)
-      : super(_value, (v) => _then(v as _Proceeded));
+class __$$_ProceededCopyWithImpl<$Res> extends _$ShopFormEventCopyWithImpl<$Res>
+    implements _$$_ProceededCopyWith<$Res> {
+  __$$_ProceededCopyWithImpl(
+      _$_Proceeded _value, $Res Function(_$_Proceeded) _then)
+      : super(_value, (v) => _then(v as _$_Proceeded));
 
   @override
-  _Proceeded get _value => super._value as _Proceeded;
+  _$_Proceeded get _value => super._value as _$_Proceeded;
 }
 
 /// @nodoc
@@ -1178,7 +1138,7 @@ class _$_Proceeded implements _Proceeded {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _Proceeded);
+        (other.runtimeType == runtimeType && other is _$_Proceeded);
   }
 
   @override
@@ -1283,25 +1243,6 @@ abstract class _Proceeded implements ShopFormEvent {
 }
 
 /// @nodoc
-class _$ShopFormStateTearOff {
-  const _$ShopFormStateTearOff();
-
-  _ShopFormState call(
-      {required ShopForm shop,
-      required bool showErrorMessages,
-      required bool saved}) {
-    return _ShopFormState(
-      shop: shop,
-      showErrorMessages: showErrorMessages,
-      saved: saved,
-    );
-  }
-}
-
-/// @nodoc
-const $ShopFormState = _$ShopFormStateTearOff();
-
-/// @nodoc
 mixin _$ShopFormState {
   ShopForm get shop => throw _privateConstructorUsedError;
   bool get showErrorMessages => throw _privateConstructorUsedError;
@@ -1362,11 +1303,11 @@ class _$ShopFormStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$ShopFormStateCopyWith<$Res>
+abstract class _$$_ShopFormStateCopyWith<$Res>
     implements $ShopFormStateCopyWith<$Res> {
-  factory _$ShopFormStateCopyWith(
-          _ShopFormState value, $Res Function(_ShopFormState) then) =
-      __$ShopFormStateCopyWithImpl<$Res>;
+  factory _$$_ShopFormStateCopyWith(
+          _$_ShopFormState value, $Res Function(_$_ShopFormState) then) =
+      __$$_ShopFormStateCopyWithImpl<$Res>;
   @override
   $Res call({ShopForm shop, bool showErrorMessages, bool saved});
 
@@ -1375,15 +1316,15 @@ abstract class _$ShopFormStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$ShopFormStateCopyWithImpl<$Res>
+class __$$_ShopFormStateCopyWithImpl<$Res>
     extends _$ShopFormStateCopyWithImpl<$Res>
-    implements _$ShopFormStateCopyWith<$Res> {
-  __$ShopFormStateCopyWithImpl(
-      _ShopFormState _value, $Res Function(_ShopFormState) _then)
-      : super(_value, (v) => _then(v as _ShopFormState));
+    implements _$$_ShopFormStateCopyWith<$Res> {
+  __$$_ShopFormStateCopyWithImpl(
+      _$_ShopFormState _value, $Res Function(_$_ShopFormState) _then)
+      : super(_value, (v) => _then(v as _$_ShopFormState));
 
   @override
-  _ShopFormState get _value => super._value as _ShopFormState;
+  _$_ShopFormState get _value => super._value as _$_ShopFormState;
 
   @override
   $Res call({
@@ -1391,7 +1332,7 @@ class __$ShopFormStateCopyWithImpl<$Res>
     Object? showErrorMessages = freezed,
     Object? saved = freezed,
   }) {
-    return _then(_ShopFormState(
+    return _then(_$_ShopFormState(
       shop: shop == freezed
           ? _value.shop
           : shop // ignore: cast_nullable_to_non_nullable
@@ -1432,7 +1373,7 @@ class _$_ShopFormState implements _ShopFormState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _ShopFormState &&
+            other is _$_ShopFormState &&
             const DeepCollectionEquality().equals(other.shop, shop) &&
             const DeepCollectionEquality()
                 .equals(other.showErrorMessages, showErrorMessages) &&
@@ -1448,24 +1389,24 @@ class _$_ShopFormState implements _ShopFormState {
 
   @JsonKey(ignore: true)
   @override
-  _$ShopFormStateCopyWith<_ShopFormState> get copyWith =>
-      __$ShopFormStateCopyWithImpl<_ShopFormState>(this, _$identity);
+  _$$_ShopFormStateCopyWith<_$_ShopFormState> get copyWith =>
+      __$$_ShopFormStateCopyWithImpl<_$_ShopFormState>(this, _$identity);
 }
 
 abstract class _ShopFormState implements ShopFormState {
   const factory _ShopFormState(
-      {required ShopForm shop,
-      required bool showErrorMessages,
-      required bool saved}) = _$_ShopFormState;
+      {required final ShopForm shop,
+      required final bool showErrorMessages,
+      required final bool saved}) = _$_ShopFormState;
 
   @override
-  ShopForm get shop;
+  ShopForm get shop => throw _privateConstructorUsedError;
   @override
-  bool get showErrorMessages;
+  bool get showErrorMessages => throw _privateConstructorUsedError;
   @override
-  bool get saved;
+  bool get saved => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$ShopFormStateCopyWith<_ShopFormState> get copyWith =>
+  _$$_ShopFormStateCopyWith<_$_ShopFormState> get copyWith =>
       throw _privateConstructorUsedError;
 }

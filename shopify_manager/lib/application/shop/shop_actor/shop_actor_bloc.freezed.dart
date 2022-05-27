@@ -12,26 +12,11 @@ part of 'shop_actor_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$ShoppingActorEventTearOff {
-  const _$ShoppingActorEventTearOff();
-
-  _Deleted deleted(Shop shop) {
-    return _Deleted(
-      shop,
-    );
-  }
-}
-
-/// @nodoc
-const $ShoppingActorEvent = _$ShoppingActorEventTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$ShoppingActorEvent {
   Shop get shop => throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Shop shop) deleted,
@@ -110,10 +95,11 @@ class _$ShoppingActorEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$DeletedCopyWith<$Res>
+abstract class _$$_DeletedCopyWith<$Res>
     implements $ShoppingActorEventCopyWith<$Res> {
-  factory _$DeletedCopyWith(_Deleted value, $Res Function(_Deleted) then) =
-      __$DeletedCopyWithImpl<$Res>;
+  factory _$$_DeletedCopyWith(
+          _$_Deleted value, $Res Function(_$_Deleted) then) =
+      __$$_DeletedCopyWithImpl<$Res>;
   @override
   $Res call({Shop shop});
 
@@ -122,20 +108,20 @@ abstract class _$DeletedCopyWith<$Res>
 }
 
 /// @nodoc
-class __$DeletedCopyWithImpl<$Res>
+class __$$_DeletedCopyWithImpl<$Res>
     extends _$ShoppingActorEventCopyWithImpl<$Res>
-    implements _$DeletedCopyWith<$Res> {
-  __$DeletedCopyWithImpl(_Deleted _value, $Res Function(_Deleted) _then)
-      : super(_value, (v) => _then(v as _Deleted));
+    implements _$$_DeletedCopyWith<$Res> {
+  __$$_DeletedCopyWithImpl(_$_Deleted _value, $Res Function(_$_Deleted) _then)
+      : super(_value, (v) => _then(v as _$_Deleted));
 
   @override
-  _Deleted get _value => super._value as _Deleted;
+  _$_Deleted get _value => super._value as _$_Deleted;
 
   @override
   $Res call({
     Object? shop = freezed,
   }) {
-    return _then(_Deleted(
+    return _then(_$_Deleted(
       shop == freezed
           ? _value.shop
           : shop // ignore: cast_nullable_to_non_nullable
@@ -161,7 +147,7 @@ class _$_Deleted implements _Deleted {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _Deleted &&
+            other is _$_Deleted &&
             const DeepCollectionEquality().equals(other.shop, shop));
   }
 
@@ -171,8 +157,8 @@ class _$_Deleted implements _Deleted {
 
   @JsonKey(ignore: true)
   @override
-  _$DeletedCopyWith<_Deleted> get copyWith =>
-      __$DeletedCopyWithImpl<_Deleted>(this, _$identity);
+  _$$_DeletedCopyWith<_$_Deleted> get copyWith =>
+      __$$_DeletedCopyWithImpl<_$_Deleted>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -232,41 +218,15 @@ class _$_Deleted implements _Deleted {
 }
 
 abstract class _Deleted implements ShoppingActorEvent {
-  const factory _Deleted(Shop shop) = _$_Deleted;
+  const factory _Deleted(final Shop shop) = _$_Deleted;
 
   @override
-  Shop get shop;
+  Shop get shop => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$DeletedCopyWith<_Deleted> get copyWith =>
+  _$$_DeletedCopyWith<_$_Deleted> get copyWith =>
       throw _privateConstructorUsedError;
 }
-
-/// @nodoc
-class _$ShoppingActorStateTearOff {
-  const _$ShoppingActorStateTearOff();
-
-  _Initial inital() {
-    return const _Initial();
-  }
-
-  _ActionInProgress actionInProgress() {
-    return const _ActionInProgress();
-  }
-
-  _DeleteFailure deleteFailure(ShopFailure shopFailure) {
-    return _DeleteFailure(
-      shopFailure,
-    );
-  }
-
-  _DeleteSuccess deleteSuccess() {
-    return const _DeleteSuccess();
-  }
-}
-
-/// @nodoc
-const $ShoppingActorState = _$ShoppingActorStateTearOff();
 
 /// @nodoc
 mixin _$ShoppingActorState {
@@ -340,20 +300,21 @@ class _$ShoppingActorStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$InitialCopyWith<$Res> {
-  factory _$InitialCopyWith(_Initial value, $Res Function(_Initial) then) =
-      __$InitialCopyWithImpl<$Res>;
+abstract class _$$_InitialCopyWith<$Res> {
+  factory _$$_InitialCopyWith(
+          _$_Initial value, $Res Function(_$_Initial) then) =
+      __$$_InitialCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$InitialCopyWithImpl<$Res>
+class __$$_InitialCopyWithImpl<$Res>
     extends _$ShoppingActorStateCopyWithImpl<$Res>
-    implements _$InitialCopyWith<$Res> {
-  __$InitialCopyWithImpl(_Initial _value, $Res Function(_Initial) _then)
-      : super(_value, (v) => _then(v as _Initial));
+    implements _$$_InitialCopyWith<$Res> {
+  __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
+      : super(_value, (v) => _then(v as _$_Initial));
 
   @override
-  _Initial get _value => super._value as _Initial;
+  _$_Initial get _value => super._value as _$_Initial;
 }
 
 /// @nodoc
@@ -369,7 +330,7 @@ class _$_Initial implements _Initial {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _Initial);
+        (other.runtimeType == runtimeType && other is _$_Initial);
   }
 
   @override
@@ -455,22 +416,22 @@ abstract class _Initial implements ShoppingActorState {
 }
 
 /// @nodoc
-abstract class _$ActionInProgressCopyWith<$Res> {
-  factory _$ActionInProgressCopyWith(
-          _ActionInProgress value, $Res Function(_ActionInProgress) then) =
-      __$ActionInProgressCopyWithImpl<$Res>;
+abstract class _$$_ActionInProgressCopyWith<$Res> {
+  factory _$$_ActionInProgressCopyWith(
+          _$_ActionInProgress value, $Res Function(_$_ActionInProgress) then) =
+      __$$_ActionInProgressCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$ActionInProgressCopyWithImpl<$Res>
+class __$$_ActionInProgressCopyWithImpl<$Res>
     extends _$ShoppingActorStateCopyWithImpl<$Res>
-    implements _$ActionInProgressCopyWith<$Res> {
-  __$ActionInProgressCopyWithImpl(
-      _ActionInProgress _value, $Res Function(_ActionInProgress) _then)
-      : super(_value, (v) => _then(v as _ActionInProgress));
+    implements _$$_ActionInProgressCopyWith<$Res> {
+  __$$_ActionInProgressCopyWithImpl(
+      _$_ActionInProgress _value, $Res Function(_$_ActionInProgress) _then)
+      : super(_value, (v) => _then(v as _$_ActionInProgress));
 
   @override
-  _ActionInProgress get _value => super._value as _ActionInProgress;
+  _$_ActionInProgress get _value => super._value as _$_ActionInProgress;
 }
 
 /// @nodoc
@@ -486,7 +447,7 @@ class _$_ActionInProgress implements _ActionInProgress {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _ActionInProgress);
+        (other.runtimeType == runtimeType && other is _$_ActionInProgress);
   }
 
   @override
@@ -572,31 +533,31 @@ abstract class _ActionInProgress implements ShoppingActorState {
 }
 
 /// @nodoc
-abstract class _$DeleteFailureCopyWith<$Res> {
-  factory _$DeleteFailureCopyWith(
-          _DeleteFailure value, $Res Function(_DeleteFailure) then) =
-      __$DeleteFailureCopyWithImpl<$Res>;
+abstract class _$$_DeleteFailureCopyWith<$Res> {
+  factory _$$_DeleteFailureCopyWith(
+          _$_DeleteFailure value, $Res Function(_$_DeleteFailure) then) =
+      __$$_DeleteFailureCopyWithImpl<$Res>;
   $Res call({ShopFailure shopFailure});
 
   $ShopFailureCopyWith<$Res> get shopFailure;
 }
 
 /// @nodoc
-class __$DeleteFailureCopyWithImpl<$Res>
+class __$$_DeleteFailureCopyWithImpl<$Res>
     extends _$ShoppingActorStateCopyWithImpl<$Res>
-    implements _$DeleteFailureCopyWith<$Res> {
-  __$DeleteFailureCopyWithImpl(
-      _DeleteFailure _value, $Res Function(_DeleteFailure) _then)
-      : super(_value, (v) => _then(v as _DeleteFailure));
+    implements _$$_DeleteFailureCopyWith<$Res> {
+  __$$_DeleteFailureCopyWithImpl(
+      _$_DeleteFailure _value, $Res Function(_$_DeleteFailure) _then)
+      : super(_value, (v) => _then(v as _$_DeleteFailure));
 
   @override
-  _DeleteFailure get _value => super._value as _DeleteFailure;
+  _$_DeleteFailure get _value => super._value as _$_DeleteFailure;
 
   @override
   $Res call({
     Object? shopFailure = freezed,
   }) {
-    return _then(_DeleteFailure(
+    return _then(_$_DeleteFailure(
       shopFailure == freezed
           ? _value.shopFailure
           : shopFailure // ignore: cast_nullable_to_non_nullable
@@ -629,7 +590,7 @@ class _$_DeleteFailure implements _DeleteFailure {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _DeleteFailure &&
+            other is _$_DeleteFailure &&
             const DeepCollectionEquality()
                 .equals(other.shopFailure, shopFailure));
   }
@@ -640,8 +601,8 @@ class _$_DeleteFailure implements _DeleteFailure {
 
   @JsonKey(ignore: true)
   @override
-  _$DeleteFailureCopyWith<_DeleteFailure> get copyWith =>
-      __$DeleteFailureCopyWithImpl<_DeleteFailure>(this, _$identity);
+  _$$_DeleteFailureCopyWith<_$_DeleteFailure> get copyWith =>
+      __$$_DeleteFailureCopyWithImpl<_$_DeleteFailure>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -719,31 +680,32 @@ class _$_DeleteFailure implements _DeleteFailure {
 }
 
 abstract class _DeleteFailure implements ShoppingActorState {
-  const factory _DeleteFailure(ShopFailure shopFailure) = _$_DeleteFailure;
+  const factory _DeleteFailure(final ShopFailure shopFailure) =
+      _$_DeleteFailure;
 
-  ShopFailure get shopFailure;
+  ShopFailure get shopFailure => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  _$DeleteFailureCopyWith<_DeleteFailure> get copyWith =>
+  _$$_DeleteFailureCopyWith<_$_DeleteFailure> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$DeleteSuccessCopyWith<$Res> {
-  factory _$DeleteSuccessCopyWith(
-          _DeleteSuccess value, $Res Function(_DeleteSuccess) then) =
-      __$DeleteSuccessCopyWithImpl<$Res>;
+abstract class _$$_DeleteSuccessCopyWith<$Res> {
+  factory _$$_DeleteSuccessCopyWith(
+          _$_DeleteSuccess value, $Res Function(_$_DeleteSuccess) then) =
+      __$$_DeleteSuccessCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$DeleteSuccessCopyWithImpl<$Res>
+class __$$_DeleteSuccessCopyWithImpl<$Res>
     extends _$ShoppingActorStateCopyWithImpl<$Res>
-    implements _$DeleteSuccessCopyWith<$Res> {
-  __$DeleteSuccessCopyWithImpl(
-      _DeleteSuccess _value, $Res Function(_DeleteSuccess) _then)
-      : super(_value, (v) => _then(v as _DeleteSuccess));
+    implements _$$_DeleteSuccessCopyWith<$Res> {
+  __$$_DeleteSuccessCopyWithImpl(
+      _$_DeleteSuccess _value, $Res Function(_$_DeleteSuccess) _then)
+      : super(_value, (v) => _then(v as _$_DeleteSuccess));
 
   @override
-  _DeleteSuccess get _value => super._value as _DeleteSuccess;
+  _$_DeleteSuccess get _value => super._value as _$_DeleteSuccess;
 }
 
 /// @nodoc
@@ -759,7 +721,7 @@ class _$_DeleteSuccess implements _DeleteSuccess {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _DeleteSuccess);
+        (other.runtimeType == runtimeType && other is _$_DeleteSuccess);
   }
 
   @override

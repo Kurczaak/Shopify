@@ -12,26 +12,7 @@ part of 'day_presentation_classes.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$DayPrimitiveTearOff {
-  const _$DayPrimitiveTearOff();
-
-  _DayPrimitive call(
-      {required String day,
-      required bool isOpen,
-      required TimeIntervalPrimitive timeInterval}) {
-    return _DayPrimitive(
-      day: day,
-      isOpen: isOpen,
-      timeInterval: timeInterval,
-    );
-  }
-}
-
-/// @nodoc
-const $DayPrimitive = _$DayPrimitiveTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$DayPrimitive {
@@ -93,11 +74,11 @@ class _$DayPrimitiveCopyWithImpl<$Res> implements $DayPrimitiveCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$DayPrimitiveCopyWith<$Res>
+abstract class _$$_DayPrimitiveCopyWith<$Res>
     implements $DayPrimitiveCopyWith<$Res> {
-  factory _$DayPrimitiveCopyWith(
-          _DayPrimitive value, $Res Function(_DayPrimitive) then) =
-      __$DayPrimitiveCopyWithImpl<$Res>;
+  factory _$$_DayPrimitiveCopyWith(
+          _$_DayPrimitive value, $Res Function(_$_DayPrimitive) then) =
+      __$$_DayPrimitiveCopyWithImpl<$Res>;
   @override
   $Res call({String day, bool isOpen, TimeIntervalPrimitive timeInterval});
 
@@ -106,14 +87,15 @@ abstract class _$DayPrimitiveCopyWith<$Res>
 }
 
 /// @nodoc
-class __$DayPrimitiveCopyWithImpl<$Res> extends _$DayPrimitiveCopyWithImpl<$Res>
-    implements _$DayPrimitiveCopyWith<$Res> {
-  __$DayPrimitiveCopyWithImpl(
-      _DayPrimitive _value, $Res Function(_DayPrimitive) _then)
-      : super(_value, (v) => _then(v as _DayPrimitive));
+class __$$_DayPrimitiveCopyWithImpl<$Res>
+    extends _$DayPrimitiveCopyWithImpl<$Res>
+    implements _$$_DayPrimitiveCopyWith<$Res> {
+  __$$_DayPrimitiveCopyWithImpl(
+      _$_DayPrimitive _value, $Res Function(_$_DayPrimitive) _then)
+      : super(_value, (v) => _then(v as _$_DayPrimitive));
 
   @override
-  _DayPrimitive get _value => super._value as _DayPrimitive;
+  _$_DayPrimitive get _value => super._value as _$_DayPrimitive;
 
   @override
   $Res call({
@@ -121,7 +103,7 @@ class __$DayPrimitiveCopyWithImpl<$Res> extends _$DayPrimitiveCopyWithImpl<$Res>
     Object? isOpen = freezed,
     Object? timeInterval = freezed,
   }) {
-    return _then(_DayPrimitive(
+    return _then(_$_DayPrimitive(
       day: day == freezed
           ? _value.day
           : day // ignore: cast_nullable_to_non_nullable
@@ -161,7 +143,7 @@ class _$_DayPrimitive extends _DayPrimitive {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _DayPrimitive &&
+            other is _$_DayPrimitive &&
             const DeepCollectionEquality().equals(other.day, day) &&
             const DeepCollectionEquality().equals(other.isOpen, isOpen) &&
             const DeepCollectionEquality()
@@ -177,49 +159,28 @@ class _$_DayPrimitive extends _DayPrimitive {
 
   @JsonKey(ignore: true)
   @override
-  _$DayPrimitiveCopyWith<_DayPrimitive> get copyWith =>
-      __$DayPrimitiveCopyWithImpl<_DayPrimitive>(this, _$identity);
+  _$$_DayPrimitiveCopyWith<_$_DayPrimitive> get copyWith =>
+      __$$_DayPrimitiveCopyWithImpl<_$_DayPrimitive>(this, _$identity);
 }
 
 abstract class _DayPrimitive extends DayPrimitive {
   const factory _DayPrimitive(
-      {required String day,
-      required bool isOpen,
-      required TimeIntervalPrimitive timeInterval}) = _$_DayPrimitive;
+      {required final String day,
+      required final bool isOpen,
+      required final TimeIntervalPrimitive timeInterval}) = _$_DayPrimitive;
   const _DayPrimitive._() : super._();
 
   @override
-  String get day;
+  String get day => throw _privateConstructorUsedError;
   @override
-  bool get isOpen;
+  bool get isOpen => throw _privateConstructorUsedError;
   @override
-  TimeIntervalPrimitive get timeInterval;
+  TimeIntervalPrimitive get timeInterval => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$DayPrimitiveCopyWith<_DayPrimitive> get copyWith =>
+  _$$_DayPrimitiveCopyWith<_$_DayPrimitive> get copyWith =>
       throw _privateConstructorUsedError;
 }
-
-/// @nodoc
-class _$TimeIntervalPrimitiveTearOff {
-  const _$TimeIntervalPrimitiveTearOff();
-
-  _TimeIntervalPrimitive call(
-      {required int openingHour,
-      required int openingMinutes,
-      required int closingHour,
-      required int closingMinutes}) {
-    return _TimeIntervalPrimitive(
-      openingHour: openingHour,
-      openingMinutes: openingMinutes,
-      closingHour: closingHour,
-      closingMinutes: closingMinutes,
-    );
-  }
-}
-
-/// @nodoc
-const $TimeIntervalPrimitive = _$TimeIntervalPrimitiveTearOff();
 
 /// @nodoc
 mixin _$TimeIntervalPrimitive {
@@ -283,11 +244,11 @@ class _$TimeIntervalPrimitiveCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$TimeIntervalPrimitiveCopyWith<$Res>
+abstract class _$$_TimeIntervalPrimitiveCopyWith<$Res>
     implements $TimeIntervalPrimitiveCopyWith<$Res> {
-  factory _$TimeIntervalPrimitiveCopyWith(_TimeIntervalPrimitive value,
-          $Res Function(_TimeIntervalPrimitive) then) =
-      __$TimeIntervalPrimitiveCopyWithImpl<$Res>;
+  factory _$$_TimeIntervalPrimitiveCopyWith(_$_TimeIntervalPrimitive value,
+          $Res Function(_$_TimeIntervalPrimitive) then) =
+      __$$_TimeIntervalPrimitiveCopyWithImpl<$Res>;
   @override
   $Res call(
       {int openingHour,
@@ -297,15 +258,16 @@ abstract class _$TimeIntervalPrimitiveCopyWith<$Res>
 }
 
 /// @nodoc
-class __$TimeIntervalPrimitiveCopyWithImpl<$Res>
+class __$$_TimeIntervalPrimitiveCopyWithImpl<$Res>
     extends _$TimeIntervalPrimitiveCopyWithImpl<$Res>
-    implements _$TimeIntervalPrimitiveCopyWith<$Res> {
-  __$TimeIntervalPrimitiveCopyWithImpl(_TimeIntervalPrimitive _value,
-      $Res Function(_TimeIntervalPrimitive) _then)
-      : super(_value, (v) => _then(v as _TimeIntervalPrimitive));
+    implements _$$_TimeIntervalPrimitiveCopyWith<$Res> {
+  __$$_TimeIntervalPrimitiveCopyWithImpl(_$_TimeIntervalPrimitive _value,
+      $Res Function(_$_TimeIntervalPrimitive) _then)
+      : super(_value, (v) => _then(v as _$_TimeIntervalPrimitive));
 
   @override
-  _TimeIntervalPrimitive get _value => super._value as _TimeIntervalPrimitive;
+  _$_TimeIntervalPrimitive get _value =>
+      super._value as _$_TimeIntervalPrimitive;
 
   @override
   $Res call({
@@ -314,7 +276,7 @@ class __$TimeIntervalPrimitiveCopyWithImpl<$Res>
     Object? closingHour = freezed,
     Object? closingMinutes = freezed,
   }) {
-    return _then(_TimeIntervalPrimitive(
+    return _then(_$_TimeIntervalPrimitive(
       openingHour: openingHour == freezed
           ? _value.openingHour
           : openingHour // ignore: cast_nullable_to_non_nullable
@@ -363,7 +325,7 @@ class _$_TimeIntervalPrimitive extends _TimeIntervalPrimitive {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _TimeIntervalPrimitive &&
+            other is _$_TimeIntervalPrimitive &&
             const DeepCollectionEquality()
                 .equals(other.openingHour, openingHour) &&
             const DeepCollectionEquality()
@@ -384,29 +346,29 @@ class _$_TimeIntervalPrimitive extends _TimeIntervalPrimitive {
 
   @JsonKey(ignore: true)
   @override
-  _$TimeIntervalPrimitiveCopyWith<_TimeIntervalPrimitive> get copyWith =>
-      __$TimeIntervalPrimitiveCopyWithImpl<_TimeIntervalPrimitive>(
+  _$$_TimeIntervalPrimitiveCopyWith<_$_TimeIntervalPrimitive> get copyWith =>
+      __$$_TimeIntervalPrimitiveCopyWithImpl<_$_TimeIntervalPrimitive>(
           this, _$identity);
 }
 
 abstract class _TimeIntervalPrimitive extends TimeIntervalPrimitive {
   const factory _TimeIntervalPrimitive(
-      {required int openingHour,
-      required int openingMinutes,
-      required int closingHour,
-      required int closingMinutes}) = _$_TimeIntervalPrimitive;
+      {required final int openingHour,
+      required final int openingMinutes,
+      required final int closingHour,
+      required final int closingMinutes}) = _$_TimeIntervalPrimitive;
   const _TimeIntervalPrimitive._() : super._();
 
   @override
-  int get openingHour;
+  int get openingHour => throw _privateConstructorUsedError;
   @override
-  int get openingMinutes;
+  int get openingMinutes => throw _privateConstructorUsedError;
   @override
-  int get closingHour;
+  int get closingHour => throw _privateConstructorUsedError;
   @override
-  int get closingMinutes;
+  int get closingMinutes => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$TimeIntervalPrimitiveCopyWith<_TimeIntervalPrimitive> get copyWith =>
+  _$$_TimeIntervalPrimitiveCopyWith<_$_TimeIntervalPrimitive> get copyWith =>
       throw _privateConstructorUsedError;
 }

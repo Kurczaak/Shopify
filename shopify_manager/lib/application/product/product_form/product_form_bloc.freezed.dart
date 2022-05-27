@@ -12,29 +12,7 @@ part of 'product_form_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$ProductFormStateTearOff {
-  const _$ProductFormStateTearOff();
-
-  _ProductFormState call(
-      {required ProductForm productForm,
-      required bool isLoading,
-      required bool showErrors,
-      required Option<Either<ProductFailure, Unit>>
-          saveFailureOrSuccessOption}) {
-    return _ProductFormState(
-      productForm: productForm,
-      isLoading: isLoading,
-      showErrors: showErrors,
-      saveFailureOrSuccessOption: saveFailureOrSuccessOption,
-    );
-  }
-}
-
-/// @nodoc
-const $ProductFormState = _$ProductFormStateTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$ProductFormState {
@@ -108,11 +86,11 @@ class _$ProductFormStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$ProductFormStateCopyWith<$Res>
+abstract class _$$_ProductFormStateCopyWith<$Res>
     implements $ProductFormStateCopyWith<$Res> {
-  factory _$ProductFormStateCopyWith(
-          _ProductFormState value, $Res Function(_ProductFormState) then) =
-      __$ProductFormStateCopyWithImpl<$Res>;
+  factory _$$_ProductFormStateCopyWith(
+          _$_ProductFormState value, $Res Function(_$_ProductFormState) then) =
+      __$$_ProductFormStateCopyWithImpl<$Res>;
   @override
   $Res call(
       {ProductForm productForm,
@@ -125,15 +103,15 @@ abstract class _$ProductFormStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$ProductFormStateCopyWithImpl<$Res>
+class __$$_ProductFormStateCopyWithImpl<$Res>
     extends _$ProductFormStateCopyWithImpl<$Res>
-    implements _$ProductFormStateCopyWith<$Res> {
-  __$ProductFormStateCopyWithImpl(
-      _ProductFormState _value, $Res Function(_ProductFormState) _then)
-      : super(_value, (v) => _then(v as _ProductFormState));
+    implements _$$_ProductFormStateCopyWith<$Res> {
+  __$$_ProductFormStateCopyWithImpl(
+      _$_ProductFormState _value, $Res Function(_$_ProductFormState) _then)
+      : super(_value, (v) => _then(v as _$_ProductFormState));
 
   @override
-  _ProductFormState get _value => super._value as _ProductFormState;
+  _$_ProductFormState get _value => super._value as _$_ProductFormState;
 
   @override
   $Res call({
@@ -142,7 +120,7 @@ class __$ProductFormStateCopyWithImpl<$Res>
     Object? showErrors = freezed,
     Object? saveFailureOrSuccessOption = freezed,
   }) {
-    return _then(_ProductFormState(
+    return _then(_$_ProductFormState(
       productForm: productForm == freezed
           ? _value.productForm
           : productForm // ignore: cast_nullable_to_non_nullable
@@ -190,7 +168,7 @@ class _$_ProductFormState implements _ProductFormState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _ProductFormState &&
+            other is _$_ProductFormState &&
             const DeepCollectionEquality()
                 .equals(other.productForm, productForm) &&
             const DeepCollectionEquality().equals(other.isLoading, isLoading) &&
@@ -210,28 +188,29 @@ class _$_ProductFormState implements _ProductFormState {
 
   @JsonKey(ignore: true)
   @override
-  _$ProductFormStateCopyWith<_ProductFormState> get copyWith =>
-      __$ProductFormStateCopyWithImpl<_ProductFormState>(this, _$identity);
+  _$$_ProductFormStateCopyWith<_$_ProductFormState> get copyWith =>
+      __$$_ProductFormStateCopyWithImpl<_$_ProductFormState>(this, _$identity);
 }
 
 abstract class _ProductFormState implements ProductFormState {
   const factory _ProductFormState(
-      {required ProductForm productForm,
-      required bool isLoading,
-      required bool showErrors,
-      required Option<Either<ProductFailure, Unit>>
+      {required final ProductForm productForm,
+      required final bool isLoading,
+      required final bool showErrors,
+      required final Option<Either<ProductFailure, Unit>>
           saveFailureOrSuccessOption}) = _$_ProductFormState;
 
   @override
-  ProductForm get productForm;
+  ProductForm get productForm => throw _privateConstructorUsedError;
   @override
-  bool get isLoading;
+  bool get isLoading => throw _privateConstructorUsedError;
   @override
-  bool get showErrors;
+  bool get showErrors => throw _privateConstructorUsedError;
   @override
-  Option<Either<ProductFailure, Unit>> get saveFailureOrSuccessOption;
+  Option<Either<ProductFailure, Unit>> get saveFailureOrSuccessOption =>
+      throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$ProductFormStateCopyWith<_ProductFormState> get copyWith =>
+  _$$_ProductFormStateCopyWith<_$_ProductFormState> get copyWith =>
       throw _privateConstructorUsedError;
 }

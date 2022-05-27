@@ -12,30 +12,7 @@ part of 'barcode_camera_scanner_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$BarcodeCameraScannerStateTearOff {
-  const _$BarcodeCameraScannerStateTearOff();
-
-  _BarcodeCameraScannerState call(
-      {required bool flashlightOn,
-      required bool paused,
-      required bool rearCamera,
-      required Option<ValueFailure> failureOption,
-      required Option<Barcode> barcodeOption}) {
-    return _BarcodeCameraScannerState(
-      flashlightOn: flashlightOn,
-      paused: paused,
-      rearCamera: rearCamera,
-      failureOption: failureOption,
-      barcodeOption: barcodeOption,
-    );
-  }
-}
-
-/// @nodoc
-const $BarcodeCameraScannerState = _$BarcodeCameraScannerStateTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$BarcodeCameraScannerState {
@@ -106,11 +83,12 @@ class _$BarcodeCameraScannerStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$BarcodeCameraScannerStateCopyWith<$Res>
+abstract class _$$_BarcodeCameraScannerStateCopyWith<$Res>
     implements $BarcodeCameraScannerStateCopyWith<$Res> {
-  factory _$BarcodeCameraScannerStateCopyWith(_BarcodeCameraScannerState value,
-          $Res Function(_BarcodeCameraScannerState) then) =
-      __$BarcodeCameraScannerStateCopyWithImpl<$Res>;
+  factory _$$_BarcodeCameraScannerStateCopyWith(
+          _$_BarcodeCameraScannerState value,
+          $Res Function(_$_BarcodeCameraScannerState) then) =
+      __$$_BarcodeCameraScannerStateCopyWithImpl<$Res>;
   @override
   $Res call(
       {bool flashlightOn,
@@ -121,16 +99,17 @@ abstract class _$BarcodeCameraScannerStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$BarcodeCameraScannerStateCopyWithImpl<$Res>
+class __$$_BarcodeCameraScannerStateCopyWithImpl<$Res>
     extends _$BarcodeCameraScannerStateCopyWithImpl<$Res>
-    implements _$BarcodeCameraScannerStateCopyWith<$Res> {
-  __$BarcodeCameraScannerStateCopyWithImpl(_BarcodeCameraScannerState _value,
-      $Res Function(_BarcodeCameraScannerState) _then)
-      : super(_value, (v) => _then(v as _BarcodeCameraScannerState));
+    implements _$$_BarcodeCameraScannerStateCopyWith<$Res> {
+  __$$_BarcodeCameraScannerStateCopyWithImpl(
+      _$_BarcodeCameraScannerState _value,
+      $Res Function(_$_BarcodeCameraScannerState) _then)
+      : super(_value, (v) => _then(v as _$_BarcodeCameraScannerState));
 
   @override
-  _BarcodeCameraScannerState get _value =>
-      super._value as _BarcodeCameraScannerState;
+  _$_BarcodeCameraScannerState get _value =>
+      super._value as _$_BarcodeCameraScannerState;
 
   @override
   $Res call({
@@ -140,7 +119,7 @@ class __$BarcodeCameraScannerStateCopyWithImpl<$Res>
     Object? failureOption = freezed,
     Object? barcodeOption = freezed,
   }) {
-    return _then(_BarcodeCameraScannerState(
+    return _then(_$_BarcodeCameraScannerState(
       flashlightOn: flashlightOn == freezed
           ? _value.flashlightOn
           : flashlightOn // ignore: cast_nullable_to_non_nullable
@@ -195,7 +174,7 @@ class _$_BarcodeCameraScannerState implements _BarcodeCameraScannerState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _BarcodeCameraScannerState &&
+            other is _$_BarcodeCameraScannerState &&
             const DeepCollectionEquality()
                 .equals(other.flashlightOn, flashlightOn) &&
             const DeepCollectionEquality().equals(other.paused, paused) &&
@@ -218,32 +197,32 @@ class _$_BarcodeCameraScannerState implements _BarcodeCameraScannerState {
 
   @JsonKey(ignore: true)
   @override
-  _$BarcodeCameraScannerStateCopyWith<_BarcodeCameraScannerState>
-      get copyWith =>
-          __$BarcodeCameraScannerStateCopyWithImpl<_BarcodeCameraScannerState>(
-              this, _$identity);
+  _$$_BarcodeCameraScannerStateCopyWith<_$_BarcodeCameraScannerState>
+      get copyWith => __$$_BarcodeCameraScannerStateCopyWithImpl<
+          _$_BarcodeCameraScannerState>(this, _$identity);
 }
 
 abstract class _BarcodeCameraScannerState implements BarcodeCameraScannerState {
   const factory _BarcodeCameraScannerState(
-      {required bool flashlightOn,
-      required bool paused,
-      required bool rearCamera,
-      required Option<ValueFailure> failureOption,
-      required Option<Barcode> barcodeOption}) = _$_BarcodeCameraScannerState;
+          {required final bool flashlightOn,
+          required final bool paused,
+          required final bool rearCamera,
+          required final Option<ValueFailure> failureOption,
+          required final Option<Barcode> barcodeOption}) =
+      _$_BarcodeCameraScannerState;
 
   @override
-  bool get flashlightOn;
+  bool get flashlightOn => throw _privateConstructorUsedError;
   @override
-  bool get paused;
+  bool get paused => throw _privateConstructorUsedError;
   @override
-  bool get rearCamera;
+  bool get rearCamera => throw _privateConstructorUsedError;
   @override
-  Option<ValueFailure> get failureOption;
+  Option<ValueFailure> get failureOption => throw _privateConstructorUsedError;
   @override
-  Option<Barcode> get barcodeOption;
+  Option<Barcode> get barcodeOption => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$BarcodeCameraScannerStateCopyWith<_BarcodeCameraScannerState>
+  _$$_BarcodeCameraScannerStateCopyWith<_$_BarcodeCameraScannerState>
       get copyWith => throw _privateConstructorUsedError;
 }
