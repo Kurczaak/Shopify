@@ -8,6 +8,7 @@ import 'package:shopify_domain/auth/auth_failure.dart';
 import 'package:shopify_domain/auth/user.dart';
 import 'package:shopify_domain/auth/value_objects.dart';
 import 'package:shopify_domain/core/errors.dart';
+import 'package:shopify_domain/core/network/network_info.dart';
 import 'package:shopify_domain/core/value_objects.dart';
 import 'package:shopify_domain/src/auth/firebase_auth_facade.dart';
 
@@ -57,11 +58,7 @@ class MockGoogleSignInAccount extends Mock
           as Future<GoogleSignInAuthentication>);
 }
 
-@GenerateMocks([
-  FirebaseAuth,
-  UserCredential,
-  GoogleSignIn,
-])
+@GenerateMocks([FirebaseAuth, UserCredential, GoogleSignIn, NetworkInfo])
 void main() async {
   MockUserCredential userCredential = MockUserCredential();
   MockGoogleSignInAccount googleSignInAccount = MockGoogleSignInAccount();

@@ -7,7 +7,6 @@ import 'package:dartz/dartz.dart';
 import 'package:location/location.dart' as loc;
 import 'package:geocoding/geocoding.dart' as g;
 import 'package:shopify_domain/core.dart';
-import 'package:shopify_domain/src/core/config.dart';
 import 'location_data_mapper.dart';
 
 @LazySingleton(as: ShopifyLocationFacade)
