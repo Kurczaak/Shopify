@@ -8,15 +8,14 @@ import 'package:kt_dart/kt.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:shopify_domain/core/images/photo.dart';
+import 'package:shopify_domain/core/network/network_info.dart';
 import 'package:shopify_domain/core/value_objects.dart';
 import 'package:shopify_domain/product/product_failure.dart';
-import 'package:shopify_domain/src/core/config.dart';
-import 'package:shopify_domain/src/core/firestore_helpers.dart';
-import 'package:shopify_domain/src/core/network/network_info.dart';
+import 'package:shopify_domain/core/config.dart';
 import 'package:shopify_domain/src/product/firebase_product_repository.dart';
 import 'package:firebase_storage_mocks/firebase_storage_mocks.dart' as fake;
 import 'package:shopify_domain/src/product/product_dtos.dart';
-
+import 'package:shopify_domain/src/core/firestore_helpers.dart';
 import '../../fixtures/test_product.dart';
 import '../../utils/image_reader.dart';
 import './firebase_product_repository_test.mocks.dart';
