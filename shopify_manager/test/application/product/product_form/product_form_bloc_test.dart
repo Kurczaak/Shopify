@@ -151,7 +151,7 @@ void main() async {
     // arrange
     const priceStr = '10.0';
     const priceDouble = 10.0;
-    final price = Price.fromPrimitives(priceDouble, 'gram');
+    final price = Price.fromPrimitives(priceDouble, 'zl');
     blocTest(
       'should emit state with modified price',
       build: () => ProductFormBloc(
