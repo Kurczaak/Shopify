@@ -7,7 +7,7 @@ import 'package:shopify_domain/shop/value_objects.dart';
 part 'shop_form.freezed.dart';
 
 @freezed
-abstract class ShopForm implements _$ShopForm {
+class ShopForm implements _$ShopForm {
   const ShopForm._();
 
   const factory ShopForm({

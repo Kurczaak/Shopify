@@ -7,7 +7,7 @@ import 'package:shopify_domain/shop/value_validators.dart';
 part 'week.freezed.dart';
 
 @freezed
-abstract class Week with _$Week {
+class Week with _$Week {
   const Week._();
   const factory Week({
     required Day monday,

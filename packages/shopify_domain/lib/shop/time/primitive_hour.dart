@@ -3,7 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'primitive_hour.freezed.dart';
 
 @freezed
-abstract class PrimitiveHour with _$PrimitiveHour {
+class PrimitiveHour with _$PrimitiveHour {
   const PrimitiveHour._();
 
   const factory PrimitiveHour({

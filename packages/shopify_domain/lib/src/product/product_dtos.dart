@@ -84,7 +84,7 @@ class WeightDto with _$WeightDto {
 }
 
 @freezed
-abstract class PriceDto with _$PriceDto {
+class PriceDto with _$PriceDto {
   const PriceDto._();
 
   const factory PriceDto({required double price, required String currency}) =

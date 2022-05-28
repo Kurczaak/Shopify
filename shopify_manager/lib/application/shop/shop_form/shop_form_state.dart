@@ -1,7 +1,7 @@
 part of 'shop_form_bloc.dart';
 
 @freezed
-abstract class ShopFormState with _$ShopFormState {
+class ShopFormState with _$ShopFormState {
   const factory ShopFormState({
     required ShopForm shop,
     required bool showErrorMessages,

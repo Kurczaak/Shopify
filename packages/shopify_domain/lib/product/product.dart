@@ -11,7 +11,7 @@ import 'package:shopify_domain/product/weight.dart';
 part 'product.freezed.dart';
 
 @freezed
-abstract class Product with _$Product {
+class Product with _$Product {
   const Product._();
 
   const factory Product({

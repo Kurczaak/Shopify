@@ -1,6 +1,6 @@
 part of 'shop_actor_bloc.dart';
 
 @freezed
-abstract class ShoppingActorEvent with _$ShoppingActorEvent {
+class ShoppingActorEvent with _$ShoppingActorEvent {
   const factory ShoppingActorEvent.deleted(Shop shop) = _Deleted;
 }

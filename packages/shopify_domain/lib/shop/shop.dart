@@ -11,7 +11,7 @@ import '../core/value_objects.dart';
 part 'shop.freezed.dart';
 
 @freezed
-abstract class Shop implements _$Shop {
+class Shop implements _$Shop {
   const Shop._();
 
   const factory Shop(

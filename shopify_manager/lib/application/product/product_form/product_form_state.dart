@@ -1,7 +1,7 @@
 part of 'product_form_bloc.dart';
 
 @freezed
-abstract class ProductFormState with _$ProductFormState {
+class ProductFormState with _$ProductFormState {
   const factory ProductFormState({
     required ProductForm productForm,
     required bool isLoading,

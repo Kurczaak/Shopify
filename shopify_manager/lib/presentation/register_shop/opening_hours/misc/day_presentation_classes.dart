@@ -4,7 +4,7 @@ import 'package:shopify_domain/shop.dart';
 part 'day_presentation_classes.freezed.dart';
 
 @freezed
-abstract class DayPrimitive implements _$DayPrimitive {
+class DayPrimitive implements _$DayPrimitive {
   const DayPrimitive._();
 
   const factory DayPrimitive({
@@ -43,7 +43,7 @@ abstract class DayPrimitive implements _$DayPrimitive {
 }
 
 @freezed
-abstract class TimeIntervalPrimitive implements _$TimeIntervalPrimitive {
+class TimeIntervalPrimitive implements _$TimeIntervalPrimitive {
   const TimeIntervalPrimitive._();
 
   const factory TimeIntervalPrimitive({

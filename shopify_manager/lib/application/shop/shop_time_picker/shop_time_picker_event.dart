@@ -1,7 +1,7 @@
 part of 'shop_time_picker_bloc.dart';
 
 @freezed
-abstract class ShopTimePickerEvent with _$ShopTimePickerEvent {
+class ShopTimePickerEvent with _$ShopTimePickerEvent {
   const factory ShopTimePickerEvent.mondayChanged(DayPrimitive monday) =
       _MondayChanged;
   const factory ShopTimePickerEvent.tuesdayChanged(DayPrimitive tuesday) =

@@ -5,7 +5,7 @@ part 'time_dtos.freezed.dart';
 part 'time_dtos.g.dart';
 
 @freezed
-abstract class WeekDto with _$WeekDto {
+class WeekDto with _$WeekDto {
   const WeekDto._();
   const factory WeekDto({
     required DayDto monday,
@@ -45,7 +45,7 @@ abstract class WeekDto with _$WeekDto {
 }
 
 @freezed
-abstract class DayDto with _$DayDto {
+class DayDto with _$DayDto {
   const DayDto._();
   const factory DayDto({
     required String day,
@@ -73,7 +73,7 @@ abstract class DayDto with _$DayDto {
 }
 
 @freezed
-abstract class TimeIntervalDto with _$TimeIntervalDto {
+class TimeIntervalDto with _$TimeIntervalDto {
   const TimeIntervalDto._();
   const factory TimeIntervalDto({
     required int openingHour,

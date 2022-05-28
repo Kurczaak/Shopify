@@ -1,7 +1,7 @@
 part of 'shop_location_picker_bloc.dart';
 
 @freezed
-abstract class ShopLocationPickerState with _$ShopLocationPickerState {
+class ShopLocationPickerState with _$ShopLocationPickerState {
   const factory ShopLocationPickerState({
     required Option<Location> location,
     required bool saved,

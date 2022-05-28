@@ -7,7 +7,7 @@ import 'package:shopify_domain/product/value_objects.dart';
 part 'price.freezed.dart';
 
 @freezed
-abstract class Price with _$Price {
+class Price with _$Price {
   const Price._();
 
   factory Price.empty() =>
