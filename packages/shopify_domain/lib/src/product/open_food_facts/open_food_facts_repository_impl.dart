@@ -3,9 +3,9 @@ import 'dart:async';
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:openfoodfacts/openfoodfacts.dart' as off;
+import 'package:shopify_domain/core/network/network_info.dart';
 import 'package:shopify_domain/product.dart';
-import 'package:shopify_domain/src/core/network/network_info.dart';
-import 'package:shopify_domain/src/core/config.dart';
+import 'package:shopify_domain/core/config.dart';
 import 'package:shopify_domain/src/product/open_food_facts/open_food_facts_product_mapper.dart';
 
 @Injectable(as: OpenFoodFactsRepository)
