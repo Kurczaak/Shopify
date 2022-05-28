@@ -10,7 +10,7 @@ part 'shop_dtos.freezed.dart';
 part 'shop_dtos.g.dart';
 
 @freezed
-class ShopDto implements _$ShopDto {
+abstract class ShopDto implements _$ShopDto {
   const ShopDto._();
 
   const factory ShopDto({

@@ -8,7 +8,7 @@ const double emptyLatitude = 37.421764;
 const double emptyLongitude = -122.084614;
 
 @freezed
-class Location implements _$Location {
+abstract class Location implements _$Location {
   const Location._();
 
   const factory Location({
