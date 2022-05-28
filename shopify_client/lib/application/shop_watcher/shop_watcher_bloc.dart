@@ -38,8 +38,16 @@ class ShopWatcherBloc extends Bloc<ShopWatcherEvent, ShopWatcherState> {
           final locationOrFailure = await _locationFacade.getCurrentLocation();
 
           await locationOrFailure.fold(
-            (f) async => emit(const ShopWatcherState.error(
-                failure: ShopFailure.noShopFound())),
+            (f) async {
+              emit(ShopWatcherState.error(
+                  failure: f.map(
+                      unexpected: (_) => const ShopFailure.unexpected(),
+                      noLocationFound: (_) => const ShopFailure.noShopFound(),
+                      timeout: (_) =>
+                          const ShopFailure.timeout(timeoutDuration),
+                      permissionDenied: (_) =>
+                          const ShopFailure.locationPermissionDenied())));
+            },
             (location) async => await emit.forEach(
               _shopRepository.watchNearby(location, radius),
               onData: (Either<ShopFailure, KtList<Shop>> data) => data.fold(
