@@ -18,6 +18,7 @@ export 'core/failures.dart';
 export 'core/value_failures.dart';
 export 'core/value_objects.dart';
 export 'core/value_transformers.dart';
+export 'core/config.dart';
 
 abstract class ShopifyDomain {
   static GetIt get initialize => configureInjection('prod');
