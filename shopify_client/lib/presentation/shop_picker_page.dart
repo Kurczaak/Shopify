@@ -93,6 +93,8 @@ class _ShopPickerPageState extends State<ShopPickerPage> {
                     children: [
                       Text(
                         failure.map(
+                            locationPermissionDenied: (_) =>
+                                'Location permission denied',
                             unexpected: (_) =>
                                 'An Unexpected Failure has occured',
                             insufficientPermission: (_) =>
