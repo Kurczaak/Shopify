@@ -19,6 +19,8 @@ class SignInForm extends StatelessWidget {
             (either) => either.fold((failure) {
                   FlushbarHelper.createError(
                     message: failure.map(
+                        noInternetConnection: (_) => 'No internet connection',
+                        timeOut: (_) => 'Connection timed out',
                         cancelledByUser: (_) => 'Cancelled',
                         serverSerror: (_) => 'Server error',
                         emailAlreadyInUse: (_) => 'Email already in use',
@@ -70,6 +72,7 @@ class SignInForm extends StatelessWidget {
                                 invalidEmail: (_) => 'Invalid Email',
                                 orElse: () => null,
                               );
+                              return null;
                             },
                             orElse: () => null,
                           ),
@@ -102,6 +105,7 @@ class SignInForm extends StatelessWidget {
                                     incorrectPassword: (_) =>
                                         'Invalid Password',
                                     orElse: () => null);
+                                return null;
                               },
                               orElse: () => null),
                           (r) => null,

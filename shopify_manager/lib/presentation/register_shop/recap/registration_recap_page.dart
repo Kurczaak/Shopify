@@ -41,6 +41,8 @@ class _RegistrationRecapPageState extends State<RegistrationRecapPage> {
                         builder: (context) => ShopifyAlertDialog(
                               title: 'Error',
                               subtitle: f.map(
+                                  locationPermissionDenied: (_) =>
+                                      'Location permissions denied',
                                   noShopFound: (_) => 'No shop has been found',
                                   timeout: (_) =>
                                       'Connection timeout. Try again later or check your internet connection',
