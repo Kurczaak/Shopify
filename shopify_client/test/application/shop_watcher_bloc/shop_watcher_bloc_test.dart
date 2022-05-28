@@ -96,7 +96,7 @@ void main() {
       ),
       expect: () => const [
         ShopWatcherState.loading(),
-        ShopWatcherState.error(failure: ShopFailure.noShopFound())
+        ShopWatcherState.error(failure: ShopFailure.locationPermissionDenied())
       ],
     );
   });
