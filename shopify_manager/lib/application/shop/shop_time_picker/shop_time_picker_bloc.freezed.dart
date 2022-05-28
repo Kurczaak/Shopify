@@ -1,5 +1,6 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'shop_time_picker_bloc.dart';
@@ -11,61 +12,7 @@ part of 'shop_time_picker_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$ShopTimePickerEventTearOff {
-  const _$ShopTimePickerEventTearOff();
-
-  _MondayChanged mondayChanged(DayPrimitive monday) {
-    return _MondayChanged(
-      monday,
-    );
-  }
-
-  _TuesdayChanged tuesdayChanged(DayPrimitive tuesday) {
-    return _TuesdayChanged(
-      tuesday,
-    );
-  }
-
-  _WednesdayChanged wednesdayChanged(DayPrimitive wednesday) {
-    return _WednesdayChanged(
-      wednesday,
-    );
-  }
-
-  _ThursdayChanged thursdayChanged(DayPrimitive thursday) {
-    return _ThursdayChanged(
-      thursday,
-    );
-  }
-
-  _FridayChanged fridayChanged(DayPrimitive friday) {
-    return _FridayChanged(
-      friday,
-    );
-  }
-
-  _SaturdayChanged saturdayChanged(DayPrimitive saturday) {
-    return _SaturdayChanged(
-      saturday,
-    );
-  }
-
-  _SundayChanged sundayChanged(DayPrimitive sunday) {
-    return _SundayChanged(
-      sunday,
-    );
-  }
-
-  _Proceeded proceeded() {
-    return const _Proceeded();
-  }
-}
-
-/// @nodoc
-const $ShopTimePickerEvent = _$ShopTimePickerEventTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$ShopTimePickerEvent {
@@ -163,31 +110,31 @@ class _$ShopTimePickerEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$MondayChangedCopyWith<$Res> {
-  factory _$MondayChangedCopyWith(
-          _MondayChanged value, $Res Function(_MondayChanged) then) =
-      __$MondayChangedCopyWithImpl<$Res>;
+abstract class _$$_MondayChangedCopyWith<$Res> {
+  factory _$$_MondayChangedCopyWith(
+          _$_MondayChanged value, $Res Function(_$_MondayChanged) then) =
+      __$$_MondayChangedCopyWithImpl<$Res>;
   $Res call({DayPrimitive monday});
 
   $DayPrimitiveCopyWith<$Res> get monday;
 }
 
 /// @nodoc
-class __$MondayChangedCopyWithImpl<$Res>
+class __$$_MondayChangedCopyWithImpl<$Res>
     extends _$ShopTimePickerEventCopyWithImpl<$Res>
-    implements _$MondayChangedCopyWith<$Res> {
-  __$MondayChangedCopyWithImpl(
-      _MondayChanged _value, $Res Function(_MondayChanged) _then)
-      : super(_value, (v) => _then(v as _MondayChanged));
+    implements _$$_MondayChangedCopyWith<$Res> {
+  __$$_MondayChangedCopyWithImpl(
+      _$_MondayChanged _value, $Res Function(_$_MondayChanged) _then)
+      : super(_value, (v) => _then(v as _$_MondayChanged));
 
   @override
-  _MondayChanged get _value => super._value as _MondayChanged;
+  _$_MondayChanged get _value => super._value as _$_MondayChanged;
 
   @override
   $Res call({
     Object? monday = freezed,
   }) {
-    return _then(_MondayChanged(
+    return _then(_$_MondayChanged(
       monday == freezed
           ? _value.monday
           : monday // ignore: cast_nullable_to_non_nullable
@@ -220,7 +167,7 @@ class _$_MondayChanged implements _MondayChanged {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _MondayChanged &&
+            other is _$_MondayChanged &&
             const DeepCollectionEquality().equals(other.monday, monday));
   }
 
@@ -230,8 +177,8 @@ class _$_MondayChanged implements _MondayChanged {
 
   @JsonKey(ignore: true)
   @override
-  _$MondayChangedCopyWith<_MondayChanged> get copyWith =>
-      __$MondayChangedCopyWithImpl<_MondayChanged>(this, _$identity);
+  _$$_MondayChangedCopyWith<_$_MondayChanged> get copyWith =>
+      __$$_MondayChangedCopyWithImpl<_$_MondayChanged>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -333,40 +280,40 @@ class _$_MondayChanged implements _MondayChanged {
 }
 
 abstract class _MondayChanged implements ShopTimePickerEvent {
-  const factory _MondayChanged(DayPrimitive monday) = _$_MondayChanged;
+  const factory _MondayChanged(final DayPrimitive monday) = _$_MondayChanged;
 
-  DayPrimitive get monday;
+  DayPrimitive get monday => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  _$MondayChangedCopyWith<_MondayChanged> get copyWith =>
+  _$$_MondayChangedCopyWith<_$_MondayChanged> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$TuesdayChangedCopyWith<$Res> {
-  factory _$TuesdayChangedCopyWith(
-          _TuesdayChanged value, $Res Function(_TuesdayChanged) then) =
-      __$TuesdayChangedCopyWithImpl<$Res>;
+abstract class _$$_TuesdayChangedCopyWith<$Res> {
+  factory _$$_TuesdayChangedCopyWith(
+          _$_TuesdayChanged value, $Res Function(_$_TuesdayChanged) then) =
+      __$$_TuesdayChangedCopyWithImpl<$Res>;
   $Res call({DayPrimitive tuesday});
 
   $DayPrimitiveCopyWith<$Res> get tuesday;
 }
 
 /// @nodoc
-class __$TuesdayChangedCopyWithImpl<$Res>
+class __$$_TuesdayChangedCopyWithImpl<$Res>
     extends _$ShopTimePickerEventCopyWithImpl<$Res>
-    implements _$TuesdayChangedCopyWith<$Res> {
-  __$TuesdayChangedCopyWithImpl(
-      _TuesdayChanged _value, $Res Function(_TuesdayChanged) _then)
-      : super(_value, (v) => _then(v as _TuesdayChanged));
+    implements _$$_TuesdayChangedCopyWith<$Res> {
+  __$$_TuesdayChangedCopyWithImpl(
+      _$_TuesdayChanged _value, $Res Function(_$_TuesdayChanged) _then)
+      : super(_value, (v) => _then(v as _$_TuesdayChanged));
 
   @override
-  _TuesdayChanged get _value => super._value as _TuesdayChanged;
+  _$_TuesdayChanged get _value => super._value as _$_TuesdayChanged;
 
   @override
   $Res call({
     Object? tuesday = freezed,
   }) {
-    return _then(_TuesdayChanged(
+    return _then(_$_TuesdayChanged(
       tuesday == freezed
           ? _value.tuesday
           : tuesday // ignore: cast_nullable_to_non_nullable
@@ -399,7 +346,7 @@ class _$_TuesdayChanged implements _TuesdayChanged {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _TuesdayChanged &&
+            other is _$_TuesdayChanged &&
             const DeepCollectionEquality().equals(other.tuesday, tuesday));
   }
 
@@ -409,8 +356,8 @@ class _$_TuesdayChanged implements _TuesdayChanged {
 
   @JsonKey(ignore: true)
   @override
-  _$TuesdayChangedCopyWith<_TuesdayChanged> get copyWith =>
-      __$TuesdayChangedCopyWithImpl<_TuesdayChanged>(this, _$identity);
+  _$$_TuesdayChangedCopyWith<_$_TuesdayChanged> get copyWith =>
+      __$$_TuesdayChangedCopyWithImpl<_$_TuesdayChanged>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -512,40 +459,40 @@ class _$_TuesdayChanged implements _TuesdayChanged {
 }
 
 abstract class _TuesdayChanged implements ShopTimePickerEvent {
-  const factory _TuesdayChanged(DayPrimitive tuesday) = _$_TuesdayChanged;
+  const factory _TuesdayChanged(final DayPrimitive tuesday) = _$_TuesdayChanged;
 
-  DayPrimitive get tuesday;
+  DayPrimitive get tuesday => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  _$TuesdayChangedCopyWith<_TuesdayChanged> get copyWith =>
+  _$$_TuesdayChangedCopyWith<_$_TuesdayChanged> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$WednesdayChangedCopyWith<$Res> {
-  factory _$WednesdayChangedCopyWith(
-          _WednesdayChanged value, $Res Function(_WednesdayChanged) then) =
-      __$WednesdayChangedCopyWithImpl<$Res>;
+abstract class _$$_WednesdayChangedCopyWith<$Res> {
+  factory _$$_WednesdayChangedCopyWith(
+          _$_WednesdayChanged value, $Res Function(_$_WednesdayChanged) then) =
+      __$$_WednesdayChangedCopyWithImpl<$Res>;
   $Res call({DayPrimitive wednesday});
 
   $DayPrimitiveCopyWith<$Res> get wednesday;
 }
 
 /// @nodoc
-class __$WednesdayChangedCopyWithImpl<$Res>
+class __$$_WednesdayChangedCopyWithImpl<$Res>
     extends _$ShopTimePickerEventCopyWithImpl<$Res>
-    implements _$WednesdayChangedCopyWith<$Res> {
-  __$WednesdayChangedCopyWithImpl(
-      _WednesdayChanged _value, $Res Function(_WednesdayChanged) _then)
-      : super(_value, (v) => _then(v as _WednesdayChanged));
+    implements _$$_WednesdayChangedCopyWith<$Res> {
+  __$$_WednesdayChangedCopyWithImpl(
+      _$_WednesdayChanged _value, $Res Function(_$_WednesdayChanged) _then)
+      : super(_value, (v) => _then(v as _$_WednesdayChanged));
 
   @override
-  _WednesdayChanged get _value => super._value as _WednesdayChanged;
+  _$_WednesdayChanged get _value => super._value as _$_WednesdayChanged;
 
   @override
   $Res call({
     Object? wednesday = freezed,
   }) {
-    return _then(_WednesdayChanged(
+    return _then(_$_WednesdayChanged(
       wednesday == freezed
           ? _value.wednesday
           : wednesday // ignore: cast_nullable_to_non_nullable
@@ -578,7 +525,7 @@ class _$_WednesdayChanged implements _WednesdayChanged {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _WednesdayChanged &&
+            other is _$_WednesdayChanged &&
             const DeepCollectionEquality().equals(other.wednesday, wednesday));
   }
 
@@ -588,8 +535,8 @@ class _$_WednesdayChanged implements _WednesdayChanged {
 
   @JsonKey(ignore: true)
   @override
-  _$WednesdayChangedCopyWith<_WednesdayChanged> get copyWith =>
-      __$WednesdayChangedCopyWithImpl<_WednesdayChanged>(this, _$identity);
+  _$$_WednesdayChangedCopyWith<_$_WednesdayChanged> get copyWith =>
+      __$$_WednesdayChangedCopyWithImpl<_$_WednesdayChanged>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -691,40 +638,41 @@ class _$_WednesdayChanged implements _WednesdayChanged {
 }
 
 abstract class _WednesdayChanged implements ShopTimePickerEvent {
-  const factory _WednesdayChanged(DayPrimitive wednesday) = _$_WednesdayChanged;
+  const factory _WednesdayChanged(final DayPrimitive wednesday) =
+      _$_WednesdayChanged;
 
-  DayPrimitive get wednesday;
+  DayPrimitive get wednesday => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  _$WednesdayChangedCopyWith<_WednesdayChanged> get copyWith =>
+  _$$_WednesdayChangedCopyWith<_$_WednesdayChanged> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$ThursdayChangedCopyWith<$Res> {
-  factory _$ThursdayChangedCopyWith(
-          _ThursdayChanged value, $Res Function(_ThursdayChanged) then) =
-      __$ThursdayChangedCopyWithImpl<$Res>;
+abstract class _$$_ThursdayChangedCopyWith<$Res> {
+  factory _$$_ThursdayChangedCopyWith(
+          _$_ThursdayChanged value, $Res Function(_$_ThursdayChanged) then) =
+      __$$_ThursdayChangedCopyWithImpl<$Res>;
   $Res call({DayPrimitive thursday});
 
   $DayPrimitiveCopyWith<$Res> get thursday;
 }
 
 /// @nodoc
-class __$ThursdayChangedCopyWithImpl<$Res>
+class __$$_ThursdayChangedCopyWithImpl<$Res>
     extends _$ShopTimePickerEventCopyWithImpl<$Res>
-    implements _$ThursdayChangedCopyWith<$Res> {
-  __$ThursdayChangedCopyWithImpl(
-      _ThursdayChanged _value, $Res Function(_ThursdayChanged) _then)
-      : super(_value, (v) => _then(v as _ThursdayChanged));
+    implements _$$_ThursdayChangedCopyWith<$Res> {
+  __$$_ThursdayChangedCopyWithImpl(
+      _$_ThursdayChanged _value, $Res Function(_$_ThursdayChanged) _then)
+      : super(_value, (v) => _then(v as _$_ThursdayChanged));
 
   @override
-  _ThursdayChanged get _value => super._value as _ThursdayChanged;
+  _$_ThursdayChanged get _value => super._value as _$_ThursdayChanged;
 
   @override
   $Res call({
     Object? thursday = freezed,
   }) {
-    return _then(_ThursdayChanged(
+    return _then(_$_ThursdayChanged(
       thursday == freezed
           ? _value.thursday
           : thursday // ignore: cast_nullable_to_non_nullable
@@ -757,7 +705,7 @@ class _$_ThursdayChanged implements _ThursdayChanged {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _ThursdayChanged &&
+            other is _$_ThursdayChanged &&
             const DeepCollectionEquality().equals(other.thursday, thursday));
   }
 
@@ -767,8 +715,8 @@ class _$_ThursdayChanged implements _ThursdayChanged {
 
   @JsonKey(ignore: true)
   @override
-  _$ThursdayChangedCopyWith<_ThursdayChanged> get copyWith =>
-      __$ThursdayChangedCopyWithImpl<_ThursdayChanged>(this, _$identity);
+  _$$_ThursdayChangedCopyWith<_$_ThursdayChanged> get copyWith =>
+      __$$_ThursdayChangedCopyWithImpl<_$_ThursdayChanged>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -870,40 +818,41 @@ class _$_ThursdayChanged implements _ThursdayChanged {
 }
 
 abstract class _ThursdayChanged implements ShopTimePickerEvent {
-  const factory _ThursdayChanged(DayPrimitive thursday) = _$_ThursdayChanged;
+  const factory _ThursdayChanged(final DayPrimitive thursday) =
+      _$_ThursdayChanged;
 
-  DayPrimitive get thursday;
+  DayPrimitive get thursday => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  _$ThursdayChangedCopyWith<_ThursdayChanged> get copyWith =>
+  _$$_ThursdayChangedCopyWith<_$_ThursdayChanged> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$FridayChangedCopyWith<$Res> {
-  factory _$FridayChangedCopyWith(
-          _FridayChanged value, $Res Function(_FridayChanged) then) =
-      __$FridayChangedCopyWithImpl<$Res>;
+abstract class _$$_FridayChangedCopyWith<$Res> {
+  factory _$$_FridayChangedCopyWith(
+          _$_FridayChanged value, $Res Function(_$_FridayChanged) then) =
+      __$$_FridayChangedCopyWithImpl<$Res>;
   $Res call({DayPrimitive friday});
 
   $DayPrimitiveCopyWith<$Res> get friday;
 }
 
 /// @nodoc
-class __$FridayChangedCopyWithImpl<$Res>
+class __$$_FridayChangedCopyWithImpl<$Res>
     extends _$ShopTimePickerEventCopyWithImpl<$Res>
-    implements _$FridayChangedCopyWith<$Res> {
-  __$FridayChangedCopyWithImpl(
-      _FridayChanged _value, $Res Function(_FridayChanged) _then)
-      : super(_value, (v) => _then(v as _FridayChanged));
+    implements _$$_FridayChangedCopyWith<$Res> {
+  __$$_FridayChangedCopyWithImpl(
+      _$_FridayChanged _value, $Res Function(_$_FridayChanged) _then)
+      : super(_value, (v) => _then(v as _$_FridayChanged));
 
   @override
-  _FridayChanged get _value => super._value as _FridayChanged;
+  _$_FridayChanged get _value => super._value as _$_FridayChanged;
 
   @override
   $Res call({
     Object? friday = freezed,
   }) {
-    return _then(_FridayChanged(
+    return _then(_$_FridayChanged(
       friday == freezed
           ? _value.friday
           : friday // ignore: cast_nullable_to_non_nullable
@@ -936,7 +885,7 @@ class _$_FridayChanged implements _FridayChanged {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _FridayChanged &&
+            other is _$_FridayChanged &&
             const DeepCollectionEquality().equals(other.friday, friday));
   }
 
@@ -946,8 +895,8 @@ class _$_FridayChanged implements _FridayChanged {
 
   @JsonKey(ignore: true)
   @override
-  _$FridayChangedCopyWith<_FridayChanged> get copyWith =>
-      __$FridayChangedCopyWithImpl<_FridayChanged>(this, _$identity);
+  _$$_FridayChangedCopyWith<_$_FridayChanged> get copyWith =>
+      __$$_FridayChangedCopyWithImpl<_$_FridayChanged>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1049,40 +998,40 @@ class _$_FridayChanged implements _FridayChanged {
 }
 
 abstract class _FridayChanged implements ShopTimePickerEvent {
-  const factory _FridayChanged(DayPrimitive friday) = _$_FridayChanged;
+  const factory _FridayChanged(final DayPrimitive friday) = _$_FridayChanged;
 
-  DayPrimitive get friday;
+  DayPrimitive get friday => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  _$FridayChangedCopyWith<_FridayChanged> get copyWith =>
+  _$$_FridayChangedCopyWith<_$_FridayChanged> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$SaturdayChangedCopyWith<$Res> {
-  factory _$SaturdayChangedCopyWith(
-          _SaturdayChanged value, $Res Function(_SaturdayChanged) then) =
-      __$SaturdayChangedCopyWithImpl<$Res>;
+abstract class _$$_SaturdayChangedCopyWith<$Res> {
+  factory _$$_SaturdayChangedCopyWith(
+          _$_SaturdayChanged value, $Res Function(_$_SaturdayChanged) then) =
+      __$$_SaturdayChangedCopyWithImpl<$Res>;
   $Res call({DayPrimitive saturday});
 
   $DayPrimitiveCopyWith<$Res> get saturday;
 }
 
 /// @nodoc
-class __$SaturdayChangedCopyWithImpl<$Res>
+class __$$_SaturdayChangedCopyWithImpl<$Res>
     extends _$ShopTimePickerEventCopyWithImpl<$Res>
-    implements _$SaturdayChangedCopyWith<$Res> {
-  __$SaturdayChangedCopyWithImpl(
-      _SaturdayChanged _value, $Res Function(_SaturdayChanged) _then)
-      : super(_value, (v) => _then(v as _SaturdayChanged));
+    implements _$$_SaturdayChangedCopyWith<$Res> {
+  __$$_SaturdayChangedCopyWithImpl(
+      _$_SaturdayChanged _value, $Res Function(_$_SaturdayChanged) _then)
+      : super(_value, (v) => _then(v as _$_SaturdayChanged));
 
   @override
-  _SaturdayChanged get _value => super._value as _SaturdayChanged;
+  _$_SaturdayChanged get _value => super._value as _$_SaturdayChanged;
 
   @override
   $Res call({
     Object? saturday = freezed,
   }) {
-    return _then(_SaturdayChanged(
+    return _then(_$_SaturdayChanged(
       saturday == freezed
           ? _value.saturday
           : saturday // ignore: cast_nullable_to_non_nullable
@@ -1115,7 +1064,7 @@ class _$_SaturdayChanged implements _SaturdayChanged {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _SaturdayChanged &&
+            other is _$_SaturdayChanged &&
             const DeepCollectionEquality().equals(other.saturday, saturday));
   }
 
@@ -1125,8 +1074,8 @@ class _$_SaturdayChanged implements _SaturdayChanged {
 
   @JsonKey(ignore: true)
   @override
-  _$SaturdayChangedCopyWith<_SaturdayChanged> get copyWith =>
-      __$SaturdayChangedCopyWithImpl<_SaturdayChanged>(this, _$identity);
+  _$$_SaturdayChangedCopyWith<_$_SaturdayChanged> get copyWith =>
+      __$$_SaturdayChangedCopyWithImpl<_$_SaturdayChanged>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1228,40 +1177,41 @@ class _$_SaturdayChanged implements _SaturdayChanged {
 }
 
 abstract class _SaturdayChanged implements ShopTimePickerEvent {
-  const factory _SaturdayChanged(DayPrimitive saturday) = _$_SaturdayChanged;
+  const factory _SaturdayChanged(final DayPrimitive saturday) =
+      _$_SaturdayChanged;
 
-  DayPrimitive get saturday;
+  DayPrimitive get saturday => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  _$SaturdayChangedCopyWith<_SaturdayChanged> get copyWith =>
+  _$$_SaturdayChangedCopyWith<_$_SaturdayChanged> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$SundayChangedCopyWith<$Res> {
-  factory _$SundayChangedCopyWith(
-          _SundayChanged value, $Res Function(_SundayChanged) then) =
-      __$SundayChangedCopyWithImpl<$Res>;
+abstract class _$$_SundayChangedCopyWith<$Res> {
+  factory _$$_SundayChangedCopyWith(
+          _$_SundayChanged value, $Res Function(_$_SundayChanged) then) =
+      __$$_SundayChangedCopyWithImpl<$Res>;
   $Res call({DayPrimitive sunday});
 
   $DayPrimitiveCopyWith<$Res> get sunday;
 }
 
 /// @nodoc
-class __$SundayChangedCopyWithImpl<$Res>
+class __$$_SundayChangedCopyWithImpl<$Res>
     extends _$ShopTimePickerEventCopyWithImpl<$Res>
-    implements _$SundayChangedCopyWith<$Res> {
-  __$SundayChangedCopyWithImpl(
-      _SundayChanged _value, $Res Function(_SundayChanged) _then)
-      : super(_value, (v) => _then(v as _SundayChanged));
+    implements _$$_SundayChangedCopyWith<$Res> {
+  __$$_SundayChangedCopyWithImpl(
+      _$_SundayChanged _value, $Res Function(_$_SundayChanged) _then)
+      : super(_value, (v) => _then(v as _$_SundayChanged));
 
   @override
-  _SundayChanged get _value => super._value as _SundayChanged;
+  _$_SundayChanged get _value => super._value as _$_SundayChanged;
 
   @override
   $Res call({
     Object? sunday = freezed,
   }) {
-    return _then(_SundayChanged(
+    return _then(_$_SundayChanged(
       sunday == freezed
           ? _value.sunday
           : sunday // ignore: cast_nullable_to_non_nullable
@@ -1294,7 +1244,7 @@ class _$_SundayChanged implements _SundayChanged {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _SundayChanged &&
+            other is _$_SundayChanged &&
             const DeepCollectionEquality().equals(other.sunday, sunday));
   }
 
@@ -1304,8 +1254,8 @@ class _$_SundayChanged implements _SundayChanged {
 
   @JsonKey(ignore: true)
   @override
-  _$SundayChangedCopyWith<_SundayChanged> get copyWith =>
-      __$SundayChangedCopyWithImpl<_SundayChanged>(this, _$identity);
+  _$$_SundayChangedCopyWith<_$_SundayChanged> get copyWith =>
+      __$$_SundayChangedCopyWithImpl<_$_SundayChanged>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1407,30 +1357,31 @@ class _$_SundayChanged implements _SundayChanged {
 }
 
 abstract class _SundayChanged implements ShopTimePickerEvent {
-  const factory _SundayChanged(DayPrimitive sunday) = _$_SundayChanged;
+  const factory _SundayChanged(final DayPrimitive sunday) = _$_SundayChanged;
 
-  DayPrimitive get sunday;
+  DayPrimitive get sunday => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  _$SundayChangedCopyWith<_SundayChanged> get copyWith =>
+  _$$_SundayChangedCopyWith<_$_SundayChanged> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$ProceededCopyWith<$Res> {
-  factory _$ProceededCopyWith(
-          _Proceeded value, $Res Function(_Proceeded) then) =
-      __$ProceededCopyWithImpl<$Res>;
+abstract class _$$_ProceededCopyWith<$Res> {
+  factory _$$_ProceededCopyWith(
+          _$_Proceeded value, $Res Function(_$_Proceeded) then) =
+      __$$_ProceededCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$ProceededCopyWithImpl<$Res>
+class __$$_ProceededCopyWithImpl<$Res>
     extends _$ShopTimePickerEventCopyWithImpl<$Res>
-    implements _$ProceededCopyWith<$Res> {
-  __$ProceededCopyWithImpl(_Proceeded _value, $Res Function(_Proceeded) _then)
-      : super(_value, (v) => _then(v as _Proceeded));
+    implements _$$_ProceededCopyWith<$Res> {
+  __$$_ProceededCopyWithImpl(
+      _$_Proceeded _value, $Res Function(_$_Proceeded) _then)
+      : super(_value, (v) => _then(v as _$_Proceeded));
 
   @override
-  _Proceeded get _value => super._value as _Proceeded;
+  _$_Proceeded get _value => super._value as _$_Proceeded;
 }
 
 /// @nodoc
@@ -1446,7 +1397,7 @@ class _$_Proceeded implements _Proceeded {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _Proceeded);
+        (other.runtimeType == runtimeType && other is _$_Proceeded);
   }
 
   @override
@@ -1556,23 +1507,6 @@ abstract class _Proceeded implements ShopTimePickerEvent {
 }
 
 /// @nodoc
-class _$ShopTimePickerStateTearOff {
-  const _$ShopTimePickerStateTearOff();
-
-  _ShopTimePickerState call(
-      {required Week week, required bool showErrors, required bool saved}) {
-    return _ShopTimePickerState(
-      week: week,
-      showErrors: showErrors,
-      saved: saved,
-    );
-  }
-}
-
-/// @nodoc
-const $ShopTimePickerState = _$ShopTimePickerStateTearOff();
-
-/// @nodoc
 mixin _$ShopTimePickerState {
   Week get week => throw _privateConstructorUsedError;
   bool get showErrors => throw _privateConstructorUsedError;
@@ -1633,11 +1567,11 @@ class _$ShopTimePickerStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$ShopTimePickerStateCopyWith<$Res>
+abstract class _$$_ShopTimePickerStateCopyWith<$Res>
     implements $ShopTimePickerStateCopyWith<$Res> {
-  factory _$ShopTimePickerStateCopyWith(_ShopTimePickerState value,
-          $Res Function(_ShopTimePickerState) then) =
-      __$ShopTimePickerStateCopyWithImpl<$Res>;
+  factory _$$_ShopTimePickerStateCopyWith(_$_ShopTimePickerState value,
+          $Res Function(_$_ShopTimePickerState) then) =
+      __$$_ShopTimePickerStateCopyWithImpl<$Res>;
   @override
   $Res call({Week week, bool showErrors, bool saved});
 
@@ -1646,15 +1580,15 @@ abstract class _$ShopTimePickerStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$ShopTimePickerStateCopyWithImpl<$Res>
+class __$$_ShopTimePickerStateCopyWithImpl<$Res>
     extends _$ShopTimePickerStateCopyWithImpl<$Res>
-    implements _$ShopTimePickerStateCopyWith<$Res> {
-  __$ShopTimePickerStateCopyWithImpl(
-      _ShopTimePickerState _value, $Res Function(_ShopTimePickerState) _then)
-      : super(_value, (v) => _then(v as _ShopTimePickerState));
+    implements _$$_ShopTimePickerStateCopyWith<$Res> {
+  __$$_ShopTimePickerStateCopyWithImpl(_$_ShopTimePickerState _value,
+      $Res Function(_$_ShopTimePickerState) _then)
+      : super(_value, (v) => _then(v as _$_ShopTimePickerState));
 
   @override
-  _ShopTimePickerState get _value => super._value as _ShopTimePickerState;
+  _$_ShopTimePickerState get _value => super._value as _$_ShopTimePickerState;
 
   @override
   $Res call({
@@ -1662,7 +1596,7 @@ class __$ShopTimePickerStateCopyWithImpl<$Res>
     Object? showErrors = freezed,
     Object? saved = freezed,
   }) {
-    return _then(_ShopTimePickerState(
+    return _then(_$_ShopTimePickerState(
       week: week == freezed
           ? _value.week
           : week // ignore: cast_nullable_to_non_nullable
@@ -1701,7 +1635,7 @@ class _$_ShopTimePickerState implements _ShopTimePickerState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _ShopTimePickerState &&
+            other is _$_ShopTimePickerState &&
             const DeepCollectionEquality().equals(other.week, week) &&
             const DeepCollectionEquality()
                 .equals(other.showErrors, showErrors) &&
@@ -1717,25 +1651,25 @@ class _$_ShopTimePickerState implements _ShopTimePickerState {
 
   @JsonKey(ignore: true)
   @override
-  _$ShopTimePickerStateCopyWith<_ShopTimePickerState> get copyWith =>
-      __$ShopTimePickerStateCopyWithImpl<_ShopTimePickerState>(
+  _$$_ShopTimePickerStateCopyWith<_$_ShopTimePickerState> get copyWith =>
+      __$$_ShopTimePickerStateCopyWithImpl<_$_ShopTimePickerState>(
           this, _$identity);
 }
 
 abstract class _ShopTimePickerState implements ShopTimePickerState {
   const factory _ShopTimePickerState(
-      {required Week week,
-      required bool showErrors,
-      required bool saved}) = _$_ShopTimePickerState;
+      {required final Week week,
+      required final bool showErrors,
+      required final bool saved}) = _$_ShopTimePickerState;
 
   @override
-  Week get week;
+  Week get week => throw _privateConstructorUsedError;
   @override
-  bool get showErrors;
+  bool get showErrors => throw _privateConstructorUsedError;
   @override
-  bool get saved;
+  bool get saved => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$ShopTimePickerStateCopyWith<_ShopTimePickerState> get copyWith =>
+  _$$_ShopTimePickerStateCopyWith<_$_ShopTimePickerState> get copyWith =>
       throw _privateConstructorUsedError;
 }

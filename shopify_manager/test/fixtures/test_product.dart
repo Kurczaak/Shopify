@@ -1,9 +1,6 @@
 import 'package:dartz/dartz.dart';
-import 'package:shopify_manager/domain/core/value_objects.dart';
-import 'package:shopify_manager/domain/product/price.dart';
-import 'package:shopify_manager/domain/product/product.dart';
-import 'package:shopify_manager/domain/product/product_form.dart';
-import 'package:shopify_manager/domain/product/weight.dart';
+import 'package:shopify_domain/core.dart';
+import 'package:shopify_domain/product.dart';
 
 import '../utils/image_reader.dart';
 

@@ -14,7 +14,7 @@ import 'package:firebase_storage/firebase_storage.dart' as _i5;
 import 'package:firebase_storage_platform_interface/firebase_storage_platform_interface.dart'
     as _i6;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:shopify_domain/src/core/network/network_info.dart' as _i9;
+import 'package:shopify_domain/core/network/network_info.dart' as _i9;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values

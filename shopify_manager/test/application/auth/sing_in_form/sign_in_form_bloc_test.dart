@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:shopify_domain/auth.dart';
 import 'package:shopify_manager/application/auth/sign_in_form/sign_in_form_bloc.dart';
-import 'package:shopify_manager/domain/auth/auth_failure.dart';
 import 'package:shopify_manager/domain/auth/i_auth_facade.dart';
-import 'package:shopify_manager/domain/auth/value_objects.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'sign_in_form_bloc_test.mocks.dart';

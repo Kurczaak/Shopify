@@ -12,6 +12,7 @@ import 'package:google_sign_in/google_sign_in.dart' as _i6;
 import 'package:google_sign_in_platform_interface/google_sign_in_platform_interface.dart'
     as _i7;
 import 'package:mockito/mockito.dart' as _i1;
+import 'package:shopify_domain/core/network/network_info.dart' as _i8;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -316,5 +317,19 @@ class MockGoogleSignIn extends _i1.Mock implements _i6.GoogleSignIn {
   @override
   _i5.Future<bool> requestScopes(List<String>? scopes) =>
       (super.noSuchMethod(Invocation.method(#requestScopes, [scopes]),
+          returnValue: Future<bool>.value(false)) as _i5.Future<bool>);
+}
+
+/// A class which mocks [NetworkInfo].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockNetworkInfo extends _i1.Mock implements _i8.NetworkInfo {
+  MockNetworkInfo() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i5.Future<bool> get isConnected =>
+      (super.noSuchMethod(Invocation.getter(#isConnected),
           returnValue: Future<bool>.value(false)) as _i5.Future<bool>);
 }

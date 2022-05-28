@@ -5,8 +5,8 @@ on:
       - main
 
 jobs:
-  flutter_test:
-    name: Run flutter test and analyze
+  flutter_test_domain:
+    name: Run flutter tests and analyze shopify_domain package
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -17,19 +17,6 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           channel: "stable"
-      - run: flutter pub get
-        working-directory: ./shopify_client
-      - run: flutter analyze --no-fatal-infos --no-fatal-warnings
-        working-directory: ./shopify_client
-      - run: flutter test
-        working-directory: ./shopify_client
-      
-      - run: flutter pub get
-        working-directory: ./packages/shopify_presentation
-      - run: flutter analyze --no-fatal-infos --no-fatal-warnings
-        working-directory: ./packages/shopify_presentation
-      - run: flutter test
-        working-directory: ./packages/shopify_presentation
 
       - run: flutter pub get
         working-directory: ./packages/shopify_domain
@@ -38,3 +25,62 @@ jobs:
       - run: flutter test
         working-directory: ./packages/shopify_domain
 
+  flutter_test_presentation:
+    name: Run flutter tests and analyze shopify_presentation package
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-java@v2
+        with:
+          distribution: 'zulu'
+          java-version: '11'
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: "stable"      
+
+      - run: flutter pub get
+        working-directory: ./packages/shopify_presentation
+      - run: flutter analyze --no-fatal-infos --no-fatal-warnings
+        working-directory: ./packages/shopify_presentation
+      - run: flutter test
+        working-directory: ./packages/shopify_presentation
+
+  flutter_test_client:
+    name: Run flutter tests and analyze shopify_client app
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-java@v2
+        with:
+          distribution: 'zulu'
+          java-version: '11'
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: "stable"
+
+      - run: flutter pub get
+        working-directory: ./shopify_client
+      - run: flutter analyze --no-fatal-infos --no-fatal-warnings
+        working-directory: ./shopify_client
+      - run: flutter test
+        working-directory: ./shopify_client
+
+  flutter_test_manager:
+    name: Run flutter tests and analyze shopify_manager app
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-java@v2
+        with:
+          distribution: 'zulu'
+          java-version: '11'
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: "stable"
+
+      - run: flutter pub get
+        working-directory: ./shopify_manager
+      - run: flutter analyze --no-fatal-infos --no-fatal-warnings
+        working-directory: ./shopify_manager
+      - run: flutter test
+        working-directory: ./shopify_manager

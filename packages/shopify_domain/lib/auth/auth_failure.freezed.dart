@@ -1,5 +1,6 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'auth_failure.dart';
@@ -11,37 +12,15 @@ part of 'auth_failure.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$AuthFailureTearOff {
-  const _$AuthFailureTearOff();
-
-  CancelledByUser cancelledByUser() {
-    return const CancelledByUser();
-  }
-
-  ServerError serverSerror() {
-    return const ServerError();
-  }
-
-  EmailAlreadyInUse emailAlreadyInUse() {
-    return const EmailAlreadyInUse();
-  }
-
-  InvalidEmailAndPasswordCombination invalidEmailAndPasswordCombination() {
-    return const InvalidEmailAndPasswordCombination();
-  }
-}
-
-/// @nodoc
-const $AuthFailure = _$AuthFailureTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$AuthFailure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() cancelledByUser,
+    required TResult Function() noInternetConnection,
+    required TResult Function(Duration timeout) timeOut,
     required TResult Function() serverSerror,
     required TResult Function() emailAlreadyInUse,
     required TResult Function() invalidEmailAndPasswordCombination,
@@ -50,6 +29,8 @@ mixin _$AuthFailure {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? cancelledByUser,
+    TResult Function()? noInternetConnection,
+    TResult Function(Duration timeout)? timeOut,
     TResult Function()? serverSerror,
     TResult Function()? emailAlreadyInUse,
     TResult Function()? invalidEmailAndPasswordCombination,
@@ -58,6 +39,8 @@ mixin _$AuthFailure {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? cancelledByUser,
+    TResult Function()? noInternetConnection,
+    TResult Function(Duration timeout)? timeOut,
     TResult Function()? serverSerror,
     TResult Function()? emailAlreadyInUse,
     TResult Function()? invalidEmailAndPasswordCombination,
@@ -67,6 +50,8 @@ mixin _$AuthFailure {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(CancelledByUser value) cancelledByUser,
+    required TResult Function(NoInternetConnection value) noInternetConnection,
+    required TResult Function(TimeOut value) timeOut,
     required TResult Function(ServerError value) serverSerror,
     required TResult Function(EmailAlreadyInUse value) emailAlreadyInUse,
     required TResult Function(InvalidEmailAndPasswordCombination value)
@@ -76,6 +61,8 @@ mixin _$AuthFailure {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(CancelledByUser value)? cancelledByUser,
+    TResult Function(NoInternetConnection value)? noInternetConnection,
+    TResult Function(TimeOut value)? timeOut,
     TResult Function(ServerError value)? serverSerror,
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
     TResult Function(InvalidEmailAndPasswordCombination value)?
@@ -85,6 +72,8 @@ mixin _$AuthFailure {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(CancelledByUser value)? cancelledByUser,
+    TResult Function(NoInternetConnection value)? noInternetConnection,
+    TResult Function(TimeOut value)? timeOut,
     TResult Function(ServerError value)? serverSerror,
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
     TResult Function(InvalidEmailAndPasswordCombination value)?
@@ -111,22 +100,22 @@ class _$AuthFailureCopyWithImpl<$Res> implements $AuthFailureCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class $CancelledByUserCopyWith<$Res> {
-  factory $CancelledByUserCopyWith(
-          CancelledByUser value, $Res Function(CancelledByUser) then) =
-      _$CancelledByUserCopyWithImpl<$Res>;
+abstract class _$$CancelledByUserCopyWith<$Res> {
+  factory _$$CancelledByUserCopyWith(
+          _$CancelledByUser value, $Res Function(_$CancelledByUser) then) =
+      __$$CancelledByUserCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$CancelledByUserCopyWithImpl<$Res>
+class __$$CancelledByUserCopyWithImpl<$Res>
     extends _$AuthFailureCopyWithImpl<$Res>
-    implements $CancelledByUserCopyWith<$Res> {
-  _$CancelledByUserCopyWithImpl(
-      CancelledByUser _value, $Res Function(CancelledByUser) _then)
-      : super(_value, (v) => _then(v as CancelledByUser));
+    implements _$$CancelledByUserCopyWith<$Res> {
+  __$$CancelledByUserCopyWithImpl(
+      _$CancelledByUser _value, $Res Function(_$CancelledByUser) _then)
+      : super(_value, (v) => _then(v as _$CancelledByUser));
 
   @override
-  CancelledByUser get _value => super._value as CancelledByUser;
+  _$CancelledByUser get _value => super._value as _$CancelledByUser;
 }
 
 /// @nodoc
@@ -142,7 +131,7 @@ class _$CancelledByUser implements CancelledByUser {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is CancelledByUser);
+        (other.runtimeType == runtimeType && other is _$CancelledByUser);
   }
 
   @override
@@ -152,6 +141,8 @@ class _$CancelledByUser implements CancelledByUser {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() cancelledByUser,
+    required TResult Function() noInternetConnection,
+    required TResult Function(Duration timeout) timeOut,
     required TResult Function() serverSerror,
     required TResult Function() emailAlreadyInUse,
     required TResult Function() invalidEmailAndPasswordCombination,
@@ -163,6 +154,8 @@ class _$CancelledByUser implements CancelledByUser {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? cancelledByUser,
+    TResult Function()? noInternetConnection,
+    TResult Function(Duration timeout)? timeOut,
     TResult Function()? serverSerror,
     TResult Function()? emailAlreadyInUse,
     TResult Function()? invalidEmailAndPasswordCombination,
@@ -174,6 +167,8 @@ class _$CancelledByUser implements CancelledByUser {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? cancelledByUser,
+    TResult Function()? noInternetConnection,
+    TResult Function(Duration timeout)? timeOut,
     TResult Function()? serverSerror,
     TResult Function()? emailAlreadyInUse,
     TResult Function()? invalidEmailAndPasswordCombination,
@@ -189,6 +184,8 @@ class _$CancelledByUser implements CancelledByUser {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(CancelledByUser value) cancelledByUser,
+    required TResult Function(NoInternetConnection value) noInternetConnection,
+    required TResult Function(TimeOut value) timeOut,
     required TResult Function(ServerError value) serverSerror,
     required TResult Function(EmailAlreadyInUse value) emailAlreadyInUse,
     required TResult Function(InvalidEmailAndPasswordCombination value)
@@ -201,6 +198,8 @@ class _$CancelledByUser implements CancelledByUser {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(CancelledByUser value)? cancelledByUser,
+    TResult Function(NoInternetConnection value)? noInternetConnection,
+    TResult Function(TimeOut value)? timeOut,
     TResult Function(ServerError value)? serverSerror,
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
     TResult Function(InvalidEmailAndPasswordCombination value)?
@@ -213,6 +212,8 @@ class _$CancelledByUser implements CancelledByUser {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(CancelledByUser value)? cancelledByUser,
+    TResult Function(NoInternetConnection value)? noInternetConnection,
+    TResult Function(TimeOut value)? timeOut,
     TResult Function(ServerError value)? serverSerror,
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
     TResult Function(InvalidEmailAndPasswordCombination value)?
@@ -231,21 +232,311 @@ abstract class CancelledByUser implements AuthFailure {
 }
 
 /// @nodoc
-abstract class $ServerErrorCopyWith<$Res> {
-  factory $ServerErrorCopyWith(
-          ServerError value, $Res Function(ServerError) then) =
-      _$ServerErrorCopyWithImpl<$Res>;
+abstract class _$$NoInternetConnectionCopyWith<$Res> {
+  factory _$$NoInternetConnectionCopyWith(_$NoInternetConnection value,
+          $Res Function(_$NoInternetConnection) then) =
+      __$$NoInternetConnectionCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$ServerErrorCopyWithImpl<$Res> extends _$AuthFailureCopyWithImpl<$Res>
-    implements $ServerErrorCopyWith<$Res> {
-  _$ServerErrorCopyWithImpl(
-      ServerError _value, $Res Function(ServerError) _then)
-      : super(_value, (v) => _then(v as ServerError));
+class __$$NoInternetConnectionCopyWithImpl<$Res>
+    extends _$AuthFailureCopyWithImpl<$Res>
+    implements _$$NoInternetConnectionCopyWith<$Res> {
+  __$$NoInternetConnectionCopyWithImpl(_$NoInternetConnection _value,
+      $Res Function(_$NoInternetConnection) _then)
+      : super(_value, (v) => _then(v as _$NoInternetConnection));
 
   @override
-  ServerError get _value => super._value as ServerError;
+  _$NoInternetConnection get _value => super._value as _$NoInternetConnection;
+}
+
+/// @nodoc
+
+class _$NoInternetConnection implements NoInternetConnection {
+  const _$NoInternetConnection();
+
+  @override
+  String toString() {
+    return 'AuthFailure.noInternetConnection()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$NoInternetConnection);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() cancelledByUser,
+    required TResult Function() noInternetConnection,
+    required TResult Function(Duration timeout) timeOut,
+    required TResult Function() serverSerror,
+    required TResult Function() emailAlreadyInUse,
+    required TResult Function() invalidEmailAndPasswordCombination,
+  }) {
+    return noInternetConnection();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? cancelledByUser,
+    TResult Function()? noInternetConnection,
+    TResult Function(Duration timeout)? timeOut,
+    TResult Function()? serverSerror,
+    TResult Function()? emailAlreadyInUse,
+    TResult Function()? invalidEmailAndPasswordCombination,
+  }) {
+    return noInternetConnection?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? cancelledByUser,
+    TResult Function()? noInternetConnection,
+    TResult Function(Duration timeout)? timeOut,
+    TResult Function()? serverSerror,
+    TResult Function()? emailAlreadyInUse,
+    TResult Function()? invalidEmailAndPasswordCombination,
+    required TResult orElse(),
+  }) {
+    if (noInternetConnection != null) {
+      return noInternetConnection();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(CancelledByUser value) cancelledByUser,
+    required TResult Function(NoInternetConnection value) noInternetConnection,
+    required TResult Function(TimeOut value) timeOut,
+    required TResult Function(ServerError value) serverSerror,
+    required TResult Function(EmailAlreadyInUse value) emailAlreadyInUse,
+    required TResult Function(InvalidEmailAndPasswordCombination value)
+        invalidEmailAndPasswordCombination,
+  }) {
+    return noInternetConnection(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(CancelledByUser value)? cancelledByUser,
+    TResult Function(NoInternetConnection value)? noInternetConnection,
+    TResult Function(TimeOut value)? timeOut,
+    TResult Function(ServerError value)? serverSerror,
+    TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
+    TResult Function(InvalidEmailAndPasswordCombination value)?
+        invalidEmailAndPasswordCombination,
+  }) {
+    return noInternetConnection?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(CancelledByUser value)? cancelledByUser,
+    TResult Function(NoInternetConnection value)? noInternetConnection,
+    TResult Function(TimeOut value)? timeOut,
+    TResult Function(ServerError value)? serverSerror,
+    TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
+    TResult Function(InvalidEmailAndPasswordCombination value)?
+        invalidEmailAndPasswordCombination,
+    required TResult orElse(),
+  }) {
+    if (noInternetConnection != null) {
+      return noInternetConnection(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class NoInternetConnection implements AuthFailure {
+  const factory NoInternetConnection() = _$NoInternetConnection;
+}
+
+/// @nodoc
+abstract class _$$TimeOutCopyWith<$Res> {
+  factory _$$TimeOutCopyWith(_$TimeOut value, $Res Function(_$TimeOut) then) =
+      __$$TimeOutCopyWithImpl<$Res>;
+  $Res call({Duration timeout});
+}
+
+/// @nodoc
+class __$$TimeOutCopyWithImpl<$Res> extends _$AuthFailureCopyWithImpl<$Res>
+    implements _$$TimeOutCopyWith<$Res> {
+  __$$TimeOutCopyWithImpl(_$TimeOut _value, $Res Function(_$TimeOut) _then)
+      : super(_value, (v) => _then(v as _$TimeOut));
+
+  @override
+  _$TimeOut get _value => super._value as _$TimeOut;
+
+  @override
+  $Res call({
+    Object? timeout = freezed,
+  }) {
+    return _then(_$TimeOut(
+      timeout == freezed
+          ? _value.timeout
+          : timeout // ignore: cast_nullable_to_non_nullable
+              as Duration,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$TimeOut implements TimeOut {
+  const _$TimeOut(this.timeout);
+
+  @override
+  final Duration timeout;
+
+  @override
+  String toString() {
+    return 'AuthFailure.timeOut(timeout: $timeout)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$TimeOut &&
+            const DeepCollectionEquality().equals(other.timeout, timeout));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(timeout));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$TimeOutCopyWith<_$TimeOut> get copyWith =>
+      __$$TimeOutCopyWithImpl<_$TimeOut>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() cancelledByUser,
+    required TResult Function() noInternetConnection,
+    required TResult Function(Duration timeout) timeOut,
+    required TResult Function() serverSerror,
+    required TResult Function() emailAlreadyInUse,
+    required TResult Function() invalidEmailAndPasswordCombination,
+  }) {
+    return timeOut(timeout);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? cancelledByUser,
+    TResult Function()? noInternetConnection,
+    TResult Function(Duration timeout)? timeOut,
+    TResult Function()? serverSerror,
+    TResult Function()? emailAlreadyInUse,
+    TResult Function()? invalidEmailAndPasswordCombination,
+  }) {
+    return timeOut?.call(timeout);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? cancelledByUser,
+    TResult Function()? noInternetConnection,
+    TResult Function(Duration timeout)? timeOut,
+    TResult Function()? serverSerror,
+    TResult Function()? emailAlreadyInUse,
+    TResult Function()? invalidEmailAndPasswordCombination,
+    required TResult orElse(),
+  }) {
+    if (timeOut != null) {
+      return timeOut(timeout);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(CancelledByUser value) cancelledByUser,
+    required TResult Function(NoInternetConnection value) noInternetConnection,
+    required TResult Function(TimeOut value) timeOut,
+    required TResult Function(ServerError value) serverSerror,
+    required TResult Function(EmailAlreadyInUse value) emailAlreadyInUse,
+    required TResult Function(InvalidEmailAndPasswordCombination value)
+        invalidEmailAndPasswordCombination,
+  }) {
+    return timeOut(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(CancelledByUser value)? cancelledByUser,
+    TResult Function(NoInternetConnection value)? noInternetConnection,
+    TResult Function(TimeOut value)? timeOut,
+    TResult Function(ServerError value)? serverSerror,
+    TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
+    TResult Function(InvalidEmailAndPasswordCombination value)?
+        invalidEmailAndPasswordCombination,
+  }) {
+    return timeOut?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(CancelledByUser value)? cancelledByUser,
+    TResult Function(NoInternetConnection value)? noInternetConnection,
+    TResult Function(TimeOut value)? timeOut,
+    TResult Function(ServerError value)? serverSerror,
+    TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
+    TResult Function(InvalidEmailAndPasswordCombination value)?
+        invalidEmailAndPasswordCombination,
+    required TResult orElse(),
+  }) {
+    if (timeOut != null) {
+      return timeOut(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class TimeOut implements AuthFailure {
+  const factory TimeOut(final Duration timeout) = _$TimeOut;
+
+  Duration get timeout => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$$TimeOutCopyWith<_$TimeOut> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ServerErrorCopyWith<$Res> {
+  factory _$$ServerErrorCopyWith(
+          _$ServerError value, $Res Function(_$ServerError) then) =
+      __$$ServerErrorCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ServerErrorCopyWithImpl<$Res> extends _$AuthFailureCopyWithImpl<$Res>
+    implements _$$ServerErrorCopyWith<$Res> {
+  __$$ServerErrorCopyWithImpl(
+      _$ServerError _value, $Res Function(_$ServerError) _then)
+      : super(_value, (v) => _then(v as _$ServerError));
+
+  @override
+  _$ServerError get _value => super._value as _$ServerError;
 }
 
 /// @nodoc
@@ -261,7 +552,7 @@ class _$ServerError implements ServerError {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is ServerError);
+        (other.runtimeType == runtimeType && other is _$ServerError);
   }
 
   @override
@@ -271,6 +562,8 @@ class _$ServerError implements ServerError {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() cancelledByUser,
+    required TResult Function() noInternetConnection,
+    required TResult Function(Duration timeout) timeOut,
     required TResult Function() serverSerror,
     required TResult Function() emailAlreadyInUse,
     required TResult Function() invalidEmailAndPasswordCombination,
@@ -282,6 +575,8 @@ class _$ServerError implements ServerError {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? cancelledByUser,
+    TResult Function()? noInternetConnection,
+    TResult Function(Duration timeout)? timeOut,
     TResult Function()? serverSerror,
     TResult Function()? emailAlreadyInUse,
     TResult Function()? invalidEmailAndPasswordCombination,
@@ -293,6 +588,8 @@ class _$ServerError implements ServerError {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? cancelledByUser,
+    TResult Function()? noInternetConnection,
+    TResult Function(Duration timeout)? timeOut,
     TResult Function()? serverSerror,
     TResult Function()? emailAlreadyInUse,
     TResult Function()? invalidEmailAndPasswordCombination,
@@ -308,6 +605,8 @@ class _$ServerError implements ServerError {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(CancelledByUser value) cancelledByUser,
+    required TResult Function(NoInternetConnection value) noInternetConnection,
+    required TResult Function(TimeOut value) timeOut,
     required TResult Function(ServerError value) serverSerror,
     required TResult Function(EmailAlreadyInUse value) emailAlreadyInUse,
     required TResult Function(InvalidEmailAndPasswordCombination value)
@@ -320,6 +619,8 @@ class _$ServerError implements ServerError {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(CancelledByUser value)? cancelledByUser,
+    TResult Function(NoInternetConnection value)? noInternetConnection,
+    TResult Function(TimeOut value)? timeOut,
     TResult Function(ServerError value)? serverSerror,
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
     TResult Function(InvalidEmailAndPasswordCombination value)?
@@ -332,6 +633,8 @@ class _$ServerError implements ServerError {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(CancelledByUser value)? cancelledByUser,
+    TResult Function(NoInternetConnection value)? noInternetConnection,
+    TResult Function(TimeOut value)? timeOut,
     TResult Function(ServerError value)? serverSerror,
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
     TResult Function(InvalidEmailAndPasswordCombination value)?
@@ -350,22 +653,22 @@ abstract class ServerError implements AuthFailure {
 }
 
 /// @nodoc
-abstract class $EmailAlreadyInUseCopyWith<$Res> {
-  factory $EmailAlreadyInUseCopyWith(
-          EmailAlreadyInUse value, $Res Function(EmailAlreadyInUse) then) =
-      _$EmailAlreadyInUseCopyWithImpl<$Res>;
+abstract class _$$EmailAlreadyInUseCopyWith<$Res> {
+  factory _$$EmailAlreadyInUseCopyWith(
+          _$EmailAlreadyInUse value, $Res Function(_$EmailAlreadyInUse) then) =
+      __$$EmailAlreadyInUseCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$EmailAlreadyInUseCopyWithImpl<$Res>
+class __$$EmailAlreadyInUseCopyWithImpl<$Res>
     extends _$AuthFailureCopyWithImpl<$Res>
-    implements $EmailAlreadyInUseCopyWith<$Res> {
-  _$EmailAlreadyInUseCopyWithImpl(
-      EmailAlreadyInUse _value, $Res Function(EmailAlreadyInUse) _then)
-      : super(_value, (v) => _then(v as EmailAlreadyInUse));
+    implements _$$EmailAlreadyInUseCopyWith<$Res> {
+  __$$EmailAlreadyInUseCopyWithImpl(
+      _$EmailAlreadyInUse _value, $Res Function(_$EmailAlreadyInUse) _then)
+      : super(_value, (v) => _then(v as _$EmailAlreadyInUse));
 
   @override
-  EmailAlreadyInUse get _value => super._value as EmailAlreadyInUse;
+  _$EmailAlreadyInUse get _value => super._value as _$EmailAlreadyInUse;
 }
 
 /// @nodoc
@@ -381,7 +684,7 @@ class _$EmailAlreadyInUse implements EmailAlreadyInUse {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is EmailAlreadyInUse);
+        (other.runtimeType == runtimeType && other is _$EmailAlreadyInUse);
   }
 
   @override
@@ -391,6 +694,8 @@ class _$EmailAlreadyInUse implements EmailAlreadyInUse {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() cancelledByUser,
+    required TResult Function() noInternetConnection,
+    required TResult Function(Duration timeout) timeOut,
     required TResult Function() serverSerror,
     required TResult Function() emailAlreadyInUse,
     required TResult Function() invalidEmailAndPasswordCombination,
@@ -402,6 +707,8 @@ class _$EmailAlreadyInUse implements EmailAlreadyInUse {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? cancelledByUser,
+    TResult Function()? noInternetConnection,
+    TResult Function(Duration timeout)? timeOut,
     TResult Function()? serverSerror,
     TResult Function()? emailAlreadyInUse,
     TResult Function()? invalidEmailAndPasswordCombination,
@@ -413,6 +720,8 @@ class _$EmailAlreadyInUse implements EmailAlreadyInUse {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? cancelledByUser,
+    TResult Function()? noInternetConnection,
+    TResult Function(Duration timeout)? timeOut,
     TResult Function()? serverSerror,
     TResult Function()? emailAlreadyInUse,
     TResult Function()? invalidEmailAndPasswordCombination,
@@ -428,6 +737,8 @@ class _$EmailAlreadyInUse implements EmailAlreadyInUse {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(CancelledByUser value) cancelledByUser,
+    required TResult Function(NoInternetConnection value) noInternetConnection,
+    required TResult Function(TimeOut value) timeOut,
     required TResult Function(ServerError value) serverSerror,
     required TResult Function(EmailAlreadyInUse value) emailAlreadyInUse,
     required TResult Function(InvalidEmailAndPasswordCombination value)
@@ -440,6 +751,8 @@ class _$EmailAlreadyInUse implements EmailAlreadyInUse {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(CancelledByUser value)? cancelledByUser,
+    TResult Function(NoInternetConnection value)? noInternetConnection,
+    TResult Function(TimeOut value)? timeOut,
     TResult Function(ServerError value)? serverSerror,
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
     TResult Function(InvalidEmailAndPasswordCombination value)?
@@ -452,6 +765,8 @@ class _$EmailAlreadyInUse implements EmailAlreadyInUse {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(CancelledByUser value)? cancelledByUser,
+    TResult Function(NoInternetConnection value)? noInternetConnection,
+    TResult Function(TimeOut value)? timeOut,
     TResult Function(ServerError value)? serverSerror,
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
     TResult Function(InvalidEmailAndPasswordCombination value)?
@@ -470,25 +785,25 @@ abstract class EmailAlreadyInUse implements AuthFailure {
 }
 
 /// @nodoc
-abstract class $InvalidEmailAndPasswordCombinationCopyWith<$Res> {
-  factory $InvalidEmailAndPasswordCombinationCopyWith(
-          InvalidEmailAndPasswordCombination value,
-          $Res Function(InvalidEmailAndPasswordCombination) then) =
-      _$InvalidEmailAndPasswordCombinationCopyWithImpl<$Res>;
+abstract class _$$InvalidEmailAndPasswordCombinationCopyWith<$Res> {
+  factory _$$InvalidEmailAndPasswordCombinationCopyWith(
+          _$InvalidEmailAndPasswordCombination value,
+          $Res Function(_$InvalidEmailAndPasswordCombination) then) =
+      __$$InvalidEmailAndPasswordCombinationCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$InvalidEmailAndPasswordCombinationCopyWithImpl<$Res>
+class __$$InvalidEmailAndPasswordCombinationCopyWithImpl<$Res>
     extends _$AuthFailureCopyWithImpl<$Res>
-    implements $InvalidEmailAndPasswordCombinationCopyWith<$Res> {
-  _$InvalidEmailAndPasswordCombinationCopyWithImpl(
-      InvalidEmailAndPasswordCombination _value,
-      $Res Function(InvalidEmailAndPasswordCombination) _then)
-      : super(_value, (v) => _then(v as InvalidEmailAndPasswordCombination));
+    implements _$$InvalidEmailAndPasswordCombinationCopyWith<$Res> {
+  __$$InvalidEmailAndPasswordCombinationCopyWithImpl(
+      _$InvalidEmailAndPasswordCombination _value,
+      $Res Function(_$InvalidEmailAndPasswordCombination) _then)
+      : super(_value, (v) => _then(v as _$InvalidEmailAndPasswordCombination));
 
   @override
-  InvalidEmailAndPasswordCombination get _value =>
-      super._value as InvalidEmailAndPasswordCombination;
+  _$InvalidEmailAndPasswordCombination get _value =>
+      super._value as _$InvalidEmailAndPasswordCombination;
 }
 
 /// @nodoc
@@ -506,7 +821,7 @@ class _$InvalidEmailAndPasswordCombination
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is InvalidEmailAndPasswordCombination);
+            other is _$InvalidEmailAndPasswordCombination);
   }
 
   @override
@@ -516,6 +831,8 @@ class _$InvalidEmailAndPasswordCombination
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() cancelledByUser,
+    required TResult Function() noInternetConnection,
+    required TResult Function(Duration timeout) timeOut,
     required TResult Function() serverSerror,
     required TResult Function() emailAlreadyInUse,
     required TResult Function() invalidEmailAndPasswordCombination,
@@ -527,6 +844,8 @@ class _$InvalidEmailAndPasswordCombination
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? cancelledByUser,
+    TResult Function()? noInternetConnection,
+    TResult Function(Duration timeout)? timeOut,
     TResult Function()? serverSerror,
     TResult Function()? emailAlreadyInUse,
     TResult Function()? invalidEmailAndPasswordCombination,
@@ -538,6 +857,8 @@ class _$InvalidEmailAndPasswordCombination
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? cancelledByUser,
+    TResult Function()? noInternetConnection,
+    TResult Function(Duration timeout)? timeOut,
     TResult Function()? serverSerror,
     TResult Function()? emailAlreadyInUse,
     TResult Function()? invalidEmailAndPasswordCombination,
@@ -553,6 +874,8 @@ class _$InvalidEmailAndPasswordCombination
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(CancelledByUser value) cancelledByUser,
+    required TResult Function(NoInternetConnection value) noInternetConnection,
+    required TResult Function(TimeOut value) timeOut,
     required TResult Function(ServerError value) serverSerror,
     required TResult Function(EmailAlreadyInUse value) emailAlreadyInUse,
     required TResult Function(InvalidEmailAndPasswordCombination value)
@@ -565,6 +888,8 @@ class _$InvalidEmailAndPasswordCombination
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(CancelledByUser value)? cancelledByUser,
+    TResult Function(NoInternetConnection value)? noInternetConnection,
+    TResult Function(TimeOut value)? timeOut,
     TResult Function(ServerError value)? serverSerror,
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
     TResult Function(InvalidEmailAndPasswordCombination value)?
@@ -577,6 +902,8 @@ class _$InvalidEmailAndPasswordCombination
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(CancelledByUser value)? cancelledByUser,
+    TResult Function(NoInternetConnection value)? noInternetConnection,
+    TResult Function(TimeOut value)? timeOut,
     TResult Function(ServerError value)? serverSerror,
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
     TResult Function(InvalidEmailAndPasswordCombination value)?

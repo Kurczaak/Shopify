@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:bloc_test/bloc_test.dart';
+import 'package:shopify_domain/core.dart';
 import 'package:shopify_manager/application/shop/shop_location_picker/shop_location_picker_bloc.dart';
-import 'package:shopify_manager/domain/core/location.dart';
 
 void main() {
   const tLatitude = 45.0;

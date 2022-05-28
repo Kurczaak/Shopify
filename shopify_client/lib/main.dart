@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shopify_client/injection.dart';
 import 'package:shopify_domain/core.dart';
+import 'package:shopify_presentation/shopify_presentation.dart';
 import 'presentation/core/app_widget.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -21,7 +22,8 @@ void main() async {
       projectId: projectId,
     ),
   );
-  Shopify.initialize;
+  ShopifyDomain.initialize;
+  ShopifyPresentation.initialize;
   configureInjection(Environment.prod);
   runApp(AppWidget());
 }

@@ -8,11 +8,11 @@ import 'package:shopify_client/domain/core/i_location_facade.dart';
 import 'package:shopify_client/domain/shop/i_shop_repository.dart';
 import 'package:shopify_domain/core.dart';
 import 'package:shopify_domain/shop.dart';
-import 'package:super_enum_sealed_annotations/super_enum_sealed_annotations.dart';
+import 'package:sealed_annotations/sealed_annotations.dart';
 
+part 'shop_watcher_bloc.sealed.dart';
 part 'shop_watcher_event.dart';
 part 'shop_watcher_state.dart';
-part 'shop_watcher_bloc.super.dart';
 
 @injectable
 class ShopWatcherBloc extends Bloc<ShopWatcherEvent, ShopWatcherState> {
@@ -23,35 +23,37 @@ class ShopWatcherBloc extends Bloc<ShopWatcherEvent, ShopWatcherState> {
       : super(const ShopWatcherState.initial()) {
     on<ShopWatcherEvent>((event, emit) async {
       await event.when(
-        watchShopsByLocation: (watchShopsByLocation) async {
+        watchShopsByLocation: (radius, location) async {
           emit(const ShopWatcherState.loading());
 
           await emit.forEach(
-              _shopRepository.watchNearby(watchShopsByLocation.location,
-                  watchShopsByLocation.radius.toDouble()),
+              _shopRepository.watchNearby(location, radius.toDouble()),
               onData: (Either<ShopFailure, KtList<Shop>> data) => data.fold(
                   (f) => ShopWatcherState.error(failure: f),
                   (shopList) => ShopWatcherState.loaded(
-                      shops: shopList,
-                      center: watchShopsByLocation.location,
-                      radius: watchShopsByLocation.radius)));
+                      shops: shopList, location: location, radius: radius)));
         },
-        watchNearbyShops: (watchNearbyShops) async {
+        watchNearbyShops: (double radius) async {
           emit(const ShopWatcherState.loading());
           final locationOrFailure = await _locationFacade.getCurrentLocation();
 
           await locationOrFailure.fold(
-            (f) async => emit(const ShopWatcherState.error(
-                failure: ShopFailure.noShopFound())),
+            (f) async {
+              emit(ShopWatcherState.error(
+                  failure: f.map(
+                      unexpected: (_) => const ShopFailure.unexpected(),
+                      noLocationFound: (_) => const ShopFailure.noShopFound(),
+                      timeout: (_) =>
+                          const ShopFailure.timeout(timeoutDuration),
+                      permissionDenied: (_) =>
+                          const ShopFailure.locationPermissionDenied())));
+            },
             (location) async => await emit.forEach(
-              _shopRepository.watchNearby(
-                  location, watchNearbyShops.radius.toDouble()),
+              _shopRepository.watchNearby(location, radius),
               onData: (Either<ShopFailure, KtList<Shop>> data) => data.fold(
                   (f) => ShopWatcherState.error(failure: f),
                   (shopList) => ShopWatcherState.loaded(
-                      shops: shopList,
-                      center: location,
-                      radius: watchNearbyShops.radius)),
+                      shops: shopList, location: location, radius: radius)),
             ),
           );
         },

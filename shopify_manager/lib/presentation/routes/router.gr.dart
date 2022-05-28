@@ -10,121 +10,110 @@
 //
 // ignore_for_file: type=lint
 
-import 'package:auto_route/auto_route.dart' as _i14;
-import 'package:flutter/material.dart' as _i15;
+import 'package:auto_route/auto_route.dart' as _i13;
+import 'package:flutter/material.dart' as _i14;
+import 'package:shopify_domain/product.dart' as _i15;
 
-import '../../domain/product/product.dart' as _i17;
-import '../../domain/product/value_objects.dart' as _i16;
 import '../debug_dashboard_page.dart' as _i5;
 import '../debug_page.dart' as _i1;
-import '../product/product_searching_screen.dart' as _i7;
-import '../product/scanner/scanner_widget.dart' as _i6;
-import '../register_shop/location_picker/location_picker_page.dart' as _i10;
-import '../register_shop/logo_picker/logo_picker_page.dart' as _i12;
-import '../register_shop/opening_hours/opening_hours_page.dart' as _i11;
-import '../register_shop/recap/registration_recap_page.dart' as _i13;
-import '../register_shop/registration_wrapping_page.dart' as _i8;
-import '../register_shop/shop_form/shop_form_page.dart' as _i9;
+import '../product/product_searching_screen.dart' as _i6;
+import '../register_shop/location_picker/location_picker_page.dart' as _i9;
+import '../register_shop/logo_picker/logo_picker_page.dart' as _i11;
+import '../register_shop/opening_hours/opening_hours_page.dart' as _i10;
+import '../register_shop/recap/registration_recap_page.dart' as _i12;
+import '../register_shop/registration_wrapping_page.dart' as _i7;
+import '../register_shop/shop_form/shop_form_page.dart' as _i8;
 import '../sign_in/sign_in_page.dart' as _i3;
 import '../sign_in/sign_up_page.dart' as _i4;
 import '../splash/splash_page.dart' as _i2;
 
-class AppRouter extends _i14.RootStackRouter {
-  AppRouter([_i15.GlobalKey<_i15.NavigatorState>? navigatorKey])
+class AppRouter extends _i13.RootStackRouter {
+  AppRouter([_i14.GlobalKey<_i14.NavigatorState>? navigatorKey])
       : super(navigatorKey);
 
   @override
-  final Map<String, _i14.PageFactory> pagesMap = {
+  final Map<String, _i13.PageFactory> pagesMap = {
     DebugRoute.name: (routeData) {
       final args = routeData.argsAs<DebugRouteArgs>();
-      return _i14.MaterialPageX<dynamic>(
+      return _i13.MaterialPageX<dynamic>(
           routeData: routeData,
           child: _i1.DebugPage(
               key: args.key, barcode: args.barcode, product: args.product));
     },
     SplashRoute.name: (routeData) {
-      return _i14.MaterialPageX<dynamic>(
+      return _i13.MaterialPageX<dynamic>(
           routeData: routeData, child: const _i2.SplashPage());
     },
     SignInRoute.name: (routeData) {
-      return _i14.MaterialPageX<dynamic>(
+      return _i13.MaterialPageX<dynamic>(
           routeData: routeData, child: const _i3.SignInPage());
     },
     SignUpRoute.name: (routeData) {
-      return _i14.MaterialPageX<dynamic>(
+      return _i13.MaterialPageX<dynamic>(
           routeData: routeData, child: const _i4.SignUpPage());
     },
     DebugDashboardRoute.name: (routeData) {
-      return _i14.MaterialPageX<dynamic>(
+      return _i13.MaterialPageX<dynamic>(
           routeData: routeData, child: const _i5.DebugDashboardPage());
-    },
-    BarcodeScannerWidget.name: (routeData) {
-      final args = routeData.argsAs<BarcodeScannerWidgetArgs>();
-      return _i14.MaterialPageX<dynamic>(
-          routeData: routeData,
-          child: _i6.BarcodeScannerWidget(
-              key: args.key, onBarcodeDeteced: args.onBarcodeDeteced));
     },
     ProductSearchingScreen.name: (routeData) {
       final args = routeData.argsAs<ProductSearchingScreenArgs>();
-      return _i14.MaterialPageX<dynamic>(
+      return _i13.MaterialPageX<dynamic>(
           routeData: routeData,
-          child: _i7.ProductSearchingScreen(args.barcode, key: args.key));
+          child: _i6.ProductSearchingScreen(args.barcode, key: args.key));
     },
     RegistrationWrappingRoute.name: (routeData) {
-      return _i14.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i8.RegistrationWrappingPage());
+      return _i13.MaterialPageX<dynamic>(
+          routeData: routeData, child: const _i7.RegistrationWrappingPage());
     },
     ShopFormRoute.name: (routeData) {
-      return _i14.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i9.ShopFormPage());
+      return _i13.MaterialPageX<dynamic>(
+          routeData: routeData, child: const _i8.ShopFormPage());
     },
     LocationPickerRoute.name: (routeData) {
       final args = routeData.argsAs<LocationPickerRouteArgs>(
           orElse: () => const LocationPickerRouteArgs());
-      return _i14.MaterialPageX<dynamic>(
-          routeData: routeData, child: _i10.LocationPickerPage(key: args.key));
+      return _i13.MaterialPageX<dynamic>(
+          routeData: routeData, child: _i9.LocationPickerPage(key: args.key));
     },
     OpeningHoursRoute.name: (routeData) {
-      return _i14.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i11.OpeningHoursPage());
+      return _i13.MaterialPageX<dynamic>(
+          routeData: routeData, child: const _i10.OpeningHoursPage());
     },
     LogoPickerRoute.name: (routeData) {
-      return _i14.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i12.LogoPickerPage());
+      return _i13.MaterialPageX<dynamic>(
+          routeData: routeData, child: const _i11.LogoPickerPage());
     },
     RegistrationRecapRoute.name: (routeData) {
-      return _i14.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i13.RegistrationRecapPage());
+      return _i13.MaterialPageX<dynamic>(
+          routeData: routeData, child: const _i12.RegistrationRecapPage());
     }
   };
 
   @override
-  List<_i14.RouteConfig> get routes => [
-        _i14.RouteConfig(DebugRoute.name, path: '/debug-page'),
-        _i14.RouteConfig(SplashRoute.name, path: '/splash-page'),
-        _i14.RouteConfig(SignInRoute.name, path: '/sign-in-page'),
-        _i14.RouteConfig(SignUpRoute.name, path: '/sign-up-page'),
-        _i14.RouteConfig(DebugDashboardRoute.name, path: '/'),
-        _i14.RouteConfig(BarcodeScannerWidget.name,
-            path: '/barcode-scanner-widget'),
-        _i14.RouteConfig(ProductSearchingScreen.name,
+  List<_i13.RouteConfig> get routes => [
+        _i13.RouteConfig(DebugRoute.name, path: '/debug-page'),
+        _i13.RouteConfig(SplashRoute.name, path: '/splash-page'),
+        _i13.RouteConfig(SignInRoute.name, path: '/sign-in-page'),
+        _i13.RouteConfig(SignUpRoute.name, path: '/sign-up-page'),
+        _i13.RouteConfig(DebugDashboardRoute.name, path: '/'),
+        _i13.RouteConfig(ProductSearchingScreen.name,
             path: '/product-searching-screen'),
-        _i14.RouteConfig(RegistrationWrappingRoute.name,
+        _i13.RouteConfig(RegistrationWrappingRoute.name,
             path: '/registration-wrapping-page',
             children: [
-              _i14.RouteConfig(ShopFormRoute.name,
+              _i13.RouteConfig(ShopFormRoute.name,
                   path: '', parent: RegistrationWrappingRoute.name),
-              _i14.RouteConfig(LocationPickerRoute.name,
+              _i13.RouteConfig(LocationPickerRoute.name,
                   path: 'location-picker-page',
                   parent: RegistrationWrappingRoute.name),
-              _i14.RouteConfig(OpeningHoursRoute.name,
+              _i13.RouteConfig(OpeningHoursRoute.name,
                   path: 'opening-hours-page',
                   parent: RegistrationWrappingRoute.name),
-              _i14.RouteConfig(LogoPickerRoute.name,
+              _i13.RouteConfig(LogoPickerRoute.name,
                   path: 'logo-picker-page',
                   parent: RegistrationWrappingRoute.name),
-              _i14.RouteConfig(RegistrationRecapRoute.name,
+              _i13.RouteConfig(RegistrationRecapRoute.name,
                   path: 'registration-recap-page',
                   parent: RegistrationWrappingRoute.name)
             ])
@@ -133,9 +122,9 @@ class AppRouter extends _i14.RootStackRouter {
 
 /// generated route for
 /// [_i1.DebugPage]
-class DebugRoute extends _i14.PageRouteInfo<DebugRouteArgs> {
+class DebugRoute extends _i13.PageRouteInfo<DebugRouteArgs> {
   DebugRoute(
-      {_i15.Key? key, required _i16.Barcode barcode, _i17.Product? product})
+      {_i14.Key? key, required _i15.Barcode barcode, _i15.Product? product})
       : super(DebugRoute.name,
             path: '/debug-page',
             args: DebugRouteArgs(key: key, barcode: barcode, product: product));
@@ -146,11 +135,11 @@ class DebugRoute extends _i14.PageRouteInfo<DebugRouteArgs> {
 class DebugRouteArgs {
   const DebugRouteArgs({this.key, required this.barcode, this.product});
 
-  final _i15.Key? key;
+  final _i14.Key? key;
 
-  final _i16.Barcode barcode;
+  final _i15.Barcode barcode;
 
-  final _i17.Product? product;
+  final _i15.Product? product;
 
   @override
   String toString() {
@@ -160,7 +149,7 @@ class DebugRouteArgs {
 
 /// generated route for
 /// [_i2.SplashPage]
-class SplashRoute extends _i14.PageRouteInfo<void> {
+class SplashRoute extends _i13.PageRouteInfo<void> {
   const SplashRoute() : super(SplashRoute.name, path: '/splash-page');
 
   static const String name = 'SplashRoute';
@@ -168,7 +157,7 @@ class SplashRoute extends _i14.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i3.SignInPage]
-class SignInRoute extends _i14.PageRouteInfo<void> {
+class SignInRoute extends _i13.PageRouteInfo<void> {
   const SignInRoute() : super(SignInRoute.name, path: '/sign-in-page');
 
   static const String name = 'SignInRoute';
@@ -176,7 +165,7 @@ class SignInRoute extends _i14.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i4.SignUpPage]
-class SignUpRoute extends _i14.PageRouteInfo<void> {
+class SignUpRoute extends _i13.PageRouteInfo<void> {
   const SignUpRoute() : super(SignUpRoute.name, path: '/sign-up-page');
 
   static const String name = 'SignUpRoute';
@@ -184,44 +173,17 @@ class SignUpRoute extends _i14.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i5.DebugDashboardPage]
-class DebugDashboardRoute extends _i14.PageRouteInfo<void> {
+class DebugDashboardRoute extends _i13.PageRouteInfo<void> {
   const DebugDashboardRoute() : super(DebugDashboardRoute.name, path: '/');
 
   static const String name = 'DebugDashboardRoute';
 }
 
 /// generated route for
-/// [_i6.BarcodeScannerWidget]
-class BarcodeScannerWidget
-    extends _i14.PageRouteInfo<BarcodeScannerWidgetArgs> {
-  BarcodeScannerWidget(
-      {_i15.Key? key, required void Function(_i16.Barcode) onBarcodeDeteced})
-      : super(BarcodeScannerWidget.name,
-            path: '/barcode-scanner-widget',
-            args: BarcodeScannerWidgetArgs(
-                key: key, onBarcodeDeteced: onBarcodeDeteced));
-
-  static const String name = 'BarcodeScannerWidget';
-}
-
-class BarcodeScannerWidgetArgs {
-  const BarcodeScannerWidgetArgs({this.key, required this.onBarcodeDeteced});
-
-  final _i15.Key? key;
-
-  final void Function(_i16.Barcode) onBarcodeDeteced;
-
-  @override
-  String toString() {
-    return 'BarcodeScannerWidgetArgs{key: $key, onBarcodeDeteced: $onBarcodeDeteced}';
-  }
-}
-
-/// generated route for
-/// [_i7.ProductSearchingScreen]
+/// [_i6.ProductSearchingScreen]
 class ProductSearchingScreen
-    extends _i14.PageRouteInfo<ProductSearchingScreenArgs> {
-  ProductSearchingScreen({required _i16.Barcode barcode, _i15.Key? key})
+    extends _i13.PageRouteInfo<ProductSearchingScreenArgs> {
+  ProductSearchingScreen({required _i15.Barcode barcode, _i14.Key? key})
       : super(ProductSearchingScreen.name,
             path: '/product-searching-screen',
             args: ProductSearchingScreenArgs(barcode: barcode, key: key));
@@ -232,9 +194,9 @@ class ProductSearchingScreen
 class ProductSearchingScreenArgs {
   const ProductSearchingScreenArgs({required this.barcode, this.key});
 
-  final _i16.Barcode barcode;
+  final _i15.Barcode barcode;
 
-  final _i15.Key? key;
+  final _i14.Key? key;
 
   @override
   String toString() {
@@ -243,9 +205,9 @@ class ProductSearchingScreenArgs {
 }
 
 /// generated route for
-/// [_i8.RegistrationWrappingPage]
-class RegistrationWrappingRoute extends _i14.PageRouteInfo<void> {
-  const RegistrationWrappingRoute({List<_i14.PageRouteInfo>? children})
+/// [_i7.RegistrationWrappingPage]
+class RegistrationWrappingRoute extends _i13.PageRouteInfo<void> {
+  const RegistrationWrappingRoute({List<_i13.PageRouteInfo>? children})
       : super(RegistrationWrappingRoute.name,
             path: '/registration-wrapping-page', initialChildren: children);
 
@@ -253,17 +215,17 @@ class RegistrationWrappingRoute extends _i14.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i9.ShopFormPage]
-class ShopFormRoute extends _i14.PageRouteInfo<void> {
+/// [_i8.ShopFormPage]
+class ShopFormRoute extends _i13.PageRouteInfo<void> {
   const ShopFormRoute() : super(ShopFormRoute.name, path: '');
 
   static const String name = 'ShopFormRoute';
 }
 
 /// generated route for
-/// [_i10.LocationPickerPage]
-class LocationPickerRoute extends _i14.PageRouteInfo<LocationPickerRouteArgs> {
-  LocationPickerRoute({_i15.Key? key})
+/// [_i9.LocationPickerPage]
+class LocationPickerRoute extends _i13.PageRouteInfo<LocationPickerRouteArgs> {
+  LocationPickerRoute({_i14.Key? key})
       : super(LocationPickerRoute.name,
             path: 'location-picker-page',
             args: LocationPickerRouteArgs(key: key));
@@ -274,7 +236,7 @@ class LocationPickerRoute extends _i14.PageRouteInfo<LocationPickerRouteArgs> {
 class LocationPickerRouteArgs {
   const LocationPickerRouteArgs({this.key});
 
-  final _i15.Key? key;
+  final _i14.Key? key;
 
   @override
   String toString() {
@@ -283,8 +245,8 @@ class LocationPickerRouteArgs {
 }
 
 /// generated route for
-/// [_i11.OpeningHoursPage]
-class OpeningHoursRoute extends _i14.PageRouteInfo<void> {
+/// [_i10.OpeningHoursPage]
+class OpeningHoursRoute extends _i13.PageRouteInfo<void> {
   const OpeningHoursRoute()
       : super(OpeningHoursRoute.name, path: 'opening-hours-page');
 
@@ -292,8 +254,8 @@ class OpeningHoursRoute extends _i14.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i12.LogoPickerPage]
-class LogoPickerRoute extends _i14.PageRouteInfo<void> {
+/// [_i11.LogoPickerPage]
+class LogoPickerRoute extends _i13.PageRouteInfo<void> {
   const LogoPickerRoute()
       : super(LogoPickerRoute.name, path: 'logo-picker-page');
 
@@ -301,8 +263,8 @@ class LogoPickerRoute extends _i14.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i13.RegistrationRecapPage]
-class RegistrationRecapRoute extends _i14.PageRouteInfo<void> {
+/// [_i12.RegistrationRecapPage]
+class RegistrationRecapRoute extends _i13.PageRouteInfo<void> {
   const RegistrationRecapRoute()
       : super(RegistrationRecapRoute.name, path: 'registration-recap-page');
 

@@ -1,5 +1,6 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'week.dart';
@@ -11,34 +12,7 @@ part of 'week.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$WeekTearOff {
-  const _$WeekTearOff();
-
-  _Week call(
-      {required Day monday,
-      required Day tuesday,
-      required Day wednesday,
-      required Day thursday,
-      required Day friday,
-      required Day saturday,
-      required Day sunday}) {
-    return _Week(
-      monday: monday,
-      tuesday: tuesday,
-      wednesday: wednesday,
-      thursday: thursday,
-      friday: friday,
-      saturday: saturday,
-      sunday: sunday,
-    );
-  }
-}
-
-/// @nodoc
-const $Week = _$WeekTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$Week {
@@ -177,9 +151,9 @@ class _$WeekCopyWithImpl<$Res> implements $WeekCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$WeekCopyWith<$Res> implements $WeekCopyWith<$Res> {
-  factory _$WeekCopyWith(_Week value, $Res Function(_Week) then) =
-      __$WeekCopyWithImpl<$Res>;
+abstract class _$$_WeekCopyWith<$Res> implements $WeekCopyWith<$Res> {
+  factory _$$_WeekCopyWith(_$_Week value, $Res Function(_$_Week) then) =
+      __$$_WeekCopyWithImpl<$Res>;
   @override
   $Res call(
       {Day monday,
@@ -207,13 +181,13 @@ abstract class _$WeekCopyWith<$Res> implements $WeekCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$WeekCopyWithImpl<$Res> extends _$WeekCopyWithImpl<$Res>
-    implements _$WeekCopyWith<$Res> {
-  __$WeekCopyWithImpl(_Week _value, $Res Function(_Week) _then)
-      : super(_value, (v) => _then(v as _Week));
+class __$$_WeekCopyWithImpl<$Res> extends _$WeekCopyWithImpl<$Res>
+    implements _$$_WeekCopyWith<$Res> {
+  __$$_WeekCopyWithImpl(_$_Week _value, $Res Function(_$_Week) _then)
+      : super(_value, (v) => _then(v as _$_Week));
 
   @override
-  _Week get _value => super._value as _Week;
+  _$_Week get _value => super._value as _$_Week;
 
   @override
   $Res call({
@@ -225,7 +199,7 @@ class __$WeekCopyWithImpl<$Res> extends _$WeekCopyWithImpl<$Res>
     Object? saturday = freezed,
     Object? sunday = freezed,
   }) {
-    return _then(_Week(
+    return _then(_$_Week(
       monday: monday == freezed
           ? _value.monday
           : monday // ignore: cast_nullable_to_non_nullable
@@ -295,7 +269,7 @@ class _$_Week extends _Week {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _Week &&
+            other is _$_Week &&
             const DeepCollectionEquality().equals(other.monday, monday) &&
             const DeepCollectionEquality().equals(other.tuesday, tuesday) &&
             const DeepCollectionEquality().equals(other.wednesday, wednesday) &&
@@ -318,36 +292,36 @@ class _$_Week extends _Week {
 
   @JsonKey(ignore: true)
   @override
-  _$WeekCopyWith<_Week> get copyWith =>
-      __$WeekCopyWithImpl<_Week>(this, _$identity);
+  _$$_WeekCopyWith<_$_Week> get copyWith =>
+      __$$_WeekCopyWithImpl<_$_Week>(this, _$identity);
 }
 
 abstract class _Week extends Week {
   const factory _Week(
-      {required Day monday,
-      required Day tuesday,
-      required Day wednesday,
-      required Day thursday,
-      required Day friday,
-      required Day saturday,
-      required Day sunday}) = _$_Week;
+      {required final Day monday,
+      required final Day tuesday,
+      required final Day wednesday,
+      required final Day thursday,
+      required final Day friday,
+      required final Day saturday,
+      required final Day sunday}) = _$_Week;
   const _Week._() : super._();
 
   @override
-  Day get monday;
+  Day get monday => throw _privateConstructorUsedError;
   @override
-  Day get tuesday;
+  Day get tuesday => throw _privateConstructorUsedError;
   @override
-  Day get wednesday;
+  Day get wednesday => throw _privateConstructorUsedError;
   @override
-  Day get thursday;
+  Day get thursday => throw _privateConstructorUsedError;
   @override
-  Day get friday;
+  Day get friday => throw _privateConstructorUsedError;
   @override
-  Day get saturday;
+  Day get saturday => throw _privateConstructorUsedError;
   @override
-  Day get sunday;
+  Day get sunday => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$WeekCopyWith<_Week> get copyWith => throw _privateConstructorUsedError;
+  _$$_WeekCopyWith<_$_Week> get copyWith => throw _privateConstructorUsedError;
 }

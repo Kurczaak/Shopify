@@ -1,5 +1,6 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'shop_location_picker_bloc.dart';
@@ -11,31 +12,7 @@ part of 'shop_location_picker_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$ShopLocationPickerEventTearOff {
-  const _$ShopLocationPickerEventTearOff();
-
-  _LocationChanged locationChanged(
-      {required double latitude, required double longitude}) {
-    return _LocationChanged(
-      latitude: latitude,
-      longitude: longitude,
-    );
-  }
-
-  _LocationNotFound locationNotFound() {
-    return _LocationNotFound();
-  }
-
-  _Saved saved() {
-    return _Saved();
-  }
-}
-
-/// @nodoc
-const $ShopLocationPickerEvent = _$ShopLocationPickerEventTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$ShopLocationPickerEvent {
@@ -104,30 +81,30 @@ class _$ShopLocationPickerEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$LocationChangedCopyWith<$Res> {
-  factory _$LocationChangedCopyWith(
-          _LocationChanged value, $Res Function(_LocationChanged) then) =
-      __$LocationChangedCopyWithImpl<$Res>;
+abstract class _$$_LocationChangedCopyWith<$Res> {
+  factory _$$_LocationChangedCopyWith(
+          _$_LocationChanged value, $Res Function(_$_LocationChanged) then) =
+      __$$_LocationChangedCopyWithImpl<$Res>;
   $Res call({double latitude, double longitude});
 }
 
 /// @nodoc
-class __$LocationChangedCopyWithImpl<$Res>
+class __$$_LocationChangedCopyWithImpl<$Res>
     extends _$ShopLocationPickerEventCopyWithImpl<$Res>
-    implements _$LocationChangedCopyWith<$Res> {
-  __$LocationChangedCopyWithImpl(
-      _LocationChanged _value, $Res Function(_LocationChanged) _then)
-      : super(_value, (v) => _then(v as _LocationChanged));
+    implements _$$_LocationChangedCopyWith<$Res> {
+  __$$_LocationChangedCopyWithImpl(
+      _$_LocationChanged _value, $Res Function(_$_LocationChanged) _then)
+      : super(_value, (v) => _then(v as _$_LocationChanged));
 
   @override
-  _LocationChanged get _value => super._value as _LocationChanged;
+  _$_LocationChanged get _value => super._value as _$_LocationChanged;
 
   @override
   $Res call({
     Object? latitude = freezed,
     Object? longitude = freezed,
   }) {
-    return _then(_LocationChanged(
+    return _then(_$_LocationChanged(
       latitude: latitude == freezed
           ? _value.latitude
           : latitude // ignore: cast_nullable_to_non_nullable
@@ -159,7 +136,7 @@ class _$_LocationChanged implements _LocationChanged {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _LocationChanged &&
+            other is _$_LocationChanged &&
             const DeepCollectionEquality().equals(other.latitude, latitude) &&
             const DeepCollectionEquality().equals(other.longitude, longitude));
   }
@@ -172,8 +149,8 @@ class _$_LocationChanged implements _LocationChanged {
 
   @JsonKey(ignore: true)
   @override
-  _$LocationChangedCopyWith<_LocationChanged> get copyWith =>
-      __$LocationChangedCopyWithImpl<_LocationChanged>(this, _$identity);
+  _$$_LocationChangedCopyWith<_$_LocationChanged> get copyWith =>
+      __$$_LocationChangedCopyWithImpl<_$_LocationChanged>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -247,33 +224,33 @@ class _$_LocationChanged implements _LocationChanged {
 
 abstract class _LocationChanged implements ShopLocationPickerEvent {
   factory _LocationChanged(
-      {required double latitude,
-      required double longitude}) = _$_LocationChanged;
+      {required final double latitude,
+      required final double longitude}) = _$_LocationChanged;
 
-  double get latitude;
-  double get longitude;
+  double get latitude => throw _privateConstructorUsedError;
+  double get longitude => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  _$LocationChangedCopyWith<_LocationChanged> get copyWith =>
+  _$$_LocationChangedCopyWith<_$_LocationChanged> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$LocationNotFoundCopyWith<$Res> {
-  factory _$LocationNotFoundCopyWith(
-          _LocationNotFound value, $Res Function(_LocationNotFound) then) =
-      __$LocationNotFoundCopyWithImpl<$Res>;
+abstract class _$$_LocationNotFoundCopyWith<$Res> {
+  factory _$$_LocationNotFoundCopyWith(
+          _$_LocationNotFound value, $Res Function(_$_LocationNotFound) then) =
+      __$$_LocationNotFoundCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$LocationNotFoundCopyWithImpl<$Res>
+class __$$_LocationNotFoundCopyWithImpl<$Res>
     extends _$ShopLocationPickerEventCopyWithImpl<$Res>
-    implements _$LocationNotFoundCopyWith<$Res> {
-  __$LocationNotFoundCopyWithImpl(
-      _LocationNotFound _value, $Res Function(_LocationNotFound) _then)
-      : super(_value, (v) => _then(v as _LocationNotFound));
+    implements _$$_LocationNotFoundCopyWith<$Res> {
+  __$$_LocationNotFoundCopyWithImpl(
+      _$_LocationNotFound _value, $Res Function(_$_LocationNotFound) _then)
+      : super(_value, (v) => _then(v as _$_LocationNotFound));
 
   @override
-  _LocationNotFound get _value => super._value as _LocationNotFound;
+  _$_LocationNotFound get _value => super._value as _$_LocationNotFound;
 }
 
 /// @nodoc
@@ -289,7 +266,7 @@ class _$_LocationNotFound implements _LocationNotFound {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _LocationNotFound);
+        (other.runtimeType == runtimeType && other is _$_LocationNotFound);
   }
 
   @override
@@ -370,20 +347,20 @@ abstract class _LocationNotFound implements ShopLocationPickerEvent {
 }
 
 /// @nodoc
-abstract class _$SavedCopyWith<$Res> {
-  factory _$SavedCopyWith(_Saved value, $Res Function(_Saved) then) =
-      __$SavedCopyWithImpl<$Res>;
+abstract class _$$_SavedCopyWith<$Res> {
+  factory _$$_SavedCopyWith(_$_Saved value, $Res Function(_$_Saved) then) =
+      __$$_SavedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$SavedCopyWithImpl<$Res>
+class __$$_SavedCopyWithImpl<$Res>
     extends _$ShopLocationPickerEventCopyWithImpl<$Res>
-    implements _$SavedCopyWith<$Res> {
-  __$SavedCopyWithImpl(_Saved _value, $Res Function(_Saved) _then)
-      : super(_value, (v) => _then(v as _Saved));
+    implements _$$_SavedCopyWith<$Res> {
+  __$$_SavedCopyWithImpl(_$_Saved _value, $Res Function(_$_Saved) _then)
+      : super(_value, (v) => _then(v as _$_Saved));
 
   @override
-  _Saved get _value => super._value as _Saved;
+  _$_Saved get _value => super._value as _$_Saved;
 }
 
 /// @nodoc
@@ -399,7 +376,7 @@ class _$_Saved implements _Saved {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _Saved);
+        (other.runtimeType == runtimeType && other is _$_Saved);
   }
 
   @override
@@ -480,22 +457,6 @@ abstract class _Saved implements ShopLocationPickerEvent {
 }
 
 /// @nodoc
-class _$ShopLocationPickerStateTearOff {
-  const _$ShopLocationPickerStateTearOff();
-
-  _ShopLocationPickerState call(
-      {required Option<Location> location, required bool saved}) {
-    return _ShopLocationPickerState(
-      location: location,
-      saved: saved,
-    );
-  }
-}
-
-/// @nodoc
-const $ShopLocationPickerState = _$ShopLocationPickerStateTearOff();
-
-/// @nodoc
 mixin _$ShopLocationPickerState {
   Option<Location> get location => throw _privateConstructorUsedError;
   bool get saved => throw _privateConstructorUsedError;
@@ -541,33 +502,33 @@ class _$ShopLocationPickerStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$ShopLocationPickerStateCopyWith<$Res>
+abstract class _$$_ShopLocationPickerStateCopyWith<$Res>
     implements $ShopLocationPickerStateCopyWith<$Res> {
-  factory _$ShopLocationPickerStateCopyWith(_ShopLocationPickerState value,
-          $Res Function(_ShopLocationPickerState) then) =
-      __$ShopLocationPickerStateCopyWithImpl<$Res>;
+  factory _$$_ShopLocationPickerStateCopyWith(_$_ShopLocationPickerState value,
+          $Res Function(_$_ShopLocationPickerState) then) =
+      __$$_ShopLocationPickerStateCopyWithImpl<$Res>;
   @override
   $Res call({Option<Location> location, bool saved});
 }
 
 /// @nodoc
-class __$ShopLocationPickerStateCopyWithImpl<$Res>
+class __$$_ShopLocationPickerStateCopyWithImpl<$Res>
     extends _$ShopLocationPickerStateCopyWithImpl<$Res>
-    implements _$ShopLocationPickerStateCopyWith<$Res> {
-  __$ShopLocationPickerStateCopyWithImpl(_ShopLocationPickerState _value,
-      $Res Function(_ShopLocationPickerState) _then)
-      : super(_value, (v) => _then(v as _ShopLocationPickerState));
+    implements _$$_ShopLocationPickerStateCopyWith<$Res> {
+  __$$_ShopLocationPickerStateCopyWithImpl(_$_ShopLocationPickerState _value,
+      $Res Function(_$_ShopLocationPickerState) _then)
+      : super(_value, (v) => _then(v as _$_ShopLocationPickerState));
 
   @override
-  _ShopLocationPickerState get _value =>
-      super._value as _ShopLocationPickerState;
+  _$_ShopLocationPickerState get _value =>
+      super._value as _$_ShopLocationPickerState;
 
   @override
   $Res call({
     Object? location = freezed,
     Object? saved = freezed,
   }) {
-    return _then(_ShopLocationPickerState(
+    return _then(_$_ShopLocationPickerState(
       location: location == freezed
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
@@ -600,7 +561,7 @@ class _$_ShopLocationPickerState implements _ShopLocationPickerState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _ShopLocationPickerState &&
+            other is _$_ShopLocationPickerState &&
             const DeepCollectionEquality().equals(other.location, location) &&
             const DeepCollectionEquality().equals(other.saved, saved));
   }
@@ -613,22 +574,23 @@ class _$_ShopLocationPickerState implements _ShopLocationPickerState {
 
   @JsonKey(ignore: true)
   @override
-  _$ShopLocationPickerStateCopyWith<_ShopLocationPickerState> get copyWith =>
-      __$ShopLocationPickerStateCopyWithImpl<_ShopLocationPickerState>(
-          this, _$identity);
+  _$$_ShopLocationPickerStateCopyWith<_$_ShopLocationPickerState>
+      get copyWith =>
+          __$$_ShopLocationPickerStateCopyWithImpl<_$_ShopLocationPickerState>(
+              this, _$identity);
 }
 
 abstract class _ShopLocationPickerState implements ShopLocationPickerState {
   const factory _ShopLocationPickerState(
-      {required Option<Location> location,
-      required bool saved}) = _$_ShopLocationPickerState;
+      {required final Option<Location> location,
+      required final bool saved}) = _$_ShopLocationPickerState;
 
   @override
-  Option<Location> get location;
+  Option<Location> get location => throw _privateConstructorUsedError;
   @override
-  bool get saved;
+  bool get saved => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$ShopLocationPickerStateCopyWith<_ShopLocationPickerState> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$_ShopLocationPickerStateCopyWith<_$_ShopLocationPickerState>
+      get copyWith => throw _privateConstructorUsedError;
 }

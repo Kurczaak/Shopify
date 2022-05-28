@@ -1,5 +1,6 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'weight.dart';
@@ -11,23 +12,7 @@ part of 'weight.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$WeightTearOff {
-  const _$WeightTearOff();
-
-  _Weight call(
-      {required PositiveNumber weight, required WeightUnit weightUnit}) {
-    return _Weight(
-      weight: weight,
-      weightUnit: weightUnit,
-    );
-  }
-}
-
-/// @nodoc
-const $Weight = _$WeightTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$Weight {
@@ -72,28 +57,28 @@ class _$WeightCopyWithImpl<$Res> implements $WeightCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$WeightCopyWith<$Res> implements $WeightCopyWith<$Res> {
-  factory _$WeightCopyWith(_Weight value, $Res Function(_Weight) then) =
-      __$WeightCopyWithImpl<$Res>;
+abstract class _$$_WeightCopyWith<$Res> implements $WeightCopyWith<$Res> {
+  factory _$$_WeightCopyWith(_$_Weight value, $Res Function(_$_Weight) then) =
+      __$$_WeightCopyWithImpl<$Res>;
   @override
   $Res call({PositiveNumber weight, WeightUnit weightUnit});
 }
 
 /// @nodoc
-class __$WeightCopyWithImpl<$Res> extends _$WeightCopyWithImpl<$Res>
-    implements _$WeightCopyWith<$Res> {
-  __$WeightCopyWithImpl(_Weight _value, $Res Function(_Weight) _then)
-      : super(_value, (v) => _then(v as _Weight));
+class __$$_WeightCopyWithImpl<$Res> extends _$WeightCopyWithImpl<$Res>
+    implements _$$_WeightCopyWith<$Res> {
+  __$$_WeightCopyWithImpl(_$_Weight _value, $Res Function(_$_Weight) _then)
+      : super(_value, (v) => _then(v as _$_Weight));
 
   @override
-  _Weight get _value => super._value as _Weight;
+  _$_Weight get _value => super._value as _$_Weight;
 
   @override
   $Res call({
     Object? weight = freezed,
     Object? weightUnit = freezed,
   }) {
-    return _then(_Weight(
+    return _then(_$_Weight(
       weight: weight == freezed
           ? _value.weight
           : weight // ignore: cast_nullable_to_non_nullable
@@ -125,7 +110,7 @@ class _$_Weight extends _Weight {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _Weight &&
+            other is _$_Weight &&
             const DeepCollectionEquality().equals(other.weight, weight) &&
             const DeepCollectionEquality()
                 .equals(other.weightUnit, weightUnit));
@@ -139,21 +124,22 @@ class _$_Weight extends _Weight {
 
   @JsonKey(ignore: true)
   @override
-  _$WeightCopyWith<_Weight> get copyWith =>
-      __$WeightCopyWithImpl<_Weight>(this, _$identity);
+  _$$_WeightCopyWith<_$_Weight> get copyWith =>
+      __$$_WeightCopyWithImpl<_$_Weight>(this, _$identity);
 }
 
 abstract class _Weight extends Weight {
   const factory _Weight(
-      {required PositiveNumber weight,
-      required WeightUnit weightUnit}) = _$_Weight;
+      {required final PositiveNumber weight,
+      required final WeightUnit weightUnit}) = _$_Weight;
   const _Weight._() : super._();
 
   @override
-  PositiveNumber get weight;
+  PositiveNumber get weight => throw _privateConstructorUsedError;
   @override
-  WeightUnit get weightUnit;
+  WeightUnit get weightUnit => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$WeightCopyWith<_Weight> get copyWith => throw _privateConstructorUsedError;
+  _$$_WeightCopyWith<_$_Weight> get copyWith =>
+      throw _privateConstructorUsedError;
 }

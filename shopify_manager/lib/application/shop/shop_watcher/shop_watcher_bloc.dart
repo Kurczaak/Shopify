@@ -3,8 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
 import 'package:shopify_manager/domain/shop/i_shop_repository.dart';
-import 'package:shopify_manager/domain/shop/shop.dart';
-import 'package:shopify_manager/domain/shop/shop_failure.dart';
+import 'package:shopify_domain/shop.dart';
 
 part 'shop_watcher_event.dart';
 part 'shop_watcher_state.dart';

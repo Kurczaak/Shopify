@@ -15,7 +15,7 @@ import 'package:shopify_domain/product/weight.dart';
 part 'product_form.freezed.dart';
 
 @freezed
-abstract class ProductForm with _$ProductForm {
+class ProductForm with _$ProductForm {
   const ProductForm._();
 
   const factory ProductForm({

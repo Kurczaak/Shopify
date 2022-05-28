@@ -6,7 +6,7 @@ part 'address_dto.g.dart';
 
 //@JsonSerializable(explicitToJson: true, createFactory: true, createToJson: true)
 @freezed
-abstract class AddressDto with _$AddressDto {
+class AddressDto with _$AddressDto {
   const AddressDto._();
 
   const factory AddressDto({

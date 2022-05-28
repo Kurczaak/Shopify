@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopify_manager/application/product/search_product/search_product_bloc.dart';
-import 'package:shopify_manager/domain/product/value_objects.dart';
+import 'package:shopify_domain/product.dart';
 import 'package:shopify_manager/injection.dart';
 
 class ProductSearchingScreen extends StatelessWidget {
@@ -23,7 +23,7 @@ class ProductSearchingScreen extends StatelessWidget {
               loading: () => const Center(
                     child: CircularProgressIndicator(),
                   ),
-              loaded: (product) => const Text('Product found!'))),
+              loaded: (_, product, __) => const Text('Product found!'))),
     ));
   }
 }

@@ -18,7 +18,7 @@ import 'package:shopify_domain/shop/shop.dart';
 import 'package:shopify_domain/shop/shop_failure.dart';
 import 'package:shopify_domain/shop/time/week.dart';
 import 'package:shopify_domain/shop/value_objects.dart';
-import 'package:shopify_domain/src/core/config.dart';
+import 'package:shopify_domain/core/config.dart';
 import 'package:shopify_domain/src/shop/firebase_shop_repository.dart';
 import 'package:shopify_domain/src/shop/shop_dtos.dart';
 import 'package:fake_cloud_firestore/fake_cloud_firestore.dart';

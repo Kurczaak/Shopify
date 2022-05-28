@@ -1,13 +1,15 @@
+import 'dart:async';
+
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:shopify_domain/auth/auth_failure.dart';
-import 'package:shopify_domain/auth/user.dart';
-import 'package:shopify_domain/auth/value_objects.dart';
+import 'package:shopify_domain/auth.dart';
+import 'package:shopify_domain/core/config.dart';
 import 'package:shopify_domain/core/errors.dart';
+import 'package:shopify_domain/core/network/network_info.dart';
 import 'package:shopify_domain/core/value_objects.dart';
 import 'package:shopify_domain/src/auth/firebase_auth_facade.dart';
 
@@ -57,16 +59,13 @@ class MockGoogleSignInAccount extends Mock
           as Future<GoogleSignInAuthentication>);
 }
 
-@GenerateMocks([
-  FirebaseAuth,
-  UserCredential,
-  GoogleSignIn,
-])
+@GenerateMocks([FirebaseAuth, UserCredential, GoogleSignIn, NetworkInfo])
 void main() async {
   MockUserCredential userCredential = MockUserCredential();
   MockGoogleSignInAccount googleSignInAccount = MockGoogleSignInAccount();
   MockGoogleSignInAuthentication mockGoogleSignInAuthentication =
       MockGoogleSignInAuthentication();
+  late MockNetworkInfo mockNetworkInfo;
 
   const emailAddressStr = 'correct@email.com';
   const passwordStr = '12ABcde!@';
@@ -77,17 +76,19 @@ void main() async {
   MockFirebaseAuth mockFirebaseAuth = MockFirebaseAuth();
   MockGoogleSignIn mockGoogleSignIn = MockGoogleSignIn();
 
-  FirebaseAuthFacade firebaseAuthFacade =
-      FirebaseAuthFacade(mockFirebaseAuth, mockGoogleSignIn);
+  late FirebaseAuthFacade firebaseAuthFacade;
 
   setUp(() {
     mockFirebaseAuth = MockFirebaseAuth();
     mockGoogleSignIn = MockGoogleSignIn();
-    firebaseAuthFacade = FirebaseAuthFacade(mockFirebaseAuth, mockGoogleSignIn);
+    mockNetworkInfo = MockNetworkInfo();
+    firebaseAuthFacade =
+        FirebaseAuthFacade(mockFirebaseAuth, mockGoogleSignIn, mockNetworkInfo);
     when(mockFirebaseAuth.signInWithCredential(any))
         .thenAnswer((_) async => FakeUserCredential());
     when(googleSignInAccount.authentication)
         .thenAnswer((_) async => MockGoogleSignInAuthentication());
+    when(mockNetworkInfo.isConnected).thenAnswer((_) async => true);
   });
 
   group('getSignedInUser', () {
@@ -200,6 +201,61 @@ void main() async {
         );
       },
     );
+
+    test(
+      'should throw a timeout exception if the timeoutDuration has been exceeded',
+      () async {
+        // arrange
+        when(mockFirebaseAuth.createUserWithEmailAndPassword(
+                email: emailAddressStr, password: passwordStr))
+            .thenAnswer((_) async {
+          await Future.delayed(timeoutDuration);
+          await Future.delayed(const Duration(milliseconds: 200));
+          return userCredential;
+        });
+        // act
+        expectLater(
+            mockFirebaseAuth
+                .createUserWithEmailAndPassword(
+                    email: emailAddressStr, password: passwordStr)
+                .timeout(timeoutDuration),
+            throwsA(isA<TimeoutException>()));
+        final result = await firebaseAuthFacade.registerWithEmailAndPassword(
+            emailAddress: EmailAddress(emailAddressStr),
+            password: Password(passwordStr));
+      },
+    );
+
+    test(
+      'should return an AuthFailure when a Timeout exception has been thrown',
+      () async {
+        // arrange
+        when(mockFirebaseAuth.createUserWithEmailAndPassword(
+                email: emailAddressStr, password: passwordStr))
+            .thenThrow(TimeoutException('timeout exception'));
+        // act
+        final result = await firebaseAuthFacade.registerWithEmailAndPassword(
+            emailAddress: EmailAddress(emailAddressStr),
+            password: Password(passwordStr));
+        // assert
+        expect(result, isA<Left<AuthFailure, Unit>>());
+      },
+    );
+
+    test(
+      'should return an AuthFailure when no internet connection is present',
+      () async {
+        // arrange
+        when(mockNetworkInfo.isConnected).thenAnswer((_) async => false);
+        // act
+        final result = await firebaseAuthFacade.registerWithEmailAndPassword(
+            emailAddress: EmailAddress(emailAddressStr),
+            password: Password(passwordStr));
+        // assert
+        verify(mockNetworkInfo.isConnected).called(1);
+        expect(result, isA<Left<AuthFailure, Unit>>());
+      },
+    );
   });
 
   group('signInWIthEmailAndPassword', () {
@@ -296,6 +352,61 @@ void main() async {
                 firebaseAuthFacade.signInWithEmailAndPassword);
       },
     );
+
+    test(
+      'should throw a timeout exception if the timeoutDuration has been exceeded',
+      () async {
+        // arrange
+        when(mockFirebaseAuth.signInWithEmailAndPassword(
+                email: emailAddressStr, password: passwordStr))
+            .thenAnswer((_) async {
+          await Future.delayed(timeoutDuration);
+          await Future.delayed(const Duration(milliseconds: 200));
+          return userCredential;
+        });
+        // act
+        expectLater(
+            mockFirebaseAuth
+                .signInWithEmailAndPassword(
+                    email: emailAddressStr, password: passwordStr)
+                .timeout(timeoutDuration),
+            throwsA(isA<TimeoutException>()));
+        await firebaseAuthFacade.signInWithEmailAndPassword(
+            emailAddress: EmailAddress(emailAddressStr),
+            password: Password(passwordStr));
+      },
+    );
+
+    test(
+      'should return an AuthFailure when a Timeout exception has been thrown',
+      () async {
+        // arrange
+        when(mockFirebaseAuth.signInWithEmailAndPassword(
+                email: emailAddressStr, password: passwordStr))
+            .thenThrow(TimeoutException('timeout exception'));
+        // act
+        final result = await firebaseAuthFacade.signInWithEmailAndPassword(
+            emailAddress: EmailAddress(emailAddressStr),
+            password: Password(passwordStr));
+        // assert
+        expect(result, isA<Left<AuthFailure, Unit>>());
+      },
+    );
+
+    test(
+      'should return an AuthFailure when no internet connection is present',
+      () async {
+        // arrange
+        when(mockNetworkInfo.isConnected).thenAnswer((_) async => false);
+        // act
+        final result = await firebaseAuthFacade.signInWithEmailAndPassword(
+            emailAddress: EmailAddress(emailAddressStr),
+            password: Password(passwordStr));
+        // assert
+        verify(mockNetworkInfo.isConnected).called(1);
+        expect(result, isA<Left<AuthFailure, Unit>>());
+      },
+    );
   });
 
   group('signInWithGoogle', () {
@@ -306,7 +417,7 @@ void main() async {
         when(mockGoogleSignIn.signIn())
             .thenAnswer((_) async => googleSignInAccount);
         // act
-        firebaseAuthFacade.signInWithGoogle();
+        await firebaseAuthFacade.signInWithGoogle();
         // assert
         verify(mockGoogleSignIn.signIn());
       },
@@ -356,6 +467,65 @@ void main() async {
         await firebaseAuthFacade.signInWithGoogle();
         // assert
         verify(mockFirebaseAuth.signInWithCredential(any)).called(1);
+      },
+    );
+
+    test(
+      'should throw a timeout exception if the timeoutDuration has been exceeded',
+      () async {
+        // arrange
+        when(mockGoogleSignIn.signIn())
+            .thenAnswer((_) async => googleSignInAccount);
+        when(googleSignInAccount.authentication)
+            .thenAnswer((_) async => mockGoogleSignInAuthentication);
+
+        final authCredential = GoogleAuthProvider.credential(
+            accessToken: mockGoogleSignInAuthentication.accessToken,
+            idToken: mockGoogleSignInAuthentication.idToken);
+        when(mockFirebaseAuth.signInWithCredential(any)).thenAnswer((_) async {
+          await Future.delayed(timeoutDuration);
+          await Future.delayed(const Duration(milliseconds: 200));
+          return userCredential;
+        });
+
+        // act
+        expectLater(
+            mockFirebaseAuth
+                .signInWithCredential(authCredential)
+                .timeout(timeoutDuration),
+            throwsA(isA<TimeoutException>()));
+        await firebaseAuthFacade.signInWithGoogle();
+      },
+    );
+
+    test(
+      'should return an AuthFailure when a Timeout exception has been thrown',
+      () async {
+        // arrange
+        when(mockGoogleSignIn.signIn())
+            .thenAnswer((_) async => googleSignInAccount);
+        when(googleSignInAccount.authentication)
+            .thenAnswer((_) async => mockGoogleSignInAuthentication);
+        when(mockFirebaseAuth.signInWithCredential(any))
+            .thenThrow(TimeoutException('timeout exception'));
+
+        // act
+        final result = await firebaseAuthFacade.signInWithGoogle();
+        // assert
+        expect(result, isA<Left<AuthFailure, Unit>>());
+      },
+    );
+
+    test(
+      'should return an AuthFailure when no internet connection is present',
+      () async {
+        // arrange
+        when(mockNetworkInfo.isConnected).thenAnswer((_) async => false);
+        // act
+        final result = await firebaseAuthFacade.signInWithGoogle();
+        // assert
+        verify(mockNetworkInfo.isConnected).called(1);
+        expect(result, isA<Left<AuthFailure, Unit>>());
       },
     );
   });

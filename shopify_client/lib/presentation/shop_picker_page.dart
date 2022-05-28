@@ -38,9 +38,9 @@ class _ShopPickerPageState extends State<ShopPickerPage> {
         )),
       child: BlocConsumer<ShopWatcherBloc, ShopWatcherState>(
         listener: (context, state) {
-          if (state.isLoaded()) {
+          if (state.isLoaded) {
             mapController?.animateCamera(
-                CameraUpdate.newLatLng(state.asLoaded().center.latLng));
+                CameraUpdate.newLatLng(state.asLoaded.location.latLng));
           }
           setState(() {
             selectedShop = null;
@@ -80,11 +80,11 @@ class _ShopPickerPageState extends State<ShopPickerPage> {
                     },
                   )
                 : null,
-            body: state.whenOrElse(
+            body: state.whenOrNull(
               initial: () => const Center(
                 child: CircularProgressIndicator(),
               ),
-              error: (errorState) => Center(
+              error: (failure) => Center(
                 child: Padding(
                   padding: const EdgeInsets.all(28.0),
                   child: Column(
@@ -92,7 +92,9 @@ class _ShopPickerPageState extends State<ShopPickerPage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        errorState.failure.map(
+                        failure.map(
+                            locationPermissionDenied: (_) =>
+                                'Location permission denied',
                             unexpected: (_) =>
                                 'An Unexpected Failure has occured',
                             insufficientPermission: (_) =>
@@ -140,11 +142,11 @@ class _ShopPickerPageState extends State<ShopPickerPage> {
                                 radius = value;
                               });
                             },
-                            onChangeEnd: (_) => orElseState.isLoaded()
+                            onChangeEnd: (_) => orElseState.isLoaded
                                 ? context.read<ShopWatcherBloc>().add(
                                     ShopWatcherEvent.watchShopsByLocation(
                                         radius: radius,
-                                        location: state.asLoaded().center))
+                                        location: state.asLoaded.location))
                                 : context.read<ShopWatcherBloc>().add(
                                     ShopWatcherEvent.watchNearbyShops(
                                         radius: radius)),
@@ -161,18 +163,18 @@ class _ShopPickerPageState extends State<ShopPickerPage> {
                   ),
                   SizedBox(
                     height: 90,
-                    child: !state.isLoaded()
+                    child: !state.isLoaded
                         ? Container()
                         : ShopsLogosScrollableList(
-                            shops: state.isLoaded()
-                                ? state.asLoaded().shops
+                            shops: state.isLoaded
+                                ? state.asLoaded.shops
                                 : const KtList.empty(),
                             itemController: itemController,
                             selectedShop: selectedShop,
                             onTap: (shop) {
                               itemController.scrollTo(
                                 duration: const Duration(milliseconds: 250),
-                                index: state.asLoaded().shops.indexOf(shop),
+                                index: state.asLoaded.shops.indexOf(shop),
                                 alignment: .25,
                               );
                               mapController?.showMarkerInfoWindow(
@@ -188,11 +190,11 @@ class _ShopPickerPageState extends State<ShopPickerPage> {
                   const SizedBox(height: 28),
                   Expanded(
                     child: ShopsMapWidget(
-                      center: state.isLoaded()
-                          ? state.asLoaded().center
+                      center: state.isLoaded
+                          ? state.asLoaded.location
                           : Location.empty(),
-                      shops: state.isLoaded()
-                          ? state.asLoaded().shops
+                      shops: state.isLoaded
+                          ? state.asLoaded.shops
                           : const KtList.empty(),
                       onMapCreated: (GoogleMapController controller) {
                         _controller = Completer<GoogleMapController>();
@@ -202,12 +204,12 @@ class _ShopPickerPageState extends State<ShopPickerPage> {
                         });
                       },
                       radius: radius,
-                      isLoading: state.isLoading(),
-                      onTap: state.isLoaded()
+                      isLoading: state.isLoading,
+                      onTap: state.isLoaded
                           ? (Shop shop) {
                               itemController.scrollTo(
                                 duration: const Duration(milliseconds: 500),
-                                index: state.asLoaded().shops.indexOf(shop),
+                                index: state.asLoaded.shops.indexOf(shop),
                                 alignment: .25,
                               );
                               setState(() {

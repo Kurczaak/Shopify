@@ -1,5 +1,6 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'product.dart';
@@ -11,40 +12,7 @@ part of 'product.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$ProductTearOff {
-  const _$ProductTearOff();
-
-  _Product call(
-      {required UniqueId id,
-      required Barcode barcode,
-      required Weight weight,
-      required Price price,
-      required Category category,
-      required ProductName name,
-      required BrandName brand,
-      required ProductDescription description,
-      required ProductDescription ingredients,
-      required NonEmptyList5<ShopifyUrl> photos}) {
-    return _Product(
-      id: id,
-      barcode: barcode,
-      weight: weight,
-      price: price,
-      category: category,
-      name: name,
-      brand: brand,
-      description: description,
-      ingredients: ingredients,
-      photos: photos,
-    );
-  }
-}
-
-/// @nodoc
-const $Product = _$ProductTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$Product {
@@ -164,9 +132,10 @@ class _$ProductCopyWithImpl<$Res> implements $ProductCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$ProductCopyWith<$Res> implements $ProductCopyWith<$Res> {
-  factory _$ProductCopyWith(_Product value, $Res Function(_Product) then) =
-      __$ProductCopyWithImpl<$Res>;
+abstract class _$$_ProductCopyWith<$Res> implements $ProductCopyWith<$Res> {
+  factory _$$_ProductCopyWith(
+          _$_Product value, $Res Function(_$_Product) then) =
+      __$$_ProductCopyWithImpl<$Res>;
   @override
   $Res call(
       {UniqueId id,
@@ -187,13 +156,13 @@ abstract class _$ProductCopyWith<$Res> implements $ProductCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$ProductCopyWithImpl<$Res> extends _$ProductCopyWithImpl<$Res>
-    implements _$ProductCopyWith<$Res> {
-  __$ProductCopyWithImpl(_Product _value, $Res Function(_Product) _then)
-      : super(_value, (v) => _then(v as _Product));
+class __$$_ProductCopyWithImpl<$Res> extends _$ProductCopyWithImpl<$Res>
+    implements _$$_ProductCopyWith<$Res> {
+  __$$_ProductCopyWithImpl(_$_Product _value, $Res Function(_$_Product) _then)
+      : super(_value, (v) => _then(v as _$_Product));
 
   @override
-  _Product get _value => super._value as _Product;
+  _$_Product get _value => super._value as _$_Product;
 
   @override
   $Res call({
@@ -208,7 +177,7 @@ class __$ProductCopyWithImpl<$Res> extends _$ProductCopyWithImpl<$Res>
     Object? ingredients = freezed,
     Object? photos = freezed,
   }) {
-    return _then(_Product(
+    return _then(_$_Product(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -275,7 +244,8 @@ class _$_Product extends _Product {
   final Barcode barcode;
   @override
   final Weight weight;
-  @override //required Fats fats,
+//required Fats fats,
+  @override
   final Price price;
   @override
   final Category category;
@@ -299,7 +269,7 @@ class _$_Product extends _Product {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _Product &&
+            other is _$_Product &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.barcode, barcode) &&
             const DeepCollectionEquality().equals(other.weight, weight) &&
@@ -330,46 +300,46 @@ class _$_Product extends _Product {
 
   @JsonKey(ignore: true)
   @override
-  _$ProductCopyWith<_Product> get copyWith =>
-      __$ProductCopyWithImpl<_Product>(this, _$identity);
+  _$$_ProductCopyWith<_$_Product> get copyWith =>
+      __$$_ProductCopyWithImpl<_$_Product>(this, _$identity);
 }
 
 abstract class _Product extends Product {
   const factory _Product(
-      {required UniqueId id,
-      required Barcode barcode,
-      required Weight weight,
-      required Price price,
-      required Category category,
-      required ProductName name,
-      required BrandName brand,
-      required ProductDescription description,
-      required ProductDescription ingredients,
-      required NonEmptyList5<ShopifyUrl> photos}) = _$_Product;
+      {required final UniqueId id,
+      required final Barcode barcode,
+      required final Weight weight,
+      required final Price price,
+      required final Category category,
+      required final ProductName name,
+      required final BrandName brand,
+      required final ProductDescription description,
+      required final ProductDescription ingredients,
+      required final NonEmptyList5<ShopifyUrl> photos}) = _$_Product;
   const _Product._() : super._();
 
   @override
-  UniqueId get id;
+  UniqueId get id => throw _privateConstructorUsedError;
   @override
-  Barcode get barcode;
+  Barcode get barcode => throw _privateConstructorUsedError;
   @override
-  Weight get weight;
+  Weight get weight => throw _privateConstructorUsedError;
   @override //required Fats fats,
-  Price get price;
+  Price get price => throw _privateConstructorUsedError;
   @override
-  Category get category;
+  Category get category => throw _privateConstructorUsedError;
   @override
-  ProductName get name;
+  ProductName get name => throw _privateConstructorUsedError;
   @override
-  BrandName get brand;
+  BrandName get brand => throw _privateConstructorUsedError;
   @override
-  ProductDescription get description;
+  ProductDescription get description => throw _privateConstructorUsedError;
   @override
-  ProductDescription get ingredients;
+  ProductDescription get ingredients => throw _privateConstructorUsedError;
   @override
-  NonEmptyList5<ShopifyUrl> get photos;
+  NonEmptyList5<ShopifyUrl> get photos => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$ProductCopyWith<_Product> get copyWith =>
+  _$$_ProductCopyWith<_$_Product> get copyWith =>
       throw _privateConstructorUsedError;
 }

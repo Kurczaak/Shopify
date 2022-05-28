@@ -1,5 +1,6 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'time_dtos.dart';
@@ -11,42 +12,11 @@ part of 'time_dtos.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 WeekDto _$WeekDtoFromJson(Map<String, dynamic> json) {
   return _WeekDto.fromJson(json);
 }
-
-/// @nodoc
-class _$WeekDtoTearOff {
-  const _$WeekDtoTearOff();
-
-  _WeekDto call(
-      {required DayDto monday,
-      required DayDto tuesday,
-      required DayDto wednesday,
-      required DayDto thursday,
-      required DayDto friday,
-      required DayDto saturday,
-      required DayDto sunday}) {
-    return _WeekDto(
-      monday: monday,
-      tuesday: tuesday,
-      wednesday: wednesday,
-      thursday: thursday,
-      friday: friday,
-      saturday: saturday,
-      sunday: sunday,
-    );
-  }
-
-  WeekDto fromJson(Map<String, Object?> json) {
-    return WeekDto.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $WeekDto = _$WeekDtoTearOff();
 
 /// @nodoc
 mixin _$WeekDto {
@@ -186,9 +156,10 @@ class _$WeekDtoCopyWithImpl<$Res> implements $WeekDtoCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$WeekDtoCopyWith<$Res> implements $WeekDtoCopyWith<$Res> {
-  factory _$WeekDtoCopyWith(_WeekDto value, $Res Function(_WeekDto) then) =
-      __$WeekDtoCopyWithImpl<$Res>;
+abstract class _$$_WeekDtoCopyWith<$Res> implements $WeekDtoCopyWith<$Res> {
+  factory _$$_WeekDtoCopyWith(
+          _$_WeekDto value, $Res Function(_$_WeekDto) then) =
+      __$$_WeekDtoCopyWithImpl<$Res>;
   @override
   $Res call(
       {DayDto monday,
@@ -216,13 +187,13 @@ abstract class _$WeekDtoCopyWith<$Res> implements $WeekDtoCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$WeekDtoCopyWithImpl<$Res> extends _$WeekDtoCopyWithImpl<$Res>
-    implements _$WeekDtoCopyWith<$Res> {
-  __$WeekDtoCopyWithImpl(_WeekDto _value, $Res Function(_WeekDto) _then)
-      : super(_value, (v) => _then(v as _WeekDto));
+class __$$_WeekDtoCopyWithImpl<$Res> extends _$WeekDtoCopyWithImpl<$Res>
+    implements _$$_WeekDtoCopyWith<$Res> {
+  __$$_WeekDtoCopyWithImpl(_$_WeekDto _value, $Res Function(_$_WeekDto) _then)
+      : super(_value, (v) => _then(v as _$_WeekDto));
 
   @override
-  _WeekDto get _value => super._value as _WeekDto;
+  _$_WeekDto get _value => super._value as _$_WeekDto;
 
   @override
   $Res call({
@@ -234,7 +205,7 @@ class __$WeekDtoCopyWithImpl<$Res> extends _$WeekDtoCopyWithImpl<$Res>
     Object? saturday = freezed,
     Object? sunday = freezed,
   }) {
-    return _then(_WeekDto(
+    return _then(_$_WeekDto(
       monday: monday == freezed
           ? _value.monday
           : monday // ignore: cast_nullable_to_non_nullable
@@ -307,7 +278,7 @@ class _$_WeekDto extends _WeekDto {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _WeekDto &&
+            other is _$_WeekDto &&
             const DeepCollectionEquality().equals(other.monday, monday) &&
             const DeepCollectionEquality().equals(other.tuesday, tuesday) &&
             const DeepCollectionEquality().equals(other.wednesday, wednesday) &&
@@ -317,6 +288,7 @@ class _$_WeekDto extends _WeekDto {
             const DeepCollectionEquality().equals(other.sunday, sunday));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -330,8 +302,8 @@ class _$_WeekDto extends _WeekDto {
 
   @JsonKey(ignore: true)
   @override
-  _$WeekDtoCopyWith<_WeekDto> get copyWith =>
-      __$WeekDtoCopyWithImpl<_WeekDto>(this, _$identity);
+  _$$_WeekDtoCopyWith<_$_WeekDto> get copyWith =>
+      __$$_WeekDtoCopyWithImpl<_$_WeekDto>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -341,63 +313,40 @@ class _$_WeekDto extends _WeekDto {
 
 abstract class _WeekDto extends WeekDto {
   const factory _WeekDto(
-      {required DayDto monday,
-      required DayDto tuesday,
-      required DayDto wednesday,
-      required DayDto thursday,
-      required DayDto friday,
-      required DayDto saturday,
-      required DayDto sunday}) = _$_WeekDto;
+      {required final DayDto monday,
+      required final DayDto tuesday,
+      required final DayDto wednesday,
+      required final DayDto thursday,
+      required final DayDto friday,
+      required final DayDto saturday,
+      required final DayDto sunday}) = _$_WeekDto;
   const _WeekDto._() : super._();
 
   factory _WeekDto.fromJson(Map<String, dynamic> json) = _$_WeekDto.fromJson;
 
   @override
-  DayDto get monday;
+  DayDto get monday => throw _privateConstructorUsedError;
   @override
-  DayDto get tuesday;
+  DayDto get tuesday => throw _privateConstructorUsedError;
   @override
-  DayDto get wednesday;
+  DayDto get wednesday => throw _privateConstructorUsedError;
   @override
-  DayDto get thursday;
+  DayDto get thursday => throw _privateConstructorUsedError;
   @override
-  DayDto get friday;
+  DayDto get friday => throw _privateConstructorUsedError;
   @override
-  DayDto get saturday;
+  DayDto get saturday => throw _privateConstructorUsedError;
   @override
-  DayDto get sunday;
+  DayDto get sunday => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$WeekDtoCopyWith<_WeekDto> get copyWith =>
+  _$$_WeekDtoCopyWith<_$_WeekDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 DayDto _$DayDtoFromJson(Map<String, dynamic> json) {
   return _DayDto.fromJson(json);
 }
-
-/// @nodoc
-class _$DayDtoTearOff {
-  const _$DayDtoTearOff();
-
-  _DayDto call(
-      {required String day,
-      required bool isOpen,
-      required TimeIntervalDto timeInterval}) {
-    return _DayDto(
-      day: day,
-      isOpen: isOpen,
-      timeInterval: timeInterval,
-    );
-  }
-
-  DayDto fromJson(Map<String, Object?> json) {
-    return DayDto.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $DayDto = _$DayDtoTearOff();
 
 /// @nodoc
 mixin _$DayDto {
@@ -458,9 +407,9 @@ class _$DayDtoCopyWithImpl<$Res> implements $DayDtoCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$DayDtoCopyWith<$Res> implements $DayDtoCopyWith<$Res> {
-  factory _$DayDtoCopyWith(_DayDto value, $Res Function(_DayDto) then) =
-      __$DayDtoCopyWithImpl<$Res>;
+abstract class _$$_DayDtoCopyWith<$Res> implements $DayDtoCopyWith<$Res> {
+  factory _$$_DayDtoCopyWith(_$_DayDto value, $Res Function(_$_DayDto) then) =
+      __$$_DayDtoCopyWithImpl<$Res>;
   @override
   $Res call({String day, bool isOpen, TimeIntervalDto timeInterval});
 
@@ -469,13 +418,13 @@ abstract class _$DayDtoCopyWith<$Res> implements $DayDtoCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$DayDtoCopyWithImpl<$Res> extends _$DayDtoCopyWithImpl<$Res>
-    implements _$DayDtoCopyWith<$Res> {
-  __$DayDtoCopyWithImpl(_DayDto _value, $Res Function(_DayDto) _then)
-      : super(_value, (v) => _then(v as _DayDto));
+class __$$_DayDtoCopyWithImpl<$Res> extends _$DayDtoCopyWithImpl<$Res>
+    implements _$$_DayDtoCopyWith<$Res> {
+  __$$_DayDtoCopyWithImpl(_$_DayDto _value, $Res Function(_$_DayDto) _then)
+      : super(_value, (v) => _then(v as _$_DayDto));
 
   @override
-  _DayDto get _value => super._value as _DayDto;
+  _$_DayDto get _value => super._value as _$_DayDto;
 
   @override
   $Res call({
@@ -483,7 +432,7 @@ class __$DayDtoCopyWithImpl<$Res> extends _$DayDtoCopyWithImpl<$Res>
     Object? isOpen = freezed,
     Object? timeInterval = freezed,
   }) {
-    return _then(_DayDto(
+    return _then(_$_DayDto(
       day: day == freezed
           ? _value.day
           : day // ignore: cast_nullable_to_non_nullable
@@ -526,13 +475,14 @@ class _$_DayDto extends _DayDto {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _DayDto &&
+            other is _$_DayDto &&
             const DeepCollectionEquality().equals(other.day, day) &&
             const DeepCollectionEquality().equals(other.isOpen, isOpen) &&
             const DeepCollectionEquality()
                 .equals(other.timeInterval, timeInterval));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -542,8 +492,8 @@ class _$_DayDto extends _DayDto {
 
   @JsonKey(ignore: true)
   @override
-  _$DayDtoCopyWith<_DayDto> get copyWith =>
-      __$DayDtoCopyWithImpl<_DayDto>(this, _$identity);
+  _$$_DayDtoCopyWith<_$_DayDto> get copyWith =>
+      __$$_DayDtoCopyWithImpl<_$_DayDto>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -553,52 +503,28 @@ class _$_DayDto extends _DayDto {
 
 abstract class _DayDto extends DayDto {
   const factory _DayDto(
-      {required String day,
-      required bool isOpen,
-      required TimeIntervalDto timeInterval}) = _$_DayDto;
+      {required final String day,
+      required final bool isOpen,
+      required final TimeIntervalDto timeInterval}) = _$_DayDto;
   const _DayDto._() : super._();
 
   factory _DayDto.fromJson(Map<String, dynamic> json) = _$_DayDto.fromJson;
 
   @override
-  String get day;
+  String get day => throw _privateConstructorUsedError;
   @override
-  bool get isOpen;
+  bool get isOpen => throw _privateConstructorUsedError;
   @override
-  TimeIntervalDto get timeInterval;
+  TimeIntervalDto get timeInterval => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$DayDtoCopyWith<_DayDto> get copyWith => throw _privateConstructorUsedError;
+  _$$_DayDtoCopyWith<_$_DayDto> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 TimeIntervalDto _$TimeIntervalDtoFromJson(Map<String, dynamic> json) {
   return _TimeIntervalDto.fromJson(json);
 }
-
-/// @nodoc
-class _$TimeIntervalDtoTearOff {
-  const _$TimeIntervalDtoTearOff();
-
-  _TimeIntervalDto call(
-      {required int openingHour,
-      required int openingMinutes,
-      required int closingHour,
-      required int closingMinutes}) {
-    return _TimeIntervalDto(
-      openingHour: openingHour,
-      openingMinutes: openingMinutes,
-      closingHour: closingHour,
-      closingMinutes: closingMinutes,
-    );
-  }
-
-  TimeIntervalDto fromJson(Map<String, Object?> json) {
-    return TimeIntervalDto.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $TimeIntervalDto = _$TimeIntervalDtoTearOff();
 
 /// @nodoc
 mixin _$TimeIntervalDto {
@@ -663,11 +589,11 @@ class _$TimeIntervalDtoCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$TimeIntervalDtoCopyWith<$Res>
+abstract class _$$_TimeIntervalDtoCopyWith<$Res>
     implements $TimeIntervalDtoCopyWith<$Res> {
-  factory _$TimeIntervalDtoCopyWith(
-          _TimeIntervalDto value, $Res Function(_TimeIntervalDto) then) =
-      __$TimeIntervalDtoCopyWithImpl<$Res>;
+  factory _$$_TimeIntervalDtoCopyWith(
+          _$_TimeIntervalDto value, $Res Function(_$_TimeIntervalDto) then) =
+      __$$_TimeIntervalDtoCopyWithImpl<$Res>;
   @override
   $Res call(
       {int openingHour,
@@ -677,15 +603,15 @@ abstract class _$TimeIntervalDtoCopyWith<$Res>
 }
 
 /// @nodoc
-class __$TimeIntervalDtoCopyWithImpl<$Res>
+class __$$_TimeIntervalDtoCopyWithImpl<$Res>
     extends _$TimeIntervalDtoCopyWithImpl<$Res>
-    implements _$TimeIntervalDtoCopyWith<$Res> {
-  __$TimeIntervalDtoCopyWithImpl(
-      _TimeIntervalDto _value, $Res Function(_TimeIntervalDto) _then)
-      : super(_value, (v) => _then(v as _TimeIntervalDto));
+    implements _$$_TimeIntervalDtoCopyWith<$Res> {
+  __$$_TimeIntervalDtoCopyWithImpl(
+      _$_TimeIntervalDto _value, $Res Function(_$_TimeIntervalDto) _then)
+      : super(_value, (v) => _then(v as _$_TimeIntervalDto));
 
   @override
-  _TimeIntervalDto get _value => super._value as _TimeIntervalDto;
+  _$_TimeIntervalDto get _value => super._value as _$_TimeIntervalDto;
 
   @override
   $Res call({
@@ -694,7 +620,7 @@ class __$TimeIntervalDtoCopyWithImpl<$Res>
     Object? closingHour = freezed,
     Object? closingMinutes = freezed,
   }) {
-    return _then(_TimeIntervalDto(
+    return _then(_$_TimeIntervalDto(
       openingHour: openingHour == freezed
           ? _value.openingHour
           : openingHour // ignore: cast_nullable_to_non_nullable
@@ -746,7 +672,7 @@ class _$_TimeIntervalDto extends _TimeIntervalDto {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _TimeIntervalDto &&
+            other is _$_TimeIntervalDto &&
             const DeepCollectionEquality()
                 .equals(other.openingHour, openingHour) &&
             const DeepCollectionEquality()
@@ -757,6 +683,7 @@ class _$_TimeIntervalDto extends _TimeIntervalDto {
                 .equals(other.closingMinutes, closingMinutes));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -767,8 +694,8 @@ class _$_TimeIntervalDto extends _TimeIntervalDto {
 
   @JsonKey(ignore: true)
   @override
-  _$TimeIntervalDtoCopyWith<_TimeIntervalDto> get copyWith =>
-      __$TimeIntervalDtoCopyWithImpl<_TimeIntervalDto>(this, _$identity);
+  _$$_TimeIntervalDtoCopyWith<_$_TimeIntervalDto> get copyWith =>
+      __$$_TimeIntervalDtoCopyWithImpl<_$_TimeIntervalDto>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -778,25 +705,25 @@ class _$_TimeIntervalDto extends _TimeIntervalDto {
 
 abstract class _TimeIntervalDto extends TimeIntervalDto {
   const factory _TimeIntervalDto(
-      {required int openingHour,
-      required int openingMinutes,
-      required int closingHour,
-      required int closingMinutes}) = _$_TimeIntervalDto;
+      {required final int openingHour,
+      required final int openingMinutes,
+      required final int closingHour,
+      required final int closingMinutes}) = _$_TimeIntervalDto;
   const _TimeIntervalDto._() : super._();
 
   factory _TimeIntervalDto.fromJson(Map<String, dynamic> json) =
       _$_TimeIntervalDto.fromJson;
 
   @override
-  int get openingHour;
+  int get openingHour => throw _privateConstructorUsedError;
   @override
-  int get openingMinutes;
+  int get openingMinutes => throw _privateConstructorUsedError;
   @override
-  int get closingHour;
+  int get closingHour => throw _privateConstructorUsedError;
   @override
-  int get closingMinutes;
+  int get closingMinutes => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$TimeIntervalDtoCopyWith<_TimeIntervalDto> get copyWith =>
+  _$$_TimeIntervalDtoCopyWith<_$_TimeIntervalDto> get copyWith =>
       throw _privateConstructorUsedError;
 }

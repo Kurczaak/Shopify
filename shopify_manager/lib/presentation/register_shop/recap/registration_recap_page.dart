@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:shopify_domain/core.dart';
+import 'package:shopify_domain/shop.dart';
 import 'package:shopify_manager/application/shop/shop_registration/shop_registration_bloc.dart';
-import 'package:shopify_manager/domain/core/images/photo.dart';
-import 'package:shopify_manager/domain/shop/shop.dart';
-import 'package:shopify_manager/domain/shop/time/week.dart';
-import 'package:shopify_manager/presentation/core/widgets/shopify_alert_dialog.dart';
-import 'package:shopify_manager/presentation/register_shop/recap/shop_recap_column.dart';
+import 'package:shopify_presentation/shopify_presentation.dart';
 import 'package:shopify_manager/presentation/register_shop/widgets/registration_progress_bar.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopify_manager/injection.dart';
@@ -43,6 +41,9 @@ class _RegistrationRecapPageState extends State<RegistrationRecapPage> {
                         builder: (context) => ShopifyAlertDialog(
                               title: 'Error',
                               subtitle: f.map(
+                                  locationPermissionDenied: (_) =>
+                                      'Location permissions denied',
+                                  noShopFound: (_) => 'No shop has been found',
                                   timeout: (_) =>
                                       'Connection timeout. Try again later or check your internet connection',
                                   unexpected: (_) =>
@@ -79,7 +80,7 @@ class _RegistrationRecapPageState extends State<RegistrationRecapPage> {
                 pageNum: 5,
               ),
               ShopRecap(
-                logo: context
+                fileLogo: context
                     .read<ShopRegistrationBloc>()
                     .state
                     .shopLogo

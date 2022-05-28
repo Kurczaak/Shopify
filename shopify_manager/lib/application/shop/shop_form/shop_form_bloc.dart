@@ -1,10 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:shopify_manager/domain/core/address.dart';
-import 'package:shopify_manager/domain/core/value_objects.dart';
-import 'package:shopify_manager/domain/shop/shop_form.dart';
-import 'package:shopify_manager/domain/shop/value_objects.dart';
+import 'package:shopify_domain/core.dart';
+import 'package:shopify_domain/shop.dart';
 
 part 'shop_form_event.dart';
 part 'shop_form_state.dart';

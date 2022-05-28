@@ -22,8 +22,9 @@ class DebugDashboardPage extends StatelessWidget {
                 child: const Text('Register Shop')),
             ElevatedButton(
                 onPressed: () async {
-                  final xd =
-                      await getIt<IBarcodeScannerFacade>().scanSingleBarcode();
+                  print('xd');
+                  final xd = await getIt<IBarcodeScannerFacade>()
+                      .scanSingleBarcode(context);
                   xd.fold((l) => print('failure ${l.toString()}'), (r) {
                     context.router.push(ProductSearchingScreen(barcode: r));
                   });

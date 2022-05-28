@@ -7,7 +7,7 @@ import 'package:shopify_domain/product/value_objects.dart';
 part 'weight.freezed.dart';
 
 @freezed
-abstract class Weight with _$Weight {
+class Weight with _$Weight {
   const Weight._();
 
   factory Weight.empty() => Weight(

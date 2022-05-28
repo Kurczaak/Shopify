@@ -80,7 +80,7 @@ void main() {
       expect: () => [
         const ShopWatcherState.loading(),
         ShopWatcherState.loaded(
-            shops: shopsList, center: tLocation, radius: tRadius)
+            shops: shopsList, location: tLocation, radius: tRadius)
       ],
     );
 
@@ -96,7 +96,7 @@ void main() {
       ),
       expect: () => const [
         ShopWatcherState.loading(),
-        ShopWatcherState.error(failure: ShopFailure.noShopFound())
+        ShopWatcherState.error(failure: ShopFailure.locationPermissionDenied())
       ],
     );
   });
@@ -150,7 +150,7 @@ void main() {
       expect: () => [
         const ShopWatcherState.loading(),
         ShopWatcherState.loaded(
-            shops: shopsList, center: tLocation, radius: tRadius)
+            shops: shopsList, location: tLocation, radius: tRadius)
       ],
     );
   });

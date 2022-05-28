@@ -1,11 +1,11 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
+import 'package:shopify_domain/auth.dart';
+import 'package:shopify_domain/core.dart';
 import 'package:shopify_manager/application/auth/auth_bloc.dart';
 import 'package:shopify_manager/domain/auth/i_auth_facade.dart';
 import 'package:mockito/annotations.dart';
-import 'package:shopify_manager/domain/auth/user.dart';
-import 'package:shopify_manager/domain/core/value_objects.dart';
 import 'auth_bloc_test.mocks.dart';
 import 'package:bloc_test/bloc_test.dart';
 

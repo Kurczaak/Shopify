@@ -1,5 +1,6 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'price.dart';
@@ -11,22 +12,7 @@ part of 'price.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$PriceTearOff {
-  const _$PriceTearOff();
-
-  _Price call({required PositiveNumber price, required Currency currency}) {
-    return _Price(
-      price: price,
-      currency: currency,
-    );
-  }
-}
-
-/// @nodoc
-const $Price = _$PriceTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$Price {
@@ -71,28 +57,28 @@ class _$PriceCopyWithImpl<$Res> implements $PriceCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$PriceCopyWith<$Res> implements $PriceCopyWith<$Res> {
-  factory _$PriceCopyWith(_Price value, $Res Function(_Price) then) =
-      __$PriceCopyWithImpl<$Res>;
+abstract class _$$_PriceCopyWith<$Res> implements $PriceCopyWith<$Res> {
+  factory _$$_PriceCopyWith(_$_Price value, $Res Function(_$_Price) then) =
+      __$$_PriceCopyWithImpl<$Res>;
   @override
   $Res call({PositiveNumber price, Currency currency});
 }
 
 /// @nodoc
-class __$PriceCopyWithImpl<$Res> extends _$PriceCopyWithImpl<$Res>
-    implements _$PriceCopyWith<$Res> {
-  __$PriceCopyWithImpl(_Price _value, $Res Function(_Price) _then)
-      : super(_value, (v) => _then(v as _Price));
+class __$$_PriceCopyWithImpl<$Res> extends _$PriceCopyWithImpl<$Res>
+    implements _$$_PriceCopyWith<$Res> {
+  __$$_PriceCopyWithImpl(_$_Price _value, $Res Function(_$_Price) _then)
+      : super(_value, (v) => _then(v as _$_Price));
 
   @override
-  _Price get _value => super._value as _Price;
+  _$_Price get _value => super._value as _$_Price;
 
   @override
   $Res call({
     Object? price = freezed,
     Object? currency = freezed,
   }) {
-    return _then(_Price(
+    return _then(_$_Price(
       price: price == freezed
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
@@ -124,7 +110,7 @@ class _$_Price extends _Price {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _Price &&
+            other is _$_Price &&
             const DeepCollectionEquality().equals(other.price, price) &&
             const DeepCollectionEquality().equals(other.currency, currency));
   }
@@ -137,20 +123,22 @@ class _$_Price extends _Price {
 
   @JsonKey(ignore: true)
   @override
-  _$PriceCopyWith<_Price> get copyWith =>
-      __$PriceCopyWithImpl<_Price>(this, _$identity);
+  _$$_PriceCopyWith<_$_Price> get copyWith =>
+      __$$_PriceCopyWithImpl<_$_Price>(this, _$identity);
 }
 
 abstract class _Price extends Price {
-  factory _Price({required PositiveNumber price, required Currency currency}) =
-      _$_Price;
+  factory _Price(
+      {required final PositiveNumber price,
+      required final Currency currency}) = _$_Price;
   _Price._() : super._();
 
   @override
-  PositiveNumber get price;
+  PositiveNumber get price => throw _privateConstructorUsedError;
   @override
-  Currency get currency;
+  Currency get currency => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$PriceCopyWith<_Price> get copyWith => throw _privateConstructorUsedError;
+  _$$_PriceCopyWith<_$_Price> get copyWith =>
+      throw _privateConstructorUsedError;
 }

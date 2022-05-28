@@ -2,20 +2,14 @@ import 'package:another_flushbar/flushbar_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:barcode_widget/barcode_widget.dart' as barcodeWidget;
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shopify_domain/product.dart';
 import 'package:shopify_manager/application/product/product_form/product_form_bloc.dart';
-import 'package:shopify_manager/domain/core/enum_stringify_extension.dart';
-import 'package:shopify_manager/domain/product/price.dart';
-import 'package:shopify_manager/domain/product/product.dart';
-import 'package:shopify_manager/domain/product/product_categories.dart';
-import 'package:shopify_manager/domain/product/value_objects.dart';
-import 'package:shopify_manager/domain/product/weight.dart';
+import 'package:shopify_domain/core.dart';
+
 import 'package:shopify_manager/injection.dart';
-import 'package:shopify_manager/presentation/core/widgets/photos_carousel_slider.dart';
-import 'package:shopify_manager/presentation/core/widgets/shopify_buttons.dart';
+
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:shopify_manager/presentation/core/widgets/shopify_dropdown_menu_button.dart';
-import 'package:shopify_manager/presentation/core/widgets/shopify_icon_text_button.dart';
-import 'package:shopify_manager/presentation/core/widgets/shopify_text_form_field.dart';
+import 'package:shopify_presentation/shopify_presentation.dart';
 
 class DebugPage extends StatefulWidget {
   final Barcode barcode;

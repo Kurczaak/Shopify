@@ -8,7 +8,7 @@ import 'package:shopify_domain/core.dart';
 import 'package:shopify_domain/shop.dart';
 
 import 'package:geoflutterfire/geoflutterfire.dart';
-import 'package:shopify_domain/src/core/config.dart';
+import 'package:shopify_domain/core/config.dart';
 import 'package:shopify_domain/src/core/firestore_helpers.dart';
 import 'package:shopify_domain/src/shop/shop_dtos.dart';
 import 'package:rxdart/rxdart.dart';
@@ -25,10 +25,14 @@ class FirebaseShopRepositoryImpl implements ShopifyShopRepository {
   Future<void> _deleteFileAndDocument(
       {Reference? fileReference, DocumentReference? docReference}) async {
     if (fileReference != null) {
-      await fileReference.delete();
+      try {
+        await fileReference.delete();
+      } catch (_) {}
     }
     if (docReference != null) {
-      await docReference.delete();
+      try {
+        await docReference.delete();
+      } catch (_) {}
     }
   }
 

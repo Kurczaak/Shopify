@@ -1,10 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:shopify_domain/core/images/image_failure.dart';
 import 'package:shopify_manager/application/shop/shop_logo_picker/shop_logo_picker_bloc.dart';
-import 'package:shopify_manager/domain/core/images/image_failure.dart';
 import 'package:another_flushbar/flushbar_helper.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shopify_manager/presentation/core/widgets/shopify_icon_text_button.dart';
+import 'package:shopify_presentation/shopify_presentation.dart';
 import 'package:shopify_manager/presentation/register_shop/widgets/registration_progress_bar.dart';
 import '../../routes/router.gr.dart';
 
@@ -15,9 +15,7 @@ class LogoPickerPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<ShopLogoPickerBloc, ShopLogoPickerState>(
       listener: (context, state) {
-        state.whenPartial(error: (Error error) {
-          final ImageFailure failure = error.failure as ImageFailure;
-
+        state.whenOrNull(error: (ImageFailure failure) {
           FlushbarHelper.createError(
               message: failure.when(
                   unexpected: () => 'Unexpected Failure',
@@ -44,7 +42,7 @@ class LogoPickerPage extends StatelessWidget {
                     icon: Icons.image,
                     title: 'Logo',
                     subtitle: 'Upload shop\'s logo',
-                    error: state.isError(),
+                    error: state.isError,
                     onPressed: () => context
                         .read<ShopLogoPickerBloc>()
                         .add(const ShopLogoPickerEvent.getShopLogo()),
@@ -60,7 +58,7 @@ class LogoPickerPage extends StatelessWidget {
                       ),
                       loading: () =>
                           const Center(child: CircularProgressIndicator()),
-                      loaded: (loaded) => Image.file(loaded.logo.getOrCrash()),
+                      loaded: (logo) => Image.file(logo.getOrCrash()),
                       error: (error) => Icon(
                         Icons.image,
                         color: Theme.of(context).errorColor,
@@ -75,7 +73,7 @@ class LogoPickerPage extends StatelessWidget {
               height: 50,
               child: ElevatedButton(
                 onPressed: () {
-                  if (context.read<ShopLogoPickerBloc>().state.isLoaded()) {
+                  if (context.read<ShopLogoPickerBloc>().state.isLoaded) {
                     context.router.navigate(const RegistrationRecapRoute());
                   } else {
                     FlushbarHelper.createError(

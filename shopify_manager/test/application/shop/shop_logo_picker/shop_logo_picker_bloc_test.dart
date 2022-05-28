@@ -2,9 +2,8 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:shopify_domain/core.dart';
 import 'package:shopify_manager/application/shop/shop_logo_picker/shop_logo_picker_bloc.dart';
-import 'package:shopify_manager/domain/core/images/image_failure.dart';
-import 'package:shopify_manager/domain/core/images/photo.dart';
 import 'package:shopify_manager/infrastructure/core/images/image_picker_image_facade.dart';
 
 import '../../../utils/image_reader.dart';
@@ -39,9 +38,12 @@ void main() async {
                 ))
             .thenAnswer(
                 (_) async => left(const ImageFailure.noImageSelected())),
-        act: (ShopLogoPickerBloc bloc) => bloc.add(const GetShopLogo()),
-        expect: () =>
-            const [Loading(), Error(failure: ImageFailure.noImageSelected())],
+        act: (ShopLogoPickerBloc bloc) =>
+            bloc.add(const ShopLogoPickerEventGetShopLogo()),
+        expect: () => const [
+          ShopLogoPickerStateLoading(),
+          ShopLogoPickerStateError(failure: ImageFailure.noImageSelected())
+        ],
       );
       blocTest(
         'emits [Loading] and reemits [Loaded]',
@@ -55,8 +57,12 @@ void main() async {
             .thenAnswer(
                 (_) async => left(const ImageFailure.noImageSelected())),
         seed: () => ShopLogoPickerState.loaded(logo: tShopLogo),
-        act: (ShopLogoPickerBloc bloc) => bloc.add(const GetShopLogo()),
-        expect: () => [const Loading(), Loaded(logo: tShopLogo)],
+        act: (ShopLogoPickerBloc bloc) =>
+            bloc.add(const ShopLogoPickerEventGetShopLogo()),
+        expect: () => [
+          const ShopLogoPickerStateLoading(),
+          ShopLogoPickerStateLoaded(logo: tShopLogo)
+        ],
       );
 
       blocTest(
@@ -72,9 +78,12 @@ void main() async {
                 (_) async => left(const ImageFailure.noImageSelected())),
         seed: () => const ShopLogoPickerState.error(
             failure: ImageFailure.noImageSelected()),
-        act: (ShopLogoPickerBloc bloc) => bloc.add(const GetShopLogo()),
-        expect: () =>
-            const [Loading(), Error(failure: ImageFailure.noImageSelected())],
+        act: (ShopLogoPickerBloc bloc) =>
+            bloc.add(const ShopLogoPickerEventGetShopLogo()),
+        expect: () => const [
+          ShopLogoPickerStateLoading(),
+          ShopLogoPickerStateError(failure: ImageFailure.noImageSelected())
+        ],
       );
     });
 
@@ -93,8 +102,12 @@ void main() async {
             minHeight: ShopLogo.minHeight,
             minWidth: ShopLogo.minWidth,
           )).thenAnswer((_) async => right(tShopLogo)),
-      act: (ShopLogoPickerBloc bloc) => bloc.add(const GetShopLogo()),
-      expect: () => [const Loading(), Loaded(logo: tShopLogo)],
+      act: (ShopLogoPickerBloc bloc) =>
+          bloc.add(const ShopLogoPickerEventGetShopLogo()),
+      expect: () => [
+        const ShopLogoPickerStateLoading(),
+        ShopLogoPickerStateLoaded(logo: tShopLogo)
+      ],
     );
     blocTest(
       'emits [Loading, Error] when chosen logo has invalid size',
@@ -106,9 +119,12 @@ void main() async {
                 minWidth: ShopLogo.minWidth,
               ))
           .thenAnswer((_) async => left(const ImageFailure.invalidImageSize())),
-      act: (ShopLogoPickerBloc bloc) => bloc.add(const GetShopLogo()),
-      expect: () =>
-          const [Loading(), Error(failure: ImageFailure.invalidImageSize())],
+      act: (ShopLogoPickerBloc bloc) =>
+          bloc.add(const ShopLogoPickerEventGetShopLogo()),
+      expect: () => const [
+        ShopLogoPickerStateLoading(),
+        ShopLogoPickerStateError(failure: ImageFailure.invalidImageSize())
+      ],
     );
 
     blocTest(
@@ -120,9 +136,12 @@ void main() async {
             minHeight: ShopLogo.minHeight,
             minWidth: ShopLogo.minWidth,
           )).thenAnswer((_) async => left(const ImageFailure.unexpected())),
-      act: (ShopLogoPickerBloc bloc) => bloc.add(const GetShopLogo()),
-      expect: () =>
-          const [Loading(), Error(failure: ImageFailure.unexpected())],
+      act: (ShopLogoPickerBloc bloc) =>
+          bloc.add(const ShopLogoPickerEventGetShopLogo()),
+      expect: () => const [
+        ShopLogoPickerStateLoading(),
+        ShopLogoPickerStateError(failure: ImageFailure.unexpected())
+      ],
     );
   });
 }

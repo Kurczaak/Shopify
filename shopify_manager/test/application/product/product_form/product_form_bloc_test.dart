@@ -3,21 +3,15 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:kt_dart/kt.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
+import 'package:shopify_domain/core.dart';
+import 'package:shopify_domain/core/network/network_info.dart';
+import 'package:shopify_domain/product.dart';
 import 'package:shopify_manager/application/product/product_form/product_form_bloc.dart';
 import 'package:shopify_manager/domain/auth/i_auth_facade.dart';
 import 'package:shopify_manager/domain/core/images/i_image_facade.dart';
-import 'package:shopify_manager/domain/core/images/image_failure.dart';
-import 'package:shopify_manager/domain/core/images/photo.dart';
-import 'package:shopify_manager/domain/core/value_objects.dart';
 import 'package:shopify_manager/domain/product/i_product_repository.dart';
-import 'package:shopify_manager/domain/product/price.dart';
-import 'package:shopify_manager/domain/product/product_categories.dart';
-import 'package:shopify_manager/domain/product/product_failure.dart';
-import 'package:shopify_manager/domain/product/value_objects.dart';
 import 'package:bloc_test/bloc_test.dart';
-import 'package:shopify_manager/domain/product/weight.dart';
 import 'package:shopify_manager/domain/shop/i_shop_repository.dart';
-import 'package:shopify_manager/infrastructure/core/network/network_info.dart';
 
 import '../../../fixtures/test_product.dart';
 import '../../../utils/image_reader.dart';
@@ -71,7 +65,7 @@ void main() async {
       ),
       seed: () => initialState,
       act: (ProductFormBloc bloc) =>
-          bloc.add(ProductFormEvent.categoryChanged(category: category)),
+          bloc.add(const ProductFormEvent.categoryChanged(category: category)),
       expect: () => [
         initialState.copyWith(
             productForm: tInitialProduct.copyWith(category: Category(category)))
@@ -94,7 +88,7 @@ void main() async {
       ),
       seed: () => initialState,
       act: (ProductFormBloc bloc) => bloc.add(
-        ProductFormEvent.productNameChanged(productName: productNameStr),
+        const ProductFormEvent.productNameChanged(productName: productNameStr),
       ),
       expect: () => [
         initialState.copyWith(
@@ -143,7 +137,8 @@ void main() async {
       ),
       seed: () => initialState,
       act: (ProductFormBloc bloc) => bloc.add(
-        ProductFormEvent.weightNumberChanged(weightNumber: weightNumberStr),
+        const ProductFormEvent.weightNumberChanged(
+            weightNumber: weightNumberStr),
       ),
       expect: () => [
         initialState.copyWith(
@@ -156,7 +151,7 @@ void main() async {
     // arrange
     const priceStr = '10.0';
     const priceDouble = 10.0;
-    final price = Price.fromPrimitives(priceDouble, 'gram');
+    final price = Price.fromPrimitives(priceDouble, 'zl');
     blocTest(
       'should emit state with modified price',
       build: () => ProductFormBloc(
@@ -168,7 +163,7 @@ void main() async {
       ),
       seed: () => initialState,
       act: (ProductFormBloc bloc) => bloc.add(
-        ProductFormEvent.priceChanged(price: priceStr),
+        const ProductFormEvent.priceChanged(price: priceStr),
       ),
       expect: () => [
         initialState.copyWith(
@@ -193,7 +188,7 @@ void main() async {
       ),
       seed: () => initialState,
       act: (ProductFormBloc bloc) => bloc.add(
-        ProductFormEvent.productDescriptionChanged(
+        const ProductFormEvent.productDescriptionChanged(
             productDescription: descriptionStr),
       ),
       expect: () => [
@@ -219,7 +214,7 @@ void main() async {
       ),
       seed: () => initialState,
       act: (ProductFormBloc bloc) => bloc.add(
-        ProductFormEvent.ingredientsChanged(ingredients: ingredientsStr),
+        const ProductFormEvent.ingredientsChanged(ingredients: ingredientsStr),
       ),
       expect: () => [
         initialState.copyWith(

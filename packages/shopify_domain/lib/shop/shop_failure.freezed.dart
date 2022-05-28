@@ -1,5 +1,6 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'shop_failure.dart';
@@ -11,37 +12,7 @@ part of 'shop_failure.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$ShopFailureTearOff {
-  const _$ShopFailureTearOff();
-
-  _Unexpected unexpected() {
-    return const _Unexpected();
-  }
-
-  _InsufficientPermission insufficientPermission() {
-    return const _InsufficientPermission();
-  }
-
-  _UnableToUpdate unableToUpdate() {
-    return const _UnableToUpdate();
-  }
-
-  _Timeout timeout(Duration timeout) {
-    return _Timeout(
-      timeout,
-    );
-  }
-
-  _NoShopFound noShopFound() {
-    return const _NoShopFound();
-  }
-}
-
-/// @nodoc
-const $ShopFailure = _$ShopFailureTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$ShopFailure {
@@ -52,6 +23,7 @@ mixin _$ShopFailure {
     required TResult Function() unableToUpdate,
     required TResult Function(Duration timeout) timeout,
     required TResult Function() noShopFound,
+    required TResult Function() locationPermissionDenied,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -61,6 +33,7 @@ mixin _$ShopFailure {
     TResult Function()? unableToUpdate,
     TResult Function(Duration timeout)? timeout,
     TResult Function()? noShopFound,
+    TResult Function()? locationPermissionDenied,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -70,6 +43,7 @@ mixin _$ShopFailure {
     TResult Function()? unableToUpdate,
     TResult Function(Duration timeout)? timeout,
     TResult Function()? noShopFound,
+    TResult Function()? locationPermissionDenied,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -81,6 +55,8 @@ mixin _$ShopFailure {
     required TResult Function(_UnableToUpdate value) unableToUpdate,
     required TResult Function(_Timeout value) timeout,
     required TResult Function(_NoShopFound value) noShopFound,
+    required TResult Function(_LocationPermissionDenied value)
+        locationPermissionDenied,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -90,6 +66,7 @@ mixin _$ShopFailure {
     TResult Function(_UnableToUpdate value)? unableToUpdate,
     TResult Function(_Timeout value)? timeout,
     TResult Function(_NoShopFound value)? noShopFound,
+    TResult Function(_LocationPermissionDenied value)? locationPermissionDenied,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -99,6 +76,7 @@ mixin _$ShopFailure {
     TResult Function(_UnableToUpdate value)? unableToUpdate,
     TResult Function(_Timeout value)? timeout,
     TResult Function(_NoShopFound value)? noShopFound,
+    TResult Function(_LocationPermissionDenied value)? locationPermissionDenied,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -121,21 +99,21 @@ class _$ShopFailureCopyWithImpl<$Res> implements $ShopFailureCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$UnexpectedCopyWith<$Res> {
-  factory _$UnexpectedCopyWith(
-          _Unexpected value, $Res Function(_Unexpected) then) =
-      __$UnexpectedCopyWithImpl<$Res>;
+abstract class _$$_UnexpectedCopyWith<$Res> {
+  factory _$$_UnexpectedCopyWith(
+          _$_Unexpected value, $Res Function(_$_Unexpected) then) =
+      __$$_UnexpectedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$UnexpectedCopyWithImpl<$Res> extends _$ShopFailureCopyWithImpl<$Res>
-    implements _$UnexpectedCopyWith<$Res> {
-  __$UnexpectedCopyWithImpl(
-      _Unexpected _value, $Res Function(_Unexpected) _then)
-      : super(_value, (v) => _then(v as _Unexpected));
+class __$$_UnexpectedCopyWithImpl<$Res> extends _$ShopFailureCopyWithImpl<$Res>
+    implements _$$_UnexpectedCopyWith<$Res> {
+  __$$_UnexpectedCopyWithImpl(
+      _$_Unexpected _value, $Res Function(_$_Unexpected) _then)
+      : super(_value, (v) => _then(v as _$_Unexpected));
 
   @override
-  _Unexpected get _value => super._value as _Unexpected;
+  _$_Unexpected get _value => super._value as _$_Unexpected;
 }
 
 /// @nodoc
@@ -151,7 +129,7 @@ class _$_Unexpected implements _Unexpected {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _Unexpected);
+        (other.runtimeType == runtimeType && other is _$_Unexpected);
   }
 
   @override
@@ -165,6 +143,7 @@ class _$_Unexpected implements _Unexpected {
     required TResult Function() unableToUpdate,
     required TResult Function(Duration timeout) timeout,
     required TResult Function() noShopFound,
+    required TResult Function() locationPermissionDenied,
   }) {
     return unexpected();
   }
@@ -177,6 +156,7 @@ class _$_Unexpected implements _Unexpected {
     TResult Function()? unableToUpdate,
     TResult Function(Duration timeout)? timeout,
     TResult Function()? noShopFound,
+    TResult Function()? locationPermissionDenied,
   }) {
     return unexpected?.call();
   }
@@ -189,6 +169,7 @@ class _$_Unexpected implements _Unexpected {
     TResult Function()? unableToUpdate,
     TResult Function(Duration timeout)? timeout,
     TResult Function()? noShopFound,
+    TResult Function()? locationPermissionDenied,
     required TResult orElse(),
   }) {
     if (unexpected != null) {
@@ -206,6 +187,8 @@ class _$_Unexpected implements _Unexpected {
     required TResult Function(_UnableToUpdate value) unableToUpdate,
     required TResult Function(_Timeout value) timeout,
     required TResult Function(_NoShopFound value) noShopFound,
+    required TResult Function(_LocationPermissionDenied value)
+        locationPermissionDenied,
   }) {
     return unexpected(this);
   }
@@ -218,6 +201,7 @@ class _$_Unexpected implements _Unexpected {
     TResult Function(_UnableToUpdate value)? unableToUpdate,
     TResult Function(_Timeout value)? timeout,
     TResult Function(_NoShopFound value)? noShopFound,
+    TResult Function(_LocationPermissionDenied value)? locationPermissionDenied,
   }) {
     return unexpected?.call(this);
   }
@@ -230,6 +214,7 @@ class _$_Unexpected implements _Unexpected {
     TResult Function(_UnableToUpdate value)? unableToUpdate,
     TResult Function(_Timeout value)? timeout,
     TResult Function(_NoShopFound value)? noShopFound,
+    TResult Function(_LocationPermissionDenied value)? locationPermissionDenied,
     required TResult orElse(),
   }) {
     if (unexpected != null) {
@@ -244,22 +229,23 @@ abstract class _Unexpected implements ShopFailure {
 }
 
 /// @nodoc
-abstract class _$InsufficientPermissionCopyWith<$Res> {
-  factory _$InsufficientPermissionCopyWith(_InsufficientPermission value,
-          $Res Function(_InsufficientPermission) then) =
-      __$InsufficientPermissionCopyWithImpl<$Res>;
+abstract class _$$_InsufficientPermissionCopyWith<$Res> {
+  factory _$$_InsufficientPermissionCopyWith(_$_InsufficientPermission value,
+          $Res Function(_$_InsufficientPermission) then) =
+      __$$_InsufficientPermissionCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$InsufficientPermissionCopyWithImpl<$Res>
+class __$$_InsufficientPermissionCopyWithImpl<$Res>
     extends _$ShopFailureCopyWithImpl<$Res>
-    implements _$InsufficientPermissionCopyWith<$Res> {
-  __$InsufficientPermissionCopyWithImpl(_InsufficientPermission _value,
-      $Res Function(_InsufficientPermission) _then)
-      : super(_value, (v) => _then(v as _InsufficientPermission));
+    implements _$$_InsufficientPermissionCopyWith<$Res> {
+  __$$_InsufficientPermissionCopyWithImpl(_$_InsufficientPermission _value,
+      $Res Function(_$_InsufficientPermission) _then)
+      : super(_value, (v) => _then(v as _$_InsufficientPermission));
 
   @override
-  _InsufficientPermission get _value => super._value as _InsufficientPermission;
+  _$_InsufficientPermission get _value =>
+      super._value as _$_InsufficientPermission;
 }
 
 /// @nodoc
@@ -275,7 +261,8 @@ class _$_InsufficientPermission implements _InsufficientPermission {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _InsufficientPermission);
+        (other.runtimeType == runtimeType &&
+            other is _$_InsufficientPermission);
   }
 
   @override
@@ -289,6 +276,7 @@ class _$_InsufficientPermission implements _InsufficientPermission {
     required TResult Function() unableToUpdate,
     required TResult Function(Duration timeout) timeout,
     required TResult Function() noShopFound,
+    required TResult Function() locationPermissionDenied,
   }) {
     return insufficientPermission();
   }
@@ -301,6 +289,7 @@ class _$_InsufficientPermission implements _InsufficientPermission {
     TResult Function()? unableToUpdate,
     TResult Function(Duration timeout)? timeout,
     TResult Function()? noShopFound,
+    TResult Function()? locationPermissionDenied,
   }) {
     return insufficientPermission?.call();
   }
@@ -313,6 +302,7 @@ class _$_InsufficientPermission implements _InsufficientPermission {
     TResult Function()? unableToUpdate,
     TResult Function(Duration timeout)? timeout,
     TResult Function()? noShopFound,
+    TResult Function()? locationPermissionDenied,
     required TResult orElse(),
   }) {
     if (insufficientPermission != null) {
@@ -330,6 +320,8 @@ class _$_InsufficientPermission implements _InsufficientPermission {
     required TResult Function(_UnableToUpdate value) unableToUpdate,
     required TResult Function(_Timeout value) timeout,
     required TResult Function(_NoShopFound value) noShopFound,
+    required TResult Function(_LocationPermissionDenied value)
+        locationPermissionDenied,
   }) {
     return insufficientPermission(this);
   }
@@ -342,6 +334,7 @@ class _$_InsufficientPermission implements _InsufficientPermission {
     TResult Function(_UnableToUpdate value)? unableToUpdate,
     TResult Function(_Timeout value)? timeout,
     TResult Function(_NoShopFound value)? noShopFound,
+    TResult Function(_LocationPermissionDenied value)? locationPermissionDenied,
   }) {
     return insufficientPermission?.call(this);
   }
@@ -354,6 +347,7 @@ class _$_InsufficientPermission implements _InsufficientPermission {
     TResult Function(_UnableToUpdate value)? unableToUpdate,
     TResult Function(_Timeout value)? timeout,
     TResult Function(_NoShopFound value)? noShopFound,
+    TResult Function(_LocationPermissionDenied value)? locationPermissionDenied,
     required TResult orElse(),
   }) {
     if (insufficientPermission != null) {
@@ -368,22 +362,22 @@ abstract class _InsufficientPermission implements ShopFailure {
 }
 
 /// @nodoc
-abstract class _$UnableToUpdateCopyWith<$Res> {
-  factory _$UnableToUpdateCopyWith(
-          _UnableToUpdate value, $Res Function(_UnableToUpdate) then) =
-      __$UnableToUpdateCopyWithImpl<$Res>;
+abstract class _$$_UnableToUpdateCopyWith<$Res> {
+  factory _$$_UnableToUpdateCopyWith(
+          _$_UnableToUpdate value, $Res Function(_$_UnableToUpdate) then) =
+      __$$_UnableToUpdateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$UnableToUpdateCopyWithImpl<$Res>
+class __$$_UnableToUpdateCopyWithImpl<$Res>
     extends _$ShopFailureCopyWithImpl<$Res>
-    implements _$UnableToUpdateCopyWith<$Res> {
-  __$UnableToUpdateCopyWithImpl(
-      _UnableToUpdate _value, $Res Function(_UnableToUpdate) _then)
-      : super(_value, (v) => _then(v as _UnableToUpdate));
+    implements _$$_UnableToUpdateCopyWith<$Res> {
+  __$$_UnableToUpdateCopyWithImpl(
+      _$_UnableToUpdate _value, $Res Function(_$_UnableToUpdate) _then)
+      : super(_value, (v) => _then(v as _$_UnableToUpdate));
 
   @override
-  _UnableToUpdate get _value => super._value as _UnableToUpdate;
+  _$_UnableToUpdate get _value => super._value as _$_UnableToUpdate;
 }
 
 /// @nodoc
@@ -399,7 +393,7 @@ class _$_UnableToUpdate implements _UnableToUpdate {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _UnableToUpdate);
+        (other.runtimeType == runtimeType && other is _$_UnableToUpdate);
   }
 
   @override
@@ -413,6 +407,7 @@ class _$_UnableToUpdate implements _UnableToUpdate {
     required TResult Function() unableToUpdate,
     required TResult Function(Duration timeout) timeout,
     required TResult Function() noShopFound,
+    required TResult Function() locationPermissionDenied,
   }) {
     return unableToUpdate();
   }
@@ -425,6 +420,7 @@ class _$_UnableToUpdate implements _UnableToUpdate {
     TResult Function()? unableToUpdate,
     TResult Function(Duration timeout)? timeout,
     TResult Function()? noShopFound,
+    TResult Function()? locationPermissionDenied,
   }) {
     return unableToUpdate?.call();
   }
@@ -437,6 +433,7 @@ class _$_UnableToUpdate implements _UnableToUpdate {
     TResult Function()? unableToUpdate,
     TResult Function(Duration timeout)? timeout,
     TResult Function()? noShopFound,
+    TResult Function()? locationPermissionDenied,
     required TResult orElse(),
   }) {
     if (unableToUpdate != null) {
@@ -454,6 +451,8 @@ class _$_UnableToUpdate implements _UnableToUpdate {
     required TResult Function(_UnableToUpdate value) unableToUpdate,
     required TResult Function(_Timeout value) timeout,
     required TResult Function(_NoShopFound value) noShopFound,
+    required TResult Function(_LocationPermissionDenied value)
+        locationPermissionDenied,
   }) {
     return unableToUpdate(this);
   }
@@ -466,6 +465,7 @@ class _$_UnableToUpdate implements _UnableToUpdate {
     TResult Function(_UnableToUpdate value)? unableToUpdate,
     TResult Function(_Timeout value)? timeout,
     TResult Function(_NoShopFound value)? noShopFound,
+    TResult Function(_LocationPermissionDenied value)? locationPermissionDenied,
   }) {
     return unableToUpdate?.call(this);
   }
@@ -478,6 +478,7 @@ class _$_UnableToUpdate implements _UnableToUpdate {
     TResult Function(_UnableToUpdate value)? unableToUpdate,
     TResult Function(_Timeout value)? timeout,
     TResult Function(_NoShopFound value)? noShopFound,
+    TResult Function(_LocationPermissionDenied value)? locationPermissionDenied,
     required TResult orElse(),
   }) {
     if (unableToUpdate != null) {
@@ -492,26 +493,27 @@ abstract class _UnableToUpdate implements ShopFailure {
 }
 
 /// @nodoc
-abstract class _$TimeoutCopyWith<$Res> {
-  factory _$TimeoutCopyWith(_Timeout value, $Res Function(_Timeout) then) =
-      __$TimeoutCopyWithImpl<$Res>;
+abstract class _$$_TimeoutCopyWith<$Res> {
+  factory _$$_TimeoutCopyWith(
+          _$_Timeout value, $Res Function(_$_Timeout) then) =
+      __$$_TimeoutCopyWithImpl<$Res>;
   $Res call({Duration timeout});
 }
 
 /// @nodoc
-class __$TimeoutCopyWithImpl<$Res> extends _$ShopFailureCopyWithImpl<$Res>
-    implements _$TimeoutCopyWith<$Res> {
-  __$TimeoutCopyWithImpl(_Timeout _value, $Res Function(_Timeout) _then)
-      : super(_value, (v) => _then(v as _Timeout));
+class __$$_TimeoutCopyWithImpl<$Res> extends _$ShopFailureCopyWithImpl<$Res>
+    implements _$$_TimeoutCopyWith<$Res> {
+  __$$_TimeoutCopyWithImpl(_$_Timeout _value, $Res Function(_$_Timeout) _then)
+      : super(_value, (v) => _then(v as _$_Timeout));
 
   @override
-  _Timeout get _value => super._value as _Timeout;
+  _$_Timeout get _value => super._value as _$_Timeout;
 
   @override
   $Res call({
     Object? timeout = freezed,
   }) {
-    return _then(_Timeout(
+    return _then(_$_Timeout(
       timeout == freezed
           ? _value.timeout
           : timeout // ignore: cast_nullable_to_non_nullable
@@ -537,7 +539,7 @@ class _$_Timeout implements _Timeout {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _Timeout &&
+            other is _$_Timeout &&
             const DeepCollectionEquality().equals(other.timeout, timeout));
   }
 
@@ -547,8 +549,8 @@ class _$_Timeout implements _Timeout {
 
   @JsonKey(ignore: true)
   @override
-  _$TimeoutCopyWith<_Timeout> get copyWith =>
-      __$TimeoutCopyWithImpl<_Timeout>(this, _$identity);
+  _$$_TimeoutCopyWith<_$_Timeout> get copyWith =>
+      __$$_TimeoutCopyWithImpl<_$_Timeout>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -558,6 +560,7 @@ class _$_Timeout implements _Timeout {
     required TResult Function() unableToUpdate,
     required TResult Function(Duration timeout) timeout,
     required TResult Function() noShopFound,
+    required TResult Function() locationPermissionDenied,
   }) {
     return timeout(this.timeout);
   }
@@ -570,6 +573,7 @@ class _$_Timeout implements _Timeout {
     TResult Function()? unableToUpdate,
     TResult Function(Duration timeout)? timeout,
     TResult Function()? noShopFound,
+    TResult Function()? locationPermissionDenied,
   }) {
     return timeout?.call(this.timeout);
   }
@@ -582,6 +586,7 @@ class _$_Timeout implements _Timeout {
     TResult Function()? unableToUpdate,
     TResult Function(Duration timeout)? timeout,
     TResult Function()? noShopFound,
+    TResult Function()? locationPermissionDenied,
     required TResult orElse(),
   }) {
     if (timeout != null) {
@@ -599,6 +604,8 @@ class _$_Timeout implements _Timeout {
     required TResult Function(_UnableToUpdate value) unableToUpdate,
     required TResult Function(_Timeout value) timeout,
     required TResult Function(_NoShopFound value) noShopFound,
+    required TResult Function(_LocationPermissionDenied value)
+        locationPermissionDenied,
   }) {
     return timeout(this);
   }
@@ -611,6 +618,7 @@ class _$_Timeout implements _Timeout {
     TResult Function(_UnableToUpdate value)? unableToUpdate,
     TResult Function(_Timeout value)? timeout,
     TResult Function(_NoShopFound value)? noShopFound,
+    TResult Function(_LocationPermissionDenied value)? locationPermissionDenied,
   }) {
     return timeout?.call(this);
   }
@@ -623,6 +631,7 @@ class _$_Timeout implements _Timeout {
     TResult Function(_UnableToUpdate value)? unableToUpdate,
     TResult Function(_Timeout value)? timeout,
     TResult Function(_NoShopFound value)? noShopFound,
+    TResult Function(_LocationPermissionDenied value)? locationPermissionDenied,
     required TResult orElse(),
   }) {
     if (timeout != null) {
@@ -633,30 +642,30 @@ class _$_Timeout implements _Timeout {
 }
 
 abstract class _Timeout implements ShopFailure {
-  const factory _Timeout(Duration timeout) = _$_Timeout;
+  const factory _Timeout(final Duration timeout) = _$_Timeout;
 
-  Duration get timeout;
+  Duration get timeout => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  _$TimeoutCopyWith<_Timeout> get copyWith =>
+  _$$_TimeoutCopyWith<_$_Timeout> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$NoShopFoundCopyWith<$Res> {
-  factory _$NoShopFoundCopyWith(
-          _NoShopFound value, $Res Function(_NoShopFound) then) =
-      __$NoShopFoundCopyWithImpl<$Res>;
+abstract class _$$_NoShopFoundCopyWith<$Res> {
+  factory _$$_NoShopFoundCopyWith(
+          _$_NoShopFound value, $Res Function(_$_NoShopFound) then) =
+      __$$_NoShopFoundCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$NoShopFoundCopyWithImpl<$Res> extends _$ShopFailureCopyWithImpl<$Res>
-    implements _$NoShopFoundCopyWith<$Res> {
-  __$NoShopFoundCopyWithImpl(
-      _NoShopFound _value, $Res Function(_NoShopFound) _then)
-      : super(_value, (v) => _then(v as _NoShopFound));
+class __$$_NoShopFoundCopyWithImpl<$Res> extends _$ShopFailureCopyWithImpl<$Res>
+    implements _$$_NoShopFoundCopyWith<$Res> {
+  __$$_NoShopFoundCopyWithImpl(
+      _$_NoShopFound _value, $Res Function(_$_NoShopFound) _then)
+      : super(_value, (v) => _then(v as _$_NoShopFound));
 
   @override
-  _NoShopFound get _value => super._value as _NoShopFound;
+  _$_NoShopFound get _value => super._value as _$_NoShopFound;
 }
 
 /// @nodoc
@@ -672,7 +681,7 @@ class _$_NoShopFound implements _NoShopFound {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _NoShopFound);
+        (other.runtimeType == runtimeType && other is _$_NoShopFound);
   }
 
   @override
@@ -686,6 +695,7 @@ class _$_NoShopFound implements _NoShopFound {
     required TResult Function() unableToUpdate,
     required TResult Function(Duration timeout) timeout,
     required TResult Function() noShopFound,
+    required TResult Function() locationPermissionDenied,
   }) {
     return noShopFound();
   }
@@ -698,6 +708,7 @@ class _$_NoShopFound implements _NoShopFound {
     TResult Function()? unableToUpdate,
     TResult Function(Duration timeout)? timeout,
     TResult Function()? noShopFound,
+    TResult Function()? locationPermissionDenied,
   }) {
     return noShopFound?.call();
   }
@@ -710,6 +721,7 @@ class _$_NoShopFound implements _NoShopFound {
     TResult Function()? unableToUpdate,
     TResult Function(Duration timeout)? timeout,
     TResult Function()? noShopFound,
+    TResult Function()? locationPermissionDenied,
     required TResult orElse(),
   }) {
     if (noShopFound != null) {
@@ -727,6 +739,8 @@ class _$_NoShopFound implements _NoShopFound {
     required TResult Function(_UnableToUpdate value) unableToUpdate,
     required TResult Function(_Timeout value) timeout,
     required TResult Function(_NoShopFound value) noShopFound,
+    required TResult Function(_LocationPermissionDenied value)
+        locationPermissionDenied,
   }) {
     return noShopFound(this);
   }
@@ -739,6 +753,7 @@ class _$_NoShopFound implements _NoShopFound {
     TResult Function(_UnableToUpdate value)? unableToUpdate,
     TResult Function(_Timeout value)? timeout,
     TResult Function(_NoShopFound value)? noShopFound,
+    TResult Function(_LocationPermissionDenied value)? locationPermissionDenied,
   }) {
     return noShopFound?.call(this);
   }
@@ -751,6 +766,7 @@ class _$_NoShopFound implements _NoShopFound {
     TResult Function(_UnableToUpdate value)? unableToUpdate,
     TResult Function(_Timeout value)? timeout,
     TResult Function(_NoShopFound value)? noShopFound,
+    TResult Function(_LocationPermissionDenied value)? locationPermissionDenied,
     required TResult orElse(),
   }) {
     if (noShopFound != null) {
@@ -762,4 +778,138 @@ class _$_NoShopFound implements _NoShopFound {
 
 abstract class _NoShopFound implements ShopFailure {
   const factory _NoShopFound() = _$_NoShopFound;
+}
+
+/// @nodoc
+abstract class _$$_LocationPermissionDeniedCopyWith<$Res> {
+  factory _$$_LocationPermissionDeniedCopyWith(
+          _$_LocationPermissionDenied value,
+          $Res Function(_$_LocationPermissionDenied) then) =
+      __$$_LocationPermissionDeniedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_LocationPermissionDeniedCopyWithImpl<$Res>
+    extends _$ShopFailureCopyWithImpl<$Res>
+    implements _$$_LocationPermissionDeniedCopyWith<$Res> {
+  __$$_LocationPermissionDeniedCopyWithImpl(_$_LocationPermissionDenied _value,
+      $Res Function(_$_LocationPermissionDenied) _then)
+      : super(_value, (v) => _then(v as _$_LocationPermissionDenied));
+
+  @override
+  _$_LocationPermissionDenied get _value =>
+      super._value as _$_LocationPermissionDenied;
+}
+
+/// @nodoc
+
+class _$_LocationPermissionDenied implements _LocationPermissionDenied {
+  const _$_LocationPermissionDenied();
+
+  @override
+  String toString() {
+    return 'ShopFailure.locationPermissionDenied()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_LocationPermissionDenied);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() unexpected,
+    required TResult Function() insufficientPermission,
+    required TResult Function() unableToUpdate,
+    required TResult Function(Duration timeout) timeout,
+    required TResult Function() noShopFound,
+    required TResult Function() locationPermissionDenied,
+  }) {
+    return locationPermissionDenied();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? unexpected,
+    TResult Function()? insufficientPermission,
+    TResult Function()? unableToUpdate,
+    TResult Function(Duration timeout)? timeout,
+    TResult Function()? noShopFound,
+    TResult Function()? locationPermissionDenied,
+  }) {
+    return locationPermissionDenied?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? unexpected,
+    TResult Function()? insufficientPermission,
+    TResult Function()? unableToUpdate,
+    TResult Function(Duration timeout)? timeout,
+    TResult Function()? noShopFound,
+    TResult Function()? locationPermissionDenied,
+    required TResult orElse(),
+  }) {
+    if (locationPermissionDenied != null) {
+      return locationPermissionDenied();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Unexpected value) unexpected,
+    required TResult Function(_InsufficientPermission value)
+        insufficientPermission,
+    required TResult Function(_UnableToUpdate value) unableToUpdate,
+    required TResult Function(_Timeout value) timeout,
+    required TResult Function(_NoShopFound value) noShopFound,
+    required TResult Function(_LocationPermissionDenied value)
+        locationPermissionDenied,
+  }) {
+    return locationPermissionDenied(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_InsufficientPermission value)? insufficientPermission,
+    TResult Function(_UnableToUpdate value)? unableToUpdate,
+    TResult Function(_Timeout value)? timeout,
+    TResult Function(_NoShopFound value)? noShopFound,
+    TResult Function(_LocationPermissionDenied value)? locationPermissionDenied,
+  }) {
+    return locationPermissionDenied?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_InsufficientPermission value)? insufficientPermission,
+    TResult Function(_UnableToUpdate value)? unableToUpdate,
+    TResult Function(_Timeout value)? timeout,
+    TResult Function(_NoShopFound value)? noShopFound,
+    TResult Function(_LocationPermissionDenied value)? locationPermissionDenied,
+    required TResult orElse(),
+  }) {
+    if (locationPermissionDenied != null) {
+      return locationPermissionDenied(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _LocationPermissionDenied implements ShopFailure {
+  const factory _LocationPermissionDenied() = _$_LocationPermissionDenied;
 }

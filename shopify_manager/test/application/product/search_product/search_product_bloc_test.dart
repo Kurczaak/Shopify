@@ -3,11 +3,11 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
+import 'package:shopify_domain/core/config.dart';
+import 'package:shopify_domain/product.dart';
 import 'package:shopify_manager/application/product/search_product/search_product_bloc.dart';
-import 'package:shopify_manager/domain/product/open_food_facts/i_open_food_facts_repository.dart';
-import 'package:shopify_manager/domain/product/product_failure.dart';
-import 'package:shopify_manager/domain/product/value_objects.dart';
-import 'package:shopify_manager/infrastructure/core/config.dart';
+import 'package:shopify_manager/domain/product/i_open_food_facts_repository.dart';
+
 import '../../../fixtures/test_product.dart';
 import 'search_product_bloc_test.mocks.dart';
 
@@ -43,8 +43,8 @@ void main() {
         act: (SearchProductBloc bloc) => bloc.add(
             const SearchProductEvent.searchForProduct(barcode: barcodeString)),
         expect: () => [
-              const Loading(),
-              Loaded(
+              const SearchProductStateLoading(),
+              SearchProductStateLoaded(
                   failureOption: none(),
                   productOption: some(fixtureProduct),
                   productExists: false),
@@ -61,8 +61,8 @@ void main() {
                   (_) async => left(const ProductFailure.productNotFound()));
         },
         expect: () => [
-              const Loading(),
-              Loaded(
+              const SearchProductStateLoading(),
+              SearchProductStateLoaded(
                   failureOption: some(const ProductFailure.productNotFound()),
                   productOption: none(),
                   productExists: false),
@@ -78,8 +78,8 @@ void main() {
                   left(const ProductFailure.timeout(timeoutDuration)));
         },
         expect: () => [
-              const Loading(),
-              Loaded(
+              const SearchProductStateLoading(),
+              SearchProductStateLoaded(
                   failureOption:
                       some(const ProductFailure.timeout(timeoutDuration)),
                   productOption: none(),

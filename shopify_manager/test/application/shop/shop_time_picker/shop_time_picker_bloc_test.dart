@@ -1,11 +1,9 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:meta/meta.dart';
+import 'package:shopify_domain/shop.dart';
 
 import 'package:shopify_manager/application/shop/shop_time_picker/shop_time_picker_bloc.dart';
-import 'package:shopify_manager/domain/shop/time/day.dart';
-import 'package:shopify_manager/domain/shop/time/value_objects.dart';
-import 'package:shopify_manager/domain/shop/time/week.dart';
 import 'package:shopify_manager/presentation/register_shop/opening_hours/misc/day_presentation_classes.dart';
 
 void main() {

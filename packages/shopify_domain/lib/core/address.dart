@@ -6,7 +6,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'address.freezed.dart';
 
 @freezed
-abstract class Address with _$Address {
+class Address with _$Address {
   const Address._();
 
   const factory Address({

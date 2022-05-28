@@ -19,6 +19,8 @@ class SignUpForm extends StatelessWidget {
             (either) => either.fold((failure) {
                   FlushbarHelper.createError(
                     message: failure.map(
+                        noInternetConnection: (_) => 'No internet connection',
+                        timeOut: (_) => 'Connection timed out',
                         cancelledByUser: (_) => 'Cancelled',
                         serverSerror: (_) => 'Server error',
                         emailAlreadyInUse: (_) => 'Email already in use',

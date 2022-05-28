@@ -16,7 +16,7 @@ enum DayName {
 }
 
 @freezed
-abstract class Day with _$Day {
+class Day with _$Day {
   const Day._();
 
   const factory Day({

@@ -1,5 +1,6 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'address_dto.dart';
@@ -11,38 +12,11 @@ part of 'address_dto.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 AddressDto _$AddressDtoFromJson(Map<String, dynamic> json) {
   return _AddressDto.fromJson(json);
 }
-
-/// @nodoc
-class _$AddressDtoTearOff {
-  const _$AddressDtoTearOff();
-
-  _AddressDto call(
-      {required String streetName,
-      required String postalCode,
-      required String city,
-      required String streetNumber,
-      required String apartmentNumber}) {
-    return _AddressDto(
-      streetName: streetName,
-      postalCode: postalCode,
-      city: city,
-      streetNumber: streetNumber,
-      apartmentNumber: apartmentNumber,
-    );
-  }
-
-  AddressDto fromJson(Map<String, Object?> json) {
-    return AddressDto.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $AddressDto = _$AddressDtoTearOff();
 
 /// @nodoc
 mixin _$AddressDto {
@@ -113,10 +87,11 @@ class _$AddressDtoCopyWithImpl<$Res> implements $AddressDtoCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$AddressDtoCopyWith<$Res> implements $AddressDtoCopyWith<$Res> {
-  factory _$AddressDtoCopyWith(
-          _AddressDto value, $Res Function(_AddressDto) then) =
-      __$AddressDtoCopyWithImpl<$Res>;
+abstract class _$$_AddressDtoCopyWith<$Res>
+    implements $AddressDtoCopyWith<$Res> {
+  factory _$$_AddressDtoCopyWith(
+          _$_AddressDto value, $Res Function(_$_AddressDto) then) =
+      __$$_AddressDtoCopyWithImpl<$Res>;
   @override
   $Res call(
       {String streetName,
@@ -127,14 +102,14 @@ abstract class _$AddressDtoCopyWith<$Res> implements $AddressDtoCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$AddressDtoCopyWithImpl<$Res> extends _$AddressDtoCopyWithImpl<$Res>
-    implements _$AddressDtoCopyWith<$Res> {
-  __$AddressDtoCopyWithImpl(
-      _AddressDto _value, $Res Function(_AddressDto) _then)
-      : super(_value, (v) => _then(v as _AddressDto));
+class __$$_AddressDtoCopyWithImpl<$Res> extends _$AddressDtoCopyWithImpl<$Res>
+    implements _$$_AddressDtoCopyWith<$Res> {
+  __$$_AddressDtoCopyWithImpl(
+      _$_AddressDto _value, $Res Function(_$_AddressDto) _then)
+      : super(_value, (v) => _then(v as _$_AddressDto));
 
   @override
-  _AddressDto get _value => super._value as _AddressDto;
+  _$_AddressDto get _value => super._value as _$_AddressDto;
 
   @override
   $Res call({
@@ -144,7 +119,7 @@ class __$AddressDtoCopyWithImpl<$Res> extends _$AddressDtoCopyWithImpl<$Res>
     Object? streetNumber = freezed,
     Object? apartmentNumber = freezed,
   }) {
-    return _then(_AddressDto(
+    return _then(_$_AddressDto(
       streetName: streetName == freezed
           ? _value.streetName
           : streetName // ignore: cast_nullable_to_non_nullable
@@ -203,7 +178,7 @@ class _$_AddressDto extends _AddressDto {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _AddressDto &&
+            other is _$_AddressDto &&
             const DeepCollectionEquality()
                 .equals(other.streetName, streetName) &&
             const DeepCollectionEquality()
@@ -215,6 +190,7 @@ class _$_AddressDto extends _AddressDto {
                 .equals(other.apartmentNumber, apartmentNumber));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -226,8 +202,8 @@ class _$_AddressDto extends _AddressDto {
 
   @JsonKey(ignore: true)
   @override
-  _$AddressDtoCopyWith<_AddressDto> get copyWith =>
-      __$AddressDtoCopyWithImpl<_AddressDto>(this, _$identity);
+  _$$_AddressDtoCopyWith<_$_AddressDto> get copyWith =>
+      __$$_AddressDtoCopyWithImpl<_$_AddressDto>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -237,28 +213,28 @@ class _$_AddressDto extends _AddressDto {
 
 abstract class _AddressDto extends AddressDto {
   const factory _AddressDto(
-      {required String streetName,
-      required String postalCode,
-      required String city,
-      required String streetNumber,
-      required String apartmentNumber}) = _$_AddressDto;
+      {required final String streetName,
+      required final String postalCode,
+      required final String city,
+      required final String streetNumber,
+      required final String apartmentNumber}) = _$_AddressDto;
   const _AddressDto._() : super._();
 
   factory _AddressDto.fromJson(Map<String, dynamic> json) =
       _$_AddressDto.fromJson;
 
   @override
-  String get streetName;
+  String get streetName => throw _privateConstructorUsedError;
   @override
-  String get postalCode;
+  String get postalCode => throw _privateConstructorUsedError;
   @override
-  String get city;
+  String get city => throw _privateConstructorUsedError;
   @override
-  String get streetNumber;
+  String get streetNumber => throw _privateConstructorUsedError;
   @override
-  String get apartmentNumber;
+  String get apartmentNumber => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$AddressDtoCopyWith<_AddressDto> get copyWith =>
+  _$$_AddressDtoCopyWith<_$_AddressDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
