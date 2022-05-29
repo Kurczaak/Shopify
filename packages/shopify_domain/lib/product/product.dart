@@ -31,7 +31,7 @@ class Product with _$Product {
   factory Product.empty() => Product(
       id: UniqueId(),
       barcode: Barcode(''),
-      weight: Weight.empty(),
+      weight: Weight.zero(),
       price: Price.empty(),
       category: Category(Categories.unknown),
       name: ProductName(''),

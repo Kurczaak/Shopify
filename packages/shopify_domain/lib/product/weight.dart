@@ -10,8 +10,9 @@ part 'weight.freezed.dart';
 class Weight with _$Weight {
   const Weight._();
 
-  factory Weight.empty() => Weight(
-      weight: PositiveNumber(0), weightUnit: WeightUnit(WeightUnits.gram));
+  factory Weight.zero({WeightUnits? unit}) => Weight(
+      weight: PositiveNumber(0),
+      weightUnit: WeightUnit(unit ?? WeightUnits.gram));
 
   const factory Weight({
     required PositiveNumber weight,

@@ -36,7 +36,7 @@ class ProductForm with _$ProductForm {
   factory ProductForm.empty() => ProductForm(
       id: UniqueId(),
       barcode: Barcode(''),
-      weight: Weight.empty(),
+      weight: Weight.zero(),
       price: Price.empty(),
       category: Category(Categories.unknown),
       name: ProductName(''),
