@@ -31,15 +31,10 @@ void main() async {
   late MockIProductRepository mockIProductRepository;
   late MockIShopRepository mockIShopRepository;
   late MockIImageFacade mockImageFacade;
-
   final initialState = ProductFormState.initial();
   final tInitialProduct = initialState.productForm;
-  final tProduct = fixtureProduct;
   final tProductForm = await loadProductFormWithPhotos();
   final file = await getImageFileFromAssets('test_logo.jpg');
-  final tPhoto = ProductPhoto(file);
-  final tPhotos =
-      NonEmptyList5<ProductPhoto>(KtList.from([tPhoto, tPhoto, tPhoto]));
 
   setUp(() {
     mockNetworkInfo = MockNetworkInfo();

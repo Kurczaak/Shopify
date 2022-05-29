@@ -137,15 +137,6 @@ Either<ValueFailure<String>, String> validateContainsNumber(String input) {
   }
 }
 
-// //TODO
-// Either<ValueFailure<String>, String> validatePohtoSelected(String input) {
-//   throw UnexpectedValueError(
-//     ValueFailure.shop(
-//       ShopValueFailure.noPhotoSelected(failedValue: input),
-//     ),
-//   );
-// }
-
 Either<ValueFailure<double>, double> validatePositiveValue(double input) {
   if (input <= 0) {
     return left(

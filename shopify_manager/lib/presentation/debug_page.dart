@@ -8,7 +8,6 @@ import 'package:shopify_domain/core.dart';
 
 import 'package:shopify_manager/injection.dart';
 
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:shopify_presentation/shopify_presentation.dart';
 
 class DebugPage extends StatefulWidget {
@@ -23,8 +22,6 @@ class DebugPage extends StatefulWidget {
 }
 
 class _DebugPageState extends State<DebugPage> {
-  final CarouselController _controller = CarouselController();
-  final int _current = 0;
   final _productNameController = TextEditingController();
   final _brandNameController = TextEditingController();
   final _weightController = TextEditingController();

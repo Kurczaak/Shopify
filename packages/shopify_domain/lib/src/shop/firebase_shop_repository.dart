@@ -6,9 +6,7 @@ import 'package:dartz/dartz.dart';
 import 'package:shopify_domain/auth.dart';
 import 'package:shopify_domain/core.dart';
 import 'package:shopify_domain/shop.dart';
-
 import 'package:geoflutterfire/geoflutterfire.dart';
-import 'package:shopify_domain/core/config.dart';
 import 'package:shopify_domain/src/core/firestore_helpers.dart';
 import 'package:shopify_domain/src/shop/shop_dtos.dart';
 import 'package:rxdart/rxdart.dart';
@@ -179,7 +177,7 @@ class FirebaseShopRepositoryImpl implements ShopifyShopRepository {
           return left(const ShopFailure.insufficientPermission());
         }
       }
-      print(error);
+
       return left(const ShopFailure.unexpected());
     });
   }

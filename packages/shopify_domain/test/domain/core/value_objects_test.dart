@@ -21,7 +21,7 @@ void main() {
       'should not pass a nonpositive number',
       () async {
         // arrange
-        final zero = 0.0;
+        const zero = 0.0;
         // act
         final result = PositiveNumber(zero);
         // assert
@@ -33,7 +33,7 @@ void main() {
       'should not pass an exceeding number',
       () async {
         // arrange
-        final exceedingNum = PositiveNumber.maxPositiveNumber + 1;
+        const exceedingNum = PositiveNumber.maxPositiveNumber + 1;
         // act
         final result = PositiveNumber(exceedingNum);
         // assert

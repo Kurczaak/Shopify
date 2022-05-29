@@ -220,7 +220,7 @@ void main() async {
                     email: emailAddressStr, password: passwordStr)
                 .timeout(timeoutDuration),
             throwsA(isA<TimeoutException>()));
-        final result = await firebaseAuthFacade.registerWithEmailAndPassword(
+        await firebaseAuthFacade.registerWithEmailAndPassword(
             emailAddress: EmailAddress(emailAddressStr),
             password: Password(passwordStr));
       },

@@ -12,17 +12,13 @@ class MockImagePickerImageFacade extends Mock
     implements ImagePickerImageFacade {}
 
 void main() async {
-  late ShopLogoPickerBloc bloc;
   late MockImagePickerImageFacade mockImageFacade;
 
   final tLogo = await getImageFileFromAssets('test_logo.jpg');
   final tShopLogo = ShopLogo(tLogo);
-  final tTooSmallLogo = await getImageFileFromAssets('too_small_logo.jpg');
-  final tTooSmallShopLogo = ShopLogo(tTooSmallLogo);
 
   setUp(() {
     mockImageFacade = MockImagePickerImageFacade();
-    bloc = ShopLogoPickerBloc(mockImageFacade);
   });
 
   group('getShopLogo', () {

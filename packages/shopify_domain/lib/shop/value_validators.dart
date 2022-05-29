@@ -5,7 +5,6 @@ import 'package:shopify_domain/shop/time/week.dart';
 import '../core/failures.dart';
 import 'value_failures.dart';
 
-//TODO
 Either<ValueFailure<Week>, Week> validateShopOpen(Week input) {
   bool _hasOpenDays = false;
   for (final day in input.asList) {
@@ -20,6 +19,3 @@ Either<ValueFailure<Week>, Week> validateShopOpen(Week input) {
     ));
   }
 }
-
-//TODO
-//Think of implementation

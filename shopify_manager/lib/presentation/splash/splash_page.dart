@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopify_manager/application/auth/auth_bloc.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:shopify_presentation/shopify_presentation.dart';
-import 'package:progress_indicators/progress_indicators.dart';
 import 'package:shopify_manager/presentation/routes/router.gr.dart';
 
 class SplashPage extends StatelessWidget {

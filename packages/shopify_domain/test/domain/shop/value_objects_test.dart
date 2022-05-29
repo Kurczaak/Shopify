@@ -1,7 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shopify_domain/core/failures.dart';
-import 'package:shopify_domain/shop/value_failures.dart';
 import 'package:shopify_domain/core/value_failures.dart';
 import 'package:shopify_domain/shop/value_objects.dart';
 import '../../utils/random_string_generator.dart';

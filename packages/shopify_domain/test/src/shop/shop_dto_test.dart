@@ -13,7 +13,6 @@ import 'package:shopify_domain/src/shop/shop_dtos.dart';
 import 'package:shopify_domain/src/shop/time/time_dtos.dart';
 import 'package:fake_cloud_firestore/fake_cloud_firestore.dart';
 
-//TODO IMPLEMENT!!!
 void main() async {
   final instance = FakeFirebaseFirestore();
 
@@ -57,8 +56,6 @@ void main() async {
       postalCode: postalCodeStr,
       streetName: streetNameStr,
     ),
-    //TODO
-    //serverTimeStamp: FieldValue.serverTimestamp(),
     position: LocationDto.fromDomain(Location.empty()),
     logoUrl: logoUrlStr,
     week: WeekDto.fromDomain(Week.empty()),
