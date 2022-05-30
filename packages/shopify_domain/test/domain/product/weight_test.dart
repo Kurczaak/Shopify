@@ -11,10 +11,10 @@ void main() {
       'should return none given valid data',
       () async {
         // arrange
-        final tPositiveNum = PositiveNumber(1);
+        final tNonnegativeNum = NonnegativeNumber(1);
         final tWeightUnit = WeightUnit(WeightUnits.gram);
         // act
-        final result = Weight(weight: tPositiveNum, weightUnit: tWeightUnit);
+        final result = Weight(weight: tNonnegativeNum, weightUnit: tWeightUnit);
         // assert
         expect(result.failureOption, none());
       },
@@ -24,10 +24,10 @@ void main() {
       'should return some failure given invalid weight',
       () async {
         // arrange
-        final tPositiveNum = PositiveNumber(-1);
+        final tNonnegativeNum = NonnegativeNumber(-1);
         final tWeightUnit = WeightUnit(WeightUnits.gram);
         // act
-        final result = Weight(weight: tPositiveNum, weightUnit: tWeightUnit);
+        final result = Weight(weight: tNonnegativeNum, weightUnit: tWeightUnit);
         // assert
         expect(result.failureOption, isA<Some<ValueFailure>>());
       },
@@ -69,10 +69,10 @@ void main() {
       'should return a unit given valid data',
       () async {
         // arrange
-        final tPositiveNum = PositiveNumber(1);
+        final tNonnegativeNum = NonnegativeNumber(1);
         final tWeightUnit = WeightUnit(WeightUnits.gram);
         // act
-        final result = Weight(weight: tPositiveNum, weightUnit: tWeightUnit);
+        final result = Weight(weight: tNonnegativeNum, weightUnit: tWeightUnit);
         // assert
         expect(result.failureOrUnit, right(unit));
       },
@@ -82,10 +82,10 @@ void main() {
       'should return some failure given invalid weight',
       () async {
         // arrange
-        final tPositiveNum = PositiveNumber(-1);
+        final tNonnegativeNum = NonnegativeNumber(-1);
         final tWeightUnit = WeightUnit(WeightUnits.gram);
         // act
-        final result = Weight(weight: tPositiveNum, weightUnit: tWeightUnit);
+        final result = Weight(weight: tNonnegativeNum, weightUnit: tWeightUnit);
         // assert
         expect(result.failureOrUnit, isA<Left<ValueFailure, Unit>>());
       },

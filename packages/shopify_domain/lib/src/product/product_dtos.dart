@@ -75,7 +75,7 @@ class WeightDto with _$WeightDto {
 
   Weight toDomain() {
     return Weight(
-        weight: PositiveNumber(weight),
+        weight: NonnegativeNumber(weight),
         weightUnit: WeightUnit.fromString(weightUnit));
   }
 
