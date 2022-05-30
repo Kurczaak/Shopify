@@ -146,3 +146,94 @@ class NutrientDto with _$NutrientDto {
   factory NutrientDto.fromJson(Map<String, dynamic> json) =>
       _$NutrientDtoFromJson(json);
 }
+
+@freezed
+class FatsDto with _$FatsDto {
+  const FatsDto._();
+
+  const factory FatsDto({
+    required NutrientDto fat,
+    required NutrientDto saturatedFat,
+    required NutrientDto transFat,
+    required NutrientDto monosaturatedFat,
+    required NutrientDto polysaturatedFat,
+  }) = _FatsDto;
+
+  factory FatsDto.fromDomain(Fats fats) {
+    return FatsDto(
+        fat: NutrientDto.fromDomain(fats.fat),
+        saturatedFat: NutrientDto.fromDomain(fats.saturatedFat),
+        transFat: NutrientDto.fromDomain(fats.transFat),
+        monosaturatedFat: NutrientDto.fromDomain(fats.monosaturatedFat),
+        polysaturatedFat: NutrientDto.fromDomain(fats.polysaturatedFat));
+  }
+
+  Fats toDomain() {
+    return Fats(
+      fat: fat.toDomain() as Fat,
+      monosaturatedFat: monosaturatedFat.toDomain() as MonosaturatedFat,
+      polysaturatedFat: polysaturatedFat.toDomain() as PolysaturatedFat,
+      saturatedFat: saturatedFat.toDomain() as SaturatedFat,
+      transFat: transFat.toDomain() as TransFat,
+    );
+  }
+
+  factory FatsDto.fromJson(Map<String, dynamic> json) =>
+      _$FatsDtoFromJson(json);
+}
+
+@freezed
+class ProteinsDto with _$ProteinsDto {
+  const ProteinsDto._();
+
+  const factory ProteinsDto({
+    required NutrientDto protein,
+    required NutrientDto animalProtein,
+    required NutrientDto plantProtein,
+  }) = _ProteinsDto;
+
+  factory ProteinsDto.fromDomain(Proteins proteins) {
+    return ProteinsDto(
+        protein: NutrientDto.fromDomain(proteins.protein),
+        animalProtein: NutrientDto.fromDomain(proteins.animalProtein),
+        plantProtein: NutrientDto.fromDomain(proteins.plantProtein));
+  }
+
+  Proteins toDomain() {
+    return Proteins(
+      animalProtein: animalProtein.toDomain() as AnimalProtein,
+      plantProtein: plantProtein.toDomain() as PlantProtein,
+      protein: protein.toDomain() as Protein,
+    );
+  }
+
+  factory ProteinsDto.fromJson(Map<String, dynamic> json) =>
+      _$ProteinsDtoFromJson(json);
+}
+
+@freezed
+class CarbohydratesDto with _$CarbohydratesDto {
+  const CarbohydratesDto._();
+
+  const factory CarbohydratesDto({
+    required NutrientDto carbohydrate,
+    required NutrientDto sugar,
+  }) = _CarbohydratesDto;
+
+  factory CarbohydratesDto.fromDomain(Carbohydrates carbohydrates) {
+    return CarbohydratesDto(
+      carbohydrate: NutrientDto.fromDomain(carbohydrates.carbohydrate),
+      sugar: NutrientDto.fromDomain(carbohydrates.sugar),
+    );
+  }
+
+  Carbohydrates toDomain() {
+    return Carbohydrates(
+      carbohydrate: carbohydrate.toDomain() as Carbohydrate,
+      sugar: sugar.toDomain() as Sugar,
+    );
+  }
+
+  factory CarbohydratesDto.fromJson(Map<String, dynamic> json) =>
+      _$CarbohydratesDtoFromJson(json);
+}

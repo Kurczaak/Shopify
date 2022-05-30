@@ -83,6 +83,34 @@ void main() {
     tSugarDto
   ];
 
+  final fats = Fats(
+      fat: tFat,
+      monosaturatedFat: tMonosaturatedFat,
+      polysaturatedFat: tPolysaturatedFat,
+      saturatedFat: tSaturatedFat,
+      transFat: tTransFat);
+  final proteins = Proteins(
+      animalProtein: tAnimalProtein,
+      plantProtein: tPlantProtein,
+      protein: tProtein);
+  final carbohydrates =
+      Carbohydrates(carbohydrate: tCarbohydrate, sugar: tSugar);
+
+  const fatsDto = FatsDto(
+    fat: tFatDto,
+    monosaturatedFat: tMonosaturatedFatDto,
+    polysaturatedFat: tPolysaturatedFatDto,
+    saturatedFat: tSaturatedFatDto,
+    transFat: tTransFatDto,
+  );
+  const proteinsDto = ProteinsDto(
+    protein: tProteinDto,
+    animalProtein: tAnimalProteinDto,
+    plantProtein: tPlantProteinDto,
+  );
+  const carbohydratesDto =
+      CarbohydratesDto(carbohydrate: tCarbohydrateDto, sugar: tSugarDto);
+
   // Product
   final tProduct = Product.fromPrimitives(
       id: id,
@@ -175,7 +203,7 @@ void main() {
     );
   });
 
-  group('NutrienteDto', () {
+  group('NutrientDto', () {
     test(
       'should convert fromDomain',
       () async {
@@ -199,6 +227,35 @@ void main() {
           // assert
           expect(result, listOfNutrients[index]);
         }
+      },
+    );
+  });
+  group('NutrientsGroupDto', () {
+    test(
+      'should convert fromDomain',
+      () async {
+        // act
+        final fatsResult = FatsDto.fromDomain(fats);
+        final proteinsResult = ProteinsDto.fromDomain(proteins);
+        final carbohydratesResult = CarbohydratesDto.fromDomain(carbohydrates);
+        // assert
+        expect(fatsResult, fatsDto);
+        expect(proteinsResult, proteinsDto);
+        expect(carbohydratesResult, carbohydratesDto);
+      },
+    );
+
+    test(
+      'should convert toDomain',
+      () async {
+        // act
+        final fatsResult = fatsDto.toDomain();
+        final proteinsResult = proteinsDto.toDomain();
+        final carbohydratesResult = carbohydratesDto.toDomain();
+        // assert
+        expect(fatsResult, fats);
+        expect(proteinsResult, proteins);
+        expect(carbohydratesResult, carbohydrates);
       },
     );
   });

@@ -49,6 +49,7 @@ class NutrientsGroup extends Equatable {
   const NutrientsGroup(this.mainNutrient, this.subNutrients);
 
   int get calories => mainNutrient.calories;
+  String get name => mainNutrient.name.getOrCrash() + 's';
 
   Either<ValueFailure<dynamic>, Unit> get failureOrUnit {
     if (mainNutrient.failureOrUnit.isLeft()) {
@@ -233,6 +234,12 @@ class Carbohydrates extends NutrientsGroup {
       Carbohydrates._(
           carbohydrate: carbohydrate ?? Carbohydrate.zero(),
           sugar: sugar ?? Sugar.zero());
+
+  factory Carbohydrates.fromNutrientsGroup(NutrientsGroup group) {
+    return Carbohydrates._(
+        carbohydrate: group.mainNutrient as Carbohydrate,
+        sugar: group.subNutrients.first() as Sugar);
+  }
 }
 
 class NutrientTable {

@@ -836,3 +836,664 @@ abstract class _NutrientDto extends NutrientDto {
   _$$_NutrientDtoCopyWith<_$_NutrientDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+FatsDto _$FatsDtoFromJson(Map<String, dynamic> json) {
+  return _FatsDto.fromJson(json);
+}
+
+/// @nodoc
+mixin _$FatsDto {
+  NutrientDto get fat => throw _privateConstructorUsedError;
+  NutrientDto get saturatedFat => throw _privateConstructorUsedError;
+  NutrientDto get transFat => throw _privateConstructorUsedError;
+  NutrientDto get monosaturatedFat => throw _privateConstructorUsedError;
+  NutrientDto get polysaturatedFat => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $FatsDtoCopyWith<FatsDto> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $FatsDtoCopyWith<$Res> {
+  factory $FatsDtoCopyWith(FatsDto value, $Res Function(FatsDto) then) =
+      _$FatsDtoCopyWithImpl<$Res>;
+  $Res call(
+      {NutrientDto fat,
+      NutrientDto saturatedFat,
+      NutrientDto transFat,
+      NutrientDto monosaturatedFat,
+      NutrientDto polysaturatedFat});
+
+  $NutrientDtoCopyWith<$Res> get fat;
+  $NutrientDtoCopyWith<$Res> get saturatedFat;
+  $NutrientDtoCopyWith<$Res> get transFat;
+  $NutrientDtoCopyWith<$Res> get monosaturatedFat;
+  $NutrientDtoCopyWith<$Res> get polysaturatedFat;
+}
+
+/// @nodoc
+class _$FatsDtoCopyWithImpl<$Res> implements $FatsDtoCopyWith<$Res> {
+  _$FatsDtoCopyWithImpl(this._value, this._then);
+
+  final FatsDto _value;
+  // ignore: unused_field
+  final $Res Function(FatsDto) _then;
+
+  @override
+  $Res call({
+    Object? fat = freezed,
+    Object? saturatedFat = freezed,
+    Object? transFat = freezed,
+    Object? monosaturatedFat = freezed,
+    Object? polysaturatedFat = freezed,
+  }) {
+    return _then(_value.copyWith(
+      fat: fat == freezed
+          ? _value.fat
+          : fat // ignore: cast_nullable_to_non_nullable
+              as NutrientDto,
+      saturatedFat: saturatedFat == freezed
+          ? _value.saturatedFat
+          : saturatedFat // ignore: cast_nullable_to_non_nullable
+              as NutrientDto,
+      transFat: transFat == freezed
+          ? _value.transFat
+          : transFat // ignore: cast_nullable_to_non_nullable
+              as NutrientDto,
+      monosaturatedFat: monosaturatedFat == freezed
+          ? _value.monosaturatedFat
+          : monosaturatedFat // ignore: cast_nullable_to_non_nullable
+              as NutrientDto,
+      polysaturatedFat: polysaturatedFat == freezed
+          ? _value.polysaturatedFat
+          : polysaturatedFat // ignore: cast_nullable_to_non_nullable
+              as NutrientDto,
+    ));
+  }
+
+  @override
+  $NutrientDtoCopyWith<$Res> get fat {
+    return $NutrientDtoCopyWith<$Res>(_value.fat, (value) {
+      return _then(_value.copyWith(fat: value));
+    });
+  }
+
+  @override
+  $NutrientDtoCopyWith<$Res> get saturatedFat {
+    return $NutrientDtoCopyWith<$Res>(_value.saturatedFat, (value) {
+      return _then(_value.copyWith(saturatedFat: value));
+    });
+  }
+
+  @override
+  $NutrientDtoCopyWith<$Res> get transFat {
+    return $NutrientDtoCopyWith<$Res>(_value.transFat, (value) {
+      return _then(_value.copyWith(transFat: value));
+    });
+  }
+
+  @override
+  $NutrientDtoCopyWith<$Res> get monosaturatedFat {
+    return $NutrientDtoCopyWith<$Res>(_value.monosaturatedFat, (value) {
+      return _then(_value.copyWith(monosaturatedFat: value));
+    });
+  }
+
+  @override
+  $NutrientDtoCopyWith<$Res> get polysaturatedFat {
+    return $NutrientDtoCopyWith<$Res>(_value.polysaturatedFat, (value) {
+      return _then(_value.copyWith(polysaturatedFat: value));
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$_FatsDtoCopyWith<$Res> implements $FatsDtoCopyWith<$Res> {
+  factory _$$_FatsDtoCopyWith(
+          _$_FatsDto value, $Res Function(_$_FatsDto) then) =
+      __$$_FatsDtoCopyWithImpl<$Res>;
+  @override
+  $Res call(
+      {NutrientDto fat,
+      NutrientDto saturatedFat,
+      NutrientDto transFat,
+      NutrientDto monosaturatedFat,
+      NutrientDto polysaturatedFat});
+
+  @override
+  $NutrientDtoCopyWith<$Res> get fat;
+  @override
+  $NutrientDtoCopyWith<$Res> get saturatedFat;
+  @override
+  $NutrientDtoCopyWith<$Res> get transFat;
+  @override
+  $NutrientDtoCopyWith<$Res> get monosaturatedFat;
+  @override
+  $NutrientDtoCopyWith<$Res> get polysaturatedFat;
+}
+
+/// @nodoc
+class __$$_FatsDtoCopyWithImpl<$Res> extends _$FatsDtoCopyWithImpl<$Res>
+    implements _$$_FatsDtoCopyWith<$Res> {
+  __$$_FatsDtoCopyWithImpl(_$_FatsDto _value, $Res Function(_$_FatsDto) _then)
+      : super(_value, (v) => _then(v as _$_FatsDto));
+
+  @override
+  _$_FatsDto get _value => super._value as _$_FatsDto;
+
+  @override
+  $Res call({
+    Object? fat = freezed,
+    Object? saturatedFat = freezed,
+    Object? transFat = freezed,
+    Object? monosaturatedFat = freezed,
+    Object? polysaturatedFat = freezed,
+  }) {
+    return _then(_$_FatsDto(
+      fat: fat == freezed
+          ? _value.fat
+          : fat // ignore: cast_nullable_to_non_nullable
+              as NutrientDto,
+      saturatedFat: saturatedFat == freezed
+          ? _value.saturatedFat
+          : saturatedFat // ignore: cast_nullable_to_non_nullable
+              as NutrientDto,
+      transFat: transFat == freezed
+          ? _value.transFat
+          : transFat // ignore: cast_nullable_to_non_nullable
+              as NutrientDto,
+      monosaturatedFat: monosaturatedFat == freezed
+          ? _value.monosaturatedFat
+          : monosaturatedFat // ignore: cast_nullable_to_non_nullable
+              as NutrientDto,
+      polysaturatedFat: polysaturatedFat == freezed
+          ? _value.polysaturatedFat
+          : polysaturatedFat // ignore: cast_nullable_to_non_nullable
+              as NutrientDto,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_FatsDto extends _FatsDto {
+  const _$_FatsDto(
+      {required this.fat,
+      required this.saturatedFat,
+      required this.transFat,
+      required this.monosaturatedFat,
+      required this.polysaturatedFat})
+      : super._();
+
+  factory _$_FatsDto.fromJson(Map<String, dynamic> json) =>
+      _$$_FatsDtoFromJson(json);
+
+  @override
+  final NutrientDto fat;
+  @override
+  final NutrientDto saturatedFat;
+  @override
+  final NutrientDto transFat;
+  @override
+  final NutrientDto monosaturatedFat;
+  @override
+  final NutrientDto polysaturatedFat;
+
+  @override
+  String toString() {
+    return 'FatsDto(fat: $fat, saturatedFat: $saturatedFat, transFat: $transFat, monosaturatedFat: $monosaturatedFat, polysaturatedFat: $polysaturatedFat)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_FatsDto &&
+            const DeepCollectionEquality().equals(other.fat, fat) &&
+            const DeepCollectionEquality()
+                .equals(other.saturatedFat, saturatedFat) &&
+            const DeepCollectionEquality().equals(other.transFat, transFat) &&
+            const DeepCollectionEquality()
+                .equals(other.monosaturatedFat, monosaturatedFat) &&
+            const DeepCollectionEquality()
+                .equals(other.polysaturatedFat, polysaturatedFat));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(fat),
+      const DeepCollectionEquality().hash(saturatedFat),
+      const DeepCollectionEquality().hash(transFat),
+      const DeepCollectionEquality().hash(monosaturatedFat),
+      const DeepCollectionEquality().hash(polysaturatedFat));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_FatsDtoCopyWith<_$_FatsDto> get copyWith =>
+      __$$_FatsDtoCopyWithImpl<_$_FatsDto>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_FatsDtoToJson(this);
+  }
+}
+
+abstract class _FatsDto extends FatsDto {
+  const factory _FatsDto(
+      {required final NutrientDto fat,
+      required final NutrientDto saturatedFat,
+      required final NutrientDto transFat,
+      required final NutrientDto monosaturatedFat,
+      required final NutrientDto polysaturatedFat}) = _$_FatsDto;
+  const _FatsDto._() : super._();
+
+  factory _FatsDto.fromJson(Map<String, dynamic> json) = _$_FatsDto.fromJson;
+
+  @override
+  NutrientDto get fat => throw _privateConstructorUsedError;
+  @override
+  NutrientDto get saturatedFat => throw _privateConstructorUsedError;
+  @override
+  NutrientDto get transFat => throw _privateConstructorUsedError;
+  @override
+  NutrientDto get monosaturatedFat => throw _privateConstructorUsedError;
+  @override
+  NutrientDto get polysaturatedFat => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  _$$_FatsDtoCopyWith<_$_FatsDto> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+ProteinsDto _$ProteinsDtoFromJson(Map<String, dynamic> json) {
+  return _ProteinsDto.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ProteinsDto {
+  NutrientDto get protein => throw _privateConstructorUsedError;
+  NutrientDto get animalProtein => throw _privateConstructorUsedError;
+  NutrientDto get plantProtein => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ProteinsDtoCopyWith<ProteinsDto> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ProteinsDtoCopyWith<$Res> {
+  factory $ProteinsDtoCopyWith(
+          ProteinsDto value, $Res Function(ProteinsDto) then) =
+      _$ProteinsDtoCopyWithImpl<$Res>;
+  $Res call(
+      {NutrientDto protein,
+      NutrientDto animalProtein,
+      NutrientDto plantProtein});
+
+  $NutrientDtoCopyWith<$Res> get protein;
+  $NutrientDtoCopyWith<$Res> get animalProtein;
+  $NutrientDtoCopyWith<$Res> get plantProtein;
+}
+
+/// @nodoc
+class _$ProteinsDtoCopyWithImpl<$Res> implements $ProteinsDtoCopyWith<$Res> {
+  _$ProteinsDtoCopyWithImpl(this._value, this._then);
+
+  final ProteinsDto _value;
+  // ignore: unused_field
+  final $Res Function(ProteinsDto) _then;
+
+  @override
+  $Res call({
+    Object? protein = freezed,
+    Object? animalProtein = freezed,
+    Object? plantProtein = freezed,
+  }) {
+    return _then(_value.copyWith(
+      protein: protein == freezed
+          ? _value.protein
+          : protein // ignore: cast_nullable_to_non_nullable
+              as NutrientDto,
+      animalProtein: animalProtein == freezed
+          ? _value.animalProtein
+          : animalProtein // ignore: cast_nullable_to_non_nullable
+              as NutrientDto,
+      plantProtein: plantProtein == freezed
+          ? _value.plantProtein
+          : plantProtein // ignore: cast_nullable_to_non_nullable
+              as NutrientDto,
+    ));
+  }
+
+  @override
+  $NutrientDtoCopyWith<$Res> get protein {
+    return $NutrientDtoCopyWith<$Res>(_value.protein, (value) {
+      return _then(_value.copyWith(protein: value));
+    });
+  }
+
+  @override
+  $NutrientDtoCopyWith<$Res> get animalProtein {
+    return $NutrientDtoCopyWith<$Res>(_value.animalProtein, (value) {
+      return _then(_value.copyWith(animalProtein: value));
+    });
+  }
+
+  @override
+  $NutrientDtoCopyWith<$Res> get plantProtein {
+    return $NutrientDtoCopyWith<$Res>(_value.plantProtein, (value) {
+      return _then(_value.copyWith(plantProtein: value));
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$_ProteinsDtoCopyWith<$Res>
+    implements $ProteinsDtoCopyWith<$Res> {
+  factory _$$_ProteinsDtoCopyWith(
+          _$_ProteinsDto value, $Res Function(_$_ProteinsDto) then) =
+      __$$_ProteinsDtoCopyWithImpl<$Res>;
+  @override
+  $Res call(
+      {NutrientDto protein,
+      NutrientDto animalProtein,
+      NutrientDto plantProtein});
+
+  @override
+  $NutrientDtoCopyWith<$Res> get protein;
+  @override
+  $NutrientDtoCopyWith<$Res> get animalProtein;
+  @override
+  $NutrientDtoCopyWith<$Res> get plantProtein;
+}
+
+/// @nodoc
+class __$$_ProteinsDtoCopyWithImpl<$Res> extends _$ProteinsDtoCopyWithImpl<$Res>
+    implements _$$_ProteinsDtoCopyWith<$Res> {
+  __$$_ProteinsDtoCopyWithImpl(
+      _$_ProteinsDto _value, $Res Function(_$_ProteinsDto) _then)
+      : super(_value, (v) => _then(v as _$_ProteinsDto));
+
+  @override
+  _$_ProteinsDto get _value => super._value as _$_ProteinsDto;
+
+  @override
+  $Res call({
+    Object? protein = freezed,
+    Object? animalProtein = freezed,
+    Object? plantProtein = freezed,
+  }) {
+    return _then(_$_ProteinsDto(
+      protein: protein == freezed
+          ? _value.protein
+          : protein // ignore: cast_nullable_to_non_nullable
+              as NutrientDto,
+      animalProtein: animalProtein == freezed
+          ? _value.animalProtein
+          : animalProtein // ignore: cast_nullable_to_non_nullable
+              as NutrientDto,
+      plantProtein: plantProtein == freezed
+          ? _value.plantProtein
+          : plantProtein // ignore: cast_nullable_to_non_nullable
+              as NutrientDto,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_ProteinsDto extends _ProteinsDto {
+  const _$_ProteinsDto(
+      {required this.protein,
+      required this.animalProtein,
+      required this.plantProtein})
+      : super._();
+
+  factory _$_ProteinsDto.fromJson(Map<String, dynamic> json) =>
+      _$$_ProteinsDtoFromJson(json);
+
+  @override
+  final NutrientDto protein;
+  @override
+  final NutrientDto animalProtein;
+  @override
+  final NutrientDto plantProtein;
+
+  @override
+  String toString() {
+    return 'ProteinsDto(protein: $protein, animalProtein: $animalProtein, plantProtein: $plantProtein)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_ProteinsDto &&
+            const DeepCollectionEquality().equals(other.protein, protein) &&
+            const DeepCollectionEquality()
+                .equals(other.animalProtein, animalProtein) &&
+            const DeepCollectionEquality()
+                .equals(other.plantProtein, plantProtein));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(protein),
+      const DeepCollectionEquality().hash(animalProtein),
+      const DeepCollectionEquality().hash(plantProtein));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_ProteinsDtoCopyWith<_$_ProteinsDto> get copyWith =>
+      __$$_ProteinsDtoCopyWithImpl<_$_ProteinsDto>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_ProteinsDtoToJson(this);
+  }
+}
+
+abstract class _ProteinsDto extends ProteinsDto {
+  const factory _ProteinsDto(
+      {required final NutrientDto protein,
+      required final NutrientDto animalProtein,
+      required final NutrientDto plantProtein}) = _$_ProteinsDto;
+  const _ProteinsDto._() : super._();
+
+  factory _ProteinsDto.fromJson(Map<String, dynamic> json) =
+      _$_ProteinsDto.fromJson;
+
+  @override
+  NutrientDto get protein => throw _privateConstructorUsedError;
+  @override
+  NutrientDto get animalProtein => throw _privateConstructorUsedError;
+  @override
+  NutrientDto get plantProtein => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  _$$_ProteinsDtoCopyWith<_$_ProteinsDto> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+CarbohydratesDto _$CarbohydratesDtoFromJson(Map<String, dynamic> json) {
+  return _CarbohydratesDto.fromJson(json);
+}
+
+/// @nodoc
+mixin _$CarbohydratesDto {
+  NutrientDto get carbohydrate => throw _privateConstructorUsedError;
+  NutrientDto get sugar => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $CarbohydratesDtoCopyWith<CarbohydratesDto> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $CarbohydratesDtoCopyWith<$Res> {
+  factory $CarbohydratesDtoCopyWith(
+          CarbohydratesDto value, $Res Function(CarbohydratesDto) then) =
+      _$CarbohydratesDtoCopyWithImpl<$Res>;
+  $Res call({NutrientDto carbohydrate, NutrientDto sugar});
+
+  $NutrientDtoCopyWith<$Res> get carbohydrate;
+  $NutrientDtoCopyWith<$Res> get sugar;
+}
+
+/// @nodoc
+class _$CarbohydratesDtoCopyWithImpl<$Res>
+    implements $CarbohydratesDtoCopyWith<$Res> {
+  _$CarbohydratesDtoCopyWithImpl(this._value, this._then);
+
+  final CarbohydratesDto _value;
+  // ignore: unused_field
+  final $Res Function(CarbohydratesDto) _then;
+
+  @override
+  $Res call({
+    Object? carbohydrate = freezed,
+    Object? sugar = freezed,
+  }) {
+    return _then(_value.copyWith(
+      carbohydrate: carbohydrate == freezed
+          ? _value.carbohydrate
+          : carbohydrate // ignore: cast_nullable_to_non_nullable
+              as NutrientDto,
+      sugar: sugar == freezed
+          ? _value.sugar
+          : sugar // ignore: cast_nullable_to_non_nullable
+              as NutrientDto,
+    ));
+  }
+
+  @override
+  $NutrientDtoCopyWith<$Res> get carbohydrate {
+    return $NutrientDtoCopyWith<$Res>(_value.carbohydrate, (value) {
+      return _then(_value.copyWith(carbohydrate: value));
+    });
+  }
+
+  @override
+  $NutrientDtoCopyWith<$Res> get sugar {
+    return $NutrientDtoCopyWith<$Res>(_value.sugar, (value) {
+      return _then(_value.copyWith(sugar: value));
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$_CarbohydratesDtoCopyWith<$Res>
+    implements $CarbohydratesDtoCopyWith<$Res> {
+  factory _$$_CarbohydratesDtoCopyWith(
+          _$_CarbohydratesDto value, $Res Function(_$_CarbohydratesDto) then) =
+      __$$_CarbohydratesDtoCopyWithImpl<$Res>;
+  @override
+  $Res call({NutrientDto carbohydrate, NutrientDto sugar});
+
+  @override
+  $NutrientDtoCopyWith<$Res> get carbohydrate;
+  @override
+  $NutrientDtoCopyWith<$Res> get sugar;
+}
+
+/// @nodoc
+class __$$_CarbohydratesDtoCopyWithImpl<$Res>
+    extends _$CarbohydratesDtoCopyWithImpl<$Res>
+    implements _$$_CarbohydratesDtoCopyWith<$Res> {
+  __$$_CarbohydratesDtoCopyWithImpl(
+      _$_CarbohydratesDto _value, $Res Function(_$_CarbohydratesDto) _then)
+      : super(_value, (v) => _then(v as _$_CarbohydratesDto));
+
+  @override
+  _$_CarbohydratesDto get _value => super._value as _$_CarbohydratesDto;
+
+  @override
+  $Res call({
+    Object? carbohydrate = freezed,
+    Object? sugar = freezed,
+  }) {
+    return _then(_$_CarbohydratesDto(
+      carbohydrate: carbohydrate == freezed
+          ? _value.carbohydrate
+          : carbohydrate // ignore: cast_nullable_to_non_nullable
+              as NutrientDto,
+      sugar: sugar == freezed
+          ? _value.sugar
+          : sugar // ignore: cast_nullable_to_non_nullable
+              as NutrientDto,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_CarbohydratesDto extends _CarbohydratesDto {
+  const _$_CarbohydratesDto({required this.carbohydrate, required this.sugar})
+      : super._();
+
+  factory _$_CarbohydratesDto.fromJson(Map<String, dynamic> json) =>
+      _$$_CarbohydratesDtoFromJson(json);
+
+  @override
+  final NutrientDto carbohydrate;
+  @override
+  final NutrientDto sugar;
+
+  @override
+  String toString() {
+    return 'CarbohydratesDto(carbohydrate: $carbohydrate, sugar: $sugar)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_CarbohydratesDto &&
+            const DeepCollectionEquality()
+                .equals(other.carbohydrate, carbohydrate) &&
+            const DeepCollectionEquality().equals(other.sugar, sugar));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(carbohydrate),
+      const DeepCollectionEquality().hash(sugar));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_CarbohydratesDtoCopyWith<_$_CarbohydratesDto> get copyWith =>
+      __$$_CarbohydratesDtoCopyWithImpl<_$_CarbohydratesDto>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_CarbohydratesDtoToJson(this);
+  }
+}
+
+abstract class _CarbohydratesDto extends CarbohydratesDto {
+  const factory _CarbohydratesDto(
+      {required final NutrientDto carbohydrate,
+      required final NutrientDto sugar}) = _$_CarbohydratesDto;
+  const _CarbohydratesDto._() : super._();
+
+  factory _CarbohydratesDto.fromJson(Map<String, dynamic> json) =
+      _$_CarbohydratesDto.fromJson;
+
+  @override
+  NutrientDto get carbohydrate => throw _privateConstructorUsedError;
+  @override
+  NutrientDto get sugar => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  _$$_CarbohydratesDtoCopyWith<_$_CarbohydratesDto> get copyWith =>
+      throw _privateConstructorUsedError;
+}

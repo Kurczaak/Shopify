@@ -67,3 +67,52 @@ Map<String, dynamic> _$$_NutrientDtoToJson(_$_NutrientDto instance) =>
       'weight': instance.weight,
       'name': instance.name,
     };
+
+_$_FatsDto _$$_FatsDtoFromJson(Map<String, dynamic> json) => _$_FatsDto(
+      fat: NutrientDto.fromJson(json['fat'] as Map<String, dynamic>),
+      saturatedFat:
+          NutrientDto.fromJson(json['saturatedFat'] as Map<String, dynamic>),
+      transFat: NutrientDto.fromJson(json['transFat'] as Map<String, dynamic>),
+      monosaturatedFat: NutrientDto.fromJson(
+          json['monosaturatedFat'] as Map<String, dynamic>),
+      polysaturatedFat: NutrientDto.fromJson(
+          json['polysaturatedFat'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$$_FatsDtoToJson(_$_FatsDto instance) =>
+    <String, dynamic>{
+      'fat': instance.fat,
+      'saturatedFat': instance.saturatedFat,
+      'transFat': instance.transFat,
+      'monosaturatedFat': instance.monosaturatedFat,
+      'polysaturatedFat': instance.polysaturatedFat,
+    };
+
+_$_ProteinsDto _$$_ProteinsDtoFromJson(Map<String, dynamic> json) =>
+    _$_ProteinsDto(
+      protein: NutrientDto.fromJson(json['protein'] as Map<String, dynamic>),
+      animalProtein:
+          NutrientDto.fromJson(json['animalProtein'] as Map<String, dynamic>),
+      plantProtein:
+          NutrientDto.fromJson(json['plantProtein'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$$_ProteinsDtoToJson(_$_ProteinsDto instance) =>
+    <String, dynamic>{
+      'protein': instance.protein,
+      'animalProtein': instance.animalProtein,
+      'plantProtein': instance.plantProtein,
+    };
+
+_$_CarbohydratesDto _$$_CarbohydratesDtoFromJson(Map<String, dynamic> json) =>
+    _$_CarbohydratesDto(
+      carbohydrate:
+          NutrientDto.fromJson(json['carbohydrate'] as Map<String, dynamic>),
+      sugar: NutrientDto.fromJson(json['sugar'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$$_CarbohydratesDtoToJson(_$_CarbohydratesDto instance) =>
+    <String, dynamic>{
+      'carbohydrate': instance.carbohydrate,
+      'sugar': instance.sugar,
+    };
