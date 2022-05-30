@@ -23,12 +23,6 @@ class Weight with _$Weight {
       weight: NonnegativeNumber(weight),
       weightUnit: WeightUnit.fromString(weightUnit));
 
-  Option<ValueFailure<dynamic>> get failureOption {
-    return weightUnit.failureOrUnit
-        .andThen(weight.failureOrUnit)
-        .fold((f) => some(f), (r) => none());
-  }
-
   Either<ValueFailure<dynamic>, Unit> get failureOrUnit {
     return weight.failureOrUnit.andThen(weightUnit.failureOrUnit);
   }

@@ -28,6 +28,8 @@ abstract class Nutrient extends Equatable {
   final Weight weight;
   final NutrientName name;
 
+  // Option<ValueFailure<dynamic>> get failureOption =>
+  //     weight.failureOption.andThen(name.failureOption);
   int get caloriePerGram;
   int get calories;
 
@@ -40,14 +42,33 @@ abstract class Nutrient extends Equatable {
   bool get stringify => true;
 }
 
-abstract class NutrientsGroup<Nutrient> {
+class NutrientsGroup extends Equatable {
   final Nutrient mainNutrient;
   final KtList<Nutrient> subNutrients;
-  const NutrientsGroup(this.mainNutrient,
-      {required Weight weight,
-      required NutrientName name,
-      required this.subNutrients});
-  int get calories;
+
+  const NutrientsGroup(this.mainNutrient, this.subNutrients);
+
+  int get calories => mainNutrient.calories;
+
+  Option<ValueFailure<dynamic>> get failureOption {
+    if (mainNutrient.failureOption.isSome()) {
+      return mainNutrient.failureOption;
+    }
+    if (subNutrients.isNotEmpty()) {
+      for (final subnutrientFailureOption in subNutrients.iter) {
+        if (subnutrientFailureOption.failureOption.isSome()) {
+          return subnutrientFailureOption.failureOption;
+        }
+      }
+    }
+
+    return none();
+  }
+
+  @override
+  List<Object> get props => [mainNutrient, subNutrients];
+  @override
+  bool get stringify => true;
 }
 
 //==================Fats=====================
@@ -95,7 +116,7 @@ class PolysaturatedFat extends Fat {
   NutrientName get name => NutrientName('Polysaturated Fat');
 }
 
-class Fats implements NutrientsGroup<Fat> {
+class Fats extends NutrientsGroup {
   final Fat fat;
   final SaturatedFat saturatedFat;
   final TransFat transFat;
@@ -107,7 +128,12 @@ class Fats implements NutrientsGroup<Fat> {
       required this.saturatedFat,
       required this.transFat,
       required this.monosaturatedFat,
-      required this.polysaturatedFat});
+      required this.polysaturatedFat})
+      : super(
+            fat,
+            KtList<Fat>.from(
+                [saturatedFat, transFat, monosaturatedFat, polysaturatedFat]));
+
   factory Fats({
     Fat? fat,
     SaturatedFat? saturatedFat,
@@ -121,16 +147,6 @@ class Fats implements NutrientsGroup<Fat> {
           transFat: transFat ?? TransFat.zero(),
           monosaturatedFat: monosaturatedFat ?? MonosaturatedFat.zero(),
           polysaturatedFat: polysaturatedFat ?? PolysaturatedFat.zero());
-
-  @override
-  get mainNutrient => fat;
-
-  @override
-  KtList<Fat> get subNutrients => KtList<Fat>.from(
-      [saturatedFat, transFat, monosaturatedFat, polysaturatedFat]);
-
-  @override
-  int get calories => fat.calories;
 }
 
 //=================Proteins==================
@@ -162,7 +178,7 @@ class PlantProtein extends Protein {
   NutrientName get name => NutrientName('Plant Protein');
 }
 
-class Proteins implements NutrientsGroup<Protein> {
+class Proteins extends NutrientsGroup {
   final Protein protein;
   final AnimalProtein animalProtein;
   final PlantProtein plantProtein;
@@ -170,7 +186,8 @@ class Proteins implements NutrientsGroup<Protein> {
   Proteins._(
       {required this.protein,
       required this.animalProtein,
-      required this.plantProtein});
+      required this.plantProtein})
+      : super(protein, KtList<Protein>.from([animalProtein, plantProtein]));
 
   factory Proteins(
       {Protein? protein,
@@ -182,15 +199,6 @@ class Proteins implements NutrientsGroup<Protein> {
       plantProtein: plantProtein ?? PlantProtein.zero(),
     );
   }
-
-  @override
-  Protein get mainNutrient => protein;
-
-  @override
-  KtList<Protein> get subNutrients =>
-      KtList.from([animalProtein, plantProtein]);
-  @override
-  int get calories => protein.calories;
 }
 
 //=================Carbohydrates==================
@@ -214,24 +222,17 @@ class Sugar extends Carbohydrate {
   NutrientName get name => NutrientName('Sugar');
 }
 
-class Carbohydrates implements NutrientsGroup<Carbohydrate> {
+class Carbohydrates extends NutrientsGroup {
   final Carbohydrate carbohydrate;
   final Sugar sugar;
 
-  Carbohydrates._({required this.carbohydrate, required this.sugar});
+  Carbohydrates._({required this.carbohydrate, required this.sugar})
+      : super(carbohydrate, KtList<Carbohydrate>.from([sugar]));
 
   factory Carbohydrates({Carbohydrate? carbohydrate, Sugar? sugar}) =>
       Carbohydrates._(
           carbohydrate: carbohydrate ?? Carbohydrate.zero(),
           sugar: sugar ?? Sugar.zero());
-  @override
-  Carbohydrate get mainNutrient => carbohydrate;
-
-  @override
-  KtList<Carbohydrate> get subNutrients => KtList.from([sugar]);
-
-  @override
-  int get calories => carbohydrate.calories;
 }
 
 class NutrientTable {

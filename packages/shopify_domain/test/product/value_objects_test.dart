@@ -5,7 +5,7 @@ import 'package:shopify_domain/product/price.dart';
 import 'package:shopify_domain/product/product_categories.dart';
 import 'package:shopify_domain/product/value_objects.dart';
 import 'package:shopify_domain/product/weight.dart';
-import '../../fixtures/description_501_chars.dart';
+import '../fixtures/description_501_chars.dart';
 
 void main() {
   group('ProductName', () {

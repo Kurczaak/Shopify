@@ -8,7 +8,7 @@ import 'package:shopify_domain/product/product.dart';
 import 'package:shopify_domain/product/value_objects.dart';
 import 'package:shopify_domain/product/weight.dart';
 
-import '../../fixtures/description_501_chars.dart';
+import '../fixtures/description_501_chars.dart';
 
 void main() {
   group('failureOption', () {

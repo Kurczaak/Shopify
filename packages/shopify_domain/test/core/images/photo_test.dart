@@ -4,7 +4,7 @@ import 'package:shopify_domain/core/failures.dart';
 import 'package:shopify_domain/core/images/photo.dart';
 import 'package:shopify_domain/core/value_failures.dart';
 
-import '../../../utils/image_reader.dart';
+import '../../utils/image_reader.dart';
 
 void main() async {
   final tLogo = await getImageFileFromAssets('test_logo.jpg');
