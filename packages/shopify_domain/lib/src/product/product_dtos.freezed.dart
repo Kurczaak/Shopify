@@ -673,3 +673,166 @@ abstract class _PriceDto extends PriceDto {
   _$$_PriceDtoCopyWith<_$_PriceDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+NutrientDto _$NutrientDtoFromJson(Map<String, dynamic> json) {
+  return _NutrientDto.fromJson(json);
+}
+
+/// @nodoc
+mixin _$NutrientDto {
+  WeightDto get weight => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $NutrientDtoCopyWith<NutrientDto> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $NutrientDtoCopyWith<$Res> {
+  factory $NutrientDtoCopyWith(
+          NutrientDto value, $Res Function(NutrientDto) then) =
+      _$NutrientDtoCopyWithImpl<$Res>;
+  $Res call({WeightDto weight, String name});
+
+  $WeightDtoCopyWith<$Res> get weight;
+}
+
+/// @nodoc
+class _$NutrientDtoCopyWithImpl<$Res> implements $NutrientDtoCopyWith<$Res> {
+  _$NutrientDtoCopyWithImpl(this._value, this._then);
+
+  final NutrientDto _value;
+  // ignore: unused_field
+  final $Res Function(NutrientDto) _then;
+
+  @override
+  $Res call({
+    Object? weight = freezed,
+    Object? name = freezed,
+  }) {
+    return _then(_value.copyWith(
+      weight: weight == freezed
+          ? _value.weight
+          : weight // ignore: cast_nullable_to_non_nullable
+              as WeightDto,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+
+  @override
+  $WeightDtoCopyWith<$Res> get weight {
+    return $WeightDtoCopyWith<$Res>(_value.weight, (value) {
+      return _then(_value.copyWith(weight: value));
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$_NutrientDtoCopyWith<$Res>
+    implements $NutrientDtoCopyWith<$Res> {
+  factory _$$_NutrientDtoCopyWith(
+          _$_NutrientDto value, $Res Function(_$_NutrientDto) then) =
+      __$$_NutrientDtoCopyWithImpl<$Res>;
+  @override
+  $Res call({WeightDto weight, String name});
+
+  @override
+  $WeightDtoCopyWith<$Res> get weight;
+}
+
+/// @nodoc
+class __$$_NutrientDtoCopyWithImpl<$Res> extends _$NutrientDtoCopyWithImpl<$Res>
+    implements _$$_NutrientDtoCopyWith<$Res> {
+  __$$_NutrientDtoCopyWithImpl(
+      _$_NutrientDto _value, $Res Function(_$_NutrientDto) _then)
+      : super(_value, (v) => _then(v as _$_NutrientDto));
+
+  @override
+  _$_NutrientDto get _value => super._value as _$_NutrientDto;
+
+  @override
+  $Res call({
+    Object? weight = freezed,
+    Object? name = freezed,
+  }) {
+    return _then(_$_NutrientDto(
+      weight: weight == freezed
+          ? _value.weight
+          : weight // ignore: cast_nullable_to_non_nullable
+              as WeightDto,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_NutrientDto extends _NutrientDto {
+  const _$_NutrientDto({required this.weight, required this.name}) : super._();
+
+  factory _$_NutrientDto.fromJson(Map<String, dynamic> json) =>
+      _$$_NutrientDtoFromJson(json);
+
+  @override
+  final WeightDto weight;
+  @override
+  final String name;
+
+  @override
+  String toString() {
+    return 'NutrientDto(weight: $weight, name: $name)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_NutrientDto &&
+            const DeepCollectionEquality().equals(other.weight, weight) &&
+            const DeepCollectionEquality().equals(other.name, name));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(weight),
+      const DeepCollectionEquality().hash(name));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_NutrientDtoCopyWith<_$_NutrientDto> get copyWith =>
+      __$$_NutrientDtoCopyWithImpl<_$_NutrientDto>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_NutrientDtoToJson(this);
+  }
+}
+
+abstract class _NutrientDto extends NutrientDto {
+  const factory _NutrientDto(
+      {required final WeightDto weight,
+      required final String name}) = _$_NutrientDto;
+  const _NutrientDto._() : super._();
+
+  factory _NutrientDto.fromJson(Map<String, dynamic> json) =
+      _$_NutrientDto.fromJson;
+
+  @override
+  WeightDto get weight => throw _privateConstructorUsedError;
+  @override
+  String get name => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  _$$_NutrientDtoCopyWith<_$_NutrientDto> get copyWith =>
+      throw _privateConstructorUsedError;
+}

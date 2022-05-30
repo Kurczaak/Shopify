@@ -103,22 +103,46 @@ class PriceDto with _$PriceDto {
       _$PriceDtoFromJson(json);
 }
 
+@freezed
+class NutrientDto with _$NutrientDto {
+  const NutrientDto._();
 
-// @freezed
-// class NutrientDto with _$NutrientDto {
-//   const NutrientDto._();
+  const factory NutrientDto({
+    required WeightDto weight,
+    required String name,
+  }) = _NutrientDto;
 
-//   const factory NutrientDto({
-//     required WeightDto weight,
-//     required String name,
-//   }) = _NutrientDto;
-// }
+  factory NutrientDto.fromDomain(Nutrient nutrient) => NutrientDto(
+      weight: WeightDto.fromDomain(nutrient.weight),
+      name: nutrient.name.getOrCrash());
 
-// @freezed
-// class NutrientsGroupDto with _$NutrientsGroupDto {
-//   const NutrientsGroupDto._();
-//   const factory NutrientsGroupDto({
-//     required NutrientDto mainNutrient,
-//     required List<NutrientDto> subNutrients,
-//   }) = _NutrientsGroupDto;
-// }
+  Nutrient toDomain() {
+    switch (name) {
+      case 'Fat':
+        return Fat(weight.toDomain());
+      case 'Saturated Fat':
+        return SaturatedFat(weight.toDomain());
+      case 'Trans Fat':
+        return TransFat(weight.toDomain());
+      case 'Monosaturated Fat':
+        return MonosaturatedFat(weight.toDomain());
+      case 'Polysaturated Fat':
+        return PolysaturatedFat(weight.toDomain());
+      case 'Protein':
+        return Protein(weight.toDomain());
+      case 'Plant Protein':
+        return PlantProtein(weight.toDomain());
+      case 'Animal Protein':
+        return AnimalProtein(weight.toDomain());
+      case 'Carbohydrate':
+        return Carbohydrate(weight.toDomain());
+      case 'Sugar':
+        return Sugar(weight.toDomain());
+      default:
+        throw UnimplementedError('Unexpected nutrient name: $name');
+    }
+  }
+
+  factory NutrientDto.fromJson(Map<String, dynamic> json) =>
+      _$NutrientDtoFromJson(json);
+}

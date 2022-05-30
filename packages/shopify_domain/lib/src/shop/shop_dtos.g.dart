@@ -18,8 +18,8 @@ _$_ShopItemDto _$$_ShopItemDtoFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$_ShopItemDtoToJson(_$_ShopItemDto instance) =>
     <String, dynamic>{
       'shopName': instance.shopName,
-      'address': instance.address.toJson(),
-      'week': instance.week.toJson(),
-      'position': instance.position.toJson(),
+      'address': instance.address,
+      'week': instance.week,
+      'position': instance.position,
       'logoUrl': instance.logoUrl,
     };
