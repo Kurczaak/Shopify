@@ -25,6 +25,9 @@ abstract class ValueObject<T> extends Equatable {
     return value.fold((l) => left(l), (_) => right(unit));
   }
 
+  Option<ValueFailure<T>> get failureOption =>
+      value.fold((failure) => some(failure), (_) => none());
+
   const ValueObject();
 
   @override
@@ -101,6 +104,7 @@ abstract class Name extends ValueObject<String> {
   static const maxLength = 10;
   @override
   Either<ValueFailure<String>, String> get value;
+
   const Name();
 }
 
@@ -115,18 +119,10 @@ class AddressNumber extends ValueObject<String> {
         validateMaxStringLength(input, maxLength).flatMap(validateSingleLine));
   }
 
-  // Option<String> get stringFailureOption {
-  //   return value.fold(
-  //       (failure) => failure.maybeWhen(
-  //           orElse: () => throw UnexpectedValueError(failure),
-  //           core: (coreFailure) => some(coreFailure.maybeMap(
-  //                 orElse: () => 'Unexpected value failure',
-  //                 exceedingLength: (_) =>
-  //                     'Adress number is too long. Max $maxLength characters',
-  //                 multiline: (_) => 'Address Number cannot be multiline',
-  //               ))),
-  //       (_) => none());
-  // }
+  @override
+  Option<ValueFailure<String>> get failureOption {
+    return value.fold((failure) => some(failure), (_) => none());
+  }
 
   const AddressNumber._(this.value);
 }
@@ -154,22 +150,6 @@ class StreetName extends Name {
           .flatMap(validateSingleLine),
     );
   }
-
-  // Option<String> get stringFailureOption {
-  //   return value.fold(
-  //       (failure) => failure.maybeWhen(
-  //           orElse: () => throw UnexpectedValueError(failure),
-  //           core: (coreFailure) => some(coreFailure.maybeMap(
-  //                 orElse: () => 'Unexpected value failure',
-  //                 empty: (_) => 'Street name should not be empty',
-  //                 exceedingLength: (_) =>
-  //                     'Street name is too long. Max $maxLength characters',
-  //                 multiline: (_) => 'Street name cannot be multiline',
-  //                 stringTooShort: (_) =>
-  //                     'Street name is too short. Min $minLength characters',
-  //               ))),
-  //       (_) => none());
-  // }
 
   const StreetName._(this.value);
 }
