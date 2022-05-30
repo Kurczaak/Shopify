@@ -28,10 +28,10 @@ abstract class Nutrient extends Equatable {
   final Weight weight;
   final NutrientName name;
 
-  // Option<ValueFailure<dynamic>> get failureOption =>
-  //     weight.failureOption.andThen(name.failureOption);
   int get caloriePerGram;
   int get calories;
+  Either<ValueFailure<dynamic>, Unit> get failureOrUnit =>
+      weight.failureOrUnit.andThen(name.failureOrUnit);
 
   const Nutrient(this.weight, this.name);
 
@@ -50,19 +50,19 @@ class NutrientsGroup extends Equatable {
 
   int get calories => mainNutrient.calories;
 
-  Option<ValueFailure<dynamic>> get failureOption {
-    if (mainNutrient.failureOption.isSome()) {
-      return mainNutrient.failureOption;
+  Either<ValueFailure<dynamic>, Unit> get failureOrUnit {
+    if (mainNutrient.failureOrUnit.isLeft()) {
+      return mainNutrient.failureOrUnit;
     }
-    if (subNutrients.isNotEmpty()) {
-      for (final subnutrientFailureOption in subNutrients.iter) {
-        if (subnutrientFailureOption.failureOption.isSome()) {
-          return subnutrientFailureOption.failureOption;
-        }
+    if (subNutrients.isEmpty()) {
+      return right(unit);
+    }
+    for (final subNutrient in subNutrients.iter) {
+      if (subNutrient.failureOrUnit.isLeft()) {
+        return subNutrient.failureOrUnit;
       }
     }
-
-    return none();
+    return right(unit);
   }
 
   @override
