@@ -111,6 +111,10 @@ void main() {
   const carbohydratesDto =
       CarbohydratesDto(carbohydrate: tCarbohydrateDto, sugar: tSugarDto);
 
+  final nutrientFacts = NutrientFacts(proteins, fats, carbohydrates);
+  const nutrientFactsDto = NutrientFactsDto(
+      fats: fatsDto, proteins: proteinsDto, carbohydrates: carbohydratesDto);
+
   // Product
   final tProduct = Product.fromPrimitives(
       id: id,
@@ -256,6 +260,28 @@ void main() {
         expect(fatsResult, fats);
         expect(proteinsResult, proteins);
         expect(carbohydratesResult, carbohydrates);
+      },
+    );
+  });
+
+  group('NutrientsFactsDto', () {
+    test(
+      'should convert fromDomain',
+      () async {
+        // act
+        final result = NutrientFactsDto.fromDomain(nutrientFacts);
+        // assert
+        expect(result, nutrientFactsDto);
+      },
+    );
+
+    test(
+      'should convert toDomain',
+      () async {
+        // act
+        final result = nutrientFactsDto.toDomain();
+        // assert
+        expect(result, nutrientFacts);
       },
     );
   });

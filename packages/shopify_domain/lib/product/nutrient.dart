@@ -242,7 +242,7 @@ class Carbohydrates extends NutrientsGroup {
   }
 }
 
-class NutrientTable {
+class NutrientFacts extends Equatable {
   final Proteins proteins;
   final Fats fats;
   final Carbohydrates carbohydrates;
@@ -253,5 +253,8 @@ class NutrientTable {
       proteins.failureOrUnit
           .andThen(fats.failureOrUnit.andThen(carbohydrates.failureOrUnit));
 
-  NutrientTable(this.proteins, this.fats, this.carbohydrates);
+  const NutrientFacts(this.proteins, this.fats, this.carbohydrates);
+
+  @override
+  List<Object> get props => [proteins, fats, carbohydrates];
 }

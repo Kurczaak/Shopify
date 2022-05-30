@@ -237,3 +237,30 @@ class CarbohydratesDto with _$CarbohydratesDto {
   factory CarbohydratesDto.fromJson(Map<String, dynamic> json) =>
       _$CarbohydratesDtoFromJson(json);
 }
+
+@freezed
+class NutrientFactsDto with _$NutrientFactsDto {
+  const NutrientFactsDto._();
+  const factory NutrientFactsDto({
+    required FatsDto fats,
+    required ProteinsDto proteins,
+    required CarbohydratesDto carbohydrates,
+  }) = _NutrientFactsDto;
+
+  factory NutrientFactsDto.fromDomain(NutrientFacts nutrientFacts) {
+    return NutrientFactsDto(
+        fats: FatsDto.fromDomain(nutrientFacts.fats),
+        proteins: ProteinsDto.fromDomain(nutrientFacts.proteins),
+        carbohydrates: CarbohydratesDto.fromDomain(
+          nutrientFacts.carbohydrates,
+        ));
+  }
+
+  NutrientFacts toDomain() {
+    return NutrientFacts(
+        proteins.toDomain(), fats.toDomain(), carbohydrates.toDomain());
+  }
+
+  factory NutrientFactsDto.fromJson(Map<String, dynamic> json) =>
+      _$NutrientFactsDtoFromJson(json);
+}

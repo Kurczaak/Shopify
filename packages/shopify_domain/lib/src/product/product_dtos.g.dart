@@ -116,3 +116,18 @@ Map<String, dynamic> _$$_CarbohydratesDtoToJson(_$_CarbohydratesDto instance) =>
       'carbohydrate': instance.carbohydrate,
       'sugar': instance.sugar,
     };
+
+_$_NutrientFactsDto _$$_NutrientFactsDtoFromJson(Map<String, dynamic> json) =>
+    _$_NutrientFactsDto(
+      fats: FatsDto.fromJson(json['fats'] as Map<String, dynamic>),
+      proteins: ProteinsDto.fromJson(json['proteins'] as Map<String, dynamic>),
+      carbohydrates: CarbohydratesDto.fromJson(
+          json['carbohydrates'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$$_NutrientFactsDtoToJson(_$_NutrientFactsDto instance) =>
+    <String, dynamic>{
+      'fats': instance.fats,
+      'proteins': instance.proteins,
+      'carbohydrates': instance.carbohydrates,
+    };
