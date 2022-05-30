@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$Weight {
-  PositiveNumber get weight => throw _privateConstructorUsedError;
+  NonnegativeNumber get weight => throw _privateConstructorUsedError;
   WeightUnit get weightUnit => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -27,7 +27,7 @@ mixin _$Weight {
 abstract class $WeightCopyWith<$Res> {
   factory $WeightCopyWith(Weight value, $Res Function(Weight) then) =
       _$WeightCopyWithImpl<$Res>;
-  $Res call({PositiveNumber weight, WeightUnit weightUnit});
+  $Res call({NonnegativeNumber weight, WeightUnit weightUnit});
 }
 
 /// @nodoc
@@ -47,7 +47,7 @@ class _$WeightCopyWithImpl<$Res> implements $WeightCopyWith<$Res> {
       weight: weight == freezed
           ? _value.weight
           : weight // ignore: cast_nullable_to_non_nullable
-              as PositiveNumber,
+              as NonnegativeNumber,
       weightUnit: weightUnit == freezed
           ? _value.weightUnit
           : weightUnit // ignore: cast_nullable_to_non_nullable
@@ -61,7 +61,7 @@ abstract class _$$_WeightCopyWith<$Res> implements $WeightCopyWith<$Res> {
   factory _$$_WeightCopyWith(_$_Weight value, $Res Function(_$_Weight) then) =
       __$$_WeightCopyWithImpl<$Res>;
   @override
-  $Res call({PositiveNumber weight, WeightUnit weightUnit});
+  $Res call({NonnegativeNumber weight, WeightUnit weightUnit});
 }
 
 /// @nodoc
@@ -82,7 +82,7 @@ class __$$_WeightCopyWithImpl<$Res> extends _$WeightCopyWithImpl<$Res>
       weight: weight == freezed
           ? _value.weight
           : weight // ignore: cast_nullable_to_non_nullable
-              as PositiveNumber,
+              as NonnegativeNumber,
       weightUnit: weightUnit == freezed
           ? _value.weightUnit
           : weightUnit // ignore: cast_nullable_to_non_nullable
@@ -97,7 +97,7 @@ class _$_Weight extends _Weight {
   const _$_Weight({required this.weight, required this.weightUnit}) : super._();
 
   @override
-  final PositiveNumber weight;
+  final NonnegativeNumber weight;
   @override
   final WeightUnit weightUnit;
 
@@ -130,12 +130,12 @@ class _$_Weight extends _Weight {
 
 abstract class _Weight extends Weight {
   const factory _Weight(
-      {required final PositiveNumber weight,
+      {required final NonnegativeNumber weight,
       required final WeightUnit weightUnit}) = _$_Weight;
   const _Weight._() : super._();
 
   @override
-  PositiveNumber get weight => throw _privateConstructorUsedError;
+  NonnegativeNumber get weight => throw _privateConstructorUsedError;
   @override
   WeightUnit get weightUnit => throw _privateConstructorUsedError;
   @override

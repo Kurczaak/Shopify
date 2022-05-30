@@ -11,16 +11,16 @@ class Weight with _$Weight {
   const Weight._();
 
   factory Weight.zero({WeightUnits? unit}) => Weight(
-      weight: PositiveNumber(0),
+      weight: NonnegativeNumber(0),
       weightUnit: WeightUnit(unit ?? WeightUnits.gram));
 
   const factory Weight({
-    required PositiveNumber weight,
+    required NonnegativeNumber weight,
     required WeightUnit weightUnit,
   }) = _Weight;
 
   factory Weight.fromPrimitives(double weight, String weightUnit) => Weight(
-      weight: PositiveNumber(weight),
+      weight: NonnegativeNumber(weight),
       weightUnit: WeightUnit.fromString(weightUnit));
 
   Option<ValueFailure<dynamic>> get failureOption {
