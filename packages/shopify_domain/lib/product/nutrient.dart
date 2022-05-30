@@ -242,5 +242,9 @@ class NutrientTable {
   int get totalCalories =>
       proteins.calories + fats.calories + carbohydrates.calories;
 
+  Either<ValueFailure<dynamic>, Unit> get failureOrUnit =>
+      proteins.failureOrUnit
+          .andThen(fats.failureOrUnit.andThen(carbohydrates.failureOrUnit));
+
   NutrientTable(this.proteins, this.fats, this.carbohydrates);
 }
