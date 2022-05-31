@@ -3,10 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:kt_dart/kt.dart';
 import 'package:shopify_domain/core/failures.dart';
 import 'package:shopify_domain/core/value_objects.dart';
-import 'package:shopify_domain/product/price.dart';
-import 'package:shopify_domain/product/product.dart';
-import 'package:shopify_domain/product/value_objects.dart';
-import 'package:shopify_domain/product/weight.dart';
+import 'package:shopify_domain/product.dart';
 
 import '../fixtures/description_501_chars.dart';
 
@@ -69,19 +66,6 @@ void main() {
         // arrange
         final invalidProduct =
             tProduct.copyWith(weight: Weight.fromPrimitives(-1, 'kg'));
-        // act
-        final result = invalidProduct.failureOption;
-        // assert
-        expect(result, isA<Some<ValueFailure<dynamic>>>());
-      },
-    );
-
-    test(
-      'should return price value failure given an invalid price',
-      () async {
-        // arrange
-        final invalidProduct =
-            tProduct.copyWith(price: Price.fromPrimitives(2, 'yang'));
         // act
         final result = invalidProduct.failureOption;
         // assert

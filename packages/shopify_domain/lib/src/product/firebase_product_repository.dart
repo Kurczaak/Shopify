@@ -165,7 +165,7 @@ class FirebaseProductRepositoryImpl implements ShopifyProductRepository {
         id: productForm.id,
         barcode: productForm.barcode,
         weight: productForm.weight,
-        price: productForm.price,
+        nutrientFacts: productForm.nutrientFacts,
         category: productForm.category,
         name: productForm.name,
         brand: productForm.brand,

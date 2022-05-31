@@ -23,9 +23,8 @@ mixin _$ProductDto {
   @JsonKey(ignore: true)
   String get id => throw _privateConstructorUsedError;
   String get barcode => throw _privateConstructorUsedError;
-  WeightDto get weight =>
-      throw _privateConstructorUsedError; //required NutrientsGroupDto fats,
-  PriceDto get price => throw _privateConstructorUsedError;
+  WeightDto get weight => throw _privateConstructorUsedError;
+  NutrientFactsDto get nutrientFacts => throw _privateConstructorUsedError;
   String get category => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get brand => throw _privateConstructorUsedError;
@@ -48,7 +47,7 @@ abstract class $ProductDtoCopyWith<$Res> {
       {@JsonKey(ignore: true) String id,
       String barcode,
       WeightDto weight,
-      PriceDto price,
+      NutrientFactsDto nutrientFacts,
       String category,
       String name,
       String brand,
@@ -57,7 +56,7 @@ abstract class $ProductDtoCopyWith<$Res> {
       List<String> photosUrls});
 
   $WeightDtoCopyWith<$Res> get weight;
-  $PriceDtoCopyWith<$Res> get price;
+  $NutrientFactsDtoCopyWith<$Res> get nutrientFacts;
 }
 
 /// @nodoc
@@ -73,7 +72,7 @@ class _$ProductDtoCopyWithImpl<$Res> implements $ProductDtoCopyWith<$Res> {
     Object? id = freezed,
     Object? barcode = freezed,
     Object? weight = freezed,
-    Object? price = freezed,
+    Object? nutrientFacts = freezed,
     Object? category = freezed,
     Object? name = freezed,
     Object? brand = freezed,
@@ -94,10 +93,10 @@ class _$ProductDtoCopyWithImpl<$Res> implements $ProductDtoCopyWith<$Res> {
           ? _value.weight
           : weight // ignore: cast_nullable_to_non_nullable
               as WeightDto,
-      price: price == freezed
-          ? _value.price
-          : price // ignore: cast_nullable_to_non_nullable
-              as PriceDto,
+      nutrientFacts: nutrientFacts == freezed
+          ? _value.nutrientFacts
+          : nutrientFacts // ignore: cast_nullable_to_non_nullable
+              as NutrientFactsDto,
       category: category == freezed
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
@@ -133,9 +132,9 @@ class _$ProductDtoCopyWithImpl<$Res> implements $ProductDtoCopyWith<$Res> {
   }
 
   @override
-  $PriceDtoCopyWith<$Res> get price {
-    return $PriceDtoCopyWith<$Res>(_value.price, (value) {
-      return _then(_value.copyWith(price: value));
+  $NutrientFactsDtoCopyWith<$Res> get nutrientFacts {
+    return $NutrientFactsDtoCopyWith<$Res>(_value.nutrientFacts, (value) {
+      return _then(_value.copyWith(nutrientFacts: value));
     });
   }
 }
@@ -151,7 +150,7 @@ abstract class _$$_ProductDtoCopyWith<$Res>
       {@JsonKey(ignore: true) String id,
       String barcode,
       WeightDto weight,
-      PriceDto price,
+      NutrientFactsDto nutrientFacts,
       String category,
       String name,
       String brand,
@@ -162,7 +161,7 @@ abstract class _$$_ProductDtoCopyWith<$Res>
   @override
   $WeightDtoCopyWith<$Res> get weight;
   @override
-  $PriceDtoCopyWith<$Res> get price;
+  $NutrientFactsDtoCopyWith<$Res> get nutrientFacts;
 }
 
 /// @nodoc
@@ -180,7 +179,7 @@ class __$$_ProductDtoCopyWithImpl<$Res> extends _$ProductDtoCopyWithImpl<$Res>
     Object? id = freezed,
     Object? barcode = freezed,
     Object? weight = freezed,
-    Object? price = freezed,
+    Object? nutrientFacts = freezed,
     Object? category = freezed,
     Object? name = freezed,
     Object? brand = freezed,
@@ -201,10 +200,10 @@ class __$$_ProductDtoCopyWithImpl<$Res> extends _$ProductDtoCopyWithImpl<$Res>
           ? _value.weight
           : weight // ignore: cast_nullable_to_non_nullable
               as WeightDto,
-      price: price == freezed
-          ? _value.price
-          : price // ignore: cast_nullable_to_non_nullable
-              as PriceDto,
+      nutrientFacts: nutrientFacts == freezed
+          ? _value.nutrientFacts
+          : nutrientFacts // ignore: cast_nullable_to_non_nullable
+              as NutrientFactsDto,
       category: category == freezed
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
@@ -240,7 +239,7 @@ class _$_ProductDto extends _ProductDto {
       {@JsonKey(ignore: true) this.id = '',
       required this.barcode,
       required this.weight,
-      required this.price,
+      required this.nutrientFacts,
       required this.category,
       required this.name,
       required this.brand,
@@ -260,9 +259,8 @@ class _$_ProductDto extends _ProductDto {
   final String barcode;
   @override
   final WeightDto weight;
-//required NutrientsGroupDto fats,
   @override
-  final PriceDto price;
+  final NutrientFactsDto nutrientFacts;
   @override
   final String category;
   @override
@@ -282,7 +280,7 @@ class _$_ProductDto extends _ProductDto {
 
   @override
   String toString() {
-    return 'ProductDto(id: $id, barcode: $barcode, weight: $weight, price: $price, category: $category, name: $name, brand: $brand, description: $description, ingredients: $ingredients, photosUrls: $photosUrls)';
+    return 'ProductDto(id: $id, barcode: $barcode, weight: $weight, nutrientFacts: $nutrientFacts, category: $category, name: $name, brand: $brand, description: $description, ingredients: $ingredients, photosUrls: $photosUrls)';
   }
 
   @override
@@ -293,7 +291,8 @@ class _$_ProductDto extends _ProductDto {
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.barcode, barcode) &&
             const DeepCollectionEquality().equals(other.weight, weight) &&
-            const DeepCollectionEquality().equals(other.price, price) &&
+            const DeepCollectionEquality()
+                .equals(other.nutrientFacts, nutrientFacts) &&
             const DeepCollectionEquality().equals(other.category, category) &&
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality().equals(other.brand, brand) &&
@@ -312,7 +311,7 @@ class _$_ProductDto extends _ProductDto {
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(barcode),
       const DeepCollectionEquality().hash(weight),
-      const DeepCollectionEquality().hash(price),
+      const DeepCollectionEquality().hash(nutrientFacts),
       const DeepCollectionEquality().hash(category),
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(brand),
@@ -336,7 +335,7 @@ abstract class _ProductDto extends ProductDto {
       {@JsonKey(ignore: true) final String id,
       required final String barcode,
       required final WeightDto weight,
-      required final PriceDto price,
+      required final NutrientFactsDto nutrientFacts,
       required final String category,
       required final String name,
       required final String brand,
@@ -355,8 +354,8 @@ abstract class _ProductDto extends ProductDto {
   String get barcode => throw _privateConstructorUsedError;
   @override
   WeightDto get weight => throw _privateConstructorUsedError;
-  @override //required NutrientsGroupDto fats,
-  PriceDto get price => throw _privateConstructorUsedError;
+  @override
+  NutrientFactsDto get nutrientFacts => throw _privateConstructorUsedError;
   @override
   String get category => throw _privateConstructorUsedError;
   @override

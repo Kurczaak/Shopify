@@ -3,7 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kt_dart/kt.dart';
 import 'package:shopify_domain/core/failures.dart';
 import 'package:shopify_domain/core/value_objects.dart';
-import 'package:shopify_domain/product/price.dart';
+import 'package:shopify_domain/product/nutrient.dart';
 import 'package:shopify_domain/product/product_categories.dart';
 import 'package:shopify_domain/product/value_objects.dart';
 import 'package:shopify_domain/product/weight.dart';
@@ -18,8 +18,7 @@ class Product with _$Product {
     required UniqueId id,
     required Barcode barcode,
     required Weight weight,
-    //required Fats fats,
-    required Price price,
+    required NutrientFacts nutrientFacts,
     required Category category,
     required ProductName name,
     required BrandName brand,
@@ -32,7 +31,7 @@ class Product with _$Product {
       id: UniqueId(),
       barcode: Barcode(''),
       weight: Weight.zero(),
-      price: Price.empty(),
+      nutrientFacts: NutrientFacts.empty(),
       category: Category(Categories.unknown),
       name: ProductName(''),
       brand: BrandName(''),
@@ -58,7 +57,7 @@ class Product with _$Product {
         id: UniqueId.fromUniqueString(id),
         barcode: Barcode(barcode),
         weight: Weight.fromPrimitives(weight, weightUnit),
-        price: Price.fromPrimitives(price, currency),
+        nutrientFacts: NutrientFacts.empty(), // TODO
         category: Category.fromString(category),
         name: ProductName(name),
         brand: BrandName(brand),
@@ -72,7 +71,7 @@ class Product with _$Product {
     return barcode.failureOrUnit
         .andThen(
           weight.failureOrUnit.andThen(
-            price.failureOrUnit.andThen(
+            nutrientFacts.failureOrUnit.andThen(
               category.failureOrUnit.andThen(
                 name.failureOrUnit.andThen(
                   brand.failureOrUnit.andThen(

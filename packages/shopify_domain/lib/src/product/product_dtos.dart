@@ -14,8 +14,7 @@ class ProductDto with _$ProductDto {
     @Default('') @JsonKey(ignore: true) String id,
     required String barcode,
     required WeightDto weight,
-    //required NutrientsGroupDto fats,
-    required PriceDto price,
+    required NutrientFactsDto nutrientFacts,
     required String category,
     required String name,
     required String brand,
@@ -28,7 +27,7 @@ class ProductDto with _$ProductDto {
         id: product.id.getOrCrash(),
         barcode: product.barcode.getOrCrash(),
         weight: WeightDto.fromDomain(product.weight),
-        price: PriceDto.fromDomain(product.price),
+        nutrientFacts: NutrientFactsDto.fromDomain(product.nutrientFacts),
         category: product.category.getOrCrash().name,
         name: product.name.getOrCrash(),
         brand: product.brand.getOrCrash(),
@@ -52,7 +51,7 @@ class ProductDto with _$ProductDto {
       photos: NonEmptyList5(KtList.from(
           photosUrls.map((stringUrl) => ShopifyUrl(stringUrl)).toList())),
       weight: weight.toDomain(),
-      price: price.toDomain(),
+      nutrientFacts: nutrientFacts.toDomain(),
     );
   }
 

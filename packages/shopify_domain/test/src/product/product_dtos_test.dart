@@ -134,7 +134,7 @@ void main() {
       id: id,
       barcode: barcode,
       weight: tWeightDto,
-      price: tPriceDto,
+      nutrientFacts: nutrientFactsDto,
       category: category,
       name: name,
       brand: brand,

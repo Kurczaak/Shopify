@@ -148,6 +148,13 @@ class Fats extends NutrientsGroup {
           transFat: transFat ?? TransFat.zero(),
           monosaturatedFat: monosaturatedFat ?? MonosaturatedFat.zero(),
           polysaturatedFat: polysaturatedFat ?? PolysaturatedFat.zero());
+
+  factory Fats.zero() => Fats(
+      fat: Fat.zero(),
+      monosaturatedFat: MonosaturatedFat.zero(),
+      polysaturatedFat: PolysaturatedFat.zero(),
+      saturatedFat: SaturatedFat.zero(),
+      transFat: TransFat.zero());
 }
 
 //=================Proteins==================
@@ -200,6 +207,12 @@ class Proteins extends NutrientsGroup {
       plantProtein: plantProtein ?? PlantProtein.zero(),
     );
   }
+
+  factory Proteins.zero() => Proteins(
+        protein: Protein.zero(),
+        animalProtein: AnimalProtein.zero(),
+        plantProtein: PlantProtein.zero(),
+      );
 }
 
 //=================Carbohydrates==================
@@ -240,6 +253,9 @@ class Carbohydrates extends NutrientsGroup {
         carbohydrate: group.mainNutrient as Carbohydrate,
         sugar: group.subNutrients.first() as Sugar);
   }
+
+  factory Carbohydrates.zero() =>
+      Carbohydrates(carbohydrate: Carbohydrate.zero(), sugar: Sugar.zero());
 }
 
 class NutrientFacts extends Equatable {
@@ -254,6 +270,9 @@ class NutrientFacts extends Equatable {
           .andThen(fats.failureOrUnit.andThen(carbohydrates.failureOrUnit));
 
   const NutrientFacts(this.proteins, this.fats, this.carbohydrates);
+
+  factory NutrientFacts.empty() =>
+      NutrientFacts(Proteins.zero(), Fats.zero(), Carbohydrates.zero());
 
   @override
   List<Object> get props => [proteins, fats, carbohydrates];

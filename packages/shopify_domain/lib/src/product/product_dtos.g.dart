@@ -10,7 +10,8 @@ _$_ProductDto _$$_ProductDtoFromJson(Map<String, dynamic> json) =>
     _$_ProductDto(
       barcode: json['barcode'] as String,
       weight: WeightDto.fromJson(json['weight'] as Map<String, dynamic>),
-      price: PriceDto.fromJson(json['price'] as Map<String, dynamic>),
+      nutrientFacts: NutrientFactsDto.fromJson(
+          json['nutrientFacts'] as Map<String, dynamic>),
       category: json['category'] as String,
       name: json['name'] as String,
       brand: json['brand'] as String,
@@ -25,7 +26,7 @@ Map<String, dynamic> _$$_ProductDtoToJson(_$_ProductDto instance) =>
     <String, dynamic>{
       'barcode': instance.barcode,
       'weight': instance.weight,
-      'price': instance.price,
+      'nutrientFacts': instance.nutrientFacts,
       'category': instance.category,
       'name': instance.name,
       'brand': instance.brand,
