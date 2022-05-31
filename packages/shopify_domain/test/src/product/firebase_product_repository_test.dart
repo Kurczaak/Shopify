@@ -102,6 +102,77 @@ Future<void> main() async {
             .set(ProductDto.fromDomain(tProductWithUploadedPhotos).toJson()))
         .thenAnswer((_) async => Future.value);
   });
+
+  group('getByBarcode', () {
+    test(
+      'should check if has internet connection',
+      () async {
+        // arrange
+
+        // act
+        await repository.getByBarcode(tProduct.barcode);
+        // assert
+        verify(mockNetworkInfo.isConnected).called(1);
+      },
+    );
+    test(
+      'should get products collection',
+      () async {
+        // arrange
+
+        // act
+        await repository.getByBarcode(tProduct.barcode);
+        // assert
+        verify(mockFirestore.productsCollection).called(1);
+      },
+    );
+    test(
+      'should look for the product by its barcode',
+      () async {
+        // arrange
+
+        // act
+        await repository.getByBarcode(tProduct.barcode);
+        // assert
+        verify(mockFirestore.productsCollection
+                .where('barcode', isEqualTo: tProduct.barcode.getOrCrash()))
+            .called(1);
+      },
+    );
+    test(
+      'should return the product if found',
+      () async {
+        // arrange
+
+        // act
+        final result = await repository.getByBarcode(tProduct.barcode);
+        // assert
+        expect(result, right(tProduct));
+      },
+    );
+    test(
+      'should return a failure if product has not been found',
+      () async {
+        // arrange
+
+        // act
+        final result = await repository.getByBarcode(tProduct.barcode);
+        // assert
+        expect(result, left(const ProductFailure.productNotFound()));
+      },
+    );
+    test(
+      'should return a failure if no internet connection is present',
+      () async {
+        // arrange
+
+        // act
+        final result = await repository.getByBarcode(tProduct.barcode);
+        // assert
+        expect(result, left(const ProductFailure.noInternetConnection()));
+      },
+    );
+  });
   group('create', () {
     test(
       'should check if the device has connection',
