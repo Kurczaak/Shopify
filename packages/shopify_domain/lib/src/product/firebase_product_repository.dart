@@ -43,8 +43,8 @@ class FirebaseProductRepositoryImpl implements ShopifyProductRepository {
   }
 
   @override
-  Future<Either<ProductFailure, Unit>> createForShop(
-      ProductForm product, Shop shop) {
+  Future<Either<ProductFailure, Unit>> addToShop(
+      Product product, Price price, Shop shop) {
     // TODO: implement createForShop
     throw UnimplementedError();
   }
@@ -62,9 +62,21 @@ class FirebaseProductRepositoryImpl implements ShopifyProductRepository {
   }
 
   @override
-  Future<Either<ProductFailure, Product>> getByBarcode(Barcode barcode) {
-    // TODO: implement getByBarcode
-    throw UnimplementedError();
+  Future<Either<ProductFailure, Product>> getByBarcode(Barcode barcode) async {
+    if (await _networkInfo.isConnected) {
+      final query = _firestore.productsCollection
+          .where('barcode', isEqualTo: barcode.getOrCrash());
+      final querySnapshot = await query.get();
+
+      if (querySnapshot.size < 1) {
+        return left(const ProductFailure.productNotFound());
+      } else {
+        return right(
+            ProductDto.fromFirestore(querySnapshot.docs.first).toDomain());
+      }
+    } else {
+      return left(const ProductFailure.noInternetConnection());
+    }
   }
 
   @override

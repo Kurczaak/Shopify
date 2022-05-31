@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kt_dart/kt.dart';
 import 'package:shopify_domain/core.dart';
@@ -57,6 +58,11 @@ class ProductDto with _$ProductDto {
 
   factory ProductDto.fromJson(Map<String, dynamic> json) =>
       _$ProductDtoFromJson(json);
+
+  factory ProductDto.fromFirestore(DocumentSnapshot doc) {
+    return ProductDto.fromJson(doc.data() as Map<String, dynamic>)
+        .copyWith(id: doc.id);
+  }
 }
 
 @freezed

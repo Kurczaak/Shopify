@@ -18,7 +18,11 @@ const String name = 'Test Product';
 const String brand = 'Test Brand';
 const String description = 'This is just a test product';
 const String ingredients = 'tests, bugs, overflows';
-final List<String> photosUrls = [];
+final List<String> photosUrls = [
+  'https://firebasestorage.googleapis.com/1',
+  'https://firebasestorage.googleapis.com/2',
+  'https://firebasestorage.googleapis.com/3',
+];
 
 // Weight
 final tWeight = Weight.fromPrimitives(weight, weightUnit);

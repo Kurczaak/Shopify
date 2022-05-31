@@ -10,12 +10,13 @@ import 'package:mockito/mockito.dart';
 import 'package:shopify_domain/core/images/photo.dart';
 import 'package:shopify_domain/core/network/network_info.dart';
 import 'package:shopify_domain/core/value_objects.dart';
-import 'package:shopify_domain/product/product_failure.dart';
+import 'package:shopify_domain/product.dart';
 import 'package:shopify_domain/core/config.dart';
+import 'package:shopify_domain/src/core/firestore_helpers.dart';
 import 'package:shopify_domain/src/product/firebase_product_repository.dart';
 import 'package:firebase_storage_mocks/firebase_storage_mocks.dart' as fake;
+import 'package:fake_cloud_firestore/fake_cloud_firestore.dart';
 import 'package:shopify_domain/src/product/product_dtos.dart';
-import 'package:shopify_domain/src/core/firestore_helpers.dart';
 import '../../fixtures/test_product.dart';
 import '../../utils/image_reader.dart';
 import './firebase_product_repository_test.mocks.dart';
@@ -28,7 +29,8 @@ import './firebase_product_repository_test.mocks.dart';
   UploadTask,
   TaskSnapshot,
   CollectionReference,
-  DocumentReference
+  DocumentReference,
+  Query,
 ])
 Future<void> main() async {
   late FirebaseProductRepositoryImpl repository;
@@ -65,6 +67,13 @@ Future<void> main() async {
       [photoUrl, photoUrl, photoUrl].map((url) => ShopifyUrl(url)).toList()));
   final tProductWithUploadedPhotos =
       tProduct.copyWith(photos: nonemptyPhotosList);
+
+  // Fake firestore
+  final fakeFirestore = FakeFirebaseFirestore();
+  await fakeFirestore
+      .collection('products')
+      .doc(tProduct.id.getOrCrash())
+      .set(ProductDto.fromDomain(tProduct).toJson());
 
   setUp(() {
     mockFirestore = MockFirebaseFirestore();
@@ -104,11 +113,19 @@ Future<void> main() async {
   });
 
   group('getByBarcode', () {
+    setUp(() {
+      final mockQuery = fakeFirestore
+          .collection('products')
+          .where('barcode', isEqualTo: tProduct.barcode.getOrCrash());
+      when(mockNetworkInfo.isConnected).thenAnswer((_) async => true);
+      when(mockFirestore.productsCollection).thenReturn(mockProductsReference);
+      when(mockProductsReference.where('barcode',
+              isEqualTo: tProduct.barcode.getOrCrash()))
+          .thenReturn(mockQuery);
+    });
     test(
       'should check if has internet connection',
       () async {
-        // arrange
-
         // act
         await repository.getByBarcode(tProduct.barcode);
         // assert
@@ -118,8 +135,6 @@ Future<void> main() async {
     test(
       'should get products collection',
       () async {
-        // arrange
-
         // act
         await repository.getByBarcode(tProduct.barcode);
         // assert
@@ -129,21 +144,17 @@ Future<void> main() async {
     test(
       'should look for the product by its barcode',
       () async {
-        // arrange
-
         // act
         await repository.getByBarcode(tProduct.barcode);
         // assert
-        verify(mockFirestore.productsCollection
-                .where('barcode', isEqualTo: tProduct.barcode.getOrCrash()))
+        verify(mockProductsReference.where('barcode',
+                isEqualTo: tProduct.barcode.getOrCrash()))
             .called(1);
       },
     );
     test(
       'should return the product if found',
       () async {
-        // arrange
-
         // act
         final result = await repository.getByBarcode(tProduct.barcode);
         // assert
@@ -153,10 +164,12 @@ Future<void> main() async {
     test(
       'should return a failure if product has not been found',
       () async {
-        // arrange
-
+        // arramge
+        when(mockFirestore.productsCollection)
+            .thenReturn(fakeFirestore.collection('products'));
         // act
-        final result = await repository.getByBarcode(tProduct.barcode);
+        final result =
+            await repository.getByBarcode(Barcode('nonexistingbarcode'));
         // assert
         expect(result, left(const ProductFailure.productNotFound()));
       },
@@ -164,8 +177,7 @@ Future<void> main() async {
     test(
       'should return a failure if no internet connection is present',
       () async {
-        // arrange
-
+        when(mockNetworkInfo.isConnected).thenAnswer((_) async => false);
         // act
         final result = await repository.getByBarcode(tProduct.barcode);
         // assert
