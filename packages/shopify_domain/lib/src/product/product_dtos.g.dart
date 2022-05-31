@@ -25,8 +25,8 @@ _$_ProductDto _$$_ProductDtoFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$_ProductDtoToJson(_$_ProductDto instance) =>
     <String, dynamic>{
       'barcode': instance.barcode,
-      'weight': instance.weight,
-      'nutrientFacts': instance.nutrientFacts,
+      'weight': instance.weight.toJson(),
+      'nutrientFacts': instance.nutrientFacts.toJson(),
       'category': instance.category,
       'name': instance.name,
       'brand': instance.brand,
@@ -65,7 +65,7 @@ _$_NutrientDto _$$_NutrientDtoFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$_NutrientDtoToJson(_$_NutrientDto instance) =>
     <String, dynamic>{
-      'weight': instance.weight,
+      'weight': instance.weight.toJson(),
       'name': instance.name,
     };
 
@@ -82,11 +82,11 @@ _$_FatsDto _$$_FatsDtoFromJson(Map<String, dynamic> json) => _$_FatsDto(
 
 Map<String, dynamic> _$$_FatsDtoToJson(_$_FatsDto instance) =>
     <String, dynamic>{
-      'fat': instance.fat,
-      'saturatedFat': instance.saturatedFat,
-      'transFat': instance.transFat,
-      'monosaturatedFat': instance.monosaturatedFat,
-      'polysaturatedFat': instance.polysaturatedFat,
+      'fat': instance.fat.toJson(),
+      'saturatedFat': instance.saturatedFat.toJson(),
+      'transFat': instance.transFat.toJson(),
+      'monosaturatedFat': instance.monosaturatedFat.toJson(),
+      'polysaturatedFat': instance.polysaturatedFat.toJson(),
     };
 
 _$_ProteinsDto _$$_ProteinsDtoFromJson(Map<String, dynamic> json) =>
@@ -100,9 +100,9 @@ _$_ProteinsDto _$$_ProteinsDtoFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$_ProteinsDtoToJson(_$_ProteinsDto instance) =>
     <String, dynamic>{
-      'protein': instance.protein,
-      'animalProtein': instance.animalProtein,
-      'plantProtein': instance.plantProtein,
+      'protein': instance.protein.toJson(),
+      'animalProtein': instance.animalProtein.toJson(),
+      'plantProtein': instance.plantProtein.toJson(),
     };
 
 _$_CarbohydratesDto _$$_CarbohydratesDtoFromJson(Map<String, dynamic> json) =>
@@ -114,8 +114,8 @@ _$_CarbohydratesDto _$$_CarbohydratesDtoFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$_CarbohydratesDtoToJson(_$_CarbohydratesDto instance) =>
     <String, dynamic>{
-      'carbohydrate': instance.carbohydrate,
-      'sugar': instance.sugar,
+      'carbohydrate': instance.carbohydrate.toJson(),
+      'sugar': instance.sugar.toJson(),
     };
 
 _$_NutrientFactsDto _$$_NutrientFactsDtoFromJson(Map<String, dynamic> json) =>
@@ -128,7 +128,7 @@ _$_NutrientFactsDto _$$_NutrientFactsDtoFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$_NutrientFactsDtoToJson(_$_NutrientFactsDto instance) =>
     <String, dynamic>{
-      'fats': instance.fats,
-      'proteins': instance.proteins,
-      'carbohydrates': instance.carbohydrates,
+      'fats': instance.fats.toJson(),
+      'proteins': instance.proteins.toJson(),
+      'carbohydrates': instance.carbohydrates.toJson(),
     };

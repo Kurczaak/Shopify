@@ -18,13 +18,13 @@ _$_WeekDto _$$_WeekDtoFromJson(Map<String, dynamic> json) => _$_WeekDto(
 
 Map<String, dynamic> _$$_WeekDtoToJson(_$_WeekDto instance) =>
     <String, dynamic>{
-      'monday': instance.monday,
-      'tuesday': instance.tuesday,
-      'wednesday': instance.wednesday,
-      'thursday': instance.thursday,
-      'friday': instance.friday,
-      'saturday': instance.saturday,
-      'sunday': instance.sunday,
+      'monday': instance.monday.toJson(),
+      'tuesday': instance.tuesday.toJson(),
+      'wednesday': instance.wednesday.toJson(),
+      'thursday': instance.thursday.toJson(),
+      'friday': instance.friday.toJson(),
+      'saturday': instance.saturday.toJson(),
+      'sunday': instance.sunday.toJson(),
     };
 
 _$_DayDto _$$_DayDtoFromJson(Map<String, dynamic> json) => _$_DayDto(
@@ -37,7 +37,7 @@ _$_DayDto _$$_DayDtoFromJson(Map<String, dynamic> json) => _$_DayDto(
 Map<String, dynamic> _$$_DayDtoToJson(_$_DayDto instance) => <String, dynamic>{
       'day': instance.day,
       'isOpen': instance.isOpen,
-      'timeInterval': instance.timeInterval,
+      'timeInterval': instance.timeInterval.toJson(),
     };
 
 _$_TimeIntervalDto _$$_TimeIntervalDtoFromJson(Map<String, dynamic> json) =>
