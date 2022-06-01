@@ -68,13 +68,6 @@ Future<void> main() async {
   final tProductWithUploadedPhotos =
       tProduct.copyWith(photos: nonemptyPhotosList);
 
-  // Fake firestore
-  final fakeFirestore = FakeFirebaseFirestore();
-  await fakeFirestore
-      .collection('products')
-      .doc(tProduct.id.getOrCrash())
-      .set(ProductDto.fromDomain(tProduct).toJson());
-
   setUp(() {
     mockFirestore = MockFirebaseFirestore();
     mockStorage = MockFirebaseStorage();
@@ -112,17 +105,21 @@ Future<void> main() async {
         .thenAnswer((_) async => Future.value);
   });
 
-  group('getByBarcode', () {
-    setUp(() {
-      final mockQuery = fakeFirestore
-          .collection('products')
-          .where('barcode', isEqualTo: tProduct.barcode.getOrCrash());
-      when(mockNetworkInfo.isConnected).thenAnswer((_) async => true);
-      when(mockFirestore.productsCollection).thenReturn(mockProductsReference);
-      when(mockProductsReference.where('barcode',
-              isEqualTo: tProduct.barcode.getOrCrash()))
-          .thenReturn(mockQuery);
-    });
+  group('getByBarcode', () async {
+    // Set Up
+    final fakeFirestore = FakeFirebaseFirestore();
+    await fakeFirestore
+        .collection('products')
+        .doc(tProduct.id.getOrCrash())
+        .set(ProductDto.fromDomain(tProduct).toJson());
+    final mockQuery = fakeFirestore
+        .collection('products')
+        .where('barcode', isEqualTo: tProduct.barcode.getOrCrash());
+    when(mockNetworkInfo.isConnected).thenAnswer((_) async => true);
+    when(mockFirestore.productsCollection).thenReturn(mockProductsReference);
+    when(mockProductsReference.where('barcode',
+            isEqualTo: tProduct.barcode.getOrCrash()))
+        .thenReturn(mockQuery);
     test(
       'should check if has internet connection',
       () async {
