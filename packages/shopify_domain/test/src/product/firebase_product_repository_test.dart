@@ -146,14 +146,26 @@ Future<void> main() async {
     final tPrice =
         Price(currency: Currency(Currencies.zl), price: PositiveNumber(2.0));
 
+    // Shop
+    final mockShopsCollection = MockCollectionReference<Map<String, dynamic>>();
+    final mockShopDocument = MockDocumentReference<Map<String, dynamic>>();
+    final mockShopProductsCollection =
+        MockCollectionReference<Map<String, dynamic>>();
+
+    // Products
+    final mockProductsCollection =
+        MockCollectionReference<Map<String, dynamic>>();
+    final mockProductDocument = MockDocumentReference<Map<String, dynamic>>();
+
     test(
       'should verify internet connection',
       () async {
         // arrange
-
+        when(mockNetworkInfo.isConnected).thenAnswer((_) async => true);
         // act
         await repository.addToShop(tProduct, tPrice, tShop);
         // assert
+        verify(mockNetworkInfo.isConnected).called(1);
       },
     );
 
@@ -161,24 +173,78 @@ Future<void> main() async {
       'should return a value failure when no internet connection is present',
       () async {
         // arrange
-
+        when(mockNetworkInfo.isConnected).thenAnswer((_) async => false);
         // act
-
+        final result = await repository.addToShop(tProduct, tPrice, tShop);
         // assert
+        verify(mockNetworkInfo.isConnected).called(1);
+        expect(result, const ProductFailure.noInternetConnection());
       },
     );
 
-    test('should return a failure if the product is invalid', () {});
-    test('should return a failure if the price is invalid', () {});
-    test('should return a failure if the shop is invalid', () {});
+    test('should return a failure if the shop is invalid', () async {
+      // arrange
+      final invalidShop = tShop.copyWith(shopName: ShopName(''));
+      // act
+      final result = await repository.addToShop(tProduct, tPrice, invalidShop);
+      // assert
+      expect(
+        result,
+        ProductFailure.valueFailure(
+          ValueFailure.core(
+            CoreValueFailure.stringTooShort(
+                failedValue: ShopName('').value, minLength: ShopName.minLength),
+          ),
+        ),
+      );
+    });
+    test('should return a failure if the price is invalid', () async {
+      // arrange
+      final invalidPrice =
+          Price(currency: Currency(Currencies.zl), price: PositiveNumber(-1.0));
+      // act
+      final result = await repository.addToShop(tProduct, invalidPrice, tShop);
+      // assert
+      expect(
+        result,
+        ProductFailure.valueFailure(
+          ValueFailure.core(
+            CoreValueFailure.stringTooShort(
+                failedValue: ProductName('').value,
+                minLength: ProductName.minLength),
+          ),
+        ),
+      );
+    });
+    test('should return a failure if the product is invalid', () async {
+      // arrange
+      final invalidProduct = tProduct.copyWith(name: ProductName(''));
+      // act
+      final result = await repository.addToShop(invalidProduct, tPrice, tShop);
+      // assert
+      expect(
+        result,
+        ProductFailure.valueFailure(
+          ValueFailure.core(
+            CoreValueFailure<PositiveNumber>.nonPositive(
+              failedValue: PositiveNumber(-1.0),
+            ),
+          ),
+        ),
+      );
+    });
     test(
       'should get the shop by its id',
       () async {
         // arrange
-
+        when(mockNetworkInfo.isConnected).thenAnswer((_) async => true);
+        when(mockFirestore.collection('shops')).thenReturn(mockShopsCollection);
+        when(mockShopsCollection.doc(tShop.id.getOrCrash())).thenReturn(
+            fakeFirestore.collection('shops').doc(tShop.id.getOrCrash()));
         // act
-
+        await repository.addToShop(tProduct, tPrice, tShop);
         // assert
+        verify(mockShopsCollection.doc(tShop.id.getOrCrash())).called(1);
       },
     );
 
@@ -186,10 +252,38 @@ Future<void> main() async {
       'should return a failure when no shop with given id exists',
       () async {
         // arrange
-
+        final nonexistingShop = tShop.copyWith(id: UniqueId());
+        when(mockNetworkInfo.isConnected).thenAnswer((_) async => true);
+        when(mockFirestore.collection('shops')).thenReturn(mockShopsCollection);
+        when(mockShopsCollection.doc(nonexistingShop.id.getOrCrash()))
+            .thenReturn(fakeFirestore
+                .collection('shops')
+                .doc(nonexistingShop.id.getOrCrash()));
         // act
-
+        final result =
+            await repository.addToShop(tProduct, tPrice, nonexistingShop);
         // assert
+        expect(result, const ProductFailure.shopNotFound());
+      },
+    );
+
+    test(
+      'should return a failure when no product with given id exists',
+      () async {
+        // arrange
+        final nonexistingProduct = tProduct.copyWith(id: UniqueId());
+        when(mockNetworkInfo.isConnected).thenAnswer((_) async => true);
+        when(mockFirestore.collection('products'))
+            .thenReturn(mockProductsCollection);
+        when(mockProductsCollection.doc(nonexistingProduct.id.getOrCrash()))
+            .thenReturn(fakeFirestore
+                .collection('products')
+                .doc(nonexistingProduct.id.getOrCrash()));
+        // act
+        final result =
+            await repository.addToShop(nonexistingProduct, tPrice, tShop);
+        // assert
+        expect(result, const ProductFailure.productNotFound());
       },
     );
 
@@ -197,30 +291,35 @@ Future<void> main() async {
       'should get products collection of the shop',
       () async {
         // arrange
-
+        when(mockNetworkInfo.isConnected).thenAnswer((_) async => true);
+        when(mockFirestore.collection('shops')).thenReturn(mockShopsCollection);
+        when(mockShopsCollection.doc(tShop.id.getOrCrash()))
+            .thenReturn(mockShopDocument);
+        when(mockShopDocument.collection('products'))
+            .thenReturn(mockShopProductsCollection);
         // act
-
+        await repository.addToShop(tProduct, tPrice, tShop);
         // assert
+        verify(mockShopDocument.collection('products')).called(1);
       },
     );
-    test(
-      'should return a failure when no product with given id exists',
-      () async {
-        // arrange
 
-        // act
-
-        // assert
-      },
-    );
     test(
       'should add a new product with its id and a price',
       () async {
         // arrange
-
+        when(mockNetworkInfo.isConnected).thenAnswer((_) async => true);
+        when(mockFirestore.collection('shops'))
+            .thenReturn(fakeFirestore.collection('shops'));
         // act
-
+        await repository.addToShop(tProduct, tPrice, tShop);
+        final firestoreReuslt = await fakeFirestore
+            .collection('shops')
+            .doc(tShop.id.getOrCrash())
+            .collection('products')
+            .get();
         // assert
+        //expect( , 'xd');
       },
     );
     test('should return a failure if firebase throws an exception', () {});
