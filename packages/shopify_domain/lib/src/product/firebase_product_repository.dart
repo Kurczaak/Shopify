@@ -44,9 +44,12 @@ class FirebaseProductRepositoryImpl implements ShopifyProductRepository {
 
   @override
   Future<Either<ProductFailure, Unit>> addToShop(
-      Product product, Price price, Shop shop) {
-    // TODO: implement createForShop
-    throw UnimplementedError();
+      Product product, Price price, Shop shop) async {
+    if (await _networkInfo.isConnected) {
+      return left(const ProductFailure.unexpected());
+    } else {
+      return left(const ProductFailure.noInternetConnection());
+    }
   }
 
   @override
