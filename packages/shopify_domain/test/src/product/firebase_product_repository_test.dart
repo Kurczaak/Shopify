@@ -143,13 +143,16 @@ Future<void> main() async {
         .doc(tProduct.id.getOrCrash())
         .set(ProductDto.fromDomain(tProduct).toJson());
 
+    final tPrice =
+        Price(currency: Currency(Currencies.zl), price: PositiveNumber(2.0));
+
     test(
       'should verify internet connection',
       () async {
         // arrange
 
         // act
-
+        await repository.addToShop(tProduct, tPrice, tShop);
         // assert
       },
     );
@@ -165,6 +168,9 @@ Future<void> main() async {
       },
     );
 
+    test('should return a failure if the product is invalid', () {});
+    test('should return a failure if the price is invalid', () {});
+    test('should return a failure if the shop is invalid', () {});
     test(
       'should get the shop by its id',
       () async {
@@ -197,9 +203,8 @@ Future<void> main() async {
         // assert
       },
     );
-    // TODO
     test(
-      'should ',
+      'should return a failure when no product with given id exists',
       () async {
         // arrange
 
@@ -208,6 +213,17 @@ Future<void> main() async {
         // assert
       },
     );
+    test(
+      'should add a new product with its id and a price',
+      () async {
+        // arrange
+
+        // act
+
+        // assert
+      },
+    );
+    test('should return a failure if firebase throws an exception', () {});
   });
 
   group('getByBarcode', () async {
