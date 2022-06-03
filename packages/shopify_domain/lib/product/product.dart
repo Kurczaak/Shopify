@@ -67,6 +67,26 @@ class Product with _$Product {
             photosUrls.map((stringUrl) => ShopifyUrl(stringUrl)).toList())),
       );
 
+  Either<ValueFailure, Unit> get failureOrUnit {
+    return barcode.failureOrUnit.andThen(
+      weight.failureOrUnit.andThen(
+        nutrientFacts.failureOrUnit.andThen(
+          category.failureOrUnit.andThen(
+            name.failureOrUnit.andThen(
+              brand.failureOrUnit.andThen(
+                description.failureOrUnit.andThen(
+                  ingredients.failureOrUnit.andThen(
+                    photos.failureOrUnit,
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
   Option<ValueFailure<dynamic>> get failureOption {
     return barcode.failureOrUnit
         .andThen(
