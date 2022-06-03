@@ -32,6 +32,20 @@ class Week with _$Week {
   List<Day> get asList =>
       [monday, tuesday, wednesday, thursday, friday, saturday, sunday];
 
+  Either<ValueFailure, Unit> get failureOrUnit {
+    return monday.failureOrUnit.andThen(
+      tuesday.failureOrUnit.andThen(
+        wednesday.failureOrUnit.andThen(
+          thursday.failureOrUnit.andThen(
+            friday.failureOrUnit.andThen(
+              saturday.failureOrUnit.andThen(sunday.failureOrUnit),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
   Option<ValueFailure<dynamic>> get failureOption {
     return validateShopOpen(this).fold(
         (f) => some(f),
