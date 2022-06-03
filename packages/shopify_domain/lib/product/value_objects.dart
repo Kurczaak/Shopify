@@ -15,11 +15,13 @@ class ProductName extends Name {
   final Either<ValueFailure<String>, String> value;
   factory ProductName(String input) {
     return ProductName._(
-      validateMaxStringLength(input, maxLength)
-          .flatMap((passedValue) => validateMinStringLength(
-              passedValue, minLength,
-              countWhiteChars: false))
-          .flatMap(validateSingleLine),
+      validateStringNotEmpty(input).flatMap(
+        (passedValue) => validateMaxStringLength(passedValue, maxLength)
+            .flatMap((passedValue) => validateMinStringLength(
+                passedValue, minLength,
+                countWhiteChars: false))
+            .flatMap(validateSingleLine),
+      ),
     );
   }
   const ProductName._(this.value);
