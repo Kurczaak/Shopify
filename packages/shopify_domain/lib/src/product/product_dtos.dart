@@ -8,6 +8,22 @@ part 'product_dtos.freezed.dart';
 part 'product_dtos.g.dart';
 
 @freezed
+class ShopProductDto with _$ShopProductDto {
+  const factory ShopProductDto(
+      {required String productId, required PriceDto price}) = _ShopProductDto;
+
+  factory ShopProductDto.fromDomain({
+    required Product product,
+    required Price price,
+  }) =>
+      ShopProductDto(
+          productId: product.id.getOrCrash(),
+          price: PriceDto.fromDomain(price));
+  factory ShopProductDto.fromJson(Map<String, dynamic> json) =>
+      _$ShopProductDtoFromJson(json);
+}
+
+@freezed
 class ProductDto with _$ProductDto {
   const ProductDto._();
 

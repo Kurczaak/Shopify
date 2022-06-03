@@ -14,6 +14,170 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+ShopProductDto _$ShopProductDtoFromJson(Map<String, dynamic> json) {
+  return _ShopProductDto.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ShopProductDto {
+  String get productId => throw _privateConstructorUsedError;
+  PriceDto get price => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ShopProductDtoCopyWith<ShopProductDto> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ShopProductDtoCopyWith<$Res> {
+  factory $ShopProductDtoCopyWith(
+          ShopProductDto value, $Res Function(ShopProductDto) then) =
+      _$ShopProductDtoCopyWithImpl<$Res>;
+  $Res call({String productId, PriceDto price});
+
+  $PriceDtoCopyWith<$Res> get price;
+}
+
+/// @nodoc
+class _$ShopProductDtoCopyWithImpl<$Res>
+    implements $ShopProductDtoCopyWith<$Res> {
+  _$ShopProductDtoCopyWithImpl(this._value, this._then);
+
+  final ShopProductDto _value;
+  // ignore: unused_field
+  final $Res Function(ShopProductDto) _then;
+
+  @override
+  $Res call({
+    Object? productId = freezed,
+    Object? price = freezed,
+  }) {
+    return _then(_value.copyWith(
+      productId: productId == freezed
+          ? _value.productId
+          : productId // ignore: cast_nullable_to_non_nullable
+              as String,
+      price: price == freezed
+          ? _value.price
+          : price // ignore: cast_nullable_to_non_nullable
+              as PriceDto,
+    ));
+  }
+
+  @override
+  $PriceDtoCopyWith<$Res> get price {
+    return $PriceDtoCopyWith<$Res>(_value.price, (value) {
+      return _then(_value.copyWith(price: value));
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$_ShopProductDtoCopyWith<$Res>
+    implements $ShopProductDtoCopyWith<$Res> {
+  factory _$$_ShopProductDtoCopyWith(
+          _$_ShopProductDto value, $Res Function(_$_ShopProductDto) then) =
+      __$$_ShopProductDtoCopyWithImpl<$Res>;
+  @override
+  $Res call({String productId, PriceDto price});
+
+  @override
+  $PriceDtoCopyWith<$Res> get price;
+}
+
+/// @nodoc
+class __$$_ShopProductDtoCopyWithImpl<$Res>
+    extends _$ShopProductDtoCopyWithImpl<$Res>
+    implements _$$_ShopProductDtoCopyWith<$Res> {
+  __$$_ShopProductDtoCopyWithImpl(
+      _$_ShopProductDto _value, $Res Function(_$_ShopProductDto) _then)
+      : super(_value, (v) => _then(v as _$_ShopProductDto));
+
+  @override
+  _$_ShopProductDto get _value => super._value as _$_ShopProductDto;
+
+  @override
+  $Res call({
+    Object? productId = freezed,
+    Object? price = freezed,
+  }) {
+    return _then(_$_ShopProductDto(
+      productId: productId == freezed
+          ? _value.productId
+          : productId // ignore: cast_nullable_to_non_nullable
+              as String,
+      price: price == freezed
+          ? _value.price
+          : price // ignore: cast_nullable_to_non_nullable
+              as PriceDto,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_ShopProductDto implements _ShopProductDto {
+  const _$_ShopProductDto({required this.productId, required this.price});
+
+  factory _$_ShopProductDto.fromJson(Map<String, dynamic> json) =>
+      _$$_ShopProductDtoFromJson(json);
+
+  @override
+  final String productId;
+  @override
+  final PriceDto price;
+
+  @override
+  String toString() {
+    return 'ShopProductDto(productId: $productId, price: $price)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_ShopProductDto &&
+            const DeepCollectionEquality().equals(other.productId, productId) &&
+            const DeepCollectionEquality().equals(other.price, price));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(productId),
+      const DeepCollectionEquality().hash(price));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_ShopProductDtoCopyWith<_$_ShopProductDto> get copyWith =>
+      __$$_ShopProductDtoCopyWithImpl<_$_ShopProductDto>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_ShopProductDtoToJson(this);
+  }
+}
+
+abstract class _ShopProductDto implements ShopProductDto {
+  const factory _ShopProductDto(
+      {required final String productId,
+      required final PriceDto price}) = _$_ShopProductDto;
+
+  factory _ShopProductDto.fromJson(Map<String, dynamic> json) =
+      _$_ShopProductDto.fromJson;
+
+  @override
+  String get productId => throw _privateConstructorUsedError;
+  @override
+  PriceDto get price => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  _$$_ShopProductDtoCopyWith<_$_ShopProductDto> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
 ProductDto _$ProductDtoFromJson(Map<String, dynamic> json) {
   return _ProductDto.fromJson(json);
 }

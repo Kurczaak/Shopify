@@ -6,6 +6,18 @@ part of 'product_dtos.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
+_$_ShopProductDto _$$_ShopProductDtoFromJson(Map<String, dynamic> json) =>
+    _$_ShopProductDto(
+      productId: json['productId'] as String,
+      price: PriceDto.fromJson(json['price'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$$_ShopProductDtoToJson(_$_ShopProductDto instance) =>
+    <String, dynamic>{
+      'productId': instance.productId,
+      'price': instance.price.toJson(),
+    };
+
 _$_ProductDto _$$_ProductDtoFromJson(Map<String, dynamic> json) =>
     _$_ProductDto(
       barcode: json['barcode'] as String,
