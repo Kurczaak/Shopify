@@ -168,12 +168,12 @@ class StreetName extends Name {
   @override
   final Either<ValueFailure<String>, String> value;
   factory StreetName(String input) {
-    return StreetName._(
-      validateMaxStringLength(input, maxLength)
+    return StreetName._(validateStringNotEmpty(input).flatMap(
+      (passedValue) => validateMaxStringLength(passedValue, maxLength)
           .flatMap(
               (passedValue) => validateMinStringLength(passedValue, minLength))
           .flatMap(validateSingleLine),
-    );
+    ));
   }
 
   const StreetName._(this.value);
@@ -185,12 +185,12 @@ class CityName extends Name {
   @override
   final Either<ValueFailure<String>, String> value;
   factory CityName(String input) {
-    return CityName._(
-      validateMaxStringLength(input, maxLength)
+    return CityName._(validateStringNotEmpty(input).flatMap(
+      (passedValue) => validateMaxStringLength(passedValue, maxLength)
           .flatMap(
               (passedValue) => validateMinStringLength(passedValue, minLength))
           .flatMap(validateSingleLine),
-    );
+    ));
   }
   const CityName._(this.value);
 }
