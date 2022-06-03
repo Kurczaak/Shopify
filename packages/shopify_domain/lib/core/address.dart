@@ -26,6 +26,12 @@ class Address with _$Address {
         postalCode: PostalCode(''));
   }
 
+  Either<ValueFailure, Unit> get failureOrUnit {
+    return streetName.failureOrUnit.andThen(streetNumber.failureOrUnit.andThen(
+        apartmentNumber.failureOrUnit
+            .andThen(city.failureOrUnit.andThen(postalCode.failureOrUnit))));
+  }
+
   Option<ValueFailure<dynamic>> get failureOrOption {
     return streetName.value
         .andThen(streetNumber.value.andThen(apartmentNumber.value

@@ -24,7 +24,7 @@ void main() {
       },
     );
     test(
-      'should return some with a value failure when an icorrect Address is given',
+      'should return some with a value failure when an icorrect StreetNumber is given',
       () async {
         //arrange
         final tIncorrectAddress =
@@ -36,6 +36,157 @@ void main() {
             failureOrOption,
             equals(some(
                 const ValueFailure.core(CoreValueFailure<String>.empty()))));
+      },
+    );
+    test(
+      'should return some with a value failure when an icorrect StreetName is given',
+      () async {
+        //arrange
+        final tIncorrectAddress = tAddress.copyWith(streetName: StreetName(''));
+        // act
+        final failureOrOption = tIncorrectAddress.failureOrOption;
+        // assert
+        expect(
+            failureOrOption,
+            equals(some(
+                const ValueFailure.core(CoreValueFailure<String>.empty()))));
+      },
+    );
+    test(
+      'should return some with a value failure when an icorrect ApartmentNumber is given',
+      () async {
+        //arrange
+        final tIncorrectAddress =
+            tAddress.copyWith(apartmentNumber: AddressNumber('1234567'));
+        // act
+        final failureOrOption = tIncorrectAddress.failureOrOption;
+        // assert
+        expect(
+            failureOrOption,
+            equals(some(const ValueFailure.core(
+                CoreValueFailure<String>.exceedingLength(
+                    failedValue: '1234567',
+                    maxLength: AddressNumber.maxLength)))));
+      },
+    );
+
+    test(
+      'should return some with a value failure when an icorrect CityName is given',
+      () async {
+        //arrange
+        final tIncorrectAddress = tAddress.copyWith(city: CityName(''));
+        // act
+        final failureOrOption = tIncorrectAddress.failureOrOption;
+        // assert
+        expect(
+            failureOrOption,
+            equals(some(
+                const ValueFailure.core(CoreValueFailure<String>.empty()))));
+      },
+    );
+
+    test(
+      'should return some with a value failure when an icorrect PostalCode is given',
+      () async {
+        //arrange
+        final tIncorrectAddress = tAddress.copyWith(postalCode: PostalCode(''));
+        // act
+        final failureOrOption = tIncorrectAddress.failureOrOption;
+        // assert
+        expect(
+            failureOrOption,
+            equals(some(const ValueFailure.core(
+                CoreValueFailure<String>.incorrectPostalCode(
+                    failedValue: '')))));
+      },
+    );
+  });
+
+  group('failureOrUnit', () {
+    test(
+      'should return a unit when a correct Address is given',
+      () async {
+        // act
+        final failureOrUnit = tAddress.failureOrUnit;
+        // assert
+        expect(failureOrUnit, equals(right(unit)));
+      },
+    );
+    test(
+      'should return left with a value failure when an icorrect StreetNumber is given',
+      () async {
+        //arrange
+        final tIncorrectAddress =
+            tAddress.copyWith(streetNumber: StreetNumber(''));
+        // act
+        final failureOrUnit = tIncorrectAddress.failureOrUnit;
+        // assert
+        expect(
+            failureOrUnit,
+            equals(left(
+                const ValueFailure.core(CoreValueFailure<String>.empty()))));
+      },
+    );
+    test(
+      'should return left with a value failure when an icorrect StreetName is given',
+      () async {
+        //arrange
+        final tIncorrectAddress = tAddress.copyWith(streetName: StreetName(''));
+        // act
+        final failureOrUnit = tIncorrectAddress.failureOrUnit;
+        // assert
+        expect(
+            failureOrUnit,
+            equals(left(
+                const ValueFailure.core(CoreValueFailure<String>.empty()))));
+      },
+    );
+    test(
+      'should return left with a value failure when an icorrect ApartmentNumber is given',
+      () async {
+        //arrange
+        final tIncorrectAddress =
+            tAddress.copyWith(apartmentNumber: AddressNumber('1234567'));
+        // act
+        final failureOrUnit = tIncorrectAddress.failureOrUnit;
+        // assert
+        expect(
+            failureOrUnit,
+            equals(left(const ValueFailure.core(
+                CoreValueFailure<String>.exceedingLength(
+                    failedValue: '1234567',
+                    maxLength: AddressNumber.maxLength)))));
+      },
+    );
+
+    test(
+      'should return left with a value failure when an icorrect CityName is given',
+      () async {
+        //arrange
+        final tIncorrectAddress = tAddress.copyWith(city: CityName(''));
+        // act
+        final failureOrUnit = tIncorrectAddress.failureOrUnit;
+        // assert
+        expect(
+            failureOrUnit,
+            equals(left(
+                const ValueFailure.core(CoreValueFailure<String>.empty()))));
+      },
+    );
+
+    test(
+      'should return left with a value failure when an icorrect PostalCode is given',
+      () async {
+        //arrange
+        final tIncorrectAddress = tAddress.copyWith(postalCode: PostalCode(''));
+        // act
+        final failureOrUnit = tIncorrectAddress.failureOrUnit;
+        // assert
+        expect(
+            failureOrUnit,
+            equals(left(const ValueFailure.core(
+                CoreValueFailure<String>.incorrectPostalCode(
+                    failedValue: '')))));
       },
     );
   });
