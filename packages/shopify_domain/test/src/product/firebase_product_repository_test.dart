@@ -44,9 +44,15 @@ Future<void> main() async {
   late MockReference mockPhotoReference;
   late MockReference mockUploadedPhotoReference;
 
-  // Firestore SetUp
-  late MockCollectionReference<Map<String, dynamic>> mockProductsReference;
-  late MockDocumentReference<Map<String, dynamic>> mockProductDoc;
+  // ================Firestore SetUp==================
+  // Shop
+  late MockCollectionReference<Map<String, dynamic>> mockShopsCollection;
+  late MockDocumentReference<Map<String, dynamic>> mockShopDocument;
+  late MockCollectionReference<Map<String, dynamic>> mockShopProductsCollection;
+
+  // Products
+  late MockCollectionReference<Map<String, dynamic>> mockProductsCollection;
+  late MockDocumentReference<Map<String, dynamic>> mockProductDocument;
 
   // Test Data
   final tProductForm = await loadProductFormWithPhotos();
@@ -61,102 +67,120 @@ Future<void> main() async {
       NonEmptyList5(KtList.from([photo, photo, photo, invalidPhoto]));
   final tInvalidProductForm =
       tProductForm.copyWith(photos: right(invalidPhotosList));
-  const photoUrl =
-      'https://firebasestorage.googleapis.com/v0/b/shopify-app-6d29d.appspot.com/o/images%2Fshop_logos%2F08049a20-a695-11ec-88bb-77ec623e586e?alt=media&token=fc66e7b0-f2cc-4dfc-94dc-e9e9d35e1929';
-  final nonemptyPhotosList = NonEmptyList5<ShopifyUrl>(KtList.from(
-      [photoUrl, photoUrl, photoUrl].map((url) => ShopifyUrl(url)).toList()));
-  final tProductWithUploadedPhotos =
-      tProduct.copyWith(photos: nonemptyPhotosList);
 
-  setUp(() {
-    mockFirestore = MockFirebaseFirestore();
-    mockStorage = MockFirebaseStorage();
-    mockNetworkInfo = MockNetworkInfo();
-    repository = FirebaseProductRepositoryImpl(
-        mockFirestore, mockStorage, mockNetworkInfo);
+  // Set Up Firestore DB
+  const shopDocumentIdStr = "ad5d60d0-7844-11ec-a53d-03c2fc2917f5";
+  const shopNameStr = "Shop Name";
+  const streetNameStr = "Street Name";
+  const cityNameStr = "Łowicz";
+  const postalCodeStr = "99-400";
+  const apartmentNumberStr = '1';
+  const streetNumberStr = '12A';
+  const logoUrlStr =
+      'https://firebasestorage.googleapis.com/v0/b/shopify-app-6d29d.appspot.com/o/images/1';
+  final tShop = Shop(
+    id: UniqueId.fromUniqueString(shopDocumentIdStr),
+    shopName: ShopName(shopNameStr),
+    address: Address(
+      apartmentNumber: AddressNumber(apartmentNumberStr),
+      streetNumber: StreetNumber(streetNumberStr),
+      city: CityName(cityNameStr),
+      postalCode: PostalCode(postalCodeStr),
+      streetName: StreetName(streetNameStr),
+    ),
+    location: Location.empty(),
+    logoUrl: ShopifyUrl(logoUrlStr),
+    workingWeek: Week.empty(),
+  );
+  final shopProductDto =
+      ShopProductDto.fromDomain(product: tProduct, price: tPrice);
 
-    // Storage SetUp
-    mockAllproductPhotosReference = MockReference();
-    mockProductPhotosReference = MockReference();
-    mockPhotoReference = MockReference();
+  // SetUp Fake FIrestore
+  final fakeFirestore = FakeFirebaseFirestore();
+  await fakeFirestore
+      .collection('products')
+      .doc(tProduct.id.getOrCrash())
+      .set(ProductDto.fromDomain(tProduct).toJson());
+  await fakeFirestore
+      .collection('shops')
+      .doc(tShop.id.getOrCrash())
+      .set(ShopDto.fromDomain(tShop).toJson());
 
-    // Firestore SetUp
-    mockProductsReference = MockCollectionReference();
-    mockProductDoc = MockDocumentReference();
+  void _setUpFirestoreMocks() {
+    // arrange
+    when(mockNetworkInfo.isConnected).thenAnswer((_) async => true);
+    // Products collection
+    when(mockFirestore.collection('products'))
+        .thenReturn(mockProductsCollection);
+    when(mockProductsCollection.doc(tProduct.id.getOrCrash()))
+        .thenReturn(mockProductDocument);
+    when(mockProductDocument.get()).thenAnswer((_) => fakeFirestore
+        .collection('products')
+        .doc(tProduct.id.getOrCrash())
+        .get());
+    when(mockProductDocument.set(ProductDto.fromDomain(tProduct).toJson()))
+        .thenAnswer((_) async => Future.value);
+    // Shops collection
+    when(mockFirestore.collection('shops')).thenReturn(mockShopsCollection);
+    when(mockShopsCollection.doc(tShop.id.getOrCrash()))
+        .thenReturn(mockShopDocument);
+    when(mockShopDocument.get()).thenAnswer((_) async =>
+        fakeFirestore.collection('shops').doc(tShop.id.getOrCrash()).get());
 
-    // Set Up Storage
+    // the shop's products collection
+    when(mockShopDocument.collection('products'))
+        .thenReturn(mockShopProductsCollection);
+    when(mockShopProductsCollection.add(shopProductDto.toJson()))
+        .thenAnswer((_) async {
+      return mockProductDocument;
+    });
+    // Getting by barcode
+    when(mockProductsCollection.where('barcode',
+            isEqualTo: tProduct.barcode.getOrCrash()))
+        .thenReturn(fakeFirestore
+            .collection('products')
+            .where('barcode', isEqualTo: tProduct.barcode.getOrCrash()));
+  }
+
+  void _setUpStorageMocks() {
     when(mockStorage.productPhotosReference)
         .thenReturn(mockAllproductPhotosReference);
     when(mockAllproductPhotosReference.child(any))
         .thenReturn(mockProductPhotosReference);
     when(mockProductPhotosReference.child(any)).thenReturn(mockPhotoReference);
-    mockUploadedPhotoReference = MockReference();
     when(mockPhotoReference.putFile(any))
         .thenAnswer((_) => fake.MockUploadTask(mockUploadedPhotoReference));
 
     when(mockUploadedPhotoReference.getDownloadURL())
-        .thenAnswer((_) async => photoUrl);
+        .thenAnswer((_) async => 'https://firebasestorage.googleapis.com/1');
+  }
 
-    // Set Up Firestore
-    when(mockFirestore.productsCollection).thenReturn(mockProductsReference);
-    when(mockProductsReference.doc(any)).thenReturn(mockProductDoc);
-    when(mockProductDoc
-            .set(ProductDto.fromDomain(tProductWithUploadedPhotos).toJson()))
-        .thenAnswer((_) async => Future.value);
+  setUp(() {
+    // Shop
+    mockShopsCollection = MockCollectionReference<Map<String, dynamic>>();
+    mockShopDocument = MockDocumentReference<Map<String, dynamic>>();
+    mockShopProductsCollection =
+        MockCollectionReference<Map<String, dynamic>>();
+    // Product
+    mockProductsCollection = MockCollectionReference<Map<String, dynamic>>();
+    mockProductDocument = MockDocumentReference<Map<String, dynamic>>();
+
+    // Storage SetUp
+    mockAllproductPhotosReference = MockReference();
+    mockProductPhotosReference = MockReference();
+    mockPhotoReference = MockReference();
+    mockUploadedPhotoReference = MockReference();
+
+    mockFirestore = MockFirebaseFirestore();
+    mockStorage = MockFirebaseStorage();
+    mockNetworkInfo = MockNetworkInfo();
+    repository = FirebaseProductRepositoryImpl(
+        mockFirestore, mockStorage, mockNetworkInfo);
+    _setUpFirestoreMocks();
+    _setUpStorageMocks();
   });
 
-  group('addToShop', () async {
-    // Set Up Firestore DB
-    const shopDocumentIdStr = "ad5d60d0-7844-11ec-a53d-03c2fc2917f5";
-    const shopNameStr = "Shop Name";
-    const streetNameStr = "Street Name";
-    const cityNameStr = "Łowicz";
-    const postalCodeStr = "99-400";
-    const apartmentNumberStr = '1';
-    const streetNumberStr = '12A';
-    const logoUrlStr =
-        'https://firebasestorage.googleapis.com/v0/b/shopify-app-6d29d.appspot.com/o/images/1';
-    final tShop = Shop(
-      id: UniqueId.fromUniqueString(shopDocumentIdStr),
-      shopName: ShopName(shopNameStr),
-      address: Address(
-        apartmentNumber: AddressNumber(apartmentNumberStr),
-        streetNumber: StreetNumber(streetNumberStr),
-        city: CityName(cityNameStr),
-        postalCode: PostalCode(postalCodeStr),
-        streetName: StreetName(streetNameStr),
-      ),
-      location: Location.empty(),
-      logoUrl: ShopifyUrl(logoUrlStr),
-      workingWeek: Week.empty(),
-    );
-    // Add a test shop
-    final tShopDto = ShopDto.fromDomain(tShop);
-    final fakeFirestore = FakeFirebaseFirestore();
-    final shopDcumentReference = await fakeFirestore
-        .collection('shops')
-        .doc(tShop.id.getOrCrash())
-        .set(tShopDto.toJson());
-    // Add a test product
-    final productDocumentPreference = await fakeFirestore
-        .collection('products')
-        .doc(tProduct.id.getOrCrash())
-        .set(ProductDto.fromDomain(tProduct).toJson());
-
-    final tPrice =
-        Price(currency: Currency(Currencies.zl), price: PositiveNumber(2.0));
-
-    // Shop
-    final mockShopsCollection = MockCollectionReference<Map<String, dynamic>>();
-    final mockShopDocument = MockDocumentReference<Map<String, dynamic>>();
-    final mockShopProductsCollection =
-        MockCollectionReference<Map<String, dynamic>>();
-
-    // Products
-    final mockProductsCollection =
-        MockCollectionReference<Map<String, dynamic>>();
-    final mockProductDocument = MockDocumentReference<Map<String, dynamic>>();
-
+  group('addToShop', () {
     test(
       'should verify internet connection',
       () async {
@@ -178,22 +202,22 @@ Future<void> main() async {
         final result = await repository.addToShop(tProduct, tPrice, tShop);
         // assert
         verify(mockNetworkInfo.isConnected).called(1);
-        expect(result, const ProductFailure.noInternetConnection());
+        expect(result, left(const ProductFailure.noInternetConnection()));
       },
     );
 
     test('should return a failure if the shop is invalid', () async {
       // arrange
+      when(mockNetworkInfo.isConnected).thenAnswer((_) async => true);
       final invalidShop = tShop.copyWith(shopName: ShopName(''));
       // act
       final result = await repository.addToShop(tProduct, tPrice, invalidShop);
       // assert
       expect(
         result,
-        ProductFailure.valueFailure(
-          ValueFailure.core(
-            CoreValueFailure.stringTooShort(
-                failedValue: ShopName('').value, minLength: ShopName.minLength),
+        left(
+          const ProductFailure.valueFailure(
+            ValueFailure<String>.core(CoreValueFailure.empty()),
           ),
         ),
       );
@@ -207,11 +231,15 @@ Future<void> main() async {
       // assert
       expect(
         result,
-        ProductFailure.valueFailure(
-          ValueFailure.core(
-            CoreValueFailure.stringTooShort(
-                failedValue: ProductName('').value,
-                minLength: ProductName.minLength),
+        left(
+          const ProductFailure.valueFailure(
+            ValueFailure<double>.core(
+              CoreValueFailure.numberOutsideInterval(
+                failedValue: -1.0,
+                max: PositiveNumber.maxPositiveNumber,
+                min: PositiveNumber.minPositiveNumber,
+              ),
+            ),
           ),
         ),
       );
@@ -224,11 +252,9 @@ Future<void> main() async {
       // assert
       expect(
         result,
-        ProductFailure.valueFailure(
-          ValueFailure.core(
-            CoreValueFailure<PositiveNumber>.nonPositive(
-              failedValue: PositiveNumber(-1.0),
-            ),
+        left(
+          const ProductFailure.valueFailure(
+            ValueFailure<String>.core(CoreValueFailure.empty()),
           ),
         ),
       );
@@ -237,14 +263,10 @@ Future<void> main() async {
       'should get the shop by its id',
       () async {
         // arrange
-        when(mockNetworkInfo.isConnected).thenAnswer((_) async => true);
-        when(mockFirestore.collection('shops')).thenReturn(mockShopsCollection);
-        when(mockShopsCollection.doc(tShop.id.getOrCrash())).thenReturn(
-            fakeFirestore.collection('shops').doc(tShop.id.getOrCrash()));
         // act
         await repository.addToShop(tProduct, tPrice, tShop);
         // assert
-        verify(mockShopsCollection.doc(tShop.id.getOrCrash())).called(1);
+        verify(mockShopsCollection.doc(tShop.id.getOrCrash()));
       },
     );
 
@@ -253,8 +275,6 @@ Future<void> main() async {
       () async {
         // arrange
         final nonexistingShop = tShop.copyWith(id: UniqueId());
-        when(mockNetworkInfo.isConnected).thenAnswer((_) async => true);
-        when(mockFirestore.collection('shops')).thenReturn(mockShopsCollection);
         when(mockShopsCollection.doc(nonexistingShop.id.getOrCrash()))
             .thenReturn(fakeFirestore
                 .collection('shops')
@@ -263,7 +283,7 @@ Future<void> main() async {
         final result =
             await repository.addToShop(tProduct, tPrice, nonexistingShop);
         // assert
-        expect(result, const ProductFailure.shopNotFound());
+        expect(result, left(const ProductFailure.shopNotFound()));
       },
     );
 
@@ -272,9 +292,6 @@ Future<void> main() async {
       () async {
         // arrange
         final nonexistingProduct = tProduct.copyWith(id: UniqueId());
-        when(mockNetworkInfo.isConnected).thenAnswer((_) async => true);
-        when(mockFirestore.collection('products'))
-            .thenReturn(mockProductsCollection);
         when(mockProductsCollection.doc(nonexistingProduct.id.getOrCrash()))
             .thenReturn(fakeFirestore
                 .collection('products')
@@ -283,7 +300,7 @@ Future<void> main() async {
         final result =
             await repository.addToShop(nonexistingProduct, tPrice, tShop);
         // assert
-        expect(result, const ProductFailure.productNotFound());
+        expect(result, left(const ProductFailure.productNotFound()));
       },
     );
 
@@ -291,12 +308,6 @@ Future<void> main() async {
       'should get products collection of the shop',
       () async {
         // arrange
-        when(mockNetworkInfo.isConnected).thenAnswer((_) async => true);
-        when(mockFirestore.collection('shops')).thenReturn(mockShopsCollection);
-        when(mockShopsCollection.doc(tShop.id.getOrCrash()))
-            .thenReturn(mockShopDocument);
-        when(mockShopDocument.collection('products'))
-            .thenReturn(mockShopProductsCollection);
         // act
         await repository.addToShop(tProduct, tPrice, tShop);
         // assert
@@ -308,38 +319,45 @@ Future<void> main() async {
       'should add a new product with its id and a price',
       () async {
         // arrange
-        when(mockNetworkInfo.isConnected).thenAnswer((_) async => true);
-        when(mockFirestore.collection('shops'))
-            .thenReturn(fakeFirestore.collection('shops'));
         // act
         await repository.addToShop(tProduct, tPrice, tShop);
-        final firestoreReuslt = await fakeFirestore
-            .collection('shops')
-            .doc(tShop.id.getOrCrash())
-            .collection('products')
-            .get();
         // assert
-        //expect( , 'xd');
+        verify(mockShopProductsCollection.add(shopProductDto.toJson()))
+            .called(1);
       },
     );
-    test('should return a failure if firebase throws an exception', () {});
+    test('should return a failure if connection timed out', () async {
+      // arrange
+      when(mockShopProductsCollection.add(shopProductDto.toJson()))
+          .thenAnswer((_) async {
+        await Future.delayed(timeoutDuration);
+        await Future.delayed(const Duration(seconds: 1));
+        return mockProductDocument;
+      });
+      // assert later
+      expectLater(
+          mockShopProductsCollection
+              .add(shopProductDto.toJson())
+              .timeout(timeoutDuration),
+          throwsA(isA<TimeoutException>()));
+      // act
+      final result = await repository.addToShop(tProduct, tPrice, tShop);
+      // assert
+      expect(result, left(const ProductFailure.timeout(timeoutDuration)));
+    });
+
+    test('should return a failure if firebase throws an exception', () async {
+      // arrange
+      when(mockShopProductsCollection.add(shopProductDto.toJson())).thenThrow(
+          FirebaseException(plugin: 'plugin', code: 'permission-denied'));
+      // act
+      final result = await repository.addToShop(tProduct, tPrice, tShop);
+      // assert
+      expect(result, left(const ProductFailure.insufficientPermission()));
+    });
   });
 
-  group('getByBarcode', () async {
-    // Set Up
-    final fakeFirestore = FakeFirebaseFirestore();
-    await fakeFirestore
-        .collection('products')
-        .doc(tProduct.id.getOrCrash())
-        .set(ProductDto.fromDomain(tProduct).toJson());
-    final mockQuery = fakeFirestore
-        .collection('products')
-        .where('barcode', isEqualTo: tProduct.barcode.getOrCrash());
-    when(mockNetworkInfo.isConnected).thenAnswer((_) async => true);
-    when(mockFirestore.productsCollection).thenReturn(mockProductsReference);
-    when(mockProductsReference.where('barcode',
-            isEqualTo: tProduct.barcode.getOrCrash()))
-        .thenReturn(mockQuery);
+  group('getByBarcode', () {
     test(
       'should check if has internet connection',
       () async {
@@ -364,7 +382,7 @@ Future<void> main() async {
         // act
         await repository.getByBarcode(tProduct.barcode);
         // assert
-        verify(mockProductsReference.where('barcode',
+        verify(mockProductsCollection.where('barcode',
                 isEqualTo: tProduct.barcode.getOrCrash()))
             .called(1);
       },
@@ -487,7 +505,7 @@ Future<void> main() async {
           // act
           await repository.create(tProductForm);
           // assert
-          verify(mockProductsReference.doc(tProduct.id.getOrCrash()));
+          verify(mockProductsCollection.doc(tProduct.id.getOrCrash()));
         },
       );
 
@@ -497,8 +515,7 @@ Future<void> main() async {
           // act
           await repository.create(tProductForm);
           // assert
-          verify(mockProductDoc
-              .set(ProductDto.fromDomain(tProductWithUploadedPhotos).toJson()));
+          verify(mockProductDocument.set(any));
         },
       );
 
@@ -590,11 +607,16 @@ Future<void> main() async {
             'should delte all the photos',
             () async {
               // arrange
-              when(mockProductDoc.set(
-                      ProductDto.fromDomain(tProductWithUploadedPhotos)
-                          .toJson()))
+
+              when(mockProductDocument
+                      .set(ProductDto.fromDomain(tProduct).toJson()))
                   .thenThrow(
                       FirebaseException(plugin: '', code: 'permission-denied'));
+
+              expectLater(
+                  () => mockProductDocument
+                      .set(ProductDto.fromDomain(tProduct).toJson()),
+                  throwsA(isA<FirebaseException>()));
               // act
               await repository.create(tProductForm);
               // assert
@@ -607,9 +629,8 @@ Future<void> main() async {
             'should return a value failure',
             () async {
               // arrange
-              when(mockProductDoc.set(
-                      ProductDto.fromDomain(tProductWithUploadedPhotos)
-                          .toJson()))
+              when(mockProductDocument
+                      .set(ProductDto.fromDomain(tProduct).toJson()))
                   .thenThrow(
                       FirebaseException(plugin: '', code: 'permission-denied'));
               // act
@@ -625,9 +646,8 @@ Future<void> main() async {
             'should delte all the photos',
             () async {
               // arrange
-              when(mockProductDoc.set(
-                      ProductDto.fromDomain(tProductWithUploadedPhotos)
-                          .toJson()))
+              when(mockProductDocument
+                      .set(ProductDto.fromDomain(tProduct).toJson()))
                   .thenThrow(
                       TimeoutException('Connection timeout', timeoutDuration));
               // act
@@ -642,9 +662,8 @@ Future<void> main() async {
             'should return a value failure',
             () async {
               // arrange
-              when(mockProductDoc.set(
-                      ProductDto.fromDomain(tProductWithUploadedPhotos)
-                          .toJson()))
+              when(mockProductDocument
+                      .set(ProductDto.fromDomain(tProduct).toJson()))
                   .thenThrow(
                       TimeoutException('Connection timeout', timeoutDuration));
               // act
@@ -660,9 +679,8 @@ Future<void> main() async {
             'should attempt to delete photos',
             () async {
               // arrange
-              when(mockProductDoc.set(
-                      ProductDto.fromDomain(tProductWithUploadedPhotos)
-                          .toJson()))
+              when(mockProductDocument
+                      .set(ProductDto.fromDomain(tProduct).toJson()))
                   .thenThrow(UnimplementedError(
                       'An unimplemented error while creating a new product'));
               when(mockStorage.refFromURL(any))

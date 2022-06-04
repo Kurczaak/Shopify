@@ -45,7 +45,55 @@ class FirebaseProductRepositoryImpl implements ShopifyProductRepository {
   @override
   Future<Either<ProductFailure, Unit>> addToShop(
       Product product, Price price, Shop shop) async {
+    final argumentsFailureOrUnit = shop.failureOrUnit
+        .andThen(price.failureOrUnit.andThen(product.failureOrUnit));
+
+    if (argumentsFailureOrUnit.isLeft()) {
+      return argumentsFailureOrUnit.fold(
+          (failure) => left(ProductFailure.valueFailure(failure)),
+          (_) => throw UnimplementedError(
+              'An error occured when adding the product to the shop'));
+    }
+
     if (await _networkInfo.isConnected) {
+      // Check if the shop exists in the DB
+      final shopDocument =
+          await _firestore.shopsCollection.doc(shop.id.getOrCrash()).get();
+      if (!shopDocument.exists) {
+        return left(const ProductFailure.shopNotFound());
+      }
+
+      // Check if the product exists in the DB
+      final productDocument = await _firestore.productsCollection
+          .doc(product.id.getOrCrash())
+          .get();
+      if (!productDocument.exists) {
+        return left(const ProductFailure.productNotFound());
+      }
+
+      // Both the shop and the product exist in the DB
+      final shopProductsCollection = _firestore.shopsCollection
+          .doc(shop.id.getOrCrash())
+          .collection('products');
+      final shopProductDto = ShopProductDto(
+          productId: product.id.getOrCrash(),
+          price: PriceDto.fromDomain(price));
+      try {
+        await shopProductsCollection
+            .add(shopProductDto.toJson())
+            .timeout(timeoutDuration, onTimeout: () {
+          throw TimeoutException('Connection timeout ', timeoutDuration);
+        });
+      } on FirebaseException catch (e) {
+        if (e.code.contains('permission-denied')) {
+          return left(const ProductFailure.insufficientPermission());
+        } else {
+          return left(const ProductFailure.unexpected());
+        }
+      } on TimeoutException catch (_) {
+        return left(const ProductFailure.timeout(timeoutDuration));
+      }
+
       return left(const ProductFailure.unexpected());
     } else {
       return left(const ProductFailure.noInternetConnection());
@@ -141,11 +189,15 @@ class FirebaseProductRepositoryImpl implements ShopifyProductRepository {
   Future<Either<ProductFailure, Unit>> _addProductToTheFirestore(
       Product product) async {
     try {
-      product.failureOption.fold(() {
+      product.failureOption.fold(() async {
         final productsCollection = _firestore.productsCollection;
-        productsCollection
+        print(product.id.getOrCrash());
+        await productsCollection
             .doc(product.id.getOrCrash())
-            .set(ProductDto.fromDomain(product).toJson());
+            .set(ProductDto.fromDomain(product).toJson())
+            .timeout(timeoutDuration, onTimeout: () {
+          throw TimeoutException('Connection timeout ', timeoutDuration);
+        });
       }, (failure) => left(failure));
       return right(unit);
     } on FirebaseException catch (e) {
@@ -190,6 +242,7 @@ class FirebaseProductRepositoryImpl implements ShopifyProductRepository {
             photosUrls.map((stringUrl) => ShopifyUrl(stringUrl)).toList())));
 
     final failureOrUnit = await _addProductToTheFirestore(productWithPhotos);
+    print(failureOrUnit);
     final Either<ProductFailure, Unit> result =
         await failureOrUnit.fold((failure) async {
       await _deletePhotos(uploadedPhotosReferences);
