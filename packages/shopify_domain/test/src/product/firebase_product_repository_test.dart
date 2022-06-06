@@ -155,7 +155,7 @@ Future<void> main() async {
   void _setUpStorageMocks() {
     when(mockStorage.productPhotosReference)
         .thenReturn(mockAllproductsPhotosReference);
-    when(mockAllproductsPhotosReference.child(any))
+    when(mockAllproductsPhotosReference.child(tProduct.id.getOrCrash()))
         .thenReturn(mockProductPhotosReference);
     when(mockProductPhotosReference.child('0')).thenReturn(mockPhoto0Reference);
     when(mockProductPhotosReference.child('1')).thenReturn(mockPhoto1Reference);
@@ -449,6 +449,7 @@ Future<void> main() async {
       'should check internet connection',
       () async {
         // act
+
         await repository.create(tProduct, photosList);
         // assert
         verify(mockNetworkInfo.isConnected);
