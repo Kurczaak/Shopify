@@ -64,7 +64,6 @@ class ProductForm with _$ProductForm {
     required String barcode,
     required double weight,
     required String weightUnit,
-    required double price,
     required String currency,
     required String category,
     required String name,
@@ -90,6 +89,19 @@ class ProductForm with _$ProductForm {
           final photosList = files.map((file) => ProductPhoto(file)).toList();
           return right(NonEmptyList5(KtList.from(photosList)));
         }),
+      );
+
+  Product get product => Product(
+        barcode: barcode,
+        brand: brand,
+        category: category,
+        description: description,
+        id: this.id,
+        ingredients: ingredients,
+        name: name,
+        nutrientFacts: nutrientFacts,
+        photos: photos.fold(id, (_) => NonEmptyList5<ShopifyUrl>.empty()),
+        weight: weight,
       );
 
   Option<ValueFailure<dynamic>> get failureOption {
