@@ -13,7 +13,8 @@ abstract class ShopifyProductRepository {
   Future<Either<ProductFailure, Product>> getByBarcode(Barcode barcode);
   Future<Either<ProductFailure, Product>> getFromShopByBarcode(
       Shop shop, Barcode barcode);
-  Future<Either<ProductFailure, Unit>> create(
+  Future<Either<ProductFailure, Unit>> create(Product product);
+  Future<Either<ProductFailure, Unit>> addPhotosAndCreate(
       Product product, NonEmptyList5<ProductPhoto> photos);
   Future<Either<ProductFailure, Unit>> addToShop(
       Product product, Price price, Shop shop);
