@@ -44,6 +44,6 @@ class FirebaseShopRepositoryImpl implements IShopRepository {
 
   @override
   Stream<Either<ShopFailure, KtList<Shop>>> watchYourShops() {
-    return _shopRepository.watchYourShops();
+    return _shopRepository.watchYours();
   }
 }
