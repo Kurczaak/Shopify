@@ -444,13 +444,13 @@ Future<void> main() async {
       },
     );
   });
-  group('create', () {
+  group('addPhotosAndCreate', () {
     test(
       'should check internet connection',
       () async {
         // act
 
-        await repository.create(tProduct, photosList);
+        await repository.addPhotosAndCreate(tProduct, photosList);
         // assert
         verify(mockNetworkInfo.isConnected);
       },
@@ -462,7 +462,8 @@ Future<void> main() async {
         // arrange
         when(mockNetworkInfo.isConnected).thenAnswer((_) async => false);
         // act
-        final result = await repository.create(tProduct, photosList);
+        final result =
+            await repository.addPhotosAndCreate(tProduct, photosList);
         // assert
         expect(result, isA<Left<ProductFailure, Unit>>());
         expect(result, const Left(ProductFailure.noInternetConnection()));
@@ -477,16 +478,17 @@ Future<void> main() async {
         final invalidPhotosList =
             NonEmptyList5(KtList.from([photo, photo, photo, invalidPhoto]));
         // act
-        final result = await repository.create(tProduct, invalidPhotosList);
+        final result =
+            await repository.addPhotosAndCreate(tProduct, invalidPhotosList);
         // assert
         expect(result, isA<Left<ProductFailure, Unit>>());
       },
     );
     test(
-      'should get all the products\' storage folder',
+      'should get all the products\' photos storage folder',
       () async {
         // act
-        await repository.create(tProduct, photosList);
+        await repository.addPhotosAndCreate(tProduct, photosList);
         // assert
         verify(mockStorage.productPhotosReference);
       },
@@ -495,7 +497,7 @@ Future<void> main() async {
       'should get the product\'s photos storage folder',
       () async {
         // act
-        await repository.create(tProduct, photosList);
+        await repository.addPhotosAndCreate(tProduct, photosList);
         // assert
         verify(mockAllproductsPhotosReference.child(tProduct.id.getOrCrash()));
       },
@@ -505,7 +507,7 @@ Future<void> main() async {
       'should get references to all the photos',
       () async {
         // act
-        await repository.create(tProduct, photosList);
+        await repository.addPhotosAndCreate(tProduct, photosList);
         // assert
         int i = 0;
         for (final photo in photosList.getOrCrash().iter) {
@@ -519,7 +521,7 @@ Future<void> main() async {
       'should upload all the photos',
       () async {
         // act
-        await repository.create(tProduct, photosList);
+        await repository.addPhotosAndCreate(tProduct, photosList);
         // assert
         verify(mockPhoto0Reference
             .putFile(photosList.getOrCrash().elementAt(0).getOrCrash()));
@@ -538,7 +540,8 @@ Future<void> main() async {
             .thenThrow(
                 FirebaseException(plugin: 'plugin', code: 'permission-denied'));
         // act
-        final result = await repository.create(tProduct, photosList);
+        final result =
+            await repository.addPhotosAndCreate(tProduct, photosList);
         // assert
         expect(result, isA<Left<ProductFailure, Unit>>());
         expect(result, left(const ProductFailure.insufficientPermission()));
@@ -549,7 +552,7 @@ Future<void> main() async {
       'should get the photos urls',
       () async {
         // act
-        await repository.create(tProduct, photosList);
+        await repository.addPhotosAndCreate(tProduct, photosList);
         // assert
         verify(mockUploadedPhoto0Reference.getDownloadURL());
         verify(mockUploadedPhoto1Reference.getDownloadURL());
@@ -564,7 +567,8 @@ Future<void> main() async {
         when(mockUploadedPhoto0Reference.getDownloadURL())
             .thenAnswer((_) async => '');
         // act
-        final result = await repository.create(tProduct, photosList);
+        final result =
+            await repository.addPhotosAndCreate(tProduct, photosList);
         // assert
         expect(result, isA<Left<ProductFailure, Unit>>());
         expect(
@@ -584,7 +588,7 @@ Future<void> main() async {
       'should get products collection',
       () async {
         // act
-        await repository.create(tProduct, photosList);
+        await repository.addPhotosAndCreate(tProduct, photosList);
         // assert
         verify(mockFirestore.collection('products'));
       },
@@ -593,7 +597,7 @@ Future<void> main() async {
       'should get the product document',
       () async {
         // act
-        await repository.create(tProduct, photosList);
+        await repository.addPhotosAndCreate(tProduct, photosList);
         // assert
         verify(mockProductsCollection.doc(tProduct.id.getOrCrash()));
       },
@@ -603,7 +607,7 @@ Future<void> main() async {
       'should set the products data',
       () async {
         // act
-        await repository.create(tProduct, photosList);
+        await repository.addPhotosAndCreate(tProduct, photosList);
         // assert
         verify(mockProductDocument.set(productDto.toJson()));
       },
@@ -615,7 +619,7 @@ Future<void> main() async {
         when(mockProductDocument.set(productDto.toJson())).thenThrow(
             FirebaseException(plugin: 'plugin', code: 'permission-denied'));
         // act
-        await repository.create(tProduct, photosList);
+        await repository.addPhotosAndCreate(tProduct, photosList);
         // assert
         verify(mockProductPhotosReference.delete()).called(1);
       },
@@ -628,7 +632,8 @@ Future<void> main() async {
         when(mockProductDocument.set(productDto.toJson())).thenThrow(
             FirebaseException(plugin: 'plugin', code: 'permission-denied'));
         // act
-        final result = await repository.create(tProduct, photosList);
+        final result =
+            await repository.addPhotosAndCreate(tProduct, photosList);
         // assert
         expect(result, isA<Left<ProductFailure, Unit>>());
         expect(result, left(const ProductFailure.insufficientPermission()));
@@ -645,7 +650,8 @@ Future<void> main() async {
           await Future.delayed(const Duration(milliseconds: 20));
         });
         // act
-        final result = await repository.create(tProduct, photosList);
+        final result =
+            await repository.addPhotosAndCreate(tProduct, photosList);
         // assert
         expect(result, isA<Left<ProductFailure, Unit>>());
         expect(result, left(const ProductFailure.timeout(timeoutDuration)));
@@ -656,7 +662,80 @@ Future<void> main() async {
       'should return a unit if succesfully created',
       () async {
         // act
-        final result = await repository.create(tProduct, photosList);
+        final result =
+            await repository.addPhotosAndCreate(tProduct, photosList);
+        // assert
+        expect(result, right(unit));
+      },
+    );
+  });
+
+  group('create', () {
+    test(
+      'should get products collection',
+      () async {
+        // act
+        await repository.create(tProductWithLinks);
+        // assert
+        verify(mockFirestore.collection('products'));
+      },
+    );
+    test(
+      'should get the product document',
+      () async {
+        // act
+        await repository.create(tProductWithLinks);
+        // assert
+        verify(mockProductsCollection.doc(tProductWithLinks.id.getOrCrash()));
+      },
+    );
+
+    test(
+      'should set the products data',
+      () async {
+        // act
+        await repository.create(tProductWithLinks);
+        // assert
+        verify(mockProductDocument.set(productDto.toJson()));
+      },
+    );
+
+    test(
+      'should return a value failure if failed to upload the product to the DB',
+      () async {
+        // arrange
+        when(mockProductDocument.set(productDto.toJson())).thenThrow(
+            FirebaseException(plugin: 'plugin', code: 'permission-denied'));
+        // act
+        final result = await repository.create(tProductWithLinks);
+        // assert
+        expect(result, isA<Left<ProductFailure, Unit>>());
+        expect(result, left(const ProductFailure.insufficientPermission()));
+      },
+    );
+
+    test(
+      'should return a value failure if timedOut while uploading the product to the DB',
+      () async {
+        // arrange
+        when(mockProductDocument.set(productDto.toJson()))
+            .thenAnswer((_) async {
+          await Future.delayed(timeoutDuration);
+          await Future.delayed(const Duration(milliseconds: 20));
+        });
+        // act
+        final result = await repository.create(tProductWithLinks);
+        // assert
+        expect(result, isA<Left<ProductFailure, Unit>>());
+        expect(result, left(const ProductFailure.timeout(timeoutDuration)));
+      },
+    );
+
+    test(
+      'should return a unit if succesfully created',
+      () async {
+        // act
+        final result = await repository.create(tProductWithLinks);
         // assert
         expect(result, right(unit));
       },

@@ -94,7 +94,7 @@ class FirebaseProductRepositoryImpl implements ShopifyProductRepository {
   }
 
   @override
-  Future<Either<ProductFailure, Unit>> create(
+  Future<Either<ProductFailure, Unit>> addPhotosAndCreate(
       Product product, NonEmptyList5<ProductPhoto> photos) async {
     if (await _networkInfo.isConnected) {
       // Check photos
@@ -214,5 +214,10 @@ class FirebaseProductRepositoryImpl implements ShopifyProductRepository {
       Shop shop, Barcode barcode) {
     // TODO: implement getFromShopByBarcode
     throw UnimplementedError();
+  }
+
+  @override
+  Future<Either<ProductFailure, Unit>> create(Product product) async {
+    return await _uploadProductToFirestore(product);
   }
 }
