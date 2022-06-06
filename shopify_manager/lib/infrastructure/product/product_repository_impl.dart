@@ -1,10 +1,6 @@
 import 'package:injectable/injectable.dart';
-import 'package:shopify_domain/product/shopify_product_repository.dart';
+import 'package:shopify_domain/product.dart';
 import 'package:shopify_domain/shop/shop.dart';
-import 'package:shopify_domain/product/value_objects.dart';
-import 'package:shopify_domain/product/product_form.dart';
-import 'package:shopify_domain/product/product_failure.dart';
-import 'package:shopify_domain/product/product.dart';
 import 'package:dartz/dartz.dart';
 import 'package:shopify_manager/domain/product/i_product_repository.dart';
 
@@ -14,16 +10,17 @@ class ProductRepostioryImpl implements IProductRepository {
 
   ProductRepostioryImpl(this._productRepository);
   @override
-  Future<Either<ProductFailure, Unit>> create(ProductForm productForm) {
-    final productPhotos = productForm.photos.fold((l) => null, id);
-    return _productRepository.create(productForm.product, productPhotos);
+  Future<Either<ProductFailure, Unit>> create(ProductForm productForm) async {
+    return await productForm.photos.fold(
+        (urls) async => _productRepository.create(productForm.product),
+        (files) async =>
+            _productRepository.addPhotosAndCreate(productForm.product, files));
   }
 
   @override
-  Future<Either<ProductFailure, Unit>> createForShop(
-      ProductForm productForm, Shop shop) {
-    // TODO: implement createForShop
-    throw UnimplementedError();
+  Future<Either<ProductFailure, Unit>> addToShop(
+      ProductForm productForm, Shop shop, Price price) async {
+    return await _productRepository.addToShop(productForm.product, price, shop);
   }
 
   @override
@@ -33,9 +30,8 @@ class ProductRepostioryImpl implements IProductRepository {
   }
 
   @override
-  Future<Either<ProductFailure, Product>> getByBarcode(Barcode barcode) {
-    // TODO: implement getByBarcode
-    throw UnimplementedError();
+  Future<Either<ProductFailure, Product>> getByBarcode(Barcode barcode) async {
+    return await _productRepository.getByBarcode(barcode);
   }
 
   @override
