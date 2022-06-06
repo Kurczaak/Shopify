@@ -15,7 +15,7 @@ abstract class ShopifyShopRepository {
   Stream<Either<ShopFailure, KtList<Shop>>> watchAll();
   Stream<Either<ShopFailure, KtList<Shop>>> watchNearby(
       Location location, double radius);
-  Stream<Either<ShopFailure, KtList<Shop>>> watchYourShops();
+  Stream<Either<ShopFailure, KtList<Shop>>> watchYours();
   Future<Either<ShopFailure, Unit>> create(
       Shop shop, ShopLogo logo, ShopifyUser user);
 
