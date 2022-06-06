@@ -19,6 +19,12 @@ abstract class ValueObject<T> extends Equatable {
     return value.fold((f) => throw UnexpectedValueError(f), id);
   }
 
+  ValueFailure<T> getFailureOrCrash() {
+    // id = identity - sam as writing (right) => right
+    return value.fold(
+        id, (r) => throw UnimplementedError('expected a failure'));
+  }
+
   bool isValid() => value.isRight();
 
   Either<ValueFailure<dynamic>, Unit> get failureOrUnit {
@@ -104,23 +110,9 @@ class ShopifyUrl extends ValueObject<String> {
   @override
   final Either<ValueFailure<String>, String> value;
 
-  factory ShopifyUrl(String url) =>
-      ShopifyUrl._(validateStringContains(url, ['https'])
-          .flatMap(validateStringNotEmpty)
-          .flatMap(validateSingleLine));
-
-  // Option<String> get stringFailureOption {
-  //   return value.fold(
-  //       (failure) => failure.maybeWhen(
-  //           orElse: () => throw UnexpectedValueError(failure),
-  //           core: (coreFailure) => some(coreFailure.maybeMap(
-  //                 orElse: () => 'Unexpected value failure',
-  //                 empty: (_) => 'URL should not be empty',
-  //                 stringDoesntContainKeyword: (_) => 'Invalid URL string',
-  //                 multiline: (_) => 'URLs cannot be multiline',
-  //               ))),
-  //       (_) => none());
-  // }
+  factory ShopifyUrl(String url) => ShopifyUrl._(validateStringNotEmpty(url)
+      .flatMap((passedValue) => validateStringContains(passedValue, ['https'])
+          .flatMap(validateSingleLine)));
 
   const ShopifyUrl._(this.value);
 }

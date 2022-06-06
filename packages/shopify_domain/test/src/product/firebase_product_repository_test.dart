@@ -39,10 +39,14 @@ Future<void> main() async {
   late MockNetworkInfo mockNetworkInfo;
 
   // Storage SetUp
-  late MockReference mockAllproductPhotosReference;
+  late MockReference mockAllproductsPhotosReference;
   late MockReference mockProductPhotosReference;
-  late MockReference mockPhotoReference;
-  late MockReference mockUploadedPhotoReference;
+  late MockReference mockPhoto1Reference;
+  late MockReference mockPhoto2Reference;
+  late MockReference mockPhoto0Reference;
+  late MockReference mockUploadedPhoto0Reference;
+  late MockReference mockUploadedPhoto1Reference;
+  late MockReference mockUploadedPhoto2Reference;
 
   // ================Firestore SetUp==================
   // Shop
@@ -55,18 +59,24 @@ Future<void> main() async {
   late MockDocumentReference<Map<String, dynamic>> mockProductDocument;
 
   // Test Data
-  final tProductForm = await loadProductFormWithPhotos();
-
+  final uploadedLinks = [
+    'https://firebasestorage.googleapis.com/0',
+    'https://firebasestorage.googleapis.com/1',
+    'https://firebasestorage.googleapis.com/2',
+  ];
+  final shopifyUrlsList = [
+    ShopifyUrl(uploadedLinks[0]),
+    ShopifyUrl(uploadedLinks[1]),
+    ShopifyUrl(uploadedLinks[2]),
+  ];
   final tProduct = fixtureProduct;
+  final tProductWithLinks =
+      tProduct.copyWith(photos: NonEmptyList5(KtList.from(shopifyUrlsList)));
+  final productDto = ProductDto.fromDomain(tProductWithLinks);
   final file = await getImageFileFromAssets('test_logo.jpg');
-  final invalidFile = await getImageFileFromAssets('test_logo.jpg');
+  final invalidFile = await getImageFileFromAssets('too_small_logo.jpg');
   final photo = ProductPhoto(file);
-  final invalidPhoto = ProductPhoto(invalidFile);
   final photosList = NonEmptyList5(KtList.from([photo, photo, photo]));
-  final invalidPhotosList =
-      NonEmptyList5(KtList.from([photo, photo, photo, invalidPhoto]));
-  final tInvalidProductForm =
-      tProductForm.copyWith(photos: right(invalidPhotosList));
 
   // Set Up Firestore DB
   const shopDocumentIdStr = "ad5d60d0-7844-11ec-a53d-03c2fc2917f5";
@@ -93,7 +103,7 @@ Future<void> main() async {
     workingWeek: Week.empty(),
   );
   final shopProductDto =
-      ShopProductDto.fromDomain(product: tProduct, price: tPrice);
+      ShopProductDto.fromDomain(product: tProductWithLinks, price: tPrice);
 
   // SetUp Fake FIrestore
   final fakeFirestore = FakeFirebaseFirestore();
@@ -144,15 +154,25 @@ Future<void> main() async {
 
   void _setUpStorageMocks() {
     when(mockStorage.productPhotosReference)
-        .thenReturn(mockAllproductPhotosReference);
-    when(mockAllproductPhotosReference.child(any))
+        .thenReturn(mockAllproductsPhotosReference);
+    when(mockAllproductsPhotosReference.child(any))
         .thenReturn(mockProductPhotosReference);
-    when(mockProductPhotosReference.child(any)).thenReturn(mockPhotoReference);
-    when(mockPhotoReference.putFile(any))
-        .thenAnswer((_) => fake.MockUploadTask(mockUploadedPhotoReference));
+    when(mockProductPhotosReference.child('0')).thenReturn(mockPhoto0Reference);
+    when(mockProductPhotosReference.child('1')).thenReturn(mockPhoto1Reference);
+    when(mockProductPhotosReference.child('2')).thenReturn(mockPhoto2Reference);
+    when(mockPhoto0Reference.putFile(any))
+        .thenAnswer((_) => fake.MockUploadTask(mockUploadedPhoto0Reference));
+    when(mockPhoto1Reference.putFile(any))
+        .thenAnswer((_) => fake.MockUploadTask(mockUploadedPhoto1Reference));
+    when(mockPhoto2Reference.putFile(any))
+        .thenAnswer((_) => fake.MockUploadTask(mockUploadedPhoto2Reference));
 
-    when(mockUploadedPhotoReference.getDownloadURL())
-        .thenAnswer((_) async => 'https://firebasestorage.googleapis.com/1');
+    when(mockUploadedPhoto0Reference.getDownloadURL())
+        .thenAnswer((_) async => uploadedLinks[0]);
+    when(mockUploadedPhoto1Reference.getDownloadURL())
+        .thenAnswer((_) async => uploadedLinks[1]);
+    when(mockUploadedPhoto2Reference.getDownloadURL())
+        .thenAnswer((_) async => uploadedLinks[2]);
   }
 
   setUp(() {
@@ -166,10 +186,14 @@ Future<void> main() async {
     mockProductDocument = MockDocumentReference<Map<String, dynamic>>();
 
     // Storage SetUp
-    mockAllproductPhotosReference = MockReference();
+    mockAllproductsPhotosReference = MockReference();
     mockProductPhotosReference = MockReference();
-    mockPhotoReference = MockReference();
-    mockUploadedPhotoReference = MockReference();
+    mockPhoto1Reference = MockReference();
+    mockPhoto2Reference = MockReference();
+    mockPhoto0Reference = MockReference();
+    mockUploadedPhoto0Reference = MockReference();
+    mockUploadedPhoto1Reference = MockReference();
+    mockUploadedPhoto2Reference = MockReference();
 
     mockFirestore = MockFirebaseFirestore();
     mockStorage = MockFirebaseStorage();
@@ -422,291 +446,218 @@ Future<void> main() async {
   });
   group('create', () {
     test(
-      'should check if the device has connection',
+      'should check internet connection',
       () async {
-        // arrange
-        when(mockNetworkInfo.isConnected)
-            .thenAnswer((_) async => Future.value(true));
         // act
-        await repository.create(tProductForm);
+        await repository.create(tProduct, photosList);
         // assert
         verify(mockNetworkInfo.isConnected);
       },
     );
 
-    group('when isConnected', () {
-      setUp(() {
-        when(mockNetworkInfo.isConnected)
-            .thenAnswer((_) async => Future.value(true));
-      });
-      test(
-        'should get products storage reference',
-        () async {
-          // act
-          await repository.create(tProductForm);
-          // assert
-          verify(mockStorage.productPhotosReference);
-        },
-      );
-
-      test(
-        'should get given product\'s photos storage reference',
-        () async {
-          // act
-          await repository.create(tProductForm);
-          // assert
-          verify(mockAllproductPhotosReference.child(tProduct.id.getOrCrash()));
-        },
-      );
-      test(
-        'should get references to all the product photos',
-        () async {
-          // act
-          await repository.create(tProductForm);
-          // assert
-          verify(mockProductPhotosReference.child(any))
-              .called(photosList.length);
-        },
-      );
-
-      test(
-        'should put all the photos to the storage',
-        () async {
-          // act
-          await repository.create(tProductForm);
-          // assert
-          verify(mockPhotoReference.putFile(any)).called(photosList.length);
-        },
-      );
-
-      test(
-        'should get download url for the photos',
-        () async {
-          // act
-          await repository.create(tProductForm);
-          // assert
-          verify(mockUploadedPhotoReference.getDownloadURL());
-        },
-      );
-
-      test(
-        'should get products collection',
-        () async {
-          // act
-          await repository.create(tProductForm);
-          // assert
-          verify(mockFirestore.productsCollection);
-        },
-      );
-
-      test(
-        'should call product collection with the product\'s id',
-        () async {
-          // act
-          await repository.create(tProductForm);
-          // assert
-          verify(mockProductsCollection.doc(tProduct.id.getOrCrash()));
-        },
-      );
-
-      test(
-        'should set the product in the firestore',
-        () async {
-          // act
-          await repository.create(tProductForm);
-          // assert
-          verify(mockProductDocument.set(any));
-        },
-      );
-
-      group('when Storage throws', () {
-        group('a FirebaseException', () {
-          test(
-            'should attemp to delete photos',
-            () async {
-              // arrange
-              when(mockPhotoReference.putFile(invalidPhoto.getOrCrash()))
-                  .thenThrow(
-                      FirebaseException(plugin: '', code: 'storage/unknown'));
-              // act
-              await repository.create(tInvalidProductForm);
-              // assert
-              verify(mockUploadedPhotoReference.delete()).called(3);
-            },
-          );
-          test(
-            'should return a ValueFailure',
-            () async {
-              // arrange
-              when(mockPhotoReference.putFile(invalidPhoto.getOrCrash()))
-                  .thenThrow(FirebaseException(
-                      plugin: '', code: 'storage/unauthorized'));
-              // act
-              final result = await repository.create(tInvalidProductForm);
-              // assert
-              expect(
-                  result, left(const ProductFailure.insufficientPermission()));
-            },
-          );
-        });
-
-        group('a TimeoutException', () {
-          test(
-            'should attempt to delete photos',
-            () async {
-              // arrange
-              when(mockPhotoReference.putFile(invalidPhoto.getOrCrash()))
-                  .thenThrow(
-                      TimeoutException('Connection timeout ', timeoutDuration));
-              // act
-              await repository.create(tInvalidProductForm);
-              // assert
-              verify(mockUploadedPhotoReference.delete()).called(3);
-            },
-          );
-
-          test(
-            'should return a ValueFailure',
-            () async {
-              // arrange
-              when(mockPhotoReference.putFile(invalidPhoto.getOrCrash()))
-                  .thenThrow(
-                      TimeoutException('Connection timeout ', timeoutDuration));
-              // act
-              final result = await repository.create(tInvalidProductForm);
-              // assert
-              expect(result, isA<Left<ProductFailure, Unit>>());
-            },
-          );
-        });
-
-        group('an Exception', () {
-          test(
-            'should attempt to delete photos',
-            () async {
-              // arrange
-              when(mockPhotoReference.putFile(invalidPhoto.getOrCrash()))
-                  .thenThrow(UnimplementedError(
-                      'An unimplemented error while creating a new product'));
-              // act
-              final call = repository.create;
-              // assert
-              expect(call(tInvalidProductForm),
-                  throwsA(isA<UnimplementedError>()));
-              await untilCalled(mockUploadedPhotoReference.delete());
-
-              verify(mockUploadedPhotoReference.delete());
-            },
-          );
-        });
-      });
-
-      group('when Firestore throws', () {
-        group('a Firebase Exception', () {
-          test(
-            'should delte all the photos',
-            () async {
-              // arrange
-
-              when(mockProductDocument
-                      .set(ProductDto.fromDomain(tProduct).toJson()))
-                  .thenThrow(
-                      FirebaseException(plugin: '', code: 'permission-denied'));
-
-              expectLater(
-                  () => mockProductDocument
-                      .set(ProductDto.fromDomain(tProduct).toJson()),
-                  throwsA(isA<FirebaseException>()));
-              // act
-              await repository.create(tProductForm);
-              // assert
-              verify(mockUploadedPhotoReference.delete())
-                  .called(photosList.length);
-            },
-          );
-
-          test(
-            'should return a value failure',
-            () async {
-              // arrange
-              when(mockProductDocument
-                      .set(ProductDto.fromDomain(tProduct).toJson()))
-                  .thenThrow(
-                      FirebaseException(plugin: '', code: 'permission-denied'));
-              // act
-              final result = await repository.create(tProductForm);
-              // assert
-              expect(result, isA<Left<ProductFailure, Unit>>());
-            },
-          );
-        });
-
-        group('a Timeout Exception', () {
-          test(
-            'should delte all the photos',
-            () async {
-              // arrange
-              when(mockProductDocument
-                      .set(ProductDto.fromDomain(tProduct).toJson()))
-                  .thenThrow(
-                      TimeoutException('Connection timeout', timeoutDuration));
-              // act
-              await repository.create(tProductForm);
-              // assert
-              verify(mockUploadedPhotoReference.delete())
-                  .called(photosList.length);
-            },
-          );
-
-          test(
-            'should return a value failure',
-            () async {
-              // arrange
-              when(mockProductDocument
-                      .set(ProductDto.fromDomain(tProduct).toJson()))
-                  .thenThrow(
-                      TimeoutException('Connection timeout', timeoutDuration));
-              // act
-              final result = await repository.create(tProductForm);
-              // assert
-              expect(result, isA<Left<ProductFailure, Unit>>());
-            },
-          );
-        });
-
-        group('an Exception', () {
-          test(
-            'should attempt to delete photos',
-            () async {
-              // arrange
-              when(mockProductDocument
-                      .set(ProductDto.fromDomain(tProduct).toJson()))
-                  .thenThrow(UnimplementedError(
-                      'An unimplemented error while creating a new product'));
-              when(mockStorage.refFromURL(any))
-                  .thenReturn(mockUploadedPhotoReference);
-              // act
-              final call = repository.create;
-              // assert
-              expect(call(tProductForm), throwsA(isA<UnimplementedError>()));
-              await untilCalled(mockUploadedPhotoReference.delete());
-
-              verify(mockUploadedPhotoReference.delete());
-            },
-          );
-        });
-      });
-    });
     test(
-      'should return a ValueFailure when not connected to the internet',
+      'should return a failure when no internet connection is present',
       () async {
         // arrange
-
         when(mockNetworkInfo.isConnected).thenAnswer((_) async => false);
         // act
-        final result = await repository.create(tProductForm);
+        final result = await repository.create(tProduct, photosList);
         // assert
-        expect(result, left(const ProductFailure.noInternetConnection()));
+        expect(result, isA<Left<ProductFailure, Unit>>());
+        expect(result, const Left(ProductFailure.noInternetConnection()));
+      },
+    );
+
+    test(
+      'should return a failure if photos are invalid',
+      () async {
+        // arrange
+        final invalidPhoto = ProductPhoto(invalidFile);
+        final invalidPhotosList =
+            NonEmptyList5(KtList.from([photo, photo, photo, invalidPhoto]));
+        // act
+        final result = await repository.create(tProduct, invalidPhotosList);
+        // assert
+        expect(result, isA<Left<ProductFailure, Unit>>());
+      },
+    );
+    test(
+      'should get all the products\' storage folder',
+      () async {
+        // act
+        await repository.create(tProduct, photosList);
+        // assert
+        verify(mockStorage.productPhotosReference);
+      },
+    );
+    test(
+      'should get the product\'s photos storage folder',
+      () async {
+        // act
+        await repository.create(tProduct, photosList);
+        // assert
+        verify(mockAllproductsPhotosReference.child(tProduct.id.getOrCrash()));
+      },
+    );
+
+    test(
+      'should get references to all the photos',
+      () async {
+        // act
+        await repository.create(tProduct, photosList);
+        // assert
+        int i = 0;
+        for (final photo in photosList.getOrCrash().iter) {
+          verify(mockProductPhotosReference.child(i.toString()));
+          i++;
+        }
+      },
+    );
+
+    test(
+      'should upload all the photos',
+      () async {
+        // act
+        await repository.create(tProduct, photosList);
+        // assert
+        verify(mockPhoto0Reference
+            .putFile(photosList.getOrCrash().elementAt(0).getOrCrash()));
+        verify(mockPhoto1Reference
+            .putFile(photosList.getOrCrash().elementAt(1).getOrCrash()));
+        verify(mockPhoto2Reference
+            .putFile(photosList.getOrCrash().elementAt(2).getOrCrash()));
+      },
+    );
+    test(
+      'should return a failure if a firebase exception is thrown during photo upload',
+      () async {
+        // arrange
+        when(mockPhoto1Reference
+                .putFile(photosList.getOrCrash().elementAt(1).getOrCrash()))
+            .thenThrow(
+                FirebaseException(plugin: 'plugin', code: 'permission-denied'));
+        // act
+        final result = await repository.create(tProduct, photosList);
+        // assert
+        expect(result, isA<Left<ProductFailure, Unit>>());
+        expect(result, left(const ProductFailure.insufficientPermission()));
+      },
+    );
+
+    test(
+      'should get the photos urls',
+      () async {
+        // act
+        await repository.create(tProduct, photosList);
+        // assert
+        verify(mockUploadedPhoto0Reference.getDownloadURL());
+        verify(mockUploadedPhoto1Reference.getDownloadURL());
+        verify(mockUploadedPhoto2Reference.getDownloadURL());
+      },
+    );
+
+    test(
+      'should return a failure if urls contain invalid data',
+      () async {
+        // arrange
+        when(mockUploadedPhoto0Reference.getDownloadURL())
+            .thenAnswer((_) async => '');
+        // act
+        final result = await repository.create(tProduct, photosList);
+        // assert
+        expect(result, isA<Left<ProductFailure, Unit>>());
+        expect(
+          result,
+          left(
+            const ProductFailure.valueFailure(
+              ValueFailure<String>.core(
+                CoreValueFailure.empty(),
+              ),
+            ),
+          ),
+        );
+      },
+    );
+
+    test(
+      'should get products collection',
+      () async {
+        // act
+        await repository.create(tProduct, photosList);
+        // assert
+        verify(mockFirestore.collection('products'));
+      },
+    );
+    test(
+      'should get the product document',
+      () async {
+        // act
+        await repository.create(tProduct, photosList);
+        // assert
+        verify(mockProductsCollection.doc(tProduct.id.getOrCrash()));
+      },
+    );
+
+    test(
+      'should set the products data',
+      () async {
+        // act
+        await repository.create(tProduct, photosList);
+        // assert
+        verify(mockProductDocument.set(productDto.toJson()));
+      },
+    );
+    test(
+      'should delete uploaded photos if failed to upload the product to the DB',
+      () async {
+        // arrange
+        when(mockProductDocument.set(productDto.toJson())).thenThrow(
+            FirebaseException(plugin: 'plugin', code: 'permission-denied'));
+        // act
+        await repository.create(tProduct, photosList);
+        // assert
+        verify(mockProductPhotosReference.delete()).called(1);
+      },
+    );
+
+    test(
+      'should return a value failure if failed to upload the product to the DB',
+      () async {
+        // arrange
+        when(mockProductDocument.set(productDto.toJson())).thenThrow(
+            FirebaseException(plugin: 'plugin', code: 'permission-denied'));
+        // act
+        final result = await repository.create(tProduct, photosList);
+        // assert
+        expect(result, isA<Left<ProductFailure, Unit>>());
+        expect(result, left(const ProductFailure.insufficientPermission()));
+      },
+    );
+
+    test(
+      'should return a value failure if timedOut while uploading the product to the DB',
+      () async {
+        // arrange
+        when(mockProductDocument.set(productDto.toJson()))
+            .thenAnswer((_) async {
+          await Future.delayed(timeoutDuration);
+          await Future.delayed(const Duration(milliseconds: 20));
+        });
+        // act
+        final result = await repository.create(tProduct, photosList);
+        // assert
+        expect(result, isA<Left<ProductFailure, Unit>>());
+        expect(result, left(const ProductFailure.timeout(timeoutDuration)));
+      },
+    );
+
+    test(
+      'should return a unit if succesfully created',
+      () async {
+        // act
+        final result = await repository.create(tProduct, photosList);
+        // assert
+        expect(result, right(unit));
       },
     );
   });
