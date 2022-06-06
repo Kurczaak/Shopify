@@ -18,10 +18,6 @@ part of 'product_form_bloc.dart';
 ///
 /// ([ProductFormEventWeightUnitChanged] weightUnitChanged){[WeightUnits] weightUnit} with data equality
 ///
-/// ([ProductFormEventPriceChanged] priceChanged){[String] price} with data equality
-///
-/// ([ProductFormEventCurrencyChanged] currencyChanged){[Currencies] currency} with data equality
-///
 /// ([ProductFormEventProductDescriptionChanged] productDescriptionChanged){[String] productDescription} with data equality
 ///
 /// ([ProductFormEventIngredientsChanged] ingredientsChanged){[String] ingredients} with data equality
@@ -57,14 +53,6 @@ abstract class ProductFormEvent {
     required WeightUnits weightUnit,
   }) = ProductFormEventWeightUnitChanged;
 
-  const factory ProductFormEvent.priceChanged({
-    required String price,
-  }) = ProductFormEventPriceChanged;
-
-  const factory ProductFormEvent.currencyChanged({
-    required Currencies currency,
-  }) = ProductFormEventCurrencyChanged;
-
   const factory ProductFormEvent.productDescriptionChanged({
     required String productDescription,
   }) = ProductFormEventProductDescriptionChanged;
@@ -92,10 +80,6 @@ abstract class ProductFormEvent {
 
   bool get isWeightUnitChanged => this is ProductFormEventWeightUnitChanged;
 
-  bool get isPriceChanged => this is ProductFormEventPriceChanged;
-
-  bool get isCurrencyChanged => this is ProductFormEventCurrencyChanged;
-
   bool get isProductDescriptionChanged =>
       this is ProductFormEventProductDescriptionChanged;
 
@@ -121,12 +105,6 @@ abstract class ProductFormEvent {
 
   ProductFormEventWeightUnitChanged get asWeightUnitChanged =>
       this as ProductFormEventWeightUnitChanged;
-
-  ProductFormEventPriceChanged get asPriceChanged =>
-      this as ProductFormEventPriceChanged;
-
-  ProductFormEventCurrencyChanged get asCurrencyChanged =>
-      this as ProductFormEventCurrencyChanged;
 
   ProductFormEventProductDescriptionChanged get asProductDescriptionChanged =>
       this as ProductFormEventProductDescriptionChanged;
@@ -177,20 +155,6 @@ abstract class ProductFormEvent {
         : null;
   }
 
-  ProductFormEventPriceChanged? get asPriceChangedOrNull {
-    final productFormEvent = this;
-    return productFormEvent is ProductFormEventPriceChanged
-        ? productFormEvent
-        : null;
-  }
-
-  ProductFormEventCurrencyChanged? get asCurrencyChangedOrNull {
-    final productFormEvent = this;
-    return productFormEvent is ProductFormEventCurrencyChanged
-        ? productFormEvent
-        : null;
-  }
-
   ProductFormEventProductDescriptionChanged?
       get asProductDescriptionChangedOrNull {
     final productFormEvent = this;
@@ -231,8 +195,6 @@ abstract class ProductFormEvent {
     required R Function(String brandName) brandNameChanged,
     required R Function(String weightNumber) weightNumberChanged,
     required R Function(WeightUnits weightUnit) weightUnitChanged,
-    required R Function(String price) priceChanged,
-    required R Function(Currencies currency) currencyChanged,
     required R Function(String productDescription) productDescriptionChanged,
     required R Function(String ingredients) ingredientsChanged,
     required R Function() photosFilesChanged,
@@ -250,10 +212,6 @@ abstract class ProductFormEvent {
       return weightNumberChanged(productFormEvent.weightNumber);
     } else if (productFormEvent is ProductFormEventWeightUnitChanged) {
       return weightUnitChanged(productFormEvent.weightUnit);
-    } else if (productFormEvent is ProductFormEventPriceChanged) {
-      return priceChanged(productFormEvent.price);
-    } else if (productFormEvent is ProductFormEventCurrencyChanged) {
-      return currencyChanged(productFormEvent.currency);
     } else if (productFormEvent is ProductFormEventProductDescriptionChanged) {
       return productDescriptionChanged(productFormEvent.productDescription);
     } else if (productFormEvent is ProductFormEventIngredientsChanged) {
@@ -275,8 +233,6 @@ abstract class ProductFormEvent {
     R Function(String brandName)? brandNameChanged,
     R Function(String weightNumber)? weightNumberChanged,
     R Function(WeightUnits weightUnit)? weightUnitChanged,
-    R Function(String price)? priceChanged,
-    R Function(Currencies currency)? currencyChanged,
     R Function(String productDescription)? productDescriptionChanged,
     R Function(String ingredients)? ingredientsChanged,
     R Function()? photosFilesChanged,
@@ -304,14 +260,6 @@ abstract class ProductFormEvent {
     } else if (productFormEvent is ProductFormEventWeightUnitChanged) {
       return weightUnitChanged != null
           ? weightUnitChanged(productFormEvent.weightUnit)
-          : orElse(productFormEvent);
-    } else if (productFormEvent is ProductFormEventPriceChanged) {
-      return priceChanged != null
-          ? priceChanged(productFormEvent.price)
-          : orElse(productFormEvent);
-    } else if (productFormEvent is ProductFormEventCurrencyChanged) {
-      return currencyChanged != null
-          ? currencyChanged(productFormEvent.currency)
           : orElse(productFormEvent);
     } else if (productFormEvent is ProductFormEventProductDescriptionChanged) {
       return productDescriptionChanged != null
@@ -343,8 +291,6 @@ abstract class ProductFormEvent {
     void Function(String brandName)? brandNameChanged,
     void Function(String weightNumber)? weightNumberChanged,
     void Function(WeightUnits weightUnit)? weightUnitChanged,
-    void Function(String price)? priceChanged,
-    void Function(Currencies currency)? currencyChanged,
     void Function(String productDescription)? productDescriptionChanged,
     void Function(String ingredients)? ingredientsChanged,
     void Function()? photosFilesChanged,
@@ -380,18 +326,6 @@ abstract class ProductFormEvent {
     } else if (productFormEvent is ProductFormEventWeightUnitChanged) {
       if (weightUnitChanged != null) {
         weightUnitChanged(productFormEvent.weightUnit);
-      } else if (orElse != null) {
-        orElse(productFormEvent);
-      }
-    } else if (productFormEvent is ProductFormEventPriceChanged) {
-      if (priceChanged != null) {
-        priceChanged(productFormEvent.price);
-      } else if (orElse != null) {
-        orElse(productFormEvent);
-      }
-    } else if (productFormEvent is ProductFormEventCurrencyChanged) {
-      if (currencyChanged != null) {
-        currencyChanged(productFormEvent.currency);
       } else if (orElse != null) {
         orElse(productFormEvent);
       }
@@ -436,8 +370,6 @@ abstract class ProductFormEvent {
     R Function(String brandName)? brandNameChanged,
     R Function(String weightNumber)? weightNumberChanged,
     R Function(WeightUnits weightUnit)? weightUnitChanged,
-    R Function(String price)? priceChanged,
-    R Function(Currencies currency)? currencyChanged,
     R Function(String productDescription)? productDescriptionChanged,
     R Function(String ingredients)? ingredientsChanged,
     R Function()? photosFilesChanged,
@@ -465,14 +397,6 @@ abstract class ProductFormEvent {
     } else if (productFormEvent is ProductFormEventWeightUnitChanged) {
       return weightUnitChanged != null
           ? weightUnitChanged(productFormEvent.weightUnit)
-          : orElse?.call(productFormEvent);
-    } else if (productFormEvent is ProductFormEventPriceChanged) {
-      return priceChanged != null
-          ? priceChanged(productFormEvent.price)
-          : orElse?.call(productFormEvent);
-    } else if (productFormEvent is ProductFormEventCurrencyChanged) {
-      return currencyChanged != null
-          ? currencyChanged(productFormEvent.currency)
           : orElse?.call(productFormEvent);
     } else if (productFormEvent is ProductFormEventProductDescriptionChanged) {
       return productDescriptionChanged != null
@@ -508,9 +432,6 @@ abstract class ProductFormEvent {
         weightNumberChanged,
     required R Function(ProductFormEventWeightUnitChanged weightUnitChanged)
         weightUnitChanged,
-    required R Function(ProductFormEventPriceChanged priceChanged) priceChanged,
-    required R Function(ProductFormEventCurrencyChanged currencyChanged)
-        currencyChanged,
     required R Function(
             ProductFormEventProductDescriptionChanged productDescriptionChanged)
         productDescriptionChanged,
@@ -532,10 +453,6 @@ abstract class ProductFormEvent {
       return weightNumberChanged(productFormEvent);
     } else if (productFormEvent is ProductFormEventWeightUnitChanged) {
       return weightUnitChanged(productFormEvent);
-    } else if (productFormEvent is ProductFormEventPriceChanged) {
-      return priceChanged(productFormEvent);
-    } else if (productFormEvent is ProductFormEventCurrencyChanged) {
-      return currencyChanged(productFormEvent);
     } else if (productFormEvent is ProductFormEventProductDescriptionChanged) {
       return productDescriptionChanged(productFormEvent);
     } else if (productFormEvent is ProductFormEventIngredientsChanged) {
@@ -562,9 +479,6 @@ abstract class ProductFormEvent {
         weightNumberChanged,
     R Function(ProductFormEventWeightUnitChanged weightUnitChanged)?
         weightUnitChanged,
-    R Function(ProductFormEventPriceChanged priceChanged)? priceChanged,
-    R Function(ProductFormEventCurrencyChanged currencyChanged)?
-        currencyChanged,
     R Function(
             ProductFormEventProductDescriptionChanged
                 productDescriptionChanged)?
@@ -597,14 +511,6 @@ abstract class ProductFormEvent {
     } else if (productFormEvent is ProductFormEventWeightUnitChanged) {
       return weightUnitChanged != null
           ? weightUnitChanged(productFormEvent)
-          : orElse(productFormEvent);
-    } else if (productFormEvent is ProductFormEventPriceChanged) {
-      return priceChanged != null
-          ? priceChanged(productFormEvent)
-          : orElse(productFormEvent);
-    } else if (productFormEvent is ProductFormEventCurrencyChanged) {
-      return currencyChanged != null
-          ? currencyChanged(productFormEvent)
           : orElse(productFormEvent);
     } else if (productFormEvent is ProductFormEventProductDescriptionChanged) {
       return productDescriptionChanged != null
@@ -641,9 +547,6 @@ abstract class ProductFormEvent {
         weightNumberChanged,
     void Function(ProductFormEventWeightUnitChanged weightUnitChanged)?
         weightUnitChanged,
-    void Function(ProductFormEventPriceChanged priceChanged)? priceChanged,
-    void Function(ProductFormEventCurrencyChanged currencyChanged)?
-        currencyChanged,
     void Function(
             ProductFormEventProductDescriptionChanged
                 productDescriptionChanged)?
@@ -684,18 +587,6 @@ abstract class ProductFormEvent {
     } else if (productFormEvent is ProductFormEventWeightUnitChanged) {
       if (weightUnitChanged != null) {
         weightUnitChanged(productFormEvent);
-      } else if (orElse != null) {
-        orElse(productFormEvent);
-      }
-    } else if (productFormEvent is ProductFormEventPriceChanged) {
-      if (priceChanged != null) {
-        priceChanged(productFormEvent);
-      } else if (orElse != null) {
-        orElse(productFormEvent);
-      }
-    } else if (productFormEvent is ProductFormEventCurrencyChanged) {
-      if (currencyChanged != null) {
-        currencyChanged(productFormEvent);
       } else if (orElse != null) {
         orElse(productFormEvent);
       }
@@ -745,9 +636,6 @@ abstract class ProductFormEvent {
         weightNumberChanged,
     R Function(ProductFormEventWeightUnitChanged weightUnitChanged)?
         weightUnitChanged,
-    R Function(ProductFormEventPriceChanged priceChanged)? priceChanged,
-    R Function(ProductFormEventCurrencyChanged currencyChanged)?
-        currencyChanged,
     R Function(
             ProductFormEventProductDescriptionChanged
                 productDescriptionChanged)?
@@ -780,14 +668,6 @@ abstract class ProductFormEvent {
     } else if (productFormEvent is ProductFormEventWeightUnitChanged) {
       return weightUnitChanged != null
           ? weightUnitChanged(productFormEvent)
-          : orElse?.call(productFormEvent);
-    } else if (productFormEvent is ProductFormEventPriceChanged) {
-      return priceChanged != null
-          ? priceChanged(productFormEvent)
-          : orElse?.call(productFormEvent);
-    } else if (productFormEvent is ProductFormEventCurrencyChanged) {
-      return currencyChanged != null
-          ? currencyChanged(productFormEvent)
           : orElse?.call(productFormEvent);
     } else if (productFormEvent is ProductFormEventProductDescriptionChanged) {
       return productDescriptionChanged != null
@@ -916,46 +796,6 @@ class ProductFormEventWeightUnitChanged extends ProductFormEvent
   @override
   List<Object?> get props => [
         weightUnit,
-      ];
-}
-
-/// (([ProductFormEventPriceChanged] : [ProductFormEvent]) priceChanged){[String] price}
-///
-/// with data equality
-class ProductFormEventPriceChanged extends ProductFormEvent
-    with EquatableMixin {
-  const ProductFormEventPriceChanged({
-    required this.price,
-  }) : super._internal();
-
-  final String price;
-
-  @override
-  String toString() => 'ProductFormEvent.priceChanged(price: $price)';
-
-  @override
-  List<Object?> get props => [
-        price,
-      ];
-}
-
-/// (([ProductFormEventCurrencyChanged] : [ProductFormEvent]) currencyChanged){[Currencies] currency}
-///
-/// with data equality
-class ProductFormEventCurrencyChanged extends ProductFormEvent
-    with EquatableMixin {
-  const ProductFormEventCurrencyChanged({
-    required this.currency,
-  }) : super._internal();
-
-  final Currencies currency;
-
-  @override
-  String toString() => 'ProductFormEvent.currencyChanged(currency: $currency)';
-
-  @override
-  List<Object?> get props => [
-        currency,
       ];
 }
 

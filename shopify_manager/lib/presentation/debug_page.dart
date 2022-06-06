@@ -232,48 +232,49 @@ class _DebugPageState extends State<DebugPage> {
                         const SizedBox(
                           height: DebugPage.itemsSpacing,
                         ),
-                        Row(
-                          children: [
-                            Expanded(
-                              child: ShopifyTextFormField(
-                                  fieldName: 'Price',
-                                  showErrorMessages: state.showErrors,
-                                  validator: (_) => state
-                                      .productForm.price.failureOrUnit
-                                      .fold(
-                                          (failure) =>
-                                              failure.stringifyValueFailure(
-                                                  fieldName: 'Price'),
-                                          (_) => null),
-                                  onChanged: (value) {
-                                    context.read<ProductFormBloc>().add(
-                                        ProductFormEvent.priceChanged(
-                                            price: value));
-                                  }),
-                            ),
-                            const SizedBox(
-                              width: DebugPage.itemsSpacing,
-                            ),
-                            SizedBox(
-                              width: 100,
-                              child: ShopifyDropdownMenuButton<Currencies>(
-                                  initalText: 'Choose Currency',
-                                  onChanged: (newValue) {
-                                    context.read<ProductFormBloc>().add(
-                                        ProductFormEvent.currencyChanged(
-                                            currency: newValue));
-                                  },
-                                  initialValue: Currencies.zl,
-                                  items: Currencies.values
-                                      .map((currency) =>
-                                          ShopifyDropdownMenuItem<Currencies>(
-                                            value: currency,
-                                            valueString: currency.stringify,
-                                          ))
-                                      .toList()),
-                            )
-                          ],
-                        ),
+                        // TODO
+                        // Row(
+                        //   children: [
+                        //     Expanded(
+                        //       child: ShopifyTextFormField(
+                        //           fieldName: 'Price',
+                        //           showErrorMessages: state.showErrors,
+                        //           validator: (_) => state
+                        //               .productForm.price.failureOrUnit
+                        //               .fold(
+                        //                   (failure) =>
+                        //                       failure.stringifyValueFailure(
+                        //                           fieldName: 'Price'),
+                        //                   (_) => null),
+                        //           onChanged: (value) {
+                        //             context.read<ProductFormBloc>().add(
+                        //                 ProductFormEvent.priceChanged(
+                        //                     price: value));
+                        //           }),
+                        //     ),
+                        //     const SizedBox(
+                        //       width: DebugPage.itemsSpacing,
+                        //     ),
+                        //     SizedBox(
+                        //       width: 100,
+                        //       child: ShopifyDropdownMenuButton<Currencies>(
+                        //           initalText: 'Choose Currency',
+                        //           onChanged: (newValue) {
+                        //             context.read<ProductFormBloc>().add(
+                        //                 ProductFormEvent.currencyChanged(
+                        //                     currency: newValue));
+                        //           },
+                        //           initialValue: Currencies.zl,
+                        //           items: Currencies.values
+                        //               .map((currency) =>
+                        //                   ShopifyDropdownMenuItem<Currencies>(
+                        //                     value: currency,
+                        //                     valueString: currency.stringify,
+                        //                   ))
+                        //               .toList()),
+                        //     )
+                        //   ],
+                        // ),
                         const SizedBox(
                           height: DebugPage.itemsSpacing,
                         ),

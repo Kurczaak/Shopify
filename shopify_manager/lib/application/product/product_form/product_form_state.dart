@@ -52,7 +52,6 @@ final String id = UniqueId().getOrCrash();
 const String barcode = 'ABC-123-DEF';
 const double weight = 10;
 const String weightUnit = 'gram';
-const double price = 21.37;
 const String currency = 'zl';
 const String category = 'Bread';
 const String name = 'Test Product';
@@ -65,7 +64,6 @@ final tProductForm = ProductForm.fromPrimitives(
     barcode: barcode,
     weight: weight,
     weightUnit: weightUnit,
-    price: price,
     currency: currency,
     category: category,
     name: name,
