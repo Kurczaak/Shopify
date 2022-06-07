@@ -15,7 +15,7 @@ import 'package:flutter/material.dart' as _i14;
 import 'package:shopify_domain/product.dart' as _i15;
 
 import '../debug_dashboard_page.dart' as _i5;
-import '../debug_page.dart' as _i1;
+import '../product/product_form_page.dart' as _i1;
 import '../product/product_searching_screen.dart' as _i6;
 import '../register_shop/location_picker/location_picker_page.dart' as _i9;
 import '../register_shop/logo_picker/logo_picker_page.dart' as _i11;
@@ -33,11 +33,11 @@ class AppRouter extends _i13.RootStackRouter {
 
   @override
   final Map<String, _i13.PageFactory> pagesMap = {
-    DebugRoute.name: (routeData) {
-      final args = routeData.argsAs<DebugRouteArgs>();
+    ProductFormRoute.name: (routeData) {
+      final args = routeData.argsAs<ProductFormRouteArgs>();
       return _i13.MaterialPageX<dynamic>(
           routeData: routeData,
-          child: _i1.DebugPage(
+          child: _i1.ProductFormPage(
               key: args.key, barcode: args.barcode, product: args.product));
     },
     SplashRoute.name: (routeData) {
@@ -92,7 +92,7 @@ class AppRouter extends _i13.RootStackRouter {
 
   @override
   List<_i13.RouteConfig> get routes => [
-        _i13.RouteConfig(DebugRoute.name, path: '/debug-page'),
+        _i13.RouteConfig(ProductFormRoute.name, path: '/product-form-page'),
         _i13.RouteConfig(SplashRoute.name, path: '/splash-page'),
         _i13.RouteConfig(SignInRoute.name, path: '/sign-in-page'),
         _i13.RouteConfig(SignUpRoute.name, path: '/sign-up-page'),
@@ -121,19 +121,20 @@ class AppRouter extends _i13.RootStackRouter {
 }
 
 /// generated route for
-/// [_i1.DebugPage]
-class DebugRoute extends _i13.PageRouteInfo<DebugRouteArgs> {
-  DebugRoute(
+/// [_i1.ProductFormPage]
+class ProductFormRoute extends _i13.PageRouteInfo<ProductFormRouteArgs> {
+  ProductFormRoute(
       {_i14.Key? key, required _i15.Barcode barcode, _i15.Product? product})
-      : super(DebugRoute.name,
-            path: '/debug-page',
-            args: DebugRouteArgs(key: key, barcode: barcode, product: product));
+      : super(ProductFormRoute.name,
+            path: '/product-form-page',
+            args: ProductFormRouteArgs(
+                key: key, barcode: barcode, product: product));
 
-  static const String name = 'DebugRoute';
+  static const String name = 'ProductFormRoute';
 }
 
-class DebugRouteArgs {
-  const DebugRouteArgs({this.key, required this.barcode, this.product});
+class ProductFormRouteArgs {
+  const ProductFormRouteArgs({this.key, required this.barcode, this.product});
 
   final _i14.Key? key;
 
@@ -143,7 +144,7 @@ class DebugRouteArgs {
 
   @override
   String toString() {
-    return 'DebugRouteArgs{key: $key, barcode: $barcode, product: $product}';
+    return 'ProductFormRouteArgs{key: $key, barcode: $barcode, product: $product}';
   }
 }
 

@@ -1,5 +1,6 @@
 import 'package:another_flushbar/flushbar_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:barcode_widget/barcode_widget.dart' as barcodeWidget;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopify_domain/product.dart';
@@ -10,18 +11,18 @@ import 'package:shopify_manager/injection.dart';
 
 import 'package:shopify_presentation/shopify_presentation.dart';
 
-class DebugPage extends StatefulWidget {
+class ProductFormPage extends StatefulWidget {
   final Barcode barcode;
   final Product? product;
-  const DebugPage({Key? key, required this.barcode, this.product})
+  const ProductFormPage({Key? key, required this.barcode, this.product})
       : super(key: key);
   static const double itemsSpacing = 20;
 
   @override
-  State<DebugPage> createState() => _DebugPageState();
+  State<ProductFormPage> createState() => _ProductFormPageState();
 }
 
-class _DebugPageState extends State<DebugPage> {
+class _ProductFormPageState extends State<ProductFormPage> {
   final _productNameController = TextEditingController();
   final _brandNameController = TextEditingController();
   final _weightController = TextEditingController();
@@ -72,6 +73,11 @@ class _DebugPageState extends State<DebugPage> {
           }
         }),
         builder: (context, state) => Scaffold(
+          appBar: ShopifyAppBar(
+            title: 'Register new product',
+            appBar: AppBar(),
+            onTapBack: context.router.pop,
+          ),
           body: Center(
             child: SingleChildScrollView(
               child: Column(
@@ -83,7 +89,7 @@ class _DebugPageState extends State<DebugPage> {
                     child: Column(
                       children: [
                         const SizedBox(
-                          height: DebugPage.itemsSpacing,
+                          height: ProductFormPage.itemsSpacing,
                         ),
                         SizedBox(
                           height: 100,
@@ -94,7 +100,7 @@ class _DebugPageState extends State<DebugPage> {
                           ),
                         ),
                         const SizedBox(
-                          height: DebugPage.itemsSpacing,
+                          height: ProductFormPage.itemsSpacing,
                         ),
                         ShopifyDropdownMenuButton<Categories>(
                             initalText: 'Choose a Category',
@@ -109,7 +115,7 @@ class _DebugPageState extends State<DebugPage> {
                                     valueString: category.stringify))
                                 .toList()),
                         const SizedBox(
-                          height: DebugPage.itemsSpacing,
+                          height: ProductFormPage.itemsSpacing,
                         ),
                         ShopifyTextFormField(
                           controller: _productNameController,
@@ -127,7 +133,7 @@ class _DebugPageState extends State<DebugPage> {
                           },
                         ),
                         const SizedBox(
-                          height: DebugPage.itemsSpacing,
+                          height: ProductFormPage.itemsSpacing,
                         ),
                         ShopifyTextFormField(
                           controller: _brandNameController,
@@ -145,7 +151,7 @@ class _DebugPageState extends State<DebugPage> {
                           },
                         ),
                         const SizedBox(
-                          height: DebugPage.itemsSpacing,
+                          height: ProductFormPage.itemsSpacing,
                         ),
                         Row(
                           children: [
@@ -169,7 +175,7 @@ class _DebugPageState extends State<DebugPage> {
                               ),
                             ),
                             const SizedBox(
-                              width: DebugPage.itemsSpacing,
+                              width: ProductFormPage.itemsSpacing,
                             ),
                             SizedBox(
                               width: 100,
@@ -191,7 +197,7 @@ class _DebugPageState extends State<DebugPage> {
                           ],
                         ),
                         const SizedBox(
-                          height: DebugPage.itemsSpacing,
+                          height: ProductFormPage.itemsSpacing,
                         ),
                         ShopifyTextFormField(
                           fieldName: 'Description',
@@ -210,7 +216,7 @@ class _DebugPageState extends State<DebugPage> {
                           },
                         ),
                         const SizedBox(
-                          height: DebugPage.itemsSpacing,
+                          height: ProductFormPage.itemsSpacing,
                         ),
                         ShopifyTextFormField(
                           controller: _ingredientsController,
@@ -230,7 +236,7 @@ class _DebugPageState extends State<DebugPage> {
                           },
                         ),
                         const SizedBox(
-                          height: DebugPage.itemsSpacing,
+                          height: ProductFormPage.itemsSpacing,
                         ),
                         // TODO
                         // Row(
@@ -276,7 +282,7 @@ class _DebugPageState extends State<DebugPage> {
                         //   ],
                         // ),
                         const SizedBox(
-                          height: DebugPage.itemsSpacing,
+                          height: ProductFormPage.itemsSpacing,
                         ),
                         ShopifyIconTextButton(
                             title: 'Photos',
@@ -302,7 +308,7 @@ class _DebugPageState extends State<DebugPage> {
                             PhotosCarouselSlider.photos(photos.getOrCrash())),
                   ),
                   const SizedBox(
-                    height: DebugPage.itemsSpacing,
+                    height: ProductFormPage.itemsSpacing,
                   ),
                   Padding(
                     padding: const EdgeInsets.all(28.0),
@@ -311,10 +317,9 @@ class _DebugPageState extends State<DebugPage> {
                         height: 60,
                         child: ShopifyPrimaryButton(
                             onPressed: () {
-                              // print('click');
-                              // context
-                              //     .read<ProductFormBloc>()
-                              //     .add(const ProductFormEvent.saved());
+                              context
+                                  .read<ProductFormBloc>()
+                                  .add(const ProductFormEvent.saved());
                             },
                             text: 'Register Now')),
                   )
