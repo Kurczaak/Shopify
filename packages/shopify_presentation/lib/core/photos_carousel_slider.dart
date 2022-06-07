@@ -15,9 +15,6 @@ class PhotosCarouselSlider extends StatefulWidget {
                 url.getOrCrash(),
                 fit: BoxFit.fitWidth,
                 errorBuilder: (_, __, ___) => Image.asset('images/logo.png'),
-                loadingBuilder: (_, __, ___) => const Center(
-                  child: CircularProgressIndicator(),
-                ),
               ))
           .toList()
           .asList(),
