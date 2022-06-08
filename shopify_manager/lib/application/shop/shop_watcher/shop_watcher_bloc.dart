@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
@@ -16,18 +17,22 @@ class ShoppingWatcherBloc
 
   ShoppingWatcherBloc(this._shopRepository)
       : super(const ShoppingWatcherState.initial()) {
-    on<ShoppingWatcherEvent>((event, emit) {
-      event.map(
-        watchAll: (e) async* {
-          emit(const ShoppingWatcherState.loadInProgress());
-          yield* _shopRepository.watchAll().map(
-                (failureOrShops) => failureOrShops.fold(
-                  (f) => ShoppingWatcherState.loadFailure(f),
-                  (shops) => ShoppingWatcherState.loadSuccess(shops),
-                ),
-              );
-        },
-      );
+    on<ShoppingWatcherEvent>((event, emit) async {
+      await event.when(watchAll: () async {
+        emit(const ShoppingWatcherState.loadInProgress());
+        // yield* _shopRepository.watchAll().map(
+        //       (failureOrShops) => failureOrShops.fold(
+        //         (f) => ShoppingWatcherState.loadFailure(f),
+        //         (shops) => ShoppingWatcherState.loadSuccess(shops),
+        //       ),
+        //     );
+      }, watchYours: () async {
+        emit(const ShoppingWatcherState.loadInProgress());
+        await emit.forEach(_shopRepository.watchYourShops(),
+            onData: (Either<ShopFailure, KtList<Shop>> data) => data.fold(
+                (f) => ShoppingWatcherState.loadFailure(f),
+                (shopList) => ShoppingWatcherState.loadSuccess(shopList)));
+      });
     });
   }
 }
