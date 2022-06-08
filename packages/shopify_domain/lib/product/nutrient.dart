@@ -124,6 +124,20 @@ class Fats extends NutrientsGroup {
   final MonosaturatedFat monosaturatedFat;
   final PolysaturatedFat polysaturatedFat;
 
+  Fats copyWith({
+    Fat? fat,
+    SaturatedFat? saturatedFat,
+    TransFat? transFat,
+    MonosaturatedFat? monosaturatedFat,
+    PolysaturatedFat? polysaturatedFat,
+  }) =>
+      Fats._(
+          fat: fat ?? this.fat,
+          saturatedFat: saturatedFat ?? this.saturatedFat,
+          transFat: transFat ?? this.transFat,
+          monosaturatedFat: monosaturatedFat ?? this.monosaturatedFat,
+          polysaturatedFat: polysaturatedFat ?? this.polysaturatedFat);
+
   Fats._(
       {required this.fat,
       required this.saturatedFat,
@@ -134,6 +148,30 @@ class Fats extends NutrientsGroup {
             fat,
             KtList<Fat>.from(
                 [saturatedFat, transFat, monosaturatedFat, polysaturatedFat]));
+
+  factory Fats.fromWeightsInGrams({
+    double? fat,
+    double? saturatedFat,
+    double? transFat,
+    double? monosaturatedFat,
+    double? polysaturatedFat,
+  }) =>
+      Fats._(
+          fat: Fat(Weight(
+              weight: NonnegativeNumber(fat ?? 0),
+              weightUnit: WeightUnit(WeightUnits.gram))),
+          saturatedFat: SaturatedFat(Weight(
+              weight: NonnegativeNumber(saturatedFat ?? 0),
+              weightUnit: WeightUnit(WeightUnits.gram))),
+          transFat: TransFat(Weight(
+              weight: NonnegativeNumber(transFat ?? 0),
+              weightUnit: WeightUnit(WeightUnits.gram))),
+          monosaturatedFat: MonosaturatedFat(Weight(
+              weight: NonnegativeNumber(monosaturatedFat ?? 0),
+              weightUnit: WeightUnit(WeightUnits.gram))),
+          polysaturatedFat: PolysaturatedFat(Weight(
+              weight: NonnegativeNumber(polysaturatedFat ?? 0),
+              weightUnit: WeightUnit(WeightUnits.gram))));
 
   factory Fats({
     Fat? fat,
@@ -208,6 +246,22 @@ class Proteins extends NutrientsGroup {
     );
   }
 
+  factory Proteins.fromWeightsInGrams({
+    double? protein,
+    double? animalProtein,
+    double? plantProtein,
+  }) =>
+      Proteins._(
+          protein: Protein(Weight(
+              weight: NonnegativeNumber(protein ?? 0),
+              weightUnit: WeightUnit(WeightUnits.gram))),
+          animalProtein: AnimalProtein(Weight(
+              weight: NonnegativeNumber(animalProtein ?? 0),
+              weightUnit: WeightUnit(WeightUnits.gram))),
+          plantProtein: PlantProtein(Weight(
+              weight: NonnegativeNumber(plantProtein ?? 0),
+              weightUnit: WeightUnit(WeightUnits.gram))));
+
   factory Proteins.zero() => Proteins(
         protein: Protein.zero(),
         animalProtein: AnimalProtein.zero(),
@@ -254,6 +308,16 @@ class Carbohydrates extends NutrientsGroup {
         sugar: group.subNutrients.first() as Sugar);
   }
 
+  factory Carbohydrates.fromWeightsInGrams(
+          {double? carbohydrate, double? sugar}) =>
+      Carbohydrates(
+          carbohydrate: Carbohydrate(Weight(
+              weight: NonnegativeNumber(carbohydrate ?? 0),
+              weightUnit: WeightUnit(WeightUnits.gram))),
+          sugar: Sugar(Weight(
+              weight: NonnegativeNumber(sugar ?? 0),
+              weightUnit: WeightUnit(WeightUnits.gram))));
+
   factory Carbohydrates.zero() =>
       Carbohydrates(carbohydrate: Carbohydrate.zero(), sugar: Sugar.zero());
 }
@@ -269,10 +333,42 @@ class NutrientFacts extends Equatable {
       proteins.failureOrUnit
           .andThen(fats.failureOrUnit.andThen(carbohydrates.failureOrUnit));
 
-  const NutrientFacts(this.proteins, this.fats, this.carbohydrates);
+  const NutrientFacts(
+      {required this.proteins,
+      required this.fats,
+      required this.carbohydrates});
 
-  factory NutrientFacts.empty() =>
-      NutrientFacts(Proteins.zero(), Fats.zero(), Carbohydrates.zero());
+  factory NutrientFacts.empty() => NutrientFacts(
+      proteins: Proteins.zero(),
+      fats: Fats.zero(),
+      carbohydrates: Carbohydrates.zero());
+
+  factory NutrientFacts.fromWeightsIngrams({
+    double? fat,
+    double? saturatedFat,
+    double? transFat,
+    double? monosaturatedFat,
+    double? polysaturatedFat,
+    double? protein,
+    double? animalProtein,
+    double? plantProtein,
+    double? carbohydrate,
+    double? sugar,
+  }) =>
+      NutrientFacts(
+        fats: Fats.fromWeightsInGrams(
+            fat: fat,
+            monosaturatedFat: monosaturatedFat,
+            polysaturatedFat: polysaturatedFat,
+            saturatedFat: saturatedFat,
+            transFat: transFat),
+        proteins: Proteins.fromWeightsInGrams(
+            protein: protein,
+            plantProtein: plantProtein,
+            animalProtein: animalProtein),
+        carbohydrates: Carbohydrates.fromWeightsInGrams(
+            carbohydrate: carbohydrate, sugar: sugar),
+      );
 
   @override
   List<Object> get props => [proteins, fats, carbohydrates];
