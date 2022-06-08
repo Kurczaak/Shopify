@@ -19,38 +19,32 @@ mixin _$ShoppingWatcherEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() watchAll,
-    required TResult Function() watchYours,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? watchAll,
-    TResult Function()? watchYours,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? watchAll,
-    TResult Function()? watchYours,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_WatchAllStarted value) watchAll,
-    required TResult Function(_WatchYours value) watchYours,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_WatchAllStarted value)? watchAll,
-    TResult Function(_WatchYours value)? watchYours,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_WatchAllStarted value)? watchAll,
-    TResult Function(_WatchYours value)? watchYours,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -115,7 +109,6 @@ class _$_WatchAllStarted implements _WatchAllStarted {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() watchAll,
-    required TResult Function() watchYours,
   }) {
     return watchAll();
   }
@@ -124,7 +117,6 @@ class _$_WatchAllStarted implements _WatchAllStarted {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? watchAll,
-    TResult Function()? watchYours,
   }) {
     return watchAll?.call();
   }
@@ -133,7 +125,6 @@ class _$_WatchAllStarted implements _WatchAllStarted {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? watchAll,
-    TResult Function()? watchYours,
     required TResult orElse(),
   }) {
     if (watchAll != null) {
@@ -146,7 +137,6 @@ class _$_WatchAllStarted implements _WatchAllStarted {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_WatchAllStarted value) watchAll,
-    required TResult Function(_WatchYours value) watchYours,
   }) {
     return watchAll(this);
   }
@@ -155,7 +145,6 @@ class _$_WatchAllStarted implements _WatchAllStarted {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_WatchAllStarted value)? watchAll,
-    TResult Function(_WatchYours value)? watchYours,
   }) {
     return watchAll?.call(this);
   }
@@ -164,7 +153,6 @@ class _$_WatchAllStarted implements _WatchAllStarted {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_WatchAllStarted value)? watchAll,
-    TResult Function(_WatchYours value)? watchYours,
     required TResult orElse(),
   }) {
     if (watchAll != null) {
@@ -176,111 +164,6 @@ class _$_WatchAllStarted implements _WatchAllStarted {
 
 abstract class _WatchAllStarted implements ShoppingWatcherEvent {
   const factory _WatchAllStarted() = _$_WatchAllStarted;
-}
-
-/// @nodoc
-abstract class _$$_WatchYoursCopyWith<$Res> {
-  factory _$$_WatchYoursCopyWith(
-          _$_WatchYours value, $Res Function(_$_WatchYours) then) =
-      __$$_WatchYoursCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$_WatchYoursCopyWithImpl<$Res>
-    extends _$ShoppingWatcherEventCopyWithImpl<$Res>
-    implements _$$_WatchYoursCopyWith<$Res> {
-  __$$_WatchYoursCopyWithImpl(
-      _$_WatchYours _value, $Res Function(_$_WatchYours) _then)
-      : super(_value, (v) => _then(v as _$_WatchYours));
-
-  @override
-  _$_WatchYours get _value => super._value as _$_WatchYours;
-}
-
-/// @nodoc
-
-class _$_WatchYours implements _WatchYours {
-  const _$_WatchYours();
-
-  @override
-  String toString() {
-    return 'ShoppingWatcherEvent.watchYours()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_WatchYours);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() watchAll,
-    required TResult Function() watchYours,
-  }) {
-    return watchYours();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? watchAll,
-    TResult Function()? watchYours,
-  }) {
-    return watchYours?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? watchAll,
-    TResult Function()? watchYours,
-    required TResult orElse(),
-  }) {
-    if (watchYours != null) {
-      return watchYours();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_WatchAllStarted value) watchAll,
-    required TResult Function(_WatchYours value) watchYours,
-  }) {
-    return watchYours(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_WatchAllStarted value)? watchAll,
-    TResult Function(_WatchYours value)? watchYours,
-  }) {
-    return watchYours?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_WatchAllStarted value)? watchAll,
-    TResult Function(_WatchYours value)? watchYours,
-    required TResult orElse(),
-  }) {
-    if (watchYours != null) {
-      return watchYours(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _WatchYours implements ShoppingWatcherEvent {
-  const factory _WatchYours() = _$_WatchYours;
 }
 
 /// @nodoc

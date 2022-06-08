@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:shopify_manager/presentation/debug/debug.dart';
 import 'package:shopify_manager/presentation/debug_dashboard_page.dart';
 import 'package:shopify_manager/presentation/product/product_form_page.dart';
 import 'package:shopify_manager/presentation/product/product_searching_screen.dart';
@@ -16,9 +15,6 @@ import 'package:shopify_manager/presentation/splash/splash_page.dart';
 @MaterialAutoRouter(
   replaceInRouteName: 'Page,Route',
   routes: <AutoRoute>[
-    AutoRoute(
-      page: DebugPage,
-    ),
     AutoRoute(
       page: ProductFormPage,
     ),

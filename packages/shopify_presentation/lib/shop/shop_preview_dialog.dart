@@ -6,12 +6,12 @@ import 'package:shopify_presentation/shop/shop_recap_column.dart';
 class ShopPreviewDialog extends StatelessWidget {
   final Shop shop;
   final void Function()? onCancel;
-  final void Function()? onConfirm;
+  final void Function() onConfirm;
   const ShopPreviewDialog({
     Key? key,
     required this.shop,
     this.onCancel,
-    this.onConfirm,
+    required this.onConfirm,
   }) : super(key: key);
 
   @override
@@ -42,18 +42,17 @@ class ShopPreviewDialog extends StatelessWidget {
       ),
       actionsAlignment: MainAxisAlignment.center,
       actions: [
-        if (onConfirm != null)
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(shape: const CircleBorder()),
-            onPressed: onConfirm,
-            child: const Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Icon(
-                Icons.shopping_basket_rounded,
-                size: 50,
-              ),
+        ElevatedButton(
+          style: ElevatedButton.styleFrom(shape: const CircleBorder()),
+          onPressed: () {},
+          child: const Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Icon(
+              Icons.shopping_basket_rounded,
+              size: 50,
             ),
-          )
+          ),
+        )
       ],
     );
   }

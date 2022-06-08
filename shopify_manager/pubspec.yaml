@@ -30,7 +30,6 @@ dependencies:
   another_flushbar: ^1.10.29
   auto_route: ^4.0.1
   barcode_widget: ^2.0.2
-  carousel_slider: ^4.1.1
   dartz: ^0.10.1
   flutter:
     sdk: flutter
@@ -42,7 +41,6 @@ dependencies:
   mobile_scanner: ^1.1.1
   responsive_framework: ^0.2.0
   sealed_annotations: ^1.13.0
-  selectable_container: ^1.0.2
   shopify_domain:
     path: ../packages/shopify_domain
   shopify_presentation:

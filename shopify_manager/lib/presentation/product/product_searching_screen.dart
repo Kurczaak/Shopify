@@ -26,17 +26,9 @@ class ProductSearchingScreen extends StatelessWidget {
               () => context.router.replace(
                 ProductFormRoute(barcode: barcode),
               ),
-              (product) {
-                if (state.asLoaded.productExists) {
-                  context.router.replace(
-                    DebugRoute(product: product),
-                  );
-                } else {
-                  context.router.replace(
-                    ProductFormRoute(barcode: barcode, product: product),
-                  );
-                }
-              },
+              (product) => context.router.replace(
+                ProductFormRoute(barcode: barcode, product: product),
+              ),
             );
           }
         }),

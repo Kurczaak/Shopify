@@ -63,9 +63,8 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       productRepository: get<_i14.IProductRepository>(),
       shopRepository: get<_i16.IShopRepository>(),
       authFacade: get<_i3.IAuthFacade>()));
-  gh.factory<_i21.SearchProductBloc>(() => _i21.SearchProductBloc(
-      openFoodFactsRepository: get<_i12.IOpenFoodFactsRepository>(),
-      shopifyProductsRepository: get<_i14.IProductRepository>()));
+  gh.factory<_i21.SearchProductBloc>(
+      () => _i21.SearchProductBloc(get<_i12.IOpenFoodFactsRepository>()));
   gh.lazySingleton<_i22.ShopFormBloc>(() => _i22.ShopFormBloc());
   gh.lazySingleton<_i23.ShopLocationPickerBloc>(
       () => _i23.ShopLocationPickerBloc());
