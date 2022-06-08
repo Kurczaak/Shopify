@@ -170,7 +170,7 @@ packages:
     source: hosted
     version: "1.0.1"
   carousel_slider:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: carousel_slider
       url: "https://pub.dartlang.org"
@@ -1059,6 +1059,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.13.0"
+  selectable_container:
+    dependency: "direct main"
+    description:
+      name: selectable_container
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.2"
   shelf:
     dependency: transitive
     description:
