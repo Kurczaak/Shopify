@@ -3,7 +3,7 @@ import 'package:dartz/dartz.dart';
 import 'package:shopify_domain/core/value_objects.dart';
 import 'package:shopify_domain/product/price.dart';
 import 'package:shopify_domain/product/product_categories.dart';
-import 'package:shopify_domain/core/value_validators.dart';
+//import 'package:shopify_domain/core/value_validators.dart';
 import 'package:shopify_domain/product/value_validators.dart';
 import 'package:shopify_domain/product/weight.dart';
 
@@ -14,15 +14,7 @@ class ProductName extends Name {
   @override
   final Either<ValueFailure<String>, String> value;
   factory ProductName(String input) {
-    return ProductName._(
-      validateStringNotEmpty(input).flatMap(
-        (passedValue) => validateMaxStringLength(passedValue, maxLength)
-            .flatMap((passedValue) => validateMinStringLength(
-                passedValue, minLength,
-                countWhiteChars: false))
-            .flatMap(validateSingleLine),
-      ),
-    );
+    return ProductName._(validatetName(input, minLength, maxLength));
   }
   const ProductName._(this.value);
 }
@@ -34,13 +26,7 @@ class BrandName extends Name {
   @override
   final Either<ValueFailure<String>, String> value;
   factory BrandName(String input) {
-    return BrandName._(
-      validateMaxStringLength(input, maxLength)
-          .flatMap((passedValue) => validateMinStringLength(
-              passedValue, minLength,
-              countWhiteChars: false))
-          .flatMap(validateSingleLine),
-    );
+    return BrandName._(validatetName(input, minLength, maxLength));
   }
   const BrandName._(this.value);
 }
@@ -51,10 +37,8 @@ class ProductDescription extends ValueObject<String> {
   @override
   final Either<ValueFailure<String>, String> value;
   factory ProductDescription(String input) {
-    return ProductDescription._(validateMaxStringLength(input, maxLength)
-        .flatMap((passedValue) => validateMinStringLength(
-            passedValue, minLength,
-            countWhiteChars: false)));
+    return ProductDescription._(
+        validatetDescription(input, minLength, maxLength));
   }
   const ProductDescription._(this.value);
 }
@@ -100,7 +84,7 @@ class Barcode extends ValueObject<String> {
   @override
   final Either<ValueFailure<String>, String> value;
   factory Barcode(String input) {
-    return Barcode._(validateSingleLine(input).flatMap(validateStringNotEmpty));
+    return Barcode._(validateBarcode(input));
   }
 
   const Barcode._(this.value);

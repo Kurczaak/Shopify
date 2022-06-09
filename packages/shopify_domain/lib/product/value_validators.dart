@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:shopify_domain/core/value_validators.dart';
 import 'package:shopify_domain/product/price.dart';
 import 'package:shopify_domain/product/product_categories.dart';
 import 'package:shopify_domain/product/weight.dart';
@@ -42,4 +43,24 @@ Either<ValueFailure<Currencies>, Currencies> validateCurrencyFromString(
 
   return left(ValueFailure.product(
       ProductValueFailure.incorrectCurrencyString(failedValue: input)));
+}
+
+Either<ValueFailure<String>, String> validatetName(
+    String input, int minLength, int maxLength) {
+  return validateStringNotEmpty(input)
+      .flatMap((passedValue) => validateMaxStringLength(passedValue, maxLength)
+          .flatMap((passedValue) => validateMinStringLength(
+              passedValue, minLength,
+              countWhiteChars: false)))
+      .flatMap(validateSingleLine);
+}
+
+Either<ValueFailure<String>, String> validatetDescription(
+    String input, int minLength, int maxLength) {
+  return validateMaxStringLength(input, maxLength).flatMap((passedValue) =>
+      validateMinStringLength(passedValue, minLength, countWhiteChars: false));
+}
+
+Either<ValueFailure<String>, String> validateBarcode(String input) {
+  return validateSingleLine(input).flatMap(validateStringNotEmpty);
 }
