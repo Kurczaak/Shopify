@@ -308,7 +308,8 @@ void main() {
       fats = Fats(fat: Fat(correctWeight));
       proteins = Proteins(protein: Protein(correctWeight));
       carbohydrates = Carbohydrates(carbohydrate: Carbohydrate(correctWeight));
-      nutrientFacts = NutrientFacts(proteins, fats, carbohydrates);
+      nutrientFacts = NutrientFacts(
+          proteins: proteins, fats: fats, carbohydrates: carbohydrates);
     });
 
     test('should return correct calories', () {
@@ -322,13 +323,15 @@ void main() {
     });
     test('failureOrUnit should return a failure given incorrect fats', () {
       fats = Fats(fat: Fat(incorrectWeight));
-      nutrientFacts = NutrientFacts(proteins, fats, carbohydrates);
+      nutrientFacts = NutrientFacts(
+          proteins: proteins, fats: fats, carbohydrates: carbohydrates);
       expect(nutrientFacts.failureOrUnit,
           isA<Left<ValueFailure<dynamic>, Unit>>());
     });
     test('failureOrUnit should return a failure given incorrect proteins', () {
       proteins = Proteins(protein: Protein(incorrectWeight));
-      nutrientFacts = NutrientFacts(proteins, fats, carbohydrates);
+      nutrientFacts = NutrientFacts(
+          proteins: proteins, fats: fats, carbohydrates: carbohydrates);
       expect(nutrientFacts.failureOrUnit,
           isA<Left<ValueFailure<dynamic>, Unit>>());
     });
@@ -337,7 +340,8 @@ void main() {
         () {
       carbohydrates =
           Carbohydrates(carbohydrate: Carbohydrate(incorrectWeight));
-      nutrientFacts = NutrientFacts(proteins, fats, carbohydrates);
+      nutrientFacts = NutrientFacts(
+          proteins: proteins, fats: fats, carbohydrates: carbohydrates);
       expect(nutrientFacts.failureOrUnit,
           isA<Left<ValueFailure<dynamic>, Unit>>());
     });

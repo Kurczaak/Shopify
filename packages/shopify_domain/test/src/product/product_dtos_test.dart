@@ -111,7 +111,8 @@ void main() {
   const carbohydratesDto =
       CarbohydratesDto(carbohydrate: tCarbohydrateDto, sugar: tSugarDto);
 
-  final nutrientFacts = NutrientFacts(proteins, fats, carbohydrates);
+  final nutrientFacts = NutrientFacts(
+      proteins: proteins, fats: fats, carbohydrates: carbohydrates);
   const nutrientFactsDto = NutrientFactsDto(
       fats: fatsDto, proteins: proteinsDto, carbohydrates: carbohydratesDto);
 
