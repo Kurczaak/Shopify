@@ -8,6 +8,7 @@ import 'package:shopify_manager/application/product/product_form/product_form_bl
 import 'package:shopify_domain/core.dart';
 
 import 'package:shopify_manager/injection.dart';
+import 'package:shopify_manager/presentation/product/widgets/nutrient_facts_form.dart';
 
 import 'package:shopify_presentation/shopify_presentation.dart';
 
@@ -27,6 +28,7 @@ class _ProductFormPageState extends State<ProductFormPage> {
   final _brandNameController = TextEditingController();
   final _weightController = TextEditingController();
   final _ingredientsController = TextEditingController();
+  NutrientFacts? facts;
 
   @override
   Widget build(BuildContext context) {
@@ -50,26 +52,35 @@ class _ProductFormPageState extends State<ProductFormPage> {
           if (product.ingredients.isValid()) {
             _ingredientsController.text = product.ingredients.getOrCrash();
           }
+          facts = product.nutrientFacts;
         }
 
         return bloc;
       },
       child: BlocConsumer<ProductFormBloc, ProductFormState>(
+        listenWhen: (previous, current) {
+          print(previous.showErrors);
+          print(current.showErrors);
+          if (previous.showErrors != current.showErrors) {
+            return true;
+          } else {
+            return false;
+          }
+        },
         listener: ((context, state) {
           if (state.showErrors) {
-            state.productForm.photos.fold(
-                (urls) => urls.failureOrUnit.fold(
-                    (failure) => FlushbarHelper.createError(
-                            message: failure.stringifyValueFailure(
-                                fieldName: 'Photos URLs'))
-                        .show(context),
-                    (_) => null),
-                (files) => files.failureOrUnit.fold(
-                    (failure) => FlushbarHelper.createError(
-                            message: failure.stringifyValueFailure(
-                                fieldName: 'Photos'))
-                        .show(context),
-                    (_) => null));
+            print(state.productForm.failureOption);
+            state.productForm.failureOption.fold(
+                () => null,
+                (failure) => failure.whenOrNull(
+                      product: (_) => FlushbarHelper.createError(
+                              message: failure.stringifyValueFailure())
+                          .show(context),
+                      core: (_) => FlushbarHelper.createError(
+                              message: failure.stringifyValueFailure(
+                                  fieldName: 'photos'))
+                          .show(context),
+                    ));
           }
         }),
         builder: (context, state) => Scaffold(
@@ -127,7 +138,11 @@ class _ProductFormPageState extends State<ProductFormPage> {
                             height: ProductFormPage.itemsSpacing,
                           ),
                           ShopifyDropdownMenuButton<Categories>(
-                              initalText: 'Choose a Category',
+                              error: state.showErrors
+                                  ? state.productForm.category.failureOption
+                                      .fold(() => false, (_) => true)
+                                  : false,
+                              initalText: 'Choose a category',
                               onChanged: (newValue) {
                                 context.read<ProductFormBloc>().add(
                                     ProductFormEvent.categoryChanged(
@@ -244,6 +259,10 @@ class _ProductFormPageState extends State<ProductFormPage> {
                           const SizedBox(
                             height: ProductFormPage.itemsSpacing,
                           ),
+
+                          NutrientFactsForm(
+                              facts: facts, onNutrientsChange: (_) {}),
+                          const SizedBox(height: ProductFormPage.itemsSpacing),
                           ShopifyTextFormField(
                             controller: _ingredientsController,
                             fieldName: 'Ingredients',

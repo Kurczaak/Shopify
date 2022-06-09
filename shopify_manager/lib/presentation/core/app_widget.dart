@@ -42,7 +42,7 @@ class AppWidget extends StatelessWidget {
             //decorationColor: LightThemeColors.primaryDarkColor,
           ),
           backgroundColor: LightThemeColors.background,
-          colorScheme: const ColorScheme(
+          colorScheme: ColorScheme(
             brightness: Brightness.light,
             background: LightThemeColors.background,
             onBackground: LightThemeColors.primaryDarkColor,
@@ -53,7 +53,7 @@ class AppWidget extends StatelessWidget {
             error: LightThemeColors.errorColor,
             onError: LightThemeColors.iconsColor,
             surface: LightThemeColors.iconsColor,
-            onSurface: LightThemeColors.secondaryDarkColor,
+            onSurface: LightThemeColors.secondaryDarkColor.withOpacity(.5),
             outline: LightThemeColors.primaryDarkColor,
             inversePrimary: LightThemeColors.disabledColor,
           ),

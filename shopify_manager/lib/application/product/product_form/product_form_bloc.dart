@@ -107,6 +107,7 @@ class ProductFormBloc extends Bloc<ProductFormEvent, ProductFormState> {
           });
         },
         saved: () async {
+          emit(state.copyWith(showErrors: false));
           await state.productForm.failureOption.fold(() async {
             emit(ProductFormState.loading(
                 productForm: state.productForm,

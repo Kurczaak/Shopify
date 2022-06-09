@@ -24,7 +24,9 @@ class ProductSearchingScreen extends StatelessWidget {
           if (state.isLoaded) {
             state.asLoaded.productOption.fold(
               () => context.router.replace(
-                ProductFormRoute(barcode: barcode),
+                ProductFormRoute(
+                    barcode: barcode,
+                    product: Product.empty().copyWith(barcode: barcode)),
               ),
               (product) {
                 if (state.asLoaded.productExists) {
