@@ -267,6 +267,15 @@ class Proteins extends NutrientsGroup {
         animalProtein: AnimalProtein.zero(),
         plantProtein: PlantProtein.zero(),
       );
+
+  Proteins copyWith(
+          {Protein? protein,
+          AnimalProtein? animalProtein,
+          PlantProtein? plantProtein}) =>
+      Proteins._(
+          protein: protein ?? this.protein,
+          animalProtein: animalProtein ?? this.animalProtein,
+          plantProtein: plantProtein ?? this.plantProtein);
 }
 
 //=================Carbohydrates==================
@@ -318,6 +327,15 @@ class Carbohydrates extends NutrientsGroup {
               weight: NonnegativeNumber(sugar ?? 0),
               weightUnit: WeightUnit(WeightUnits.gram))));
 
+  Carbohydrates copyWith({
+    Carbohydrate? carbohydrate,
+    Sugar? sugar,
+  }) =>
+      Carbohydrates._(
+        carbohydrate: carbohydrate ?? this.carbohydrate,
+        sugar: sugar ?? this.sugar,
+      );
+
   factory Carbohydrates.zero() =>
       Carbohydrates(carbohydrate: Carbohydrate.zero(), sugar: Sugar.zero());
 }
@@ -342,6 +360,14 @@ class NutrientFacts extends Equatable {
       proteins: Proteins.zero(),
       fats: Fats.zero(),
       carbohydrates: Carbohydrates.zero());
+
+  NutrientFacts copyWith(
+          {Proteins? proteins, Fats? fats, Carbohydrates? carbohydrates}) =>
+      NutrientFacts(
+        carbohydrates: carbohydrates ?? this.carbohydrates,
+        fats: fats ?? this.fats,
+        proteins: proteins ?? this.proteins,
+      );
 
   factory NutrientFacts.fromWeightsIngrams({
     double? fat,

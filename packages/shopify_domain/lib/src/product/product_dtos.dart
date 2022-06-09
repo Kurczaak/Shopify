@@ -279,7 +279,9 @@ class NutrientFactsDto with _$NutrientFactsDto {
 
   NutrientFacts toDomain() {
     return NutrientFacts(
-        proteins.toDomain(), fats.toDomain(), carbohydrates.toDomain());
+        proteins: proteins.toDomain(),
+        fats: fats.toDomain(),
+        carbohydrates: carbohydrates.toDomain());
   }
 
   factory NutrientFactsDto.fromJson(Map<String, dynamic> json) =>
