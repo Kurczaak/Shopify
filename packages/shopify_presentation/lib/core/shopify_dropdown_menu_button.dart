@@ -5,11 +5,13 @@ class ShopifyDropdownMenuButton<T> extends StatefulWidget {
   final T? initialValue;
   final void Function(T value) onChanged;
   final List<ShopifyDropdownMenuItem<T>> items;
+  final bool error;
   const ShopifyDropdownMenuButton(
       {Key? key,
       required this.initalText,
       required this.onChanged,
       required this.items,
+      this.error = false,
       this.initialValue})
       : super(key: key);
 
@@ -33,7 +35,9 @@ class _ShopifyDropdownMenuButtonState<T>
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(100),
           border: Border.all(
-              color: Theme.of(context).colorScheme.outline,
+              color: widget.error
+                  ? Theme.of(context).errorColor
+                  : Theme.of(context).colorScheme.outline,
               width: 1,
               style: BorderStyle.solid)),
       child: Padding(
@@ -43,7 +47,12 @@ class _ShopifyDropdownMenuButtonState<T>
             underline: Container(),
             hint: Text(
               widget.initalText,
-              style: Theme.of(context).textTheme.bodyText1,
+              style: widget.error
+                  ? Theme.of(context)
+                      .textTheme
+                      .bodyText1
+                      ?.copyWith(color: Theme.of(context).errorColor)
+                  : Theme.of(context).textTheme.bodyText1,
             ),
             value: _currentValue,
             items: widget.items,
