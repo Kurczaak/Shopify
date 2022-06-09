@@ -24,7 +24,7 @@ mixin _$ProductValueFailure<T> {
     required TResult Function(ValueFailure<dynamic> failure) incorrectId,
     required TResult Function(ValueFailure<dynamic> failure) incorrectWeight,
     required TResult Function(ValueFailure<dynamic> failure) incorrectNutrients,
-    required TResult Function(ValueFailure<dynamic> failure) incorrectCategory,
+    required TResult Function() incorrectCategory,
     required TResult Function(ValueFailure<dynamic> failure) incorrectBrandName,
     required TResult Function(ValueFailure<dynamic> failure)
         incorrectDescription,
@@ -44,7 +44,7 @@ mixin _$ProductValueFailure<T> {
     TResult Function(ValueFailure<dynamic> failure)? incorrectId,
     TResult Function(ValueFailure<dynamic> failure)? incorrectWeight,
     TResult Function(ValueFailure<dynamic> failure)? incorrectNutrients,
-    TResult Function(ValueFailure<dynamic> failure)? incorrectCategory,
+    TResult Function()? incorrectCategory,
     TResult Function(ValueFailure<dynamic> failure)? incorrectBrandName,
     TResult Function(ValueFailure<dynamic> failure)? incorrectDescription,
     TResult Function(ValueFailure<dynamic> failure)? incorrectIngredients,
@@ -62,7 +62,7 @@ mixin _$ProductValueFailure<T> {
     TResult Function(ValueFailure<dynamic> failure)? incorrectId,
     TResult Function(ValueFailure<dynamic> failure)? incorrectWeight,
     TResult Function(ValueFailure<dynamic> failure)? incorrectNutrients,
-    TResult Function(ValueFailure<dynamic> failure)? incorrectCategory,
+    TResult Function()? incorrectCategory,
     TResult Function(ValueFailure<dynamic> failure)? incorrectBrandName,
     TResult Function(ValueFailure<dynamic> failure)? incorrectDescription,
     TResult Function(ValueFailure<dynamic> failure)? incorrectIngredients,
@@ -241,7 +241,7 @@ class _$IncorrectProductName<T> implements IncorrectProductName<T> {
     required TResult Function(ValueFailure<dynamic> failure) incorrectId,
     required TResult Function(ValueFailure<dynamic> failure) incorrectWeight,
     required TResult Function(ValueFailure<dynamic> failure) incorrectNutrients,
-    required TResult Function(ValueFailure<dynamic> failure) incorrectCategory,
+    required TResult Function() incorrectCategory,
     required TResult Function(ValueFailure<dynamic> failure) incorrectBrandName,
     required TResult Function(ValueFailure<dynamic> failure)
         incorrectDescription,
@@ -264,7 +264,7 @@ class _$IncorrectProductName<T> implements IncorrectProductName<T> {
     TResult Function(ValueFailure<dynamic> failure)? incorrectId,
     TResult Function(ValueFailure<dynamic> failure)? incorrectWeight,
     TResult Function(ValueFailure<dynamic> failure)? incorrectNutrients,
-    TResult Function(ValueFailure<dynamic> failure)? incorrectCategory,
+    TResult Function()? incorrectCategory,
     TResult Function(ValueFailure<dynamic> failure)? incorrectBrandName,
     TResult Function(ValueFailure<dynamic> failure)? incorrectDescription,
     TResult Function(ValueFailure<dynamic> failure)? incorrectIngredients,
@@ -285,7 +285,7 @@ class _$IncorrectProductName<T> implements IncorrectProductName<T> {
     TResult Function(ValueFailure<dynamic> failure)? incorrectId,
     TResult Function(ValueFailure<dynamic> failure)? incorrectWeight,
     TResult Function(ValueFailure<dynamic> failure)? incorrectNutrients,
-    TResult Function(ValueFailure<dynamic> failure)? incorrectCategory,
+    TResult Function()? incorrectCategory,
     TResult Function(ValueFailure<dynamic> failure)? incorrectBrandName,
     TResult Function(ValueFailure<dynamic> failure)? incorrectDescription,
     TResult Function(ValueFailure<dynamic> failure)? incorrectIngredients,
@@ -473,7 +473,7 @@ class _$IncorrectBarcode<T> implements IncorrectBarcode<T> {
     required TResult Function(ValueFailure<dynamic> failure) incorrectId,
     required TResult Function(ValueFailure<dynamic> failure) incorrectWeight,
     required TResult Function(ValueFailure<dynamic> failure) incorrectNutrients,
-    required TResult Function(ValueFailure<dynamic> failure) incorrectCategory,
+    required TResult Function() incorrectCategory,
     required TResult Function(ValueFailure<dynamic> failure) incorrectBrandName,
     required TResult Function(ValueFailure<dynamic> failure)
         incorrectDescription,
@@ -496,7 +496,7 @@ class _$IncorrectBarcode<T> implements IncorrectBarcode<T> {
     TResult Function(ValueFailure<dynamic> failure)? incorrectId,
     TResult Function(ValueFailure<dynamic> failure)? incorrectWeight,
     TResult Function(ValueFailure<dynamic> failure)? incorrectNutrients,
-    TResult Function(ValueFailure<dynamic> failure)? incorrectCategory,
+    TResult Function()? incorrectCategory,
     TResult Function(ValueFailure<dynamic> failure)? incorrectBrandName,
     TResult Function(ValueFailure<dynamic> failure)? incorrectDescription,
     TResult Function(ValueFailure<dynamic> failure)? incorrectIngredients,
@@ -517,7 +517,7 @@ class _$IncorrectBarcode<T> implements IncorrectBarcode<T> {
     TResult Function(ValueFailure<dynamic> failure)? incorrectId,
     TResult Function(ValueFailure<dynamic> failure)? incorrectWeight,
     TResult Function(ValueFailure<dynamic> failure)? incorrectNutrients,
-    TResult Function(ValueFailure<dynamic> failure)? incorrectCategory,
+    TResult Function()? incorrectCategory,
     TResult Function(ValueFailure<dynamic> failure)? incorrectBrandName,
     TResult Function(ValueFailure<dynamic> failure)? incorrectDescription,
     TResult Function(ValueFailure<dynamic> failure)? incorrectIngredients,
@@ -703,7 +703,7 @@ class _$IncorrectId<T> implements IncorrectId<T> {
     required TResult Function(ValueFailure<dynamic> failure) incorrectId,
     required TResult Function(ValueFailure<dynamic> failure) incorrectWeight,
     required TResult Function(ValueFailure<dynamic> failure) incorrectNutrients,
-    required TResult Function(ValueFailure<dynamic> failure) incorrectCategory,
+    required TResult Function() incorrectCategory,
     required TResult Function(ValueFailure<dynamic> failure) incorrectBrandName,
     required TResult Function(ValueFailure<dynamic> failure)
         incorrectDescription,
@@ -726,7 +726,7 @@ class _$IncorrectId<T> implements IncorrectId<T> {
     TResult Function(ValueFailure<dynamic> failure)? incorrectId,
     TResult Function(ValueFailure<dynamic> failure)? incorrectWeight,
     TResult Function(ValueFailure<dynamic> failure)? incorrectNutrients,
-    TResult Function(ValueFailure<dynamic> failure)? incorrectCategory,
+    TResult Function()? incorrectCategory,
     TResult Function(ValueFailure<dynamic> failure)? incorrectBrandName,
     TResult Function(ValueFailure<dynamic> failure)? incorrectDescription,
     TResult Function(ValueFailure<dynamic> failure)? incorrectIngredients,
@@ -747,7 +747,7 @@ class _$IncorrectId<T> implements IncorrectId<T> {
     TResult Function(ValueFailure<dynamic> failure)? incorrectId,
     TResult Function(ValueFailure<dynamic> failure)? incorrectWeight,
     TResult Function(ValueFailure<dynamic> failure)? incorrectNutrients,
-    TResult Function(ValueFailure<dynamic> failure)? incorrectCategory,
+    TResult Function()? incorrectCategory,
     TResult Function(ValueFailure<dynamic> failure)? incorrectBrandName,
     TResult Function(ValueFailure<dynamic> failure)? incorrectDescription,
     TResult Function(ValueFailure<dynamic> failure)? incorrectIngredients,
@@ -934,7 +934,7 @@ class _$IncorrectWeight<T> implements IncorrectWeight<T> {
     required TResult Function(ValueFailure<dynamic> failure) incorrectId,
     required TResult Function(ValueFailure<dynamic> failure) incorrectWeight,
     required TResult Function(ValueFailure<dynamic> failure) incorrectNutrients,
-    required TResult Function(ValueFailure<dynamic> failure) incorrectCategory,
+    required TResult Function() incorrectCategory,
     required TResult Function(ValueFailure<dynamic> failure) incorrectBrandName,
     required TResult Function(ValueFailure<dynamic> failure)
         incorrectDescription,
@@ -957,7 +957,7 @@ class _$IncorrectWeight<T> implements IncorrectWeight<T> {
     TResult Function(ValueFailure<dynamic> failure)? incorrectId,
     TResult Function(ValueFailure<dynamic> failure)? incorrectWeight,
     TResult Function(ValueFailure<dynamic> failure)? incorrectNutrients,
-    TResult Function(ValueFailure<dynamic> failure)? incorrectCategory,
+    TResult Function()? incorrectCategory,
     TResult Function(ValueFailure<dynamic> failure)? incorrectBrandName,
     TResult Function(ValueFailure<dynamic> failure)? incorrectDescription,
     TResult Function(ValueFailure<dynamic> failure)? incorrectIngredients,
@@ -978,7 +978,7 @@ class _$IncorrectWeight<T> implements IncorrectWeight<T> {
     TResult Function(ValueFailure<dynamic> failure)? incorrectId,
     TResult Function(ValueFailure<dynamic> failure)? incorrectWeight,
     TResult Function(ValueFailure<dynamic> failure)? incorrectNutrients,
-    TResult Function(ValueFailure<dynamic> failure)? incorrectCategory,
+    TResult Function()? incorrectCategory,
     TResult Function(ValueFailure<dynamic> failure)? incorrectBrandName,
     TResult Function(ValueFailure<dynamic> failure)? incorrectDescription,
     TResult Function(ValueFailure<dynamic> failure)? incorrectIngredients,
@@ -1165,7 +1165,7 @@ class _$IncorrectNutrients<T> implements IncorrectNutrients<T> {
     required TResult Function(ValueFailure<dynamic> failure) incorrectId,
     required TResult Function(ValueFailure<dynamic> failure) incorrectWeight,
     required TResult Function(ValueFailure<dynamic> failure) incorrectNutrients,
-    required TResult Function(ValueFailure<dynamic> failure) incorrectCategory,
+    required TResult Function() incorrectCategory,
     required TResult Function(ValueFailure<dynamic> failure) incorrectBrandName,
     required TResult Function(ValueFailure<dynamic> failure)
         incorrectDescription,
@@ -1188,7 +1188,7 @@ class _$IncorrectNutrients<T> implements IncorrectNutrients<T> {
     TResult Function(ValueFailure<dynamic> failure)? incorrectId,
     TResult Function(ValueFailure<dynamic> failure)? incorrectWeight,
     TResult Function(ValueFailure<dynamic> failure)? incorrectNutrients,
-    TResult Function(ValueFailure<dynamic> failure)? incorrectCategory,
+    TResult Function()? incorrectCategory,
     TResult Function(ValueFailure<dynamic> failure)? incorrectBrandName,
     TResult Function(ValueFailure<dynamic> failure)? incorrectDescription,
     TResult Function(ValueFailure<dynamic> failure)? incorrectIngredients,
@@ -1209,7 +1209,7 @@ class _$IncorrectNutrients<T> implements IncorrectNutrients<T> {
     TResult Function(ValueFailure<dynamic> failure)? incorrectId,
     TResult Function(ValueFailure<dynamic> failure)? incorrectWeight,
     TResult Function(ValueFailure<dynamic> failure)? incorrectNutrients,
-    TResult Function(ValueFailure<dynamic> failure)? incorrectCategory,
+    TResult Function()? incorrectCategory,
     TResult Function(ValueFailure<dynamic> failure)? incorrectBrandName,
     TResult Function(ValueFailure<dynamic> failure)? incorrectDescription,
     TResult Function(ValueFailure<dynamic> failure)? incorrectIngredients,
@@ -1320,9 +1320,6 @@ abstract class _$$IncorrectCategoryCopyWith<T, $Res> {
   factory _$$IncorrectCategoryCopyWith(_$IncorrectCategory<T> value,
           $Res Function(_$IncorrectCategory<T>) then) =
       __$$IncorrectCategoryCopyWithImpl<T, $Res>;
-  $Res call({ValueFailure<dynamic> failure});
-
-  $ValueFailureCopyWith<dynamic, $Res> get failure;
 }
 
 /// @nodoc
@@ -1335,57 +1332,26 @@ class __$$IncorrectCategoryCopyWithImpl<T, $Res>
 
   @override
   _$IncorrectCategory<T> get _value => super._value as _$IncorrectCategory<T>;
-
-  @override
-  $Res call({
-    Object? failure = freezed,
-  }) {
-    return _then(_$IncorrectCategory<T>(
-      failure: failure == freezed
-          ? _value.failure
-          : failure // ignore: cast_nullable_to_non_nullable
-              as ValueFailure<dynamic>,
-    ));
-  }
-
-  @override
-  $ValueFailureCopyWith<dynamic, $Res> get failure {
-    return $ValueFailureCopyWith<dynamic, $Res>(_value.failure, (value) {
-      return _then(_value.copyWith(failure: value));
-    });
-  }
 }
 
 /// @nodoc
 
 class _$IncorrectCategory<T> implements IncorrectCategory<T> {
-  const _$IncorrectCategory({required this.failure});
-
-  @override
-  final ValueFailure<dynamic> failure;
+  const _$IncorrectCategory();
 
   @override
   String toString() {
-    return 'ProductValueFailure<$T>.incorrectCategory(failure: $failure)';
+    return 'ProductValueFailure<$T>.incorrectCategory()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$IncorrectCategory<T> &&
-            const DeepCollectionEquality().equals(other.failure, failure));
+        (other.runtimeType == runtimeType && other is _$IncorrectCategory<T>);
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(failure));
-
-  @JsonKey(ignore: true)
-  @override
-  _$$IncorrectCategoryCopyWith<T, _$IncorrectCategory<T>> get copyWith =>
-      __$$IncorrectCategoryCopyWithImpl<T, _$IncorrectCategory<T>>(
-          this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
@@ -1396,7 +1362,7 @@ class _$IncorrectCategory<T> implements IncorrectCategory<T> {
     required TResult Function(ValueFailure<dynamic> failure) incorrectId,
     required TResult Function(ValueFailure<dynamic> failure) incorrectWeight,
     required TResult Function(ValueFailure<dynamic> failure) incorrectNutrients,
-    required TResult Function(ValueFailure<dynamic> failure) incorrectCategory,
+    required TResult Function() incorrectCategory,
     required TResult Function(ValueFailure<dynamic> failure) incorrectBrandName,
     required TResult Function(ValueFailure<dynamic> failure)
         incorrectDescription,
@@ -1408,7 +1374,7 @@ class _$IncorrectCategory<T> implements IncorrectCategory<T> {
     required TResult Function(String failedValue) incorrectCurrencyString,
     required TResult Function(T failure) unexpectedProductFailure,
   }) {
-    return incorrectCategory(failure);
+    return incorrectCategory();
   }
 
   @override
@@ -1419,7 +1385,7 @@ class _$IncorrectCategory<T> implements IncorrectCategory<T> {
     TResult Function(ValueFailure<dynamic> failure)? incorrectId,
     TResult Function(ValueFailure<dynamic> failure)? incorrectWeight,
     TResult Function(ValueFailure<dynamic> failure)? incorrectNutrients,
-    TResult Function(ValueFailure<dynamic> failure)? incorrectCategory,
+    TResult Function()? incorrectCategory,
     TResult Function(ValueFailure<dynamic> failure)? incorrectBrandName,
     TResult Function(ValueFailure<dynamic> failure)? incorrectDescription,
     TResult Function(ValueFailure<dynamic> failure)? incorrectIngredients,
@@ -1429,7 +1395,7 @@ class _$IncorrectCategory<T> implements IncorrectCategory<T> {
     TResult Function(String failedValue)? incorrectCurrencyString,
     TResult Function(T failure)? unexpectedProductFailure,
   }) {
-    return incorrectCategory?.call(failure);
+    return incorrectCategory?.call();
   }
 
   @override
@@ -1440,7 +1406,7 @@ class _$IncorrectCategory<T> implements IncorrectCategory<T> {
     TResult Function(ValueFailure<dynamic> failure)? incorrectId,
     TResult Function(ValueFailure<dynamic> failure)? incorrectWeight,
     TResult Function(ValueFailure<dynamic> failure)? incorrectNutrients,
-    TResult Function(ValueFailure<dynamic> failure)? incorrectCategory,
+    TResult Function()? incorrectCategory,
     TResult Function(ValueFailure<dynamic> failure)? incorrectBrandName,
     TResult Function(ValueFailure<dynamic> failure)? incorrectDescription,
     TResult Function(ValueFailure<dynamic> failure)? incorrectIngredients,
@@ -1452,7 +1418,7 @@ class _$IncorrectCategory<T> implements IncorrectCategory<T> {
     required TResult orElse(),
   }) {
     if (incorrectCategory != null) {
-      return incorrectCategory(failure);
+      return incorrectCategory();
     }
     return orElse();
   }
@@ -1537,13 +1503,7 @@ class _$IncorrectCategory<T> implements IncorrectCategory<T> {
 }
 
 abstract class IncorrectCategory<T> implements ProductValueFailure<T> {
-  const factory IncorrectCategory(
-      {required final ValueFailure<dynamic> failure}) = _$IncorrectCategory<T>;
-
-  ValueFailure<dynamic> get failure => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  _$$IncorrectCategoryCopyWith<T, _$IncorrectCategory<T>> get copyWith =>
-      throw _privateConstructorUsedError;
+  const factory IncorrectCategory() = _$IncorrectCategory<T>;
 }
 
 /// @nodoc
@@ -1627,7 +1587,7 @@ class _$IncorrectBrandName<T> implements IncorrectBrandName<T> {
     required TResult Function(ValueFailure<dynamic> failure) incorrectId,
     required TResult Function(ValueFailure<dynamic> failure) incorrectWeight,
     required TResult Function(ValueFailure<dynamic> failure) incorrectNutrients,
-    required TResult Function(ValueFailure<dynamic> failure) incorrectCategory,
+    required TResult Function() incorrectCategory,
     required TResult Function(ValueFailure<dynamic> failure) incorrectBrandName,
     required TResult Function(ValueFailure<dynamic> failure)
         incorrectDescription,
@@ -1650,7 +1610,7 @@ class _$IncorrectBrandName<T> implements IncorrectBrandName<T> {
     TResult Function(ValueFailure<dynamic> failure)? incorrectId,
     TResult Function(ValueFailure<dynamic> failure)? incorrectWeight,
     TResult Function(ValueFailure<dynamic> failure)? incorrectNutrients,
-    TResult Function(ValueFailure<dynamic> failure)? incorrectCategory,
+    TResult Function()? incorrectCategory,
     TResult Function(ValueFailure<dynamic> failure)? incorrectBrandName,
     TResult Function(ValueFailure<dynamic> failure)? incorrectDescription,
     TResult Function(ValueFailure<dynamic> failure)? incorrectIngredients,
@@ -1671,7 +1631,7 @@ class _$IncorrectBrandName<T> implements IncorrectBrandName<T> {
     TResult Function(ValueFailure<dynamic> failure)? incorrectId,
     TResult Function(ValueFailure<dynamic> failure)? incorrectWeight,
     TResult Function(ValueFailure<dynamic> failure)? incorrectNutrients,
-    TResult Function(ValueFailure<dynamic> failure)? incorrectCategory,
+    TResult Function()? incorrectCategory,
     TResult Function(ValueFailure<dynamic> failure)? incorrectBrandName,
     TResult Function(ValueFailure<dynamic> failure)? incorrectDescription,
     TResult Function(ValueFailure<dynamic> failure)? incorrectIngredients,
@@ -1859,7 +1819,7 @@ class _$IncorrectDescription<T> implements IncorrectDescription<T> {
     required TResult Function(ValueFailure<dynamic> failure) incorrectId,
     required TResult Function(ValueFailure<dynamic> failure) incorrectWeight,
     required TResult Function(ValueFailure<dynamic> failure) incorrectNutrients,
-    required TResult Function(ValueFailure<dynamic> failure) incorrectCategory,
+    required TResult Function() incorrectCategory,
     required TResult Function(ValueFailure<dynamic> failure) incorrectBrandName,
     required TResult Function(ValueFailure<dynamic> failure)
         incorrectDescription,
@@ -1882,7 +1842,7 @@ class _$IncorrectDescription<T> implements IncorrectDescription<T> {
     TResult Function(ValueFailure<dynamic> failure)? incorrectId,
     TResult Function(ValueFailure<dynamic> failure)? incorrectWeight,
     TResult Function(ValueFailure<dynamic> failure)? incorrectNutrients,
-    TResult Function(ValueFailure<dynamic> failure)? incorrectCategory,
+    TResult Function()? incorrectCategory,
     TResult Function(ValueFailure<dynamic> failure)? incorrectBrandName,
     TResult Function(ValueFailure<dynamic> failure)? incorrectDescription,
     TResult Function(ValueFailure<dynamic> failure)? incorrectIngredients,
@@ -1903,7 +1863,7 @@ class _$IncorrectDescription<T> implements IncorrectDescription<T> {
     TResult Function(ValueFailure<dynamic> failure)? incorrectId,
     TResult Function(ValueFailure<dynamic> failure)? incorrectWeight,
     TResult Function(ValueFailure<dynamic> failure)? incorrectNutrients,
-    TResult Function(ValueFailure<dynamic> failure)? incorrectCategory,
+    TResult Function()? incorrectCategory,
     TResult Function(ValueFailure<dynamic> failure)? incorrectBrandName,
     TResult Function(ValueFailure<dynamic> failure)? incorrectDescription,
     TResult Function(ValueFailure<dynamic> failure)? incorrectIngredients,
@@ -2092,7 +2052,7 @@ class _$IncorrectIngredients<T> implements IncorrectIngredients<T> {
     required TResult Function(ValueFailure<dynamic> failure) incorrectId,
     required TResult Function(ValueFailure<dynamic> failure) incorrectWeight,
     required TResult Function(ValueFailure<dynamic> failure) incorrectNutrients,
-    required TResult Function(ValueFailure<dynamic> failure) incorrectCategory,
+    required TResult Function() incorrectCategory,
     required TResult Function(ValueFailure<dynamic> failure) incorrectBrandName,
     required TResult Function(ValueFailure<dynamic> failure)
         incorrectDescription,
@@ -2115,7 +2075,7 @@ class _$IncorrectIngredients<T> implements IncorrectIngredients<T> {
     TResult Function(ValueFailure<dynamic> failure)? incorrectId,
     TResult Function(ValueFailure<dynamic> failure)? incorrectWeight,
     TResult Function(ValueFailure<dynamic> failure)? incorrectNutrients,
-    TResult Function(ValueFailure<dynamic> failure)? incorrectCategory,
+    TResult Function()? incorrectCategory,
     TResult Function(ValueFailure<dynamic> failure)? incorrectBrandName,
     TResult Function(ValueFailure<dynamic> failure)? incorrectDescription,
     TResult Function(ValueFailure<dynamic> failure)? incorrectIngredients,
@@ -2136,7 +2096,7 @@ class _$IncorrectIngredients<T> implements IncorrectIngredients<T> {
     TResult Function(ValueFailure<dynamic> failure)? incorrectId,
     TResult Function(ValueFailure<dynamic> failure)? incorrectWeight,
     TResult Function(ValueFailure<dynamic> failure)? incorrectNutrients,
-    TResult Function(ValueFailure<dynamic> failure)? incorrectCategory,
+    TResult Function()? incorrectCategory,
     TResult Function(ValueFailure<dynamic> failure)? incorrectBrandName,
     TResult Function(ValueFailure<dynamic> failure)? incorrectDescription,
     TResult Function(ValueFailure<dynamic> failure)? incorrectIngredients,
@@ -2324,7 +2284,7 @@ class _$IncorrectPhotos<T> implements IncorrectPhotos<T> {
     required TResult Function(ValueFailure<dynamic> failure) incorrectId,
     required TResult Function(ValueFailure<dynamic> failure) incorrectWeight,
     required TResult Function(ValueFailure<dynamic> failure) incorrectNutrients,
-    required TResult Function(ValueFailure<dynamic> failure) incorrectCategory,
+    required TResult Function() incorrectCategory,
     required TResult Function(ValueFailure<dynamic> failure) incorrectBrandName,
     required TResult Function(ValueFailure<dynamic> failure)
         incorrectDescription,
@@ -2347,7 +2307,7 @@ class _$IncorrectPhotos<T> implements IncorrectPhotos<T> {
     TResult Function(ValueFailure<dynamic> failure)? incorrectId,
     TResult Function(ValueFailure<dynamic> failure)? incorrectWeight,
     TResult Function(ValueFailure<dynamic> failure)? incorrectNutrients,
-    TResult Function(ValueFailure<dynamic> failure)? incorrectCategory,
+    TResult Function()? incorrectCategory,
     TResult Function(ValueFailure<dynamic> failure)? incorrectBrandName,
     TResult Function(ValueFailure<dynamic> failure)? incorrectDescription,
     TResult Function(ValueFailure<dynamic> failure)? incorrectIngredients,
@@ -2368,7 +2328,7 @@ class _$IncorrectPhotos<T> implements IncorrectPhotos<T> {
     TResult Function(ValueFailure<dynamic> failure)? incorrectId,
     TResult Function(ValueFailure<dynamic> failure)? incorrectWeight,
     TResult Function(ValueFailure<dynamic> failure)? incorrectNutrients,
-    TResult Function(ValueFailure<dynamic> failure)? incorrectCategory,
+    TResult Function()? incorrectCategory,
     TResult Function(ValueFailure<dynamic> failure)? incorrectBrandName,
     TResult Function(ValueFailure<dynamic> failure)? incorrectDescription,
     TResult Function(ValueFailure<dynamic> failure)? incorrectIngredients,
@@ -2548,7 +2508,7 @@ class _$IncorrectCategoryString<T> implements IncorrectCategoryString<T> {
     required TResult Function(ValueFailure<dynamic> failure) incorrectId,
     required TResult Function(ValueFailure<dynamic> failure) incorrectWeight,
     required TResult Function(ValueFailure<dynamic> failure) incorrectNutrients,
-    required TResult Function(ValueFailure<dynamic> failure) incorrectCategory,
+    required TResult Function() incorrectCategory,
     required TResult Function(ValueFailure<dynamic> failure) incorrectBrandName,
     required TResult Function(ValueFailure<dynamic> failure)
         incorrectDescription,
@@ -2571,7 +2531,7 @@ class _$IncorrectCategoryString<T> implements IncorrectCategoryString<T> {
     TResult Function(ValueFailure<dynamic> failure)? incorrectId,
     TResult Function(ValueFailure<dynamic> failure)? incorrectWeight,
     TResult Function(ValueFailure<dynamic> failure)? incorrectNutrients,
-    TResult Function(ValueFailure<dynamic> failure)? incorrectCategory,
+    TResult Function()? incorrectCategory,
     TResult Function(ValueFailure<dynamic> failure)? incorrectBrandName,
     TResult Function(ValueFailure<dynamic> failure)? incorrectDescription,
     TResult Function(ValueFailure<dynamic> failure)? incorrectIngredients,
@@ -2592,7 +2552,7 @@ class _$IncorrectCategoryString<T> implements IncorrectCategoryString<T> {
     TResult Function(ValueFailure<dynamic> failure)? incorrectId,
     TResult Function(ValueFailure<dynamic> failure)? incorrectWeight,
     TResult Function(ValueFailure<dynamic> failure)? incorrectNutrients,
-    TResult Function(ValueFailure<dynamic> failure)? incorrectCategory,
+    TResult Function()? incorrectCategory,
     TResult Function(ValueFailure<dynamic> failure)? incorrectBrandName,
     TResult Function(ValueFailure<dynamic> failure)? incorrectDescription,
     TResult Function(ValueFailure<dynamic> failure)? incorrectIngredients,
@@ -2774,7 +2734,7 @@ class _$IncorrectWeightUnitString<T> implements IncorrectWeightUnitString<T> {
     required TResult Function(ValueFailure<dynamic> failure) incorrectId,
     required TResult Function(ValueFailure<dynamic> failure) incorrectWeight,
     required TResult Function(ValueFailure<dynamic> failure) incorrectNutrients,
-    required TResult Function(ValueFailure<dynamic> failure) incorrectCategory,
+    required TResult Function() incorrectCategory,
     required TResult Function(ValueFailure<dynamic> failure) incorrectBrandName,
     required TResult Function(ValueFailure<dynamic> failure)
         incorrectDescription,
@@ -2797,7 +2757,7 @@ class _$IncorrectWeightUnitString<T> implements IncorrectWeightUnitString<T> {
     TResult Function(ValueFailure<dynamic> failure)? incorrectId,
     TResult Function(ValueFailure<dynamic> failure)? incorrectWeight,
     TResult Function(ValueFailure<dynamic> failure)? incorrectNutrients,
-    TResult Function(ValueFailure<dynamic> failure)? incorrectCategory,
+    TResult Function()? incorrectCategory,
     TResult Function(ValueFailure<dynamic> failure)? incorrectBrandName,
     TResult Function(ValueFailure<dynamic> failure)? incorrectDescription,
     TResult Function(ValueFailure<dynamic> failure)? incorrectIngredients,
@@ -2818,7 +2778,7 @@ class _$IncorrectWeightUnitString<T> implements IncorrectWeightUnitString<T> {
     TResult Function(ValueFailure<dynamic> failure)? incorrectId,
     TResult Function(ValueFailure<dynamic> failure)? incorrectWeight,
     TResult Function(ValueFailure<dynamic> failure)? incorrectNutrients,
-    TResult Function(ValueFailure<dynamic> failure)? incorrectCategory,
+    TResult Function()? incorrectCategory,
     TResult Function(ValueFailure<dynamic> failure)? incorrectBrandName,
     TResult Function(ValueFailure<dynamic> failure)? incorrectDescription,
     TResult Function(ValueFailure<dynamic> failure)? incorrectIngredients,
@@ -2998,7 +2958,7 @@ class _$IncorrectCurrencyString<T> implements IncorrectCurrencyString<T> {
     required TResult Function(ValueFailure<dynamic> failure) incorrectId,
     required TResult Function(ValueFailure<dynamic> failure) incorrectWeight,
     required TResult Function(ValueFailure<dynamic> failure) incorrectNutrients,
-    required TResult Function(ValueFailure<dynamic> failure) incorrectCategory,
+    required TResult Function() incorrectCategory,
     required TResult Function(ValueFailure<dynamic> failure) incorrectBrandName,
     required TResult Function(ValueFailure<dynamic> failure)
         incorrectDescription,
@@ -3021,7 +2981,7 @@ class _$IncorrectCurrencyString<T> implements IncorrectCurrencyString<T> {
     TResult Function(ValueFailure<dynamic> failure)? incorrectId,
     TResult Function(ValueFailure<dynamic> failure)? incorrectWeight,
     TResult Function(ValueFailure<dynamic> failure)? incorrectNutrients,
-    TResult Function(ValueFailure<dynamic> failure)? incorrectCategory,
+    TResult Function()? incorrectCategory,
     TResult Function(ValueFailure<dynamic> failure)? incorrectBrandName,
     TResult Function(ValueFailure<dynamic> failure)? incorrectDescription,
     TResult Function(ValueFailure<dynamic> failure)? incorrectIngredients,
@@ -3042,7 +3002,7 @@ class _$IncorrectCurrencyString<T> implements IncorrectCurrencyString<T> {
     TResult Function(ValueFailure<dynamic> failure)? incorrectId,
     TResult Function(ValueFailure<dynamic> failure)? incorrectWeight,
     TResult Function(ValueFailure<dynamic> failure)? incorrectNutrients,
-    TResult Function(ValueFailure<dynamic> failure)? incorrectCategory,
+    TResult Function()? incorrectCategory,
     TResult Function(ValueFailure<dynamic> failure)? incorrectBrandName,
     TResult Function(ValueFailure<dynamic> failure)? incorrectDescription,
     TResult Function(ValueFailure<dynamic> failure)? incorrectIngredients,
@@ -3222,7 +3182,7 @@ class _$UnexpectedProductFailure<T> implements UnexpectedProductFailure<T> {
     required TResult Function(ValueFailure<dynamic> failure) incorrectId,
     required TResult Function(ValueFailure<dynamic> failure) incorrectWeight,
     required TResult Function(ValueFailure<dynamic> failure) incorrectNutrients,
-    required TResult Function(ValueFailure<dynamic> failure) incorrectCategory,
+    required TResult Function() incorrectCategory,
     required TResult Function(ValueFailure<dynamic> failure) incorrectBrandName,
     required TResult Function(ValueFailure<dynamic> failure)
         incorrectDescription,
@@ -3245,7 +3205,7 @@ class _$UnexpectedProductFailure<T> implements UnexpectedProductFailure<T> {
     TResult Function(ValueFailure<dynamic> failure)? incorrectId,
     TResult Function(ValueFailure<dynamic> failure)? incorrectWeight,
     TResult Function(ValueFailure<dynamic> failure)? incorrectNutrients,
-    TResult Function(ValueFailure<dynamic> failure)? incorrectCategory,
+    TResult Function()? incorrectCategory,
     TResult Function(ValueFailure<dynamic> failure)? incorrectBrandName,
     TResult Function(ValueFailure<dynamic> failure)? incorrectDescription,
     TResult Function(ValueFailure<dynamic> failure)? incorrectIngredients,
@@ -3266,7 +3226,7 @@ class _$UnexpectedProductFailure<T> implements UnexpectedProductFailure<T> {
     TResult Function(ValueFailure<dynamic> failure)? incorrectId,
     TResult Function(ValueFailure<dynamic> failure)? incorrectWeight,
     TResult Function(ValueFailure<dynamic> failure)? incorrectNutrients,
-    TResult Function(ValueFailure<dynamic> failure)? incorrectCategory,
+    TResult Function()? incorrectCategory,
     TResult Function(ValueFailure<dynamic> failure)? incorrectBrandName,
     TResult Function(ValueFailure<dynamic> failure)? incorrectDescription,
     TResult Function(ValueFailure<dynamic> failure)? incorrectIngredients,

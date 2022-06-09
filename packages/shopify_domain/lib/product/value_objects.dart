@@ -3,6 +3,7 @@ import 'package:dartz/dartz.dart';
 import 'package:shopify_domain/core/value_objects.dart';
 import 'package:shopify_domain/product/price.dart';
 import 'package:shopify_domain/product/product_categories.dart';
+import 'package:shopify_domain/product/value_failures.dart';
 //import 'package:shopify_domain/core/value_validators.dart';
 import 'package:shopify_domain/product/value_validators.dart';
 import 'package:shopify_domain/product/weight.dart';
@@ -14,7 +15,7 @@ class ProductName extends Name {
   @override
   final Either<ValueFailure<String>, String> value;
   factory ProductName(String input) {
-    return ProductName._(validatetName(input, minLength, maxLength));
+    return ProductName._(validateProductName(input, minLength, maxLength));
   }
   const ProductName._(this.value);
 }
@@ -26,7 +27,7 @@ class BrandName extends Name {
   @override
   final Either<ValueFailure<String>, String> value;
   factory BrandName(String input) {
-    return BrandName._(validatetName(input, minLength, maxLength));
+    return BrandName._(validateBrandName(input, minLength, maxLength));
   }
   const BrandName._(this.value);
 }
@@ -49,6 +50,10 @@ class Category extends ValueObject<Categories> {
   factory Category(Categories category) {
     return Category._(right(category));
   }
+
+  factory Category.empty() =>
+      Category._(left(const ValueFailure<Categories>.product(
+          ProductValueFailure.incorrectCategory())));
 
   factory Category.fromString(String category) {
     return Category._(validateCategoryFromString(category));

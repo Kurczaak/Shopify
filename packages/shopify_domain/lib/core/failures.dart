@@ -43,8 +43,7 @@ class ValueFailure<T> with _$ValueFailure<T> {
             failure.stringifyValueFailure(fieldName: 'Id'),
         incorrectDescription: (failure) =>
             failure.stringifyValueFailure(fieldName: 'Description'),
-        incorrectCategory: (failure) =>
-            failure.stringifyValueFailure(fieldName: 'Category'),
+        incorrectCategory: () => 'Incorrect category',
         incorrectBrandName: (failure) =>
             failure.stringifyValueFailure(fieldName: 'Brand Name'),
         incorrectBarcode: (failure) =>

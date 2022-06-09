@@ -32,7 +32,7 @@ class Product with _$Product {
       barcode: Barcode(''),
       weight: Weight.zero(),
       nutrientFacts: NutrientFacts.empty(),
-      category: Category(Categories.unknown),
+      category: Category.empty(),
       name: ProductName(''),
       brand: BrandName(''),
       description: ProductDescription(''),

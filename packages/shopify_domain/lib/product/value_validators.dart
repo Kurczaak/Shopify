@@ -45,22 +45,46 @@ Either<ValueFailure<Currencies>, Currencies> validateCurrencyFromString(
       ProductValueFailure.incorrectCurrencyString(failedValue: input)));
 }
 
-Either<ValueFailure<String>, String> validatetName(
+Either<ValueFailure<String>, String> validateProductName(
     String input, int minLength, int maxLength) {
   return validateStringNotEmpty(input)
       .flatMap((passedValue) => validateMaxStringLength(passedValue, maxLength)
           .flatMap((passedValue) => validateMinStringLength(
-              passedValue, minLength,
-              countWhiteChars: false)))
-      .flatMap(validateSingleLine);
+              passedValue, minLength, countWhiteChars: false)))
+      .flatMap(validateSingleLine)
+      .fold(
+          (failure) => left(ValueFailure.product(
+              ProductValueFailure.incorrectProductName(failure: failure))),
+          (r) => right(r));
+}
+
+Either<ValueFailure<String>, String> validateBrandName(
+    String input, int minLength, int maxLength) {
+  return validateStringNotEmpty(input)
+      .flatMap((passedValue) => validateMaxStringLength(passedValue, maxLength)
+          .flatMap((passedValue) => validateMinStringLength(
+              passedValue, minLength, countWhiteChars: false)))
+      .flatMap(validateSingleLine)
+      .fold(
+          (failure) => left(ValueFailure.product(
+              ProductValueFailure.incorrectBrandName(failure: failure))),
+          (r) => right(r));
 }
 
 Either<ValueFailure<String>, String> validatetDescription(
     String input, int minLength, int maxLength) {
-  return validateMaxStringLength(input, maxLength).flatMap((passedValue) =>
-      validateMinStringLength(passedValue, minLength, countWhiteChars: false));
+  return validateMaxStringLength(input, maxLength)
+      .flatMap((passedValue) => validateMinStringLength(passedValue, minLength,
+          countWhiteChars: false))
+      .fold(
+          (failure) => left(ValueFailure.product(
+              ProductValueFailure.incorrectDescription(failure: failure))),
+          (r) => right(r));
 }
 
 Either<ValueFailure<String>, String> validateBarcode(String input) {
-  return validateSingleLine(input).flatMap(validateStringNotEmpty);
+  return validateSingleLine(input).flatMap(validateStringNotEmpty).fold(
+      (failure) => left(ValueFailure.product(
+          ProductValueFailure.incorrectBarcode(failure: failure))),
+      (r) => right(r));
 }

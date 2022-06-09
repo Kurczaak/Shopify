@@ -14,8 +14,7 @@ class ProductValueFailure<T> with _$ProductValueFailure<T> {
       {required ValueFailure failure}) = IncorrectWeight<T>;
   const factory ProductValueFailure.incorrectNutrients(
       {required ValueFailure failure}) = IncorrectNutrients<T>;
-  const factory ProductValueFailure.incorrectCategory(
-      {required ValueFailure failure}) = IncorrectCategory<T>;
+  const factory ProductValueFailure.incorrectCategory() = IncorrectCategory<T>;
   const factory ProductValueFailure.incorrectBrandName(
       {required ValueFailure failure}) = IncorrectBrandName<T>;
   const factory ProductValueFailure.incorrectDescription(
