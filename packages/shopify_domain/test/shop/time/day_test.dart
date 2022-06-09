@@ -44,7 +44,7 @@ void main() {
         final day =
             Day.empty(DayName.monday).copyWith(openingInterval: validInterval);
         // assert
-        expect(day.failureOrUnit, equals(unit));
+        expect(day.failureOrUnit, right(unit));
       },
     );
     test(
@@ -57,7 +57,7 @@ void main() {
         final day = Day.empty(DayName.monday)
             .copyWith(openingInterval: invalidInterval);
         // assert
-        expect(day.failureOrUnit, isA<Some<ValueFailure>>());
+        expect(day.failureOrUnit, isA<Left<ValueFailure, Unit>>());
       },
     );
   });
