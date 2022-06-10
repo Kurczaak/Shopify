@@ -7,19 +7,24 @@ import 'package:shopify_domain/core/config.dart';
 import 'package:shopify_domain/product.dart';
 import 'package:shopify_manager/application/product/search_product/search_product_bloc.dart';
 import 'package:shopify_manager/domain/product/i_open_food_facts_repository.dart';
+import 'package:shopify_manager/domain/product/i_product_repository.dart';
 
 import '../../../fixtures/test_product.dart';
 import 'search_product_bloc_test.mocks.dart';
 
-@GenerateMocks([IOpenFoodFactsRepository])
+@GenerateMocks([IOpenFoodFactsRepository, IProductRepository])
 void main() {
   late SearchProductBloc bloc;
   late MockIOpenFoodFactsRepository mockOpenFoodFactsRepository;
+  late MockIProductRepository mockProductRepository;
   const barcodeString = '12-345-ABC';
 
   setUp(() {
     mockOpenFoodFactsRepository = MockIOpenFoodFactsRepository();
-    bloc = SearchProductBloc(mockOpenFoodFactsRepository);
+    mockProductRepository = MockIProductRepository();
+    bloc = SearchProductBloc(
+        openFoodFactsRepository: mockOpenFoodFactsRepository,
+        shopifyProductsRepository: mockProductRepository);
   });
 
   group('product found in OpenFoodFacts repository', () {

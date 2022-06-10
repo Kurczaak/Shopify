@@ -6,11 +6,15 @@ import 'dart:async' as _i4;
 
 import 'package:dartz/dartz.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
+import 'package:shopify_domain/product.dart' as _i10;
 import 'package:shopify_domain/product/product.dart' as _i6;
 import 'package:shopify_domain/product/product_failure.dart' as _i5;
 import 'package:shopify_domain/product/value_objects.dart' as _i7;
+import 'package:shopify_domain/shop.dart' as _i9;
 import 'package:shopify_manager/domain/product/i_open_food_facts_repository.dart'
     as _i3;
+import 'package:shopify_manager/domain/product/i_product_repository.dart'
+    as _i8;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -41,4 +45,61 @@ class MockIOpenFoodFactsRepository extends _i1.Mock
                   Future<_i2.Either<_i5.ProductFailure, _i6.Product>>.value(
                       _FakeEither_0<_i5.ProductFailure, _i6.Product>()))
           as _i4.Future<_i2.Either<_i5.ProductFailure, _i6.Product>>);
+}
+
+/// A class which mocks [IProductRepository].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockIProductRepository extends _i1.Mock
+    implements _i8.IProductRepository {
+  MockIProductRepository() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i4.Future<_i2.Either<_i5.ProductFailure, _i6.Product>> getByBarcode(
+          _i7.Barcode? barcode) =>
+      (super.noSuchMethod(Invocation.method(#getByBarcode, [barcode]),
+              returnValue:
+                  Future<_i2.Either<_i5.ProductFailure, _i6.Product>>.value(
+                      _FakeEither_0<_i5.ProductFailure, _i6.Product>()))
+          as _i4.Future<_i2.Either<_i5.ProductFailure, _i6.Product>>);
+  @override
+  _i4.Future<_i2.Either<_i5.ProductFailure, _i6.Product>> getFromShopByBarcode(
+          _i9.Shop? shop, _i7.Barcode? barcode) =>
+      (super.noSuchMethod(
+              Invocation.method(#getFromShopByBarcode, [shop, barcode]),
+              returnValue:
+                  Future<_i2.Either<_i5.ProductFailure, _i6.Product>>.value(
+                      _FakeEither_0<_i5.ProductFailure, _i6.Product>()))
+          as _i4.Future<_i2.Either<_i5.ProductFailure, _i6.Product>>);
+  @override
+  _i4.Future<_i2.Either<_i5.ProductFailure, _i2.Unit>> create(
+          _i10.ProductForm? productForm) =>
+      (super.noSuchMethod(Invocation.method(#create, [productForm]),
+          returnValue: Future<_i2.Either<_i5.ProductFailure, _i2.Unit>>.value(
+              _FakeEither_0<_i5.ProductFailure, _i2.Unit>())) as _i4
+          .Future<_i2.Either<_i5.ProductFailure, _i2.Unit>>);
+  @override
+  _i4.Future<_i2.Either<_i5.ProductFailure, _i2.Unit>> addToShop(
+          _i10.ProductForm? productForm, _i9.Shop? shop, _i10.Price? price) =>
+      (super.noSuchMethod(
+          Invocation.method(#addToShop, [productForm, shop, price]),
+          returnValue: Future<_i2.Either<_i5.ProductFailure, _i2.Unit>>.value(
+              _FakeEither_0<_i5.ProductFailure, _i2.Unit>())) as _i4
+          .Future<_i2.Either<_i5.ProductFailure, _i2.Unit>>);
+  @override
+  _i4.Future<_i2.Either<_i5.ProductFailure, _i2.Unit>> update(
+          _i6.Product? product) =>
+      (super.noSuchMethod(Invocation.method(#update, [product]),
+          returnValue: Future<_i2.Either<_i5.ProductFailure, _i2.Unit>>.value(
+              _FakeEither_0<_i5.ProductFailure, _i2.Unit>())) as _i4
+          .Future<_i2.Either<_i5.ProductFailure, _i2.Unit>>);
+  @override
+  _i4.Future<_i2.Either<_i5.ProductFailure, _i2.Unit>> delete(
+          _i6.Product? product) =>
+      (super.noSuchMethod(Invocation.method(#delete, [product]),
+          returnValue: Future<_i2.Either<_i5.ProductFailure, _i2.Unit>>.value(
+              _FakeEither_0<_i5.ProductFailure, _i2.Unit>())) as _i4
+          .Future<_i2.Either<_i5.ProductFailure, _i2.Unit>>);
 }
