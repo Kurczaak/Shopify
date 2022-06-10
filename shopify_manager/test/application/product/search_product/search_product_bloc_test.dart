@@ -32,6 +32,9 @@ void main() {
       when(mockOpenFoodFactsRepository
               .getProductByBarcode(Barcode(barcodeString)))
           .thenAnswer((_) async => right(fixtureProduct));
+      when(mockProductRepository.getByBarcode(Barcode(barcodeString)))
+          .thenAnswer(
+              (_) async => left(const ProductFailure.productNotFound()));
     });
     blocTest(
         'should call openFoodFactsAPI and search for a product by a barcode',
