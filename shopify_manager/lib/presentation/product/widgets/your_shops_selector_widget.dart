@@ -40,6 +40,8 @@ class YourShopsSelectorWidget extends StatelessWidget {
                   const Center(child: ShopifyProgressIndicator()),
               loadSuccess: (state) {
                 return ListView.builder(
+                  physics: const ClampingScrollPhysics(),
+                  shrinkWrap: true,
                   itemBuilder: (context, index) {
                     final shop = state.shops[index];
                     if (shop.failureOption.isSome()) {
