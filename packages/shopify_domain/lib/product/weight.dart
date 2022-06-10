@@ -37,6 +37,9 @@ class Weight with _$Weight {
                 left(ValueFailure.product(ProductValueFailure.unexpectedProductFailure(failure)))),
         (_) => right(unit)));
   }
+
+  String get stringifyOrCrash =>
+      '${weight.getOrCrash()} ${weightUnit.getOrCrash().symbol}';
 }
 
 enum WeightUnits {

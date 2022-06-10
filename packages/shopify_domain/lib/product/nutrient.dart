@@ -40,6 +40,9 @@ abstract class Nutrient extends Equatable {
 
   @override
   bool get stringify => true;
+
+  String get stringifyOrCrash =>
+      '${name.getOrCrash()}: ${weight.stringifyOrCrash}';
 }
 
 class NutrientsGroup extends Equatable {
@@ -65,6 +68,8 @@ class NutrientsGroup extends Equatable {
     }
     return right(unit);
   }
+
+  String get stringifyOrCrash => mainNutrient.stringifyOrCrash;
 
   @override
   List<Object> get props => [mainNutrient, subNutrients];
