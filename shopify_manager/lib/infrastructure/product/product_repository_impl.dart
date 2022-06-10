@@ -19,8 +19,8 @@ class ProductRepostioryImpl implements IProductRepository {
 
   @override
   Future<Either<ProductFailure, Unit>> addToShop(
-      ProductForm productForm, Shop shop, Price price) async {
-    return await _productRepository.addToShop(productForm.product, price, shop);
+      Product product, Shop shop, Price price) async {
+    return await _productRepository.addToShop(product, price, shop);
   }
 
   @override

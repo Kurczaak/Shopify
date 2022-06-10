@@ -64,7 +64,8 @@ class PositiveNumber extends ValueObject<double> {
   final Either<ValueFailure<double>, double> value;
   factory PositiveNumber(double input) {
     return PositiveNumber._(
-      validateDoubleRange(input, minPositiveNumber, maxPositiveNumber),
+      validateDoubleRange(
+          input.toPrecision(2), minPositiveNumber, maxPositiveNumber),
     );
   }
 
@@ -217,4 +218,8 @@ class NonEmptyList5<T> extends ValueObject<KtList<T>> {
   bool get isFull {
     return length == maxLength;
   }
+}
+
+extension Ex on double {
+  double toPrecision(int n) => double.parse(toStringAsFixed(n));
 }

@@ -12,7 +12,7 @@ abstract class IProductRepository {
       Shop shop, Barcode barcode);
   Future<Either<ProductFailure, Unit>> create(ProductForm productForm);
   Future<Either<ProductFailure, Unit>> addToShop(
-      ProductForm productForm, Shop shop, Price price);
+      Product product, Shop shop, Price price);
   Future<Either<ProductFailure, Unit>> update(Product product);
   Future<Either<ProductFailure, Unit>> delete(Product product);
 }

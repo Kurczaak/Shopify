@@ -25,8 +25,8 @@ class _DebugPageState extends State<DebugPage> {
 
   final double horizontalPadding = 10;
 
-  final int _photoIndex = 0;
   final controller = CarouselController();
+  final priceController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -110,9 +110,9 @@ class _DebugPageState extends State<DebugPage> {
                               fieldName: 'Price',
                               keyboardType: TextInputType.number,
                               showErrorMessages: false,
-                              // validator: (_) => state
-                              //     .productForm.price.failureOrUnit
-                              //     .fold(
+                              controller: priceController,
+                              // validator: (_) =>
+                              //     state.productForm.price.failureOrUnit.fold(
                               //         (failure) =>
                               //             failure.stringifyValueFailure(
                               //                 fieldName: 'Price'),

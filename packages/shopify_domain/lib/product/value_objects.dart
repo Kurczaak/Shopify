@@ -76,7 +76,7 @@ class Currency extends ValueObject<Currencies> {
   @override
   final Either<ValueFailure<Currencies>, Currencies> value;
   factory Currency(Currencies currency) {
-    return Currency._(right(Currencies.zl));
+    return Currency._(right(currency));
   }
 
   factory Currency.fromString(String currency) {
