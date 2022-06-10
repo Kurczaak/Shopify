@@ -82,9 +82,8 @@ class MockIProductRepository extends _i1.Mock
           .Future<_i2.Either<_i5.ProductFailure, _i2.Unit>>);
   @override
   _i4.Future<_i2.Either<_i5.ProductFailure, _i2.Unit>> addToShop(
-          _i10.ProductForm? productForm, _i9.Shop? shop, _i10.Price? price) =>
-      (super.noSuchMethod(
-          Invocation.method(#addToShop, [productForm, shop, price]),
+          _i6.Product? product, _i9.Shop? shop, _i10.Price? price) =>
+      (super.noSuchMethod(Invocation.method(#addToShop, [product, shop, price]),
           returnValue: Future<_i2.Either<_i5.ProductFailure, _i2.Unit>>.value(
               _FakeEither_0<_i5.ProductFailure, _i2.Unit>())) as _i4
           .Future<_i2.Either<_i5.ProductFailure, _i2.Unit>>);
