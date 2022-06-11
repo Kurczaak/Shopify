@@ -31,35 +31,11 @@ abstract class Shop implements _$Shop {
         logoUrl: ShopifyUrl(''),
       );
 
-  Option<ValueFailure<dynamic>> get failureOption {
-    return shopName.failureOrUnit
-        .andThen(address.failureOrOption
-            .fold(() => right(unit), (failure) => left(failure)))
-        .fold((f) => some(f), (_) => none());
+  Either<ValueFailure, Unit> get failureOrUnit {
+    return shopName.failureOrUnit.andThen(address.failureOrUnit
+        .andThen(workingWeek.failureOrUnit.andThen(logoUrl.failureOrUnit)));
   }
 
-  // Option<String> get failureToStringOption {
-  //   return failureOption.fold(
-  //       () => none(),
-  //       (failure) => failure.maybeWhen(
-  //           orElse: () => throw UnexpectedValueError(failure),
-  //           shop: (shopFailure) => shopFailure.map(
-  //               exceedingLength: exceedingLength,
-  //               stringTooShort: stringTooShort,
-  //               empty: empty,
-  //               multiline: multiline,
-  //               incorrectPostalCode: incorrectPostalCode,
-  //               shopClosedAllWeekLong: shopClosedAllWeekLong,
-  //               noPhotoSelected: noPhotoSelected,
-  //               nonPositiveValue: nonPositiveValue,
-  //               noAddressNumber: noAddressNumber,
-  //               incorrectHour: incorrectHour,
-  //               numberOutsideInterval: numberOutsideInterval,
-  //               invalidTimeInterval: invalidTimeInterval,
-  //               listTooLong: listTooLong,
-  //               listTooShort: listTooShort,
-  //               emptyList: emptyList,
-  //               imageTooBig: imageTooBig,
-  //               imageTooSmall: imageTooSmall)));
-  // }
+  Option<ValueFailure<dynamic>> get failureOption =>
+      failureOrUnit.fold((failure) => some(failure), (_) => none());
 }

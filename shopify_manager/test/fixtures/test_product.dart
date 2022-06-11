@@ -47,7 +47,6 @@ Future<ProductForm> loadProductFormWithPhotos() async {
       barcode: barcode,
       weight: weight,
       weightUnit: weightUnit,
-      price: price,
       currency: currency,
       category: category,
       name: name,

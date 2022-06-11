@@ -10,7 +10,7 @@ class ProductFormState with _$ProductFormState {
   }) = _ProductFormState;
 
   factory ProductFormState.initial() => ProductFormState(
-        productForm: tProductForm, //ProductForm.empty(),
+        productForm: ProductForm.empty(), //ProductForm.empty(),
         isLoading: false,
         saveFailureOrSuccessOption: none(),
         showErrors: false,
@@ -48,28 +48,26 @@ class ProductFormState with _$ProductFormState {
           showErrors: true);
 }
 
-final String id = UniqueId().getOrCrash();
-const String barcode = 'ABC-123-DEF';
-const double weight = 10;
-const String weightUnit = 'gram';
-const double price = 21.37;
-const String currency = 'zl';
-const String category = 'Bread';
-const String name = 'Test Product';
-const String brand = 'Test Brand';
-const String description = 'This is just a test product';
-const String ingredients = 'tests, bugs, overflows';
+// final String id = UniqueId().getOrCrash();
+// const String barcode = 'ABC-123-DEF';
+// const double weight = 10;
+// const String weightUnit = 'gram';
+// const String currency = 'zl';
+// const String category = 'Bread';
+// const String name = 'Test Product';
+// const String brand = 'Test Brand';
+// const String description = 'This is just a test product';
+// const String ingredients = 'tests, bugs, overflows';
 
-final tProductForm = ProductForm.fromPrimitives(
-    id: id,
-    barcode: barcode,
-    weight: weight,
-    weightUnit: weightUnit,
-    price: price,
-    currency: currency,
-    category: category,
-    name: name,
-    brand: brand,
-    description: description,
-    ingredients: ingredients,
-    photos: right([]));
+// final tProductForm = ProductForm.fromPrimitives(
+//     id: id,
+//     barcode: barcode,
+//     weight: weight,
+//     weightUnit: weightUnit,
+//     currency: currency,
+//     category: category,
+//     name: name,
+//     brand: brand,
+//     description: description,
+//     ingredients: ingredients,
+//     photos: right([]));

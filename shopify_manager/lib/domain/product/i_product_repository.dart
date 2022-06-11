@@ -11,8 +11,8 @@ abstract class IProductRepository {
   Future<Either<ProductFailure, Product>> getFromShopByBarcode(
       Shop shop, Barcode barcode);
   Future<Either<ProductFailure, Unit>> create(ProductForm productForm);
-  Future<Either<ProductFailure, Unit>> createForShop(
-      ProductForm productForm, Shop shop);
+  Future<Either<ProductFailure, Unit>> addToShop(
+      Product product, Shop shop, Price price);
   Future<Either<ProductFailure, Unit>> update(Product product);
   Future<Either<ProductFailure, Unit>> delete(Product product);
 }

@@ -7,8 +7,6 @@ abstract class _ProductFormEvent {
   void brandNameChanged(String brandName);
   void weightNumberChanged(String weightNumber);
   void weightUnitChanged(WeightUnits weightUnit);
-  void priceChanged(String price);
-  void currencyChanged(Currencies currency);
   void productDescriptionChanged(String productDescription);
   void ingredientsChanged(String ingredients);
   void photosFilesChanged();

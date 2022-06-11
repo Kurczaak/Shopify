@@ -15,7 +15,7 @@ class ValueFailure<T> with _$ValueFailure<T> {
   const factory ValueFailure.product(ProductValueFailure<T> f) = _Product<T>;
   const factory ValueFailure.core(CoreValueFailure<T> f) = _Core<T>;
 
-  String stringifyValueFailure({required String fieldName}) {
+  String stringifyValueFailure({String? fieldName}) {
     return when(
       auth: (authFailure) => authFailure.when(
           invalidEmail: (_) => EmailAddress.incorrectEmailStr,
@@ -26,9 +26,31 @@ class ValueFailure<T> with _$ValueFailure<T> {
         incorrectHour: (_, pm) => 'Incorrect hour format',
       ),
       product: (productFailure) => productFailure.when(
-          incorrectCategoryString: (_) => 'This category does not exist',
-          incorrectWeightUnitString: (_) => 'Incorrect weight unit',
-          incorrectCurrencyString: (_) => 'Incorrect currency'),
+        unexpectedProductFailure: (failure) =>
+            'Unexpected failure. Failed value: $failure',
+        incorrectCategoryString: (_) => 'This category does not exist',
+        incorrectWeightUnitString: (_) => 'Incorrect weight unit',
+        incorrectCurrencyString: (_) => 'Incorrect currency',
+        incorrectWeight: (failure) =>
+            failure.stringifyValueFailure(fieldName: 'Weight'),
+        incorrectPhotos: (failure) =>
+            failure.stringifyValueFailure(fieldName: 'Photos'),
+        incorrectNutrients: (failure) =>
+            failure.stringifyValueFailure(fieldName: 'Nutrients'),
+        incorrectIngredients: (failure) =>
+            failure.stringifyValueFailure(fieldName: 'Ingredients'),
+        incorrectId: (failure) =>
+            failure.stringifyValueFailure(fieldName: 'Id'),
+        incorrectDescription: (failure) =>
+            failure.stringifyValueFailure(fieldName: 'Description'),
+        incorrectCategory: () => 'Incorrect category',
+        incorrectBrandName: (failure) =>
+            failure.stringifyValueFailure(fieldName: 'Brand Name'),
+        incorrectBarcode: (failure) =>
+            failure.stringifyValueFailure(fieldName: 'Barcode'),
+        incorrectProductName: (failure) =>
+            failure.stringifyValueFailure(fieldName: 'Product Name'),
+      ),
       core: (coreFailure) => coreFailure.when(
           listTooLong: (_, max) => 'Too many elements $fieldName. Max $max',
           listTooShort: (_, min) => 'Too little $fieldName. At least $min',

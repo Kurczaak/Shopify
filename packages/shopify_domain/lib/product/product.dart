@@ -3,7 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kt_dart/kt.dart';
 import 'package:shopify_domain/core/failures.dart';
 import 'package:shopify_domain/core/value_objects.dart';
-import 'package:shopify_domain/product/price.dart';
+import 'package:shopify_domain/product/nutrient.dart';
 import 'package:shopify_domain/product/product_categories.dart';
 import 'package:shopify_domain/product/value_objects.dart';
 import 'package:shopify_domain/product/weight.dart';
@@ -18,8 +18,7 @@ class Product with _$Product {
     required UniqueId id,
     required Barcode barcode,
     required Weight weight,
-    //required Fats fats,
-    required Price price,
+    required NutrientFacts nutrientFacts,
     required Category category,
     required ProductName name,
     required BrandName brand,
@@ -31,9 +30,9 @@ class Product with _$Product {
   factory Product.empty() => Product(
       id: UniqueId(),
       barcode: Barcode(''),
-      weight: Weight.empty(),
-      price: Price.empty(),
-      category: Category(Categories.unknown),
+      weight: Weight.zero(),
+      nutrientFacts: NutrientFacts.empty(),
+      category: Category.empty(),
       name: ProductName(''),
       brand: BrandName(''),
       description: ProductDescription(''),
@@ -53,12 +52,32 @@ class Product with _$Product {
     required String description,
     required String ingredients,
     required List<String> photosUrls,
+    double? fat,
+    double? saturatedFat,
+    double? transFat,
+    double? monosaturatedFat,
+    double? polysaturatedFat,
+    double? protein,
+    double? animalProtein,
+    double? plantProtein,
+    double? carbohydrate,
+    double? sugar,
   }) =>
       Product(
         id: UniqueId.fromUniqueString(id),
         barcode: Barcode(barcode),
         weight: Weight.fromPrimitives(weight, weightUnit),
-        price: Price.fromPrimitives(price, currency),
+        nutrientFacts: NutrientFacts.fromWeightsIngrams(
+            fat: fat,
+            monosaturatedFat: monosaturatedFat,
+            polysaturatedFat: polysaturatedFat,
+            saturatedFat: saturatedFat,
+            transFat: transFat,
+            protein: protein,
+            plantProtein: plantProtein,
+            animalProtein: animalProtein,
+            carbohydrate: carbohydrate,
+            sugar: sugar),
         category: Category.fromString(category),
         name: ProductName(name),
         brand: BrandName(brand),
@@ -68,11 +87,31 @@ class Product with _$Product {
             photosUrls.map((stringUrl) => ShopifyUrl(stringUrl)).toList())),
       );
 
+  Either<ValueFailure, Unit> get failureOrUnit {
+    return barcode.failureOrUnit.andThen(
+      weight.failureOrUnit.andThen(
+        nutrientFacts.failureOrUnit.andThen(
+          category.failureOrUnit.andThen(
+            name.failureOrUnit.andThen(
+              brand.failureOrUnit.andThen(
+                description.failureOrUnit.andThen(
+                  ingredients.failureOrUnit.andThen(
+                    photos.failureOrUnit,
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
   Option<ValueFailure<dynamic>> get failureOption {
     return barcode.failureOrUnit
         .andThen(
           weight.failureOrUnit.andThen(
-            price.failureOrUnit.andThen(
+            nutrientFacts.failureOrUnit.andThen(
               category.failureOrUnit.andThen(
                 name.failureOrUnit.andThen(
                   brand.failureOrUnit.andThen(

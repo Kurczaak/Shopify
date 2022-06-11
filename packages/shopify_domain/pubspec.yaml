@@ -8,58 +8,59 @@ environment:
   flutter: ">=1.17.0"
 
 dependencies:
+  auto_route: ^4.0.1
+  cloud_firestore: ^3.1.17
   dart_geohash: ^2.0.2
   dartz: ^0.10.1
   email_validator: ^2.0.1
   equatable: ^2.0.3
+  firebase_auth: ^3.3.19
+  firebase_storage: ^10.2.17
   flutter:
     sdk: flutter
-  google_maps_flutter: ^2.1.5
-  image_size_getter: ^2.1.1
-  kt_dart: ^0.10.0
-  uuid: ^3.0.6
-  injectable: ^1.5.3
   geocoding: ^2.0.4
-  firebase_auth: ^3.3.19
-  image_picker: ^0.8.5+3
-  google_sign_in: ^5.3.2
-  cloud_firestore: ^3.1.17
-  firebase_storage: ^10.2.17
-  internet_connection_checker: ^0.0.1+4
-  openfoodfacts: ^1.16.1
-  rxdart: ^0.27.3
   geoflutterfire: ^3.0.3
+  google_maps_flutter: ^2.1.5
+  google_sign_in: ^5.3.2
+  image_picker: ^0.8.5+3
+  image_size_getter: ^2.1.1
+  injectable: ^1.5.3
+  internet_connection_checker: ^0.0.1+4
+  json_annotation: ^4.5.0
+  kt_dart: ^0.10.0
   location: ^4.4.0
   mockito: ^5.1.0
+  openfoodfacts: ^1.16.1
   path_provider: ^2.0.10
+  rxdart: ^0.27.3
   sealed_annotations: ^1.13.0
   shopify_presentation:
     path: ../shopify_presentation
-  auto_route: ^4.0.1
+  uuid: ^3.0.6
 
 dev_dependencies:
   auto_route_generator: ^4.0.0
-  freezed: ^2.0.3+1
-  injectable_generator: ^1.5.3
   build_runner: ^2.1.11
+  fake_cloud_firestore: ^1.2.2
+  firebase_storage_mocks: ^0.5.0
   flutter_lints: ^1.0.0
   flutter_test:
     sdk: flutter
-  firebase_storage_mocks: ^0.5.0
-  fake_cloud_firestore: ^1.2.2
+  freezed: ^2.0.3+1
+  injectable_generator: ^1.5.3
+  json_serializable: ^6.2.0
   sealed_generators: ^1.13.0
-
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 # The following section is specific to Flutter.
-flutter: 
+flutter:
   assets:
-      - images/corner_shape.png
-      - images/logo.png
-      - images/test/test_logo.jpg
-      - images/test/too_small_logo.jpg
-      - images/test/too_big_logo.jpg
+    - images/corner_shape.png
+    - images/logo.png
+    - images/test/test_logo.jpg
+    - images/test/too_small_logo.jpg
+    - images/test/too_big_logo.jpg
 
 # To add assets to your package, add an assets section, like this:
 # assets:

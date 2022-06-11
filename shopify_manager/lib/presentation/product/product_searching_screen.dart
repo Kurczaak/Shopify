@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:shopify_manager/application/product/search_product/search_product_bloc.dart';
 import 'package:shopify_domain/product.dart';
 import 'package:shopify_manager/injection.dart';
+import 'package:shopify_manager/presentation/routes/router.gr.dart';
 
 class ProductSearchingScreen extends StatelessWidget {
   final Barcode barcode;
@@ -17,13 +19,38 @@ class ProductSearchingScreen extends StatelessWidget {
           SearchProductEvent.searchForProduct(barcode: barcode.getOrCrash()),
         ),
       child: BlocConsumer<SearchProductBloc, SearchProductState>(
-          listener: ((context, state) {}),
-          builder: (context, state) => state.when(
+        listener: ((context, state) async {
+          await Future.delayed(const Duration(seconds: 2));
+          if (state.isLoaded) {
+            state.asLoaded.productOption.fold(
+              () => context.router.replace(
+                ProductFormRoute(
+                    barcode: barcode,
+                    product: Product.empty().copyWith(barcode: barcode)),
+              ),
+              (product) {
+                if (state.asLoaded.productExists) {
+                  context.router.replace(
+                    ProductAdderRoute(product: product),
+                  );
+                } else {
+                  context.router.replace(
+                    ProductFormRoute(barcode: barcode, product: product),
+                  );
+                }
+              },
+            );
+          }
+        }),
+        builder: (context, state) => Center(
+          child: state.when(
               initial: () => Container(),
-              loading: () => const Center(
-                    child: CircularProgressIndicator(),
-                  ),
-              loaded: (_, product, __) => const Text('Product found!'))),
+              loading: () => const CircularProgressIndicator(),
+              loaded: (_, product, __) => product.fold(
+                  () => const Text('Product not found :('),
+                  (a) => const Text('Product found! :)'))),
+        ),
+      ),
     ));
   }
 }

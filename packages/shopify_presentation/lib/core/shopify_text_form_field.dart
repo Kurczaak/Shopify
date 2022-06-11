@@ -37,6 +37,8 @@ class ShopifyTextFormField extends StatelessWidget {
       validator: validator,
       controller: controller,
       decoration: InputDecoration(
+        filled: true,
+        fillColor: Colors.white,
         labelStyle: Theme.of(context).textTheme.bodyText1,
         enabled: true,
         enabledBorder: Theme.of(context).inputDecorationTheme.enabledBorder,

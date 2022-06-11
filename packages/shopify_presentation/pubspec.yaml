@@ -26,6 +26,7 @@ dependencies:
   progress_indicators: ^1.0.0
   responsive_framework: ^0.2.0
   scrollable_positioned_list: ^0.3.2
+  expandable: ^5.0.1
   shopify_domain:
     path: ../shopify_domain
 

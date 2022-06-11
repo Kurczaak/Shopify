@@ -18,8 +18,8 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ProductForm {
   UniqueId get id => throw _privateConstructorUsedError;
   Barcode get barcode => throw _privateConstructorUsedError;
-  Weight get weight => throw _privateConstructorUsedError; //required Fats fats,
-  Price get price => throw _privateConstructorUsedError;
+  Weight get weight => throw _privateConstructorUsedError;
+  NutrientFacts get nutrientFacts => throw _privateConstructorUsedError;
   Category get category => throw _privateConstructorUsedError;
   ProductName get name => throw _privateConstructorUsedError;
   BrandName get brand => throw _privateConstructorUsedError;
@@ -42,7 +42,7 @@ abstract class $ProductFormCopyWith<$Res> {
       {UniqueId id,
       Barcode barcode,
       Weight weight,
-      Price price,
+      NutrientFacts nutrientFacts,
       Category category,
       ProductName name,
       BrandName brand,
@@ -51,7 +51,6 @@ abstract class $ProductFormCopyWith<$Res> {
       Either<NonEmptyList5<ShopifyUrl>, NonEmptyList5<ProductPhoto>> photos});
 
   $WeightCopyWith<$Res> get weight;
-  $PriceCopyWith<$Res> get price;
 }
 
 /// @nodoc
@@ -67,7 +66,7 @@ class _$ProductFormCopyWithImpl<$Res> implements $ProductFormCopyWith<$Res> {
     Object? id = freezed,
     Object? barcode = freezed,
     Object? weight = freezed,
-    Object? price = freezed,
+    Object? nutrientFacts = freezed,
     Object? category = freezed,
     Object? name = freezed,
     Object? brand = freezed,
@@ -88,10 +87,10 @@ class _$ProductFormCopyWithImpl<$Res> implements $ProductFormCopyWith<$Res> {
           ? _value.weight
           : weight // ignore: cast_nullable_to_non_nullable
               as Weight,
-      price: price == freezed
-          ? _value.price
-          : price // ignore: cast_nullable_to_non_nullable
-              as Price,
+      nutrientFacts: nutrientFacts == freezed
+          ? _value.nutrientFacts
+          : nutrientFacts // ignore: cast_nullable_to_non_nullable
+              as NutrientFacts,
       category: category == freezed
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
@@ -125,13 +124,6 @@ class _$ProductFormCopyWithImpl<$Res> implements $ProductFormCopyWith<$Res> {
       return _then(_value.copyWith(weight: value));
     });
   }
-
-  @override
-  $PriceCopyWith<$Res> get price {
-    return $PriceCopyWith<$Res>(_value.price, (value) {
-      return _then(_value.copyWith(price: value));
-    });
-  }
 }
 
 /// @nodoc
@@ -144,7 +136,7 @@ abstract class _$$_ProductCopyWith<$Res> implements $ProductFormCopyWith<$Res> {
       {UniqueId id,
       Barcode barcode,
       Weight weight,
-      Price price,
+      NutrientFacts nutrientFacts,
       Category category,
       ProductName name,
       BrandName brand,
@@ -154,8 +146,6 @@ abstract class _$$_ProductCopyWith<$Res> implements $ProductFormCopyWith<$Res> {
 
   @override
   $WeightCopyWith<$Res> get weight;
-  @override
-  $PriceCopyWith<$Res> get price;
 }
 
 /// @nodoc
@@ -172,7 +162,7 @@ class __$$_ProductCopyWithImpl<$Res> extends _$ProductFormCopyWithImpl<$Res>
     Object? id = freezed,
     Object? barcode = freezed,
     Object? weight = freezed,
-    Object? price = freezed,
+    Object? nutrientFacts = freezed,
     Object? category = freezed,
     Object? name = freezed,
     Object? brand = freezed,
@@ -193,10 +183,10 @@ class __$$_ProductCopyWithImpl<$Res> extends _$ProductFormCopyWithImpl<$Res>
           ? _value.weight
           : weight // ignore: cast_nullable_to_non_nullable
               as Weight,
-      price: price == freezed
-          ? _value.price
-          : price // ignore: cast_nullable_to_non_nullable
-              as Price,
+      nutrientFacts: nutrientFacts == freezed
+          ? _value.nutrientFacts
+          : nutrientFacts // ignore: cast_nullable_to_non_nullable
+              as NutrientFacts,
       category: category == freezed
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
@@ -232,7 +222,7 @@ class _$_Product extends _Product {
       {required this.id,
       required this.barcode,
       required this.weight,
-      required this.price,
+      required this.nutrientFacts,
       required this.category,
       required this.name,
       required this.brand,
@@ -247,9 +237,8 @@ class _$_Product extends _Product {
   final Barcode barcode;
   @override
   final Weight weight;
-//required Fats fats,
   @override
-  final Price price;
+  final NutrientFacts nutrientFacts;
   @override
   final Category category;
   @override
@@ -265,7 +254,7 @@ class _$_Product extends _Product {
 
   @override
   String toString() {
-    return 'ProductForm(id: $id, barcode: $barcode, weight: $weight, price: $price, category: $category, name: $name, brand: $brand, description: $description, ingredients: $ingredients, photos: $photos)';
+    return 'ProductForm(id: $id, barcode: $barcode, weight: $weight, nutrientFacts: $nutrientFacts, category: $category, name: $name, brand: $brand, description: $description, ingredients: $ingredients, photos: $photos)';
   }
 
   @override
@@ -276,7 +265,8 @@ class _$_Product extends _Product {
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.barcode, barcode) &&
             const DeepCollectionEquality().equals(other.weight, weight) &&
-            const DeepCollectionEquality().equals(other.price, price) &&
+            const DeepCollectionEquality()
+                .equals(other.nutrientFacts, nutrientFacts) &&
             const DeepCollectionEquality().equals(other.category, category) &&
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality().equals(other.brand, brand) &&
@@ -293,7 +283,7 @@ class _$_Product extends _Product {
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(barcode),
       const DeepCollectionEquality().hash(weight),
-      const DeepCollectionEquality().hash(price),
+      const DeepCollectionEquality().hash(nutrientFacts),
       const DeepCollectionEquality().hash(category),
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(brand),
@@ -312,7 +302,7 @@ abstract class _Product extends ProductForm {
       {required final UniqueId id,
       required final Barcode barcode,
       required final Weight weight,
-      required final Price price,
+      required final NutrientFacts nutrientFacts,
       required final Category category,
       required final ProductName name,
       required final BrandName brand,
@@ -329,8 +319,8 @@ abstract class _Product extends ProductForm {
   Barcode get barcode => throw _privateConstructorUsedError;
   @override
   Weight get weight => throw _privateConstructorUsedError;
-  @override //required Fats fats,
-  Price get price => throw _privateConstructorUsedError;
+  @override
+  NutrientFacts get nutrientFacts => throw _privateConstructorUsedError;
   @override
   Category get category => throw _privateConstructorUsedError;
   @override

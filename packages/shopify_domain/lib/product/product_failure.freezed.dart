@@ -24,6 +24,8 @@ mixin _$ProductFailure {
     required TResult Function(Duration timeout) timeout,
     required TResult Function() noInternetConnection,
     required TResult Function() productNotFound,
+    required TResult Function() shopNotFound,
+    required TResult Function(ValueFailure<dynamic> failure) valueFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -34,6 +36,8 @@ mixin _$ProductFailure {
     TResult Function(Duration timeout)? timeout,
     TResult Function()? noInternetConnection,
     TResult Function()? productNotFound,
+    TResult Function()? shopNotFound,
+    TResult Function(ValueFailure<dynamic> failure)? valueFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -44,6 +48,8 @@ mixin _$ProductFailure {
     TResult Function(Duration timeout)? timeout,
     TResult Function()? noInternetConnection,
     TResult Function()? productNotFound,
+    TResult Function()? shopNotFound,
+    TResult Function(ValueFailure<dynamic> failure)? valueFailure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -56,6 +62,8 @@ mixin _$ProductFailure {
     required TResult Function(_Timeout value) timeout,
     required TResult Function(_NoInternetConnection value) noInternetConnection,
     required TResult Function(_ProductNotFound value) productNotFound,
+    required TResult Function(_ShopNotFound value) shopNotFound,
+    required TResult Function(_ValueFailure value) valueFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -66,6 +74,8 @@ mixin _$ProductFailure {
     TResult Function(_Timeout value)? timeout,
     TResult Function(_NoInternetConnection value)? noInternetConnection,
     TResult Function(_ProductNotFound value)? productNotFound,
+    TResult Function(_ShopNotFound value)? shopNotFound,
+    TResult Function(_ValueFailure value)? valueFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -76,6 +86,8 @@ mixin _$ProductFailure {
     TResult Function(_Timeout value)? timeout,
     TResult Function(_NoInternetConnection value)? noInternetConnection,
     TResult Function(_ProductNotFound value)? productNotFound,
+    TResult Function(_ShopNotFound value)? shopNotFound,
+    TResult Function(_ValueFailure value)? valueFailure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -145,6 +157,8 @@ class _$_Unexpected implements _Unexpected {
     required TResult Function(Duration timeout) timeout,
     required TResult Function() noInternetConnection,
     required TResult Function() productNotFound,
+    required TResult Function() shopNotFound,
+    required TResult Function(ValueFailure<dynamic> failure) valueFailure,
   }) {
     return unexpected();
   }
@@ -158,6 +172,8 @@ class _$_Unexpected implements _Unexpected {
     TResult Function(Duration timeout)? timeout,
     TResult Function()? noInternetConnection,
     TResult Function()? productNotFound,
+    TResult Function()? shopNotFound,
+    TResult Function(ValueFailure<dynamic> failure)? valueFailure,
   }) {
     return unexpected?.call();
   }
@@ -171,6 +187,8 @@ class _$_Unexpected implements _Unexpected {
     TResult Function(Duration timeout)? timeout,
     TResult Function()? noInternetConnection,
     TResult Function()? productNotFound,
+    TResult Function()? shopNotFound,
+    TResult Function(ValueFailure<dynamic> failure)? valueFailure,
     required TResult orElse(),
   }) {
     if (unexpected != null) {
@@ -189,6 +207,8 @@ class _$_Unexpected implements _Unexpected {
     required TResult Function(_Timeout value) timeout,
     required TResult Function(_NoInternetConnection value) noInternetConnection,
     required TResult Function(_ProductNotFound value) productNotFound,
+    required TResult Function(_ShopNotFound value) shopNotFound,
+    required TResult Function(_ValueFailure value) valueFailure,
   }) {
     return unexpected(this);
   }
@@ -202,6 +222,8 @@ class _$_Unexpected implements _Unexpected {
     TResult Function(_Timeout value)? timeout,
     TResult Function(_NoInternetConnection value)? noInternetConnection,
     TResult Function(_ProductNotFound value)? productNotFound,
+    TResult Function(_ShopNotFound value)? shopNotFound,
+    TResult Function(_ValueFailure value)? valueFailure,
   }) {
     return unexpected?.call(this);
   }
@@ -215,6 +237,8 @@ class _$_Unexpected implements _Unexpected {
     TResult Function(_Timeout value)? timeout,
     TResult Function(_NoInternetConnection value)? noInternetConnection,
     TResult Function(_ProductNotFound value)? productNotFound,
+    TResult Function(_ShopNotFound value)? shopNotFound,
+    TResult Function(_ValueFailure value)? valueFailure,
     required TResult orElse(),
   }) {
     if (unexpected != null) {
@@ -277,6 +301,8 @@ class _$_InsufficientPermission implements _InsufficientPermission {
     required TResult Function(Duration timeout) timeout,
     required TResult Function() noInternetConnection,
     required TResult Function() productNotFound,
+    required TResult Function() shopNotFound,
+    required TResult Function(ValueFailure<dynamic> failure) valueFailure,
   }) {
     return insufficientPermission();
   }
@@ -290,6 +316,8 @@ class _$_InsufficientPermission implements _InsufficientPermission {
     TResult Function(Duration timeout)? timeout,
     TResult Function()? noInternetConnection,
     TResult Function()? productNotFound,
+    TResult Function()? shopNotFound,
+    TResult Function(ValueFailure<dynamic> failure)? valueFailure,
   }) {
     return insufficientPermission?.call();
   }
@@ -303,6 +331,8 @@ class _$_InsufficientPermission implements _InsufficientPermission {
     TResult Function(Duration timeout)? timeout,
     TResult Function()? noInternetConnection,
     TResult Function()? productNotFound,
+    TResult Function()? shopNotFound,
+    TResult Function(ValueFailure<dynamic> failure)? valueFailure,
     required TResult orElse(),
   }) {
     if (insufficientPermission != null) {
@@ -321,6 +351,8 @@ class _$_InsufficientPermission implements _InsufficientPermission {
     required TResult Function(_Timeout value) timeout,
     required TResult Function(_NoInternetConnection value) noInternetConnection,
     required TResult Function(_ProductNotFound value) productNotFound,
+    required TResult Function(_ShopNotFound value) shopNotFound,
+    required TResult Function(_ValueFailure value) valueFailure,
   }) {
     return insufficientPermission(this);
   }
@@ -334,6 +366,8 @@ class _$_InsufficientPermission implements _InsufficientPermission {
     TResult Function(_Timeout value)? timeout,
     TResult Function(_NoInternetConnection value)? noInternetConnection,
     TResult Function(_ProductNotFound value)? productNotFound,
+    TResult Function(_ShopNotFound value)? shopNotFound,
+    TResult Function(_ValueFailure value)? valueFailure,
   }) {
     return insufficientPermission?.call(this);
   }
@@ -347,6 +381,8 @@ class _$_InsufficientPermission implements _InsufficientPermission {
     TResult Function(_Timeout value)? timeout,
     TResult Function(_NoInternetConnection value)? noInternetConnection,
     TResult Function(_ProductNotFound value)? productNotFound,
+    TResult Function(_ShopNotFound value)? shopNotFound,
+    TResult Function(_ValueFailure value)? valueFailure,
     required TResult orElse(),
   }) {
     if (insufficientPermission != null) {
@@ -407,6 +443,8 @@ class _$_UnableToUpdate implements _UnableToUpdate {
     required TResult Function(Duration timeout) timeout,
     required TResult Function() noInternetConnection,
     required TResult Function() productNotFound,
+    required TResult Function() shopNotFound,
+    required TResult Function(ValueFailure<dynamic> failure) valueFailure,
   }) {
     return unableToUpdate();
   }
@@ -420,6 +458,8 @@ class _$_UnableToUpdate implements _UnableToUpdate {
     TResult Function(Duration timeout)? timeout,
     TResult Function()? noInternetConnection,
     TResult Function()? productNotFound,
+    TResult Function()? shopNotFound,
+    TResult Function(ValueFailure<dynamic> failure)? valueFailure,
   }) {
     return unableToUpdate?.call();
   }
@@ -433,6 +473,8 @@ class _$_UnableToUpdate implements _UnableToUpdate {
     TResult Function(Duration timeout)? timeout,
     TResult Function()? noInternetConnection,
     TResult Function()? productNotFound,
+    TResult Function()? shopNotFound,
+    TResult Function(ValueFailure<dynamic> failure)? valueFailure,
     required TResult orElse(),
   }) {
     if (unableToUpdate != null) {
@@ -451,6 +493,8 @@ class _$_UnableToUpdate implements _UnableToUpdate {
     required TResult Function(_Timeout value) timeout,
     required TResult Function(_NoInternetConnection value) noInternetConnection,
     required TResult Function(_ProductNotFound value) productNotFound,
+    required TResult Function(_ShopNotFound value) shopNotFound,
+    required TResult Function(_ValueFailure value) valueFailure,
   }) {
     return unableToUpdate(this);
   }
@@ -464,6 +508,8 @@ class _$_UnableToUpdate implements _UnableToUpdate {
     TResult Function(_Timeout value)? timeout,
     TResult Function(_NoInternetConnection value)? noInternetConnection,
     TResult Function(_ProductNotFound value)? productNotFound,
+    TResult Function(_ShopNotFound value)? shopNotFound,
+    TResult Function(_ValueFailure value)? valueFailure,
   }) {
     return unableToUpdate?.call(this);
   }
@@ -477,6 +523,8 @@ class _$_UnableToUpdate implements _UnableToUpdate {
     TResult Function(_Timeout value)? timeout,
     TResult Function(_NoInternetConnection value)? noInternetConnection,
     TResult Function(_ProductNotFound value)? productNotFound,
+    TResult Function(_ShopNotFound value)? shopNotFound,
+    TResult Function(_ValueFailure value)? valueFailure,
     required TResult orElse(),
   }) {
     if (unableToUpdate != null) {
@@ -559,6 +607,8 @@ class _$_Timeout implements _Timeout {
     required TResult Function(Duration timeout) timeout,
     required TResult Function() noInternetConnection,
     required TResult Function() productNotFound,
+    required TResult Function() shopNotFound,
+    required TResult Function(ValueFailure<dynamic> failure) valueFailure,
   }) {
     return timeout(this.timeout);
   }
@@ -572,6 +622,8 @@ class _$_Timeout implements _Timeout {
     TResult Function(Duration timeout)? timeout,
     TResult Function()? noInternetConnection,
     TResult Function()? productNotFound,
+    TResult Function()? shopNotFound,
+    TResult Function(ValueFailure<dynamic> failure)? valueFailure,
   }) {
     return timeout?.call(this.timeout);
   }
@@ -585,6 +637,8 @@ class _$_Timeout implements _Timeout {
     TResult Function(Duration timeout)? timeout,
     TResult Function()? noInternetConnection,
     TResult Function()? productNotFound,
+    TResult Function()? shopNotFound,
+    TResult Function(ValueFailure<dynamic> failure)? valueFailure,
     required TResult orElse(),
   }) {
     if (timeout != null) {
@@ -603,6 +657,8 @@ class _$_Timeout implements _Timeout {
     required TResult Function(_Timeout value) timeout,
     required TResult Function(_NoInternetConnection value) noInternetConnection,
     required TResult Function(_ProductNotFound value) productNotFound,
+    required TResult Function(_ShopNotFound value) shopNotFound,
+    required TResult Function(_ValueFailure value) valueFailure,
   }) {
     return timeout(this);
   }
@@ -616,6 +672,8 @@ class _$_Timeout implements _Timeout {
     TResult Function(_Timeout value)? timeout,
     TResult Function(_NoInternetConnection value)? noInternetConnection,
     TResult Function(_ProductNotFound value)? productNotFound,
+    TResult Function(_ShopNotFound value)? shopNotFound,
+    TResult Function(_ValueFailure value)? valueFailure,
   }) {
     return timeout?.call(this);
   }
@@ -629,6 +687,8 @@ class _$_Timeout implements _Timeout {
     TResult Function(_Timeout value)? timeout,
     TResult Function(_NoInternetConnection value)? noInternetConnection,
     TResult Function(_ProductNotFound value)? productNotFound,
+    TResult Function(_ShopNotFound value)? shopNotFound,
+    TResult Function(_ValueFailure value)? valueFailure,
     required TResult orElse(),
   }) {
     if (timeout != null) {
@@ -694,6 +754,8 @@ class _$_NoInternetConnection implements _NoInternetConnection {
     required TResult Function(Duration timeout) timeout,
     required TResult Function() noInternetConnection,
     required TResult Function() productNotFound,
+    required TResult Function() shopNotFound,
+    required TResult Function(ValueFailure<dynamic> failure) valueFailure,
   }) {
     return noInternetConnection();
   }
@@ -707,6 +769,8 @@ class _$_NoInternetConnection implements _NoInternetConnection {
     TResult Function(Duration timeout)? timeout,
     TResult Function()? noInternetConnection,
     TResult Function()? productNotFound,
+    TResult Function()? shopNotFound,
+    TResult Function(ValueFailure<dynamic> failure)? valueFailure,
   }) {
     return noInternetConnection?.call();
   }
@@ -720,6 +784,8 @@ class _$_NoInternetConnection implements _NoInternetConnection {
     TResult Function(Duration timeout)? timeout,
     TResult Function()? noInternetConnection,
     TResult Function()? productNotFound,
+    TResult Function()? shopNotFound,
+    TResult Function(ValueFailure<dynamic> failure)? valueFailure,
     required TResult orElse(),
   }) {
     if (noInternetConnection != null) {
@@ -738,6 +804,8 @@ class _$_NoInternetConnection implements _NoInternetConnection {
     required TResult Function(_Timeout value) timeout,
     required TResult Function(_NoInternetConnection value) noInternetConnection,
     required TResult Function(_ProductNotFound value) productNotFound,
+    required TResult Function(_ShopNotFound value) shopNotFound,
+    required TResult Function(_ValueFailure value) valueFailure,
   }) {
     return noInternetConnection(this);
   }
@@ -751,6 +819,8 @@ class _$_NoInternetConnection implements _NoInternetConnection {
     TResult Function(_Timeout value)? timeout,
     TResult Function(_NoInternetConnection value)? noInternetConnection,
     TResult Function(_ProductNotFound value)? productNotFound,
+    TResult Function(_ShopNotFound value)? shopNotFound,
+    TResult Function(_ValueFailure value)? valueFailure,
   }) {
     return noInternetConnection?.call(this);
   }
@@ -764,6 +834,8 @@ class _$_NoInternetConnection implements _NoInternetConnection {
     TResult Function(_Timeout value)? timeout,
     TResult Function(_NoInternetConnection value)? noInternetConnection,
     TResult Function(_ProductNotFound value)? productNotFound,
+    TResult Function(_ShopNotFound value)? shopNotFound,
+    TResult Function(_ValueFailure value)? valueFailure,
     required TResult orElse(),
   }) {
     if (noInternetConnection != null) {
@@ -824,6 +896,8 @@ class _$_ProductNotFound implements _ProductNotFound {
     required TResult Function(Duration timeout) timeout,
     required TResult Function() noInternetConnection,
     required TResult Function() productNotFound,
+    required TResult Function() shopNotFound,
+    required TResult Function(ValueFailure<dynamic> failure) valueFailure,
   }) {
     return productNotFound();
   }
@@ -837,6 +911,8 @@ class _$_ProductNotFound implements _ProductNotFound {
     TResult Function(Duration timeout)? timeout,
     TResult Function()? noInternetConnection,
     TResult Function()? productNotFound,
+    TResult Function()? shopNotFound,
+    TResult Function(ValueFailure<dynamic> failure)? valueFailure,
   }) {
     return productNotFound?.call();
   }
@@ -850,6 +926,8 @@ class _$_ProductNotFound implements _ProductNotFound {
     TResult Function(Duration timeout)? timeout,
     TResult Function()? noInternetConnection,
     TResult Function()? productNotFound,
+    TResult Function()? shopNotFound,
+    TResult Function(ValueFailure<dynamic> failure)? valueFailure,
     required TResult orElse(),
   }) {
     if (productNotFound != null) {
@@ -868,6 +946,8 @@ class _$_ProductNotFound implements _ProductNotFound {
     required TResult Function(_Timeout value) timeout,
     required TResult Function(_NoInternetConnection value) noInternetConnection,
     required TResult Function(_ProductNotFound value) productNotFound,
+    required TResult Function(_ShopNotFound value) shopNotFound,
+    required TResult Function(_ValueFailure value) valueFailure,
   }) {
     return productNotFound(this);
   }
@@ -881,6 +961,8 @@ class _$_ProductNotFound implements _ProductNotFound {
     TResult Function(_Timeout value)? timeout,
     TResult Function(_NoInternetConnection value)? noInternetConnection,
     TResult Function(_ProductNotFound value)? productNotFound,
+    TResult Function(_ShopNotFound value)? shopNotFound,
+    TResult Function(_ValueFailure value)? valueFailure,
   }) {
     return productNotFound?.call(this);
   }
@@ -894,6 +976,8 @@ class _$_ProductNotFound implements _ProductNotFound {
     TResult Function(_Timeout value)? timeout,
     TResult Function(_NoInternetConnection value)? noInternetConnection,
     TResult Function(_ProductNotFound value)? productNotFound,
+    TResult Function(_ShopNotFound value)? shopNotFound,
+    TResult Function(_ValueFailure value)? valueFailure,
     required TResult orElse(),
   }) {
     if (productNotFound != null) {
@@ -905,4 +989,327 @@ class _$_ProductNotFound implements _ProductNotFound {
 
 abstract class _ProductNotFound implements ProductFailure {
   const factory _ProductNotFound() = _$_ProductNotFound;
+}
+
+/// @nodoc
+abstract class _$$_ShopNotFoundCopyWith<$Res> {
+  factory _$$_ShopNotFoundCopyWith(
+          _$_ShopNotFound value, $Res Function(_$_ShopNotFound) then) =
+      __$$_ShopNotFoundCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_ShopNotFoundCopyWithImpl<$Res>
+    extends _$ProductFailureCopyWithImpl<$Res>
+    implements _$$_ShopNotFoundCopyWith<$Res> {
+  __$$_ShopNotFoundCopyWithImpl(
+      _$_ShopNotFound _value, $Res Function(_$_ShopNotFound) _then)
+      : super(_value, (v) => _then(v as _$_ShopNotFound));
+
+  @override
+  _$_ShopNotFound get _value => super._value as _$_ShopNotFound;
+}
+
+/// @nodoc
+
+class _$_ShopNotFound implements _ShopNotFound {
+  const _$_ShopNotFound();
+
+  @override
+  String toString() {
+    return 'ProductFailure.shopNotFound()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_ShopNotFound);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() unexpected,
+    required TResult Function() insufficientPermission,
+    required TResult Function() unableToUpdate,
+    required TResult Function(Duration timeout) timeout,
+    required TResult Function() noInternetConnection,
+    required TResult Function() productNotFound,
+    required TResult Function() shopNotFound,
+    required TResult Function(ValueFailure<dynamic> failure) valueFailure,
+  }) {
+    return shopNotFound();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? unexpected,
+    TResult Function()? insufficientPermission,
+    TResult Function()? unableToUpdate,
+    TResult Function(Duration timeout)? timeout,
+    TResult Function()? noInternetConnection,
+    TResult Function()? productNotFound,
+    TResult Function()? shopNotFound,
+    TResult Function(ValueFailure<dynamic> failure)? valueFailure,
+  }) {
+    return shopNotFound?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? unexpected,
+    TResult Function()? insufficientPermission,
+    TResult Function()? unableToUpdate,
+    TResult Function(Duration timeout)? timeout,
+    TResult Function()? noInternetConnection,
+    TResult Function()? productNotFound,
+    TResult Function()? shopNotFound,
+    TResult Function(ValueFailure<dynamic> failure)? valueFailure,
+    required TResult orElse(),
+  }) {
+    if (shopNotFound != null) {
+      return shopNotFound();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Unexpected value) unexpected,
+    required TResult Function(_InsufficientPermission value)
+        insufficientPermission,
+    required TResult Function(_UnableToUpdate value) unableToUpdate,
+    required TResult Function(_Timeout value) timeout,
+    required TResult Function(_NoInternetConnection value) noInternetConnection,
+    required TResult Function(_ProductNotFound value) productNotFound,
+    required TResult Function(_ShopNotFound value) shopNotFound,
+    required TResult Function(_ValueFailure value) valueFailure,
+  }) {
+    return shopNotFound(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_InsufficientPermission value)? insufficientPermission,
+    TResult Function(_UnableToUpdate value)? unableToUpdate,
+    TResult Function(_Timeout value)? timeout,
+    TResult Function(_NoInternetConnection value)? noInternetConnection,
+    TResult Function(_ProductNotFound value)? productNotFound,
+    TResult Function(_ShopNotFound value)? shopNotFound,
+    TResult Function(_ValueFailure value)? valueFailure,
+  }) {
+    return shopNotFound?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_InsufficientPermission value)? insufficientPermission,
+    TResult Function(_UnableToUpdate value)? unableToUpdate,
+    TResult Function(_Timeout value)? timeout,
+    TResult Function(_NoInternetConnection value)? noInternetConnection,
+    TResult Function(_ProductNotFound value)? productNotFound,
+    TResult Function(_ShopNotFound value)? shopNotFound,
+    TResult Function(_ValueFailure value)? valueFailure,
+    required TResult orElse(),
+  }) {
+    if (shopNotFound != null) {
+      return shopNotFound(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ShopNotFound implements ProductFailure {
+  const factory _ShopNotFound() = _$_ShopNotFound;
+}
+
+/// @nodoc
+abstract class _$$_ValueFailureCopyWith<$Res> {
+  factory _$$_ValueFailureCopyWith(
+          _$_ValueFailure value, $Res Function(_$_ValueFailure) then) =
+      __$$_ValueFailureCopyWithImpl<$Res>;
+  $Res call({ValueFailure<dynamic> failure});
+
+  $ValueFailureCopyWith<dynamic, $Res> get failure;
+}
+
+/// @nodoc
+class __$$_ValueFailureCopyWithImpl<$Res>
+    extends _$ProductFailureCopyWithImpl<$Res>
+    implements _$$_ValueFailureCopyWith<$Res> {
+  __$$_ValueFailureCopyWithImpl(
+      _$_ValueFailure _value, $Res Function(_$_ValueFailure) _then)
+      : super(_value, (v) => _then(v as _$_ValueFailure));
+
+  @override
+  _$_ValueFailure get _value => super._value as _$_ValueFailure;
+
+  @override
+  $Res call({
+    Object? failure = freezed,
+  }) {
+    return _then(_$_ValueFailure(
+      failure == freezed
+          ? _value.failure
+          : failure // ignore: cast_nullable_to_non_nullable
+              as ValueFailure<dynamic>,
+    ));
+  }
+
+  @override
+  $ValueFailureCopyWith<dynamic, $Res> get failure {
+    return $ValueFailureCopyWith<dynamic, $Res>(_value.failure, (value) {
+      return _then(_value.copyWith(failure: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$_ValueFailure implements _ValueFailure {
+  const _$_ValueFailure(this.failure);
+
+  @override
+  final ValueFailure<dynamic> failure;
+
+  @override
+  String toString() {
+    return 'ProductFailure.valueFailure(failure: $failure)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_ValueFailure &&
+            const DeepCollectionEquality().equals(other.failure, failure));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(failure));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_ValueFailureCopyWith<_$_ValueFailure> get copyWith =>
+      __$$_ValueFailureCopyWithImpl<_$_ValueFailure>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() unexpected,
+    required TResult Function() insufficientPermission,
+    required TResult Function() unableToUpdate,
+    required TResult Function(Duration timeout) timeout,
+    required TResult Function() noInternetConnection,
+    required TResult Function() productNotFound,
+    required TResult Function() shopNotFound,
+    required TResult Function(ValueFailure<dynamic> failure) valueFailure,
+  }) {
+    return valueFailure(failure);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? unexpected,
+    TResult Function()? insufficientPermission,
+    TResult Function()? unableToUpdate,
+    TResult Function(Duration timeout)? timeout,
+    TResult Function()? noInternetConnection,
+    TResult Function()? productNotFound,
+    TResult Function()? shopNotFound,
+    TResult Function(ValueFailure<dynamic> failure)? valueFailure,
+  }) {
+    return valueFailure?.call(failure);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? unexpected,
+    TResult Function()? insufficientPermission,
+    TResult Function()? unableToUpdate,
+    TResult Function(Duration timeout)? timeout,
+    TResult Function()? noInternetConnection,
+    TResult Function()? productNotFound,
+    TResult Function()? shopNotFound,
+    TResult Function(ValueFailure<dynamic> failure)? valueFailure,
+    required TResult orElse(),
+  }) {
+    if (valueFailure != null) {
+      return valueFailure(failure);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Unexpected value) unexpected,
+    required TResult Function(_InsufficientPermission value)
+        insufficientPermission,
+    required TResult Function(_UnableToUpdate value) unableToUpdate,
+    required TResult Function(_Timeout value) timeout,
+    required TResult Function(_NoInternetConnection value) noInternetConnection,
+    required TResult Function(_ProductNotFound value) productNotFound,
+    required TResult Function(_ShopNotFound value) shopNotFound,
+    required TResult Function(_ValueFailure value) valueFailure,
+  }) {
+    return valueFailure(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_InsufficientPermission value)? insufficientPermission,
+    TResult Function(_UnableToUpdate value)? unableToUpdate,
+    TResult Function(_Timeout value)? timeout,
+    TResult Function(_NoInternetConnection value)? noInternetConnection,
+    TResult Function(_ProductNotFound value)? productNotFound,
+    TResult Function(_ShopNotFound value)? shopNotFound,
+    TResult Function(_ValueFailure value)? valueFailure,
+  }) {
+    return valueFailure?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_InsufficientPermission value)? insufficientPermission,
+    TResult Function(_UnableToUpdate value)? unableToUpdate,
+    TResult Function(_Timeout value)? timeout,
+    TResult Function(_NoInternetConnection value)? noInternetConnection,
+    TResult Function(_ProductNotFound value)? productNotFound,
+    TResult Function(_ShopNotFound value)? shopNotFound,
+    TResult Function(_ValueFailure value)? valueFailure,
+    required TResult orElse(),
+  }) {
+    if (valueFailure != null) {
+      return valueFailure(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ValueFailure implements ProductFailure {
+  const factory _ValueFailure(final ValueFailure<dynamic> failure) =
+      _$_ValueFailure;
+
+  ValueFailure<dynamic> get failure => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$$_ValueFailureCopyWith<_$_ValueFailure> get copyWith =>
+      throw _privateConstructorUsedError;
 }

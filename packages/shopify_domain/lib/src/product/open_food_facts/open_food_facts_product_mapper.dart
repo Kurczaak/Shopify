@@ -5,18 +5,27 @@ import 'package:shopify_domain/product.dart';
 extension OpenFoodFactsProductDomainX on off.Product {
   Product toDomain() {
     return Product.fromPrimitives(
-        id: UniqueId().getOrCrash(),
-        barcode: barcode ?? '',
-        weight: packagingQuantity ?? 0,
-        weightUnit: 'gram',
-        price: 0,
-        currency: 'zł',
-        category: '',
-        name: productName ?? '',
-        brand: brands ?? '',
-        description: '',
-        ingredients: ingredientsText ?? '',
-        photosUrls: getProductPhotots(imageFrontUrl, imagePackagingSmallUrl));
+      id: UniqueId().getOrCrash(),
+      barcode: barcode ?? '',
+      weight: packagingQuantity ?? 0,
+      weightUnit: 'gram',
+      price: 0,
+      currency: 'zł',
+      category: '',
+      name: productName ?? '',
+      brand: brands ?? '',
+      description: '',
+      ingredients: ingredientsText ?? '',
+      photosUrls: getProductPhotots(imageFrontUrl, imagePackagingSmallUrl),
+      fat: nutriments?.fat,
+      transFat: nutriments?.transFat,
+      saturatedFat: nutriments?.saturatedFat,
+      polysaturatedFat: nutriments?.polyunsaturatedAcid,
+      monosaturatedFat: nutriments?.monounsaturatedAcid,
+      protein: nutriments?.proteins,
+      carbohydrate: nutriments?.carbohydrates,
+      sugar: nutriments?.sugars,
+    );
   }
 }
 

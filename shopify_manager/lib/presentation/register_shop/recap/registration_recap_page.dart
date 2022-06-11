@@ -60,7 +60,7 @@ class _RegistrationRecapPageState extends State<RegistrationRecapPage> {
                         context: context,
                         builder: (context) => ShopifyAlertDialog(
                             title: 'Success',
-                            subtitle: 'You shop has been succesfully uploaded',
+                            subtitle: 'Your shop has been succesfully uploaded',
                             onConfirm: () {
                               getIt.resetLazySingleton<ShopRegistrationBloc>();
                               context.router.popUntilRouteWithName(

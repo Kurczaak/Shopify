@@ -183,7 +183,7 @@ class FirebaseShopRepositoryImpl implements ShopifyShopRepository {
   }
 
   @override
-  Stream<Either<ShopFailure, KtList<Shop>>> watchYourShops() async* {
+  Stream<Either<ShopFailure, KtList<Shop>>> watchYours() async* {
     final shops = await _firestore.userShops();
     yield* shops
         .snapshots()

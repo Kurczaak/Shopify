@@ -57,7 +57,7 @@ class ProductFormBloc extends Bloc<ProductFormEvent, ProductFormState> {
         weightNumberChanged: (weightNumber) {
           final currentWeight = state.productForm.weight;
           final newWeight = currentWeight.copyWith(
-              weight: PositiveNumber.fromString(weightNumber));
+              weight: NonnegativeNumber.fromString(weightNumber));
           emit(state.copyWith(
               productForm: state.productForm.copyWith(weight: newWeight)));
         },
@@ -67,19 +67,6 @@ class ProductFormBloc extends Bloc<ProductFormEvent, ProductFormState> {
               currentWeight.copyWith(weightUnit: WeightUnit(weightUnit));
           emit(state.copyWith(
               productForm: state.productForm.copyWith(weight: newWeight)));
-        },
-        priceChanged: (price) {
-          final currentPrice = state.productForm.price;
-          final newPrice =
-              currentPrice.copyWith(price: PositiveNumber.fromString(price));
-          emit(state.copyWith(
-              productForm: state.productForm.copyWith(price: newPrice)));
-        },
-        currencyChanged: (currency) {
-          final currentPrice = state.productForm.price;
-          final newPrice = currentPrice.copyWith(currency: Currency(currency));
-          emit(state.copyWith(
-              productForm: state.productForm.copyWith(price: newPrice)));
         },
         productDescriptionChanged: (productDescription) {
           emit(state.copyWith(
@@ -120,6 +107,7 @@ class ProductFormBloc extends Bloc<ProductFormEvent, ProductFormState> {
           });
         },
         saved: () async {
+          emit(state.copyWith(showErrors: false));
           await state.productForm.failureOption.fold(() async {
             emit(ProductFormState.loading(
                 productForm: state.productForm,

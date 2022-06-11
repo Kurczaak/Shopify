@@ -142,31 +142,6 @@ void main() async {
     );
   });
 
-  group('priceChanged', () {
-    // arrange
-    const priceStr = '10.0';
-    const priceDouble = 10.0;
-    final price = Price.fromPrimitives(priceDouble, 'zl');
-    blocTest(
-      'should emit state with modified price',
-      build: () => ProductFormBloc(
-        imageFacade: mockImageFacade,
-        authFacade: mockIAuthFacade,
-        networkInfo: mockNetworkInfo,
-        productRepository: mockIProductRepository,
-        shopRepository: mockIShopRepository,
-      ),
-      seed: () => initialState,
-      act: (ProductFormBloc bloc) => bloc.add(
-        const ProductFormEvent.priceChanged(price: priceStr),
-      ),
-      expect: () => [
-        initialState.copyWith(
-            productForm: tInitialProduct.copyWith(price: price))
-      ],
-    );
-  });
-
   group('productDescriptionChanged', () {
     // arrange
     const descriptionStr =

@@ -35,6 +35,10 @@ class Day with _$Day {
   Option<ValueFailure<dynamic>> get failureOption {
     return openingInterval.failureOrUnit.fold((f) => some(f), (_) => none());
   }
+
+  Either<ValueFailure, Unit> get failureOrUnit {
+    return openingInterval.failureOrUnit;
+  }
 }
 
 extension Stringify on DayName {

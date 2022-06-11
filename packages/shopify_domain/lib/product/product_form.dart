@@ -6,7 +6,7 @@ import 'package:kt_dart/kt.dart';
 import 'package:shopify_domain/core/failures.dart';
 import 'package:shopify_domain/core/images/photo.dart';
 import 'package:shopify_domain/core/value_objects.dart';
-import 'package:shopify_domain/product/price.dart';
+import 'package:shopify_domain/product/nutrient.dart';
 import 'package:shopify_domain/product/product.dart';
 import 'package:shopify_domain/product/product_categories.dart';
 import 'package:shopify_domain/product/value_objects.dart';
@@ -22,8 +22,7 @@ class ProductForm with _$ProductForm {
     required UniqueId id,
     required Barcode barcode,
     required Weight weight,
-    //required Fats fats,
-    required Price price,
+    required NutrientFacts nutrientFacts,
     required Category category,
     required ProductName name,
     required BrandName brand,
@@ -36,8 +35,8 @@ class ProductForm with _$ProductForm {
   factory ProductForm.empty() => ProductForm(
       id: UniqueId(),
       barcode: Barcode(''),
-      weight: Weight.empty(),
-      price: Price.empty(),
+      weight: Weight.zero(),
+      nutrientFacts: NutrientFacts.empty(),
       category: Category(Categories.unknown),
       name: ProductName(''),
       brand: BrandName(''),
@@ -50,7 +49,7 @@ class ProductForm with _$ProductForm {
       id: product.id,
       barcode: product.barcode,
       weight: product.weight,
-      price: product.price,
+      nutrientFacts: product.nutrientFacts,
       category: product.category,
       name: product.name,
       brand: product.brand,
@@ -65,7 +64,6 @@ class ProductForm with _$ProductForm {
     required String barcode,
     required double weight,
     required String weightUnit,
-    required double price,
     required String currency,
     required String category,
     required String name,
@@ -78,7 +76,7 @@ class ProductForm with _$ProductForm {
         id: UniqueId.fromUniqueString(id),
         barcode: Barcode(barcode),
         weight: Weight.fromPrimitives(weight, weightUnit),
-        price: Price.fromPrimitives(price, currency),
+        nutrientFacts: NutrientFacts.empty(), // TODO!!
         category: Category.fromString(category),
         name: ProductName(name),
         brand: BrandName(brand),
@@ -93,11 +91,24 @@ class ProductForm with _$ProductForm {
         }),
       );
 
+  Product get product => Product(
+        barcode: barcode,
+        brand: brand,
+        category: category,
+        description: description,
+        id: this.id,
+        ingredients: ingredients,
+        name: name,
+        nutrientFacts: nutrientFacts,
+        photos: photos.fold(id, (_) => NonEmptyList5<ShopifyUrl>.empty()),
+        weight: weight,
+      );
+
   Option<ValueFailure<dynamic>> get failureOption {
     return barcode.failureOrUnit
         .andThen(
           weight.failureOrUnit.andThen(
-            price.failureOrUnit.andThen(
+            nutrientFacts.failureOrUnit.andThen(
               category.failureOrUnit.andThen(
                 name.failureOrUnit.andThen(
                   brand.failureOrUnit.andThen(

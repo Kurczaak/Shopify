@@ -19,11 +19,20 @@ abstract class ValueObject<T> extends Equatable {
     return value.fold((f) => throw UnexpectedValueError(f), id);
   }
 
+  ValueFailure<T> getFailureOrCrash() {
+    // id = identity - sam as writing (right) => right
+    return value.fold(
+        id, (r) => throw UnimplementedError('expected a failure'));
+  }
+
   bool isValid() => value.isRight();
 
   Either<ValueFailure<dynamic>, Unit> get failureOrUnit {
     return value.fold((l) => left(l), (_) => right(unit));
   }
+
+  Option<ValueFailure<T>> get failureOption =>
+      value.fold((failure) => some(failure), (_) => none());
 
   const ValueObject();
 
@@ -55,7 +64,8 @@ class PositiveNumber extends ValueObject<double> {
   final Either<ValueFailure<double>, double> value;
   factory PositiveNumber(double input) {
     return PositiveNumber._(
-      validateDoubleRange(input, minPositiveNumber, maxPositiveNumber),
+      validateDoubleRange(
+          input.toPrecision(2), minPositiveNumber, maxPositiveNumber),
     );
   }
 
@@ -72,27 +82,38 @@ class PositiveNumber extends ValueObject<double> {
   const PositiveNumber._(this.value);
 }
 
+class NonnegativeNumber extends ValueObject<double> {
+  static const double max = 999999;
+  static const double min = 0.00;
+
+  @override
+  final Either<ValueFailure<double>, double> value;
+  factory NonnegativeNumber(double input) {
+    return NonnegativeNumber._(
+      validateDoubleRange(input, min, max),
+    );
+  }
+
+  factory NonnegativeNumber.fromString(String input) {
+    final parsedNum = double.tryParse(input);
+    if (parsedNum == null) {
+      return NonnegativeNumber._(
+          left(const ValueFailure.core(CoreValueFailure.empty())));
+    } else {
+      return NonnegativeNumber(parsedNum);
+    }
+  }
+
+  const NonnegativeNumber._(this.value);
+}
+
 class ShopifyUrl extends ValueObject<String> {
   @override
   final Either<ValueFailure<String>, String> value;
 
-  factory ShopifyUrl(String url) =>
-      ShopifyUrl._(validateStringContains(url, ['https'])
-          .flatMap(validateStringNotEmpty)
-          .flatMap(validateSingleLine));
-
-  // Option<String> get stringFailureOption {
-  //   return value.fold(
-  //       (failure) => failure.maybeWhen(
-  //           orElse: () => throw UnexpectedValueError(failure),
-  //           core: (coreFailure) => some(coreFailure.maybeMap(
-  //                 orElse: () => 'Unexpected value failure',
-  //                 empty: (_) => 'URL should not be empty',
-  //                 stringDoesntContainKeyword: (_) => 'Invalid URL string',
-  //                 multiline: (_) => 'URLs cannot be multiline',
-  //               ))),
-  //       (_) => none());
-  // }
+  factory ShopifyUrl(String url) => ShopifyUrl._(validateStringNotEmpty(url)
+      .flatMap((passedValue) => validateStringContains(passedValue, ['https'])
+          .flatMap(validateSingleLine)));
 
   const ShopifyUrl._(this.value);
 }
@@ -101,6 +122,7 @@ abstract class Name extends ValueObject<String> {
   static const maxLength = 10;
   @override
   Either<ValueFailure<String>, String> get value;
+
   const Name();
 }
 
@@ -115,18 +137,10 @@ class AddressNumber extends ValueObject<String> {
         validateMaxStringLength(input, maxLength).flatMap(validateSingleLine));
   }
 
-  // Option<String> get stringFailureOption {
-  //   return value.fold(
-  //       (failure) => failure.maybeWhen(
-  //           orElse: () => throw UnexpectedValueError(failure),
-  //           core: (coreFailure) => some(coreFailure.maybeMap(
-  //                 orElse: () => 'Unexpected value failure',
-  //                 exceedingLength: (_) =>
-  //                     'Adress number is too long. Max $maxLength characters',
-  //                 multiline: (_) => 'Address Number cannot be multiline',
-  //               ))),
-  //       (_) => none());
-  // }
+  @override
+  Option<ValueFailure<String>> get failureOption {
+    return value.fold((failure) => some(failure), (_) => none());
+  }
 
   const AddressNumber._(this.value);
 }
@@ -147,29 +161,13 @@ class StreetName extends Name {
   @override
   final Either<ValueFailure<String>, String> value;
   factory StreetName(String input) {
-    return StreetName._(
-      validateMaxStringLength(input, maxLength)
+    return StreetName._(validateStringNotEmpty(input).flatMap(
+      (passedValue) => validateMaxStringLength(passedValue, maxLength)
           .flatMap(
               (passedValue) => validateMinStringLength(passedValue, minLength))
           .flatMap(validateSingleLine),
-    );
+    ));
   }
-
-  // Option<String> get stringFailureOption {
-  //   return value.fold(
-  //       (failure) => failure.maybeWhen(
-  //           orElse: () => throw UnexpectedValueError(failure),
-  //           core: (coreFailure) => some(coreFailure.maybeMap(
-  //                 orElse: () => 'Unexpected value failure',
-  //                 empty: (_) => 'Street name should not be empty',
-  //                 exceedingLength: (_) =>
-  //                     'Street name is too long. Max $maxLength characters',
-  //                 multiline: (_) => 'Street name cannot be multiline',
-  //                 stringTooShort: (_) =>
-  //                     'Street name is too short. Min $minLength characters',
-  //               ))),
-  //       (_) => none());
-  // }
 
   const StreetName._(this.value);
 }
@@ -180,12 +178,12 @@ class CityName extends Name {
   @override
   final Either<ValueFailure<String>, String> value;
   factory CityName(String input) {
-    return CityName._(
-      validateMaxStringLength(input, maxLength)
+    return CityName._(validateStringNotEmpty(input).flatMap(
+      (passedValue) => validateMaxStringLength(passedValue, maxLength)
           .flatMap(
               (passedValue) => validateMinStringLength(passedValue, minLength))
           .flatMap(validateSingleLine),
-    );
+    ));
   }
   const CityName._(this.value);
 }
@@ -220,4 +218,8 @@ class NonEmptyList5<T> extends ValueObject<KtList<T>> {
   bool get isFull {
     return length == maxLength;
   }
+}
+
+extension Ex on double {
+  double toPrecision(int n) => double.parse(toStringAsFixed(n));
 }

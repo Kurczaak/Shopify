@@ -2,9 +2,10 @@ import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/services.dart';
 import 'package:injectable/injectable.dart';
-import 'package:shopify_domain/core.dart';
 import 'package:kt_dart/kt.dart';
+import 'package:shopify_domain/core.dart';
 import 'package:dartz/dartz.dart';
 import 'package:shopify_domain/core/network/network_info.dart';
 import 'package:shopify_domain/product.dart';
@@ -21,32 +22,163 @@ class FirebaseProductRepositoryImpl implements ShopifyProductRepository {
   FirebaseProductRepositoryImpl(
       this._firestore, this._storage, this._networkInfo);
 
-  @override
-  Future<Either<ProductFailure, Unit>> create(ProductForm productForm) async {
-    final isConnected = await _networkInfo.isConnected;
+  Future<Either<ProductFailure, Unit>> _uploadProductToFirestore(
+      Product product) async {
+    try {
+      final productDocument =
+          _firestore.productsCollection.doc(product.id.getOrCrash());
 
-    return await productForm.photos.fold(
-        (urls) async => left(const ProductFailure.unexpected()), (files) async {
-      if (isConnected) {
-        final uploadedPhotosReferencesOrFailure =
-            await _addPhotosToTheStorage(files, productForm.id);
-        return await uploadedPhotosReferencesOrFailure
-            .fold((f) async => left(f), (uploadedPhotosReferences) async {
-          return await _addProductFormToTheFirestore(
-              productForm, uploadedPhotosReferences);
-        });
-        // Firestore
-
+      await productDocument
+          .set(ProductDto.fromDomain(product).toJson())
+          .timeout(timeoutDuration,
+              onTimeout: () => throw TimeoutException('connection timed out'));
+    } on FirebaseException catch (e) {
+      if (e.code.contains('permission-denied')) {
+        return left(const ProductFailure.insufficientPermission());
+      } else {
+        return left(const ProductFailure.unexpected());
       }
-      return left(const ProductFailure.noInternetConnection());
-    });
+    } on TimeoutException catch (_) {
+      return left(const ProductFailure.timeout(timeoutDuration));
+    } on PlatformException catch (_) {
+      return left(const ProductFailure.unexpected());
+    }
+
+    return right(unit);
+  }
+
+  Future<Either<ProductFailure, KtList<ShopifyUrl>>> _uploadPhotosToStorage(
+      KtList<ProductPhoto> photos, UniqueId id) async {
+    for (final photo in photos.iter) {
+      if (photo.failureOrUnit.isLeft()) {
+        return left(ProductFailure.valueFailure(photo.getFailureOrCrash()));
+      }
+    }
+    // Photos are valid - contiune
+    final allProductsPhotosReference = _storage.productPhotosReference;
+    // The product's photos folder
+    final productPhotosReference =
+        allProductsPhotosReference.child(id.getOrCrash());
+    int i = 0;
+    final List<ShopifyUrl> shopifyUrls = [];
+    try {
+      for (final photo in photos.iter) {
+        final photoReference = productPhotosReference.child(i.toString());
+        final taskSnapshot = await photoReference.putFile(photo.getOrCrash());
+
+        final photoUrl = await taskSnapshot.ref.getDownloadURL();
+        final shopifyUrl = ShopifyUrl(photoUrl);
+        if (shopifyUrl.failureOrUnit.isLeft()) {
+          return left(
+              ProductFailure.valueFailure(shopifyUrl.getFailureOrCrash()));
+        } else {
+          shopifyUrls.add(shopifyUrl);
+        }
+        i++;
+      }
+      return right(KtList.from(shopifyUrls));
+    } on FirebaseException catch (e) {
+      if (e.code.contains('permission-denied')) {
+        await productPhotosReference.delete();
+        return left(const ProductFailure.insufficientPermission());
+      } else {
+        return left(const ProductFailure.unexpected());
+      }
+    } on TimeoutException catch (_) {
+      await productPhotosReference.delete();
+      return left(const ProductFailure.timeout(timeoutDuration));
+    } on PlatformException catch (_) {
+      await productPhotosReference.delete();
+      return left(const ProductFailure.unexpected());
+    }
   }
 
   @override
-  Future<Either<ProductFailure, Unit>> createForShop(
-      ProductForm product, Shop shop) {
-    // TODO: implement createForShop
-    throw UnimplementedError();
+  Future<Either<ProductFailure, Unit>> addPhotosAndCreate(
+      Product product, NonEmptyList5<ProductPhoto> photos) async {
+    if (await _networkInfo.isConnected) {
+      // Check photos
+      final failureOrPhotosUrls =
+          await _uploadPhotosToStorage(photos.getOrCrash(), product.id);
+
+      return await failureOrPhotosUrls.fold(
+        (failure) async => left(failure),
+        (urls) async {
+          final productWithUploadedPhotos =
+              product.copyWith(photos: NonEmptyList5(urls));
+          final failureOrUnit =
+              await _uploadProductToFirestore(productWithUploadedPhotos);
+          return await failureOrUnit.fold((failure) async {
+            await _storage.productPhotosReference
+                .child(product.id.getOrCrash())
+                .delete();
+            return left(failure);
+          }, (_) => right(unit));
+        },
+      );
+    } else {
+      return left(const ProductFailure.noInternetConnection());
+    }
+  }
+
+  @override
+  Future<Either<ProductFailure, Unit>> addToShop(
+      Product product, Price price, Shop shop) async {
+    final argumentsFailureOrUnit = shop.failureOrUnit
+        .andThen(price.failureOrUnit.andThen(product.failureOrUnit));
+
+    if (argumentsFailureOrUnit.isLeft()) {
+      return argumentsFailureOrUnit.fold(
+          (failure) => left(ProductFailure.valueFailure(failure)),
+          (_) => throw UnimplementedError(
+              'An error occured when adding the product to the shop'));
+    }
+
+    if (await _networkInfo.isConnected) {
+      try {
+        // Check if the shop exists in the DB
+        final shopDocument =
+            await _firestore.shopsCollection.doc(shop.id.getOrCrash()).get();
+        if (!shopDocument.exists) {
+          return left(const ProductFailure.shopNotFound());
+        }
+
+        // Check if the product exists in the DB
+        final productDocument = await _firestore.productsCollection
+            .doc(product.id.getOrCrash())
+            .get();
+        if (!productDocument.exists) {
+          return left(const ProductFailure.productNotFound());
+        }
+
+        // Both the shop and the product exist in the DB
+        final shopProductsCollection = _firestore.shopsCollection
+            .doc(shop.id.getOrCrash())
+            .collection('products');
+        final shopProductDto = ShopProductDto(
+            productId: product.id.getOrCrash(),
+            price: PriceDto.fromDomain(price));
+
+        await shopProductsCollection
+            .add(shopProductDto.toJson())
+            .timeout(timeoutDuration, onTimeout: () {
+          throw TimeoutException('Connection timeout ', timeoutDuration);
+        });
+      } on FirebaseException catch (e) {
+        if (e.code.contains('permission-denied')) {
+          return left(const ProductFailure.insufficientPermission());
+        } else {
+          print(e);
+          return left(const ProductFailure.unexpected());
+        }
+      } on TimeoutException catch (_) {
+        return left(const ProductFailure.timeout(timeoutDuration));
+      }
+
+      return right(unit);
+    } else {
+      return left(const ProductFailure.noInternetConnection());
+    }
   }
 
   @override
@@ -62,9 +194,21 @@ class FirebaseProductRepositoryImpl implements ShopifyProductRepository {
   }
 
   @override
-  Future<Either<ProductFailure, Product>> getByBarcode(Barcode barcode) {
-    // TODO: implement getByBarcode
-    throw UnimplementedError();
+  Future<Either<ProductFailure, Product>> getByBarcode(Barcode barcode) async {
+    if (await _networkInfo.isConnected) {
+      final query = _firestore.productsCollection
+          .where('barcode', isEqualTo: barcode.getOrCrash());
+      final querySnapshot = await query.get();
+
+      if (querySnapshot.size < 1) {
+        return left(const ProductFailure.productNotFound());
+      } else {
+        return right(
+            ProductDto.fromFirestore(querySnapshot.docs.first).toDomain());
+      }
+    } else {
+      return left(const ProductFailure.noInternetConnection());
+    }
   }
 
   @override
@@ -74,112 +218,8 @@ class FirebaseProductRepositoryImpl implements ShopifyProductRepository {
     throw UnimplementedError();
   }
 
-  // auxilary methods
-  Future<void> _deletePhotos(List<Reference> photosReferencesList) async {
-    try {
-      for (final photoRef in photosReferencesList) {
-        await photoRef.delete();
-      }
-    } catch (e) {
-      //TODO: log this error
-    }
-  }
-
-  Future<Either<ProductFailure, List<Reference>>> _addPhotosToTheStorage(
-      NonEmptyList5<ProductPhoto> photos, UniqueId id) async {
-    final List<Reference> uploadedFilesReferences = [];
-    try {
-      final allProductsPhotosRef = _storage.productPhotosReference;
-      final thisProductPhotosRef = allProductsPhotosRef.child(id.getOrCrash());
-      int i = 0;
-      for (final photo in photos.getOrCrash().iter) {
-        final fileReference = thisProductPhotosRef.child(i.toString());
-
-        final snapshot = await fileReference
-            .putFile(photo.getOrCrash())
-            .timeout(timeoutDuration, onTimeout: () {
-          throw TimeoutException('Connection timeout ', timeoutDuration);
-        });
-
-        uploadedFilesReferences.add(snapshot.ref);
-        i++;
-      }
-    } on FirebaseException catch (e) {
-      //TODO log those errors
-      await _deletePhotos(uploadedFilesReferences);
-      if (e.code.contains('unauthenticated') ||
-          e.code.contains('unauthorized')) {
-        return left(const ProductFailure.insufficientPermission());
-      } else {
-        return left(const ProductFailure.unexpected());
-      }
-    } on TimeoutException catch (_) {
-      await _deletePhotos(uploadedFilesReferences);
-      return left(const ProductFailure.timeout(timeoutDuration));
-    } catch (_) {
-      await _deletePhotos(uploadedFilesReferences);
-      rethrow;
-    }
-    return right(uploadedFilesReferences);
-  }
-
-  Future<Either<ProductFailure, Unit>> _addProductToTheFirestore(
-      Product product) async {
-    try {
-      product.failureOption.fold(() {
-        final productsCollection = _firestore.productsCollection;
-        productsCollection
-            .doc(product.id.getOrCrash())
-            .set(ProductDto.fromDomain(product).toJson());
-      }, (failure) => left(failure));
-      return right(unit);
-    } on FirebaseException catch (e) {
-      if (e.code.contains('permission-denied')) {
-        return left(const ProductFailure.insufficientPermission());
-      } else {
-        return left(const ProductFailure.unexpected());
-      }
-    } on TimeoutException catch (_) {
-      return left(const ProductFailure.timeout(timeoutDuration));
-    } catch (_) {
-      for (final url in product.photos.getOrCrash().asList()) {
-        await _storage.refFromURL(url.getOrCrash()).delete();
-      }
-
-      rethrow;
-    }
-  }
-
-  Future<Either<ProductFailure, Unit>> _addProductFormToTheFirestore(
-    ProductForm productForm,
-    List<Reference> uploadedPhotosReferences,
-  ) async {
-    final photosUrls = [];
-
-    for (final uploadedPhotoRef in uploadedPhotosReferences) {
-      final url = await uploadedPhotoRef.getDownloadURL();
-      photosUrls.add(url);
-    }
-
-    final productWithPhotos = Product(
-        id: productForm.id,
-        barcode: productForm.barcode,
-        weight: productForm.weight,
-        price: productForm.price,
-        category: productForm.category,
-        name: productForm.name,
-        brand: productForm.brand,
-        description: productForm.description,
-        ingredients: productForm.ingredients,
-        photos: NonEmptyList5(KtList.from(
-            photosUrls.map((stringUrl) => ShopifyUrl(stringUrl)).toList())));
-
-    final failureOrUnit = await _addProductToTheFirestore(productWithPhotos);
-    final Either<ProductFailure, Unit> result =
-        await failureOrUnit.fold((failure) async {
-      await _deletePhotos(uploadedPhotosReferences);
-      return left(failure);
-    }, (r) async => right(r));
-    return result;
+  @override
+  Future<Either<ProductFailure, Unit>> create(Product product) async {
+    return await _uploadProductToFirestore(product);
   }
 }
