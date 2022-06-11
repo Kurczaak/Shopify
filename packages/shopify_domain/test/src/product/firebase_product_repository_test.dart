@@ -274,14 +274,7 @@ Future<void> main() async {
       // act
       final result = await repository.addToShop(invalidProduct, tPrice, tShop);
       // assert
-      expect(
-        result,
-        left(
-          const ProductFailure.valueFailure(
-            ValueFailure<String>.core(CoreValueFailure.empty()),
-          ),
-        ),
-      );
+      expect(result, isA<Left<ProductFailure, Unit>>());
     });
     test(
       'should get the shop by its id',
