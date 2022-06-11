@@ -31,7 +31,7 @@ class ProductSearchingScreen extends StatelessWidget {
               (product) {
                 if (state.asLoaded.productExists) {
                   context.router.replace(
-                    DebugRoute(product: product),
+                    ProductAdderRoute(product: product),
                   );
                 } else {
                   context.router.replace(

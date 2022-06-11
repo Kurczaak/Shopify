@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
 import 'package:sealed_annotations/sealed_annotations.dart';
 import 'package:shopify_domain/core.dart';
 import 'package:shopify_domain/core/network/network_info.dart';
@@ -13,6 +14,7 @@ part 'product_adder_state.dart';
 part 'product_adder_bloc.sealed.dart';
 part 'product_adder_bloc.freezed.dart';
 
+@injectable
 class ProductAdderBloc extends Bloc<ProductAdderEvent, ProductAdderState> {
   final IProductRepository productRepository;
   final NetworkInfo networkInfo;
@@ -29,16 +31,20 @@ class ProductAdderBloc extends Bloc<ProductAdderEvent, ProductAdderState> {
         emit(state.copyWith(
             price: state.price.copyWith(currency: Currency(newCurrency))));
       }, saved: () async {
+        emit(state.copyWith(
+            showErrors: false, saveFailureOrSuccessOption: none()));
         if (await networkInfo.isConnected) {
           if (state.price.failureOrUnit.isLeft() ||
               state.selectedShops.isEmpty) {
             emit(state.copyWith(showErrors: true));
           } else {
-            emit(state.copyWith(isLoading: true));
+            emit(state.copyWith(
+                isLoading: true, saveFailureOrSuccessOption: none()));
             Either<ProductFailure, Unit> failureOrUnit = right(unit);
             for (final shop in state.selectedShops) {
               final result = await productRepository.addToShop(
                   state.product, shop, state.price);
+
               if (result.isLeft()) failureOrUnit = result;
             }
             emit(state.copyWith(
@@ -49,8 +55,7 @@ class ProductAdderBloc extends Bloc<ProductAdderEvent, ProductAdderState> {
           // No internet connection
           final failure = some(left<ProductFailure, Unit>(
               const ProductFailure.noInternetConnection()));
-          emit(state.copyWith(
-              showErrors: true, saveFailureOrSuccessOption: failure));
+          emit(state.copyWith(saveFailureOrSuccessOption: failure));
         }
       }, initialize: (product) {
         emit(state.copyWith(product: product));

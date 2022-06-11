@@ -14,8 +14,8 @@ import 'package:auto_route/auto_route.dart' as _i14;
 import 'package:flutter/material.dart' as _i15;
 import 'package:shopify_domain/product.dart' as _i16;
 
-import '../debug/debug.dart' as _i1;
 import '../debug_dashboard_page.dart' as _i6;
+import '../product/product_adder_page.dart' as _i1;
 import '../product/product_form_page.dart' as _i2;
 import '../product/product_searching_screen.dart' as _i7;
 import '../register_shop/location_picker/location_picker_page.dart' as _i10;
@@ -34,11 +34,11 @@ class AppRouter extends _i14.RootStackRouter {
 
   @override
   final Map<String, _i14.PageFactory> pagesMap = {
-    DebugRoute.name: (routeData) {
-      final args = routeData.argsAs<DebugRouteArgs>();
+    ProductAdderRoute.name: (routeData) {
+      final args = routeData.argsAs<ProductAdderRouteArgs>();
       return _i14.MaterialPageX<dynamic>(
           routeData: routeData,
-          child: _i1.DebugPage(key: args.key, product: args.product));
+          child: _i1.ProductAdderPage(key: args.key, product: args.product));
     },
     ProductFormRoute.name: (routeData) {
       final args = routeData.argsAs<ProductFormRouteArgs>();
@@ -99,7 +99,7 @@ class AppRouter extends _i14.RootStackRouter {
 
   @override
   List<_i14.RouteConfig> get routes => [
-        _i14.RouteConfig(DebugRoute.name, path: '/debug-page'),
+        _i14.RouteConfig(ProductAdderRoute.name, path: '/product-adder-page'),
         _i14.RouteConfig(ProductFormRoute.name, path: '/product-form-page'),
         _i14.RouteConfig(SplashRoute.name, path: '/splash-page'),
         _i14.RouteConfig(SignInRoute.name, path: '/sign-in-page'),
@@ -129,18 +129,18 @@ class AppRouter extends _i14.RootStackRouter {
 }
 
 /// generated route for
-/// [_i1.DebugPage]
-class DebugRoute extends _i14.PageRouteInfo<DebugRouteArgs> {
-  DebugRoute({_i15.Key? key, required _i16.Product product})
-      : super(DebugRoute.name,
-            path: '/debug-page',
-            args: DebugRouteArgs(key: key, product: product));
+/// [_i1.ProductAdderPage]
+class ProductAdderRoute extends _i14.PageRouteInfo<ProductAdderRouteArgs> {
+  ProductAdderRoute({_i15.Key? key, required _i16.Product product})
+      : super(ProductAdderRoute.name,
+            path: '/product-adder-page',
+            args: ProductAdderRouteArgs(key: key, product: product));
 
-  static const String name = 'DebugRoute';
+  static const String name = 'ProductAdderRoute';
 }
 
-class DebugRouteArgs {
-  const DebugRouteArgs({this.key, required this.product});
+class ProductAdderRouteArgs {
+  const ProductAdderRouteArgs({this.key, required this.product});
 
   final _i15.Key? key;
 
@@ -148,7 +148,7 @@ class DebugRouteArgs {
 
   @override
   String toString() {
-    return 'DebugRouteArgs{key: $key, product: $product}';
+    return 'ProductAdderRouteArgs{key: $key, product: $product}';
   }
 }
 

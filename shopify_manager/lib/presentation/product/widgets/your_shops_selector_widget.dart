@@ -6,12 +6,22 @@ import 'package:shopify_manager/application/shop/shop_watcher/shop_watcher_bloc.
 import 'package:shopify_manager/injection.dart';
 import 'package:shopify_presentation/shopify_presentation.dart';
 
-class YourShopsSelectorWidget extends StatelessWidget {
-  YourShopsSelectorWidget({Key? key, required this.onChangeSelectedShops})
+class YourShopsSelectorWidget extends StatefulWidget {
+  const YourShopsSelectorWidget(
+      {Key? key, required this.onChangeSelectedShops, this.showErrors = false})
       : super(key: key);
 
   final Function(List<Shop> selectedShops) onChangeSelectedShops;
+  final bool showErrors;
+
+  @override
+  State<YourShopsSelectorWidget> createState() =>
+      _YourShopsSelectorWidgetState();
+}
+
+class _YourShopsSelectorWidgetState extends State<YourShopsSelectorWidget> {
   final List<Shop> selectedShops = [];
+
   void _onChanged(Shop shop, bool isSelected) {
     if (isSelected) {
       selectedShops.add(shop);
@@ -20,8 +30,8 @@ class YourShopsSelectorWidget extends StatelessWidget {
         selectedShops.remove(shop);
       }
     }
-
-    onChangeSelectedShops(selectedShops);
+    setState(() {});
+    widget.onChangeSelectedShops(selectedShops);
   }
 
   @override
@@ -48,6 +58,7 @@ class YourShopsSelectorWidget extends StatelessWidget {
                       return const Text('Failure');
                     } else {
                       return ShopPreviewCard(
+                        showErrors: widget.showErrors,
                         shop: shop,
                         onChanged: (bool isSelected) {
                           _onChanged(shop, isSelected);
@@ -70,10 +81,15 @@ class YourShopsSelectorWidget extends StatelessWidget {
 }
 
 class ShopPreviewCard extends StatefulWidget {
-  const ShopPreviewCard({Key? key, required this.shop, required this.onChanged})
+  const ShopPreviewCard(
+      {Key? key,
+      required this.shop,
+      required this.onChanged,
+      this.showErrors = false})
       : super(key: key);
   final Shop shop;
   final Function(bool isSelected) onChanged;
+  final bool showErrors;
 
   @override
   State<ShopPreviewCard> createState() => _ShopPreviewCardState();
@@ -92,6 +108,8 @@ class _ShopPreviewCardState extends State<ShopPreviewCard> {
                 ));
       },
       child: SelectableContainer(
+        unselectedBorderColor:
+            widget.showErrors ? Theme.of(context).colorScheme.error : null,
         padding: 5,
         selected: selected,
         onValueChanged: (value) {
