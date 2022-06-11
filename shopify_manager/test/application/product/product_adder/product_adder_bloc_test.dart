@@ -118,6 +118,8 @@ void main() {
   group('saved', () {
     setUp(() {
       when(mockNetworkInfo.isConnected).thenAnswer((_) async => true);
+      when(mockShopRepository.addToShop(tProduct, tShop, tPrice))
+          .thenAnswer((_) async => right(unit));
     });
 
     const incorrectPriceString = '12..92.3';
@@ -179,7 +181,7 @@ void main() {
         },
         expect: () => [
               initializedSate.copyWith(
-                  showErrors: true,
+                  showErrors: false,
                   saveFailureOrSuccessOption:
                       some(left(const ProductFailure.noInternetConnection())))
             ]);
