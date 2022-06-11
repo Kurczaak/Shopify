@@ -135,29 +135,30 @@ class FirebaseProductRepositoryImpl implements ShopifyProductRepository {
     }
 
     if (await _networkInfo.isConnected) {
-      // Check if the shop exists in the DB
-      final shopDocument =
-          await _firestore.shopsCollection.doc(shop.id.getOrCrash()).get();
-      if (!shopDocument.exists) {
-        return left(const ProductFailure.shopNotFound());
-      }
-
-      // Check if the product exists in the DB
-      final productDocument = await _firestore.productsCollection
-          .doc(product.id.getOrCrash())
-          .get();
-      if (!productDocument.exists) {
-        return left(const ProductFailure.productNotFound());
-      }
-
-      // Both the shop and the product exist in the DB
-      final shopProductsCollection = _firestore.shopsCollection
-          .doc(shop.id.getOrCrash())
-          .collection('products');
-      final shopProductDto = ShopProductDto(
-          productId: product.id.getOrCrash(),
-          price: PriceDto.fromDomain(price));
       try {
+        // Check if the shop exists in the DB
+        final shopDocument =
+            await _firestore.shopsCollection.doc(shop.id.getOrCrash()).get();
+        if (!shopDocument.exists) {
+          return left(const ProductFailure.shopNotFound());
+        }
+
+        // Check if the product exists in the DB
+        final productDocument = await _firestore.productsCollection
+            .doc(product.id.getOrCrash())
+            .get();
+        if (!productDocument.exists) {
+          return left(const ProductFailure.productNotFound());
+        }
+
+        // Both the shop and the product exist in the DB
+        final shopProductsCollection = _firestore.shopsCollection
+            .doc(shop.id.getOrCrash())
+            .collection('products');
+        final shopProductDto = ShopProductDto(
+            productId: product.id.getOrCrash(),
+            price: PriceDto.fromDomain(price));
+
         await shopProductsCollection
             .add(shopProductDto.toJson())
             .timeout(timeoutDuration, onTimeout: () {
@@ -167,13 +168,14 @@ class FirebaseProductRepositoryImpl implements ShopifyProductRepository {
         if (e.code.contains('permission-denied')) {
           return left(const ProductFailure.insufficientPermission());
         } else {
+          print(e);
           return left(const ProductFailure.unexpected());
         }
       } on TimeoutException catch (_) {
         return left(const ProductFailure.timeout(timeoutDuration));
       }
 
-      return left(const ProductFailure.unexpected());
+      return right(unit);
     } else {
       return left(const ProductFailure.noInternetConnection());
     }
