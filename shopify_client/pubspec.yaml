@@ -29,6 +29,7 @@ environment:
 dependencies:
   another_flushbar: ^1.10.29
   auto_route: ^4.0.1
+  cloud_firestore: ^3.1.17
   dartz: ^0.10.1
   flutter:
     sdk: flutter
@@ -41,29 +42,29 @@ dependencies:
   loading_overlay: ^0.3.0
   responsive_framework: ^0.2.0
   scrollable_positioned_list: ^0.3.2
+  sealed_annotations: ^1.13.0
   shopify_domain:
     path: ../packages/shopify_domain
   shopify_presentation:
     path: ../packages/shopify_presentation
-  sealed_annotations: ^1.13.0
 
 dev_dependencies:
-  darq: ^1.2.1
   auto_route_generator: ^4.0.0
   bloc_test: ^9.0.3
   build_runner: ^2.1.11
+  darq: ^1.2.1
+
+  dependency_validator: ^3.2.0
   flutter_lints: ^1.0.0
-  integration_test:
-    sdk: flutter
   flutter_test:
     sdk: flutter
   freezed: ^2.0.3+1
   injectable_generator: ^1.5.3
+  integration_test:
+    sdk: flutter
   json_serializable: ^6.2.0
   mockito: ^5.2.0
   sealed_generators: ^1.13.0
-  
-  dependency_validator: ^3.2.0
 
 # The following section is specific to Flutter.
 flutter:

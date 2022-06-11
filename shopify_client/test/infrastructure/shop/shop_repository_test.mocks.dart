@@ -81,8 +81,7 @@ class MockShopifyShopRepository extends _i1.Mock
           as _i12.Stream<_i2.Either<_i13.ShopFailure, _i14.KtList<_i8.Shop>>>);
   @override
   _i12.Stream<_i2.Either<_i13.ShopFailure, _i14.KtList<_i8.Shop>>>
-      watchYourShops() => (super.noSuchMethod(
-              Invocation.method(#watchYourShops, []),
+      watchYours() => (super.noSuchMethod(Invocation.method(#watchYours, []),
               returnValue: Stream<
                   _i2.Either<_i13.ShopFailure, _i14.KtList<_i8.Shop>>>.empty())
           as _i12.Stream<_i2.Either<_i13.ShopFailure, _i14.KtList<_i8.Shop>>>);
@@ -115,6 +114,12 @@ class MockShop extends _i1.Mock implements _i8.Shop {
     _i1.throwOnMissingStub(this);
   }
 
+  @override
+  _i2.Either<_i16.ValueFailure<dynamic>, _i2.Unit> get failureOrUnit =>
+      (super.noSuchMethod(Invocation.getter(#failureOrUnit),
+              returnValue:
+                  _FakeEither_0<_i16.ValueFailure<dynamic>, _i2.Unit>())
+          as _i2.Either<_i16.ValueFailure<dynamic>, _i2.Unit>);
   @override
   _i2.Option<_i16.ValueFailure<dynamic>> get failureOption =>
       (super.noSuchMethod(Invocation.getter(#failureOption),
