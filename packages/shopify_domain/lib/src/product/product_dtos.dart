@@ -3,9 +3,54 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kt_dart/kt.dart';
 import 'package:shopify_domain/core.dart';
 import 'package:shopify_domain/product.dart';
+import 'package:shopify_domain/shop.dart';
+import 'package:shopify_domain/src/core/address_dto.dart';
+import 'package:shopify_domain/src/core/location/location_dtos.dart';
 
 part 'product_dtos.freezed.dart';
 part 'product_dtos.g.dart';
+
+@freezed
+class AddedProductDto with _$AddedProductDto {
+  const AddedProductDto._();
+
+  const factory AddedProductDto({
+    required String productId,
+    required String barcode,
+    required String productCategory,
+    required String productName,
+    required List<String> productPhotos,
+    required WeightDto weight,
+    required PriceDto price,
+    required String shopId,
+    required LocationDto position,
+    required AddressDto address,
+    required String shopLogo,
+    required String shopName,
+  }) = _AddedProductDto;
+
+  AddedProduct toDomain() => AddedProduct(
+      productId: UniqueId.fromUniqueString(productId),
+      barcode: Barcode(barcode),
+      category: Category.fromString(productCategory),
+      name: ProductName(productName),
+      productPhotos: NonEmptyList5(KtList.from(
+          productPhotos.map((stringUrl) => ShopifyUrl(stringUrl)).toList())),
+      weight: weight.toDomain(),
+      price: price.toDomain(),
+      shopId: UniqueId.fromUniqueString(shopId),
+      shopLocation: position.toDomain(),
+      shopAddress: address.toDomain(),
+      shopLogo: ShopifyUrl(shopLogo),
+      shopName: ShopName(shopName));
+
+  factory AddedProductDto.fromJson(Map<String, dynamic> json) =>
+      _$AddedProductDtoFromJson(json);
+
+  factory AddedProductDto.fromFirestore(DocumentSnapshot doc) {
+    return AddedProductDto.fromJson(doc.data() as Map<String, dynamic>);
+  }
+}
 
 @freezed
 class ShopProductDto with _$ShopProductDto {
@@ -19,6 +64,7 @@ class ShopProductDto with _$ShopProductDto {
       ShopProductDto(
           productId: product.id.getOrCrash(),
           price: PriceDto.fromDomain(price));
+
   factory ShopProductDto.fromJson(Map<String, dynamic> json) =>
       _$ShopProductDtoFromJson(json);
 }
