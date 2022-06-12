@@ -42,8 +42,7 @@ class ProductRepositoryImpl implements IProductRepository {
       if (e.code.contains('permission-denied')) {
         return left(const ProductFailure.insufficientPermission());
       }
-      print(e.code);
-      print(e);
+
       return left(const ProductFailure.unexpected());
     }
   }
@@ -71,8 +70,6 @@ class ProductRepositoryImpl implements IProductRepository {
         yield left(failure);
       }, (stream) async* {
         yield* stream.map((documents) {
-          print(documents.length);
-          print('LENGTH KURWAAA');
           return right<ProductFailure, KtList<AddedProduct>>(
             documents
                 .map(
@@ -90,8 +87,7 @@ class ProductRepositoryImpl implements IProductRepository {
             } else {
               //TODO log this error
               // log.error(e.toString());
-              print(e.toString());
-              print('ERROREK KURWAAA');
+
               return left(const ProductFailure.unexpected());
             }
           },
