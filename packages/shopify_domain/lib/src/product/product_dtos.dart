@@ -4,6 +4,8 @@ import 'package:kt_dart/kt.dart';
 import 'package:shopify_domain/core.dart';
 import 'package:shopify_domain/product.dart';
 import 'package:shopify_domain/shop.dart';
+import 'package:shopify_domain/src/core/address_dto.dart';
+import 'package:shopify_domain/src/core/location/location_dtos.dart';
 
 part 'product_dtos.freezed.dart';
 part 'product_dtos.g.dart';
