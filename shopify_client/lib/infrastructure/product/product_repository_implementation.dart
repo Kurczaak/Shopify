@@ -50,8 +50,13 @@ class ProductRepositoryImpl implements IProductRepository {
   @override
   Stream<Either<ProductFailure, KtList<AddedProduct>>> watchAllFromShop(
       Shop shop) async* {
-    // TODO: implement watchAllFromShop
-    throw UnimplementedError();
+    if (await networkInfo.isConnected) {
+      final shopProds = firestore
+          .collection('addedProducts')
+          .where('shopId', isEqualTo: shop.id.getOrCrash());
+    } else {
+      yield left(const ProductFailure.noInternetConnection());
+    }
   }
 
   @override

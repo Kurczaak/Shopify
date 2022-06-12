@@ -11,6 +11,7 @@ import 'package:shopify_domain/core/location/location.dart';
 import 'package:shopify_domain/core/network/network_info.dart';
 import 'package:shopify_domain/core/value_objects.dart';
 import 'package:shopify_domain/product.dart';
+import 'package:shopify_domain/shop.dart';
 import 'product_repository_implementation_test.mocks.dart';
 
 @GenerateMocks([
@@ -44,6 +45,8 @@ void main() async {
         ShopifyUrl('https://www.photo.com/2'),
         ShopifyUrl('https://www.photo.com/3'),
       ])));
+
+  final tShop = Shop.empty();
 
   const double radius = 5.0;
 
@@ -94,6 +97,76 @@ void main() async {
       field: field,
       strictMode: true,
     )).thenAnswer((_) => Stream.fromIterable([listOfProducts]));
+    when(mockAddedProductsCollection.where('shopId',
+            isEqualTo: tShop.id.getOrCrash()))
+        .thenAnswer((_) => fakeFirestore
+            .collection('addedProducts')
+            .where('shopId', isEqualTo: tShop.id.getOrCrash()));
+  });
+
+  group('watchAllFromShop', () {
+    test(
+      'should check the internet connection',
+      () async {
+        // act
+        productRepository.watchAllFromShop(tShop).listen((event) {});
+        // assert
+        await untilCalled(mockNetworkInfo.isConnected);
+        verify(mockNetworkInfo.isConnected);
+      },
+    );
+
+    test(
+      'should return a failure if no internet connection is available',
+      () async {
+        // arrange
+        when(mockNetworkInfo.isConnected).thenAnswer((_) async => false);
+        // act
+        final result = productRepository.watchAllFromShop(tShop);
+        // assert
+        expectLater(
+            result.asBroadcastStream(),
+            emits(
+              left(const ProductFailure.noInternetConnection()),
+            ));
+      },
+    );
+
+    test(
+      'should get added products collection',
+      () async {
+        // act
+        productRepository.watchAllFromShop(tShop).listen((event) {});
+        // assert
+        await untilCalled(mockFirestore.collection('addedProducts'));
+        verify(mockFirestore.collection('addedProducts'));
+      },
+    );
+
+    test(
+      'should query products by shopId',
+      () async {
+        // act
+        productRepository.watchAllFromShop(tShop).listen((event) {});
+        // assert
+        await untilCalled(mockFirestore.collection('addedProducts'));
+        verify(mockAddedProductsCollection.where('shopId',
+            isEqualTo: tShop.id.getOrCrash()));
+      },
+    );
+
+    // test(
+    //   'should yield found products',
+    //   () async {
+    //           // act
+    //     final result = productRepository.watchAllNearby(tLocation, radius);
+    //     // assert
+    //     expectLater(
+    //         result.asBroadcastStream(),
+    //         emits(right(KtList.from(
+    //             [tProductSnippet, tProductSnippet, tProductSnippet]))));
+    //   },
+    // );
   });
 
   group('watchAllNearby', () {
