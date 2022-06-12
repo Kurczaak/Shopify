@@ -23,6 +23,7 @@ mixin _$ProductSnippet {
   Price get price => throw _privateConstructorUsedError;
   Category get category => throw _privateConstructorUsedError;
   Weight get weight => throw _privateConstructorUsedError;
+  ShopifyUrl get photoUrl => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ProductSnippetCopyWith<ProductSnippet> get copyWith =>
@@ -41,7 +42,8 @@ abstract class $ProductSnippetCopyWith<$Res> {
       BrandName brand,
       Price price,
       Category category,
-      Weight weight});
+      Weight weight,
+      ShopifyUrl photoUrl});
 
   $PriceCopyWith<$Res> get price;
   $WeightCopyWith<$Res> get weight;
@@ -65,6 +67,7 @@ class _$ProductSnippetCopyWithImpl<$Res>
     Object? price = freezed,
     Object? category = freezed,
     Object? weight = freezed,
+    Object? photoUrl = freezed,
   }) {
     return _then(_value.copyWith(
       productId: productId == freezed
@@ -95,6 +98,10 @@ class _$ProductSnippetCopyWithImpl<$Res>
           ? _value.weight
           : weight // ignore: cast_nullable_to_non_nullable
               as Weight,
+      photoUrl: photoUrl == freezed
+          ? _value.photoUrl
+          : photoUrl // ignore: cast_nullable_to_non_nullable
+              as ShopifyUrl,
     ));
   }
 
@@ -127,7 +134,8 @@ abstract class _$$_ProductSnippetCopyWith<$Res>
       BrandName brand,
       Price price,
       Category category,
-      Weight weight});
+      Weight weight,
+      ShopifyUrl photoUrl});
 
   @override
   $PriceCopyWith<$Res> get price;
@@ -155,6 +163,7 @@ class __$$_ProductSnippetCopyWithImpl<$Res>
     Object? price = freezed,
     Object? category = freezed,
     Object? weight = freezed,
+    Object? photoUrl = freezed,
   }) {
     return _then(_$_ProductSnippet(
       productId: productId == freezed
@@ -185,6 +194,10 @@ class __$$_ProductSnippetCopyWithImpl<$Res>
           ? _value.weight
           : weight // ignore: cast_nullable_to_non_nullable
               as Weight,
+      photoUrl: photoUrl == freezed
+          ? _value.photoUrl
+          : photoUrl // ignore: cast_nullable_to_non_nullable
+              as ShopifyUrl,
     ));
   }
 }
@@ -199,7 +212,8 @@ class _$_ProductSnippet implements _ProductSnippet {
       required this.brand,
       required this.price,
       required this.category,
-      required this.weight});
+      required this.weight,
+      required this.photoUrl});
 
   @override
   final UniqueId productId;
@@ -215,10 +229,12 @@ class _$_ProductSnippet implements _ProductSnippet {
   final Category category;
   @override
   final Weight weight;
+  @override
+  final ShopifyUrl photoUrl;
 
   @override
   String toString() {
-    return 'ProductSnippet(productId: $productId, barcode: $barcode, name: $name, brand: $brand, price: $price, category: $category, weight: $weight)';
+    return 'ProductSnippet(productId: $productId, barcode: $barcode, name: $name, brand: $brand, price: $price, category: $category, weight: $weight, photoUrl: $photoUrl)';
   }
 
   @override
@@ -232,7 +248,8 @@ class _$_ProductSnippet implements _ProductSnippet {
             const DeepCollectionEquality().equals(other.brand, brand) &&
             const DeepCollectionEquality().equals(other.price, price) &&
             const DeepCollectionEquality().equals(other.category, category) &&
-            const DeepCollectionEquality().equals(other.weight, weight));
+            const DeepCollectionEquality().equals(other.weight, weight) &&
+            const DeepCollectionEquality().equals(other.photoUrl, photoUrl));
   }
 
   @override
@@ -244,7 +261,8 @@ class _$_ProductSnippet implements _ProductSnippet {
       const DeepCollectionEquality().hash(brand),
       const DeepCollectionEquality().hash(price),
       const DeepCollectionEquality().hash(category),
-      const DeepCollectionEquality().hash(weight));
+      const DeepCollectionEquality().hash(weight),
+      const DeepCollectionEquality().hash(photoUrl));
 
   @JsonKey(ignore: true)
   @override
@@ -260,7 +278,8 @@ abstract class _ProductSnippet implements ProductSnippet {
       required final BrandName brand,
       required final Price price,
       required final Category category,
-      required final Weight weight}) = _$_ProductSnippet;
+      required final Weight weight,
+      required final ShopifyUrl photoUrl}) = _$_ProductSnippet;
 
   @override
   UniqueId get productId => throw _privateConstructorUsedError;
@@ -276,6 +295,8 @@ abstract class _ProductSnippet implements ProductSnippet {
   Category get category => throw _privateConstructorUsedError;
   @override
   Weight get weight => throw _privateConstructorUsedError;
+  @override
+  ShopifyUrl get photoUrl => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$$_ProductSnippetCopyWith<_$_ProductSnippet> get copyWith =>
