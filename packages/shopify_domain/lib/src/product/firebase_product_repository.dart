@@ -11,22 +11,23 @@ import 'package:shopify_domain/core/network/network_info.dart';
 import 'package:shopify_domain/product.dart';
 import 'package:shopify_domain/shop.dart';
 import 'package:shopify_domain/src/core/firestore_helpers.dart';
-import 'package:shopify_domain/src/product/product_dtos.dart';
 
 @LazySingleton(as: ShopifyProductRepository)
 class FirebaseProductRepositoryImpl implements ShopifyProductRepository {
-  final FirebaseFirestore _firestore;
-  final FirebaseStorage _storage;
-  final NetworkInfo _networkInfo;
+  final FirebaseFirestore firestore;
+  final FirebaseStorage storage;
+  final NetworkInfo networkInfo;
 
   FirebaseProductRepositoryImpl(
-      this._firestore, this._storage, this._networkInfo);
+      {required this.firestore,
+      required this.storage,
+      required this.networkInfo});
 
   Future<Either<ProductFailure, Unit>> _uploadProductToFirestore(
       Product product) async {
     try {
       final productDocument =
-          _firestore.productsCollection.doc(product.id.getOrCrash());
+          firestore.productsCollection.doc(product.id.getOrCrash());
 
       await productDocument
           .set(ProductDto.fromDomain(product).toJson())
@@ -55,7 +56,7 @@ class FirebaseProductRepositoryImpl implements ShopifyProductRepository {
       }
     }
     // Photos are valid - contiune
-    final allProductsPhotosReference = _storage.productPhotosReference;
+    final allProductsPhotosReference = storage.productPhotosReference;
     // The product's photos folder
     final productPhotosReference =
         allProductsPhotosReference.child(id.getOrCrash());
@@ -94,9 +95,28 @@ class FirebaseProductRepositoryImpl implements ShopifyProductRepository {
   }
 
   @override
+  Stream<Either<ProductFailure, KtList<ProductSnippet>>> watchAllFromShop(
+      Shop shop) async* {
+    if (await networkInfo.isConnected) {
+      final query = await firestore
+          .collection('addedProducts')
+          .where('shopId', isEqualTo: shop.id.getOrCrash())
+          .get();
+
+      yield right(query.docs
+          .map(
+            (snapshot) => AddedProductDto.fromFirestore(snapshot).toSnippet(),
+          )
+          .toImmutableList());
+    } else {
+      yield left(const ProductFailure.noInternetConnection());
+    }
+  }
+
+  @override
   Future<Either<ProductFailure, Unit>> addPhotosAndCreate(
       Product product, NonEmptyList5<ProductPhoto> photos) async {
-    if (await _networkInfo.isConnected) {
+    if (await networkInfo.isConnected) {
       // Check photos
       final failureOrPhotosUrls =
           await _uploadPhotosToStorage(photos.getOrCrash(), product.id);
@@ -109,7 +129,7 @@ class FirebaseProductRepositoryImpl implements ShopifyProductRepository {
           final failureOrUnit =
               await _uploadProductToFirestore(productWithUploadedPhotos);
           return await failureOrUnit.fold((failure) async {
-            await _storage.productPhotosReference
+            await storage.productPhotosReference
                 .child(product.id.getOrCrash())
                 .delete();
             return left(failure);
@@ -134,17 +154,17 @@ class FirebaseProductRepositoryImpl implements ShopifyProductRepository {
               'An error occured when adding the product to the shop'));
     }
 
-    if (await _networkInfo.isConnected) {
+    if (await networkInfo.isConnected) {
       try {
         // Check if the shop exists in the DB
         final shopDocument =
-            await _firestore.shopsCollection.doc(shop.id.getOrCrash()).get();
+            await firestore.shopsCollection.doc(shop.id.getOrCrash()).get();
         if (!shopDocument.exists) {
           return left(const ProductFailure.shopNotFound());
         }
 
         // Check if the product exists in the DB
-        final productDocument = await _firestore.productsCollection
+        final productDocument = await firestore.productsCollection
             .doc(product.id.getOrCrash())
             .get();
         if (!productDocument.exists) {
@@ -152,7 +172,7 @@ class FirebaseProductRepositoryImpl implements ShopifyProductRepository {
         }
 
         // Both the shop and the product exist in the DB
-        final shopProductsCollection = _firestore.shopsCollection
+        final shopProductsCollection = firestore.shopsCollection
             .doc(shop.id.getOrCrash())
             .collection('products');
         final shopProductDto = ShopProductDto(
@@ -195,8 +215,8 @@ class FirebaseProductRepositoryImpl implements ShopifyProductRepository {
 
   @override
   Future<Either<ProductFailure, Product>> getByBarcode(Barcode barcode) async {
-    if (await _networkInfo.isConnected) {
-      final query = _firestore.productsCollection
+    if (await networkInfo.isConnected) {
+      final query = firestore.productsCollection
           .where('barcode', isEqualTo: barcode.getOrCrash());
       final querySnapshot = await query.get();
 
@@ -209,13 +229,6 @@ class FirebaseProductRepositoryImpl implements ShopifyProductRepository {
     } else {
       return left(const ProductFailure.noInternetConnection());
     }
-  }
-
-  @override
-  Future<Either<ProductFailure, Product>> getFromShopByBarcode(
-      Shop shop, Barcode barcode) {
-    // TODO: implement getFromShopByBarcode
-    throw UnimplementedError();
   }
 
   @override
