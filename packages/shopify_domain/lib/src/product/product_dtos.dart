@@ -19,6 +19,7 @@ class AddedProductDto with _$AddedProductDto {
     required String barcode,
     required String productCategory,
     required String productName,
+    required String brandName,
     required List<String> productPhotos,
     required WeightDto weight,
     required PriceDto price,
@@ -29,11 +30,22 @@ class AddedProductDto with _$AddedProductDto {
     required String shopName,
   }) = _AddedProductDto;
 
+  ProductSnippet toSnippet() => ProductSnippet(
+        productId: UniqueId.fromUniqueString(productId),
+        barcode: Barcode(barcode),
+        brand: BrandName(brandName),
+        category: Category.fromString(productCategory),
+        name: ProductName(productName),
+        weight: weight.toDomain(),
+        price: price.toDomain(),
+      );
+
   AddedProduct toDomain() => AddedProduct(
       productId: UniqueId.fromUniqueString(productId),
       barcode: Barcode(barcode),
       category: Category.fromString(productCategory),
       name: ProductName(productName),
+      brandName: BrandName(brandName),
       productPhotos: NonEmptyList5(KtList.from(
           productPhotos.map((stringUrl) => ShopifyUrl(stringUrl)).toList())),
       weight: weight.toDomain(),

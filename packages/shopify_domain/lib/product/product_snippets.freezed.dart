@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$ProductSnipper {
+mixin _$ProductSnippet {
   UniqueId get productId => throw _privateConstructorUsedError;
   Barcode get barcode => throw _privateConstructorUsedError;
   ProductName get name => throw _privateConstructorUsedError;
@@ -25,15 +25,15 @@ mixin _$ProductSnipper {
   Weight get weight => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $ProductSnipperCopyWith<ProductSnippet> get copyWith =>
+  $ProductSnippetCopyWith<ProductSnippet> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ProductSnipperCopyWith<$Res> {
-  factory $ProductSnipperCopyWith(
+abstract class $ProductSnippetCopyWith<$Res> {
+  factory $ProductSnippetCopyWith(
           ProductSnippet value, $Res Function(ProductSnippet) then) =
-      _$ProductSnipperCopyWithImpl<$Res>;
+      _$ProductSnippetCopyWithImpl<$Res>;
   $Res call(
       {UniqueId productId,
       Barcode barcode,
@@ -48,9 +48,9 @@ abstract class $ProductSnipperCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ProductSnipperCopyWithImpl<$Res>
-    implements $ProductSnipperCopyWith<$Res> {
-  _$ProductSnipperCopyWithImpl(this._value, this._then);
+class _$ProductSnippetCopyWithImpl<$Res>
+    implements $ProductSnippetCopyWith<$Res> {
+  _$ProductSnippetCopyWithImpl(this._value, this._then);
 
   final ProductSnippet _value;
   // ignore: unused_field
@@ -114,11 +114,11 @@ class _$ProductSnipperCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$$_ProductSnipperCopyWith<$Res>
-    implements $ProductSnipperCopyWith<$Res> {
-  factory _$$_ProductSnipperCopyWith(
-          _$_ProductSnipper value, $Res Function(_$_ProductSnipper) then) =
-      __$$_ProductSnipperCopyWithImpl<$Res>;
+abstract class _$$_ProductSnippetCopyWith<$Res>
+    implements $ProductSnippetCopyWith<$Res> {
+  factory _$$_ProductSnippetCopyWith(
+          _$_ProductSnippet value, $Res Function(_$_ProductSnippet) then) =
+      __$$_ProductSnippetCopyWithImpl<$Res>;
   @override
   $Res call(
       {UniqueId productId,
@@ -136,15 +136,15 @@ abstract class _$$_ProductSnipperCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_ProductSnipperCopyWithImpl<$Res>
-    extends _$ProductSnipperCopyWithImpl<$Res>
-    implements _$$_ProductSnipperCopyWith<$Res> {
-  __$$_ProductSnipperCopyWithImpl(
-      _$_ProductSnipper _value, $Res Function(_$_ProductSnipper) _then)
-      : super(_value, (v) => _then(v as _$_ProductSnipper));
+class __$$_ProductSnippetCopyWithImpl<$Res>
+    extends _$ProductSnippetCopyWithImpl<$Res>
+    implements _$$_ProductSnippetCopyWith<$Res> {
+  __$$_ProductSnippetCopyWithImpl(
+      _$_ProductSnippet _value, $Res Function(_$_ProductSnippet) _then)
+      : super(_value, (v) => _then(v as _$_ProductSnippet));
 
   @override
-  _$_ProductSnipper get _value => super._value as _$_ProductSnipper;
+  _$_ProductSnippet get _value => super._value as _$_ProductSnippet;
 
   @override
   $Res call({
@@ -156,7 +156,7 @@ class __$$_ProductSnipperCopyWithImpl<$Res>
     Object? category = freezed,
     Object? weight = freezed,
   }) {
-    return _then(_$_ProductSnipper(
+    return _then(_$_ProductSnippet(
       productId: productId == freezed
           ? _value.productId
           : productId // ignore: cast_nullable_to_non_nullable
@@ -191,8 +191,8 @@ class __$$_ProductSnipperCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ProductSnipper implements _ProductSnipper {
-  const _$_ProductSnipper(
+class _$_ProductSnippet implements _ProductSnippet {
+  const _$_ProductSnippet(
       {required this.productId,
       required this.barcode,
       required this.name,
@@ -218,14 +218,14 @@ class _$_ProductSnipper implements _ProductSnipper {
 
   @override
   String toString() {
-    return 'ProductSnipper(productId: $productId, barcode: $barcode, name: $name, brand: $brand, price: $price, category: $category, weight: $weight)';
+    return 'ProductSnippet(productId: $productId, barcode: $barcode, name: $name, brand: $brand, price: $price, category: $category, weight: $weight)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ProductSnipper &&
+            other is _$_ProductSnippet &&
             const DeepCollectionEquality().equals(other.productId, productId) &&
             const DeepCollectionEquality().equals(other.barcode, barcode) &&
             const DeepCollectionEquality().equals(other.name, name) &&
@@ -248,19 +248,19 @@ class _$_ProductSnipper implements _ProductSnipper {
 
   @JsonKey(ignore: true)
   @override
-  _$$_ProductSnipperCopyWith<_$_ProductSnipper> get copyWith =>
-      __$$_ProductSnipperCopyWithImpl<_$_ProductSnipper>(this, _$identity);
+  _$$_ProductSnippetCopyWith<_$_ProductSnippet> get copyWith =>
+      __$$_ProductSnippetCopyWithImpl<_$_ProductSnippet>(this, _$identity);
 }
 
-abstract class _ProductSnipper implements ProductSnippet {
-  const factory _ProductSnipper(
+abstract class _ProductSnippet implements ProductSnippet {
+  const factory _ProductSnippet(
       {required final UniqueId productId,
       required final Barcode barcode,
       required final ProductName name,
       required final BrandName brand,
       required final Price price,
       required final Category category,
-      required final Weight weight}) = _$_ProductSnipper;
+      required final Weight weight}) = _$_ProductSnippet;
 
   @override
   UniqueId get productId => throw _privateConstructorUsedError;
@@ -278,7 +278,7 @@ abstract class _ProductSnipper implements ProductSnippet {
   Weight get weight => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$$_ProductSnipperCopyWith<_$_ProductSnipper> get copyWith =>
+  _$$_ProductSnippetCopyWith<_$_ProductSnippet> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -288,6 +288,7 @@ mixin _$AddedProduct {
   Barcode get barcode => throw _privateConstructorUsedError;
   Category get category => throw _privateConstructorUsedError;
   ProductName get name => throw _privateConstructorUsedError;
+  BrandName get brandName => throw _privateConstructorUsedError;
   NonEmptyList5<ShopifyUrl> get productPhotos =>
       throw _privateConstructorUsedError;
   Weight get weight => throw _privateConstructorUsedError;
@@ -313,6 +314,7 @@ abstract class $AddedProductCopyWith<$Res> {
       Barcode barcode,
       Category category,
       ProductName name,
+      BrandName brandName,
       NonEmptyList5<ShopifyUrl> productPhotos,
       Weight weight,
       Price price,
@@ -342,6 +344,7 @@ class _$AddedProductCopyWithImpl<$Res> implements $AddedProductCopyWith<$Res> {
     Object? barcode = freezed,
     Object? category = freezed,
     Object? name = freezed,
+    Object? brandName = freezed,
     Object? productPhotos = freezed,
     Object? weight = freezed,
     Object? price = freezed,
@@ -368,6 +371,10 @@ class _$AddedProductCopyWithImpl<$Res> implements $AddedProductCopyWith<$Res> {
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as ProductName,
+      brandName: brandName == freezed
+          ? _value.brandName
+          : brandName // ignore: cast_nullable_to_non_nullable
+              as BrandName,
       productPhotos: productPhotos == freezed
           ? _value.productPhotos
           : productPhotos // ignore: cast_nullable_to_non_nullable
@@ -444,6 +451,7 @@ abstract class _$$_AddedProductCopyWith<$Res>
       Barcode barcode,
       Category category,
       ProductName name,
+      BrandName brandName,
       NonEmptyList5<ShopifyUrl> productPhotos,
       Weight weight,
       Price price,
@@ -480,6 +488,7 @@ class __$$_AddedProductCopyWithImpl<$Res>
     Object? barcode = freezed,
     Object? category = freezed,
     Object? name = freezed,
+    Object? brandName = freezed,
     Object? productPhotos = freezed,
     Object? weight = freezed,
     Object? price = freezed,
@@ -506,6 +515,10 @@ class __$$_AddedProductCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as ProductName,
+      brandName: brandName == freezed
+          ? _value.brandName
+          : brandName // ignore: cast_nullable_to_non_nullable
+              as BrandName,
       productPhotos: productPhotos == freezed
           ? _value.productPhotos
           : productPhotos // ignore: cast_nullable_to_non_nullable
@@ -550,6 +563,7 @@ class _$_AddedProduct extends _AddedProduct {
       required this.barcode,
       required this.category,
       required this.name,
+      required this.brandName,
       required this.productPhotos,
       required this.weight,
       required this.price,
@@ -569,6 +583,8 @@ class _$_AddedProduct extends _AddedProduct {
   @override
   final ProductName name;
   @override
+  final BrandName brandName;
+  @override
   final NonEmptyList5<ShopifyUrl> productPhotos;
   @override
   final Weight weight;
@@ -587,7 +603,7 @@ class _$_AddedProduct extends _AddedProduct {
 
   @override
   String toString() {
-    return 'AddedProduct(productId: $productId, barcode: $barcode, category: $category, name: $name, productPhotos: $productPhotos, weight: $weight, price: $price, shopId: $shopId, shopLocation: $shopLocation, shopAddress: $shopAddress, shopLogo: $shopLogo, shopName: $shopName)';
+    return 'AddedProduct(productId: $productId, barcode: $barcode, category: $category, name: $name, brandName: $brandName, productPhotos: $productPhotos, weight: $weight, price: $price, shopId: $shopId, shopLocation: $shopLocation, shopAddress: $shopAddress, shopLogo: $shopLogo, shopName: $shopName)';
   }
 
   @override
@@ -599,6 +615,7 @@ class _$_AddedProduct extends _AddedProduct {
             const DeepCollectionEquality().equals(other.barcode, barcode) &&
             const DeepCollectionEquality().equals(other.category, category) &&
             const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality().equals(other.brandName, brandName) &&
             const DeepCollectionEquality()
                 .equals(other.productPhotos, productPhotos) &&
             const DeepCollectionEquality().equals(other.weight, weight) &&
@@ -619,6 +636,7 @@ class _$_AddedProduct extends _AddedProduct {
       const DeepCollectionEquality().hash(barcode),
       const DeepCollectionEquality().hash(category),
       const DeepCollectionEquality().hash(name),
+      const DeepCollectionEquality().hash(brandName),
       const DeepCollectionEquality().hash(productPhotos),
       const DeepCollectionEquality().hash(weight),
       const DeepCollectionEquality().hash(price),
@@ -640,6 +658,7 @@ abstract class _AddedProduct extends AddedProduct {
       required final Barcode barcode,
       required final Category category,
       required final ProductName name,
+      required final BrandName brandName,
       required final NonEmptyList5<ShopifyUrl> productPhotos,
       required final Weight weight,
       required final Price price,
@@ -658,6 +677,8 @@ abstract class _AddedProduct extends AddedProduct {
   Category get category => throw _privateConstructorUsedError;
   @override
   ProductName get name => throw _privateConstructorUsedError;
+  @override
+  BrandName get brandName => throw _privateConstructorUsedError;
   @override
   NonEmptyList5<ShopifyUrl> get productPhotos =>
       throw _privateConstructorUsedError;

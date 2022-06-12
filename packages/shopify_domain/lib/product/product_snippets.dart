@@ -7,7 +7,7 @@ import 'package:shopify_domain/shop/value_objects.dart';
 part 'product_snippets.freezed.dart';
 
 @freezed
-class ProductSnippet with _$ProductSnipper {
+class ProductSnippet with _$ProductSnippet {
   const factory ProductSnippet({
     required UniqueId productId,
     required Barcode barcode,
@@ -16,7 +16,7 @@ class ProductSnippet with _$ProductSnipper {
     required Price price,
     required Category category,
     required Weight weight,
-  }) = _ProductSnipper;
+  }) = _ProductSnippet;
 }
 
 @freezed
@@ -28,6 +28,7 @@ class AddedProduct with _$AddedProduct {
     required Barcode barcode,
     required Category category,
     required ProductName name,
+    required BrandName brandName,
     required NonEmptyList5<ShopifyUrl> productPhotos,
     required Weight weight,
     required Price price,
@@ -43,12 +44,14 @@ class AddedProduct with _$AddedProduct {
       barcode.failureOrUnit.andThen(
         category.failureOrUnit.andThen(
           name.failureOrUnit.andThen(
-            productPhotos.failureOrUnit.andThen(
-              weight.failureOrUnit.andThen(
-                price.failureOrUnit.andThen(
-                  shopId.failureOrUnit.andThen(
-                    shopAddress.failureOrUnit.andThen(
-                      shopLogo.failureOrUnit.andThen(shopName.failureOrUnit),
+            brandName.failureOrUnit.andThen(
+              productPhotos.failureOrUnit.andThen(
+                weight.failureOrUnit.andThen(
+                  price.failureOrUnit.andThen(
+                    shopId.failureOrUnit.andThen(
+                      shopAddress.failureOrUnit.andThen(
+                        shopLogo.failureOrUnit.andThen(shopName.failureOrUnit),
+                      ),
                     ),
                   ),
                 ),
