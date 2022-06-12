@@ -4,7 +4,20 @@ import 'package:shopify_domain/core.dart';
 import 'package:shopify_domain/product.dart';
 import 'package:shopify_domain/shop/value_objects.dart';
 
-part 'added_product.freezed.dart';
+part 'product_snippets.freezed.dart';
+
+@freezed
+class ProductSnippet with _$ProductSnipper {
+  const factory ProductSnippet({
+    required UniqueId productId,
+    required Barcode barcode,
+    required ProductName name,
+    required BrandName brand,
+    required Price price,
+    required Category category,
+    required Weight weight,
+  }) = _ProductSnipper;
+}
 
 @freezed
 class AddedProduct with _$AddedProduct {

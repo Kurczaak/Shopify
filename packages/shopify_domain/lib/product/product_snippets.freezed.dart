@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'added_product.dart';
+part of 'product_snippets.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -13,6 +13,274 @@ T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
+/// @nodoc
+mixin _$ProductSnipper {
+  UniqueId get productId => throw _privateConstructorUsedError;
+  Barcode get barcode => throw _privateConstructorUsedError;
+  ProductName get name => throw _privateConstructorUsedError;
+  BrandName get brand => throw _privateConstructorUsedError;
+  Price get price => throw _privateConstructorUsedError;
+  Category get category => throw _privateConstructorUsedError;
+  Weight get weight => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $ProductSnipperCopyWith<ProductSnippet> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ProductSnipperCopyWith<$Res> {
+  factory $ProductSnipperCopyWith(
+          ProductSnippet value, $Res Function(ProductSnippet) then) =
+      _$ProductSnipperCopyWithImpl<$Res>;
+  $Res call(
+      {UniqueId productId,
+      Barcode barcode,
+      ProductName name,
+      BrandName brand,
+      Price price,
+      Category category,
+      Weight weight});
+
+  $PriceCopyWith<$Res> get price;
+  $WeightCopyWith<$Res> get weight;
+}
+
+/// @nodoc
+class _$ProductSnipperCopyWithImpl<$Res>
+    implements $ProductSnipperCopyWith<$Res> {
+  _$ProductSnipperCopyWithImpl(this._value, this._then);
+
+  final ProductSnippet _value;
+  // ignore: unused_field
+  final $Res Function(ProductSnippet) _then;
+
+  @override
+  $Res call({
+    Object? productId = freezed,
+    Object? barcode = freezed,
+    Object? name = freezed,
+    Object? brand = freezed,
+    Object? price = freezed,
+    Object? category = freezed,
+    Object? weight = freezed,
+  }) {
+    return _then(_value.copyWith(
+      productId: productId == freezed
+          ? _value.productId
+          : productId // ignore: cast_nullable_to_non_nullable
+              as UniqueId,
+      barcode: barcode == freezed
+          ? _value.barcode
+          : barcode // ignore: cast_nullable_to_non_nullable
+              as Barcode,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as ProductName,
+      brand: brand == freezed
+          ? _value.brand
+          : brand // ignore: cast_nullable_to_non_nullable
+              as BrandName,
+      price: price == freezed
+          ? _value.price
+          : price // ignore: cast_nullable_to_non_nullable
+              as Price,
+      category: category == freezed
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as Category,
+      weight: weight == freezed
+          ? _value.weight
+          : weight // ignore: cast_nullable_to_non_nullable
+              as Weight,
+    ));
+  }
+
+  @override
+  $PriceCopyWith<$Res> get price {
+    return $PriceCopyWith<$Res>(_value.price, (value) {
+      return _then(_value.copyWith(price: value));
+    });
+  }
+
+  @override
+  $WeightCopyWith<$Res> get weight {
+    return $WeightCopyWith<$Res>(_value.weight, (value) {
+      return _then(_value.copyWith(weight: value));
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$_ProductSnipperCopyWith<$Res>
+    implements $ProductSnipperCopyWith<$Res> {
+  factory _$$_ProductSnipperCopyWith(
+          _$_ProductSnipper value, $Res Function(_$_ProductSnipper) then) =
+      __$$_ProductSnipperCopyWithImpl<$Res>;
+  @override
+  $Res call(
+      {UniqueId productId,
+      Barcode barcode,
+      ProductName name,
+      BrandName brand,
+      Price price,
+      Category category,
+      Weight weight});
+
+  @override
+  $PriceCopyWith<$Res> get price;
+  @override
+  $WeightCopyWith<$Res> get weight;
+}
+
+/// @nodoc
+class __$$_ProductSnipperCopyWithImpl<$Res>
+    extends _$ProductSnipperCopyWithImpl<$Res>
+    implements _$$_ProductSnipperCopyWith<$Res> {
+  __$$_ProductSnipperCopyWithImpl(
+      _$_ProductSnipper _value, $Res Function(_$_ProductSnipper) _then)
+      : super(_value, (v) => _then(v as _$_ProductSnipper));
+
+  @override
+  _$_ProductSnipper get _value => super._value as _$_ProductSnipper;
+
+  @override
+  $Res call({
+    Object? productId = freezed,
+    Object? barcode = freezed,
+    Object? name = freezed,
+    Object? brand = freezed,
+    Object? price = freezed,
+    Object? category = freezed,
+    Object? weight = freezed,
+  }) {
+    return _then(_$_ProductSnipper(
+      productId: productId == freezed
+          ? _value.productId
+          : productId // ignore: cast_nullable_to_non_nullable
+              as UniqueId,
+      barcode: barcode == freezed
+          ? _value.barcode
+          : barcode // ignore: cast_nullable_to_non_nullable
+              as Barcode,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as ProductName,
+      brand: brand == freezed
+          ? _value.brand
+          : brand // ignore: cast_nullable_to_non_nullable
+              as BrandName,
+      price: price == freezed
+          ? _value.price
+          : price // ignore: cast_nullable_to_non_nullable
+              as Price,
+      category: category == freezed
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as Category,
+      weight: weight == freezed
+          ? _value.weight
+          : weight // ignore: cast_nullable_to_non_nullable
+              as Weight,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_ProductSnipper implements _ProductSnipper {
+  const _$_ProductSnipper(
+      {required this.productId,
+      required this.barcode,
+      required this.name,
+      required this.brand,
+      required this.price,
+      required this.category,
+      required this.weight});
+
+  @override
+  final UniqueId productId;
+  @override
+  final Barcode barcode;
+  @override
+  final ProductName name;
+  @override
+  final BrandName brand;
+  @override
+  final Price price;
+  @override
+  final Category category;
+  @override
+  final Weight weight;
+
+  @override
+  String toString() {
+    return 'ProductSnipper(productId: $productId, barcode: $barcode, name: $name, brand: $brand, price: $price, category: $category, weight: $weight)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_ProductSnipper &&
+            const DeepCollectionEquality().equals(other.productId, productId) &&
+            const DeepCollectionEquality().equals(other.barcode, barcode) &&
+            const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality().equals(other.brand, brand) &&
+            const DeepCollectionEquality().equals(other.price, price) &&
+            const DeepCollectionEquality().equals(other.category, category) &&
+            const DeepCollectionEquality().equals(other.weight, weight));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(productId),
+      const DeepCollectionEquality().hash(barcode),
+      const DeepCollectionEquality().hash(name),
+      const DeepCollectionEquality().hash(brand),
+      const DeepCollectionEquality().hash(price),
+      const DeepCollectionEquality().hash(category),
+      const DeepCollectionEquality().hash(weight));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_ProductSnipperCopyWith<_$_ProductSnipper> get copyWith =>
+      __$$_ProductSnipperCopyWithImpl<_$_ProductSnipper>(this, _$identity);
+}
+
+abstract class _ProductSnipper implements ProductSnippet {
+  const factory _ProductSnipper(
+      {required final UniqueId productId,
+      required final Barcode barcode,
+      required final ProductName name,
+      required final BrandName brand,
+      required final Price price,
+      required final Category category,
+      required final Weight weight}) = _$_ProductSnipper;
+
+  @override
+  UniqueId get productId => throw _privateConstructorUsedError;
+  @override
+  Barcode get barcode => throw _privateConstructorUsedError;
+  @override
+  ProductName get name => throw _privateConstructorUsedError;
+  @override
+  BrandName get brand => throw _privateConstructorUsedError;
+  @override
+  Price get price => throw _privateConstructorUsedError;
+  @override
+  Category get category => throw _privateConstructorUsedError;
+  @override
+  Weight get weight => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  _$$_ProductSnipperCopyWith<_$_ProductSnipper> get copyWith =>
+      throw _privateConstructorUsedError;
+}
 
 /// @nodoc
 mixin _$AddedProduct {
