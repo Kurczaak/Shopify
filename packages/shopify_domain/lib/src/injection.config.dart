@@ -80,8 +80,10 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       _i21.ShopifyLocationFacadeImpl(
           get<_i13.Location>(), get<_i8.GeocodingPlatform>()));
   gh.lazySingleton<_i3.ShopifyProductRepository>(() =>
-      _i22.FirebaseProductRepositoryImpl(get<_i6.FirebaseFirestore>(),
-          get<_i7.FirebaseStorage>(), get<_i15.NetworkInfo>()));
+      _i22.FirebaseProductRepositoryImpl(
+          firestore: get<_i6.FirebaseFirestore>(),
+          storage: get<_i7.FirebaseStorage>(),
+          networkInfo: get<_i15.NetworkInfo>()));
   gh.lazySingleton<_i23.ShopifyShopRepository>(() =>
       _i24.FirebaseShopRepositoryImpl(get<_i6.FirebaseFirestore>(),
           get<_i7.FirebaseStorage>(), get<_i9.Geoflutterfire>()));
