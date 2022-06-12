@@ -16,6 +16,7 @@ class ProductSnippet with _$ProductSnippet {
     required Price price,
     required Category category,
     required Weight weight,
+    required ShopifyUrl photoUrl,
   }) = _ProductSnippet;
 }
 
