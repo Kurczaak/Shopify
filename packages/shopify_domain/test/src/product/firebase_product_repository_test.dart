@@ -15,6 +15,7 @@ import 'package:shopify_domain/src/core/firestore_helpers.dart';
 import 'package:shopify_domain/src/product/firebase_product_repository.dart';
 import 'package:firebase_storage_mocks/firebase_storage_mocks.dart' as fake;
 import 'package:fake_cloud_firestore/fake_cloud_firestore.dart';
+import 'package:shopify_domain/src/product/product_dtos.dart';
 import 'package:shopify_domain/src/shop/shop_dtos.dart';
 import '../../fixtures/test_product.dart';
 import '../../utils/image_reader.dart';

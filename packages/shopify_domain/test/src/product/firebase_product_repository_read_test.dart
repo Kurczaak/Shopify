@@ -11,7 +11,10 @@ import 'package:shopify_domain/core.dart';
 import 'package:shopify_domain/core/network/network_info.dart';
 import 'package:shopify_domain/product.dart';
 import 'package:shopify_domain/shop.dart';
+import 'package:shopify_domain/src/core/address_dto.dart';
+import 'package:shopify_domain/src/core/location/location_dtos.dart';
 import 'package:shopify_domain/src/product/firebase_product_repository.dart';
+import 'package:shopify_domain/src/product/product_dtos.dart';
 import 'firebase_product_repository_read_test.mocks.dart';
 
 @GenerateMocks([
