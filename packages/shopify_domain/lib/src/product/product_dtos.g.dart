@@ -6,6 +6,40 @@ part of 'product_dtos.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
+_$_AddedProductDto _$$_AddedProductDtoFromJson(Map<String, dynamic> json) =>
+    _$_AddedProductDto(
+      productId: json['productId'] as String,
+      barcode: json['barcode'] as String,
+      productCategory: json['productCategory'] as String,
+      productName: json['productName'] as String,
+      productPhotos: (json['productPhotos'] as List<dynamic>)
+          .map((e) => e as String)
+          .toList(),
+      weight: WeightDto.fromJson(json['weight'] as Map<String, dynamic>),
+      price: PriceDto.fromJson(json['price'] as Map<String, dynamic>),
+      shopId: json['shopId'] as String,
+      position: LocationDto.fromJson(json['position'] as Map<String, dynamic>),
+      address: AddressDto.fromJson(json['address'] as Map<String, dynamic>),
+      shopLogo: json['shopLogo'] as String,
+      shopName: json['shopName'] as String,
+    );
+
+Map<String, dynamic> _$$_AddedProductDtoToJson(_$_AddedProductDto instance) =>
+    <String, dynamic>{
+      'productId': instance.productId,
+      'barcode': instance.barcode,
+      'productCategory': instance.productCategory,
+      'productName': instance.productName,
+      'productPhotos': instance.productPhotos,
+      'weight': instance.weight.toJson(),
+      'price': instance.price.toJson(),
+      'shopId': instance.shopId,
+      'position': instance.position.toJson(),
+      'address': instance.address.toJson(),
+      'shopLogo': instance.shopLogo,
+      'shopName': instance.shopName,
+    };
+
 _$_ShopProductDto _$$_ShopProductDtoFromJson(Map<String, dynamic> json) =>
     _$_ShopProductDto(
       productId: json['productId'] as String,
