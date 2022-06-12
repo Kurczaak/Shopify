@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:kt_dart/kt.dart';
 import 'package:shopify_client/domain/product/i_product_repository.dart';
 import 'package:shopify_client/injection.dart';
-import 'package:shopify_domain/core.dart';
 import 'package:shopify_domain/product.dart';
 import 'package:shopify_domain/shop/shop.dart';
 
@@ -17,25 +16,23 @@ class DebugShopPage extends StatefulWidget {
 }
 
 class _DebugShopPageState extends State<DebugShopPage> {
-  Stream<d.Either<ProductFailure, KtList<AddedProduct>>>? stream;
+  Stream<d.Either<ProductFailure, KtList<ProductSnippet>>>? stream;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: StreamBuilder<d.Either<ProductFailure, KtList<AddedProduct>>>(
+        child: StreamBuilder<d.Either<ProductFailure, KtList<ProductSnippet>>>(
           stream: stream,
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              final d.Either<ProductFailure, KtList<AddedProduct>> xd =
+              final d.Either<ProductFailure, KtList<ProductSnippet>> xd =
                   snapshot.data!;
               return xd.fold(
                   (l) => ElevatedButton(
                       onPressed: () {
-                        stream = getIt<IProductRepository>().watchAllNearby(
-                            Location.fromLatLang(
-                                latitude: 52.11573, longitude: 19.95152),
-                            10);
+                        stream = getIt<IProductRepository>()
+                            .watchAllFromShop(widget.shop);
                         setState(() {});
                       },
                       child: Text(l.toString())),
@@ -49,20 +46,15 @@ class _DebugShopPageState extends State<DebugShopPage> {
                                   .price
                                   .getOrCrash()
                                   .toString()),
-                              Image.network(products[index]
-                                  .productPhotos
-                                  .getOrCrash()
-                                  .first()
-                                  .getOrCrash()),
+                              Image.network(
+                                  products[index].photoUrl.getOrCrash()),
                             ],
                           )));
             }
             return ElevatedButton(
                 onPressed: () {
-                  stream = getIt<IProductRepository>().watchAllNearby(
-                      Location.fromLatLang(
-                          latitude: 52.11573, longitude: 19.95152),
-                      10);
+                  stream =
+                      getIt<IProductRepository>().watchAllFromShop(widget.shop);
                   setState(() {});
                 },
                 child: const Text('no data'));

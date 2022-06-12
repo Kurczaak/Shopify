@@ -12,7 +12,7 @@
 
 import 'package:auto_route/auto_route.dart' as _i8;
 import 'package:flutter/material.dart' as _i9;
-import 'package:shopify_domain/shop.dart' as _i10;
+import 'package:shopify_domain/shop/shop.dart' as _i10;
 
 import '../core/debug_page.dart' as _i4;
 import '../debug.dart' as _i5;
