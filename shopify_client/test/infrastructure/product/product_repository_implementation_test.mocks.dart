@@ -2,15 +2,20 @@
 // in shopify_client/test/infrastructure/product/product_repository_implementation_test.dart.
 // Do not manually edit this file.
 
-import 'dart:async' as _i6;
-import 'dart:typed_data' as _i7;
+import 'dart:async' as _i9;
+import 'dart:typed_data' as _i10;
 
 import 'package:cloud_firestore/cloud_firestore.dart' as _i4;
 import 'package:cloud_firestore_platform_interface/cloud_firestore_platform_interface.dart'
     as _i3;
 import 'package:firebase_core/firebase_core.dart' as _i2;
+import 'package:geoflutterfire/src/collection/default.dart' as _i5;
+import 'package:geoflutterfire/src/collection/with_converter.dart' as _i6;
+import 'package:geoflutterfire/src/geoflutterfire.dart' as _i11;
+import 'package:geoflutterfire/src/models/distance_doc_snapshot.dart' as _i12;
+import 'package:geoflutterfire/src/models/point.dart' as _i7;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:shopify_domain/core/network/network_info.dart' as _i5;
+import 'package:shopify_domain/core/network/network_info.dart' as _i8;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -42,18 +47,32 @@ class _FakeQuery_6<T extends Object?> extends _i1.Fake implements _i4.Query<T> {
 class _FakeDocumentReference_7<T extends Object?> extends _i1.Fake
     implements _i4.DocumentReference<T> {}
 
+class _FakeGeoFireCollectionRef_8 extends _i1.Fake
+    implements _i5.GeoFireCollectionRef {}
+
+class _FakeGeoFireCollectionWithConverterRef_9<T> extends _i1.Fake
+    implements _i6.GeoFireCollectionWithConverterRef<T> {}
+
+class _FakeGeoFirePoint_10 extends _i1.Fake implements _i7.GeoFirePoint {}
+
+class _FakeFirebaseFirestore_11 extends _i1.Fake
+    implements _i4.FirebaseFirestore {}
+
+class _FakeDocumentSnapshot_12<T extends Object?> extends _i1.Fake
+    implements _i4.DocumentSnapshot<T> {}
+
 /// A class which mocks [NetworkInfo].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockNetworkInfo extends _i1.Mock implements _i5.NetworkInfo {
+class MockNetworkInfo extends _i1.Mock implements _i8.NetworkInfo {
   MockNetworkInfo() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i6.Future<bool> get isConnected =>
+  _i9.Future<bool> get isConnected =>
       (super.noSuchMethod(Invocation.getter(#isConnected),
-          returnValue: Future<bool>.value(false)) as _i6.Future<bool>);
+          returnValue: Future<bool>.value(false)) as _i9.Future<bool>);
 }
 
 /// A class which mocks [FirebaseFirestore].
@@ -92,19 +111,19 @@ class MockFirebaseFirestore extends _i1.Mock implements _i4.FirebaseFirestore {
   _i4.WriteBatch batch() => (super.noSuchMethod(Invocation.method(#batch, []),
       returnValue: _FakeWriteBatch_3()) as _i4.WriteBatch);
   @override
-  _i6.Future<void> clearPersistence() =>
+  _i9.Future<void> clearPersistence() =>
       (super.noSuchMethod(Invocation.method(#clearPersistence, []),
           returnValue: Future<void>.value(),
-          returnValueForMissingStub: Future<void>.value()) as _i6.Future<void>);
+          returnValueForMissingStub: Future<void>.value()) as _i9.Future<void>);
   @override
-  _i6.Future<void> enablePersistence(
+  _i9.Future<void> enablePersistence(
           [_i3.PersistenceSettings? persistenceSettings]) =>
       (super.noSuchMethod(
           Invocation.method(#enablePersistence, [persistenceSettings]),
           returnValue: Future<void>.value(),
-          returnValueForMissingStub: Future<void>.value()) as _i6.Future<void>);
+          returnValueForMissingStub: Future<void>.value()) as _i9.Future<void>);
   @override
-  _i4.LoadBundleTask loadBundle(_i7.Uint8List? bundle) =>
+  _i4.LoadBundleTask loadBundle(_i10.Uint8List? bundle) =>
       (super.noSuchMethod(Invocation.method(#loadBundle, [bundle]),
           returnValue: _FakeLoadBundleTask_4()) as _i4.LoadBundleTask);
   @override
@@ -115,13 +134,13 @@ class MockFirebaseFirestore extends _i1.Mock implements _i4.FirebaseFirestore {
               #useFirestoreEmulator, [host, port], {#sslEnabled: sslEnabled}),
           returnValueForMissingStub: null);
   @override
-  _i6.Future<_i4.QuerySnapshot<Map<String, dynamic>>> namedQueryGet(
+  _i9.Future<_i4.QuerySnapshot<Map<String, dynamic>>> namedQueryGet(
           String? name,
           {_i3.GetOptions? options = const _i3.GetOptions()}) =>
       (super.noSuchMethod(
           Invocation.method(#namedQueryGet, [name], {#options: options}),
           returnValue: Future<_i4.QuerySnapshot<Map<String, dynamic>>>.value(
-              _FakeQuerySnapshot_5<Map<String, dynamic>>())) as _i6
+              _FakeQuerySnapshot_5<Map<String, dynamic>>())) as _i9
           .Future<_i4.QuerySnapshot<Map<String, dynamic>>>);
   @override
   _i4.Query<Map<String, dynamic>> collectionGroup(String? collectionPath) =>
@@ -129,39 +148,413 @@ class MockFirebaseFirestore extends _i1.Mock implements _i4.FirebaseFirestore {
               returnValue: _FakeQuery_6<Map<String, dynamic>>())
           as _i4.Query<Map<String, dynamic>>);
   @override
-  _i6.Future<void> disableNetwork() =>
+  _i9.Future<void> disableNetwork() =>
       (super.noSuchMethod(Invocation.method(#disableNetwork, []),
           returnValue: Future<void>.value(),
-          returnValueForMissingStub: Future<void>.value()) as _i6.Future<void>);
+          returnValueForMissingStub: Future<void>.value()) as _i9.Future<void>);
   @override
   _i4.DocumentReference<Map<String, dynamic>> doc(String? documentPath) =>
       (super.noSuchMethod(Invocation.method(#doc, [documentPath]),
               returnValue: _FakeDocumentReference_7<Map<String, dynamic>>())
           as _i4.DocumentReference<Map<String, dynamic>>);
   @override
-  _i6.Future<void> enableNetwork() =>
+  _i9.Future<void> enableNetwork() =>
       (super.noSuchMethod(Invocation.method(#enableNetwork, []),
           returnValue: Future<void>.value(),
-          returnValueForMissingStub: Future<void>.value()) as _i6.Future<void>);
+          returnValueForMissingStub: Future<void>.value()) as _i9.Future<void>);
   @override
-  _i6.Stream<void> snapshotsInSync() =>
+  _i9.Stream<void> snapshotsInSync() =>
       (super.noSuchMethod(Invocation.method(#snapshotsInSync, []),
-          returnValue: Stream<void>.empty()) as _i6.Stream<void>);
+          returnValue: Stream<void>.empty()) as _i9.Stream<void>);
   @override
-  _i6.Future<T> runTransaction<T>(_i4.TransactionHandler<T>? transactionHandler,
+  _i9.Future<T> runTransaction<T>(_i4.TransactionHandler<T>? transactionHandler,
           {Duration? timeout = const Duration(seconds: 30)}) =>
       (super.noSuchMethod(
           Invocation.method(
               #runTransaction, [transactionHandler], {#timeout: timeout}),
-          returnValue: Future<T>.value(null)) as _i6.Future<T>);
+          returnValue: Future<T>.value(null)) as _i9.Future<T>);
   @override
-  _i6.Future<void> terminate() =>
+  _i9.Future<void> terminate() =>
       (super.noSuchMethod(Invocation.method(#terminate, []),
           returnValue: Future<void>.value(),
-          returnValueForMissingStub: Future<void>.value()) as _i6.Future<void>);
+          returnValueForMissingStub: Future<void>.value()) as _i9.Future<void>);
   @override
-  _i6.Future<void> waitForPendingWrites() =>
+  _i9.Future<void> waitForPendingWrites() =>
       (super.noSuchMethod(Invocation.method(#waitForPendingWrites, []),
           returnValue: Future<void>.value(),
-          returnValueForMissingStub: Future<void>.value()) as _i6.Future<void>);
+          returnValueForMissingStub: Future<void>.value()) as _i9.Future<void>);
+}
+
+/// A class which mocks [Geoflutterfire].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockGeoflutterfire extends _i1.Mock implements _i11.Geoflutterfire {
+  MockGeoflutterfire() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i5.GeoFireCollectionRef collection(
+          {_i4.Query<Map<String, dynamic>>? collectionRef}) =>
+      (super.noSuchMethod(
+          Invocation.method(#collection, [], {#collectionRef: collectionRef}),
+          returnValue:
+              _FakeGeoFireCollectionRef_8()) as _i5.GeoFireCollectionRef);
+  @override
+  _i6.GeoFireCollectionWithConverterRef<T> collectionWithConverter<T>(
+          {_i4.Query<T>? collectionRef}) =>
+      (super.noSuchMethod(
+              Invocation.method(#collectionWithConverter, [],
+                  {#collectionRef: collectionRef}),
+              returnValue: _FakeGeoFireCollectionWithConverterRef_9<T>())
+          as _i6.GeoFireCollectionWithConverterRef<T>);
+  @override
+  _i5.GeoFireCollectionRef customCollection(
+          {_i4.Query<Map<String, dynamic>>? collectionRef}) =>
+      (super.noSuchMethod(
+              Invocation.method(
+                  #customCollection, [], {#collectionRef: collectionRef}),
+              returnValue: _FakeGeoFireCollectionRef_8())
+          as _i5.GeoFireCollectionRef);
+  @override
+  _i7.GeoFirePoint point({double? latitude, double? longitude}) =>
+      (super.noSuchMethod(
+          Invocation.method(
+              #point, [], {#latitude: latitude, #longitude: longitude}),
+          returnValue: _FakeGeoFirePoint_10()) as _i7.GeoFirePoint);
+}
+
+/// A class which mocks [CollectionReference].
+///
+/// See the documentation for Mockito's code generation for more information.
+// ignore: must_be_immutable
+class MockCollectionReference<T extends Object?> extends _i1.Mock
+    implements _i4.CollectionReference<T> {
+  MockCollectionReference() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  String get id =>
+      (super.noSuchMethod(Invocation.getter(#id), returnValue: '') as String);
+  @override
+  String get path =>
+      (super.noSuchMethod(Invocation.getter(#path), returnValue: '') as String);
+  @override
+  _i4.FirebaseFirestore get firestore =>
+      (super.noSuchMethod(Invocation.getter(#firestore),
+          returnValue: _FakeFirebaseFirestore_11()) as _i4.FirebaseFirestore);
+  @override
+  Map<String, dynamic> get parameters =>
+      (super.noSuchMethod(Invocation.getter(#parameters),
+          returnValue: <String, dynamic>{}) as Map<String, dynamic>);
+  @override
+  _i9.Future<_i4.DocumentReference<T>> add(T? data) =>
+      (super.noSuchMethod(Invocation.method(#add, [data]),
+              returnValue: Future<_i4.DocumentReference<T>>.value(
+                  _FakeDocumentReference_7<T>()))
+          as _i9.Future<_i4.DocumentReference<T>>);
+  @override
+  _i4.DocumentReference<T> doc([String? path]) => (super.noSuchMethod(
+      Invocation.method(#doc, [path]),
+      returnValue: _FakeDocumentReference_7<T>()) as _i4.DocumentReference<T>);
+  @override
+  _i4.CollectionReference<R> withConverter<R extends Object?>(
+          {_i4.FromFirestore<R>? fromFirestore,
+          _i4.ToFirestore<R>? toFirestore}) =>
+      (super.noSuchMethod(
+              Invocation.method(#withConverter, [],
+                  {#fromFirestore: fromFirestore, #toFirestore: toFirestore}),
+              returnValue: _FakeCollectionReference_2<R>())
+          as _i4.CollectionReference<R>);
+  @override
+  _i4.Query<T> endAtDocument(_i4.DocumentSnapshot<Object?>? documentSnapshot) =>
+      (super.noSuchMethod(Invocation.method(#endAtDocument, [documentSnapshot]),
+          returnValue: _FakeQuery_6<T>()) as _i4.Query<T>);
+  @override
+  _i4.Query<T> endAt(List<Object?>? values) =>
+      (super.noSuchMethod(Invocation.method(#endAt, [values]),
+          returnValue: _FakeQuery_6<T>()) as _i4.Query<T>);
+  @override
+  _i4.Query<T> endBeforeDocument(
+          _i4.DocumentSnapshot<Object?>? documentSnapshot) =>
+      (super.noSuchMethod(
+          Invocation.method(#endBeforeDocument, [documentSnapshot]),
+          returnValue: _FakeQuery_6<T>()) as _i4.Query<T>);
+  @override
+  _i4.Query<T> endBefore(List<Object?>? values) =>
+      (super.noSuchMethod(Invocation.method(#endBefore, [values]),
+          returnValue: _FakeQuery_6<T>()) as _i4.Query<T>);
+  @override
+  _i9.Future<_i4.QuerySnapshot<T>> get([_i3.GetOptions? options]) =>
+      (super.noSuchMethod(Invocation.method(#get, [options]),
+              returnValue:
+                  Future<_i4.QuerySnapshot<T>>.value(_FakeQuerySnapshot_5<T>()))
+          as _i9.Future<_i4.QuerySnapshot<T>>);
+  @override
+  _i4.Query<T> limit(int? limit) =>
+      (super.noSuchMethod(Invocation.method(#limit, [limit]),
+          returnValue: _FakeQuery_6<T>()) as _i4.Query<T>);
+  @override
+  _i4.Query<T> limitToLast(int? limit) =>
+      (super.noSuchMethod(Invocation.method(#limitToLast, [limit]),
+          returnValue: _FakeQuery_6<T>()) as _i4.Query<T>);
+  @override
+  _i9.Stream<_i4.QuerySnapshot<T>> snapshots(
+          {bool? includeMetadataChanges = false}) =>
+      (super.noSuchMethod(
+              Invocation.method(#snapshots, [],
+                  {#includeMetadataChanges: includeMetadataChanges}),
+              returnValue: Stream<_i4.QuerySnapshot<T>>.empty())
+          as _i9.Stream<_i4.QuerySnapshot<T>>);
+  @override
+  _i4.Query<T> orderBy(Object? field, {bool? descending = false}) =>
+      (super.noSuchMethod(
+          Invocation.method(#orderBy, [field], {#descending: descending}),
+          returnValue: _FakeQuery_6<T>()) as _i4.Query<T>);
+  @override
+  _i4.Query<T> startAfterDocument(
+          _i4.DocumentSnapshot<Object?>? documentSnapshot) =>
+      (super.noSuchMethod(
+          Invocation.method(#startAfterDocument, [documentSnapshot]),
+          returnValue: _FakeQuery_6<T>()) as _i4.Query<T>);
+  @override
+  _i4.Query<T> startAfter(List<Object?>? values) =>
+      (super.noSuchMethod(Invocation.method(#startAfter, [values]),
+          returnValue: _FakeQuery_6<T>()) as _i4.Query<T>);
+  @override
+  _i4.Query<T> startAtDocument(
+          _i4.DocumentSnapshot<Object?>? documentSnapshot) =>
+      (super.noSuchMethod(
+          Invocation.method(#startAtDocument, [documentSnapshot]),
+          returnValue: _FakeQuery_6<T>()) as _i4.Query<T>);
+  @override
+  _i4.Query<T> startAt(List<Object?>? values) =>
+      (super.noSuchMethod(Invocation.method(#startAt, [values]),
+          returnValue: _FakeQuery_6<T>()) as _i4.Query<T>);
+  @override
+  _i4.Query<T> where(Object? field,
+          {Object? isEqualTo,
+          Object? isNotEqualTo,
+          Object? isLessThan,
+          Object? isLessThanOrEqualTo,
+          Object? isGreaterThan,
+          Object? isGreaterThanOrEqualTo,
+          Object? arrayContains,
+          List<Object?>? arrayContainsAny,
+          List<Object?>? whereIn,
+          List<Object?>? whereNotIn,
+          bool? isNull}) =>
+      (super.noSuchMethod(
+          Invocation.method(#where, [
+            field
+          ], {
+            #isEqualTo: isEqualTo,
+            #isNotEqualTo: isNotEqualTo,
+            #isLessThan: isLessThan,
+            #isLessThanOrEqualTo: isLessThanOrEqualTo,
+            #isGreaterThan: isGreaterThan,
+            #isGreaterThanOrEqualTo: isGreaterThanOrEqualTo,
+            #arrayContains: arrayContains,
+            #arrayContainsAny: arrayContainsAny,
+            #whereIn: whereIn,
+            #whereNotIn: whereNotIn,
+            #isNull: isNull
+          }),
+          returnValue: _FakeQuery_6<T>()) as _i4.Query<T>);
+}
+
+/// A class which mocks [DocumentReference].
+///
+/// See the documentation for Mockito's code generation for more information.
+// ignore: must_be_immutable
+class MockDocumentReference<T extends Object?> extends _i1.Mock
+    implements _i4.DocumentReference<T> {
+  MockDocumentReference() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i4.FirebaseFirestore get firestore =>
+      (super.noSuchMethod(Invocation.getter(#firestore),
+          returnValue: _FakeFirebaseFirestore_11()) as _i4.FirebaseFirestore);
+  @override
+  String get id =>
+      (super.noSuchMethod(Invocation.getter(#id), returnValue: '') as String);
+  @override
+  _i4.CollectionReference<T> get parent =>
+      (super.noSuchMethod(Invocation.getter(#parent),
+              returnValue: _FakeCollectionReference_2<T>())
+          as _i4.CollectionReference<T>);
+  @override
+  String get path =>
+      (super.noSuchMethod(Invocation.getter(#path), returnValue: '') as String);
+  @override
+  _i4.CollectionReference<Map<String, dynamic>> collection(
+          String? collectionPath) =>
+      (super.noSuchMethod(Invocation.method(#collection, [collectionPath]),
+              returnValue: _FakeCollectionReference_2<Map<String, dynamic>>())
+          as _i4.CollectionReference<Map<String, dynamic>>);
+  @override
+  _i9.Future<void> delete() =>
+      (super.noSuchMethod(Invocation.method(#delete, []),
+          returnValue: Future<void>.value(),
+          returnValueForMissingStub: Future<void>.value()) as _i9.Future<void>);
+  @override
+  _i9.Future<void> update(Map<String, Object?>? data) =>
+      (super.noSuchMethod(Invocation.method(#update, [data]),
+          returnValue: Future<void>.value(),
+          returnValueForMissingStub: Future<void>.value()) as _i9.Future<void>);
+  @override
+  _i9.Future<_i4.DocumentSnapshot<T>> get([_i3.GetOptions? options]) =>
+      (super.noSuchMethod(Invocation.method(#get, [options]),
+              returnValue: Future<_i4.DocumentSnapshot<T>>.value(
+                  _FakeDocumentSnapshot_12<T>()))
+          as _i9.Future<_i4.DocumentSnapshot<T>>);
+  @override
+  _i9.Stream<_i4.DocumentSnapshot<T>> snapshots(
+          {bool? includeMetadataChanges = false}) =>
+      (super.noSuchMethod(
+              Invocation.method(#snapshots, [],
+                  {#includeMetadataChanges: includeMetadataChanges}),
+              returnValue: Stream<_i4.DocumentSnapshot<T>>.empty())
+          as _i9.Stream<_i4.DocumentSnapshot<T>>);
+  @override
+  _i9.Future<void> set(T? data, [_i3.SetOptions? options]) =>
+      (super.noSuchMethod(Invocation.method(#set, [data, options]),
+          returnValue: Future<void>.value(),
+          returnValueForMissingStub: Future<void>.value()) as _i9.Future<void>);
+  @override
+  _i4.DocumentReference<R> withConverter<R>(
+          {_i4.FromFirestore<R>? fromFirestore,
+          _i4.ToFirestore<R>? toFirestore}) =>
+      (super.noSuchMethod(
+              Invocation.method(#withConverter, [],
+                  {#fromFirestore: fromFirestore, #toFirestore: toFirestore}),
+              returnValue: _FakeDocumentReference_7<R>())
+          as _i4.DocumentReference<R>);
+}
+
+/// A class which mocks [GeoFireCollectionRef].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockGeoFireCollectionRef extends _i1.Mock
+    implements _i5.GeoFireCollectionRef {
+  MockGeoFireCollectionRef() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i9.Stream<List<_i4.DocumentSnapshot<Map<String, dynamic>>>> within(
+          {_i7.GeoFirePoint? center,
+          double? radius,
+          String? field,
+          bool? strictMode}) =>
+      (super.noSuchMethod(
+              Invocation.method(#within, [], {
+                #center: center,
+                #radius: radius,
+                #field: field,
+                #strictMode: strictMode
+              }),
+              returnValue: Stream<
+                  List<_i4.DocumentSnapshot<Map<String, dynamic>>>>.empty())
+          as _i9.Stream<List<_i4.DocumentSnapshot<Map<String, dynamic>>>>);
+  @override
+  _i9.Stream<List<_i12.DistanceDocSnapshot<Map<String, dynamic>>>> withinWithDistance(
+          {_i7.GeoFirePoint? center,
+          double? radius,
+          String? field,
+          bool? strictMode}) =>
+      (super.noSuchMethod(
+              Invocation.method(#withinWithDistance, [], {
+                #center: center,
+                #radius: radius,
+                #field: field,
+                #strictMode: strictMode
+              }),
+              returnValue: Stream<
+                  List<_i12.DistanceDocSnapshot<Map<String, dynamic>>>>.empty())
+          as _i9.Stream<List<_i12.DistanceDocSnapshot<Map<String, dynamic>>>>);
+  @override
+  _i9.Stream<List<_i4.DocumentSnapshot<Map<String, dynamic>>>> data(
+          String? id) =>
+      (super.noSuchMethod(Invocation.method(#data, [id]),
+              returnValue: Stream<
+                  List<_i4.DocumentSnapshot<Map<String, dynamic>>>>.empty())
+          as _i9.Stream<List<_i4.DocumentSnapshot<Map<String, dynamic>>>>);
+  @override
+  _i9.Future<_i4.DocumentReference<Map<String, dynamic>>> add(
+          Map<String, dynamic>? data) =>
+      (super.noSuchMethod(Invocation.method(#add, [data]),
+              returnValue:
+                  Future<_i4.DocumentReference<Map<String, dynamic>>>.value(
+                      _FakeDocumentReference_7<Map<String, dynamic>>()))
+          as _i9.Future<_i4.DocumentReference<Map<String, dynamic>>>);
+  @override
+  _i9.Future<void> delete(dynamic id) =>
+      (super.noSuchMethod(Invocation.method(#delete, [id]),
+          returnValue: Future<void>.value(),
+          returnValueForMissingStub: Future<void>.value()) as _i9.Future<void>);
+  @override
+  _i9.Future<void> setDoc(String? id, Object? data, {bool? merge = false}) =>
+      (super.noSuchMethod(
+          Invocation.method(#setDoc, [id, data], {#merge: merge}),
+          returnValue: Future<void>.value(),
+          returnValueForMissingStub: Future<void>.value()) as _i9.Future<void>);
+  @override
+  _i9.Future<void> setPoint(
+          String? id, String? field, double? latitude, double? longitude) =>
+      (super.noSuchMethod(
+          Invocation.method(#setPoint, [id, field, latitude, longitude]),
+          returnValue: Future<void>.value(),
+          returnValueForMissingStub: Future<void>.value()) as _i9.Future<void>);
+  @override
+  _i9.Stream<List<_i4.DocumentSnapshot<Map<String, dynamic>>>> protectedWithin(
+          {_i7.GeoFirePoint? center,
+          double? radius,
+          String? field,
+          _i3.GeoPoint? Function(Map<String, dynamic>)? geopointFrom,
+          bool? strictMode}) =>
+      (super.noSuchMethod(
+              Invocation.method(#protectedWithin, [], {
+                #center: center,
+                #radius: radius,
+                #field: field,
+                #geopointFrom: geopointFrom,
+                #strictMode: strictMode
+              }),
+              returnValue: Stream<
+                  List<_i4.DocumentSnapshot<Map<String, dynamic>>>>.empty())
+          as _i9.Stream<List<_i4.DocumentSnapshot<Map<String, dynamic>>>>);
+  @override
+  _i9.Stream<List<_i12.DistanceDocSnapshot<Map<String, dynamic>>>>
+      protectedWithinWithDistance(
+              {_i7.GeoFirePoint? center,
+              double? radius,
+              String? field,
+              _i3.GeoPoint? Function(Map<String, dynamic>)? geopointFrom,
+              bool? strictMode}) =>
+          (super.noSuchMethod(
+              Invocation.method(#protectedWithinWithDistance, [], {
+                #center: center,
+                #radius: radius,
+                #field: field,
+                #geopointFrom: geopointFrom,
+                #strictMode: strictMode
+              }),
+              returnValue: Stream<
+                  List<
+                      _i12.DistanceDocSnapshot<
+                          Map<String, dynamic>>>>.empty()) as _i9
+              .Stream<List<_i12.DistanceDocSnapshot<Map<String, dynamic>>>>);
+  @override
+  _i9.Stream<
+      List<_i4.QueryDocumentSnapshot<Map<String, dynamic>>>> mergeObservable(
+          Iterable<_i9.Stream<List<_i4.QueryDocumentSnapshot<Map<String, dynamic>>>>>?
+              queries) =>
+      (super.noSuchMethod(Invocation.method(#mergeObservable, [queries]),
+              returnValue: Stream<
+                  List<_i4.QueryDocumentSnapshot<Map<String, dynamic>>>>.empty())
+          as _i9.Stream<List<_i4.QueryDocumentSnapshot<Map<String, dynamic>>>>);
 }
