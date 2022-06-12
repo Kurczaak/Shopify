@@ -7,9 +7,8 @@ import 'package:kt_dart/kt.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:shopify_client/infrastructure/product/product_repository_implementation.dart';
-import 'package:shopify_domain/core/location/location.dart';
+import 'package:shopify_domain/core.dart';
 import 'package:shopify_domain/core/network/network_info.dart';
-import 'package:shopify_domain/core/value_objects.dart';
 import 'package:shopify_domain/product.dart';
 import 'package:shopify_domain/shop.dart';
 import 'product_repository_implementation_test.mocks.dart';
@@ -46,7 +45,52 @@ void main() async {
         ShopifyUrl('https://www.photo.com/3'),
       ])));
 
-  final tShop = Shop.empty();
+  const shopDocumentIdStr = "ad5d60d0-7844-11ec-a53d-03c2fc2917f5";
+  const shopNameStr = "Shop Name";
+  const streetNameStr = "Street Name";
+  const cityNameStr = "Łowicz";
+  const postalCodeStr = "99-400";
+  const apartmentNumberStr = '';
+  const streetNumberStr = '12A';
+  const logoUrlStr =
+      'https://firebasestorage.googleapis.com/v0/b/shopify-app-6d29d.appspot.com/o/images/1';
+
+  final tShop = Shop(
+    id: UniqueId.fromUniqueString(shopDocumentIdStr),
+    shopName: ShopName(shopNameStr),
+    address: Address(
+      apartmentNumber: AddressNumber(apartmentNumberStr),
+      streetNumber: StreetNumber(streetNumberStr),
+      city: CityName(cityNameStr),
+      postalCode: PostalCode(postalCodeStr),
+      streetName: StreetName(streetNameStr),
+    ),
+    location: Location.empty(),
+    logoUrl: ShopifyUrl(logoUrlStr),
+    workingWeek: Week.empty(),
+  );
+  final tPrice = Price.fromPrimitives(12.99, 'zl');
+
+  final tAddedProductDto = AddedProductDto(
+      productId: tProduct.id.getOrCrash(),
+      barcode: tProduct.barcode.getOrCrash(),
+      productCategory: tProduct.category.getOrCrash().name,
+      productName: tProduct.name.getOrCrash(),
+      brandName: tProduct.brand.getOrCrash(),
+      productPhotos: [
+        'https://www.photo.com/1',
+        'https://www.photo.com/2',
+        'https://www.photo.com/3'
+      ],
+      weight: WeightDto.fromDomain(tProduct.weight),
+      price: PriceDto.fromDomain(tPrice),
+      shopId: tShop.id.getOrCrash(),
+      position: LocationDto.fromDomain(tShop.location),
+      address: AddressDto.fromDomain(tShop.address),
+      shopLogo: tShop.logoUrl.getOrCrash(),
+      shopName: tShop.shopName.getOrCrash());
+
+  final tProductSnippet = tAddedProductDto.toSnippet();
 
   const double radius = 5.0;
 
@@ -54,7 +98,7 @@ void main() async {
   await fakeFirestore
       .collection('addedProducts')
       .doc(tProduct.id.getOrCrash())
-      .set(ProductDto.fromDomain(tProduct).toJson());
+      .set(tAddedProductDto.toJson());
   final fakeDocumentSnapshot = await fakeFirestore
       .collection('addedProducts')
       .doc(tProduct.id.getOrCrash())
@@ -155,18 +199,16 @@ void main() async {
       },
     );
 
-    // test(
-    //   'should yield found products',
-    //   () async {
-    //           // act
-    //     final result = productRepository.watchAllNearby(tLocation, radius);
-    //     // assert
-    //     expectLater(
-    //         result.asBroadcastStream(),
-    //         emits(right(KtList.from(
-    //             [tProductSnippet, tProductSnippet, tProductSnippet]))));
-    //   },
-    // );
+    test(
+      'should yield found products',
+      () async {
+        // act
+        final result = productRepository.watchAllFromShop(tShop);
+        // assert
+        expectLater(result.asBroadcastStream(),
+            emits(right(KtList.from([tProductSnippet]))));
+      },
+    );
   });
 
   group('watchAllNearby', () {

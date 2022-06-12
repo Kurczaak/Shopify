@@ -48,12 +48,20 @@ class ProductRepositoryImpl implements IProductRepository {
   }
 
   @override
-  Stream<Either<ProductFailure, KtList<AddedProduct>>> watchAllFromShop(
+  Stream<Either<ProductFailure, KtList<ProductSnippet>>> watchAllFromShop(
       Shop shop) async* {
     if (await networkInfo.isConnected) {
-      final shopProds = firestore
+      final query = await firestore
           .collection('addedProducts')
-          .where('shopId', isEqualTo: shop.id.getOrCrash());
+          .where('shopId', isEqualTo: shop.id.getOrCrash())
+          .where('productCategory', isEqualTo: 'fish')
+          .get();
+
+      yield right(query.docs
+          .map(
+            (snapshot) => AddedProductDto.fromFirestore(snapshot).toSnippet(),
+          )
+          .toImmutableList());
     } else {
       yield left(const ProductFailure.noInternetConnection());
     }

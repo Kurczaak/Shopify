@@ -9,7 +9,7 @@ abstract class IProductRepository {
       Location location, double radius);
   Stream<Either<ProductFailure, KtList<AddedProduct>>> watchAllNearbyByCategory(
       double radius, Category category);
-  Stream<Either<ProductFailure, KtList<AddedProduct>>> watchAllFromShop(
+  Stream<Either<ProductFailure, KtList<ProductSnippet>>> watchAllFromShop(
       Shop shop);
   Stream<Either<ProductFailure, KtList<AddedProduct>>>
       watchAllFromShopByCategory(Shop shop, Category category);
