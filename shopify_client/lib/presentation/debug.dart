@@ -1,6 +1,8 @@
+import 'package:algolia/algolia.dart';
 import 'package:flutter/material.dart';
 
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
+import 'package:shopify_client/injection.dart';
 
 class DebugShopPage extends StatefulWidget {
   const DebugShopPage({
@@ -94,6 +96,7 @@ class _DebugShopPageState extends State<DebugShopPage> {
               selectedTerm = query;
             });
             controller.close();
+            _getSearchResult(query);
           },
           builder: (BuildContext context, Animation<double> transition) =>
               ClipRRect(
@@ -212,4 +215,13 @@ class SearchResultsListView extends StatelessWidget {
           )
         : Container();
   }
+}
+
+Future<void> _getSearchResult(String query) async {
+  final _algoliaClient = getIt<Algolia>();
+  AlgoliaQuery algoliaQuery =
+      _algoliaClient.instance.index("test_addedProducts").query(query);
+  AlgoliaQuerySnapshot snapshot = await algoliaQuery.getObjects();
+  final rawHits = snapshot.toMap()['hits'] as List;
+  print(rawHits);
 }
