@@ -24,7 +24,7 @@ mixin _$AddedProductDto {
   String get barcode => throw _privateConstructorUsedError;
   String get productCategory => throw _privateConstructorUsedError;
   String get productName => throw _privateConstructorUsedError;
-  String get brandName => throw _privateConstructorUsedError;
+  String get brand => throw _privateConstructorUsedError;
   List<String> get productPhotos => throw _privateConstructorUsedError;
   WeightDto get weight => throw _privateConstructorUsedError;
   PriceDto get price => throw _privateConstructorUsedError;
@@ -50,7 +50,7 @@ abstract class $AddedProductDtoCopyWith<$Res> {
       String barcode,
       String productCategory,
       String productName,
-      String brandName,
+      String brand,
       List<String> productPhotos,
       WeightDto weight,
       PriceDto price,
@@ -81,7 +81,7 @@ class _$AddedProductDtoCopyWithImpl<$Res>
     Object? barcode = freezed,
     Object? productCategory = freezed,
     Object? productName = freezed,
-    Object? brandName = freezed,
+    Object? brand = freezed,
     Object? productPhotos = freezed,
     Object? weight = freezed,
     Object? price = freezed,
@@ -108,9 +108,9 @@ class _$AddedProductDtoCopyWithImpl<$Res>
           ? _value.productName
           : productName // ignore: cast_nullable_to_non_nullable
               as String,
-      brandName: brandName == freezed
-          ? _value.brandName
-          : brandName // ignore: cast_nullable_to_non_nullable
+      brand: brand == freezed
+          ? _value.brand
+          : brand // ignore: cast_nullable_to_non_nullable
               as String,
       productPhotos: productPhotos == freezed
           ? _value.productPhotos
@@ -188,7 +188,7 @@ abstract class _$$_AddedProductDtoCopyWith<$Res>
       String barcode,
       String productCategory,
       String productName,
-      String brandName,
+      String brand,
       List<String> productPhotos,
       WeightDto weight,
       PriceDto price,
@@ -225,7 +225,7 @@ class __$$_AddedProductDtoCopyWithImpl<$Res>
     Object? barcode = freezed,
     Object? productCategory = freezed,
     Object? productName = freezed,
-    Object? brandName = freezed,
+    Object? brand = freezed,
     Object? productPhotos = freezed,
     Object? weight = freezed,
     Object? price = freezed,
@@ -252,9 +252,9 @@ class __$$_AddedProductDtoCopyWithImpl<$Res>
           ? _value.productName
           : productName // ignore: cast_nullable_to_non_nullable
               as String,
-      brandName: brandName == freezed
-          ? _value.brandName
-          : brandName // ignore: cast_nullable_to_non_nullable
+      brand: brand == freezed
+          ? _value.brand
+          : brand // ignore: cast_nullable_to_non_nullable
               as String,
       productPhotos: productPhotos == freezed
           ? _value._productPhotos
@@ -300,7 +300,7 @@ class _$_AddedProductDto extends _AddedProductDto {
       required this.barcode,
       required this.productCategory,
       required this.productName,
-      required this.brandName,
+      required this.brand,
       required final List<String> productPhotos,
       required this.weight,
       required this.price,
@@ -324,7 +324,7 @@ class _$_AddedProductDto extends _AddedProductDto {
   @override
   final String productName;
   @override
-  final String brandName;
+  final String brand;
   final List<String> _productPhotos;
   @override
   List<String> get productPhotos {
@@ -349,7 +349,7 @@ class _$_AddedProductDto extends _AddedProductDto {
 
   @override
   String toString() {
-    return 'AddedProductDto(productId: $productId, barcode: $barcode, productCategory: $productCategory, productName: $productName, brandName: $brandName, productPhotos: $productPhotos, weight: $weight, price: $price, shopId: $shopId, position: $position, address: $address, shopLogo: $shopLogo, shopName: $shopName)';
+    return 'AddedProductDto(productId: $productId, barcode: $barcode, productCategory: $productCategory, productName: $productName, brand: $brand, productPhotos: $productPhotos, weight: $weight, price: $price, shopId: $shopId, position: $position, address: $address, shopLogo: $shopLogo, shopName: $shopName)';
   }
 
   @override
@@ -363,7 +363,7 @@ class _$_AddedProductDto extends _AddedProductDto {
                 .equals(other.productCategory, productCategory) &&
             const DeepCollectionEquality()
                 .equals(other.productName, productName) &&
-            const DeepCollectionEquality().equals(other.brandName, brandName) &&
+            const DeepCollectionEquality().equals(other.brand, brand) &&
             const DeepCollectionEquality()
                 .equals(other._productPhotos, _productPhotos) &&
             const DeepCollectionEquality().equals(other.weight, weight) &&
@@ -383,7 +383,7 @@ class _$_AddedProductDto extends _AddedProductDto {
       const DeepCollectionEquality().hash(barcode),
       const DeepCollectionEquality().hash(productCategory),
       const DeepCollectionEquality().hash(productName),
-      const DeepCollectionEquality().hash(brandName),
+      const DeepCollectionEquality().hash(brand),
       const DeepCollectionEquality().hash(_productPhotos),
       const DeepCollectionEquality().hash(weight),
       const DeepCollectionEquality().hash(price),
@@ -410,7 +410,7 @@ abstract class _AddedProductDto extends AddedProductDto {
       required final String barcode,
       required final String productCategory,
       required final String productName,
-      required final String brandName,
+      required final String brand,
       required final List<String> productPhotos,
       required final WeightDto weight,
       required final PriceDto price,
@@ -433,7 +433,7 @@ abstract class _AddedProductDto extends AddedProductDto {
   @override
   String get productName => throw _privateConstructorUsedError;
   @override
-  String get brandName => throw _privateConstructorUsedError;
+  String get brand => throw _privateConstructorUsedError;
   @override
   List<String> get productPhotos => throw _privateConstructorUsedError;
   @override

@@ -12,7 +12,7 @@ _$_AddedProductDto _$$_AddedProductDtoFromJson(Map<String, dynamic> json) =>
       barcode: json['barcode'] as String,
       productCategory: json['productCategory'] as String,
       productName: json['productName'] as String,
-      brandName: json['brandName'] as String,
+      brand: json['brand'] as String,
       productPhotos: (json['productPhotos'] as List<dynamic>)
           .map((e) => e as String)
           .toList(),
@@ -31,7 +31,7 @@ Map<String, dynamic> _$$_AddedProductDtoToJson(_$_AddedProductDto instance) =>
       'barcode': instance.barcode,
       'productCategory': instance.productCategory,
       'productName': instance.productName,
-      'brandName': instance.brandName,
+      'brand': instance.brand,
       'productPhotos': instance.productPhotos,
       'weight': instance.weight.toJson(),
       'price': instance.price.toJson(),
