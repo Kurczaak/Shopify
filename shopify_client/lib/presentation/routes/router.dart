@@ -21,9 +21,6 @@ import 'package:shopify_client/presentation/splash/splash_page.dart';
         page: DebugPage,
       ),
       AutoRoute(
-        page: DebugShopPage,
-      ),
-      AutoRoute(
         page: SignInPage,
       ),
       AutoRoute(
@@ -32,6 +29,9 @@ import 'package:shopify_client/presentation/splash/splash_page.dart';
     ]),
     AutoRoute(
       page: SplashPage,
+    ),
+    AutoRoute(
+      page: DebugShopPage,
       initial: true,
     ),
   ],

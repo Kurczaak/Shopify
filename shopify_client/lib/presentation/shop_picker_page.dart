@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -12,8 +11,6 @@ import 'package:shopify_domain/core.dart';
 import 'package:shopify_domain/shop.dart';
 import 'package:shopify_client/injection.dart';
 import 'package:shopify_presentation/shopify_presentation.dart';
-
-import 'routes/router.gr.dart';
 
 class ShopPickerPage extends StatefulWidget {
   const ShopPickerPage({Key? key}) : super(key: key);
@@ -81,8 +78,8 @@ class _ShopPickerPageState extends State<ShopPickerPage> {
                           builder: (context) => ShopPreviewDialog(
                               shop: selectedShop!,
                               onConfirm: () {
-                                context.router
-                                    .push(DebugShopRoute(shop: selectedShop!));
+                                // context.router.popAndPush(
+                                //     DebugShopRoute(shop: selectedShop!));
                               }));
                     },
                   )
