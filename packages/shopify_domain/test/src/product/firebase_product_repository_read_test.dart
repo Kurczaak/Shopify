@@ -81,7 +81,7 @@ void main() async {
       barcode: tProduct.barcode.getOrCrash(),
       productCategory: tProduct.category.getOrCrash().name,
       productName: tProduct.name.getOrCrash(),
-      brandName: tProduct.brand.getOrCrash(),
+      brand: tProduct.brand.getOrCrash(),
       productPhotos: [
         'https://www.photo.com/1',
         'https://www.photo.com/2',
