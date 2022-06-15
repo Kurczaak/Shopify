@@ -43,8 +43,27 @@ class AlgoliaProductSearcher implements ShopifyProductSearcher {
     String term,
     Shop shop, {
     int page = 0,
-  }) {
-    // TODO: implement searchInShop
-    throw UnimplementedError();
+  }) async {
+    if (await networkInfo.isConnected) {
+      AlgoliaQuery algoliaQuery = algolia.instance
+          .index(algoliaPricedProductsIndex)
+          .query(term)
+          .filters('shopId:${shop.id.getOrCrash()}')
+          .setPage(page);
+      AlgoliaQuerySnapshot snapshot = await algoliaQuery.getObjects();
+      final List<PricedProduct> products = [];
+      final rawHits = snapshot.toMap()['hits'] as List;
+      for (final hit in rawHits) {
+        final product = PricedProductDto.fromJson(hit).toDomain();
+        products.add(product);
+      }
+      if (products.isNotEmpty) {
+        return right(KtList.from(products));
+      } else {
+        return left(const ProductFailure.noMoreProducts());
+      }
+    } else {
+      return left(const ProductFailure.noInternetConnection());
+    }
   }
 }
