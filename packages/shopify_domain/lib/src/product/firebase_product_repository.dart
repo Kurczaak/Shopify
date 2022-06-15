@@ -99,13 +99,33 @@ class FirebaseProductRepositoryImpl implements ShopifyProductRepository {
       Shop shop) async* {
     if (await networkInfo.isConnected) {
       final query = await firestore
-          .collection('addedProducts')
+          .collection('pricedProducts')
           .where('shopId', isEqualTo: shop.id.getOrCrash())
           .get();
 
       yield right(query.docs
           .map(
-            (snapshot) => AddedProductDto.fromFirestore(snapshot).toSnippet(),
+            (snapshot) => PricedProductDto.fromFirestore(snapshot).toSnippet(),
+          )
+          .toImmutableList());
+    } else {
+      yield left(const ProductFailure.noInternetConnection());
+    }
+  }
+
+  @override
+  Stream<Either<ProductFailure, KtList<ProductSnippet>>>
+      watchAllFromShopByCategory(Shop shop, Category category) async* {
+    if (await networkInfo.isConnected) {
+      final query = await firestore
+          .collection('pricedProducts')
+          .where('shopId', isEqualTo: shop.id.getOrCrash())
+          .where('category', isEqualTo: category.getOrCrash().stringify)
+          .get();
+
+      yield right(query.docs
+          .map(
+            (snapshot) => PricedProductDto.fromFirestore(snapshot).toSnippet(),
           )
           .toImmutableList());
     } else {
