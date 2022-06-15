@@ -14,328 +14,14 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-AlgoliaProductDto _$AlgoliaProductDtoFromJson(Map<String, dynamic> json) {
-  return _AlgoliaProductDto.fromJson(json);
-}
-
-/// @nodoc
-mixin _$AlgoliaProductDto {
-  String get productId => throw _privateConstructorUsedError;
-  String get barcode => throw _privateConstructorUsedError;
-  String get category => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
-  String get brand => throw _privateConstructorUsedError;
-  List<String> get photos => throw _privateConstructorUsedError;
-  WeightDto get weight => throw _privateConstructorUsedError;
-  PriceDto get price => throw _privateConstructorUsedError;
-
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $AlgoliaProductDtoCopyWith<AlgoliaProductDto> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $AlgoliaProductDtoCopyWith<$Res> {
-  factory $AlgoliaProductDtoCopyWith(
-          AlgoliaProductDto value, $Res Function(AlgoliaProductDto) then) =
-      _$AlgoliaProductDtoCopyWithImpl<$Res>;
-  $Res call(
-      {String productId,
-      String barcode,
-      String category,
-      String name,
-      String brand,
-      List<String> photos,
-      WeightDto weight,
-      PriceDto price});
-
-  $WeightDtoCopyWith<$Res> get weight;
-  $PriceDtoCopyWith<$Res> get price;
-}
-
-/// @nodoc
-class _$AlgoliaProductDtoCopyWithImpl<$Res>
-    implements $AlgoliaProductDtoCopyWith<$Res> {
-  _$AlgoliaProductDtoCopyWithImpl(this._value, this._then);
-
-  final AlgoliaProductDto _value;
-  // ignore: unused_field
-  final $Res Function(AlgoliaProductDto) _then;
-
-  @override
-  $Res call({
-    Object? productId = freezed,
-    Object? barcode = freezed,
-    Object? category = freezed,
-    Object? name = freezed,
-    Object? brand = freezed,
-    Object? photos = freezed,
-    Object? weight = freezed,
-    Object? price = freezed,
-  }) {
-    return _then(_value.copyWith(
-      productId: productId == freezed
-          ? _value.productId
-          : productId // ignore: cast_nullable_to_non_nullable
-              as String,
-      barcode: barcode == freezed
-          ? _value.barcode
-          : barcode // ignore: cast_nullable_to_non_nullable
-              as String,
-      category: category == freezed
-          ? _value.category
-          : category // ignore: cast_nullable_to_non_nullable
-              as String,
-      name: name == freezed
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      brand: brand == freezed
-          ? _value.brand
-          : brand // ignore: cast_nullable_to_non_nullable
-              as String,
-      photos: photos == freezed
-          ? _value.photos
-          : photos // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      weight: weight == freezed
-          ? _value.weight
-          : weight // ignore: cast_nullable_to_non_nullable
-              as WeightDto,
-      price: price == freezed
-          ? _value.price
-          : price // ignore: cast_nullable_to_non_nullable
-              as PriceDto,
-    ));
-  }
-
-  @override
-  $WeightDtoCopyWith<$Res> get weight {
-    return $WeightDtoCopyWith<$Res>(_value.weight, (value) {
-      return _then(_value.copyWith(weight: value));
-    });
-  }
-
-  @override
-  $PriceDtoCopyWith<$Res> get price {
-    return $PriceDtoCopyWith<$Res>(_value.price, (value) {
-      return _then(_value.copyWith(price: value));
-    });
-  }
-}
-
-/// @nodoc
-abstract class _$$_AlgoliaProductDtoCopyWith<$Res>
-    implements $AlgoliaProductDtoCopyWith<$Res> {
-  factory _$$_AlgoliaProductDtoCopyWith(_$_AlgoliaProductDto value,
-          $Res Function(_$_AlgoliaProductDto) then) =
-      __$$_AlgoliaProductDtoCopyWithImpl<$Res>;
-  @override
-  $Res call(
-      {String productId,
-      String barcode,
-      String category,
-      String name,
-      String brand,
-      List<String> photos,
-      WeightDto weight,
-      PriceDto price});
-
-  @override
-  $WeightDtoCopyWith<$Res> get weight;
-  @override
-  $PriceDtoCopyWith<$Res> get price;
-}
-
-/// @nodoc
-class __$$_AlgoliaProductDtoCopyWithImpl<$Res>
-    extends _$AlgoliaProductDtoCopyWithImpl<$Res>
-    implements _$$_AlgoliaProductDtoCopyWith<$Res> {
-  __$$_AlgoliaProductDtoCopyWithImpl(
-      _$_AlgoliaProductDto _value, $Res Function(_$_AlgoliaProductDto) _then)
-      : super(_value, (v) => _then(v as _$_AlgoliaProductDto));
-
-  @override
-  _$_AlgoliaProductDto get _value => super._value as _$_AlgoliaProductDto;
-
-  @override
-  $Res call({
-    Object? productId = freezed,
-    Object? barcode = freezed,
-    Object? category = freezed,
-    Object? name = freezed,
-    Object? brand = freezed,
-    Object? photos = freezed,
-    Object? weight = freezed,
-    Object? price = freezed,
-  }) {
-    return _then(_$_AlgoliaProductDto(
-      productId: productId == freezed
-          ? _value.productId
-          : productId // ignore: cast_nullable_to_non_nullable
-              as String,
-      barcode: barcode == freezed
-          ? _value.barcode
-          : barcode // ignore: cast_nullable_to_non_nullable
-              as String,
-      category: category == freezed
-          ? _value.category
-          : category // ignore: cast_nullable_to_non_nullable
-              as String,
-      name: name == freezed
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      brand: brand == freezed
-          ? _value.brand
-          : brand // ignore: cast_nullable_to_non_nullable
-              as String,
-      photos: photos == freezed
-          ? _value._photos
-          : photos // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      weight: weight == freezed
-          ? _value.weight
-          : weight // ignore: cast_nullable_to_non_nullable
-              as WeightDto,
-      price: price == freezed
-          ? _value.price
-          : price // ignore: cast_nullable_to_non_nullable
-              as PriceDto,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$_AlgoliaProductDto extends _AlgoliaProductDto {
-  const _$_AlgoliaProductDto(
-      {required this.productId,
-      required this.barcode,
-      required this.category,
-      required this.name,
-      required this.brand,
-      required final List<String> photos,
-      required this.weight,
-      required this.price})
-      : _photos = photos,
-        super._();
-
-  factory _$_AlgoliaProductDto.fromJson(Map<String, dynamic> json) =>
-      _$$_AlgoliaProductDtoFromJson(json);
-
-  @override
-  final String productId;
-  @override
-  final String barcode;
-  @override
-  final String category;
-  @override
-  final String name;
-  @override
-  final String brand;
-  final List<String> _photos;
-  @override
-  List<String> get photos {
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_photos);
-  }
-
-  @override
-  final WeightDto weight;
-  @override
-  final PriceDto price;
-
-  @override
-  String toString() {
-    return 'AlgoliaProductDto(productId: $productId, barcode: $barcode, category: $category, name: $name, brand: $brand, photos: $photos, weight: $weight, price: $price)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_AlgoliaProductDto &&
-            const DeepCollectionEquality().equals(other.productId, productId) &&
-            const DeepCollectionEquality().equals(other.barcode, barcode) &&
-            const DeepCollectionEquality().equals(other.category, category) &&
-            const DeepCollectionEquality().equals(other.name, name) &&
-            const DeepCollectionEquality().equals(other.brand, brand) &&
-            const DeepCollectionEquality().equals(other._photos, _photos) &&
-            const DeepCollectionEquality().equals(other.weight, weight) &&
-            const DeepCollectionEquality().equals(other.price, price));
-  }
-
-  @JsonKey(ignore: true)
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(productId),
-      const DeepCollectionEquality().hash(barcode),
-      const DeepCollectionEquality().hash(category),
-      const DeepCollectionEquality().hash(name),
-      const DeepCollectionEquality().hash(brand),
-      const DeepCollectionEquality().hash(_photos),
-      const DeepCollectionEquality().hash(weight),
-      const DeepCollectionEquality().hash(price));
-
-  @JsonKey(ignore: true)
-  @override
-  _$$_AlgoliaProductDtoCopyWith<_$_AlgoliaProductDto> get copyWith =>
-      __$$_AlgoliaProductDtoCopyWithImpl<_$_AlgoliaProductDto>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_AlgoliaProductDtoToJson(this);
-  }
-}
-
-abstract class _AlgoliaProductDto extends AlgoliaProductDto {
-  const factory _AlgoliaProductDto(
-      {required final String productId,
-      required final String barcode,
-      required final String category,
-      required final String name,
-      required final String brand,
-      required final List<String> photos,
-      required final WeightDto weight,
-      required final PriceDto price}) = _$_AlgoliaProductDto;
-  const _AlgoliaProductDto._() : super._();
-
-  factory _AlgoliaProductDto.fromJson(Map<String, dynamic> json) =
-      _$_AlgoliaProductDto.fromJson;
-
-  @override
-  String get productId => throw _privateConstructorUsedError;
-  @override
-  String get barcode => throw _privateConstructorUsedError;
-  @override
-  String get category => throw _privateConstructorUsedError;
-  @override
-  String get name => throw _privateConstructorUsedError;
-  @override
-  String get brand => throw _privateConstructorUsedError;
-  @override
-  List<String> get photos => throw _privateConstructorUsedError;
-  @override
-  WeightDto get weight => throw _privateConstructorUsedError;
-  @override
-  PriceDto get price => throw _privateConstructorUsedError;
-  @override
-  @JsonKey(ignore: true)
-  _$$_AlgoliaProductDtoCopyWith<_$_AlgoliaProductDto> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
 PricedProductDto _$PricedProductDtoFromJson(Map<String, dynamic> json) {
   return _PricedProductDto.fromJson(json);
 }
 
 /// @nodoc
 mixin _$PricedProductDto {
-  String get productId => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  String get id => throw _privateConstructorUsedError;
   String get barcode => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get brand => throw _privateConstructorUsedError;
@@ -357,7 +43,7 @@ abstract class $PricedProductDtoCopyWith<$Res> {
           PricedProductDto value, $Res Function(PricedProductDto) then) =
       _$PricedProductDtoCopyWithImpl<$Res>;
   $Res call(
-      {String productId,
+      {@JsonKey(ignore: true) String id,
       String barcode,
       String name,
       String brand,
@@ -382,7 +68,7 @@ class _$PricedProductDtoCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? productId = freezed,
+    Object? id = freezed,
     Object? barcode = freezed,
     Object? name = freezed,
     Object? brand = freezed,
@@ -393,9 +79,9 @@ class _$PricedProductDtoCopyWithImpl<$Res>
     Object? price = freezed,
   }) {
     return _then(_value.copyWith(
-      productId: productId == freezed
-          ? _value.productId
-          : productId // ignore: cast_nullable_to_non_nullable
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String,
       barcode: barcode == freezed
           ? _value.barcode
@@ -455,7 +141,7 @@ abstract class _$$_PricedProductDtoCopyWith<$Res>
       __$$_PricedProductDtoCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String productId,
+      {@JsonKey(ignore: true) String id,
       String barcode,
       String name,
       String brand,
@@ -484,7 +170,7 @@ class __$$_PricedProductDtoCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? productId = freezed,
+    Object? id = freezed,
     Object? barcode = freezed,
     Object? name = freezed,
     Object? brand = freezed,
@@ -495,9 +181,9 @@ class __$$_PricedProductDtoCopyWithImpl<$Res>
     Object? price = freezed,
   }) {
     return _then(_$_PricedProductDto(
-      productId: productId == freezed
-          ? _value.productId
-          : productId // ignore: cast_nullable_to_non_nullable
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String,
       barcode: barcode == freezed
           ? _value.barcode
@@ -539,7 +225,7 @@ class __$$_PricedProductDtoCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_PricedProductDto extends _PricedProductDto {
   const _$_PricedProductDto(
-      {required this.productId,
+      {@JsonKey(ignore: true) this.id = '',
       required this.barcode,
       required this.name,
       required this.brand,
@@ -554,7 +240,8 @@ class _$_PricedProductDto extends _PricedProductDto {
       _$$_PricedProductDtoFromJson(json);
 
   @override
-  final String productId;
+  @JsonKey(ignore: true)
+  final String id;
   @override
   final String barcode;
   @override
@@ -574,7 +261,7 @@ class _$_PricedProductDto extends _PricedProductDto {
 
   @override
   String toString() {
-    return 'PricedProductDto(productId: $productId, barcode: $barcode, name: $name, brand: $brand, photo: $photo, category: $category, shopId: $shopId, weight: $weight, price: $price)';
+    return 'PricedProductDto(id: $id, barcode: $barcode, name: $name, brand: $brand, photo: $photo, category: $category, shopId: $shopId, weight: $weight, price: $price)';
   }
 
   @override
@@ -582,7 +269,7 @@ class _$_PricedProductDto extends _PricedProductDto {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_PricedProductDto &&
-            const DeepCollectionEquality().equals(other.productId, productId) &&
+            const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.barcode, barcode) &&
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality().equals(other.brand, brand) &&
@@ -597,7 +284,7 @@ class _$_PricedProductDto extends _PricedProductDto {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(productId),
+      const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(barcode),
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(brand),
@@ -620,7 +307,7 @@ class _$_PricedProductDto extends _PricedProductDto {
 
 abstract class _PricedProductDto extends PricedProductDto {
   const factory _PricedProductDto(
-      {required final String productId,
+      {@JsonKey(ignore: true) final String id,
       required final String barcode,
       required final String name,
       required final String brand,
@@ -635,7 +322,8 @@ abstract class _PricedProductDto extends PricedProductDto {
       _$_PricedProductDto.fromJson;
 
   @override
-  String get productId => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  String get id => throw _privateConstructorUsedError;
   @override
   String get barcode => throw _privateConstructorUsedError;
   @override

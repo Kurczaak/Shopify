@@ -7,41 +7,41 @@ import 'package:shopify_domain/product.dart';
 part 'product_dtos.freezed.dart';
 part 'product_dtos.g.dart';
 
-@freezed
-class AlgoliaProductDto with _$AlgoliaProductDto {
-  const AlgoliaProductDto._();
-  const factory AlgoliaProductDto({
-    required String productId,
-    required String barcode,
-    required String category,
-    required String name,
-    required String brand,
-    required List<String> photos,
-    required WeightDto weight,
-    required PriceDto price,
-  }) = _AlgoliaProductDto;
+// @freezed
+// class AlgoliaProductDto with _$AlgoliaProductDto {
+//   const AlgoliaProductDto._();
+//   const factory AlgoliaProductDto({
+//     required String id,
+//     required String barcode,
+//     required String category,
+//     required String name,
+//     required String brand,
+//     required List<String> photos,
+//     required WeightDto weight,
+//     required PriceDto price,
+//   }) = _AlgoliaProductDto;
 
-  ProductSnippet toProductSnippet() => ProductSnippet(
-        id: UniqueId.fromUniqueString(productId),
-        photo: ShopifyUrl(photos.first),
-        barcode: Barcode(barcode),
-        brand: BrandName(brand),
-        category: Category.fromString(category),
-        name: ProductName(name),
-        weight: weight.toDomain(),
-        price: price.toDomain(),
-      );
+//   ProductSnippet toProductSnippet() => ProductSnippet(
+//         id: UniqueId.fromUniqueString(id),
+//         photo: ShopifyUrl(photos.first),
+//         barcode: Barcode(barcode),
+//         brand: BrandName(brand),
+//         category: Category.fromString(category),
+//         name: ProductName(name),
+//         weight: weight.toDomain(),
+//         price: price.toDomain(),
+//       );
 
-  factory AlgoliaProductDto.fromJson(Map<String, dynamic> json) =>
-      _$AlgoliaProductDtoFromJson(json);
-}
+//   factory AlgoliaProductDto.fromJson(Map<String, dynamic> json) =>
+//       _$AlgoliaProductDtoFromJson(json);
+// }
 
 @freezed
 class PricedProductDto with _$PricedProductDto {
   const PricedProductDto._();
 
   const factory PricedProductDto({
-    required String productId,
+    @Default('') @JsonKey(ignore: true) String id,
     required String barcode,
     required String name,
     required String brand,
@@ -53,7 +53,7 @@ class PricedProductDto with _$PricedProductDto {
   }) = _PricedProductDto;
 
   ProductSnippet toSnippet() => ProductSnippet(
-        id: UniqueId.fromUniqueString(productId),
+        id: UniqueId.fromUniqueString(id),
         photo: ShopifyUrl(photo),
         barcode: Barcode(barcode),
         brand: BrandName(brand),
@@ -64,7 +64,7 @@ class PricedProductDto with _$PricedProductDto {
       );
 
   PricedProduct toDomain() => PricedProduct(
-        id: UniqueId.fromUniqueString(productId),
+        id: UniqueId.fromUniqueString(id),
         barcode: Barcode(barcode),
         category: Category.fromString(category),
         name: ProductName(name),
