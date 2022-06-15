@@ -11,6 +11,7 @@ environment:
 dependencies:
   cached_network_image: ^3.2.1
   carousel_slider: ^4.1.1
+  expandable: ^5.0.1
   flutter:
     sdk: flutter
   flutter_bloc: ^8.0.1
@@ -20,13 +21,13 @@ dependencies:
   get_it: ^7.2.0
   kt_dart: ^0.10.0
   loading_overlay: ^0.3.0
+  material_floating_search_bar: ^0.3.7
   mobile_scanner: ^1.1.1
   mocktail: ^0.3.0
   path_provider: ^2.0.10
   progress_indicators: ^1.0.0
   responsive_framework: ^0.2.0
   scrollable_positioned_list: ^0.3.2
-  expandable: ^5.0.1
   shopify_domain:
     path: ../shopify_domain
 
@@ -36,8 +37,8 @@ dev_dependencies:
   flutter_lints: ^1.0.0
   flutter_test:
     sdk: flutter
-  sealed_annotations: ^1.13.0
   injectable_generator: ^1.5.3
+  sealed_annotations: ^1.13.0
 
 uses-material-design: true
 
