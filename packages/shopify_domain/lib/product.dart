@@ -15,3 +15,4 @@ export 'product/barcode_scanner/barcode_failure.dart';
 export 'product/barcode_scanner/barcode_scanner.dart';
 export 'product/open_food_facts/open_food_facts_repository.dart';
 export 'product/product_snippets.dart';
+export 'src/product/product_dtos.dart';
