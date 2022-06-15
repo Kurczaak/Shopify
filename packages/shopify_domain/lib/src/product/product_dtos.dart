@@ -105,7 +105,7 @@ class ProductDto with _$ProductDto {
     @Default('') @JsonKey(ignore: true) String id,
     required String barcode,
     required WeightDto weight,
-    required NutrientFactsDto nutrientFacts,
+    NutrientFactsDto? nutrientFacts,
     required String category,
     required String name,
     required String brand,
@@ -142,7 +142,9 @@ class ProductDto with _$ProductDto {
       photos: NonEmptyList5(KtList.from(
           photosUrls.map((stringUrl) => ShopifyUrl(stringUrl)).toList())),
       weight: weight.toDomain(),
-      nutrientFacts: nutrientFacts.toDomain(),
+      nutrientFacts: nutrientFacts == null
+          ? NutrientFacts.empty()
+          : nutrientFacts!.toDomain(),
     );
   }
 

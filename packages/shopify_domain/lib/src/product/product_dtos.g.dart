@@ -44,8 +44,10 @@ _$_ProductDto _$$_ProductDtoFromJson(Map<String, dynamic> json) =>
     _$_ProductDto(
       barcode: json['barcode'] as String,
       weight: WeightDto.fromJson(json['weight'] as Map<String, dynamic>),
-      nutrientFacts: NutrientFactsDto.fromJson(
-          json['nutrientFacts'] as Map<String, dynamic>),
+      nutrientFacts: json['nutrientFacts'] == null
+          ? null
+          : NutrientFactsDto.fromJson(
+              json['nutrientFacts'] as Map<String, dynamic>),
       category: json['category'] as String,
       name: json['name'] as String,
       brand: json['brand'] as String,
@@ -60,7 +62,7 @@ Map<String, dynamic> _$$_ProductDtoToJson(_$_ProductDto instance) =>
     <String, dynamic>{
       'barcode': instance.barcode,
       'weight': instance.weight.toJson(),
-      'nutrientFacts': instance.nutrientFacts.toJson(),
+      'nutrientFacts': instance.nutrientFacts?.toJson(),
       'category': instance.category,
       'name': instance.name,
       'brand': instance.brand,

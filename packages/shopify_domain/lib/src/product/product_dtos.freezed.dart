@@ -501,7 +501,7 @@ mixin _$ProductDto {
   String get id => throw _privateConstructorUsedError;
   String get barcode => throw _privateConstructorUsedError;
   WeightDto get weight => throw _privateConstructorUsedError;
-  NutrientFactsDto get nutrientFacts => throw _privateConstructorUsedError;
+  NutrientFactsDto? get nutrientFacts => throw _privateConstructorUsedError;
   String get category => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get brand => throw _privateConstructorUsedError;
@@ -524,7 +524,7 @@ abstract class $ProductDtoCopyWith<$Res> {
       {@JsonKey(ignore: true) String id,
       String barcode,
       WeightDto weight,
-      NutrientFactsDto nutrientFacts,
+      NutrientFactsDto? nutrientFacts,
       String category,
       String name,
       String brand,
@@ -533,7 +533,7 @@ abstract class $ProductDtoCopyWith<$Res> {
       List<String> photosUrls});
 
   $WeightDtoCopyWith<$Res> get weight;
-  $NutrientFactsDtoCopyWith<$Res> get nutrientFacts;
+  $NutrientFactsDtoCopyWith<$Res>? get nutrientFacts;
 }
 
 /// @nodoc
@@ -573,7 +573,7 @@ class _$ProductDtoCopyWithImpl<$Res> implements $ProductDtoCopyWith<$Res> {
       nutrientFacts: nutrientFacts == freezed
           ? _value.nutrientFacts
           : nutrientFacts // ignore: cast_nullable_to_non_nullable
-              as NutrientFactsDto,
+              as NutrientFactsDto?,
       category: category == freezed
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
@@ -609,8 +609,12 @@ class _$ProductDtoCopyWithImpl<$Res> implements $ProductDtoCopyWith<$Res> {
   }
 
   @override
-  $NutrientFactsDtoCopyWith<$Res> get nutrientFacts {
-    return $NutrientFactsDtoCopyWith<$Res>(_value.nutrientFacts, (value) {
+  $NutrientFactsDtoCopyWith<$Res>? get nutrientFacts {
+    if (_value.nutrientFacts == null) {
+      return null;
+    }
+
+    return $NutrientFactsDtoCopyWith<$Res>(_value.nutrientFacts!, (value) {
       return _then(_value.copyWith(nutrientFacts: value));
     });
   }
@@ -627,7 +631,7 @@ abstract class _$$_ProductDtoCopyWith<$Res>
       {@JsonKey(ignore: true) String id,
       String barcode,
       WeightDto weight,
-      NutrientFactsDto nutrientFacts,
+      NutrientFactsDto? nutrientFacts,
       String category,
       String name,
       String brand,
@@ -638,7 +642,7 @@ abstract class _$$_ProductDtoCopyWith<$Res>
   @override
   $WeightDtoCopyWith<$Res> get weight;
   @override
-  $NutrientFactsDtoCopyWith<$Res> get nutrientFacts;
+  $NutrientFactsDtoCopyWith<$Res>? get nutrientFacts;
 }
 
 /// @nodoc
@@ -680,7 +684,7 @@ class __$$_ProductDtoCopyWithImpl<$Res> extends _$ProductDtoCopyWithImpl<$Res>
       nutrientFacts: nutrientFacts == freezed
           ? _value.nutrientFacts
           : nutrientFacts // ignore: cast_nullable_to_non_nullable
-              as NutrientFactsDto,
+              as NutrientFactsDto?,
       category: category == freezed
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
@@ -716,7 +720,7 @@ class _$_ProductDto extends _ProductDto {
       {@JsonKey(ignore: true) this.id = '',
       required this.barcode,
       required this.weight,
-      required this.nutrientFacts,
+      this.nutrientFacts,
       required this.category,
       required this.name,
       required this.brand,
@@ -737,7 +741,7 @@ class _$_ProductDto extends _ProductDto {
   @override
   final WeightDto weight;
   @override
-  final NutrientFactsDto nutrientFacts;
+  final NutrientFactsDto? nutrientFacts;
   @override
   final String category;
   @override
@@ -812,7 +816,7 @@ abstract class _ProductDto extends ProductDto {
       {@JsonKey(ignore: true) final String id,
       required final String barcode,
       required final WeightDto weight,
-      required final NutrientFactsDto nutrientFacts,
+      final NutrientFactsDto? nutrientFacts,
       required final String category,
       required final String name,
       required final String brand,
@@ -832,7 +836,7 @@ abstract class _ProductDto extends ProductDto {
   @override
   WeightDto get weight => throw _privateConstructorUsedError;
   @override
-  NutrientFactsDto get nutrientFacts => throw _privateConstructorUsedError;
+  NutrientFactsDto? get nutrientFacts => throw _privateConstructorUsedError;
   @override
   String get category => throw _privateConstructorUsedError;
   @override
