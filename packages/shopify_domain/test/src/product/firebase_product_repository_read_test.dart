@@ -85,7 +85,7 @@ void main() async {
     shopId: tShop.id.getOrCrash(),
   );
 
-  final tPricedProduct = tAddedProductDto.toSnippet();
+  final tPricedProduct = tAddedProductDto.toDomain();
 
   final fakeFirestore = FakeFirebaseFirestore();
   await fakeFirestore

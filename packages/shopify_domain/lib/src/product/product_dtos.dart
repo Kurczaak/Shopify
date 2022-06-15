@@ -7,35 +7,6 @@ import 'package:shopify_domain/product.dart';
 part 'product_dtos.freezed.dart';
 part 'product_dtos.g.dart';
 
-// @freezed
-// class AlgoliaProductDto with _$AlgoliaProductDto {
-//   const AlgoliaProductDto._();
-//   const factory AlgoliaProductDto({
-//     required String id,
-//     required String barcode,
-//     required String category,
-//     required String name,
-//     required String brand,
-//     required List<String> photos,
-//     required WeightDto weight,
-//     required PriceDto price,
-//   }) = _AlgoliaProductDto;
-
-//   PricedProduct toPricedProduct() => PricedProduct(
-//         id: UniqueId.fromUniqueString(id),
-//         photo: ShopifyUrl(photos.first),
-//         barcode: Barcode(barcode),
-//         brand: BrandName(brand),
-//         category: Category.fromString(category),
-//         name: ProductName(name),
-//         weight: weight.toDomain(),
-//         price: price.toDomain(),
-//       );
-
-//   factory AlgoliaProductDto.fromJson(Map<String, dynamic> json) =>
-//       _$AlgoliaProductDtoFromJson(json);
-// }
-
 @freezed
 class PricedProductDto with _$PricedProductDto {
   const PricedProductDto._();
@@ -51,17 +22,6 @@ class PricedProductDto with _$PricedProductDto {
     required WeightDto weight,
     required PriceDto price,
   }) = _PricedProductDto;
-
-  PricedProduct toSnippet() => PricedProduct(
-        id: UniqueId.fromUniqueString(id),
-        photo: ShopifyUrl(photo),
-        barcode: Barcode(barcode),
-        brand: BrandName(brand),
-        category: Category.fromString(category),
-        name: ProductName(name),
-        weight: weight.toDomain(),
-        price: price.toDomain(),
-      );
 
   PricedProduct toDomain() => PricedProduct(
         id: UniqueId.fromUniqueString(id),

@@ -105,7 +105,7 @@ class FirebaseProductRepositoryImpl implements ShopifyProductRepository {
 
       yield right(query.docs
           .map(
-            (snapshot) => PricedProductDto.fromFirestore(snapshot).toSnippet(),
+            (snapshot) => PricedProductDto.fromFirestore(snapshot).toDomain(),
           )
           .toImmutableList());
     } else {
@@ -125,7 +125,7 @@ class FirebaseProductRepositoryImpl implements ShopifyProductRepository {
 
       yield right(query.docs
           .map(
-            (snapshot) => PricedProductDto.fromFirestore(snapshot).toSnippet(),
+            (snapshot) => PricedProductDto.fromFirestore(snapshot).toDomain(),
           )
           .toImmutableList());
     } else {
