@@ -75,7 +75,6 @@ void main() async {
   final tPrice = Price.fromPrimitives(12.99, 'zl');
 
   final tAddedProductDto = PricedProductDto(
-    productId: tProduct.id.getOrCrash(),
     barcode: tProduct.barcode.getOrCrash(),
     category: tProduct.category.getOrCrash().stringify,
     name: tProduct.name.getOrCrash(),
