@@ -5,19 +5,19 @@ import 'package:shopify_domain/product.dart';
 
 part 'product_snippets.freezed.dart';
 
-@freezed
-class ProductSnippet with _$ProductSnippet {
-  const factory ProductSnippet({
-    required UniqueId id,
-    required Barcode barcode,
-    required ProductName name,
-    required BrandName brand,
-    required ShopifyUrl photo,
-    required Category category,
-    required Weight weight,
-    required Price price,
-  }) = _ProductSnippet;
-}
+// @freezed
+// class PricedProduct with _$PricedProduct {
+//   const factory PricedProduct({
+//     required UniqueId id,
+//     required Barcode barcode,
+//     required ProductName name,
+//     required BrandName brand,
+//     required ShopifyUrl photo,
+//     required Category category,
+//     required Weight weight,
+//     required Price price,
+//   }) = _PricedProduct;
+// }
 
 @freezed
 class PricedProduct with _$PricedProduct {

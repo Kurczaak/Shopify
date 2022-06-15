@@ -85,7 +85,7 @@ void main() async {
     shopId: tShop.id.getOrCrash(),
   );
 
-  final tProductSnippet = tAddedProductDto.toSnippet();
+  final tPricedProduct = tAddedProductDto.toSnippet();
 
   final fakeFirestore = FakeFirebaseFirestore();
   await fakeFirestore
@@ -198,7 +198,7 @@ void main() async {
             tShop, tProduct.category);
         // assert
         expectLater(result.asBroadcastStream(),
-            emits(right(KtList.from([tProductSnippet]))));
+            emits(right(KtList.from([tPricedProduct]))));
       },
     );
   });
@@ -261,7 +261,7 @@ void main() async {
         final result = productRepository.watchAllFromShop(tShop);
         // assert
         expectLater(result.asBroadcastStream(),
-            emits(right(KtList.from([tProductSnippet]))));
+            emits(right(KtList.from([tPricedProduct]))));
       },
     );
   });

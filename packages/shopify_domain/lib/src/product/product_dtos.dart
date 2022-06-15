@@ -21,7 +21,7 @@ part 'product_dtos.g.dart';
 //     required PriceDto price,
 //   }) = _AlgoliaProductDto;
 
-//   ProductSnippet toProductSnippet() => ProductSnippet(
+//   PricedProduct toPricedProduct() => PricedProduct(
 //         id: UniqueId.fromUniqueString(id),
 //         photo: ShopifyUrl(photos.first),
 //         barcode: Barcode(barcode),
@@ -52,7 +52,7 @@ class PricedProductDto with _$PricedProductDto {
     required PriceDto price,
   }) = _PricedProductDto;
 
-  ProductSnippet toSnippet() => ProductSnippet(
+  PricedProduct toSnippet() => PricedProduct(
         id: UniqueId.fromUniqueString(id),
         photo: ShopifyUrl(photo),
         barcode: Barcode(barcode),

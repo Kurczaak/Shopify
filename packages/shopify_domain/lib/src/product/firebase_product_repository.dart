@@ -95,7 +95,7 @@ class FirebaseProductRepositoryImpl implements ShopifyProductRepository {
   }
 
   @override
-  Stream<Either<ProductFailure, KtList<ProductSnippet>>> watchAllFromShop(
+  Stream<Either<ProductFailure, KtList<PricedProduct>>> watchAllFromShop(
       Shop shop) async* {
     if (await networkInfo.isConnected) {
       final query = await firestore
@@ -114,7 +114,7 @@ class FirebaseProductRepositoryImpl implements ShopifyProductRepository {
   }
 
   @override
-  Stream<Either<ProductFailure, KtList<ProductSnippet>>>
+  Stream<Either<ProductFailure, KtList<PricedProduct>>>
       watchAllFromShopByCategory(Shop shop, Category category) async* {
     if (await networkInfo.isConnected) {
       final query = await firestore

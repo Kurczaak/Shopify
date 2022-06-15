@@ -12,9 +12,9 @@ abstract class ShopifyProductRepository {
   Future<Either<ProductFailure, Unit>> addPhotosAndCreate(
       Product product, NonEmptyList5<ProductPhoto> photos);
   // Read
-  Stream<Either<ProductFailure, KtList<ProductSnippet>>> watchAllFromShop(
+  Stream<Either<ProductFailure, KtList<PricedProduct>>> watchAllFromShop(
       Shop shop);
-  Stream<Either<ProductFailure, KtList<ProductSnippet>>>
+  Stream<Either<ProductFailure, KtList<PricedProduct>>>
       watchAllFromShopByCategory(Shop shop, Category category);
   Future<Either<ProductFailure, Product>> getByBarcode(Barcode barcode);
   Future<Either<ProductFailure, PricedProduct>> getFromShopByBarcode(
