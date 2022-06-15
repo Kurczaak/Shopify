@@ -255,4 +255,24 @@ class FirebaseProductRepositoryImpl implements ShopifyProductRepository {
   Future<Either<ProductFailure, Unit>> create(Product product) async {
     return await _uploadProductToFirestore(product);
   }
+
+  @override
+  Future<Either<ProductFailure, PricedProduct>> getFromShopByBarcode(
+      Barcode barcode, Shop shop) async {
+    if (await networkInfo.isConnected) {
+      final query = firestore.pricedProductsCollection
+          .where('barcode', isEqualTo: barcode.getOrCrash())
+          .where('shopId', isEqualTo: shop.id.getOrCrash());
+      final querySnapshot = await query.get();
+
+      if (querySnapshot.size < 1) {
+        return left(const ProductFailure.productNotFound());
+      } else {
+        return right(PricedProductDto.fromFirestore(querySnapshot.docs.first)
+            .toDomain());
+      }
+    } else {
+      return left(const ProductFailure.noInternetConnection());
+    }
+  }
 }
