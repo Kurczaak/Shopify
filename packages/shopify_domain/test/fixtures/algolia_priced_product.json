@@ -7,6 +7,7 @@
       "brand": "test_brand",
       "category": "diary",
       "name": "prduct_name",
+      "shopId": "shop-id-123",
       "weight": {
         "weight": 15.00,
         "weightUnit": "gram"
