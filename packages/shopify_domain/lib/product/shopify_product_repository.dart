@@ -14,6 +14,8 @@ abstract class ShopifyProductRepository {
   // Read
   Stream<Either<ProductFailure, KtList<ProductSnippet>>> watchAllFromShop(
       Shop shop);
+  Stream<Either<ProductFailure, KtList<ProductSnippet>>>
+      watchAllFromShopByCategory(Shop shop, Category category);
   Future<Either<ProductFailure, Product>> getByBarcode(Barcode barcode);
   // Update
   Future<Either<ProductFailure, Unit>> update(Product product);

@@ -644,3 +644,125 @@ class MockFirebaseStorage extends _i1.Mock implements _i8.FirebaseStorage {
               returnValueForMissingStub: Future<void>.value())
           as _i10.Future<void>);
 }
+
+/// A class which mocks [Query].
+///
+/// See the documentation for Mockito's code generation for more information.
+// ignore: must_be_immutable
+class MockQuery<T extends Object?> extends _i1.Mock implements _i4.Query<T> {
+  MockQuery() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i4.FirebaseFirestore get firestore =>
+      (super.noSuchMethod(Invocation.getter(#firestore),
+          returnValue: _FakeFirebaseFirestore_11()) as _i4.FirebaseFirestore);
+  @override
+  Map<String, dynamic> get parameters =>
+      (super.noSuchMethod(Invocation.getter(#parameters),
+          returnValue: <String, dynamic>{}) as Map<String, dynamic>);
+  @override
+  _i4.Query<T> endAtDocument(_i4.DocumentSnapshot<Object?>? documentSnapshot) =>
+      (super.noSuchMethod(Invocation.method(#endAtDocument, [documentSnapshot]),
+          returnValue: _FakeQuery_6<T>()) as _i4.Query<T>);
+  @override
+  _i4.Query<T> endAt(List<Object?>? values) =>
+      (super.noSuchMethod(Invocation.method(#endAt, [values]),
+          returnValue: _FakeQuery_6<T>()) as _i4.Query<T>);
+  @override
+  _i4.Query<T> endBeforeDocument(
+          _i4.DocumentSnapshot<Object?>? documentSnapshot) =>
+      (super.noSuchMethod(
+          Invocation.method(#endBeforeDocument, [documentSnapshot]),
+          returnValue: _FakeQuery_6<T>()) as _i4.Query<T>);
+  @override
+  _i4.Query<T> endBefore(List<Object?>? values) =>
+      (super.noSuchMethod(Invocation.method(#endBefore, [values]),
+          returnValue: _FakeQuery_6<T>()) as _i4.Query<T>);
+  @override
+  _i10.Future<_i4.QuerySnapshot<T>> get([_i3.GetOptions? options]) =>
+      (super.noSuchMethod(Invocation.method(#get, [options]),
+              returnValue:
+                  Future<_i4.QuerySnapshot<T>>.value(_FakeQuerySnapshot_5<T>()))
+          as _i10.Future<_i4.QuerySnapshot<T>>);
+  @override
+  _i4.Query<T> limit(int? limit) =>
+      (super.noSuchMethod(Invocation.method(#limit, [limit]),
+          returnValue: _FakeQuery_6<T>()) as _i4.Query<T>);
+  @override
+  _i4.Query<T> limitToLast(int? limit) =>
+      (super.noSuchMethod(Invocation.method(#limitToLast, [limit]),
+          returnValue: _FakeQuery_6<T>()) as _i4.Query<T>);
+  @override
+  _i10.Stream<_i4.QuerySnapshot<T>> snapshots(
+          {bool? includeMetadataChanges = false}) =>
+      (super.noSuchMethod(
+              Invocation.method(#snapshots, [],
+                  {#includeMetadataChanges: includeMetadataChanges}),
+              returnValue: Stream<_i4.QuerySnapshot<T>>.empty())
+          as _i10.Stream<_i4.QuerySnapshot<T>>);
+  @override
+  _i4.Query<T> orderBy(Object? field, {bool? descending = false}) =>
+      (super.noSuchMethod(
+          Invocation.method(#orderBy, [field], {#descending: descending}),
+          returnValue: _FakeQuery_6<T>()) as _i4.Query<T>);
+  @override
+  _i4.Query<T> startAfterDocument(
+          _i4.DocumentSnapshot<Object?>? documentSnapshot) =>
+      (super.noSuchMethod(
+          Invocation.method(#startAfterDocument, [documentSnapshot]),
+          returnValue: _FakeQuery_6<T>()) as _i4.Query<T>);
+  @override
+  _i4.Query<T> startAfter(List<Object?>? values) =>
+      (super.noSuchMethod(Invocation.method(#startAfter, [values]),
+          returnValue: _FakeQuery_6<T>()) as _i4.Query<T>);
+  @override
+  _i4.Query<T> startAtDocument(
+          _i4.DocumentSnapshot<Object?>? documentSnapshot) =>
+      (super.noSuchMethod(
+          Invocation.method(#startAtDocument, [documentSnapshot]),
+          returnValue: _FakeQuery_6<T>()) as _i4.Query<T>);
+  @override
+  _i4.Query<T> startAt(List<Object?>? values) =>
+      (super.noSuchMethod(Invocation.method(#startAt, [values]),
+          returnValue: _FakeQuery_6<T>()) as _i4.Query<T>);
+  @override
+  _i4.Query<T> where(Object? field,
+          {Object? isEqualTo,
+          Object? isNotEqualTo,
+          Object? isLessThan,
+          Object? isLessThanOrEqualTo,
+          Object? isGreaterThan,
+          Object? isGreaterThanOrEqualTo,
+          Object? arrayContains,
+          List<Object?>? arrayContainsAny,
+          List<Object?>? whereIn,
+          List<Object?>? whereNotIn,
+          bool? isNull}) =>
+      (super.noSuchMethod(
+          Invocation.method(#where, [
+            field
+          ], {
+            #isEqualTo: isEqualTo,
+            #isNotEqualTo: isNotEqualTo,
+            #isLessThan: isLessThan,
+            #isLessThanOrEqualTo: isLessThanOrEqualTo,
+            #isGreaterThan: isGreaterThan,
+            #isGreaterThanOrEqualTo: isGreaterThanOrEqualTo,
+            #arrayContains: arrayContains,
+            #arrayContainsAny: arrayContainsAny,
+            #whereIn: whereIn,
+            #whereNotIn: whereNotIn,
+            #isNull: isNull
+          }),
+          returnValue: _FakeQuery_6<T>()) as _i4.Query<T>);
+  @override
+  _i4.Query<R> withConverter<R>(
+          {_i4.FromFirestore<R>? fromFirestore,
+          _i4.ToFirestore<R>? toFirestore}) =>
+      (super.noSuchMethod(
+          Invocation.method(#withConverter, [],
+              {#fromFirestore: fromFirestore, #toFirestore: toFirestore}),
+          returnValue: _FakeQuery_6<R>()) as _i4.Query<R>);
+}
