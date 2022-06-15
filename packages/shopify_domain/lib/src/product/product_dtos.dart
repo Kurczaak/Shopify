@@ -11,6 +11,35 @@ part 'product_dtos.freezed.dart';
 part 'product_dtos.g.dart';
 
 @freezed
+class AlgoliaProductDto with _$AlgoliaProductDto {
+  const AlgoliaProductDto._();
+  const factory AlgoliaProductDto({
+    required String productId,
+    required String barcode,
+    required String productCategory,
+    required String productName,
+    required String brand,
+    required List<String> productPhotos,
+    required WeightDto weight,
+    required PriceDto price,
+  }) = _AlgoliaProductDto;
+
+  ProductSnippet toSnippet() => ProductSnippet(
+        photoUrl: ShopifyUrl(productPhotos.first),
+        productId: UniqueId.fromUniqueString(productId),
+        barcode: Barcode(barcode),
+        brand: BrandName(brand),
+        category: Category.fromString(productCategory),
+        name: ProductName(productName),
+        weight: weight.toDomain(),
+        price: price.toDomain(),
+      );
+
+  factory AlgoliaProductDto.fromJson(Map<String, dynamic> json) =>
+      _$AlgoliaProductDtoFromJson(json);
+}
+
+@freezed
 class AddedProductDto with _$AddedProductDto {
   const AddedProductDto._();
 
@@ -67,16 +96,13 @@ class AddedProductDto with _$AddedProductDto {
 
 @freezed
 class ShopProductDto with _$ShopProductDto {
-  const factory ShopProductDto(
-      {required String productId, required PriceDto price}) = _ShopProductDto;
+  const factory ShopProductDto({required PriceDto price}) = _ShopProductDto;
 
   factory ShopProductDto.fromDomain({
     required Product product,
     required Price price,
   }) =>
-      ShopProductDto(
-          productId: product.id.getOrCrash(),
-          price: PriceDto.fromDomain(price));
+      ShopProductDto(price: PriceDto.fromDomain(price));
 
   factory ShopProductDto.fromJson(Map<String, dynamic> json) =>
       _$ShopProductDtoFromJson(json);
