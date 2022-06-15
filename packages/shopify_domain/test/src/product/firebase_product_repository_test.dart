@@ -15,7 +15,6 @@ import 'package:shopify_domain/src/core/firestore_helpers.dart';
 import 'package:shopify_domain/src/product/firebase_product_repository.dart';
 import 'package:firebase_storage_mocks/firebase_storage_mocks.dart' as fake;
 import 'package:fake_cloud_firestore/fake_cloud_firestore.dart';
-import 'package:shopify_domain/src/product/product_dtos.dart';
 import 'package:shopify_domain/src/shop/shop_dtos.dart';
 import '../../fixtures/test_product.dart';
 import '../../utils/image_reader.dart';
@@ -53,6 +52,7 @@ Future<void> main() async {
   late MockCollectionReference<Map<String, dynamic>> mockShopsCollection;
   late MockDocumentReference<Map<String, dynamic>> mockShopDocument;
   late MockCollectionReference<Map<String, dynamic>> mockShopProductsCollection;
+  late MockDocumentReference<Map<String, dynamic>> mockShopProductDocument;
 
   // Products
   late MockCollectionReference<Map<String, dynamic>> mockProductsCollection;
@@ -140,10 +140,9 @@ Future<void> main() async {
     // the shop's products collection
     when(mockShopDocument.collection('products'))
         .thenReturn(mockShopProductsCollection);
-    when(mockShopProductsCollection.add(shopProductDto.toJson()))
-        .thenAnswer((_) async {
-      return mockProductDocument;
-    });
+    when(mockShopProductsCollection.doc(tProduct.id.getOrCrash()))
+        .thenReturn(mockShopProductDocument);
+    when(mockShopProductDocument.set(any)).thenAnswer((_) async {});
     // Getting by barcode
     when(mockProductsCollection.where('barcode',
             isEqualTo: tProduct.barcode.getOrCrash()))
@@ -184,6 +183,7 @@ Future<void> main() async {
     // Product
     mockProductsCollection = MockCollectionReference<Map<String, dynamic>>();
     mockProductDocument = MockDocumentReference<Map<String, dynamic>>();
+    mockShopProductDocument = MockDocumentReference<Map<String, dynamic>>();
 
     // Storage SetUp
     mockAllproductsPhotosReference = MockReference();
@@ -341,22 +341,20 @@ Future<void> main() async {
         // act
         await repository.addToShop(tProduct, tPrice, tShop);
         // assert
-        verify(mockShopProductsCollection.add(shopProductDto.toJson()))
-            .called(1);
+        verify(mockShopProductDocument.set(shopProductDto.toJson())).called(1);
       },
     );
     test('should return a failure if connection timed out', () async {
       // arrange
-      when(mockShopProductsCollection.add(shopProductDto.toJson()))
+      when(mockShopProductDocument.set(shopProductDto.toJson()))
           .thenAnswer((_) async {
         await Future.delayed(timeoutDuration);
         await Future.delayed(const Duration(seconds: 1));
-        return mockProductDocument;
       });
       // assert later
       expectLater(
-          mockShopProductsCollection
-              .add(shopProductDto.toJson())
+          mockShopProductDocument
+              .set(shopProductDto.toJson())
               .timeout(timeoutDuration),
           throwsA(isA<TimeoutException>()));
       // act
@@ -367,7 +365,7 @@ Future<void> main() async {
 
     test('should return a failure if firebase throws an exception', () async {
       // arrange
-      when(mockShopProductsCollection.add(shopProductDto.toJson())).thenThrow(
+      when(mockShopProductDocument.set(shopProductDto.toJson())).thenThrow(
           FirebaseException(plugin: 'plugin', code: 'permission-denied'));
       // act
       final result = await repository.addToShop(tProduct, tPrice, tShop);

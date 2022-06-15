@@ -11,7 +11,6 @@ import 'package:shopify_domain/core/network/network_info.dart';
 import 'package:shopify_domain/product.dart';
 import 'package:shopify_domain/shop.dart';
 import 'package:shopify_domain/src/core/firestore_helpers.dart';
-import 'package:shopify_domain/src/product/product_dtos.dart';
 
 @LazySingleton(as: ShopifyProductRepository)
 class FirebaseProductRepositoryImpl implements ShopifyProductRepository {
@@ -176,12 +175,12 @@ class FirebaseProductRepositoryImpl implements ShopifyProductRepository {
         final shopProductsCollection = firestore.shopsCollection
             .doc(shop.id.getOrCrash())
             .collection('products');
-        final shopProductDto = ShopProductDto(
-            productId: product.id.getOrCrash(),
-            price: PriceDto.fromDomain(price));
+        final shopProductDto =
+            ShopProductDto(price: PriceDto.fromDomain(price));
 
         await shopProductsCollection
-            .add(shopProductDto.toJson())
+            .doc(product.id.getOrCrash())
+            .set(shopProductDto.toJson())
             .timeout(timeoutDuration, onTimeout: () {
           throw TimeoutException('Connection timeout ', timeoutDuration);
         });
