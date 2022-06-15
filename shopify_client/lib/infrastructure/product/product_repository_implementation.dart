@@ -18,22 +18,22 @@ class ProductRepositoryImpl implements IProductRepository {
   }
 
   @override
-  Stream<Either<ProductFailure, KtList<AddedProduct>>>
+  Stream<Either<ProductFailure, KtList<PricedProduct>>>
       watchAllFromShopByCategory(Shop shop, Category category) {
     // TODO: implement watchAllFromShopByCategory
     throw UnimplementedError();
   }
 
   @override
-  Stream<Either<ProductFailure, KtList<AddedProduct>>> watchAllNearby(
+  Stream<Either<ProductFailure, KtList<PricedProduct>>> watchAllNearby(
       Location location, double radius) {
     // TODO: implement watchAllNearby
     throw UnimplementedError();
   }
 
   @override
-  Stream<Either<ProductFailure, KtList<AddedProduct>>> watchAllNearbyByCategory(
-      double radius, Category category) {
+  Stream<Either<ProductFailure, KtList<PricedProduct>>>
+      watchAllNearbyByCategory(double radius, Category category) {
     // TODO: implement watchAllNearbyByCategory
     throw UnimplementedError();
   }

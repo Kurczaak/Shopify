@@ -5,12 +5,12 @@ import 'package:shopify_domain/product.dart';
 import 'package:shopify_domain/shop/shop.dart';
 
 abstract class IProductRepository {
-  Stream<Either<ProductFailure, KtList<AddedProduct>>> watchAllNearby(
+  Stream<Either<ProductFailure, KtList<PricedProduct>>> watchAllNearby(
       Location location, double radius);
-  Stream<Either<ProductFailure, KtList<AddedProduct>>> watchAllNearbyByCategory(
-      double radius, Category category);
+  Stream<Either<ProductFailure, KtList<PricedProduct>>>
+      watchAllNearbyByCategory(double radius, Category category);
   Stream<Either<ProductFailure, KtList<ProductSnippet>>> watchAllFromShop(
       Shop shop);
-  Stream<Either<ProductFailure, KtList<AddedProduct>>>
+  Stream<Either<ProductFailure, KtList<PricedProduct>>>
       watchAllFromShopByCategory(Shop shop, Category category);
 }
