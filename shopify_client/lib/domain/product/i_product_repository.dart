@@ -9,8 +9,14 @@ abstract class IProductRepository {
       Location location, double radius);
   Stream<Either<ProductFailure, KtList<PricedProduct>>>
       watchAllNearbyByCategory(double radius, Category category);
-  Stream<Either<ProductFailure, KtList<ProductSnippet>>> watchAllFromShop(
+  Future<Either<ProductFailure, KtList<Product>>> searchForProducts(String term,
+      {int page = 0});
+
+  Stream<Either<ProductFailure, KtList<PricedProduct>>> watchAllFromShop(
       Shop shop);
   Stream<Either<ProductFailure, KtList<PricedProduct>>>
       watchAllFromShopByCategory(Shop shop, Category category);
+  Future<Either<ProductFailure, KtList<PricedProduct>>> searchInShop(
+      Shop shop, String term,
+      {int page = 0});
 }
