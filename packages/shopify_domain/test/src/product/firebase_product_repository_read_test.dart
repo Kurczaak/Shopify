@@ -11,10 +11,7 @@ import 'package:shopify_domain/core.dart';
 import 'package:shopify_domain/core/network/network_info.dart';
 import 'package:shopify_domain/product.dart';
 import 'package:shopify_domain/shop.dart';
-import 'package:shopify_domain/src/core/address_dto.dart';
-import 'package:shopify_domain/src/core/location/location_dtos.dart';
 import 'package:shopify_domain/src/product/firebase_product_repository.dart';
-import 'package:shopify_domain/src/product/product_dtos.dart';
 import 'firebase_product_repository_read_test.mocks.dart';
 
 @GenerateMocks([
@@ -25,6 +22,7 @@ import 'firebase_product_repository_read_test.mocks.dart';
   DocumentReference,
   GeoFireCollectionRef,
   FirebaseStorage,
+  Query
 ])
 void main() async {
   // Mocks
@@ -35,7 +33,7 @@ void main() async {
   late FirebaseProductRepositoryImpl productRepository;
   late MockCollectionReference<Map<String, dynamic>>
       mockAddedProductsCollection;
-  late MockDocumentReference<Map<String, dynamic>> mockAddedProductDocument;
+  late MockDocumentReference<Map<String, dynamic>> mockPricedProductDocument;
 
   // Real data
   final tLocation = Location.empty();
@@ -76,46 +74,25 @@ void main() async {
   );
   final tPrice = Price.fromPrimitives(12.99, 'zl');
 
-  final tAddedProductDto = AddedProductDto(
-      productId: tProduct.id.getOrCrash(),
-      barcode: tProduct.barcode.getOrCrash(),
-      productCategory: tProduct.category.getOrCrash().name,
-      productName: tProduct.name.getOrCrash(),
-      brand: tProduct.brand.getOrCrash(),
-      productPhotos: [
-        'https://www.photo.com/1',
-        'https://www.photo.com/2',
-        'https://www.photo.com/3'
-      ],
-      weight: WeightDto.fromDomain(tProduct.weight),
-      price: PriceDto.fromDomain(tPrice),
-      shopId: tShop.id.getOrCrash(),
-      position: LocationDto.fromDomain(tShop.location),
-      address: AddressDto.fromDomain(tShop.address),
-      shopLogo: tShop.logoUrl.getOrCrash(),
-      shopName: tShop.shopName.getOrCrash());
+  final tAddedProductDto = PricedProductDto(
+    productId: tProduct.id.getOrCrash(),
+    barcode: tProduct.barcode.getOrCrash(),
+    category: tProduct.category.getOrCrash().stringify,
+    name: tProduct.name.getOrCrash(),
+    brand: tProduct.brand.getOrCrash(),
+    photo: 'https://www.photo.com/1',
+    weight: WeightDto.fromDomain(tProduct.weight),
+    price: PriceDto.fromDomain(tPrice),
+    shopId: tShop.id.getOrCrash(),
+  );
 
   final tProductSnippet = tAddedProductDto.toSnippet();
 
-  const double radius = 5.0;
-
   final fakeFirestore = FakeFirebaseFirestore();
   await fakeFirestore
-      .collection('addedProducts')
+      .collection('pricedProducts')
       .doc(tProduct.id.getOrCrash())
       .set(tAddedProductDto.toJson());
-  final fakeDocumentSnapshot = await fakeFirestore
-      .collection('addedProducts')
-      .doc(tProduct.id.getOrCrash())
-      .get();
-  final center = Geoflutterfire()
-      .point(latitude: tLocation.latitude, longitude: tLocation.longitude);
-  final listOfProducts = [
-    fakeDocumentSnapshot,
-    fakeDocumentSnapshot,
-    fakeDocumentSnapshot
-  ];
-  const field = 'position';
 
   setUp(() {
     mockStorage = MockFirebaseStorage();
@@ -128,18 +105,103 @@ void main() async {
         storage: mockStorage);
     mockAddedProductsCollection =
         MockCollectionReference<Map<String, dynamic>>();
-    mockAddedProductDocument = MockDocumentReference<Map<String, dynamic>>();
+    mockPricedProductDocument = MockDocumentReference<Map<String, dynamic>>();
 
     // When
     when(mockNetworkInfo.isConnected).thenAnswer((_) async => true);
-    when(mockFirestore.collection('addedProducts'))
+    when(mockFirestore.collection('pricedProducts'))
         .thenReturn(mockAddedProductsCollection);
 
     when(mockAddedProductsCollection.where('shopId',
             isEqualTo: tShop.id.getOrCrash()))
         .thenAnswer((_) => fakeFirestore
-            .collection('addedProducts')
+            .collection('pricedProducts')
             .where('shopId', isEqualTo: tShop.id.getOrCrash()));
+  });
+
+  group('watchAllFromShopByCategory', () {
+    late MockQuery<Map<String, dynamic>> mockWhereSHopIdQUery;
+    setUp(() {
+      mockWhereSHopIdQUery = MockQuery<Map<String, dynamic>>();
+      when(mockAddedProductsCollection.where('shopId',
+              isEqualTo: tShop.id.getOrCrash()))
+          .thenReturn(mockWhereSHopIdQUery);
+      when(mockWhereSHopIdQUery.where('category',
+              isEqualTo: tProduct.category.getOrCrash().stringify))
+          .thenAnswer((_) => fakeFirestore
+              .collection('pricedProducts')
+              .where('shopId', isEqualTo: tShop.id.getOrCrash())
+              .where('category',
+                  isEqualTo: tProduct.category.getOrCrash().stringify));
+    });
+    test(
+      'should check the internet connection',
+      () async {
+        // act
+        productRepository
+            .watchAllFromShopByCategory(tShop, tProduct.category)
+            .listen((event) {});
+        // assert
+        await untilCalled(mockNetworkInfo.isConnected);
+        verify(mockNetworkInfo.isConnected);
+      },
+    );
+
+    test(
+      'should return a failure if no internet connection is available',
+      () async {
+        // arrange
+        when(mockNetworkInfo.isConnected).thenAnswer((_) async => false);
+        // act
+        final result = productRepository.watchAllFromShopByCategory(
+            tShop, tProduct.category);
+        // assert
+        expectLater(
+            result.asBroadcastStream(),
+            emits(
+              left(const ProductFailure.noInternetConnection()),
+            ));
+      },
+    );
+
+    test(
+      'should get priced products collection',
+      () async {
+        // act
+        productRepository
+            .watchAllFromShopByCategory(tShop, tProduct.category)
+            .listen((event) {});
+        // assert
+        await untilCalled(mockFirestore.collection('pricedProducts'));
+        verify(mockFirestore.collection('pricedProducts'));
+      },
+    );
+
+    test(
+      'should query products by shopId and category',
+      () async {
+        // act
+        productRepository
+            .watchAllFromShopByCategory(tShop, tProduct.category)
+            .listen((event) {});
+        // assert
+        await untilCalled(mockFirestore.collection('pricedProducts'));
+        verify(mockWhereSHopIdQUery.where('category',
+            isEqualTo: tProduct.category.getOrCrash().stringify));
+      },
+    );
+
+    test(
+      'should yield found products',
+      () async {
+        // act
+        final result = productRepository.watchAllFromShopByCategory(
+            tShop, tProduct.category);
+        // assert
+        expectLater(result.asBroadcastStream(),
+            emits(right(KtList.from([tProductSnippet]))));
+      },
+    );
   });
 
   group('watchAllFromShop', () {
@@ -171,13 +233,13 @@ void main() async {
     );
 
     test(
-      'should get added products collection',
+      'should get priced products collection',
       () async {
         // act
         productRepository.watchAllFromShop(tShop).listen((event) {});
         // assert
-        await untilCalled(mockFirestore.collection('addedProducts'));
-        verify(mockFirestore.collection('addedProducts'));
+        await untilCalled(mockFirestore.collection('pricedProducts'));
+        verify(mockFirestore.collection('pricedProducts'));
       },
     );
 
@@ -187,7 +249,7 @@ void main() async {
         // act
         productRepository.watchAllFromShop(tShop).listen((event) {});
         // assert
-        await untilCalled(mockFirestore.collection('addedProducts'));
+        await untilCalled(mockFirestore.collection('pricedProducts'));
         verify(mockAddedProductsCollection.where('shopId',
             isEqualTo: tShop.id.getOrCrash()));
       },

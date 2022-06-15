@@ -3,9 +3,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kt_dart/kt.dart';
 import 'package:shopify_domain/core.dart';
 import 'package:shopify_domain/product.dart';
-import 'package:shopify_domain/shop.dart';
-import 'package:shopify_domain/src/core/address_dto.dart';
-import 'package:shopify_domain/src/core/location/location_dtos.dart';
 
 part 'product_dtos.freezed.dart';
 part 'product_dtos.g.dart';
@@ -16,21 +13,21 @@ class AlgoliaProductDto with _$AlgoliaProductDto {
   const factory AlgoliaProductDto({
     required String productId,
     required String barcode,
-    required String productCategory,
-    required String productName,
+    required String category,
+    required String name,
     required String brand,
-    required List<String> productPhotos,
+    required List<String> photos,
     required WeightDto weight,
     required PriceDto price,
   }) = _AlgoliaProductDto;
 
-  ProductSnippet toSnippet() => ProductSnippet(
-        photoUrl: ShopifyUrl(productPhotos.first),
-        productId: UniqueId.fromUniqueString(productId),
+  ProductSnippet toProductSnippet() => ProductSnippet(
+        id: UniqueId.fromUniqueString(productId),
+        photo: ShopifyUrl(photos.first),
         barcode: Barcode(barcode),
         brand: BrandName(brand),
-        category: Category.fromString(productCategory),
-        name: ProductName(productName),
+        category: Category.fromString(category),
+        name: ProductName(name),
         weight: weight.toDomain(),
         price: price.toDomain(),
       );
@@ -40,57 +37,49 @@ class AlgoliaProductDto with _$AlgoliaProductDto {
 }
 
 @freezed
-class AddedProductDto with _$AddedProductDto {
-  const AddedProductDto._();
+class PricedProductDto with _$PricedProductDto {
+  const PricedProductDto._();
 
-  const factory AddedProductDto({
+  const factory PricedProductDto({
     required String productId,
     required String barcode,
-    required String productCategory,
-    required String productName,
+    required String name,
     required String brand,
-    required List<String> productPhotos,
+    required String photo,
+    required String category,
+    required String shopId,
     required WeightDto weight,
     required PriceDto price,
-    required String shopId,
-    required LocationDto position,
-    required AddressDto address,
-    required String shopLogo,
-    required String shopName,
-  }) = _AddedProductDto;
+  }) = _PricedProductDto;
 
   ProductSnippet toSnippet() => ProductSnippet(
-        photoUrl: ShopifyUrl(productPhotos.first),
-        productId: UniqueId.fromUniqueString(productId),
+        id: UniqueId.fromUniqueString(productId),
+        photo: ShopifyUrl(photo),
         barcode: Barcode(barcode),
         brand: BrandName(brand),
-        category: Category.fromString(productCategory),
-        name: ProductName(productName),
+        category: Category.fromString(category),
+        name: ProductName(name),
         weight: weight.toDomain(),
         price: price.toDomain(),
       );
 
-  AddedProduct toDomain() => AddedProduct(
-      productId: UniqueId.fromUniqueString(productId),
-      barcode: Barcode(barcode),
-      category: Category.fromString(productCategory),
-      name: ProductName(productName),
-      brandName: BrandName(brand),
-      productPhotos: NonEmptyList5(KtList.from(
-          productPhotos.map((stringUrl) => ShopifyUrl(stringUrl)).toList())),
-      weight: weight.toDomain(),
-      price: price.toDomain(),
-      shopId: UniqueId.fromUniqueString(shopId),
-      shopLocation: position.toDomain(),
-      shopAddress: address.toDomain(),
-      shopLogo: ShopifyUrl(shopLogo),
-      shopName: ShopName(shopName));
+  PricedProduct toDomain() => PricedProduct(
+        id: UniqueId.fromUniqueString(productId),
+        barcode: Barcode(barcode),
+        category: Category.fromString(category),
+        name: ProductName(name),
+        brand: BrandName(brand),
+        photo: ShopifyUrl(photo),
+        weight: weight.toDomain(),
+        price: price.toDomain(),
+        shopId: UniqueId.fromUniqueString(shopId),
+      );
 
-  factory AddedProductDto.fromJson(Map<String, dynamic> json) =>
-      _$AddedProductDtoFromJson(json);
+  factory PricedProductDto.fromJson(Map<String, dynamic> json) =>
+      _$PricedProductDtoFromJson(json);
 
-  factory AddedProductDto.fromFirestore(DocumentSnapshot doc) {
-    return AddedProductDto.fromJson(doc.data() as Map<String, dynamic>);
+  factory PricedProductDto.fromFirestore(DocumentSnapshot doc) {
+    return PricedProductDto.fromJson(doc.data() as Map<String, dynamic>);
   }
 }
 

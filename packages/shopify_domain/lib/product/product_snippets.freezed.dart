@@ -16,14 +16,14 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$ProductSnippet {
-  UniqueId get productId => throw _privateConstructorUsedError;
+  UniqueId get id => throw _privateConstructorUsedError;
   Barcode get barcode => throw _privateConstructorUsedError;
   ProductName get name => throw _privateConstructorUsedError;
   BrandName get brand => throw _privateConstructorUsedError;
-  Price get price => throw _privateConstructorUsedError;
+  ShopifyUrl get photo => throw _privateConstructorUsedError;
   Category get category => throw _privateConstructorUsedError;
   Weight get weight => throw _privateConstructorUsedError;
-  ShopifyUrl get photoUrl => throw _privateConstructorUsedError;
+  Price get price => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ProductSnippetCopyWith<ProductSnippet> get copyWith =>
@@ -36,17 +36,17 @@ abstract class $ProductSnippetCopyWith<$Res> {
           ProductSnippet value, $Res Function(ProductSnippet) then) =
       _$ProductSnippetCopyWithImpl<$Res>;
   $Res call(
-      {UniqueId productId,
+      {UniqueId id,
       Barcode barcode,
       ProductName name,
       BrandName brand,
-      Price price,
+      ShopifyUrl photo,
       Category category,
       Weight weight,
-      ShopifyUrl photoUrl});
+      Price price});
 
-  $PriceCopyWith<$Res> get price;
   $WeightCopyWith<$Res> get weight;
+  $PriceCopyWith<$Res> get price;
 }
 
 /// @nodoc
@@ -60,19 +60,19 @@ class _$ProductSnippetCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? productId = freezed,
+    Object? id = freezed,
     Object? barcode = freezed,
     Object? name = freezed,
     Object? brand = freezed,
-    Object? price = freezed,
+    Object? photo = freezed,
     Object? category = freezed,
     Object? weight = freezed,
-    Object? photoUrl = freezed,
+    Object? price = freezed,
   }) {
     return _then(_value.copyWith(
-      productId: productId == freezed
-          ? _value.productId
-          : productId // ignore: cast_nullable_to_non_nullable
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as UniqueId,
       barcode: barcode == freezed
           ? _value.barcode
@@ -86,10 +86,10 @@ class _$ProductSnippetCopyWithImpl<$Res>
           ? _value.brand
           : brand // ignore: cast_nullable_to_non_nullable
               as BrandName,
-      price: price == freezed
-          ? _value.price
-          : price // ignore: cast_nullable_to_non_nullable
-              as Price,
+      photo: photo == freezed
+          ? _value.photo
+          : photo // ignore: cast_nullable_to_non_nullable
+              as ShopifyUrl,
       category: category == freezed
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
@@ -98,24 +98,24 @@ class _$ProductSnippetCopyWithImpl<$Res>
           ? _value.weight
           : weight // ignore: cast_nullable_to_non_nullable
               as Weight,
-      photoUrl: photoUrl == freezed
-          ? _value.photoUrl
-          : photoUrl // ignore: cast_nullable_to_non_nullable
-              as ShopifyUrl,
+      price: price == freezed
+          ? _value.price
+          : price // ignore: cast_nullable_to_non_nullable
+              as Price,
     ));
-  }
-
-  @override
-  $PriceCopyWith<$Res> get price {
-    return $PriceCopyWith<$Res>(_value.price, (value) {
-      return _then(_value.copyWith(price: value));
-    });
   }
 
   @override
   $WeightCopyWith<$Res> get weight {
     return $WeightCopyWith<$Res>(_value.weight, (value) {
       return _then(_value.copyWith(weight: value));
+    });
+  }
+
+  @override
+  $PriceCopyWith<$Res> get price {
+    return $PriceCopyWith<$Res>(_value.price, (value) {
+      return _then(_value.copyWith(price: value));
     });
   }
 }
@@ -128,19 +128,19 @@ abstract class _$$_ProductSnippetCopyWith<$Res>
       __$$_ProductSnippetCopyWithImpl<$Res>;
   @override
   $Res call(
-      {UniqueId productId,
+      {UniqueId id,
       Barcode barcode,
       ProductName name,
       BrandName brand,
-      Price price,
+      ShopifyUrl photo,
       Category category,
       Weight weight,
-      ShopifyUrl photoUrl});
+      Price price});
 
   @override
-  $PriceCopyWith<$Res> get price;
-  @override
   $WeightCopyWith<$Res> get weight;
+  @override
+  $PriceCopyWith<$Res> get price;
 }
 
 /// @nodoc
@@ -156,19 +156,19 @@ class __$$_ProductSnippetCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? productId = freezed,
+    Object? id = freezed,
     Object? barcode = freezed,
     Object? name = freezed,
     Object? brand = freezed,
-    Object? price = freezed,
+    Object? photo = freezed,
     Object? category = freezed,
     Object? weight = freezed,
-    Object? photoUrl = freezed,
+    Object? price = freezed,
   }) {
     return _then(_$_ProductSnippet(
-      productId: productId == freezed
-          ? _value.productId
-          : productId // ignore: cast_nullable_to_non_nullable
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as UniqueId,
       barcode: barcode == freezed
           ? _value.barcode
@@ -182,10 +182,10 @@ class __$$_ProductSnippetCopyWithImpl<$Res>
           ? _value.brand
           : brand // ignore: cast_nullable_to_non_nullable
               as BrandName,
-      price: price == freezed
-          ? _value.price
-          : price // ignore: cast_nullable_to_non_nullable
-              as Price,
+      photo: photo == freezed
+          ? _value.photo
+          : photo // ignore: cast_nullable_to_non_nullable
+              as ShopifyUrl,
       category: category == freezed
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
@@ -194,10 +194,10 @@ class __$$_ProductSnippetCopyWithImpl<$Res>
           ? _value.weight
           : weight // ignore: cast_nullable_to_non_nullable
               as Weight,
-      photoUrl: photoUrl == freezed
-          ? _value.photoUrl
-          : photoUrl // ignore: cast_nullable_to_non_nullable
-              as ShopifyUrl,
+      price: price == freezed
+          ? _value.price
+          : price // ignore: cast_nullable_to_non_nullable
+              as Price,
     ));
   }
 }
@@ -206,17 +206,17 @@ class __$$_ProductSnippetCopyWithImpl<$Res>
 
 class _$_ProductSnippet implements _ProductSnippet {
   const _$_ProductSnippet(
-      {required this.productId,
+      {required this.id,
       required this.barcode,
       required this.name,
       required this.brand,
-      required this.price,
+      required this.photo,
       required this.category,
       required this.weight,
-      required this.photoUrl});
+      required this.price});
 
   @override
-  final UniqueId productId;
+  final UniqueId id;
   @override
   final Barcode barcode;
   @override
@@ -224,17 +224,17 @@ class _$_ProductSnippet implements _ProductSnippet {
   @override
   final BrandName brand;
   @override
-  final Price price;
+  final ShopifyUrl photo;
   @override
   final Category category;
   @override
   final Weight weight;
   @override
-  final ShopifyUrl photoUrl;
+  final Price price;
 
   @override
   String toString() {
-    return 'ProductSnippet(productId: $productId, barcode: $barcode, name: $name, brand: $brand, price: $price, category: $category, weight: $weight, photoUrl: $photoUrl)';
+    return 'ProductSnippet(id: $id, barcode: $barcode, name: $name, brand: $brand, photo: $photo, category: $category, weight: $weight, price: $price)';
   }
 
   @override
@@ -242,27 +242,27 @@ class _$_ProductSnippet implements _ProductSnippet {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ProductSnippet &&
-            const DeepCollectionEquality().equals(other.productId, productId) &&
+            const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.barcode, barcode) &&
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality().equals(other.brand, brand) &&
-            const DeepCollectionEquality().equals(other.price, price) &&
+            const DeepCollectionEquality().equals(other.photo, photo) &&
             const DeepCollectionEquality().equals(other.category, category) &&
             const DeepCollectionEquality().equals(other.weight, weight) &&
-            const DeepCollectionEquality().equals(other.photoUrl, photoUrl));
+            const DeepCollectionEquality().equals(other.price, price));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(productId),
+      const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(barcode),
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(brand),
-      const DeepCollectionEquality().hash(price),
+      const DeepCollectionEquality().hash(photo),
       const DeepCollectionEquality().hash(category),
       const DeepCollectionEquality().hash(weight),
-      const DeepCollectionEquality().hash(photoUrl));
+      const DeepCollectionEquality().hash(price));
 
   @JsonKey(ignore: true)
   @override
@@ -272,17 +272,17 @@ class _$_ProductSnippet implements _ProductSnippet {
 
 abstract class _ProductSnippet implements ProductSnippet {
   const factory _ProductSnippet(
-      {required final UniqueId productId,
+      {required final UniqueId id,
       required final Barcode barcode,
       required final ProductName name,
       required final BrandName brand,
-      required final Price price,
+      required final ShopifyUrl photo,
       required final Category category,
       required final Weight weight,
-      required final ShopifyUrl photoUrl}) = _$_ProductSnippet;
+      required final Price price}) = _$_ProductSnippet;
 
   @override
-  UniqueId get productId => throw _privateConstructorUsedError;
+  UniqueId get id => throw _privateConstructorUsedError;
   @override
   Barcode get barcode => throw _privateConstructorUsedError;
   @override
@@ -290,13 +290,13 @@ abstract class _ProductSnippet implements ProductSnippet {
   @override
   BrandName get brand => throw _privateConstructorUsedError;
   @override
-  Price get price => throw _privateConstructorUsedError;
+  ShopifyUrl get photo => throw _privateConstructorUsedError;
   @override
   Category get category => throw _privateConstructorUsedError;
   @override
   Weight get weight => throw _privateConstructorUsedError;
   @override
-  ShopifyUrl get photoUrl => throw _privateConstructorUsedError;
+  Price get price => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$$_ProductSnippetCopyWith<_$_ProductSnippet> get copyWith =>
@@ -304,102 +304,92 @@ abstract class _ProductSnippet implements ProductSnippet {
 }
 
 /// @nodoc
-mixin _$AddedProduct {
-  UniqueId get productId => throw _privateConstructorUsedError;
+mixin _$PricedProduct {
+  UniqueId get id => throw _privateConstructorUsedError;
   Barcode get barcode => throw _privateConstructorUsedError;
-  Category get category => throw _privateConstructorUsedError;
   ProductName get name => throw _privateConstructorUsedError;
-  BrandName get brandName => throw _privateConstructorUsedError;
-  NonEmptyList5<ShopifyUrl> get productPhotos =>
-      throw _privateConstructorUsedError;
+  BrandName get brand => throw _privateConstructorUsedError;
+  ShopifyUrl get photo => throw _privateConstructorUsedError;
+  Category get category => throw _privateConstructorUsedError;
+  UniqueId get shopId => throw _privateConstructorUsedError;
   Weight get weight => throw _privateConstructorUsedError;
   Price get price => throw _privateConstructorUsedError;
-  UniqueId get shopId => throw _privateConstructorUsedError;
-  Location get shopLocation => throw _privateConstructorUsedError;
-  Address get shopAddress => throw _privateConstructorUsedError;
-  ShopifyUrl get shopLogo => throw _privateConstructorUsedError;
-  ShopName get shopName => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $AddedProductCopyWith<AddedProduct> get copyWith =>
+  $PricedProductCopyWith<PricedProduct> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $AddedProductCopyWith<$Res> {
-  factory $AddedProductCopyWith(
-          AddedProduct value, $Res Function(AddedProduct) then) =
-      _$AddedProductCopyWithImpl<$Res>;
+abstract class $PricedProductCopyWith<$Res> {
+  factory $PricedProductCopyWith(
+          PricedProduct value, $Res Function(PricedProduct) then) =
+      _$PricedProductCopyWithImpl<$Res>;
   $Res call(
-      {UniqueId productId,
+      {UniqueId id,
       Barcode barcode,
-      Category category,
       ProductName name,
-      BrandName brandName,
-      NonEmptyList5<ShopifyUrl> productPhotos,
-      Weight weight,
-      Price price,
+      BrandName brand,
+      ShopifyUrl photo,
+      Category category,
       UniqueId shopId,
-      Location shopLocation,
-      Address shopAddress,
-      ShopifyUrl shopLogo,
-      ShopName shopName});
+      Weight weight,
+      Price price});
 
   $WeightCopyWith<$Res> get weight;
   $PriceCopyWith<$Res> get price;
-  $LocationCopyWith<$Res> get shopLocation;
-  $AddressCopyWith<$Res> get shopAddress;
 }
 
 /// @nodoc
-class _$AddedProductCopyWithImpl<$Res> implements $AddedProductCopyWith<$Res> {
-  _$AddedProductCopyWithImpl(this._value, this._then);
+class _$PricedProductCopyWithImpl<$Res>
+    implements $PricedProductCopyWith<$Res> {
+  _$PricedProductCopyWithImpl(this._value, this._then);
 
-  final AddedProduct _value;
+  final PricedProduct _value;
   // ignore: unused_field
-  final $Res Function(AddedProduct) _then;
+  final $Res Function(PricedProduct) _then;
 
   @override
   $Res call({
-    Object? productId = freezed,
+    Object? id = freezed,
     Object? barcode = freezed,
-    Object? category = freezed,
     Object? name = freezed,
-    Object? brandName = freezed,
-    Object? productPhotos = freezed,
+    Object? brand = freezed,
+    Object? photo = freezed,
+    Object? category = freezed,
+    Object? shopId = freezed,
     Object? weight = freezed,
     Object? price = freezed,
-    Object? shopId = freezed,
-    Object? shopLocation = freezed,
-    Object? shopAddress = freezed,
-    Object? shopLogo = freezed,
-    Object? shopName = freezed,
   }) {
     return _then(_value.copyWith(
-      productId: productId == freezed
-          ? _value.productId
-          : productId // ignore: cast_nullable_to_non_nullable
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as UniqueId,
       barcode: barcode == freezed
           ? _value.barcode
           : barcode // ignore: cast_nullable_to_non_nullable
               as Barcode,
-      category: category == freezed
-          ? _value.category
-          : category // ignore: cast_nullable_to_non_nullable
-              as Category,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as ProductName,
-      brandName: brandName == freezed
-          ? _value.brandName
-          : brandName // ignore: cast_nullable_to_non_nullable
+      brand: brand == freezed
+          ? _value.brand
+          : brand // ignore: cast_nullable_to_non_nullable
               as BrandName,
-      productPhotos: productPhotos == freezed
-          ? _value.productPhotos
-          : productPhotos // ignore: cast_nullable_to_non_nullable
-              as NonEmptyList5<ShopifyUrl>,
+      photo: photo == freezed
+          ? _value.photo
+          : photo // ignore: cast_nullable_to_non_nullable
+              as ShopifyUrl,
+      category: category == freezed
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as Category,
+      shopId: shopId == freezed
+          ? _value.shopId
+          : shopId // ignore: cast_nullable_to_non_nullable
+              as UniqueId,
       weight: weight == freezed
           ? _value.weight
           : weight // ignore: cast_nullable_to_non_nullable
@@ -408,26 +398,6 @@ class _$AddedProductCopyWithImpl<$Res> implements $AddedProductCopyWith<$Res> {
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
               as Price,
-      shopId: shopId == freezed
-          ? _value.shopId
-          : shopId // ignore: cast_nullable_to_non_nullable
-              as UniqueId,
-      shopLocation: shopLocation == freezed
-          ? _value.shopLocation
-          : shopLocation // ignore: cast_nullable_to_non_nullable
-              as Location,
-      shopAddress: shopAddress == freezed
-          ? _value.shopAddress
-          : shopAddress // ignore: cast_nullable_to_non_nullable
-              as Address,
-      shopLogo: shopLogo == freezed
-          ? _value.shopLogo
-          : shopLogo // ignore: cast_nullable_to_non_nullable
-              as ShopifyUrl,
-      shopName: shopName == freezed
-          ? _value.shopName
-          : shopName // ignore: cast_nullable_to_non_nullable
-              as ShopName,
     ));
   }
 
@@ -444,106 +414,84 @@ class _$AddedProductCopyWithImpl<$Res> implements $AddedProductCopyWith<$Res> {
       return _then(_value.copyWith(price: value));
     });
   }
-
-  @override
-  $LocationCopyWith<$Res> get shopLocation {
-    return $LocationCopyWith<$Res>(_value.shopLocation, (value) {
-      return _then(_value.copyWith(shopLocation: value));
-    });
-  }
-
-  @override
-  $AddressCopyWith<$Res> get shopAddress {
-    return $AddressCopyWith<$Res>(_value.shopAddress, (value) {
-      return _then(_value.copyWith(shopAddress: value));
-    });
-  }
 }
 
 /// @nodoc
-abstract class _$$_AddedProductCopyWith<$Res>
-    implements $AddedProductCopyWith<$Res> {
-  factory _$$_AddedProductCopyWith(
-          _$_AddedProduct value, $Res Function(_$_AddedProduct) then) =
-      __$$_AddedProductCopyWithImpl<$Res>;
+abstract class _$$_PricedProductCopyWith<$Res>
+    implements $PricedProductCopyWith<$Res> {
+  factory _$$_PricedProductCopyWith(
+          _$_PricedProduct value, $Res Function(_$_PricedProduct) then) =
+      __$$_PricedProductCopyWithImpl<$Res>;
   @override
   $Res call(
-      {UniqueId productId,
+      {UniqueId id,
       Barcode barcode,
-      Category category,
       ProductName name,
-      BrandName brandName,
-      NonEmptyList5<ShopifyUrl> productPhotos,
-      Weight weight,
-      Price price,
+      BrandName brand,
+      ShopifyUrl photo,
+      Category category,
       UniqueId shopId,
-      Location shopLocation,
-      Address shopAddress,
-      ShopifyUrl shopLogo,
-      ShopName shopName});
+      Weight weight,
+      Price price});
 
   @override
   $WeightCopyWith<$Res> get weight;
   @override
   $PriceCopyWith<$Res> get price;
-  @override
-  $LocationCopyWith<$Res> get shopLocation;
-  @override
-  $AddressCopyWith<$Res> get shopAddress;
 }
 
 /// @nodoc
-class __$$_AddedProductCopyWithImpl<$Res>
-    extends _$AddedProductCopyWithImpl<$Res>
-    implements _$$_AddedProductCopyWith<$Res> {
-  __$$_AddedProductCopyWithImpl(
-      _$_AddedProduct _value, $Res Function(_$_AddedProduct) _then)
-      : super(_value, (v) => _then(v as _$_AddedProduct));
+class __$$_PricedProductCopyWithImpl<$Res>
+    extends _$PricedProductCopyWithImpl<$Res>
+    implements _$$_PricedProductCopyWith<$Res> {
+  __$$_PricedProductCopyWithImpl(
+      _$_PricedProduct _value, $Res Function(_$_PricedProduct) _then)
+      : super(_value, (v) => _then(v as _$_PricedProduct));
 
   @override
-  _$_AddedProduct get _value => super._value as _$_AddedProduct;
+  _$_PricedProduct get _value => super._value as _$_PricedProduct;
 
   @override
   $Res call({
-    Object? productId = freezed,
+    Object? id = freezed,
     Object? barcode = freezed,
-    Object? category = freezed,
     Object? name = freezed,
-    Object? brandName = freezed,
-    Object? productPhotos = freezed,
+    Object? brand = freezed,
+    Object? photo = freezed,
+    Object? category = freezed,
+    Object? shopId = freezed,
     Object? weight = freezed,
     Object? price = freezed,
-    Object? shopId = freezed,
-    Object? shopLocation = freezed,
-    Object? shopAddress = freezed,
-    Object? shopLogo = freezed,
-    Object? shopName = freezed,
   }) {
-    return _then(_$_AddedProduct(
-      productId: productId == freezed
-          ? _value.productId
-          : productId // ignore: cast_nullable_to_non_nullable
+    return _then(_$_PricedProduct(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as UniqueId,
       barcode: barcode == freezed
           ? _value.barcode
           : barcode // ignore: cast_nullable_to_non_nullable
               as Barcode,
-      category: category == freezed
-          ? _value.category
-          : category // ignore: cast_nullable_to_non_nullable
-              as Category,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as ProductName,
-      brandName: brandName == freezed
-          ? _value.brandName
-          : brandName // ignore: cast_nullable_to_non_nullable
+      brand: brand == freezed
+          ? _value.brand
+          : brand // ignore: cast_nullable_to_non_nullable
               as BrandName,
-      productPhotos: productPhotos == freezed
-          ? _value.productPhotos
-          : productPhotos // ignore: cast_nullable_to_non_nullable
-              as NonEmptyList5<ShopifyUrl>,
+      photo: photo == freezed
+          ? _value.photo
+          : photo // ignore: cast_nullable_to_non_nullable
+              as ShopifyUrl,
+      category: category == freezed
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as Category,
+      shopId: shopId == freezed
+          ? _value.shopId
+          : shopId // ignore: cast_nullable_to_non_nullable
+              as UniqueId,
       weight: weight == freezed
           ? _value.weight
           : weight // ignore: cast_nullable_to_non_nullable
@@ -552,173 +500,117 @@ class __$$_AddedProductCopyWithImpl<$Res>
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
               as Price,
-      shopId: shopId == freezed
-          ? _value.shopId
-          : shopId // ignore: cast_nullable_to_non_nullable
-              as UniqueId,
-      shopLocation: shopLocation == freezed
-          ? _value.shopLocation
-          : shopLocation // ignore: cast_nullable_to_non_nullable
-              as Location,
-      shopAddress: shopAddress == freezed
-          ? _value.shopAddress
-          : shopAddress // ignore: cast_nullable_to_non_nullable
-              as Address,
-      shopLogo: shopLogo == freezed
-          ? _value.shopLogo
-          : shopLogo // ignore: cast_nullable_to_non_nullable
-              as ShopifyUrl,
-      shopName: shopName == freezed
-          ? _value.shopName
-          : shopName // ignore: cast_nullable_to_non_nullable
-              as ShopName,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_AddedProduct extends _AddedProduct {
-  const _$_AddedProduct(
-      {required this.productId,
+class _$_PricedProduct extends _PricedProduct {
+  const _$_PricedProduct(
+      {required this.id,
       required this.barcode,
-      required this.category,
       required this.name,
-      required this.brandName,
-      required this.productPhotos,
-      required this.weight,
-      required this.price,
+      required this.brand,
+      required this.photo,
+      required this.category,
       required this.shopId,
-      required this.shopLocation,
-      required this.shopAddress,
-      required this.shopLogo,
-      required this.shopName})
+      required this.weight,
+      required this.price})
       : super._();
 
   @override
-  final UniqueId productId;
+  final UniqueId id;
   @override
   final Barcode barcode;
   @override
-  final Category category;
-  @override
   final ProductName name;
   @override
-  final BrandName brandName;
+  final BrandName brand;
   @override
-  final NonEmptyList5<ShopifyUrl> productPhotos;
+  final ShopifyUrl photo;
+  @override
+  final Category category;
+  @override
+  final UniqueId shopId;
   @override
   final Weight weight;
   @override
   final Price price;
-  @override
-  final UniqueId shopId;
-  @override
-  final Location shopLocation;
-  @override
-  final Address shopAddress;
-  @override
-  final ShopifyUrl shopLogo;
-  @override
-  final ShopName shopName;
 
   @override
   String toString() {
-    return 'AddedProduct(productId: $productId, barcode: $barcode, category: $category, name: $name, brandName: $brandName, productPhotos: $productPhotos, weight: $weight, price: $price, shopId: $shopId, shopLocation: $shopLocation, shopAddress: $shopAddress, shopLogo: $shopLogo, shopName: $shopName)';
+    return 'PricedProduct(id: $id, barcode: $barcode, name: $name, brand: $brand, photo: $photo, category: $category, shopId: $shopId, weight: $weight, price: $price)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_AddedProduct &&
-            const DeepCollectionEquality().equals(other.productId, productId) &&
+            other is _$_PricedProduct &&
+            const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.barcode, barcode) &&
-            const DeepCollectionEquality().equals(other.category, category) &&
             const DeepCollectionEquality().equals(other.name, name) &&
-            const DeepCollectionEquality().equals(other.brandName, brandName) &&
-            const DeepCollectionEquality()
-                .equals(other.productPhotos, productPhotos) &&
-            const DeepCollectionEquality().equals(other.weight, weight) &&
-            const DeepCollectionEquality().equals(other.price, price) &&
+            const DeepCollectionEquality().equals(other.brand, brand) &&
+            const DeepCollectionEquality().equals(other.photo, photo) &&
+            const DeepCollectionEquality().equals(other.category, category) &&
             const DeepCollectionEquality().equals(other.shopId, shopId) &&
-            const DeepCollectionEquality()
-                .equals(other.shopLocation, shopLocation) &&
-            const DeepCollectionEquality()
-                .equals(other.shopAddress, shopAddress) &&
-            const DeepCollectionEquality().equals(other.shopLogo, shopLogo) &&
-            const DeepCollectionEquality().equals(other.shopName, shopName));
+            const DeepCollectionEquality().equals(other.weight, weight) &&
+            const DeepCollectionEquality().equals(other.price, price));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(productId),
+      const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(barcode),
-      const DeepCollectionEquality().hash(category),
       const DeepCollectionEquality().hash(name),
-      const DeepCollectionEquality().hash(brandName),
-      const DeepCollectionEquality().hash(productPhotos),
-      const DeepCollectionEquality().hash(weight),
-      const DeepCollectionEquality().hash(price),
+      const DeepCollectionEquality().hash(brand),
+      const DeepCollectionEquality().hash(photo),
+      const DeepCollectionEquality().hash(category),
       const DeepCollectionEquality().hash(shopId),
-      const DeepCollectionEquality().hash(shopLocation),
-      const DeepCollectionEquality().hash(shopAddress),
-      const DeepCollectionEquality().hash(shopLogo),
-      const DeepCollectionEquality().hash(shopName));
+      const DeepCollectionEquality().hash(weight),
+      const DeepCollectionEquality().hash(price));
 
   @JsonKey(ignore: true)
   @override
-  _$$_AddedProductCopyWith<_$_AddedProduct> get copyWith =>
-      __$$_AddedProductCopyWithImpl<_$_AddedProduct>(this, _$identity);
+  _$$_PricedProductCopyWith<_$_PricedProduct> get copyWith =>
+      __$$_PricedProductCopyWithImpl<_$_PricedProduct>(this, _$identity);
 }
 
-abstract class _AddedProduct extends AddedProduct {
-  const factory _AddedProduct(
-      {required final UniqueId productId,
+abstract class _PricedProduct extends PricedProduct {
+  const factory _PricedProduct(
+      {required final UniqueId id,
       required final Barcode barcode,
-      required final Category category,
       required final ProductName name,
-      required final BrandName brandName,
-      required final NonEmptyList5<ShopifyUrl> productPhotos,
-      required final Weight weight,
-      required final Price price,
+      required final BrandName brand,
+      required final ShopifyUrl photo,
+      required final Category category,
       required final UniqueId shopId,
-      required final Location shopLocation,
-      required final Address shopAddress,
-      required final ShopifyUrl shopLogo,
-      required final ShopName shopName}) = _$_AddedProduct;
-  const _AddedProduct._() : super._();
+      required final Weight weight,
+      required final Price price}) = _$_PricedProduct;
+  const _PricedProduct._() : super._();
 
   @override
-  UniqueId get productId => throw _privateConstructorUsedError;
+  UniqueId get id => throw _privateConstructorUsedError;
   @override
   Barcode get barcode => throw _privateConstructorUsedError;
   @override
-  Category get category => throw _privateConstructorUsedError;
-  @override
   ProductName get name => throw _privateConstructorUsedError;
   @override
-  BrandName get brandName => throw _privateConstructorUsedError;
+  BrandName get brand => throw _privateConstructorUsedError;
   @override
-  NonEmptyList5<ShopifyUrl> get productPhotos =>
-      throw _privateConstructorUsedError;
+  ShopifyUrl get photo => throw _privateConstructorUsedError;
+  @override
+  Category get category => throw _privateConstructorUsedError;
+  @override
+  UniqueId get shopId => throw _privateConstructorUsedError;
   @override
   Weight get weight => throw _privateConstructorUsedError;
   @override
   Price get price => throw _privateConstructorUsedError;
   @override
-  UniqueId get shopId => throw _privateConstructorUsedError;
-  @override
-  Location get shopLocation => throw _privateConstructorUsedError;
-  @override
-  Address get shopAddress => throw _privateConstructorUsedError;
-  @override
-  ShopifyUrl get shopLogo => throw _privateConstructorUsedError;
-  @override
-  ShopName get shopName => throw _privateConstructorUsedError;
-  @override
   @JsonKey(ignore: true)
-  _$$_AddedProductCopyWith<_$_AddedProduct> get copyWith =>
+  _$$_PricedProductCopyWith<_$_PricedProduct> get copyWith =>
       throw _privateConstructorUsedError;
 }
