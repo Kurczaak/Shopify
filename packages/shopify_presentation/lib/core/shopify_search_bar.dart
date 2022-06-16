@@ -18,11 +18,15 @@ class ShopifySearchBar extends StatefulWidget {
   final List<String>? searchHistory;
   final Widget child;
 
+  static ShopifySearchBarState? of(BuildContext context) {
+    return context.findAncestorStateOfType<ShopifySearchBarState>();
+  }
+
   @override
-  State<ShopifySearchBar> createState() => _ShopifySearchBarState();
+  State<ShopifySearchBar> createState() => ShopifySearchBarState();
 }
 
-class _ShopifySearchBarState extends State<ShopifySearchBar> {
+class ShopifySearchBarState extends State<ShopifySearchBar> {
   static const historyLength = 5;
   late List<String> _searchHistory;
   List<String> _filteredSearchHistory = [];
@@ -66,8 +70,9 @@ class _ShopifySearchBarState extends State<ShopifySearchBar> {
 
   @override
   void initState() {
-    _searchHistory = widget.searchHistory ?? [];
-    _filteredSearchHistory = _searchHistory;
+    _searchHistory =
+        widget.searchHistory != null ? widget.searchHistory!.toList() : [];
+    _filteredSearchHistory = _searchHistory.toList();
     super.initState();
   }
 
