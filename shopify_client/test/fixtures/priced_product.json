@@ -1,0 +1,17 @@
+{
+    "id": "ABC-123",
+    "barcode": "123-456-789",
+    "name": "priced product name",
+    "brand": "priced product brand",
+    "photo": "https://www.photo.com/1",
+    "category": "diary",
+    "shopId": "test shop id",
+    "weight": {
+        "weightUnit": "gram",
+        "weight": 100
+    },
+    "price": {
+        "price": 12.99,
+        "currency": "zl"
+    }
+}
