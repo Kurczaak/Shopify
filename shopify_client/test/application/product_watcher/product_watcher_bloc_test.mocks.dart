@@ -5,12 +5,12 @@
 import 'dart:async' as _i4;
 
 import 'package:dartz/dartz.dart' as _i2;
-import 'package:kt_dart/collection.dart' as _i6;
+import 'package:kt_dart/kt.dart' as _i6;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:shopify_client/domain/shop/i_shop_repository.dart' as _i3;
-import 'package:shopify_domain/auth.dart' as _i8;
+import 'package:shopify_client/domain/product/i_product_repository.dart' as _i3;
 import 'package:shopify_domain/core.dart' as _i7;
-import 'package:shopify_domain/shop.dart' as _i5;
+import 'package:shopify_domain/product.dart' as _i5;
+import 'package:shopify_domain/shop/shop.dart' as _i8;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -24,44 +24,62 @@ import 'package:shopify_domain/shop.dart' as _i5;
 
 class _FakeEither_0<L, R> extends _i1.Fake implements _i2.Either<L, R> {}
 
-/// A class which mocks [IShopRepository].
+/// A class which mocks [IProductRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockIShopRepository extends _i1.Mock implements _i3.IShopRepository {
-  MockIShopRepository() {
+class MockIProductRepository extends _i1.Mock
+    implements _i3.IProductRepository {
+  MockIProductRepository() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i4.Stream<_i2.Either<_i5.ShopFailure, _i6.KtList<_i5.Shop>>> watchAll() =>
-      (super.noSuchMethod(Invocation.method(#watchAll, []),
-              returnValue: Stream<
-                  _i2.Either<_i5.ShopFailure, _i6.KtList<_i5.Shop>>>.empty())
-          as _i4.Stream<_i2.Either<_i5.ShopFailure, _i6.KtList<_i5.Shop>>>);
-  @override
-  _i4.Stream<_i2.Either<_i5.ShopFailure, _i6.KtList<_i5.Shop>>> watchNearby(
+  _i4.Stream<_i2.Either<_i5.ProductFailure, _i6.KtList<_i5.PricedProduct>>> watchAllNearby(
           _i7.Location? location, double? radius) =>
-      (super.noSuchMethod(Invocation.method(#watchNearby, [location, radius]),
+      (super.noSuchMethod(Invocation.method(#watchAllNearby, [location, radius]),
+          returnValue: Stream<
+              _i2.Either<_i5.ProductFailure,
+                  _i6.KtList<_i5.PricedProduct>>>.empty()) as _i4
+          .Stream<_i2.Either<_i5.ProductFailure, _i6.KtList<_i5.PricedProduct>>>);
+  @override
+  _i4.Stream<_i2.Either<_i5.ProductFailure, _i6.KtList<_i5.PricedProduct>>>
+      watchAllNearbyByCategory(double? radius, _i5.Category? category) => (super
+          .noSuchMethod(
+              Invocation.method(#watchAllNearbyByCategory, [radius, category]),
               returnValue: Stream<
-                  _i2.Either<_i5.ShopFailure, _i6.KtList<_i5.Shop>>>.empty())
-          as _i4.Stream<_i2.Either<_i5.ShopFailure, _i6.KtList<_i5.Shop>>>);
+                  _i2.Either<_i5.ProductFailure, _i6.KtList<_i5.PricedProduct>>>.empty()) as _i4
+          .Stream<_i2.Either<_i5.ProductFailure, _i6.KtList<_i5.PricedProduct>>>);
   @override
-  _i4.Future<_i2.Either<_i5.ShopFailure, _i2.Unit>> create(
-          _i5.Shop? shop, _i7.ShopLogo? logo, _i8.ShopifyUser? user) =>
-      (super.noSuchMethod(Invocation.method(#create, [shop, logo, user]),
-              returnValue: Future<_i2.Either<_i5.ShopFailure, _i2.Unit>>.value(
-                  _FakeEither_0<_i5.ShopFailure, _i2.Unit>()))
-          as _i4.Future<_i2.Either<_i5.ShopFailure, _i2.Unit>>);
+  _i4.Future<_i2.Either<_i5.ProductFailure, _i6.KtList<_i5.Product>>>
+      searchForProducts(String? term, {int? page = 0}) => (super.noSuchMethod(
+              Invocation.method(#searchForProducts, [term], {#page: page}),
+              returnValue: Future<
+                      _i2.Either<_i5.ProductFailure, _i6.KtList<_i5.Product>>>.value(
+                  _FakeEither_0<_i5.ProductFailure, _i6.KtList<_i5.Product>>()))
+          as _i4.Future<_i2.Either<_i5.ProductFailure, _i6.KtList<_i5.Product>>>);
   @override
-  _i4.Future<_i2.Either<_i5.ShopFailure, _i2.Unit>> update(_i5.Shop? shop) =>
-      (super.noSuchMethod(Invocation.method(#update, [shop]),
-              returnValue: Future<_i2.Either<_i5.ShopFailure, _i2.Unit>>.value(
-                  _FakeEither_0<_i5.ShopFailure, _i2.Unit>()))
-          as _i4.Future<_i2.Either<_i5.ShopFailure, _i2.Unit>>);
+  _i4.Stream<_i2.Either<_i5.ProductFailure, _i6.KtList<_i5.PricedProduct>>>
+      watchAllFromShop(_i8.Shop? shop) => (super.noSuchMethod(
+          Invocation.method(#watchAllFromShop, [shop]),
+          returnValue: Stream<
+              _i2.Either<_i5.ProductFailure,
+                  _i6.KtList<_i5.PricedProduct>>>.empty()) as _i4
+          .Stream<_i2.Either<_i5.ProductFailure, _i6.KtList<_i5.PricedProduct>>>);
   @override
-  _i4.Future<_i2.Either<_i5.ShopFailure, _i2.Unit>> delete(_i5.Shop? shop) =>
-      (super.noSuchMethod(Invocation.method(#delete, [shop]),
-              returnValue: Future<_i2.Either<_i5.ShopFailure, _i2.Unit>>.value(
-                  _FakeEither_0<_i5.ShopFailure, _i2.Unit>()))
-          as _i4.Future<_i2.Either<_i5.ShopFailure, _i2.Unit>>);
+  _i4.Stream<_i2.Either<_i5.ProductFailure, _i6.KtList<_i5.PricedProduct>>>
+      watchAllFromShopByCategory(_i8.Shop? shop, _i5.Category? category) => (super
+          .noSuchMethod(
+              Invocation.method(#watchAllFromShopByCategory, [shop, category]),
+              returnValue: Stream<
+                  _i2.Either<_i5.ProductFailure, _i6.KtList<_i5.PricedProduct>>>.empty()) as _i4
+          .Stream<_i2.Either<_i5.ProductFailure, _i6.KtList<_i5.PricedProduct>>>);
+  @override
+  _i4.Future<
+      _i2.Either<_i5.ProductFailure, _i6.KtList<_i5.PricedProduct>>> searchInShop(
+          _i8.Shop? shop, String? term, {int? page = 0}) =>
+      (super.noSuchMethod(
+          Invocation.method(#searchInShop, [shop, term], {#page: page}),
+          returnValue: Future<_i2.Either<_i5.ProductFailure, _i6.KtList<_i5.PricedProduct>>>.value(
+              _FakeEither_0<_i5.ProductFailure, _i6.KtList<_i5.PricedProduct>>())) as _i4
+          .Future<_i2.Either<_i5.ProductFailure, _i6.KtList<_i5.PricedProduct>>>);
 }
