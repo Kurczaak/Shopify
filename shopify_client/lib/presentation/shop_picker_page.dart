@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -7,6 +8,7 @@ import 'package:kt_dart/kt.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:shopify_client/application/auth/auth_bloc.dart';
 import 'package:shopify_client/application/shop_watcher/shop_watcher_bloc.dart';
+import 'package:shopify_client/presentation/routes/router.gr.dart';
 import 'package:shopify_domain/core.dart';
 import 'package:shopify_domain/shop.dart';
 import 'package:shopify_client/injection.dart';
@@ -78,8 +80,8 @@ class _ShopPickerPageState extends State<ShopPickerPage> {
                           builder: (context) => ShopPreviewDialog(
                               shop: selectedShop!,
                               onConfirm: () {
-                                // context.router.popAndPush(
-                                //     DebugShopRoute(shop: selectedShop!));
+                                context.router.popAndPush(
+                                    DebugShopRoute(shop: selectedShop!));
                               }));
                     },
                   )

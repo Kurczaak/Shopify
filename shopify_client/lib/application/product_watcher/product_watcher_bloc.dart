@@ -16,25 +16,35 @@ part 'product_watcher_bloc.freezed.dart';
 @Injectable()
 class ProductWatcherBloc
     extends Bloc<ProductWatcherEvent, ProductWatcherState> {
-  final Shop shop;
   final IProductRepository repository;
-  ProductWatcherBloc({required this.shop, required this.repository})
-      : super(ProductWatcherState.initial(shop)) {
+  ProductWatcherBloc({required this.repository})
+      : super(ProductWatcherState.initial()) {
     on<ProductWatcherEvent>((event, emit) async {
       await event.when(
+          clearCategory: () {
+            emit(state.copyWith(categoryOption: none()));
+          },
+          initialize: (shop) {
+            emit(state.copyWith(shopOption: some(shop)));
+          },
           searchedForProduct: (String query) {},
           categoryChosen: (Category category) async {
-            emit(state.copyWith(categoryOption: some(category)));
-            emit(state.copyWith(isLoading: true));
-            await state.categoryOption.fold(() async => null, (category) async {
-              await emit.forEach(
-                  repository.watchAllFromShopByCategory(shop, category),
-                  onData:
-                      (Either<ProductFailure, KtList<PricedProduct>> data) =>
-                          data.fold(
-                              (failure) => state,
-                              (products) => state.copyWith(
-                                  products: products, isLoading: false)));
+            await state.shopOption.fold(
+                () async => null //TODO
+                , (shop) async {
+              emit(state.copyWith(categoryOption: some(category)));
+              emit(state.copyWith(isLoading: true));
+              await state.categoryOption.fold(() async => null,
+                  (category) async {
+                await emit.forEach(
+                    repository.watchAllFromShopByCategory(shop, category),
+                    onData:
+                        (Either<ProductFailure, KtList<PricedProduct>> data) =>
+                            data.fold(
+                                (failure) => state,
+                                (products) => state.copyWith(
+                                    products: products, isLoading: false)));
+              });
             });
           },
           getNextPage: () {});

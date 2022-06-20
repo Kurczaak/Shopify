@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$ProductWatcherState {
-  Shop get shop => throw _privateConstructorUsedError;
+  Option<Shop> get shopOption => throw _privateConstructorUsedError;
   Option<Category> get categoryOption => throw _privateConstructorUsedError;
   KtList<PricedProduct> get products => throw _privateConstructorUsedError;
   int get currentPage => throw _privateConstructorUsedError;
@@ -33,13 +33,11 @@ abstract class $ProductWatcherStateCopyWith<$Res> {
           ProductWatcherState value, $Res Function(ProductWatcherState) then) =
       _$ProductWatcherStateCopyWithImpl<$Res>;
   $Res call(
-      {Shop shop,
+      {Option<Shop> shopOption,
       Option<Category> categoryOption,
       KtList<PricedProduct> products,
       int currentPage,
       bool isLoading});
-
-  $ShopCopyWith<$Res> get shop;
 }
 
 /// @nodoc
@@ -53,17 +51,17 @@ class _$ProductWatcherStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? shop = freezed,
+    Object? shopOption = freezed,
     Object? categoryOption = freezed,
     Object? products = freezed,
     Object? currentPage = freezed,
     Object? isLoading = freezed,
   }) {
     return _then(_value.copyWith(
-      shop: shop == freezed
-          ? _value.shop
-          : shop // ignore: cast_nullable_to_non_nullable
-              as Shop,
+      shopOption: shopOption == freezed
+          ? _value.shopOption
+          : shopOption // ignore: cast_nullable_to_non_nullable
+              as Option<Shop>,
       categoryOption: categoryOption == freezed
           ? _value.categoryOption
           : categoryOption // ignore: cast_nullable_to_non_nullable
@@ -82,13 +80,6 @@ class _$ProductWatcherStateCopyWithImpl<$Res>
               as bool,
     ));
   }
-
-  @override
-  $ShopCopyWith<$Res> get shop {
-    return $ShopCopyWith<$Res>(_value.shop, (value) {
-      return _then(_value.copyWith(shop: value));
-    });
-  }
 }
 
 /// @nodoc
@@ -99,14 +90,11 @@ abstract class _$$_ProductWatcherStateCopyWith<$Res>
       __$$_ProductWatcherStateCopyWithImpl<$Res>;
   @override
   $Res call(
-      {Shop shop,
+      {Option<Shop> shopOption,
       Option<Category> categoryOption,
       KtList<PricedProduct> products,
       int currentPage,
       bool isLoading});
-
-  @override
-  $ShopCopyWith<$Res> get shop;
 }
 
 /// @nodoc
@@ -122,17 +110,17 @@ class __$$_ProductWatcherStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? shop = freezed,
+    Object? shopOption = freezed,
     Object? categoryOption = freezed,
     Object? products = freezed,
     Object? currentPage = freezed,
     Object? isLoading = freezed,
   }) {
     return _then(_$_ProductWatcherState(
-      shop: shop == freezed
-          ? _value.shop
-          : shop // ignore: cast_nullable_to_non_nullable
-              as Shop,
+      shopOption: shopOption == freezed
+          ? _value.shopOption
+          : shopOption // ignore: cast_nullable_to_non_nullable
+              as Option<Shop>,
       categoryOption: categoryOption == freezed
           ? _value.categoryOption
           : categoryOption // ignore: cast_nullable_to_non_nullable
@@ -157,14 +145,14 @@ class __$$_ProductWatcherStateCopyWithImpl<$Res>
 
 class _$_ProductWatcherState implements _ProductWatcherState {
   const _$_ProductWatcherState(
-      {required this.shop,
+      {required this.shopOption,
       required this.categoryOption,
       required this.products,
       required this.currentPage,
       required this.isLoading});
 
   @override
-  final Shop shop;
+  final Option<Shop> shopOption;
   @override
   final Option<Category> categoryOption;
   @override
@@ -176,7 +164,7 @@ class _$_ProductWatcherState implements _ProductWatcherState {
 
   @override
   String toString() {
-    return 'ProductWatcherState(shop: $shop, categoryOption: $categoryOption, products: $products, currentPage: $currentPage, isLoading: $isLoading)';
+    return 'ProductWatcherState(shopOption: $shopOption, categoryOption: $categoryOption, products: $products, currentPage: $currentPage, isLoading: $isLoading)';
   }
 
   @override
@@ -184,7 +172,8 @@ class _$_ProductWatcherState implements _ProductWatcherState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ProductWatcherState &&
-            const DeepCollectionEquality().equals(other.shop, shop) &&
+            const DeepCollectionEquality()
+                .equals(other.shopOption, shopOption) &&
             const DeepCollectionEquality()
                 .equals(other.categoryOption, categoryOption) &&
             const DeepCollectionEquality().equals(other.products, products) &&
@@ -196,7 +185,7 @@ class _$_ProductWatcherState implements _ProductWatcherState {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(shop),
+      const DeepCollectionEquality().hash(shopOption),
       const DeepCollectionEquality().hash(categoryOption),
       const DeepCollectionEquality().hash(products),
       const DeepCollectionEquality().hash(currentPage),
@@ -211,14 +200,14 @@ class _$_ProductWatcherState implements _ProductWatcherState {
 
 abstract class _ProductWatcherState implements ProductWatcherState {
   const factory _ProductWatcherState(
-      {required final Shop shop,
+      {required final Option<Shop> shopOption,
       required final Option<Category> categoryOption,
       required final KtList<PricedProduct> products,
       required final int currentPage,
       required final bool isLoading}) = _$_ProductWatcherState;
 
   @override
-  Shop get shop => throw _privateConstructorUsedError;
+  Option<Shop> get shopOption => throw _privateConstructorUsedError;
   @override
   Option<Category> get categoryOption => throw _privateConstructorUsedError;
   @override

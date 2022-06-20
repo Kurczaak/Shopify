@@ -10,12 +10,10 @@ import 'package:shopify_client/presentation/splash/splash_page.dart';
 @MaterialAutoRouter(
   replaceInRouteName: 'Page,Route',
   routes: <AutoRoute>[
-    AutoRoute(page: AuthWrapperPage, children: [
+    AutoRoute(page: AuthWrapperPage, initial: true, children: [
       AutoRoute(
         page: ShopPickerPage,
-      ),
-      AutoRoute(
-        page: ShopPickerPage,
+        initial: true,
       ),
       AutoRoute(
         page: DebugPage,
@@ -32,7 +30,6 @@ import 'package:shopify_client/presentation/splash/splash_page.dart';
     ),
     AutoRoute(
       page: DebugShopPage,
-      initial: true,
     ),
   ],
 )
