@@ -28,11 +28,8 @@ class AlgoliaProductSearcher implements ShopifyProductSearcher {
         final product = ProductDto.fromJson(hit).toDomain();
         products.add(product);
       }
-      if (products.isNotEmpty) {
-        return right(KtList.from(products));
-      } else {
-        return left(const ProductFailure.noMoreProducts());
-      }
+
+      return right(KtList.from(products));
     } else {
       return left(const ProductFailure.noInternetConnection());
     }
@@ -57,11 +54,8 @@ class AlgoliaProductSearcher implements ShopifyProductSearcher {
         final product = PricedProductDto.fromJson(hit).toDomain();
         products.add(product);
       }
-      if (products.isNotEmpty) {
-        return right(KtList.from(products));
-      } else {
-        return left(const ProductFailure.noMoreProducts());
-      }
+
+      return right(KtList.from(products));
     } else {
       return left(const ProductFailure.noInternetConnection());
     }
