@@ -49,22 +49,22 @@ void main() {
               Future.value(right(KtList.from([tPricedProduct])))));
     });
     blocTest(
-        'should emit state with chosen category, nono() as products list, [LOADING], and some() fetched products',
+        'should emit state with chosen category, nono() as productsOption list, [LOADING], and some() fetched productsOption',
         build: () => productWatcherBloc,
         seed: () => initialState,
         act: (ProductWatcherBloc bloc) =>
             bloc.add(ProductWatcherEvent.categoryChosen(category: category)),
         expect: () => [
               initialState.copyWith(
-                  categoryOption: some(category), products: none()),
+                  categoryOption: some(category), productsOption: none()),
               initialState.copyWith(
                   categoryOption: some(category),
-                  products: none(),
+                  productsOption: none(),
                   isLoading: true),
               initialState.copyWith(
                   categoryOption: some(category),
                   isLoading: false,
-                  products: some(KtList.from([tPricedProduct]))),
+                  productsOption: some(KtList.from([tPricedProduct]))),
             ]);
 
     blocTest(
@@ -94,15 +94,17 @@ void main() {
 
   group('clearCategoryAndProducts', () {
     final category = Category(Categories.bread);
-    blocTest('should set category nad products to none()',
+    blocTest('should set category nad productsOption to none()',
         build: () => productWatcherBloc,
         seed: () => initialState.copyWith(
             categoryOption: some(category),
-            products: some(KtList.from([tPricedProduct]))),
+            productsOption: some(KtList.from([tPricedProduct]))),
         act: (ProductWatcherBloc bloc) =>
             bloc.add(const ProductWatcherEvent.clearCategoryAndProducts()),
-        expect: () =>
-            [initialState.copyWith(categoryOption: none(), products: none())]);
+        expect: () => [
+              initialState.copyWith(
+                  categoryOption: none(), productsOption: none())
+            ]);
   });
 
   group('searchedForProducts', () {
@@ -126,7 +128,7 @@ void main() {
                   failureOption: some(const ProductFailure.unexpected()))
             ]);
     blocTest(
-        'should call searchInShopWithCategory if category is chosen, and emit fetched products',
+        'should call searchInShopWithCategory if category is chosen, and emit fetched productsOption',
         build: () => productWatcherBloc,
         seed: () => initialState.copyWith(categoryOption: some(category)),
         act: (ProductWatcherBloc bloc) =>
@@ -138,10 +140,10 @@ void main() {
         expect: () => [
               initialState.copyWith(
                   categoryOption: some(category),
-                  products: some(KtList.from([tPricedProduct])))
+                  productsOption: some(KtList.from([tPricedProduct])))
             ]);
     blocTest(
-        'should call searchInShop if category has not been chosen, and emit fetched products',
+        'should call searchInShop if category has not been chosen, and emit fetched productsOption',
         build: () => productWatcherBloc,
         seed: () => initialState.copyWith(),
         act: (ProductWatcherBloc bloc) =>
@@ -151,7 +153,7 @@ void main() {
         },
         expect: () => [
               initialState.copyWith(
-                  products: some(KtList.from([tPricedProduct])))
+                  productsOption: some(KtList.from([tPricedProduct])))
             ]);
   });
 }
