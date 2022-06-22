@@ -4,7 +4,6 @@ import 'package:shopify_domain/core/value_objects.dart';
 import 'package:shopify_domain/product/price.dart';
 import 'package:shopify_domain/product/product_categories.dart';
 import 'package:shopify_domain/product/value_failures.dart';
-//import 'package:shopify_domain/core/value_validators.dart';
 import 'package:shopify_domain/product/value_validators.dart';
 import 'package:shopify_domain/product/weight.dart';
 

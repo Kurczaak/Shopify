@@ -13,11 +13,11 @@ void main() {
       'should return Categories.Diary from string',
       () async {
         // arrange
-        const str = 'Diary';
+        const str = 'Dairy';
         // act
         final result = validateCategoryFromString(str);
         // assert
-        expect(result, right(Categories.diary));
+        expect(result, right(Categories.dairy));
       },
     );
 

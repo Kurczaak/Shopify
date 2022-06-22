@@ -41,7 +41,7 @@ void main() async {
   final tLocation = Location.empty();
   final tProduct = Product.empty().copyWith(
       barcode: Barcode('ABC-DEF-123'),
-      category: Category(Categories.diary),
+      category: Category(Categories.dairy),
       brand: BrandName('Test Brand'),
       name: ProductName('Test Product'),
       photos: NonEmptyList5(KtList.from([

@@ -37,7 +37,7 @@ class ProductForm with _$ProductForm {
       barcode: Barcode(''),
       weight: Weight.zero(),
       nutrientFacts: NutrientFacts.empty(),
-      category: Category(Categories.unknown),
+      category: Category(Categories.bio),
       name: ProductName(''),
       brand: BrandName(''),
       description: ProductDescription(''),

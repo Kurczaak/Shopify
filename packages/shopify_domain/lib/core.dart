@@ -12,7 +12,6 @@ export 'core/location/location.dart';
 export 'core/location/location_failure.dart';
 export 'core/location/location_info.dart';
 export 'core/address.dart';
-export 'core/enum_stringify_extension.dart';
 export 'core/errors.dart';
 export 'core/failures.dart';
 export 'core/value_failures.dart';
