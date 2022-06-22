@@ -58,7 +58,8 @@ class AlgoliaProductSearcher implements ShopifyProductSearcher {
             .query(term)
             .filters('shopId:${shop.id.getOrCrash()}')
             .setPage(page);
-        AlgoliaQuerySnapshot snapshot = await algoliaQuery.getObjects();
+        AlgoliaQuerySnapshot snapshot =
+            await algoliaQuery.getObjects().timeout(timeoutDuration);
         final List<PricedProduct> products = [];
         final rawHits = snapshot.toMap()['hits'] as List;
         for (final hit in rawHits) {
@@ -93,7 +94,8 @@ class AlgoliaProductSearcher implements ShopifyProductSearcher {
             .filters(
                 'shopId:${shop.id.getOrCrash()} AND category:${category.getOrCrash().name}')
             .setPage(page);
-        AlgoliaQuerySnapshot snapshot = await algoliaQuery.getObjects();
+        AlgoliaQuerySnapshot snapshot =
+            await algoliaQuery.getObjects().timeout(timeoutDuration);
         final List<PricedProduct> products = [];
         final rawHits = snapshot.toMap()['hits'] as List;
         for (final hit in rawHits) {
