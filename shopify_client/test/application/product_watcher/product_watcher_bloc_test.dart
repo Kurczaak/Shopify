@@ -128,7 +128,44 @@ void main() {
                   failureOption: some(const ProductFailure.unexpected()))
             ]);
     blocTest(
-        'should call searchInShopWithCategory if category is chosen, and emit fetched productsOption',
+      'should call searchInShopWithCategory if category is chosen',
+      build: () => productWatcherBloc,
+      seed: () => initialState.copyWith(categoryOption: some(category)),
+      act: (ProductWatcherBloc bloc) =>
+          bloc.add(const ProductWatcherEvent.searchedForProduct(term: query)),
+      verify: (ProductWatcherBloc bloc) {
+        verify(mockShopRepository.searchInShopWithCategory(
+            tShop, query, category));
+      },
+    );
+    blocTest(
+      'should call searchInShop if category has not been chosen',
+      build: () => productWatcherBloc,
+      seed: () => initialState.copyWith(),
+      act: (ProductWatcherBloc bloc) =>
+          bloc.add(const ProductWatcherEvent.searchedForProduct(term: query)),
+      verify: (ProductWatcherBloc bloc) {
+        verify(mockShopRepository.searchInShop(tShop, query));
+      },
+    );
+
+    blocTest(
+        'should emit [LOADING], and [LOADED] states when searchInShop is called',
+        build: () => productWatcherBloc,
+        seed: () => initialState,
+        act: (ProductWatcherBloc bloc) =>
+            bloc.add(const ProductWatcherEvent.searchedForProduct(term: query)),
+        verify: (ProductWatcherBloc bloc) {
+          verify(mockShopRepository.searchInShop(tShop, query));
+        },
+        expect: () => [
+              initialState.copyWith(isLoading: true, productsOption: none()),
+              initialState.copyWith(
+                  productsOption: some(KtList.from([tPricedProduct])))
+            ]);
+
+    blocTest(
+        'should emit [LOADING], and [LOADED] states when searchInShopWithCategory is called',
         build: () => productWatcherBloc,
         seed: () => initialState.copyWith(categoryOption: some(category)),
         act: (ProductWatcherBloc bloc) =>
@@ -140,19 +177,10 @@ void main() {
         expect: () => [
               initialState.copyWith(
                   categoryOption: some(category),
-                  productsOption: some(KtList.from([tPricedProduct])))
-            ]);
-    blocTest(
-        'should call searchInShop if category has not been chosen, and emit fetched productsOption',
-        build: () => productWatcherBloc,
-        seed: () => initialState.copyWith(),
-        act: (ProductWatcherBloc bloc) =>
-            bloc.add(const ProductWatcherEvent.searchedForProduct(term: query)),
-        verify: (ProductWatcherBloc bloc) {
-          verify(mockShopRepository.searchInShop(tShop, query));
-        },
-        expect: () => [
+                  isLoading: true,
+                  productsOption: none()),
               initialState.copyWith(
+                  categoryOption: some(category),
                   productsOption: some(KtList.from([tPricedProduct])))
             ]);
   });

@@ -49,16 +49,21 @@ class ProductWatcherBloc
                 () async => emit(state.copyWith(
                     failureOption: some(const ProductFailure.unexpected()))),
                 (shop) async {
+              emit(state.copyWith(isLoading: true, productsOption: none()));
               final failureOrProducts = await state.categoryOption.fold(
                   () async => await repository.searchInShop(shop, query),
                   (category) async => await repository.searchInShopWithCategory(
                       shop, query, category));
 
               failureOrProducts.fold(
-                  (failure) => emit(state.copyWith(
-                      failureOption: some(failure), productsOption: none())),
-                  (productsOption) => emit(
-                      state.copyWith(productsOption: some(productsOption))));
+                  (failure) => emit(
+                        state.copyWith(
+                            failureOption: some(failure),
+                            productsOption: none(),
+                            isLoading: false),
+                      ),
+                  (productsOption) => emit(state.copyWith(
+                      productsOption: some(productsOption), isLoading: false)));
             });
           },
           categoryChosen: (Category category) async {
