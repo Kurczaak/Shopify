@@ -66,4 +66,36 @@ class AlgoliaProductSearcher implements ShopifyProductSearcher {
       return left(const ProductFailure.noInternetConnection());
     }
   }
+
+  @override
+  Future<Either<ProductFailure, KtList<PricedProduct>>>
+      searchInShopWithCategory(
+    String term,
+    Shop shop,
+    Category category, {
+    int page = 0,
+  }) async {
+    if (await networkInfo.isConnected) {
+      AlgoliaQuery algoliaQuery = algolia.instance
+          .index(algoliaPricedProductsIndex)
+          .query(term)
+          .filters(
+              'shopId:${shop.id.getOrCrash()} AND category:${category.getOrCrash().name}')
+          .setPage(page);
+      AlgoliaQuerySnapshot snapshot = await algoliaQuery.getObjects();
+      final List<PricedProduct> products = [];
+      final rawHits = snapshot.toMap()['hits'] as List;
+      for (final hit in rawHits) {
+        final product = PricedProductDto.fromJson(hit).toDomain();
+        products.add(product);
+      }
+      if (products.isNotEmpty) {
+        return right(KtList.from(products));
+      } else {
+        return left(const ProductFailure.noMoreProducts());
+      }
+    } else {
+      return left(const ProductFailure.noInternetConnection());
+    }
+  }
 }
