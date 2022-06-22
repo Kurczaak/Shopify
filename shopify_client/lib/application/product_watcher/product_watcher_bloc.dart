@@ -23,7 +23,7 @@ class ProductWatcherBloc
       await event.when(
           watchAllProductsSelected: () async {
             await state.shopOption.fold(() async => null, (shop) async {
-              emit(state.copyWith(products: none(), isLoading: true));
+              emit(state.copyWith(productsOption: none(), isLoading: true));
 
               await emit.forEach(repository.watchAllFromShop(shop),
                   onData:
@@ -32,12 +32,14 @@ class ProductWatcherBloc
                               (failure) => state.copyWith(
                                   failureOption: some(failure),
                                   isLoading: false),
-                              (products) => state.copyWith(
-                                  products: some(products), isLoading: false)));
+                              (productsOption) => state.copyWith(
+                                  productsOption: some(productsOption),
+                                  isLoading: false)));
             });
           },
           clearCategoryAndProducts: () {
-            emit(state.copyWith(categoryOption: none(), products: none()));
+            emit(
+                state.copyWith(categoryOption: none(), productsOption: none()));
           },
           initialize: (shop) {
             emit(state.copyWith(shopOption: some(shop)));
@@ -53,13 +55,10 @@ class ProductWatcherBloc
                       shop, query, category));
 
               failureOrProducts.fold(
-                  (failure) => failure.maybeWhen(
-                      noMoreProducts: () => emit(state.copyWith(
-                          failureOption: some(failure),
-                          products: some(const KtList.empty()))),
-                      orElse: () => emit(state.copyWith(
-                          failureOption: some(failure), products: none()))),
-                  (products) => emit(state.copyWith(products: some(products))));
+                  (failure) => emit(state.copyWith(
+                      failureOption: some(failure), productsOption: none())),
+                  (productsOption) => emit(
+                      state.copyWith(productsOption: some(productsOption))));
             });
           },
           categoryChosen: (Category category) async {
@@ -68,7 +67,7 @@ class ProductWatcherBloc
                     failureOption: some(const ProductFailure.unexpected()))),
                 (shop) async {
               emit(state.copyWith(
-                  categoryOption: some(category), products: none()));
+                  categoryOption: some(category), productsOption: none()));
               emit(state.copyWith(isLoading: true));
               await state.categoryOption.fold(() async => null,
                   (category) async {
@@ -79,8 +78,9 @@ class ProductWatcherBloc
                         data.fold(
                             (failure) =>
                                 state.copyWith(failureOption: some(failure)),
-                            (products) => state.copyWith(
-                                products: some(products), isLoading: false)));
+                            (productsOption) => state.copyWith(
+                                productsOption: some(productsOption),
+                                isLoading: false)));
               });
             });
           },

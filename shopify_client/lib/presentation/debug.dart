@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kt_dart/kt.dart';
@@ -26,13 +27,11 @@ class DebugShopPage extends StatelessWidget {
               appBar: ShopifyAppBar(
                 appBar: AppBar(),
                 onTapBack: () {
-                  if (state.categoryOption.isNone() &&
-                      state.products.isNone()) {
-                    context.router.pop();
-                  } else {
-                    (_) => context.read<ProductWatcherBloc>().add(
-                        const ProductWatcherEvent.clearCategoryAndProducts());
-                  }
+                  state.productsAndCategoryOption.fold(
+                      () => context.router.pop(),
+                      (a) => context.read<ProductWatcherBloc>().add(
+                          const ProductWatcherEvent
+                              .clearCategoryAndProducts()));
                 },
                 title: state.categoryOption.fold(
                     () => shop.shopName.getOrCrash(),
@@ -48,37 +47,38 @@ class DebugShopPage extends StatelessWidget {
                 },
                 onHistoryChanged: (_) {},
                 searchHistory: const ['xd', 'dupa', 'loooasdasdasd'],
-                child: state.isLoading
-                    ? const Center(
-                        child: ShopifyProgressIndicator(),
-                      )
-                    : state.products.fold(() {
-                        return state.categoryOption.isSome()
-                            ? const Text('No products found')
-                            : CategoriesGridView(onAllProductsTap: () {
-                                context.read<ProductWatcherBloc>().add(
-                                    const ProductWatcherEvent
-                                        .watchAllProductsSelected());
-                              }, onTap: (int index) {
-                                context.read<ProductWatcherBloc>().add(
-                                    ProductWatcherEvent.categoryChosen(
-                                        category: Category(
-                                            Categories.values[index])));
-                              });
-                      }, (products) {
-                        return products.isEmpty()
-                            ? const Text('No products found')
-                            : ProductsGridView(products: products, shop: shop);
-                      }),
+                child: state.failureOption.isSome()
+                    ? Center(
+                        child:
+                            Text('FAILURE ${state.failureOption.toString()}'))
+                    : state.isLoading
+                        ? const Center(
+                            child: ShopifyProgressIndicator(),
+                          )
+                        : state.productsAndCategoryOption.fold(
+                            () => CategoriesGridView(onAllProductsTap: () {
+                                  context.read<ProductWatcherBloc>().add(
+                                      const ProductWatcherEvent
+                                          .watchAllProductsSelected());
+                                }, onTap: (int index) {
+                                  context.read<ProductWatcherBloc>().add(
+                                      ProductWatcherEvent.categoryChosen(
+                                          category: Category(
+                                              Categories.values[index])));
+                                }),
+                            (_) => ProductsGridView(
+                                productsOption: state.productsOption,
+                                shop: shop)),
               )),
         ));
   }
 }
 
 class ProductsGridView extends StatelessWidget {
-  const ProductsGridView({Key? key, required this.products, required this.shop})
+  const ProductsGridView(
+      {Key? key, required this.productsOption, required this.shop})
       : super(key: key);
-  final KtList<PricedProduct> products;
+  final Option<KtList<PricedProduct>> productsOption;
   final Shop shop;
 
   @override
@@ -86,142 +86,160 @@ class ProductsGridView extends StatelessWidget {
     final fsb = FloatingSearchBar.of(context);
     final height = fsb != null ? fsb.style.height : 0;
     final margins = fsb != null ? fsb.style.margins.vertical : 0;
-    return GridView.builder(
-        padding: const EdgeInsets.only(top: 60),
-        itemCount: products.size,
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          crossAxisSpacing: 2,
-          mainAxisSpacing: 2,
-          childAspectRatio: .8,
-        ),
-        itemBuilder: (BuildContext context, int index) {
-          final product = products[index];
-          return InkWell(
-            onTap: () {
-              print(product.productId);
-            },
-            child: Card(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Flexible(
-                    fit: FlexFit.tight,
-                    flex: 5,
-                    child: Image.network(product.photo.getOrCrash(),
-                        fit: BoxFit.cover, height: 80, width: 120),
-                  ),
-                  const SizedBox(height: 5),
-                  Flexible(
-                    fit: FlexFit.tight,
-                    flex: 3,
-                    child: Row(
-                      children: [
-                        Flexible(
-                          fit: FlexFit.tight,
-                          flex: 10,
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 10),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+    return productsOption.fold(
+        () => const Center(child: Text('No products found')),
+        (products) => products.isEmpty()
+            ? const Center(child: Text('No products found'))
+            : GridView.builder(
+                padding: const EdgeInsets.only(top: 60),
+                itemCount: products.size,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 2,
+                  mainAxisSpacing: 2,
+                  childAspectRatio: .8,
+                ),
+                itemBuilder: (BuildContext context, int index) {
+                  final product = products[index];
+                  return InkWell(
+                    onTap: () {
+                      print(product.productId);
+                    },
+                    child: Card(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Flexible(
+                            fit: FlexFit.tight,
+                            flex: 5,
+                            child: Image.network(product.photo.getOrCrash(),
+                                fit: BoxFit.cover, height: 80, width: 120),
+                          ),
+                          const SizedBox(height: 5),
+                          Flexible(
+                            fit: FlexFit.tight,
+                            flex: 3,
+                            child: Row(
                               children: [
-                                Expanded(
+                                Flexible(
+                                  fit: FlexFit.tight,
+                                  flex: 10,
+                                  child: Container(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 10),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Expanded(
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Expanded(
+                                                child: FittedBox(
+                                                  fit: BoxFit.contain,
+                                                  child: Text(
+                                                    product.name.getOrCrash(),
+                                                    style: TextStyle(
+                                                      color: Theme.of(context)
+                                                          .primaryColor,
+                                                      fontWeight:
+                                                          FontWeight.w700,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                              Expanded(
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Text(
+                                                      product.brand
+                                                          .getOrCrash(),
+                                                      style: TextStyle(
+                                                          color:
+                                                              Theme.of(context)
+                                                                  .primaryColor,
+                                                          fontWeight:
+                                                              FontWeight.bold),
+                                                    ),
+                                                    Text(
+                                                      product.weight
+                                                          .stringifyOrCrash,
+                                                      style: const TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.w400),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: FittedBox(
+                                            fit: BoxFit.contain,
+                                            child: Text(
+                                              product.price.price
+                                                      .getOrCrash()
+                                                      .toStringAsFixed(2) +
+                                                  ' zł',
+                                              style: const TextStyle(
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                Flexible(
+                                  fit: FlexFit.tight,
+                                  flex: 3,
                                   child: Column(
                                     crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                        CrossAxisAlignment.center,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
                                     children: [
                                       Expanded(
                                         child: FittedBox(
                                           fit: BoxFit.contain,
-                                          child: Text(
-                                            product.name.getOrCrash(),
-                                            style: TextStyle(
-                                              color: Theme.of(context)
-                                                  .primaryColor,
-                                              fontWeight: FontWeight.w700,
-                                            ),
+                                          child: Icon(
+                                            Icons.add_shopping_cart,
+                                            color:
+                                                Theme.of(context).primaryColor,
                                           ),
                                         ),
                                       ),
+                                      const SizedBox(height: 10),
                                       Expanded(
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text(
-                                              product.brand.getOrCrash(),
-                                              style: TextStyle(
-                                                  color: Theme.of(context)
-                                                      .primaryColor,
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                            Text(
-                                              product.weight.stringifyOrCrash,
-                                              style: const TextStyle(
-                                                  fontWeight: FontWeight.w400),
-                                            ),
-                                          ],
+                                        child: FittedBox(
+                                          fit: BoxFit.contain,
+                                          child: Icon(
+                                            Icons.favorite_border,
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .error,
+                                          ),
                                         ),
-                                      ),
+                                      )
                                     ],
                                   ),
                                 ),
-                                Expanded(
-                                  child: FittedBox(
-                                    fit: BoxFit.contain,
-                                    child: Text(
-                                      product.price.price
-                                              .getOrCrash()
-                                              .toStringAsFixed(2) +
-                                          ' zł',
-                                      style: const TextStyle(
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ),
-                                )
                               ],
                             ),
-                          ),
-                        ),
-                        Flexible(
-                          fit: FlexFit.tight,
-                          flex: 3,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              Expanded(
-                                child: FittedBox(
-                                  fit: BoxFit.contain,
-                                  child: Icon(
-                                    Icons.add_shopping_cart,
-                                    color: Theme.of(context).primaryColor,
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(height: 10),
-                              Expanded(
-                                child: FittedBox(
-                                  fit: BoxFit.contain,
-                                  child: Icon(
-                                    Icons.favorite_border,
-                                    color: Theme.of(context).colorScheme.error,
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      ],
+                          )
+                        ],
+                      ),
                     ),
-                  )
-                ],
-              ),
-            ),
-          );
-        });
+                  );
+                }));
   }
 }
 
