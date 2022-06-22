@@ -1,5 +1,5 @@
 {
-    "id": "ABC-123",
+    "productId": "ABC-123",
     "barcode": "123-456-789",
     "name": "priced product name",
     "brand": "priced product brand",

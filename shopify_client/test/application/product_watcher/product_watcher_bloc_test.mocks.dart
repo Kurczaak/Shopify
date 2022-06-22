@@ -82,4 +82,14 @@ class MockIProductRepository extends _i1.Mock
           returnValue: Future<_i2.Either<_i5.ProductFailure, _i6.KtList<_i5.PricedProduct>>>.value(
               _FakeEither_0<_i5.ProductFailure, _i6.KtList<_i5.PricedProduct>>())) as _i4
           .Future<_i2.Either<_i5.ProductFailure, _i6.KtList<_i5.PricedProduct>>>);
+  @override
+  _i4.Future<_i2.Either<_i5.ProductFailure, _i6.KtList<_i5.PricedProduct>>> searchInShopWithCategory(
+          _i8.Shop? shop, String? term, _i5.Category? category,
+          {int? page = 0}) =>
+      (super.noSuchMethod(
+          Invocation.method(
+              #searchInShopWithCategory, [shop, term, category], {#page: page}),
+          returnValue: Future<_i2.Either<_i5.ProductFailure, _i6.KtList<_i5.PricedProduct>>>.value(
+              _FakeEither_0<_i5.ProductFailure, _i6.KtList<_i5.PricedProduct>>())) as _i4
+          .Future<_i2.Either<_i5.ProductFailure, _i6.KtList<_i5.PricedProduct>>>);
 }

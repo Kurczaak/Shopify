@@ -28,15 +28,17 @@ void main() {
   setUp(() {
     mockShopRepository = MockIProductRepository();
     tShop = Shop.empty().copyWith(shopName: ShopName('ABC'));
-    productWatcherBloc =
-        ProductWatcherBloc(shop: tShop, repository: mockShopRepository);
-    initialState = ProductWatcherState.initial(tShop);
+    productWatcherBloc = ProductWatcherBloc(repository: mockShopRepository);
+    initialState =
+        ProductWatcherState.initial().copyWith(shopOption: some(tShop));
   });
 
-  blocTest('should pass the initialized shop',
+  blocTest('Init state should pass the initialized shop',
       build: () => productWatcherBloc,
+      act: (ProductWatcherBloc bloc) =>
+          bloc.add(ProductWatcherEvent.initialize(shop: tShop)),
       verify: (ProductWatcherBloc bloc) {
-        expect(bloc.state.shop, tShop);
+        expect(bloc.state.shopOption, some(tShop));
       });
 
   group('categoryChosen', () {
@@ -47,19 +49,22 @@ void main() {
               Future.value(right(KtList.from([tPricedProduct])))));
     });
     blocTest(
-        'should emit state with chosen category, [LOADING], and fetched products',
+        'should emit state with chosen category, nono() as products list, [LOADING], and some() fetched products',
         build: () => productWatcherBloc,
         seed: () => initialState,
         act: (ProductWatcherBloc bloc) =>
             bloc.add(ProductWatcherEvent.categoryChosen(category: category)),
         expect: () => [
-              initialState.copyWith(categoryOption: some(category)),
               initialState.copyWith(
-                  categoryOption: some(category), isLoading: true),
+                  categoryOption: some(category), products: none()),
+              initialState.copyWith(
+                  categoryOption: some(category),
+                  products: none(),
+                  isLoading: true),
               initialState.copyWith(
                   categoryOption: some(category),
                   isLoading: false,
-                  products: KtList.from([tPricedProduct])),
+                  products: some(KtList.from([tPricedProduct]))),
             ]);
 
     blocTest(
@@ -70,10 +75,83 @@ void main() {
           bloc.add(ProductWatcherEvent.categoryChosen(category: category)),
       verify: (ProductWatcherBloc bloc) {
         verify(mockShopRepository.watchAllFromShopByCategory(
-            bloc.state.shop,
+            tShop,
             bloc.state.categoryOption
                 .getOrElse(() => throw const Unexpected())));
       },
     );
+
+    blocTest('should emit [ERROR] if no shop has been provided',
+        build: () => productWatcherBloc,
+        seed: () => ProductWatcherState.initial(),
+        act: (ProductWatcherBloc bloc) =>
+            bloc.add(ProductWatcherEvent.categoryChosen(category: category)),
+        expect: () => [
+              ProductWatcherState.initial().copyWith(
+                  failureOption: some(const ProductFailure.unexpected()))
+            ]);
+  });
+
+  group('clearCategoryAndProducts', () {
+    final category = Category(Categories.bread);
+    blocTest('should set category nad products to none()',
+        build: () => productWatcherBloc,
+        seed: () => initialState.copyWith(
+            categoryOption: some(category),
+            products: some(KtList.from([tPricedProduct]))),
+        act: (ProductWatcherBloc bloc) =>
+            bloc.add(const ProductWatcherEvent.clearCategoryAndProducts()),
+        expect: () =>
+            [initialState.copyWith(categoryOption: none(), products: none())]);
+  });
+
+  group('searchedForProducts', () {
+    final category = Category(Categories.bread);
+    const String query = "juice";
+
+    setUp(() {
+      when(mockShopRepository.searchInShop(tShop, query))
+          .thenAnswer((_) async => right(KtList.from([tPricedProduct])));
+      when(mockShopRepository.searchInShopWithCategory(tShop, query, category))
+          .thenAnswer((_) async => right(KtList.from([tPricedProduct])));
+    });
+
+    blocTest('should return [ERROR] if shop is none',
+        build: () => productWatcherBloc,
+        seed: () => ProductWatcherState.initial(),
+        act: (ProductWatcherBloc bloc) =>
+            bloc.add(const ProductWatcherEvent.searchedForProduct(term: query)),
+        expect: () => [
+              ProductWatcherState.initial().copyWith(
+                  failureOption: some(const ProductFailure.unexpected()))
+            ]);
+    blocTest(
+        'should call searchInShopWithCategory if category is chosen, and emit fetched products',
+        build: () => productWatcherBloc,
+        seed: () => initialState.copyWith(categoryOption: some(category)),
+        act: (ProductWatcherBloc bloc) =>
+            bloc.add(const ProductWatcherEvent.searchedForProduct(term: query)),
+        verify: (ProductWatcherBloc bloc) {
+          verify(mockShopRepository.searchInShopWithCategory(
+              tShop, query, category));
+        },
+        expect: () => [
+              initialState.copyWith(
+                  categoryOption: some(category),
+                  products: some(KtList.from([tPricedProduct])))
+            ]);
+    blocTest(
+        'should call searchInShop if category has not been chosen, and emit fetched products',
+        build: () => productWatcherBloc,
+        seed: () => initialState.copyWith(),
+        act: (ProductWatcherBloc bloc) =>
+            bloc.add(const ProductWatcherEvent.searchedForProduct(term: query)),
+        verify: (ProductWatcherBloc bloc) {
+          verify(mockShopRepository.searchInShop(tShop, query));
+        },
+        expect: () => [
+              initialState.copyWith(
+                  products: some(KtList.from([tPricedProduct])))
+            ]);
   });
 }
