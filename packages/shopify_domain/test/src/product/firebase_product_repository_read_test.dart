@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:fake_cloud_firestore/fake_cloud_firestore.dart';
@@ -33,8 +35,8 @@ void main() async {
   late FirebaseProductRepositoryImpl productRepository;
   late MockCollectionReference<Map<String, dynamic>>
       mockAddedProductsCollection;
-  late MockDocumentReference<Map<String, dynamic>> mockPricedProductDocument;
-
+  late MockQuery<Map<String, dynamic>> mockWhereCategoryQuery;
+  late MockQuery<Map<String, dynamic>> mockWhereSHopIdQUery;
   // Real data
   final tLocation = Location.empty();
   final tProduct = Product.empty().copyWith(
@@ -105,7 +107,8 @@ void main() async {
         storage: mockStorage);
     mockAddedProductsCollection =
         MockCollectionReference<Map<String, dynamic>>();
-    mockPricedProductDocument = MockDocumentReference<Map<String, dynamic>>();
+    mockWhereCategoryQuery = MockQuery<Map<String, dynamic>>();
+    mockWhereSHopIdQUery = MockQuery<Map<String, dynamic>>();
 
     // When
     when(mockNetworkInfo.isConnected).thenAnswer((_) async => true);
@@ -120,9 +123,7 @@ void main() async {
   });
 
   group('watchAllFromShopByCategory', () {
-    late MockQuery<Map<String, dynamic>> mockWhereSHopIdQUery;
     setUp(() {
-      mockWhereSHopIdQUery = MockQuery<Map<String, dynamic>>();
       when(mockAddedProductsCollection.where('shopId',
               isEqualTo: tShop.id.getOrCrash()))
           .thenReturn(mockWhereSHopIdQUery);
@@ -202,6 +203,50 @@ void main() async {
             emits(right(KtList.from([tPricedProduct]))));
       },
     );
+
+    test('should return a failure if connection timed out', () async {
+      // arrange
+      when(mockWhereSHopIdQUery.where('category',
+              isEqualTo: tProduct.category.getOrCrash().name))
+          .thenReturn(mockWhereCategoryQuery);
+      when(mockWhereCategoryQuery.get()).thenAnswer((_) async {
+        await Future.delayed(timeoutDuration);
+        await Future.delayed(const Duration(seconds: 1));
+        final query = fakeFirestore
+            .collection('pricedProducts')
+            .where('shopId', isEqualTo: tShop.id.getOrCrash())
+            .where('category', isEqualTo: tProduct.category.getOrCrash().name)
+            .get();
+        return query;
+      });
+      // assert later
+      expectLater(mockWhereCategoryQuery.get().timeout(timeoutDuration),
+          throwsA(isA<TimeoutException>()));
+      // act
+      final result = productRepository.watchAllFromShopByCategory(
+          tShop, tProduct.category);
+      // assert
+      expectLater(result.asBroadcastStream(),
+          emits(left(const ProductFailure.timeout(timeoutDuration))));
+    });
+
+    test('should return a failure if firebase throws an exception', () async {
+      // arrange
+
+      // arrange
+      when(mockWhereSHopIdQUery.where('category',
+              isEqualTo: tProduct.category.getOrCrash().name))
+          .thenReturn(mockWhereCategoryQuery);
+      when(mockWhereCategoryQuery.get()).thenThrow(
+          FirebaseException(plugin: 'plugin', code: 'permission-denied'));
+
+      // act
+      final result = productRepository.watchAllFromShopByCategory(
+          tShop, tProduct.category);
+      // assert
+      expectLater(result.asBroadcastStream(),
+          emits(left(const ProductFailure.insufficientPermission())));
+    });
   });
 
   group('watchAllFromShop', () {
@@ -265,5 +310,42 @@ void main() async {
             emits(right(KtList.from([tPricedProduct]))));
       },
     );
+
+    test('should return a failure if connection timed out', () async {
+      // arrange
+      when(mockAddedProductsCollection.where('shopId',
+              isEqualTo: tShop.id.getOrCrash()))
+          .thenReturn(mockWhereSHopIdQUery);
+      when(mockWhereSHopIdQUery.get()).thenAnswer((_) async {
+        await Future.delayed(timeoutDuration);
+        await Future.delayed(const Duration(seconds: 1));
+        final query = fakeFirestore
+            .collection('pricedProducts')
+            .where('shopId', isEqualTo: tShop.id.getOrCrash())
+            .where('category', isEqualTo: tProduct.category.getOrCrash().name)
+            .get();
+        return query;
+      });
+      // act
+      final result = productRepository.watchAllFromShop(tShop);
+      // assert
+      expectLater(result.asBroadcastStream(),
+          emits(left(const ProductFailure.timeout(timeoutDuration))));
+    });
+
+    test('should return a failure if firebase throws an exception', () async {
+      // arrange
+      when(mockAddedProductsCollection.where('shopId',
+              isEqualTo: tShop.id.getOrCrash()))
+          .thenReturn(mockWhereSHopIdQUery);
+      when(mockWhereSHopIdQUery.get()).thenThrow(
+          FirebaseException(plugin: 'plugin', code: 'permission-denied'));
+
+      // act
+      final result = productRepository.watchAllFromShop(tShop);
+      // assert
+      expectLater(result.asBroadcastStream(),
+          emits(left(const ProductFailure.insufficientPermission())));
+    });
   });
 }

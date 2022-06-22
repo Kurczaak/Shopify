@@ -98,16 +98,26 @@ class FirebaseProductRepositoryImpl implements ShopifyProductRepository {
   Stream<Either<ProductFailure, KtList<PricedProduct>>> watchAllFromShop(
       Shop shop) async* {
     if (await networkInfo.isConnected) {
-      final query = await firestore
-          .collection('pricedProducts')
-          .where('shopId', isEqualTo: shop.id.getOrCrash())
-          .get();
+      try {
+        final query = await firestore
+            .collection('pricedProducts')
+            .where('shopId', isEqualTo: shop.id.getOrCrash())
+            .get()
+            .timeout(timeoutDuration);
 
-      yield right(query.docs
-          .map(
-            (snapshot) => PricedProductDto.fromFirestore(snapshot).toDomain(),
-          )
-          .toImmutableList());
+        yield right(query.docs
+            .map(
+              (snapshot) => PricedProductDto.fromFirestore(snapshot).toDomain(),
+            )
+            .toImmutableList());
+      } on TimeoutException {
+        yield left(const ProductFailure.timeout(timeoutDuration));
+      } on FirebaseException catch (e) {
+        if (e.code.contains('permission-denied')) {
+          yield left(const ProductFailure.insufficientPermission());
+        }
+        yield left(const ProductFailure.unexpected());
+      }
     } else {
       yield left(const ProductFailure.noInternetConnection());
     }
@@ -117,17 +127,27 @@ class FirebaseProductRepositoryImpl implements ShopifyProductRepository {
   Stream<Either<ProductFailure, KtList<PricedProduct>>>
       watchAllFromShopByCategory(Shop shop, Category category) async* {
     if (await networkInfo.isConnected) {
-      final query = await firestore
-          .collection('pricedProducts')
-          .where('shopId', isEqualTo: shop.id.getOrCrash())
-          .where('category', isEqualTo: category.getOrCrash().name)
-          .get();
+      try {
+        final query = await firestore
+            .collection('pricedProducts')
+            .where('shopId', isEqualTo: shop.id.getOrCrash())
+            .where('category', isEqualTo: category.getOrCrash().name)
+            .get()
+            .timeout(timeoutDuration);
 
-      yield right(query.docs
-          .map(
-            (snapshot) => PricedProductDto.fromFirestore(snapshot).toDomain(),
-          )
-          .toImmutableList());
+        yield right(query.docs
+            .map(
+              (snapshot) => PricedProductDto.fromFirestore(snapshot).toDomain(),
+            )
+            .toImmutableList());
+      } on TimeoutException {
+        yield left(const ProductFailure.timeout(timeoutDuration));
+      } on FirebaseException catch (e) {
+        if (e.code.contains('permission-denied')) {
+          yield left(const ProductFailure.insufficientPermission());
+        }
+        yield left(const ProductFailure.unexpected());
+      }
     } else {
       yield left(const ProductFailure.noInternetConnection());
     }
@@ -236,15 +256,24 @@ class FirebaseProductRepositoryImpl implements ShopifyProductRepository {
   @override
   Future<Either<ProductFailure, Product>> getByBarcode(Barcode barcode) async {
     if (await networkInfo.isConnected) {
-      final query = firestore.productsCollection
-          .where('barcode', isEqualTo: barcode.getOrCrash());
-      final querySnapshot = await query.get();
+      try {
+        final query = firestore.productsCollection
+            .where('barcode', isEqualTo: barcode.getOrCrash());
+        final querySnapshot = await query.get().timeout(timeoutDuration);
 
-      if (querySnapshot.size < 1) {
-        return left(const ProductFailure.productNotFound());
-      } else {
-        return right(
-            ProductDto.fromFirestore(querySnapshot.docs.first).toDomain());
+        if (querySnapshot.size < 1) {
+          return left(const ProductFailure.productNotFound());
+        } else {
+          return right(
+              ProductDto.fromFirestore(querySnapshot.docs.first).toDomain());
+        }
+      } on TimeoutException {
+        return left(const ProductFailure.timeout(timeoutDuration));
+      } on FirebaseException catch (e) {
+        if (e.code.contains('permission-denied')) {
+          return left(const ProductFailure.insufficientPermission());
+        }
+        return left(const ProductFailure.unexpected());
       }
     } else {
       return left(const ProductFailure.noInternetConnection());

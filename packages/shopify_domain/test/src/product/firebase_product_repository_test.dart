@@ -57,6 +57,7 @@ Future<void> main() async {
   // Products
   late MockCollectionReference<Map<String, dynamic>> mockProductsCollection;
   late MockDocumentReference<Map<String, dynamic>> mockProductDocument;
+  late MockQuery<Map<String, dynamic>> mockWhereQuery;
 
   // Test Data
   final uploadedLinks = [
@@ -184,6 +185,7 @@ Future<void> main() async {
     mockProductsCollection = MockCollectionReference<Map<String, dynamic>>();
     mockProductDocument = MockDocumentReference<Map<String, dynamic>>();
     mockShopProductDocument = MockDocumentReference<Map<String, dynamic>>();
+    mockWhereQuery = MockQuery<Map<String, dynamic>>();
 
     // Storage SetUp
     mockAllproductsPhotosReference = MockReference();
@@ -436,6 +438,44 @@ Future<void> main() async {
         expect(result, left(const ProductFailure.noInternetConnection()));
       },
     );
+
+    test('should return a failure if connection timed out', () async {
+      // arrange
+
+      when(mockProductsCollection.where('barcode',
+              isEqualTo: tProduct.barcode.getOrCrash()))
+          .thenReturn(mockWhereQuery);
+      when(mockWhereQuery.get()).thenAnswer((_) async {
+        await Future.delayed(timeoutDuration);
+        await Future.delayed(const Duration(seconds: 1));
+        final query = fakeFirestore
+            .collection('products')
+            .where('barcode', isEqualTo: tProduct.barcode.getOrCrash());
+        return Future.value(query as QuerySnapshot<Map<String, dynamic>>);
+      });
+      // assert later
+      expectLater(mockWhereQuery.get().timeout(timeoutDuration),
+          throwsA(isA<TimeoutException>()));
+      // act
+      final result = await repository.getByBarcode(tProduct.barcode);
+      // assert
+      expect(result, left(const ProductFailure.timeout(timeoutDuration)));
+    });
+
+    test('should return a failure if firebase throws an exception', () async {
+      // arrange
+
+      when(mockProductsCollection.where('barcode',
+              isEqualTo: tProduct.barcode.getOrCrash()))
+          .thenReturn(mockWhereQuery);
+      when(mockWhereQuery.get()).thenThrow(
+          FirebaseException(plugin: 'plugin', code: 'permission-denied'));
+
+      // act
+      final result = await repository.getByBarcode(tProduct.barcode);
+      // assert
+      expect(result, left(const ProductFailure.insufficientPermission()));
+    });
   });
   group('addPhotosAndCreate', () {
     test(
