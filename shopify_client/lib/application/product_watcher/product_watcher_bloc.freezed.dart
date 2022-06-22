@@ -18,9 +18,12 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ProductWatcherState {
   Option<Shop> get shopOption => throw _privateConstructorUsedError;
   Option<Category> get categoryOption => throw _privateConstructorUsedError;
-  KtList<PricedProduct> get products => throw _privateConstructorUsedError;
+  Option<KtList<PricedProduct>> get products =>
+      throw _privateConstructorUsedError;
   int get currentPage => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
+  Option<ProductFailure> get failureOption =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ProductWatcherStateCopyWith<ProductWatcherState> get copyWith =>
@@ -35,9 +38,10 @@ abstract class $ProductWatcherStateCopyWith<$Res> {
   $Res call(
       {Option<Shop> shopOption,
       Option<Category> categoryOption,
-      KtList<PricedProduct> products,
+      Option<KtList<PricedProduct>> products,
       int currentPage,
-      bool isLoading});
+      bool isLoading,
+      Option<ProductFailure> failureOption});
 }
 
 /// @nodoc
@@ -56,6 +60,7 @@ class _$ProductWatcherStateCopyWithImpl<$Res>
     Object? products = freezed,
     Object? currentPage = freezed,
     Object? isLoading = freezed,
+    Object? failureOption = freezed,
   }) {
     return _then(_value.copyWith(
       shopOption: shopOption == freezed
@@ -69,7 +74,7 @@ class _$ProductWatcherStateCopyWithImpl<$Res>
       products: products == freezed
           ? _value.products
           : products // ignore: cast_nullable_to_non_nullable
-              as KtList<PricedProduct>,
+              as Option<KtList<PricedProduct>>,
       currentPage: currentPage == freezed
           ? _value.currentPage
           : currentPage // ignore: cast_nullable_to_non_nullable
@@ -78,6 +83,10 @@ class _$ProductWatcherStateCopyWithImpl<$Res>
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      failureOption: failureOption == freezed
+          ? _value.failureOption
+          : failureOption // ignore: cast_nullable_to_non_nullable
+              as Option<ProductFailure>,
     ));
   }
 }
@@ -92,9 +101,10 @@ abstract class _$$_ProductWatcherStateCopyWith<$Res>
   $Res call(
       {Option<Shop> shopOption,
       Option<Category> categoryOption,
-      KtList<PricedProduct> products,
+      Option<KtList<PricedProduct>> products,
       int currentPage,
-      bool isLoading});
+      bool isLoading,
+      Option<ProductFailure> failureOption});
 }
 
 /// @nodoc
@@ -115,6 +125,7 @@ class __$$_ProductWatcherStateCopyWithImpl<$Res>
     Object? products = freezed,
     Object? currentPage = freezed,
     Object? isLoading = freezed,
+    Object? failureOption = freezed,
   }) {
     return _then(_$_ProductWatcherState(
       shopOption: shopOption == freezed
@@ -128,7 +139,7 @@ class __$$_ProductWatcherStateCopyWithImpl<$Res>
       products: products == freezed
           ? _value.products
           : products // ignore: cast_nullable_to_non_nullable
-              as KtList<PricedProduct>,
+              as Option<KtList<PricedProduct>>,
       currentPage: currentPage == freezed
           ? _value.currentPage
           : currentPage // ignore: cast_nullable_to_non_nullable
@@ -137,6 +148,10 @@ class __$$_ProductWatcherStateCopyWithImpl<$Res>
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      failureOption: failureOption == freezed
+          ? _value.failureOption
+          : failureOption // ignore: cast_nullable_to_non_nullable
+              as Option<ProductFailure>,
     ));
   }
 }
@@ -149,22 +164,25 @@ class _$_ProductWatcherState implements _ProductWatcherState {
       required this.categoryOption,
       required this.products,
       required this.currentPage,
-      required this.isLoading});
+      required this.isLoading,
+      required this.failureOption});
 
   @override
   final Option<Shop> shopOption;
   @override
   final Option<Category> categoryOption;
   @override
-  final KtList<PricedProduct> products;
+  final Option<KtList<PricedProduct>> products;
   @override
   final int currentPage;
   @override
   final bool isLoading;
+  @override
+  final Option<ProductFailure> failureOption;
 
   @override
   String toString() {
-    return 'ProductWatcherState(shopOption: $shopOption, categoryOption: $categoryOption, products: $products, currentPage: $currentPage, isLoading: $isLoading)';
+    return 'ProductWatcherState(shopOption: $shopOption, categoryOption: $categoryOption, products: $products, currentPage: $currentPage, isLoading: $isLoading, failureOption: $failureOption)';
   }
 
   @override
@@ -179,7 +197,9 @@ class _$_ProductWatcherState implements _ProductWatcherState {
             const DeepCollectionEquality().equals(other.products, products) &&
             const DeepCollectionEquality()
                 .equals(other.currentPage, currentPage) &&
-            const DeepCollectionEquality().equals(other.isLoading, isLoading));
+            const DeepCollectionEquality().equals(other.isLoading, isLoading) &&
+            const DeepCollectionEquality()
+                .equals(other.failureOption, failureOption));
   }
 
   @override
@@ -189,7 +209,8 @@ class _$_ProductWatcherState implements _ProductWatcherState {
       const DeepCollectionEquality().hash(categoryOption),
       const DeepCollectionEquality().hash(products),
       const DeepCollectionEquality().hash(currentPage),
-      const DeepCollectionEquality().hash(isLoading));
+      const DeepCollectionEquality().hash(isLoading),
+      const DeepCollectionEquality().hash(failureOption));
 
   @JsonKey(ignore: true)
   @override
@@ -200,22 +221,28 @@ class _$_ProductWatcherState implements _ProductWatcherState {
 
 abstract class _ProductWatcherState implements ProductWatcherState {
   const factory _ProductWatcherState(
-      {required final Option<Shop> shopOption,
-      required final Option<Category> categoryOption,
-      required final KtList<PricedProduct> products,
-      required final int currentPage,
-      required final bool isLoading}) = _$_ProductWatcherState;
+          {required final Option<Shop> shopOption,
+          required final Option<Category> categoryOption,
+          required final Option<KtList<PricedProduct>> products,
+          required final int currentPage,
+          required final bool isLoading,
+          required final Option<ProductFailure> failureOption}) =
+      _$_ProductWatcherState;
 
   @override
   Option<Shop> get shopOption => throw _privateConstructorUsedError;
   @override
   Option<Category> get categoryOption => throw _privateConstructorUsedError;
   @override
-  KtList<PricedProduct> get products => throw _privateConstructorUsedError;
+  Option<KtList<PricedProduct>> get products =>
+      throw _privateConstructorUsedError;
   @override
   int get currentPage => throw _privateConstructorUsedError;
   @override
   bool get isLoading => throw _privateConstructorUsedError;
+  @override
+  Option<ProductFailure> get failureOption =>
+      throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$$_ProductWatcherStateCopyWith<_$_ProductWatcherState> get copyWith =>

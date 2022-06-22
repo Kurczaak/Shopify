@@ -16,7 +16,9 @@ part of 'product_watcher_bloc.dart';
 ///
 /// ([ProductWatcherEventInitialize] initialize){[Shop] shop} with data equality
 ///
-/// ([ProductWatcherEventClearCategory] clearCategory){} with data equality
+/// ([ProductWatcherEventClearCategoryAndProducts] clearCategoryAndProducts){} with data equality
+///
+/// ([ProductWatcherEventWatchAllProductsSelected] watchAllProductsSelected){} with data equality
 ///
 /// }
 @SealedManifest(_ProductWatcherEvent)
@@ -38,8 +40,11 @@ abstract class ProductWatcherEvent {
     required Shop shop,
   }) = ProductWatcherEventInitialize;
 
-  const factory ProductWatcherEvent.clearCategory() =
-      ProductWatcherEventClearCategory;
+  const factory ProductWatcherEvent.clearCategoryAndProducts() =
+      ProductWatcherEventClearCategoryAndProducts;
+
+  const factory ProductWatcherEvent.watchAllProductsSelected() =
+      ProductWatcherEventWatchAllProductsSelected;
 
   bool get isSearchedForProduct =>
       this is ProductWatcherEventSearchedForProduct;
@@ -50,7 +55,11 @@ abstract class ProductWatcherEvent {
 
   bool get isInitialize => this is ProductWatcherEventInitialize;
 
-  bool get isClearCategory => this is ProductWatcherEventClearCategory;
+  bool get isClearCategoryAndProducts =>
+      this is ProductWatcherEventClearCategoryAndProducts;
+
+  bool get isWatchAllProductsSelected =>
+      this is ProductWatcherEventWatchAllProductsSelected;
 
   ProductWatcherEventSearchedForProduct get asSearchedForProduct =>
       this as ProductWatcherEventSearchedForProduct;
@@ -64,8 +73,11 @@ abstract class ProductWatcherEvent {
   ProductWatcherEventInitialize get asInitialize =>
       this as ProductWatcherEventInitialize;
 
-  ProductWatcherEventClearCategory get asClearCategory =>
-      this as ProductWatcherEventClearCategory;
+  ProductWatcherEventClearCategoryAndProducts get asClearCategoryAndProducts =>
+      this as ProductWatcherEventClearCategoryAndProducts;
+
+  ProductWatcherEventWatchAllProductsSelected get asWatchAllProductsSelected =>
+      this as ProductWatcherEventWatchAllProductsSelected;
 
   ProductWatcherEventSearchedForProduct? get asSearchedForProductOrNull {
     final productWatcherEvent = this;
@@ -95,9 +107,18 @@ abstract class ProductWatcherEvent {
         : null;
   }
 
-  ProductWatcherEventClearCategory? get asClearCategoryOrNull {
+  ProductWatcherEventClearCategoryAndProducts?
+      get asClearCategoryAndProductsOrNull {
     final productWatcherEvent = this;
-    return productWatcherEvent is ProductWatcherEventClearCategory
+    return productWatcherEvent is ProductWatcherEventClearCategoryAndProducts
+        ? productWatcherEvent
+        : null;
+  }
+
+  ProductWatcherEventWatchAllProductsSelected?
+      get asWatchAllProductsSelectedOrNull {
+    final productWatcherEvent = this;
+    return productWatcherEvent is ProductWatcherEventWatchAllProductsSelected
         ? productWatcherEvent
         : null;
   }
@@ -107,7 +128,8 @@ abstract class ProductWatcherEvent {
     required R Function(Category category) categoryChosen,
     required R Function() getNextPage,
     required R Function(Shop shop) initialize,
-    required R Function() clearCategory,
+    required R Function() clearCategoryAndProducts,
+    required R Function() watchAllProductsSelected,
   }) {
     final productWatcherEvent = this;
     if (productWatcherEvent is ProductWatcherEventSearchedForProduct) {
@@ -118,8 +140,12 @@ abstract class ProductWatcherEvent {
       return getNextPage();
     } else if (productWatcherEvent is ProductWatcherEventInitialize) {
       return initialize(productWatcherEvent.shop);
-    } else if (productWatcherEvent is ProductWatcherEventClearCategory) {
-      return clearCategory();
+    } else if (productWatcherEvent
+        is ProductWatcherEventClearCategoryAndProducts) {
+      return clearCategoryAndProducts();
+    } else if (productWatcherEvent
+        is ProductWatcherEventWatchAllProductsSelected) {
+      return watchAllProductsSelected();
     } else {
       throw AssertionError();
     }
@@ -130,7 +156,8 @@ abstract class ProductWatcherEvent {
     R Function(Category category)? categoryChosen,
     R Function()? getNextPage,
     R Function(Shop shop)? initialize,
-    R Function()? clearCategory,
+    R Function()? clearCategoryAndProducts,
+    R Function()? watchAllProductsSelected,
     required R Function(ProductWatcherEvent productWatcherEvent) orElse,
   }) {
     final productWatcherEvent = this;
@@ -148,9 +175,15 @@ abstract class ProductWatcherEvent {
       return initialize != null
           ? initialize(productWatcherEvent.shop)
           : orElse(productWatcherEvent);
-    } else if (productWatcherEvent is ProductWatcherEventClearCategory) {
-      return clearCategory != null
-          ? clearCategory()
+    } else if (productWatcherEvent
+        is ProductWatcherEventClearCategoryAndProducts) {
+      return clearCategoryAndProducts != null
+          ? clearCategoryAndProducts()
+          : orElse(productWatcherEvent);
+    } else if (productWatcherEvent
+        is ProductWatcherEventWatchAllProductsSelected) {
+      return watchAllProductsSelected != null
+          ? watchAllProductsSelected()
           : orElse(productWatcherEvent);
     } else {
       throw AssertionError();
@@ -163,7 +196,8 @@ abstract class ProductWatcherEvent {
     void Function(Category category)? categoryChosen,
     void Function()? getNextPage,
     void Function(Shop shop)? initialize,
-    void Function()? clearCategory,
+    void Function()? clearCategoryAndProducts,
+    void Function()? watchAllProductsSelected,
     void Function(ProductWatcherEvent productWatcherEvent)? orElse,
   }) {
     final productWatcherEvent = this;
@@ -191,9 +225,17 @@ abstract class ProductWatcherEvent {
       } else if (orElse != null) {
         orElse(productWatcherEvent);
       }
-    } else if (productWatcherEvent is ProductWatcherEventClearCategory) {
-      if (clearCategory != null) {
-        clearCategory();
+    } else if (productWatcherEvent
+        is ProductWatcherEventClearCategoryAndProducts) {
+      if (clearCategoryAndProducts != null) {
+        clearCategoryAndProducts();
+      } else if (orElse != null) {
+        orElse(productWatcherEvent);
+      }
+    } else if (productWatcherEvent
+        is ProductWatcherEventWatchAllProductsSelected) {
+      if (watchAllProductsSelected != null) {
+        watchAllProductsSelected();
       } else if (orElse != null) {
         orElse(productWatcherEvent);
       }
@@ -207,7 +249,8 @@ abstract class ProductWatcherEvent {
     R Function(Category category)? categoryChosen,
     R Function()? getNextPage,
     R Function(Shop shop)? initialize,
-    R Function()? clearCategory,
+    R Function()? clearCategoryAndProducts,
+    R Function()? watchAllProductsSelected,
     R Function(ProductWatcherEvent productWatcherEvent)? orElse,
   }) {
     final productWatcherEvent = this;
@@ -227,9 +270,15 @@ abstract class ProductWatcherEvent {
       return initialize != null
           ? initialize(productWatcherEvent.shop)
           : orElse?.call(productWatcherEvent);
-    } else if (productWatcherEvent is ProductWatcherEventClearCategory) {
-      return clearCategory != null
-          ? clearCategory()
+    } else if (productWatcherEvent
+        is ProductWatcherEventClearCategoryAndProducts) {
+      return clearCategoryAndProducts != null
+          ? clearCategoryAndProducts()
+          : orElse?.call(productWatcherEvent);
+    } else if (productWatcherEvent
+        is ProductWatcherEventWatchAllProductsSelected) {
+      return watchAllProductsSelected != null
+          ? watchAllProductsSelected()
           : orElse?.call(productWatcherEvent);
     } else {
       throw AssertionError();
@@ -244,8 +293,14 @@ abstract class ProductWatcherEvent {
         categoryChosen,
     required R Function(ProductWatcherEventGetNextPage getNextPage) getNextPage,
     required R Function(ProductWatcherEventInitialize initialize) initialize,
-    required R Function(ProductWatcherEventClearCategory clearCategory)
-        clearCategory,
+    required R Function(
+            ProductWatcherEventClearCategoryAndProducts
+                clearCategoryAndProducts)
+        clearCategoryAndProducts,
+    required R Function(
+            ProductWatcherEventWatchAllProductsSelected
+                watchAllProductsSelected)
+        watchAllProductsSelected,
   }) {
     final productWatcherEvent = this;
     if (productWatcherEvent is ProductWatcherEventSearchedForProduct) {
@@ -256,8 +311,12 @@ abstract class ProductWatcherEvent {
       return getNextPage(productWatcherEvent);
     } else if (productWatcherEvent is ProductWatcherEventInitialize) {
       return initialize(productWatcherEvent);
-    } else if (productWatcherEvent is ProductWatcherEventClearCategory) {
-      return clearCategory(productWatcherEvent);
+    } else if (productWatcherEvent
+        is ProductWatcherEventClearCategoryAndProducts) {
+      return clearCategoryAndProducts(productWatcherEvent);
+    } else if (productWatcherEvent
+        is ProductWatcherEventWatchAllProductsSelected) {
+      return watchAllProductsSelected(productWatcherEvent);
     } else {
       throw AssertionError();
     }
@@ -270,7 +329,14 @@ abstract class ProductWatcherEvent {
         categoryChosen,
     R Function(ProductWatcherEventGetNextPage getNextPage)? getNextPage,
     R Function(ProductWatcherEventInitialize initialize)? initialize,
-    R Function(ProductWatcherEventClearCategory clearCategory)? clearCategory,
+    R Function(
+            ProductWatcherEventClearCategoryAndProducts
+                clearCategoryAndProducts)?
+        clearCategoryAndProducts,
+    R Function(
+            ProductWatcherEventWatchAllProductsSelected
+                watchAllProductsSelected)?
+        watchAllProductsSelected,
     required R Function(ProductWatcherEvent productWatcherEvent) orElse,
   }) {
     final productWatcherEvent = this;
@@ -290,9 +356,15 @@ abstract class ProductWatcherEvent {
       return initialize != null
           ? initialize(productWatcherEvent)
           : orElse(productWatcherEvent);
-    } else if (productWatcherEvent is ProductWatcherEventClearCategory) {
-      return clearCategory != null
-          ? clearCategory(productWatcherEvent)
+    } else if (productWatcherEvent
+        is ProductWatcherEventClearCategoryAndProducts) {
+      return clearCategoryAndProducts != null
+          ? clearCategoryAndProducts(productWatcherEvent)
+          : orElse(productWatcherEvent);
+    } else if (productWatcherEvent
+        is ProductWatcherEventWatchAllProductsSelected) {
+      return watchAllProductsSelected != null
+          ? watchAllProductsSelected(productWatcherEvent)
           : orElse(productWatcherEvent);
     } else {
       throw AssertionError();
@@ -307,8 +379,14 @@ abstract class ProductWatcherEvent {
         categoryChosen,
     void Function(ProductWatcherEventGetNextPage getNextPage)? getNextPage,
     void Function(ProductWatcherEventInitialize initialize)? initialize,
-    void Function(ProductWatcherEventClearCategory clearCategory)?
-        clearCategory,
+    void Function(
+            ProductWatcherEventClearCategoryAndProducts
+                clearCategoryAndProducts)?
+        clearCategoryAndProducts,
+    void Function(
+            ProductWatcherEventWatchAllProductsSelected
+                watchAllProductsSelected)?
+        watchAllProductsSelected,
     void Function(ProductWatcherEvent productWatcherEvent)? orElse,
   }) {
     final productWatcherEvent = this;
@@ -336,9 +414,17 @@ abstract class ProductWatcherEvent {
       } else if (orElse != null) {
         orElse(productWatcherEvent);
       }
-    } else if (productWatcherEvent is ProductWatcherEventClearCategory) {
-      if (clearCategory != null) {
-        clearCategory(productWatcherEvent);
+    } else if (productWatcherEvent
+        is ProductWatcherEventClearCategoryAndProducts) {
+      if (clearCategoryAndProducts != null) {
+        clearCategoryAndProducts(productWatcherEvent);
+      } else if (orElse != null) {
+        orElse(productWatcherEvent);
+      }
+    } else if (productWatcherEvent
+        is ProductWatcherEventWatchAllProductsSelected) {
+      if (watchAllProductsSelected != null) {
+        watchAllProductsSelected(productWatcherEvent);
       } else if (orElse != null) {
         orElse(productWatcherEvent);
       }
@@ -354,7 +440,14 @@ abstract class ProductWatcherEvent {
         categoryChosen,
     R Function(ProductWatcherEventGetNextPage getNextPage)? getNextPage,
     R Function(ProductWatcherEventInitialize initialize)? initialize,
-    R Function(ProductWatcherEventClearCategory clearCategory)? clearCategory,
+    R Function(
+            ProductWatcherEventClearCategoryAndProducts
+                clearCategoryAndProducts)?
+        clearCategoryAndProducts,
+    R Function(
+            ProductWatcherEventWatchAllProductsSelected
+                watchAllProductsSelected)?
+        watchAllProductsSelected,
     R Function(ProductWatcherEvent productWatcherEvent)? orElse,
   }) {
     final productWatcherEvent = this;
@@ -374,9 +467,15 @@ abstract class ProductWatcherEvent {
       return initialize != null
           ? initialize(productWatcherEvent)
           : orElse?.call(productWatcherEvent);
-    } else if (productWatcherEvent is ProductWatcherEventClearCategory) {
-      return clearCategory != null
-          ? clearCategory(productWatcherEvent)
+    } else if (productWatcherEvent
+        is ProductWatcherEventClearCategoryAndProducts) {
+      return clearCategoryAndProducts != null
+          ? clearCategoryAndProducts(productWatcherEvent)
+          : orElse?.call(productWatcherEvent);
+    } else if (productWatcherEvent
+        is ProductWatcherEventWatchAllProductsSelected) {
+      return watchAllProductsSelected != null
+          ? watchAllProductsSelected(productWatcherEvent)
           : orElse?.call(productWatcherEvent);
     } else {
       throw AssertionError();
@@ -459,15 +558,29 @@ class ProductWatcherEventInitialize extends ProductWatcherEvent
       ];
 }
 
-/// (([ProductWatcherEventClearCategory] : [ProductWatcherEvent]) clearCategory){}
+/// (([ProductWatcherEventClearCategoryAndProducts] : [ProductWatcherEvent]) clearCategoryAndProducts){}
 ///
 /// with data equality
-class ProductWatcherEventClearCategory extends ProductWatcherEvent
+class ProductWatcherEventClearCategoryAndProducts extends ProductWatcherEvent
     with EquatableMixin {
-  const ProductWatcherEventClearCategory() : super._internal();
+  const ProductWatcherEventClearCategoryAndProducts() : super._internal();
 
   @override
-  String toString() => 'ProductWatcherEvent.clearCategory()';
+  String toString() => 'ProductWatcherEvent.clearCategoryAndProducts()';
+
+  @override
+  List<Object?> get props => [];
+}
+
+/// (([ProductWatcherEventWatchAllProductsSelected] : [ProductWatcherEvent]) watchAllProductsSelected){}
+///
+/// with data equality
+class ProductWatcherEventWatchAllProductsSelected extends ProductWatcherEvent
+    with EquatableMixin {
+  const ProductWatcherEventWatchAllProductsSelected() : super._internal();
+
+  @override
+  String toString() => 'ProductWatcherEvent.watchAllProductsSelected()';
 
   @override
   List<Object?> get props => [];

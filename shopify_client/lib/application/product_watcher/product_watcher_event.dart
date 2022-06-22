@@ -6,5 +6,6 @@ abstract class _ProductWatcherEvent {
   void categoryChosen(Category category);
   void getNextPage();
   void initialize(Shop shop);
-  void clearCategory();
+  void clearCategoryAndProducts();
+  void watchAllProductsSelected();
 }
