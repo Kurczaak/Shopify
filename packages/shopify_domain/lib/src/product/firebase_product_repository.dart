@@ -113,10 +113,12 @@ class FirebaseProductRepositoryImpl implements ShopifyProductRepository {
       } on TimeoutException {
         yield left(const ProductFailure.timeout(timeoutDuration));
       } on FirebaseException catch (e) {
+        print(e.code);
         if (e.code.contains('permission-denied')) {
           yield left(const ProductFailure.insufficientPermission());
+        } else {
+          yield left(const ProductFailure.unexpected());
         }
-        yield left(const ProductFailure.unexpected());
       }
     } else {
       yield left(const ProductFailure.noInternetConnection());
@@ -145,8 +147,9 @@ class FirebaseProductRepositoryImpl implements ShopifyProductRepository {
       } on FirebaseException catch (e) {
         if (e.code.contains('permission-denied')) {
           yield left(const ProductFailure.insufficientPermission());
+        } else {
+          yield left(const ProductFailure.unexpected());
         }
-        yield left(const ProductFailure.unexpected());
       }
     } else {
       yield left(const ProductFailure.noInternetConnection());
@@ -228,7 +231,6 @@ class FirebaseProductRepositoryImpl implements ShopifyProductRepository {
         if (e.code.contains('permission-denied')) {
           return left(const ProductFailure.insufficientPermission());
         } else {
-          print(e);
           return left(const ProductFailure.unexpected());
         }
       } on TimeoutException catch (_) {

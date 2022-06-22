@@ -17,13 +17,31 @@ part 'product_watcher_bloc.freezed.dart';
 class ProductWatcherBloc
     extends Bloc<ProductWatcherEvent, ProductWatcherState> {
   final IProductRepository repository;
+
+  ProductWatcherEvent? _previousEvent;
+
+  @override
+  void onEvent(ProductWatcherEvent event) {
+    _previousEvent = event;
+    super.onEvent(event);
+  }
+
+  void retry() {
+    if (_previousEvent != null) {
+      add(_previousEvent!);
+    }
+  }
+
   ProductWatcherBloc({required this.repository})
       : super(ProductWatcherState.initial()) {
     on<ProductWatcherEvent>((event, emit) async {
       await event.when(
           watchAllProductsSelected: () async {
             await state.shopOption.fold(() async => null, (shop) async {
-              emit(state.copyWith(productsOption: none(), isLoading: true));
+              emit(state.copyWith(
+                  productsOption: none(),
+                  isLoading: true,
+                  failureOption: none()));
 
               await emit.forEach(repository.watchAllFromShop(shop),
                   onData:
@@ -38,8 +56,11 @@ class ProductWatcherBloc
             });
           },
           clearCategoryAndProducts: () {
-            emit(
-                state.copyWith(categoryOption: none(), productsOption: none()));
+            emit(state.copyWith(
+                categoryOption: none(),
+                productsOption: none(),
+                failureOption: none(),
+                isLoading: false));
           },
           initialize: (shop) {
             emit(state.copyWith(shopOption: some(shop)));
@@ -49,7 +70,10 @@ class ProductWatcherBloc
                 () async => emit(state.copyWith(
                     failureOption: some(const ProductFailure.unexpected()))),
                 (shop) async {
-              emit(state.copyWith(isLoading: true, productsOption: none()));
+              emit(state.copyWith(
+                  isLoading: true,
+                  productsOption: none(),
+                  failureOption: none()));
               final failureOrProducts = await state.categoryOption.fold(
                   () async => await repository.searchInShop(shop, query),
                   (category) async => await repository.searchInShopWithCategory(
@@ -72,7 +96,9 @@ class ProductWatcherBloc
                     failureOption: some(const ProductFailure.unexpected()))),
                 (shop) async {
               emit(state.copyWith(
-                  categoryOption: some(category), productsOption: none()));
+                  categoryOption: some(category),
+                  productsOption: none(),
+                  failureOption: none()));
               emit(state.copyWith(isLoading: true));
               await state.categoryOption.fold(() async => null,
                   (category) async {
