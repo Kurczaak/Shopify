@@ -86,36 +86,36 @@ flutter:
     - images/test/test_logo.jpg
     - images/test/too_small_logo.jpg
     - images/test/too_big_logo.jpg
-    - images/categories/bio.jpg
-    - images/categories/fruits.jpg
-    - images/categories/vegetables.jpg
-    - images/categories/meat.jpg
-    - images/categories/fishAndSeafood.jpg
-    - images/categories/coldCuts.jpg
-    - images/categories/dairy.jpg
-    - images/categories/bread.jpg
-    - images/categories/cakes.jpg
-    - images/categories/fatsAndOils.jpg
-    - images/categories/frozenProducts.jpg
-    - images/categories/coffeeTea.jpg
-    - images/categories/sweets.jpg
-    - images/categories/drinkables.jpg
-    - images/categories/pastaRiceGroats.jpg
-    - images/categories/jamsAndHoney.jpg
-    - images/categories/flourSugarSalt.jpg
-    - images/categories/spices.jpg
-    - images/categories/sauces.jpg
-    - images/categories/saltySnacks.jpg
-    - images/categories/baking.jpg
-    - images/categories/readyMeals.jpg
-    - images/categories/cannedFood.jpg
-    - images/categories/forKids.jpg
-    - images/categories/forPets.jpg
-    - images/categories/cleaningChemicals.jpg
-    - images/categories/cosmetics.jpg
-    - images/categories/beers.jpg
-    - images/categories/wines.jpg
-    - images/categories/otherAlcohols.jpg
+    - images/categories/bio.png
+    - images/categories/fruits.png
+    - images/categories/vegetables.png
+    - images/categories/meat.png
+    - images/categories/fishAndSeafood.png
+    - images/categories/coldCuts.png
+    - images/categories/dairy.png
+    - images/categories/bread.png
+    - images/categories/cakes.png
+    - images/categories/fatsAndOils.png
+    - images/categories/frozenProducts.png
+    - images/categories/coffeeTea.png
+    - images/categories/sweets.png
+    - images/categories/drinkables.png
+    - images/categories/pastaRiceGroats.png
+    - images/categories/jamsAndHoney.png
+    - images/categories/flourSugarSalt.png
+    - images/categories/spices.png
+    - images/categories/sauces.png
+    - images/categories/saltySnacks.png
+    - images/categories/baking.png
+    - images/categories/readyMeals.png
+    - images/categories/cannedFood.png
+    - images/categories/forKids.png
+    - images/categories/forPets.png
+    - images/categories/cleaningChemicals.png
+    - images/categories/cosmetics.png
+    - images/categories/beers.png
+    - images/categories/wines.png
+    - images/categories/otherAlcohols.png
     # An image asset can refer to one or more resolution-specific "variants", see
     # https://flutter.dev/assets-and-images/#resolution-aware.
     # For details regarding adding assets from package dependencies, see
