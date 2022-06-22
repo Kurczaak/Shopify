@@ -13,6 +13,7 @@ class PricedProductDto with _$PricedProductDto {
 
   const factory PricedProductDto({
     @Default('') @JsonKey(ignore: true) String id,
+    required String productId,
     required String barcode,
     required String name,
     required String brand,
@@ -24,7 +25,7 @@ class PricedProductDto with _$PricedProductDto {
   }) = _PricedProductDto;
 
   PricedProduct toDomain() => PricedProduct(
-        id: UniqueId.fromUniqueString(id),
+        productId: UniqueId.fromUniqueString(productId),
         barcode: Barcode(barcode),
         category: Category.fromString(category),
         name: ProductName(name),

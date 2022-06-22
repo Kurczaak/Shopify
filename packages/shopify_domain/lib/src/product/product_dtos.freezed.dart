@@ -22,6 +22,7 @@ PricedProductDto _$PricedProductDtoFromJson(Map<String, dynamic> json) {
 mixin _$PricedProductDto {
   @JsonKey(ignore: true)
   String get id => throw _privateConstructorUsedError;
+  String get productId => throw _privateConstructorUsedError;
   String get barcode => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get brand => throw _privateConstructorUsedError;
@@ -44,6 +45,7 @@ abstract class $PricedProductDtoCopyWith<$Res> {
       _$PricedProductDtoCopyWithImpl<$Res>;
   $Res call(
       {@JsonKey(ignore: true) String id,
+      String productId,
       String barcode,
       String name,
       String brand,
@@ -69,6 +71,7 @@ class _$PricedProductDtoCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
+    Object? productId = freezed,
     Object? barcode = freezed,
     Object? name = freezed,
     Object? brand = freezed,
@@ -82,6 +85,10 @@ class _$PricedProductDtoCopyWithImpl<$Res>
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      productId: productId == freezed
+          ? _value.productId
+          : productId // ignore: cast_nullable_to_non_nullable
               as String,
       barcode: barcode == freezed
           ? _value.barcode
@@ -142,6 +149,7 @@ abstract class _$$_PricedProductDtoCopyWith<$Res>
   @override
   $Res call(
       {@JsonKey(ignore: true) String id,
+      String productId,
       String barcode,
       String name,
       String brand,
@@ -171,6 +179,7 @@ class __$$_PricedProductDtoCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
+    Object? productId = freezed,
     Object? barcode = freezed,
     Object? name = freezed,
     Object? brand = freezed,
@@ -184,6 +193,10 @@ class __$$_PricedProductDtoCopyWithImpl<$Res>
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      productId: productId == freezed
+          ? _value.productId
+          : productId // ignore: cast_nullable_to_non_nullable
               as String,
       barcode: barcode == freezed
           ? _value.barcode
@@ -226,6 +239,7 @@ class __$$_PricedProductDtoCopyWithImpl<$Res>
 class _$_PricedProductDto extends _PricedProductDto {
   const _$_PricedProductDto(
       {@JsonKey(ignore: true) this.id = '',
+      required this.productId,
       required this.barcode,
       required this.name,
       required this.brand,
@@ -242,6 +256,8 @@ class _$_PricedProductDto extends _PricedProductDto {
   @override
   @JsonKey(ignore: true)
   final String id;
+  @override
+  final String productId;
   @override
   final String barcode;
   @override
@@ -261,7 +277,7 @@ class _$_PricedProductDto extends _PricedProductDto {
 
   @override
   String toString() {
-    return 'PricedProductDto(id: $id, barcode: $barcode, name: $name, brand: $brand, photo: $photo, category: $category, shopId: $shopId, weight: $weight, price: $price)';
+    return 'PricedProductDto(id: $id, productId: $productId, barcode: $barcode, name: $name, brand: $brand, photo: $photo, category: $category, shopId: $shopId, weight: $weight, price: $price)';
   }
 
   @override
@@ -270,6 +286,7 @@ class _$_PricedProductDto extends _PricedProductDto {
         (other.runtimeType == runtimeType &&
             other is _$_PricedProductDto &&
             const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.productId, productId) &&
             const DeepCollectionEquality().equals(other.barcode, barcode) &&
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality().equals(other.brand, brand) &&
@@ -285,6 +302,7 @@ class _$_PricedProductDto extends _PricedProductDto {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(productId),
       const DeepCollectionEquality().hash(barcode),
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(brand),
@@ -308,6 +326,7 @@ class _$_PricedProductDto extends _PricedProductDto {
 abstract class _PricedProductDto extends PricedProductDto {
   const factory _PricedProductDto(
       {@JsonKey(ignore: true) final String id,
+      required final String productId,
       required final String barcode,
       required final String name,
       required final String brand,
@@ -324,6 +343,8 @@ abstract class _PricedProductDto extends PricedProductDto {
   @override
   @JsonKey(ignore: true)
   String get id => throw _privateConstructorUsedError;
+  @override
+  String get productId => throw _privateConstructorUsedError;
   @override
   String get barcode => throw _privateConstructorUsedError;
   @override
