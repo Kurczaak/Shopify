@@ -24,7 +24,7 @@ class PricedProduct with _$PricedProduct {
   const PricedProduct._();
 
   const factory PricedProduct({
-    required UniqueId id,
+    required UniqueId productId,
     required Barcode barcode,
     required ProductName name,
     required BrandName brand,
@@ -36,22 +36,22 @@ class PricedProduct with _$PricedProduct {
   }) = _PricedProduct;
 
   Either<ValueFailure, Unit> get failureOrUnit {
-    return this.id.failureOrUnit.andThen(
-          barcode.failureOrUnit.andThen(
-            category.failureOrUnit.andThen(
-              name.failureOrUnit.andThen(
-                brand.failureOrUnit.andThen(
-                  photo.failureOrUnit.andThen(
-                    weight.failureOrUnit.andThen(
-                      price.failureOrUnit.andThen(
-                        shopId.failureOrUnit,
-                      ),
-                    ),
+    return productId.failureOrUnit.andThen(
+      barcode.failureOrUnit.andThen(
+        category.failureOrUnit.andThen(
+          name.failureOrUnit.andThen(
+            brand.failureOrUnit.andThen(
+              photo.failureOrUnit.andThen(
+                weight.failureOrUnit.andThen(
+                  price.failureOrUnit.andThen(
+                    shopId.failureOrUnit,
                   ),
                 ),
               ),
             ),
           ),
-        );
+        ),
+      ),
+    );
   }
 }

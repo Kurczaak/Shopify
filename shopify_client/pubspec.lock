@@ -823,7 +823,7 @@ packages:
     source: hosted
     version: "0.1.4"
   material_floating_search_bar:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: material_floating_search_bar
       url: "https://pub.dartlang.org"

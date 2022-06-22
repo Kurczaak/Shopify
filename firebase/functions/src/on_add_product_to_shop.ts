@@ -5,7 +5,6 @@ exports.createPricedProduct = functions.firestore
     .document("shops/{shopId}/products/{productId}")
     .onCreate(async (snapshot, context) => {
       const shopId = context.params.shopId;
-      const productId = context.params.productId;
       const shopProduct = snapshot.data();
       const db = admin.firestore();
       const productDocument = db.collection("products").
@@ -17,7 +16,7 @@ exports.createPricedProduct = functions.firestore
 
       if (product != null && shop != null) {
         const newdoc = db.collection("pricedProducts").add({
-          "productId": productId,
+          "productId": shopProduct.productId,
           "barcode": product.barcode,
           "name": product.name,
           "brand": product.brand,

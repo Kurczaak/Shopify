@@ -11,7 +11,7 @@ abstract class IProductRepository {
       watchAllNearbyByCategory(double radius, Category category);
   Future<Either<ProductFailure, KtList<Product>>> searchForProducts(String term,
       {int page = 0});
-
+  // Shop searching
   Stream<Either<ProductFailure, KtList<PricedProduct>>> watchAllFromShop(
       Shop shop);
   Stream<Either<ProductFailure, KtList<PricedProduct>>>
@@ -19,4 +19,8 @@ abstract class IProductRepository {
   Future<Either<ProductFailure, KtList<PricedProduct>>> searchInShop(
       Shop shop, String term,
       {int page = 0});
+
+  Future<Either<ProductFailure, KtList<PricedProduct>>>
+      searchInShopWithCategory(Shop shop, String term, Category category,
+          {int page = 0});
 }

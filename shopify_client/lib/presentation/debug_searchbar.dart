@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 
-class ShopifySearchBar extends StatefulWidget {
-  const ShopifySearchBar({
+class DebugShopifySearchBar extends StatefulWidget {
+  const DebugShopifySearchBar({
     Key? key,
     required this.onQueryChanged,
     required this.onSubmitted,
@@ -20,15 +20,15 @@ class ShopifySearchBar extends StatefulWidget {
   final List<String>? searchHistory;
   final Widget child;
 
-  static ShopifySearchBarState? of(BuildContext context) {
-    return context.findAncestorStateOfType<ShopifySearchBarState>();
+  static DebugShopifySearchBarState? of(BuildContext context) {
+    return context.findAncestorStateOfType<DebugShopifySearchBarState>();
   }
 
   @override
-  State<ShopifySearchBar> createState() => ShopifySearchBarState();
+  State<DebugShopifySearchBar> createState() => DebugShopifySearchBarState();
 }
 
-class ShopifySearchBarState extends State<ShopifySearchBar> {
+class DebugShopifySearchBarState extends State<DebugShopifySearchBar> {
   static const historyLength = 5;
   late List<String> _searchHistory;
   List<String> _filteredSearchHistory = [];

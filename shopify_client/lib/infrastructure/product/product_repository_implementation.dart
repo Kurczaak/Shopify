@@ -52,4 +52,12 @@ class ProductRepositoryImpl implements IProductRepository {
     // TODO: implement watchAllNearbyByCategory
     throw UnimplementedError();
   }
+
+  @override
+  Future<Either<ProductFailure, KtList<PricedProduct>>>
+      searchInShopWithCategory(Shop shop, String term, Category category,
+          {int page = 0}) {
+    return productSearcher.searchInShopWithCategory(term, shop, category,
+        page: page);
+  }
 }
