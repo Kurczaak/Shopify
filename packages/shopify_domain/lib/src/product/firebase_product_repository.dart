@@ -117,7 +117,6 @@ class FirebaseProductRepositoryImpl implements ShopifyProductRepository {
   Stream<Either<ProductFailure, KtList<PricedProduct>>>
       watchAllFromShopByCategory(Shop shop, Category category) async* {
     if (await networkInfo.isConnected) {
-      print(category.getOrCrash().stringify);
       final query = await firestore
           .collection('pricedProducts')
           .where('shopId', isEqualTo: shop.id.getOrCrash())

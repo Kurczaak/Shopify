@@ -141,7 +141,7 @@ void main() {
     );
 
     test(
-      'should return a failure if no results are fetched',
+      'should return an empty list if no results are fetched',
       () async {
         // arrange
         when(mockAlgoliaQuerySnapshot.toMap())
@@ -149,7 +149,7 @@ void main() {
         // act
         final result = await productSearcher.searchInShop(searchTerm, tShop);
         // assert
-        expect(result, left(const ProductFailure.noMoreProducts()));
+        expect(result, right(const KtList.empty()));
       },
     );
 
@@ -245,7 +245,7 @@ void main() {
     );
 
     test(
-      'should return a failure if no results are fetched',
+      'should return an empty list if no results are fetched',
       () async {
         // arrange
         when(mockAlgoliaQuerySnapshot.toMap())
@@ -253,7 +253,7 @@ void main() {
         // act
         final result = await productSearcher.search(searchTerm);
         // assert
-        expect(result, left(const ProductFailure.noMoreProducts()));
+        expect(result, right(const KtList.empty()));
       },
     );
 

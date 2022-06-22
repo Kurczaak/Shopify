@@ -75,8 +75,9 @@ void main() async {
   final tPrice = Price.fromPrimitives(12.99, 'zl');
 
   final tAddedProductDto = PricedProductDto(
+    productId: tProduct.id.getOrCrash(),
     barcode: tProduct.barcode.getOrCrash(),
-    category: tProduct.category.getOrCrash().stringify,
+    category: tProduct.category.getOrCrash().name,
     name: tProduct.name.getOrCrash(),
     brand: tProduct.brand.getOrCrash(),
     photo: 'https://www.photo.com/1',
@@ -126,12 +127,12 @@ void main() async {
               isEqualTo: tShop.id.getOrCrash()))
           .thenReturn(mockWhereSHopIdQUery);
       when(mockWhereSHopIdQUery.where('category',
-              isEqualTo: tProduct.category.getOrCrash().stringify))
+              isEqualTo: tProduct.category.getOrCrash().name))
           .thenAnswer((_) => fakeFirestore
               .collection('pricedProducts')
               .where('shopId', isEqualTo: tShop.id.getOrCrash())
               .where('category',
-                  isEqualTo: tProduct.category.getOrCrash().stringify));
+                  isEqualTo: tProduct.category.getOrCrash().name));
     });
     test(
       'should check the internet connection',
@@ -186,7 +187,7 @@ void main() async {
         // assert
         await untilCalled(mockFirestore.collection('pricedProducts'));
         verify(mockWhereSHopIdQUery.where('category',
-            isEqualTo: tProduct.category.getOrCrash().stringify));
+            isEqualTo: tProduct.category.getOrCrash().name));
       },
     );
 

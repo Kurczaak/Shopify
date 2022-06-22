@@ -1,7 +1,7 @@
 {
   "hits": [
     {
-      "id": "ABC-123",
+      "productId": "ABC-123",
       "photo": "https://www.photo.com/1",
       "barcode": "123456789",
       "brand": "test_brand",
