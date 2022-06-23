@@ -2,6 +2,22 @@ part of 'product_preview_bloc.dart';
 
 @freezed
 class ProductPreviewState with _$ProductPreviewState {
+  const ProductPreviewState._();
+
+  Option<Unit> get shopAndProductOption {
+    if (shopOption.isNone() || productOption.isNone()) {
+      return none();
+    } else {
+      return some(unit);
+    }
+  }
+
+  Shop get getShopOrCrash => shopOption.getOrElse(() => throw UnimplementedError(
+      'An error ocurred when calling getShopOrCrash in product preview state'));
+  Product get getProductOrCrash =>
+      productOption.getOrElse(() => throw UnimplementedError(
+          'An error ocurred when calling getProductOrCrash in product preview state'));
+
   const factory ProductPreviewState({
     required Option<Shop> shopOption,
     required Option<Product> productOption,

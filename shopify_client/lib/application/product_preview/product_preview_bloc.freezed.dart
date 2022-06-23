@@ -144,13 +144,14 @@ class __$$_ProductPreviewStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ProductPreviewState implements _ProductPreviewState {
+class _$_ProductPreviewState extends _ProductPreviewState {
   const _$_ProductPreviewState(
       {required this.shopOption,
       required this.productOption,
       required this.isFavourite,
       required this.failureOption,
-      required this.isLoading});
+      required this.isLoading})
+      : super._();
 
   @override
   final Option<Shop> shopOption;
@@ -200,13 +201,14 @@ class _$_ProductPreviewState implements _ProductPreviewState {
           this, _$identity);
 }
 
-abstract class _ProductPreviewState implements ProductPreviewState {
+abstract class _ProductPreviewState extends ProductPreviewState {
   const factory _ProductPreviewState(
       {required final Option<Shop> shopOption,
       required final Option<Product> productOption,
       required final bool isFavourite,
       required final Option<ProductFailure> failureOption,
       required final bool isLoading}) = _$_ProductPreviewState;
+  const _ProductPreviewState._() : super._();
 
   @override
   Option<Shop> get shopOption => throw _privateConstructorUsedError;

@@ -20,7 +20,7 @@ class ProductPreviewBloc
   ProductPreviewBloc(this.productRepository)
       : super(ProductPreviewState.initial()) {
     on<ProductPreviewEvent>((event, emit) async {
-      event.when(
+      await event.when(
         initialized: (Shop shop, UniqueId productId) async {
           emit(state.copyWith(isLoading: true));
           final productOrFailure =
@@ -29,7 +29,9 @@ class ProductPreviewBloc
               (failure) => emit(ProductPreviewState.error(
                   previousState: state, failure: failure)),
               (product) => emit(state.copyWith(
-                  productOption: some(product), shopOption: some(shop))));
+                  productOption: some(product),
+                  shopOption: some(shop),
+                  isLoading: false)));
         },
       );
     });
