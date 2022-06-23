@@ -250,14 +250,12 @@ class CustomAction extends StatelessWidget {
               color: bar.style.iconColor,
               duration: duration * 0.5,
               onTap: () {
-                print('KURWAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
                 if (!isEmpty) {
-                  print('XDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD');
                   bar.clear();
                   controller.clear();
                   onClear();
                 } else {
-                  controller.open();
+                  controller.close();
                   onSubmitted(query);
                   bar.isOpen =
                       !bar.isOpen || (!bar.hasFocus && bar.isAlwaysOpened);
