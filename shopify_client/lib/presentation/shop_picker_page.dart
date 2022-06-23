@@ -81,7 +81,8 @@ class _ShopPickerPageState extends State<ShopPickerPage> {
                               shop: selectedShop!,
                               onConfirm: () {
                                 context.router.popAndPush(
-                                    DebugShopRoute(shop: selectedShop!));
+                                    ShopProductsBrowserRoute(
+                                        shop: selectedShop!));
                               }));
                     },
                   )
@@ -113,7 +114,7 @@ class _ShopPickerPageState extends State<ShopPickerPage> {
                             fontWeight: FontWeight.bold, fontSize: 22),
                       ),
                       const Text(
-                        'Make sure you have an access to internet, location permission enabled or try again later',
+                        'Make sure you have an access to the internet, location permission enabled or try again later',
                         textAlign: TextAlign.center,
                       ),
                       const SizedBox(height: 10),
