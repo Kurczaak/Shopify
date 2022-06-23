@@ -13,10 +13,11 @@ import 'package:shopify_domain/product.dart' as _i11;
 import 'package:shopify_domain/product/shopify_product_searcher.dart' as _i12;
 import 'package:shopify_domain/shop/shopify_shop_repository.dart' as _i15;
 
-import 'application/auth/auth_bloc.dart' as _i18;
-import 'application/auth/sign_in_form/sign_in_form_bloc.dart' as _i19;
-import 'application/product_watcher/product_watcher_bloc.dart' as _i16;
-import 'application/shop_watcher/shop_watcher_bloc.dart' as _i17;
+import 'application/auth/auth_bloc.dart' as _i19;
+import 'application/auth/sign_in_form/sign_in_form_bloc.dart' as _i20;
+import 'application/product_preview/product_preview_bloc.dart' as _i16;
+import 'application/product_watcher/product_watcher_bloc.dart' as _i17;
+import 'application/shop_watcher/shop_watcher_bloc.dart' as _i18;
 import 'domain/auth/i_auth_facade.dart' as _i3;
 import 'domain/core/i_location_facade.dart' as _i6;
 import 'domain/product/i_product_repository.dart' as _i9;
@@ -41,12 +42,14 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       productSearcher: get<_i12.ShopifyProductSearcher>()));
   gh.lazySingleton<_i13.IShopRepository>(
       () => _i14.ShopRepositoryImpl(get<_i15.ShopifyShopRepository>()));
-  gh.factory<_i16.ProductWatcherBloc>(
-      () => _i16.ProductWatcherBloc(repository: get<_i9.IProductRepository>()));
-  gh.factory<_i17.ShopWatcherBloc>(() => _i17.ShopWatcherBloc(
+  gh.factory<_i16.ProductPreviewBloc>(
+      () => _i16.ProductPreviewBloc(get<_i9.IProductRepository>()));
+  gh.factory<_i17.ProductWatcherBloc>(
+      () => _i17.ProductWatcherBloc(repository: get<_i9.IProductRepository>()));
+  gh.factory<_i18.ShopWatcherBloc>(() => _i18.ShopWatcherBloc(
       get<_i13.IShopRepository>(), get<_i6.ILocationFacade>()));
-  gh.lazySingleton<_i18.AuthBloc>(() => _i18.AuthBloc(get<_i3.IAuthFacade>()));
-  gh.factory<_i19.SignInFormBloc>(
-      () => _i19.SignInFormBloc(get<_i3.IAuthFacade>(), get<_i18.AuthBloc>()));
+  gh.lazySingleton<_i19.AuthBloc>(() => _i19.AuthBloc(get<_i3.IAuthFacade>()));
+  gh.factory<_i20.SignInFormBloc>(
+      () => _i20.SignInFormBloc(get<_i3.IAuthFacade>(), get<_i19.AuthBloc>()));
   return get;
 }
