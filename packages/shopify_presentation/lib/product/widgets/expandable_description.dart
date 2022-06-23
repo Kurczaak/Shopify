@@ -24,9 +24,15 @@ class ExpandableDescription extends StatelessWidget {
                 title,
                 style: const TextStyle(fontWeight: FontWeight.bold),
               ),
-              collapsed: Text(description.getOrCrash(),
-                  overflow: TextOverflow.ellipsis),
-              expanded: Text(description.getOrCrash()),
+              collapsed: Text(
+                description.getOrCrash(),
+                overflow: TextOverflow.ellipsis,
+                style: const TextStyle(fontWeight: FontWeight.normal),
+              ),
+              expanded: Text(
+                description.getOrCrash(),
+                style: const TextStyle(fontWeight: FontWeight.normal),
+              ),
             ),
           );
   }
