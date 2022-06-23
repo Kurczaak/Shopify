@@ -23,6 +23,8 @@ void main() {
     bloc = ProductPreviewBloc(mockProductRepository);
     tShop = Shop.empty();
     tProduct = Product.empty();
+    when(mockProductRepository.getProductById(tProduct.id))
+        .thenAnswer((_) async => right(tProduct));
   });
   blocTest('check initial state',
       build: () => bloc,
@@ -49,6 +51,8 @@ void main() {
     blocTest(
       'should emit [LOADING] and [INITIALIZED] states',
       build: () => bloc,
+      act: (ProductPreviewBloc bloc) => bloc.add(
+          ProductPreviewEvent.initialized(shop: tShop, productId: tProduct.id)),
       expect: () => [
         ProductPreviewState.initial().copyWith(isLoading: true),
         ProductPreviewState.initial().copyWith(
@@ -65,6 +69,8 @@ void main() {
         when(mockProductRepository.getProductById(tProduct.id)).thenAnswer(
             (_) async => left(const ProductFailure.insufficientPermission()));
       },
+      act: (ProductPreviewBloc bloc) => bloc.add(
+          ProductPreviewEvent.initialized(shop: tShop, productId: tProduct.id)),
       expect: () => [
         ProductPreviewState.initial().copyWith(isLoading: true),
         ProductPreviewState.error(
