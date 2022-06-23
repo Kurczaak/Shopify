@@ -374,6 +374,7 @@ ShopProductDto _$ShopProductDtoFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$ShopProductDto {
   PriceDto get price => throw _privateConstructorUsedError;
+  String get productId => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -386,7 +387,7 @@ abstract class $ShopProductDtoCopyWith<$Res> {
   factory $ShopProductDtoCopyWith(
           ShopProductDto value, $Res Function(ShopProductDto) then) =
       _$ShopProductDtoCopyWithImpl<$Res>;
-  $Res call({PriceDto price});
+  $Res call({PriceDto price, String productId});
 
   $PriceDtoCopyWith<$Res> get price;
 }
@@ -403,12 +404,17 @@ class _$ShopProductDtoCopyWithImpl<$Res>
   @override
   $Res call({
     Object? price = freezed,
+    Object? productId = freezed,
   }) {
     return _then(_value.copyWith(
       price: price == freezed
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
               as PriceDto,
+      productId: productId == freezed
+          ? _value.productId
+          : productId // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 
@@ -427,7 +433,7 @@ abstract class _$$_ShopProductDtoCopyWith<$Res>
           _$_ShopProductDto value, $Res Function(_$_ShopProductDto) then) =
       __$$_ShopProductDtoCopyWithImpl<$Res>;
   @override
-  $Res call({PriceDto price});
+  $Res call({PriceDto price, String productId});
 
   @override
   $PriceDtoCopyWith<$Res> get price;
@@ -447,12 +453,17 @@ class __$$_ShopProductDtoCopyWithImpl<$Res>
   @override
   $Res call({
     Object? price = freezed,
+    Object? productId = freezed,
   }) {
     return _then(_$_ShopProductDto(
       price: price == freezed
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
               as PriceDto,
+      productId: productId == freezed
+          ? _value.productId
+          : productId // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -460,17 +471,19 @@ class __$$_ShopProductDtoCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_ShopProductDto implements _ShopProductDto {
-  const _$_ShopProductDto({required this.price});
+  const _$_ShopProductDto({required this.price, required this.productId});
 
   factory _$_ShopProductDto.fromJson(Map<String, dynamic> json) =>
       _$$_ShopProductDtoFromJson(json);
 
   @override
   final PriceDto price;
+  @override
+  final String productId;
 
   @override
   String toString() {
-    return 'ShopProductDto(price: $price)';
+    return 'ShopProductDto(price: $price, productId: $productId)';
   }
 
   @override
@@ -478,13 +491,16 @@ class _$_ShopProductDto implements _ShopProductDto {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ShopProductDto &&
-            const DeepCollectionEquality().equals(other.price, price));
+            const DeepCollectionEquality().equals(other.price, price) &&
+            const DeepCollectionEquality().equals(other.productId, productId));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(price));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(price),
+      const DeepCollectionEquality().hash(productId));
 
   @JsonKey(ignore: true)
   @override
@@ -498,14 +514,17 @@ class _$_ShopProductDto implements _ShopProductDto {
 }
 
 abstract class _ShopProductDto implements ShopProductDto {
-  const factory _ShopProductDto({required final PriceDto price}) =
-      _$_ShopProductDto;
+  const factory _ShopProductDto(
+      {required final PriceDto price,
+      required final String productId}) = _$_ShopProductDto;
 
   factory _ShopProductDto.fromJson(Map<String, dynamic> json) =
       _$_ShopProductDto.fromJson;
 
   @override
   PriceDto get price => throw _privateConstructorUsedError;
+  @override
+  String get productId => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$$_ShopProductDtoCopyWith<_$_ShopProductDto> get copyWith =>

@@ -35,11 +35,13 @@ Map<String, dynamic> _$$_PricedProductDtoToJson(_$_PricedProductDto instance) =>
 _$_ShopProductDto _$$_ShopProductDtoFromJson(Map<String, dynamic> json) =>
     _$_ShopProductDto(
       price: PriceDto.fromJson(json['price'] as Map<String, dynamic>),
+      productId: json['productId'] as String,
     );
 
 Map<String, dynamic> _$$_ShopProductDtoToJson(_$_ShopProductDto instance) =>
     <String, dynamic>{
       'price': instance.price.toJson(),
+      'productId': instance.productId,
     };
 
 _$_ProductDto _$$_ProductDtoFromJson(Map<String, dynamic> json) =>

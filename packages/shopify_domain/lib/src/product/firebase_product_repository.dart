@@ -218,8 +218,9 @@ class FirebaseProductRepositoryImpl implements ShopifyProductRepository {
         final shopProductsCollection = firestore.shopsCollection
             .doc(shop.id.getOrCrash())
             .collection('products');
-        final shopProductDto =
-            ShopProductDto(price: PriceDto.fromDomain(price));
+        final shopProductDto = ShopProductDto(
+            price: PriceDto.fromDomain(price),
+            productId: product.id.getOrCrash());
 
         await shopProductsCollection
             .doc(product.id.getOrCrash())

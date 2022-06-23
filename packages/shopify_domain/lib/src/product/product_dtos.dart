@@ -46,13 +46,16 @@ class PricedProductDto with _$PricedProductDto {
 
 @freezed
 class ShopProductDto with _$ShopProductDto {
-  const factory ShopProductDto({required PriceDto price}) = _ShopProductDto;
+  const factory ShopProductDto(
+      {required PriceDto price, required String productId}) = _ShopProductDto;
 
   factory ShopProductDto.fromDomain({
     required Product product,
     required Price price,
   }) =>
-      ShopProductDto(price: PriceDto.fromDomain(price));
+      ShopProductDto(
+          price: PriceDto.fromDomain(price),
+          productId: product.id.getOrCrash());
 
   factory ShopProductDto.fromJson(Map<String, dynamic> json) =>
       _$ShopProductDtoFromJson(json);

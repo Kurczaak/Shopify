@@ -3,7 +3,7 @@ enum Categories {
   fruits,
   vegetables,
   meat,
-  fishSeaFood,
+  fishAndSeafood,
   coldCuts,
   dairy,
   bread,
@@ -42,7 +42,7 @@ extension StringifyCategoriesX on Enum {
         return 'Vegetables';
       case Categories.meat:
         return 'Meat';
-      case Categories.fishSeaFood:
+      case Categories.fishAndSeafood:
         return 'Fish and Seafood';
       case Categories.coldCuts:
         return 'Cold cuts';
