@@ -8,6 +8,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "38.0.0"
+  algolia:
+    dependency: transitive
+    description:
+      name: algolia
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.1.1"
   analyzer:
     dependency: "direct dev"
     description:
@@ -814,6 +821,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.1.4"
+  material_floating_search_bar:
+    dependency: transitive
+    description:
+      name: material_floating_search_bar
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.3.7"
   meta:
     dependency: transitive
     description:

@@ -48,7 +48,7 @@ void main() async {
 
   group('categoryChanged', () {
     // arrange
-    const category = Categories.fish;
+    const category = Categories.bio;
     blocTest<ProductFormBloc, ProductFormState>(
       'should emit state with modified product category',
       build: () => ProductFormBloc(

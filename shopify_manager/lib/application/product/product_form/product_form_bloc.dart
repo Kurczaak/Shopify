@@ -92,9 +92,10 @@ class ProductFormBloc extends Bloc<ProductFormEvent, ProductFormState> {
           );
           failureOrPhotos.fold(
               (f) => emit(ProductFormState.error(
-                  productForm: state.productForm,
-                  saveFailureOrSuccessOption:
-                      state.saveFailureOrSuccessOption)), (photos) {
+                    productForm: state.productForm,
+                    saveFailureOrSuccessOption:
+                        state.saveFailureOrSuccessOption,
+                  )), (photos) {
             final productPhotosList = photos
                 .asList()
                 .map((photo) => ProductPhoto(photo.getOrCrash()))

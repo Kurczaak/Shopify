@@ -5,7 +5,6 @@ import 'package:barcode_widget/barcode_widget.dart' as barcodeWidget;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopify_domain/product.dart';
 import 'package:shopify_manager/application/product/product_form/product_form_bloc.dart';
-import 'package:shopify_domain/core.dart';
 
 import 'package:shopify_manager/injection.dart';
 import 'package:shopify_manager/presentation/product/widgets/nutrient_facts_form.dart';
@@ -59,9 +58,9 @@ class _ProductFormPageState extends State<ProductFormPage> {
       },
       child: BlocConsumer<ProductFormBloc, ProductFormState>(
         listenWhen: (previous, current) {
-          print(previous.showErrors);
-          print(current.showErrors);
           if (previous.showErrors != current.showErrors) {
+            return true;
+          } else if (current.productForm.photos.isRight()) {
             return true;
           } else {
             return false;
@@ -151,7 +150,7 @@ class _ProductFormPageState extends State<ProductFormPage> {
                               items: Categories.values
                                   .map((category) => ShopifyDropdownMenuItem(
                                       value: category,
-                                      valueString: category.stringify))
+                                      valueString: category.stringifiedName))
                                   .toList()),
                           const SizedBox(
                             height: ProductFormPage.itemsSpacing,
