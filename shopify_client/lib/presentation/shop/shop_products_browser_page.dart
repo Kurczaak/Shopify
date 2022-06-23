@@ -8,9 +8,7 @@ import 'package:shopify_client/injection.dart';
 import 'package:shopify_client/presentation/routes/router.gr.dart';
 import 'package:shopify_domain/product.dart';
 import 'package:shopify_domain/shop.dart';
-import 'package:shopify_presentation/core/shopify_appbar.dart';
-import 'package:shopify_presentation/core/shopify_progress_indicator.dart';
-import '../debug_searchbar.dart';
+import 'package:shopify_presentation/shopify_presentation.dart';
 
 class ShopProductsBrowserPage extends StatelessWidget {
   const ShopProductsBrowserPage({Key? key, required this.shop})
@@ -36,7 +34,7 @@ class ShopProductsBrowserPage extends StatelessWidget {
                     () => shop.shopName.getOrCrash(),
                     (category) => category.getOrCrash().stringifiedName),
               ),
-              body: DebugShopifySearchBar(
+              body: ShopifySearchBar(
                 onClear: () {},
                 onQueryChanged: (_) {},
                 onSubmitted: (String query) {
@@ -160,192 +158,6 @@ class ProductSnippetCard extends StatelessWidget {
   }
 }
 
-class ProductSnippetInfoWidget extends StatelessWidget {
-  const ProductSnippetInfoWidget({
-    Key? key,
-    required this.product,
-  }) : super(key: key);
-
-  final PricedProduct product;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Expanded(
-                child: ProductNameWidget(name: product.name.getOrCrash()),
-              ),
-              Expanded(
-                child: BrandAndWeightRow(
-                    brand: product.brand.getOrCrash(),
-                    weight: product.weight.stringifyOrCrash),
-              ),
-            ],
-          ),
-        ),
-        Expanded(
-          child: PriceWidget(price: product.price.price.getOrCrash()),
-        )
-      ],
-    );
-  }
-}
-
-class ProductNameWidget extends StatelessWidget {
-  const ProductNameWidget({
-    Key? key,
-    required this.name,
-  }) : super(key: key);
-
-  final String name;
-
-  @override
-  Widget build(BuildContext context) {
-    return FittedBox(
-      fit: BoxFit.contain,
-      child: Text(
-        name,
-        style: TextStyle(
-          color: Theme.of(context).primaryColor,
-          fontWeight: FontWeight.w700,
-        ),
-      ),
-    );
-  }
-}
-
-class BrandAndWeightRow extends StatelessWidget {
-  const BrandAndWeightRow({
-    Key? key,
-    required this.brand,
-    required this.weight,
-  }) : super(key: key);
-
-  final String brand;
-  final String weight;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(
-          brand,
-          style: TextStyle(
-              color: Theme.of(context).primaryColor,
-              fontWeight: FontWeight.bold),
-        ),
-        Text(
-          weight,
-          style: const TextStyle(fontWeight: FontWeight.w400),
-        ),
-      ],
-    );
-  }
-}
-
-class PriceWidget extends StatelessWidget {
-  const PriceWidget({
-    Key? key,
-    required this.price,
-  }) : super(key: key);
-
-  final double price;
-
-  @override
-  Widget build(BuildContext context) {
-    return FittedBox(
-      fit: BoxFit.contain,
-      child: Text(
-        price.toStringAsFixed(2) + ' zł',
-        style: const TextStyle(fontWeight: FontWeight.bold),
-      ),
-    );
-  }
-}
-
-class AddToCartAndFavouriteColumn extends StatelessWidget {
-  const AddToCartAndFavouriteColumn({
-    Key? key,
-    this.onTapFavourite,
-    this.onTapAddToCart,
-  }) : super(key: key);
-  final void Function(bool isFavourite)? onTapFavourite;
-  final void Function()? onTapAddToCart;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.end,
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: [
-        Expanded(
-          child: FittedBox(
-            fit: BoxFit.contain,
-            child: IconButton(
-              onPressed: () {},
-              icon: Icon(
-                Icons.add_shopping_cart,
-                color: Theme.of(context).primaryColor,
-              ),
-            ),
-          ),
-        ),
-        const SizedBox(height: 10),
-        Expanded(
-          child: FittedBox(
-            fit: BoxFit.contain,
-            child: IconButton(
-              onPressed: () {},
-              icon: Icon(
-                Icons.favorite_border,
-                color: Theme.of(context).colorScheme.error,
-              ),
-            ),
-          ),
-        )
-      ],
-    );
-  }
-}
-
-class CategoriesGridView extends StatelessWidget {
-  const CategoriesGridView(
-      {Key? key, required this.onTap, required this.onAllProductsTap})
-      : super(key: key);
-  final void Function(int index) onTap;
-  final void Function() onAllProductsTap;
-  @override
-  Widget build(BuildContext context) {
-    return GridView.builder(
-        padding: const EdgeInsets.only(top: 60),
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2, mainAxisSpacing: 5, crossAxisSpacing: 8),
-        itemCount: Categories.values.length + 1,
-        itemBuilder: (BuildContext context, index) {
-          if (index == 0) {
-            return CategoryCard(
-                categoryName: 'All products',
-                onTap: onAllProductsTap,
-                pictureWidget: Image.asset('images/categories/store.png'));
-          } else {
-            index--;
-            return CategoryCard(
-              categoryName: Categories.values[index].stringifiedName,
-              onTap: () => onTap(index),
-              pictureWidget: Image.asset(
-                  'images/categories/${Categories.values[index].name}.png'),
-            );
-          }
-        });
-  }
-}
-
 class FailureWidget extends StatelessWidget {
   const FailureWidget({Key? key, required this.failure, required this.onRetry})
       : super(key: key);
@@ -381,62 +193,6 @@ class FailureWidget extends StatelessWidget {
             ElevatedButton(
               child: const Icon(Icons.refresh),
               onPressed: onRetry,
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class CategoryCard extends StatelessWidget {
-  const CategoryCard(
-      {Key? key,
-      required this.onTap,
-      required this.pictureWidget,
-      required this.categoryName})
-      : super(key: key);
-  final void Function() onTap;
-  final Widget pictureWidget;
-  final String categoryName;
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      child: Card(
-        elevation: 5,
-        child: Stack(
-          alignment: AlignmentDirectional.bottomStart,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 45, bottom: 20),
-              child: pictureWidget,
-            ),
-            Container(
-              padding: const EdgeInsets.all(5),
-              margin: const EdgeInsets.only(right: 20, bottom: 10),
-              height: 30,
-              decoration: BoxDecoration(
-                  color: Theme.of(context).primaryColor,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.5),
-                      spreadRadius: 5,
-                      blurRadius: 3,
-                      offset: const Offset(5, 3), // changes position of shadow
-                    ),
-                  ]),
-              width: double.maxFinite,
-              child: FittedBox(
-                fit: BoxFit.scaleDown,
-                child: Text(
-                  categoryName,
-                  style: TextStyle(
-                    color: Theme.of(context).colorScheme.onPrimary,
-                  ),
-                ),
-              ),
             ),
           ],
         ),
