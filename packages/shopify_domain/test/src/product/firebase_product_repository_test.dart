@@ -208,6 +208,103 @@ Future<void> main() async {
     _setUpStorageMocks();
   });
 
+  group('getById', () {
+    test(
+      'should check if has internet connection',
+      () async {
+        // act
+        await repository.getById(tProduct.id);
+        // assert
+        verify(mockNetworkInfo.isConnected).called(1);
+      },
+    );
+    test(
+      'should get products collection',
+      () async {
+        // act
+        await repository.getById(tProduct.id);
+        // assert
+        verify(mockFirestore.productsCollection).called(1);
+      },
+    );
+    test(
+      'should get the document by its id',
+      () async {
+        // act
+        await repository.getById(tProduct.id);
+        // assert
+        verify(mockProductsCollection.doc(tProduct.id.getOrCrash())).called(1);
+      },
+    );
+    test(
+      'should return the product if found',
+      () async {
+        // act
+        final result = await repository.getById(tProduct.id);
+        // assert
+        expect(result, right(tProduct));
+      },
+    );
+    test(
+      'should return a failure if product has not been found',
+      () async {
+        // arramge
+        when(mockFirestore.productsCollection)
+            .thenReturn(fakeFirestore.collection('products'));
+        // act
+        final result = await repository
+            .getById(UniqueId.fromUniqueString('nonexistingId'));
+        // assert
+        expect(result, left(const ProductFailure.productNotFound()));
+      },
+    );
+    test(
+      'should return a failure if no internet connection is present',
+      () async {
+        when(mockNetworkInfo.isConnected).thenAnswer((_) async => false);
+        // act
+        final result = await repository.getById(tProduct.id);
+        // assert
+        expect(result, left(const ProductFailure.noInternetConnection()));
+      },
+    );
+
+    test('should return a failure if connection timed out', () async {
+      // arrange
+
+      when(mockProductsCollection.doc(tProduct.id.getOrCrash()))
+          .thenReturn(mockProductDocument);
+      when(mockProductDocument.get()).thenAnswer((_) async {
+        await Future.delayed(timeoutDuration);
+        await Future.delayed(const Duration(seconds: 1));
+        final snapshot =
+            fakeFirestore.collection('products').doc(tProduct.id.getOrCrash());
+
+        return Future.value(snapshot as DocumentSnapshot<Map<String, dynamic>>);
+      });
+      // assert later
+      expectLater(mockProductDocument.get().timeout(timeoutDuration),
+          throwsA(isA<TimeoutException>()));
+      // act
+      final result = await repository.getById(tProduct.id);
+      // assert
+      expect(result, left(const ProductFailure.timeout(timeoutDuration)));
+    });
+
+    test('should return a failure if firebase throws an exception', () async {
+      // arrange
+      when(mockProductsCollection.doc(tProduct.id.getOrCrash()))
+          .thenReturn(mockProductDocument);
+      when(mockProductDocument.get()).thenThrow(
+          FirebaseException(plugin: 'plugin', code: 'permission-denied'));
+
+      // act
+      final result = await repository.getById(tProduct.id);
+      // assert
+      expect(result, left(const ProductFailure.insufficientPermission()));
+    });
+  });
+
   group('addToShop', () {
     test(
       'should verify internet connection',
