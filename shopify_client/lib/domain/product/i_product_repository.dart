@@ -23,4 +23,6 @@ abstract class IProductRepository {
   Future<Either<ProductFailure, KtList<PricedProduct>>>
       searchInShopWithCategory(Shop shop, String term, Category category,
           {int page = 0});
+  // Getters
+  Future<Either<ProductFailure, Product>> getProductById(UniqueId id);
 }

@@ -60,4 +60,9 @@ class ProductRepositoryImpl implements IProductRepository {
     return productSearcher.searchInShopWithCategory(term, shop, category,
         page: page);
   }
+
+  @override
+  Future<Either<ProductFailure, Product>> getProductById(UniqueId id) {
+    return productRepository.getById(id);
+  }
 }
