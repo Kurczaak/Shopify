@@ -153,3 +153,116 @@ abstract class _Cart extends Cart {
   @JsonKey(ignore: true)
   _$$_CartCopyWith<_$_Cart> get copyWith => throw _privateConstructorUsedError;
 }
+
+/// @nodoc
+mixin _$UserCarts {
+  NonEmptyList5<Cart> get carts => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $UserCartsCopyWith<UserCarts> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $UserCartsCopyWith<$Res> {
+  factory $UserCartsCopyWith(UserCarts value, $Res Function(UserCarts) then) =
+      _$UserCartsCopyWithImpl<$Res>;
+  $Res call({NonEmptyList5<Cart> carts});
+}
+
+/// @nodoc
+class _$UserCartsCopyWithImpl<$Res> implements $UserCartsCopyWith<$Res> {
+  _$UserCartsCopyWithImpl(this._value, this._then);
+
+  final UserCarts _value;
+  // ignore: unused_field
+  final $Res Function(UserCarts) _then;
+
+  @override
+  $Res call({
+    Object? carts = freezed,
+  }) {
+    return _then(_value.copyWith(
+      carts: carts == freezed
+          ? _value.carts
+          : carts // ignore: cast_nullable_to_non_nullable
+              as NonEmptyList5<Cart>,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$$_UserCartsCopyWith<$Res> implements $UserCartsCopyWith<$Res> {
+  factory _$$_UserCartsCopyWith(
+          _$_UserCarts value, $Res Function(_$_UserCarts) then) =
+      __$$_UserCartsCopyWithImpl<$Res>;
+  @override
+  $Res call({NonEmptyList5<Cart> carts});
+}
+
+/// @nodoc
+class __$$_UserCartsCopyWithImpl<$Res> extends _$UserCartsCopyWithImpl<$Res>
+    implements _$$_UserCartsCopyWith<$Res> {
+  __$$_UserCartsCopyWithImpl(
+      _$_UserCarts _value, $Res Function(_$_UserCarts) _then)
+      : super(_value, (v) => _then(v as _$_UserCarts));
+
+  @override
+  _$_UserCarts get _value => super._value as _$_UserCarts;
+
+  @override
+  $Res call({
+    Object? carts = freezed,
+  }) {
+    return _then(_$_UserCarts(
+      carts: carts == freezed
+          ? _value.carts
+          : carts // ignore: cast_nullable_to_non_nullable
+              as NonEmptyList5<Cart>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_UserCarts extends _UserCarts {
+  const _$_UserCarts({required this.carts}) : super._();
+
+  @override
+  final NonEmptyList5<Cart> carts;
+
+  @override
+  String toString() {
+    return 'UserCarts(carts: $carts)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_UserCarts &&
+            const DeepCollectionEquality().equals(other.carts, carts));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(carts));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_UserCartsCopyWith<_$_UserCarts> get copyWith =>
+      __$$_UserCartsCopyWithImpl<_$_UserCarts>(this, _$identity);
+}
+
+abstract class _UserCarts extends UserCarts {
+  const factory _UserCarts({required final NonEmptyList5<Cart> carts}) =
+      _$_UserCarts;
+  const _UserCarts._() : super._();
+
+  @override
+  NonEmptyList5<Cart> get carts => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  _$$_UserCartsCopyWith<_$_UserCarts> get copyWith =>
+      throw _privateConstructorUsedError;
+}
