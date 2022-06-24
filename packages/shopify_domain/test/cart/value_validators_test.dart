@@ -3,12 +3,12 @@ import 'dart:convert';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:kt_dart/kt.dart';
-import 'package:shopify_client/domain/cart/cart_item.dart';
-import 'package:shopify_client/domain/cart/value_validators.dart';
+import 'package:shopify_domain/cart/cart_item.dart';
+import 'package:shopify_domain/cart/value_validators.dart';
 import 'package:shopify_domain/core.dart';
 import 'package:shopify_domain/product.dart';
 
-import '../../utils/fixture_reader.dart';
+import '../utils/fixture_reader.dart';
 
 void main() {
   final Map<String, dynamic> jsonPricedProduct =

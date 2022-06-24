@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:shopify_client/domain/cart/value_objects.dart';
+import 'package:shopify_domain/cart/value_objects.dart';
 import 'package:shopify_domain/core.dart';
 import 'package:shopify_domain/shop/shop.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';

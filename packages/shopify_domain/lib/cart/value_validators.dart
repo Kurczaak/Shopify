@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:kt_dart/kt.dart';
-import 'package:shopify_client/domain/cart/cart_item.dart';
+import 'package:shopify_domain/cart/cart_item.dart';
 import 'package:shopify_domain/cart/value_failures.dart';
 import 'package:shopify_domain/core.dart';
 
