@@ -107,6 +107,31 @@ class NonnegativeNumber extends ValueObject<double> {
   const NonnegativeNumber._(this.value);
 }
 
+class NonnegativeInt extends ValueObject<int> {
+  static const int max = 999999;
+  static const int min = 0;
+
+  @override
+  final Either<ValueFailure<int>, int> value;
+  factory NonnegativeInt(int input) {
+    return NonnegativeInt._(
+      validateIntegerRange(input, min, max),
+    );
+  }
+
+  factory NonnegativeInt.fromString(String input) {
+    final parsedNum = int.tryParse(input);
+    if (parsedNum == null) {
+      return NonnegativeInt._(
+          left(const ValueFailure.core(CoreValueFailure.empty())));
+    } else {
+      return NonnegativeInt(parsedNum);
+    }
+  }
+
+  const NonnegativeInt._(this.value);
+}
+
 class ShopifyUrl extends ValueObject<String> {
   @override
   final Either<ValueFailure<String>, String> value;
