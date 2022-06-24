@@ -29,6 +29,6 @@ class Cart with _$Cart {
 @freezed
 class UserCarts with _$UserCarts {
   const UserCarts._();
-  const factory UserCarts({required NonEmptyList5<Cart> carts}) = _UserCarts;
+  const factory UserCarts({required NonEmptyList<Cart> carts}) = _UserCarts;
   Either<ValueFailure, Unit> get failureOrUnit => carts.failureOrUnit;
 }

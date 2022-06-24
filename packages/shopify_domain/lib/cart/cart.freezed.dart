@@ -156,7 +156,7 @@ abstract class _Cart extends Cart {
 
 /// @nodoc
 mixin _$UserCarts {
-  NonEmptyList5<Cart> get carts => throw _privateConstructorUsedError;
+  NonEmptyList<Cart> get carts => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $UserCartsCopyWith<UserCarts> get copyWith =>
@@ -167,7 +167,7 @@ mixin _$UserCarts {
 abstract class $UserCartsCopyWith<$Res> {
   factory $UserCartsCopyWith(UserCarts value, $Res Function(UserCarts) then) =
       _$UserCartsCopyWithImpl<$Res>;
-  $Res call({NonEmptyList5<Cart> carts});
+  $Res call({NonEmptyList<Cart> carts});
 }
 
 /// @nodoc
@@ -186,7 +186,7 @@ class _$UserCartsCopyWithImpl<$Res> implements $UserCartsCopyWith<$Res> {
       carts: carts == freezed
           ? _value.carts
           : carts // ignore: cast_nullable_to_non_nullable
-              as NonEmptyList5<Cart>,
+              as NonEmptyList<Cart>,
     ));
   }
 }
@@ -197,7 +197,7 @@ abstract class _$$_UserCartsCopyWith<$Res> implements $UserCartsCopyWith<$Res> {
           _$_UserCarts value, $Res Function(_$_UserCarts) then) =
       __$$_UserCartsCopyWithImpl<$Res>;
   @override
-  $Res call({NonEmptyList5<Cart> carts});
+  $Res call({NonEmptyList<Cart> carts});
 }
 
 /// @nodoc
@@ -218,7 +218,7 @@ class __$$_UserCartsCopyWithImpl<$Res> extends _$UserCartsCopyWithImpl<$Res>
       carts: carts == freezed
           ? _value.carts
           : carts // ignore: cast_nullable_to_non_nullable
-              as NonEmptyList5<Cart>,
+              as NonEmptyList<Cart>,
     ));
   }
 }
@@ -229,7 +229,7 @@ class _$_UserCarts extends _UserCarts {
   const _$_UserCarts({required this.carts}) : super._();
 
   @override
-  final NonEmptyList5<Cart> carts;
+  final NonEmptyList<Cart> carts;
 
   @override
   String toString() {
@@ -255,12 +255,12 @@ class _$_UserCarts extends _UserCarts {
 }
 
 abstract class _UserCarts extends UserCarts {
-  const factory _UserCarts({required final NonEmptyList5<Cart> carts}) =
+  const factory _UserCarts({required final NonEmptyList<Cart> carts}) =
       _$_UserCarts;
   const _UserCarts._() : super._();
 
   @override
-  NonEmptyList5<Cart> get carts => throw _privateConstructorUsedError;
+  NonEmptyList<Cart> get carts => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$$_UserCartsCopyWith<_$_UserCarts> get copyWith =>
