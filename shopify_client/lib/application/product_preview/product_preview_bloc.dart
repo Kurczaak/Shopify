@@ -17,12 +17,27 @@ part 'product_preview_bloc.freezed.dart';
 class ProductPreviewBloc
     extends Bloc<ProductPreviewEvent, ProductPreviewState> {
   final IProductRepository productRepository;
+
+  ProductPreviewEvent? _previousEvent;
+
+  @override
+  void onEvent(ProductPreviewEvent event) {
+    _previousEvent = event;
+    super.onEvent(event);
+  }
+
+  void retry() {
+    if (_previousEvent != null) {
+      add(_previousEvent!);
+    }
+  }
+
   ProductPreviewBloc(this.productRepository)
       : super(ProductPreviewState.initial()) {
     on<ProductPreviewEvent>((event, emit) async {
       await event.when(
         initialized: (Shop shop, UniqueId productId) async {
-          emit(state.copyWith(isLoading: true));
+          emit(state.copyWith(isLoading: true, failureOption: none()));
           final productOrFailure =
               await productRepository.getProductById(productId);
           productOrFailure.fold(

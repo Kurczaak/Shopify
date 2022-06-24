@@ -161,7 +161,6 @@ class ShopifySearchBarState extends State<ShopifySearchBar> {
                   title: Text(controller.query),
                   leading: const Icon(Icons.search),
                   onTap: () {
-                    print('xdddd');
                     setState(() {
                       addSearchTerm(controller.query);
                       selectedTerm = controller.query;

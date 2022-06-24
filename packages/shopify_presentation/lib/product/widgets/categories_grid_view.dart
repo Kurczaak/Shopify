@@ -20,14 +20,19 @@ class CategoriesGridView extends StatelessWidget {
             return CategoryCard(
                 categoryName: 'All products',
                 onTap: onAllProductsTap,
-                pictureWidget: Image.asset('images/categories/store.png'));
+                pictureWidget: Image.asset(
+                  'images/categories/store.png',
+                  package: 'shopify_presentation',
+                ));
           } else {
             index--;
             return CategoryCard(
               categoryName: Categories.values[index].stringifiedName,
               onTap: () => onTap(index),
               pictureWidget: Image.asset(
-                  'images/categories/${Categories.values[index].name}.png'),
+                'images/categories/${Categories.values[index].name}.png',
+                package: 'shopify_presentation',
+              ),
             );
           }
         });

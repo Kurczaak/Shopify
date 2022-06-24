@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shopify_domain/product.dart';
+import 'package:shopify_presentation/core/shopify_image.dart';
 import 'package:shopify_presentation/product/widgets/add_to_cart_and_favourite_column.dart';
 import 'package:shopify_presentation/product/widgets/product_snippet_info_widget.dart';
 
@@ -24,7 +25,7 @@ class ProductSnippetCard extends StatelessWidget {
             Flexible(
               fit: FlexFit.tight,
               flex: 5,
-              child: Image.network(product.photo.getOrCrash(),
+              child: ShopifyNetworkImage(product.photo.getOrCrash(),
                   fit: BoxFit.cover, height: 80, width: 120),
             ),
             const SizedBox(height: 5),

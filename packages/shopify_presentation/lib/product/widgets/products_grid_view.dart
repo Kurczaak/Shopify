@@ -14,7 +14,7 @@ class ProductsGridView extends StatelessWidget {
       : super(key: key);
   final Option<KtList<PricedProduct>> productsOption;
   final Shop shop;
-  final void Function() onTap;
+  final void Function(PricedProduct product) onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +33,8 @@ class ProductsGridView extends StatelessWidget {
                 ),
                 itemBuilder: (BuildContext context, int index) {
                   return ProductSnippetCard(
-                      product: products[index], onTap: onTap);
+                      product: products[index],
+                      onTap: () => onTap(products[index]));
                 }));
   }
 }

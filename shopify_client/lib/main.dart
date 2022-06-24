@@ -24,7 +24,7 @@ void main() async {
     ),
   );
 
-  const Algolia _algoliaClient = const Algolia.init(
+  const Algolia _algoliaClient = Algolia.init(
       applicationId: "7UL8NHCSW8", apiKey: "b34d020770f200190fe3ae5d4164e4c5");
 
   getIt.registerLazySingleton<Algolia>(() => _algoliaClient);
