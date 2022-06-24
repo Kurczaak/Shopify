@@ -245,6 +245,29 @@ class NonEmptyList5<T> extends ValueObject<KtList<T>> {
   }
 }
 
+class NonEmptyList<T> extends ValueObject<KtList<T>> {
+  @override
+  final Either<ValueFailure<KtList<T>>, KtList<T>> value;
+
+  static const maxLength = 999;
+
+  factory NonEmptyList.empty() => NonEmptyList(KtList<T>.empty());
+
+  factory NonEmptyList(KtList<T> input) {
+    return NonEmptyList._(validateListLength(input, maxLength, minLength: 1));
+  }
+
+  const NonEmptyList._(this.value);
+
+  int get length {
+    return value.getOrElse(() => emptyList()).size;
+  }
+
+  bool get isFull {
+    return length == maxLength;
+  }
+}
+
 extension Ex on double {
   double toPrecision(int n) => double.parse(toStringAsFixed(n));
 }
