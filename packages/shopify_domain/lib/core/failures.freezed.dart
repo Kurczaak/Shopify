@@ -22,6 +22,7 @@ mixin _$ValueFailure<T> {
     required TResult Function(ShopValueFailure<T> f) shop,
     required TResult Function(ProductValueFailure<T> f) product,
     required TResult Function(CoreValueFailure<T> f) core,
+    required TResult Function(CartValueFailure<T> f) cart,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -30,6 +31,7 @@ mixin _$ValueFailure<T> {
     TResult Function(ShopValueFailure<T> f)? shop,
     TResult Function(ProductValueFailure<T> f)? product,
     TResult Function(CoreValueFailure<T> f)? core,
+    TResult Function(CartValueFailure<T> f)? cart,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -38,6 +40,7 @@ mixin _$ValueFailure<T> {
     TResult Function(ShopValueFailure<T> f)? shop,
     TResult Function(ProductValueFailure<T> f)? product,
     TResult Function(CoreValueFailure<T> f)? core,
+    TResult Function(CartValueFailure<T> f)? cart,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -47,6 +50,7 @@ mixin _$ValueFailure<T> {
     required TResult Function(_Shop<T> value) shop,
     required TResult Function(_Product<T> value) product,
     required TResult Function(_Core<T> value) core,
+    required TResult Function(_Cart<T> value) cart,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -55,6 +59,7 @@ mixin _$ValueFailure<T> {
     TResult Function(_Shop<T> value)? shop,
     TResult Function(_Product<T> value)? product,
     TResult Function(_Core<T> value)? core,
+    TResult Function(_Cart<T> value)? cart,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -63,6 +68,7 @@ mixin _$ValueFailure<T> {
     TResult Function(_Shop<T> value)? shop,
     TResult Function(_Product<T> value)? product,
     TResult Function(_Core<T> value)? core,
+    TResult Function(_Cart<T> value)? cart,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -160,6 +166,7 @@ class _$_Auth<T> extends _Auth<T> {
     required TResult Function(ShopValueFailure<T> f) shop,
     required TResult Function(ProductValueFailure<T> f) product,
     required TResult Function(CoreValueFailure<T> f) core,
+    required TResult Function(CartValueFailure<T> f) cart,
   }) {
     return auth(f);
   }
@@ -171,6 +178,7 @@ class _$_Auth<T> extends _Auth<T> {
     TResult Function(ShopValueFailure<T> f)? shop,
     TResult Function(ProductValueFailure<T> f)? product,
     TResult Function(CoreValueFailure<T> f)? core,
+    TResult Function(CartValueFailure<T> f)? cart,
   }) {
     return auth?.call(f);
   }
@@ -182,6 +190,7 @@ class _$_Auth<T> extends _Auth<T> {
     TResult Function(ShopValueFailure<T> f)? shop,
     TResult Function(ProductValueFailure<T> f)? product,
     TResult Function(CoreValueFailure<T> f)? core,
+    TResult Function(CartValueFailure<T> f)? cart,
     required TResult orElse(),
   }) {
     if (auth != null) {
@@ -197,6 +206,7 @@ class _$_Auth<T> extends _Auth<T> {
     required TResult Function(_Shop<T> value) shop,
     required TResult Function(_Product<T> value) product,
     required TResult Function(_Core<T> value) core,
+    required TResult Function(_Cart<T> value) cart,
   }) {
     return auth(this);
   }
@@ -208,6 +218,7 @@ class _$_Auth<T> extends _Auth<T> {
     TResult Function(_Shop<T> value)? shop,
     TResult Function(_Product<T> value)? product,
     TResult Function(_Core<T> value)? core,
+    TResult Function(_Cart<T> value)? cart,
   }) {
     return auth?.call(this);
   }
@@ -219,6 +230,7 @@ class _$_Auth<T> extends _Auth<T> {
     TResult Function(_Shop<T> value)? shop,
     TResult Function(_Product<T> value)? product,
     TResult Function(_Core<T> value)? core,
+    TResult Function(_Cart<T> value)? cart,
     required TResult orElse(),
   }) {
     if (auth != null) {
@@ -313,6 +325,7 @@ class _$_Shop<T> extends _Shop<T> {
     required TResult Function(ShopValueFailure<T> f) shop,
     required TResult Function(ProductValueFailure<T> f) product,
     required TResult Function(CoreValueFailure<T> f) core,
+    required TResult Function(CartValueFailure<T> f) cart,
   }) {
     return shop(f);
   }
@@ -324,6 +337,7 @@ class _$_Shop<T> extends _Shop<T> {
     TResult Function(ShopValueFailure<T> f)? shop,
     TResult Function(ProductValueFailure<T> f)? product,
     TResult Function(CoreValueFailure<T> f)? core,
+    TResult Function(CartValueFailure<T> f)? cart,
   }) {
     return shop?.call(f);
   }
@@ -335,6 +349,7 @@ class _$_Shop<T> extends _Shop<T> {
     TResult Function(ShopValueFailure<T> f)? shop,
     TResult Function(ProductValueFailure<T> f)? product,
     TResult Function(CoreValueFailure<T> f)? core,
+    TResult Function(CartValueFailure<T> f)? cart,
     required TResult orElse(),
   }) {
     if (shop != null) {
@@ -350,6 +365,7 @@ class _$_Shop<T> extends _Shop<T> {
     required TResult Function(_Shop<T> value) shop,
     required TResult Function(_Product<T> value) product,
     required TResult Function(_Core<T> value) core,
+    required TResult Function(_Cart<T> value) cart,
   }) {
     return shop(this);
   }
@@ -361,6 +377,7 @@ class _$_Shop<T> extends _Shop<T> {
     TResult Function(_Shop<T> value)? shop,
     TResult Function(_Product<T> value)? product,
     TResult Function(_Core<T> value)? core,
+    TResult Function(_Cart<T> value)? cart,
   }) {
     return shop?.call(this);
   }
@@ -372,6 +389,7 @@ class _$_Shop<T> extends _Shop<T> {
     TResult Function(_Shop<T> value)? shop,
     TResult Function(_Product<T> value)? product,
     TResult Function(_Core<T> value)? core,
+    TResult Function(_Cart<T> value)? cart,
     required TResult orElse(),
   }) {
     if (shop != null) {
@@ -469,6 +487,7 @@ class _$_Product<T> extends _Product<T> {
     required TResult Function(ShopValueFailure<T> f) shop,
     required TResult Function(ProductValueFailure<T> f) product,
     required TResult Function(CoreValueFailure<T> f) core,
+    required TResult Function(CartValueFailure<T> f) cart,
   }) {
     return product(f);
   }
@@ -480,6 +499,7 @@ class _$_Product<T> extends _Product<T> {
     TResult Function(ShopValueFailure<T> f)? shop,
     TResult Function(ProductValueFailure<T> f)? product,
     TResult Function(CoreValueFailure<T> f)? core,
+    TResult Function(CartValueFailure<T> f)? cart,
   }) {
     return product?.call(f);
   }
@@ -491,6 +511,7 @@ class _$_Product<T> extends _Product<T> {
     TResult Function(ShopValueFailure<T> f)? shop,
     TResult Function(ProductValueFailure<T> f)? product,
     TResult Function(CoreValueFailure<T> f)? core,
+    TResult Function(CartValueFailure<T> f)? cart,
     required TResult orElse(),
   }) {
     if (product != null) {
@@ -506,6 +527,7 @@ class _$_Product<T> extends _Product<T> {
     required TResult Function(_Shop<T> value) shop,
     required TResult Function(_Product<T> value) product,
     required TResult Function(_Core<T> value) core,
+    required TResult Function(_Cart<T> value) cart,
   }) {
     return product(this);
   }
@@ -517,6 +539,7 @@ class _$_Product<T> extends _Product<T> {
     TResult Function(_Shop<T> value)? shop,
     TResult Function(_Product<T> value)? product,
     TResult Function(_Core<T> value)? core,
+    TResult Function(_Cart<T> value)? cart,
   }) {
     return product?.call(this);
   }
@@ -528,6 +551,7 @@ class _$_Product<T> extends _Product<T> {
     TResult Function(_Shop<T> value)? shop,
     TResult Function(_Product<T> value)? product,
     TResult Function(_Core<T> value)? core,
+    TResult Function(_Cart<T> value)? cart,
     required TResult orElse(),
   }) {
     if (product != null) {
@@ -622,6 +646,7 @@ class _$_Core<T> extends _Core<T> {
     required TResult Function(ShopValueFailure<T> f) shop,
     required TResult Function(ProductValueFailure<T> f) product,
     required TResult Function(CoreValueFailure<T> f) core,
+    required TResult Function(CartValueFailure<T> f) cart,
   }) {
     return core(f);
   }
@@ -633,6 +658,7 @@ class _$_Core<T> extends _Core<T> {
     TResult Function(ShopValueFailure<T> f)? shop,
     TResult Function(ProductValueFailure<T> f)? product,
     TResult Function(CoreValueFailure<T> f)? core,
+    TResult Function(CartValueFailure<T> f)? cart,
   }) {
     return core?.call(f);
   }
@@ -644,6 +670,7 @@ class _$_Core<T> extends _Core<T> {
     TResult Function(ShopValueFailure<T> f)? shop,
     TResult Function(ProductValueFailure<T> f)? product,
     TResult Function(CoreValueFailure<T> f)? core,
+    TResult Function(CartValueFailure<T> f)? cart,
     required TResult orElse(),
   }) {
     if (core != null) {
@@ -659,6 +686,7 @@ class _$_Core<T> extends _Core<T> {
     required TResult Function(_Shop<T> value) shop,
     required TResult Function(_Product<T> value) product,
     required TResult Function(_Core<T> value) core,
+    required TResult Function(_Cart<T> value) cart,
   }) {
     return core(this);
   }
@@ -670,6 +698,7 @@ class _$_Core<T> extends _Core<T> {
     TResult Function(_Shop<T> value)? shop,
     TResult Function(_Product<T> value)? product,
     TResult Function(_Core<T> value)? core,
+    TResult Function(_Cart<T> value)? cart,
   }) {
     return core?.call(this);
   }
@@ -681,6 +710,7 @@ class _$_Core<T> extends _Core<T> {
     TResult Function(_Shop<T> value)? shop,
     TResult Function(_Product<T> value)? product,
     TResult Function(_Core<T> value)? core,
+    TResult Function(_Cart<T> value)? cart,
     required TResult orElse(),
   }) {
     if (core != null) {
@@ -697,5 +727,164 @@ abstract class _Core<T> extends ValueFailure<T> {
   CoreValueFailure<T> get f => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   _$$_CoreCopyWith<T, _$_Core<T>> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_CartCopyWith<T, $Res> {
+  factory _$$_CartCopyWith(_$_Cart<T> value, $Res Function(_$_Cart<T>) then) =
+      __$$_CartCopyWithImpl<T, $Res>;
+  $Res call({CartValueFailure<T> f});
+
+  $CartValueFailureCopyWith<T, $Res> get f;
+}
+
+/// @nodoc
+class __$$_CartCopyWithImpl<T, $Res> extends _$ValueFailureCopyWithImpl<T, $Res>
+    implements _$$_CartCopyWith<T, $Res> {
+  __$$_CartCopyWithImpl(_$_Cart<T> _value, $Res Function(_$_Cart<T>) _then)
+      : super(_value, (v) => _then(v as _$_Cart<T>));
+
+  @override
+  _$_Cart<T> get _value => super._value as _$_Cart<T>;
+
+  @override
+  $Res call({
+    Object? f = freezed,
+  }) {
+    return _then(_$_Cart<T>(
+      f == freezed
+          ? _value.f
+          : f // ignore: cast_nullable_to_non_nullable
+              as CartValueFailure<T>,
+    ));
+  }
+
+  @override
+  $CartValueFailureCopyWith<T, $Res> get f {
+    return $CartValueFailureCopyWith<T, $Res>(_value.f, (value) {
+      return _then(_value.copyWith(f: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$_Cart<T> extends _Cart<T> {
+  const _$_Cart(this.f) : super._();
+
+  @override
+  final CartValueFailure<T> f;
+
+  @override
+  String toString() {
+    return 'ValueFailure<$T>.cart(f: $f)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_Cart<T> &&
+            const DeepCollectionEquality().equals(other.f, f));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(f));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_CartCopyWith<T, _$_Cart<T>> get copyWith =>
+      __$$_CartCopyWithImpl<T, _$_Cart<T>>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(AuthValueFailure<T> f) auth,
+    required TResult Function(ShopValueFailure<T> f) shop,
+    required TResult Function(ProductValueFailure<T> f) product,
+    required TResult Function(CoreValueFailure<T> f) core,
+    required TResult Function(CartValueFailure<T> f) cart,
+  }) {
+    return cart(f);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(AuthValueFailure<T> f)? auth,
+    TResult Function(ShopValueFailure<T> f)? shop,
+    TResult Function(ProductValueFailure<T> f)? product,
+    TResult Function(CoreValueFailure<T> f)? core,
+    TResult Function(CartValueFailure<T> f)? cart,
+  }) {
+    return cart?.call(f);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(AuthValueFailure<T> f)? auth,
+    TResult Function(ShopValueFailure<T> f)? shop,
+    TResult Function(ProductValueFailure<T> f)? product,
+    TResult Function(CoreValueFailure<T> f)? core,
+    TResult Function(CartValueFailure<T> f)? cart,
+    required TResult orElse(),
+  }) {
+    if (cart != null) {
+      return cart(f);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Auth<T> value) auth,
+    required TResult Function(_Shop<T> value) shop,
+    required TResult Function(_Product<T> value) product,
+    required TResult Function(_Core<T> value) core,
+    required TResult Function(_Cart<T> value) cart,
+  }) {
+    return cart(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Auth<T> value)? auth,
+    TResult Function(_Shop<T> value)? shop,
+    TResult Function(_Product<T> value)? product,
+    TResult Function(_Core<T> value)? core,
+    TResult Function(_Cart<T> value)? cart,
+  }) {
+    return cart?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Auth<T> value)? auth,
+    TResult Function(_Shop<T> value)? shop,
+    TResult Function(_Product<T> value)? product,
+    TResult Function(_Core<T> value)? core,
+    TResult Function(_Cart<T> value)? cart,
+    required TResult orElse(),
+  }) {
+    if (cart != null) {
+      return cart(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Cart<T> extends ValueFailure<T> {
+  const factory _Cart(final CartValueFailure<T> f) = _$_Cart<T>;
+  const _Cart._() : super._();
+
+  CartValueFailure<T> get f => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$$_CartCopyWith<T, _$_Cart<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
