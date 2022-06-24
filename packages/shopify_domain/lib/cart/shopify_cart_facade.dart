@@ -3,7 +3,7 @@ import 'package:shopify_domain/cart/cart.dart';
 import 'package:shopify_domain/cart/cart_failure.dart';
 import 'package:shopify_domain/cart/cart_item.dart';
 
-abstract class ShopifyCartRepository {
+abstract class ShopifyCartFacade {
   // Create
   Future<Either<CartFailure, Unit>> addItemToCart(CartItem item);
   // Read
