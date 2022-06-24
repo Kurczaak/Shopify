@@ -13,6 +13,7 @@ class ProductFailure with _$ProductFailure {
   const factory ProductFailure.noInternetConnection() = _NoInternetConnection;
   const factory ProductFailure.productNotFound() = _ProductNotFound;
   const factory ProductFailure.shopNotFound() = _ShopNotFound;
+
   const factory ProductFailure.valueFailure(ValueFailure failure) =
       _ValueFailure;
 }

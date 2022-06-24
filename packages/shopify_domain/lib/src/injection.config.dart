@@ -4,6 +4,7 @@
 // InjectableConfigGenerator
 // **************************************************************************
 
+import 'package:algolia/algolia.dart' as _i25;
 import 'package:cloud_firestore/cloud_firestore.dart' as _i6;
 import 'package:firebase_auth/firebase_auth.dart' as _i5;
 import 'package:firebase_storage/firebase_storage.dart' as _i7;
@@ -20,22 +21,24 @@ import 'package:location/location.dart' as _i13;
 import '../auth.dart' as _i19;
 import '../core.dart' as _i17;
 import '../core/location/location_info.dart' as _i14;
-import '../core/location/location_injectable_module.dart' as _i26;
+import '../core/location/location_injectable_module.dart' as _i29;
 import '../core/network/network_info.dart' as _i15;
 import '../product.dart' as _i3;
-import '../shop.dart' as _i23;
+import '../product/shopify_product_searcher.dart' as _i23;
+import '../shop.dart' as _i26;
 import 'auth/firebase_auth_facade.dart' as _i20;
-import 'core/images/image_picker_injectable_module.dart' as _i27;
+import 'core/images/image_picker_injectable_module.dart' as _i30;
 import 'core/images/image_picker_photo_picker_implementation.dart' as _i18;
-import 'core/injectable_module.dart' as _i25;
-import 'core/location/location_injectable_module.dart' as _i28;
+import 'core/injectable_module.dart' as _i28;
+import 'core/location/location_injectable_module.dart' as _i31;
 import 'core/location/shopify_location_facade_implementation.dart' as _i21;
+import 'product/algolia_product_searcher_impl.dart' as _i24;
 import 'product/barcode_scanner/mobile_scanner_barcode_scanner_facade_impl.dart'
     as _i4;
 import 'product/firebase_product_repository.dart' as _i22;
 import 'product/open_food_facts/open_food_facts_repository_impl.dart' as _i16;
 import 'shop/firebase_shop_repository.dart'
-    as _i24; // ignore_for_file: unnecessary_lambdas
+    as _i27; // ignore_for_file: unnecessary_lambdas
 
 // ignore_for_file: lines_longer_than_80_chars
 /// initializes the registration of provided dependencies inside of [GetIt]
@@ -80,18 +83,22 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       _i21.ShopifyLocationFacadeImpl(
           get<_i13.Location>(), get<_i8.GeocodingPlatform>()));
   gh.lazySingleton<_i3.ShopifyProductRepository>(() =>
-      _i22.FirebaseProductRepositoryImpl(get<_i6.FirebaseFirestore>(),
-          get<_i7.FirebaseStorage>(), get<_i15.NetworkInfo>()));
-  gh.lazySingleton<_i23.ShopifyShopRepository>(() =>
-      _i24.FirebaseShopRepositoryImpl(get<_i6.FirebaseFirestore>(),
+      _i22.FirebaseProductRepositoryImpl(
+          firestore: get<_i6.FirebaseFirestore>(),
+          storage: get<_i7.FirebaseStorage>(),
+          networkInfo: get<_i15.NetworkInfo>()));
+  gh.factory<_i23.ShopifyProductSearcher>(() => _i24.AlgoliaProductSearcher(
+      algolia: get<_i25.Algolia>(), networkInfo: get<_i15.NetworkInfo>()));
+  gh.lazySingleton<_i26.ShopifyShopRepository>(() =>
+      _i27.FirebaseShopRepositoryImpl(get<_i6.FirebaseFirestore>(),
           get<_i7.FirebaseStorage>(), get<_i9.Geoflutterfire>()));
   return get;
 }
 
-class _$FirebaseInjectableModule extends _i25.FirebaseInjectableModule {}
+class _$FirebaseInjectableModule extends _i28.FirebaseInjectableModule {}
 
-class _$GeocodingInjectableModule extends _i26.GeocodingInjectableModule {}
+class _$GeocodingInjectableModule extends _i29.GeocodingInjectableModule {}
 
-class _$ImagePikcerInjectableModule extends _i27.ImagePikcerInjectableModule {}
+class _$ImagePikcerInjectableModule extends _i30.ImagePikcerInjectableModule {}
 
-class _$LocationInjectableModule extends _i28.LocationInjectableModule {}
+class _$LocationInjectableModule extends _i31.LocationInjectableModule {}

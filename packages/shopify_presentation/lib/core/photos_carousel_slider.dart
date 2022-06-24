@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:kt_dart/kt.dart';
 import 'package:shopify_domain/core.dart';
+import 'package:shopify_presentation/core/shopify_image.dart';
 
 class PhotosCarouselSlider extends StatefulWidget {
   const PhotosCarouselSlider({Key? key, required this.widgets, this.onTap})
@@ -11,10 +12,9 @@ class PhotosCarouselSlider extends StatefulWidget {
       {Key? key, void Function(int)? onTap}) {
     return PhotosCarouselSlider(
       widgets: urls
-          .map((url) => Image.network(
+          .map((url) => ShopifyNetworkImage(
                 url.getOrCrash(),
                 fit: BoxFit.fitWidth,
-                errorBuilder: (_, __, ___) => Image.asset('images/logo.png'),
               ))
           .toList()
           .asList(),

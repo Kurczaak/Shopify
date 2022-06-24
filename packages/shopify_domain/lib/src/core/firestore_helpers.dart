@@ -19,6 +19,8 @@ extension FirestoreX on FirebaseFirestore {
   CollectionReference get usersCollection => collection('users');
   CollectionReference get shopsCollection => collection('shops');
   CollectionReference get productsCollection => collection('products');
+  CollectionReference get pricedProductsCollection =>
+      collection('pricedProducts');
 }
 
 extension DocumentReferenceX on DocumentReference {

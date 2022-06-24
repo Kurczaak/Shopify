@@ -11,6 +11,8 @@ environment:
 dependencies:
   cached_network_image: ^3.2.1
   carousel_slider: ^4.1.1
+  dartz: ^0.10.1
+  expandable: ^5.0.1
   flutter:
     sdk: flutter
   flutter_bloc: ^8.0.1
@@ -20,13 +22,13 @@ dependencies:
   get_it: ^7.2.0
   kt_dart: ^0.10.0
   loading_overlay: ^0.3.0
+  material_floating_search_bar: ^0.3.7
   mobile_scanner: ^1.1.1
   mocktail: ^0.3.0
   path_provider: ^2.0.10
   progress_indicators: ^1.0.0
   responsive_framework: ^0.2.0
   scrollable_positioned_list: ^0.3.2
-  expandable: ^5.0.1
   shopify_domain:
     path: ../shopify_domain
 
@@ -36,8 +38,8 @@ dev_dependencies:
   flutter_lints: ^1.0.0
   flutter_test:
     sdk: flutter
-  sealed_annotations: ^1.13.0
   injectable_generator: ^1.5.3
+  sealed_annotations: ^1.13.0
 
 uses-material-design: true
 
@@ -52,6 +54,37 @@ flutter:
     - images/test/test_logo.jpg
     - images/test/too_small_logo.jpg
     - images/test/too_big_logo.jpg
+    - images/categories/bio.png
+    - images/categories/fruits.png
+    - images/categories/vegetables.png
+    - images/categories/meat.png
+    - images/categories/fishAndSeafood.png
+    - images/categories/coldCuts.png
+    - images/categories/dairy.png
+    - images/categories/bread.png
+    - images/categories/cakes.png
+    - images/categories/fatsAndOils.png
+    - images/categories/frozenProducts.png
+    - images/categories/coffeeTea.png
+    - images/categories/sweets.png
+    - images/categories/drinkables.png
+    - images/categories/pastaRiceGroats.png
+    - images/categories/jamsAndHoney.png
+    - images/categories/flourSugarSalt.png
+    - images/categories/spices.png
+    - images/categories/sauces.png
+    - images/categories/saltySnacks.png
+    - images/categories/baking.png
+    - images/categories/readyMeals.png
+    - images/categories/cannedFood.png
+    - images/categories/forKids.png
+    - images/categories/forPets.png
+    - images/categories/cleaningChemicals.png
+    - images/categories/cosmetics.png
+    - images/categories/beers.png
+    - images/categories/wines.png
+    - images/categories/otherAlcohols.png
+    - images/categories/store.png
   # To add assets to your package, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg

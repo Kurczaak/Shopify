@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:kt_dart/kt.dart';
 import 'package:shopify_domain/core.dart';
+import 'package:shopify_presentation/core/shopify_image.dart';
 
 class NetworkImageCarouselSlider extends StatefulWidget {
   const NetworkImageCarouselSlider({Key? key, required this.photos})
@@ -41,10 +42,8 @@ class _PictureCarouselSliderState extends State<NetworkImageCarouselSlider> {
           ),
           items: photos.iter
               .map(
-                (photo) => Image.network(
-                  photo.getOrCrash(),
-                  fit: BoxFit.fitWidth,
-                ),
+                (photo) => ShopifyNetworkImage(photo.getOrCrash(),
+                    fit: BoxFit.fitWidth),
               )
               .toList(),
         ),

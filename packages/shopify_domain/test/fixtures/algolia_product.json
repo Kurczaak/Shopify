@@ -1,0 +1,26 @@
+{
+    "hits": [
+        {
+            "id": "ABC-123",
+            "barcode": "123456789",
+            "brand": "test_brand",
+            "category": "diary",
+            "description": "",
+            "ingredients": "test ingredients",
+            "photosUrls": [
+                "https://www.photo.com/1"
+            ],
+            "name": "prduct_name",
+            "weight": {
+                "weight": 15.00,
+                "weightUnit": "gram"
+            }
+        }
+    ],
+    "page": 0,
+    "nbHits": 1,
+    "nbPages": 1,
+    "hitsPerPage": 20,
+    "processingTimeMS": 1,
+    "query": "jimmie paint"
+}

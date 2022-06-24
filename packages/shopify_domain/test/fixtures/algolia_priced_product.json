@@ -1,0 +1,27 @@
+{
+  "hits": [
+    {
+      "productId": "ABC-123",
+      "photo": "https://www.photo.com/1",
+      "barcode": "123456789",
+      "brand": "test_brand",
+      "category": "diary",
+      "name": "prduct_name",
+      "shopId": "shop-id-123",
+      "weight": {
+        "weight": 15.00,
+        "weightUnit": "gram"
+      },
+      "price": {
+        "price": 12.99,
+        "currency": "zl"
+      }
+    }
+  ],
+  "page": 0,
+  "nbHits": 1,
+  "nbPages": 1,
+  "hitsPerPage": 20,
+  "processingTimeMS": 1,
+  "query": "jimmie paint"
+}

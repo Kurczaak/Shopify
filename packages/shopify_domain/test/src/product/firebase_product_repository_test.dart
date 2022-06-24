@@ -15,7 +15,6 @@ import 'package:shopify_domain/src/core/firestore_helpers.dart';
 import 'package:shopify_domain/src/product/firebase_product_repository.dart';
 import 'package:firebase_storage_mocks/firebase_storage_mocks.dart' as fake;
 import 'package:fake_cloud_firestore/fake_cloud_firestore.dart';
-import 'package:shopify_domain/src/product/product_dtos.dart';
 import 'package:shopify_domain/src/shop/shop_dtos.dart';
 import '../../fixtures/test_product.dart';
 import '../../utils/image_reader.dart';
@@ -53,10 +52,12 @@ Future<void> main() async {
   late MockCollectionReference<Map<String, dynamic>> mockShopsCollection;
   late MockDocumentReference<Map<String, dynamic>> mockShopDocument;
   late MockCollectionReference<Map<String, dynamic>> mockShopProductsCollection;
+  late MockDocumentReference<Map<String, dynamic>> mockShopProductDocument;
 
   // Products
   late MockCollectionReference<Map<String, dynamic>> mockProductsCollection;
   late MockDocumentReference<Map<String, dynamic>> mockProductDocument;
+  late MockQuery<Map<String, dynamic>> mockWhereQuery;
 
   // Test Data
   final uploadedLinks = [
@@ -140,10 +141,9 @@ Future<void> main() async {
     // the shop's products collection
     when(mockShopDocument.collection('products'))
         .thenReturn(mockShopProductsCollection);
-    when(mockShopProductsCollection.add(shopProductDto.toJson()))
-        .thenAnswer((_) async {
-      return mockProductDocument;
-    });
+    when(mockShopProductsCollection.doc(tProduct.id.getOrCrash()))
+        .thenReturn(mockShopProductDocument);
+    when(mockShopProductDocument.set(any)).thenAnswer((_) async {});
     // Getting by barcode
     when(mockProductsCollection.where('barcode',
             isEqualTo: tProduct.barcode.getOrCrash()))
@@ -184,6 +184,8 @@ Future<void> main() async {
     // Product
     mockProductsCollection = MockCollectionReference<Map<String, dynamic>>();
     mockProductDocument = MockDocumentReference<Map<String, dynamic>>();
+    mockShopProductDocument = MockDocumentReference<Map<String, dynamic>>();
+    mockWhereQuery = MockQuery<Map<String, dynamic>>();
 
     // Storage SetUp
     mockAllproductsPhotosReference = MockReference();
@@ -199,9 +201,108 @@ Future<void> main() async {
     mockStorage = MockFirebaseStorage();
     mockNetworkInfo = MockNetworkInfo();
     repository = FirebaseProductRepositoryImpl(
-        mockFirestore, mockStorage, mockNetworkInfo);
+        firestore: mockFirestore,
+        storage: mockStorage,
+        networkInfo: mockNetworkInfo);
     _setUpFirestoreMocks();
     _setUpStorageMocks();
+  });
+
+  group('getById', () {
+    test(
+      'should check if has internet connection',
+      () async {
+        // act
+        await repository.getById(tProduct.id);
+        // assert
+        verify(mockNetworkInfo.isConnected).called(1);
+      },
+    );
+    test(
+      'should get products collection',
+      () async {
+        // act
+        await repository.getById(tProduct.id);
+        // assert
+        verify(mockFirestore.productsCollection).called(1);
+      },
+    );
+    test(
+      'should get the document by its id',
+      () async {
+        // act
+        await repository.getById(tProduct.id);
+        // assert
+        verify(mockProductsCollection.doc(tProduct.id.getOrCrash())).called(1);
+      },
+    );
+    test(
+      'should return the product if found',
+      () async {
+        // act
+        final result = await repository.getById(tProduct.id);
+        // assert
+        expect(result, right(tProduct));
+      },
+    );
+    test(
+      'should return a failure if product has not been found',
+      () async {
+        // arramge
+        when(mockFirestore.productsCollection)
+            .thenReturn(fakeFirestore.collection('products'));
+        // act
+        final result = await repository
+            .getById(UniqueId.fromUniqueString('nonexistingId'));
+        // assert
+        expect(result, left(const ProductFailure.productNotFound()));
+      },
+    );
+    test(
+      'should return a failure if no internet connection is present',
+      () async {
+        when(mockNetworkInfo.isConnected).thenAnswer((_) async => false);
+        // act
+        final result = await repository.getById(tProduct.id);
+        // assert
+        expect(result, left(const ProductFailure.noInternetConnection()));
+      },
+    );
+
+    test('should return a failure if connection timed out', () async {
+      // arrange
+
+      when(mockProductsCollection.doc(tProduct.id.getOrCrash()))
+          .thenReturn(mockProductDocument);
+      when(mockProductDocument.get()).thenAnswer((_) async {
+        await Future.delayed(timeoutDuration);
+        await Future.delayed(const Duration(seconds: 1));
+        final snapshot =
+            fakeFirestore.collection('products').doc(tProduct.id.getOrCrash());
+
+        return Future.value(snapshot as DocumentSnapshot<Map<String, dynamic>>);
+      });
+      // assert later
+      expectLater(mockProductDocument.get().timeout(timeoutDuration),
+          throwsA(isA<TimeoutException>()));
+      // act
+      final result = await repository.getById(tProduct.id);
+      // assert
+      expect(result, left(const ProductFailure.timeout(timeoutDuration)));
+    });
+
+    test('should return a failure if firebase throws an exception', () async {
+      // arrange
+      when(mockProductsCollection.doc(tProduct.id.getOrCrash()))
+          .thenReturn(mockProductDocument);
+      when(mockProductDocument.get()).thenThrow(
+          FirebaseException(plugin: 'plugin', code: 'permission-denied'));
+
+      // act
+      final result = await repository.getById(tProduct.id);
+      // assert
+      expect(result, left(const ProductFailure.insufficientPermission()));
+    });
   });
 
   group('addToShop', () {
@@ -339,22 +440,20 @@ Future<void> main() async {
         // act
         await repository.addToShop(tProduct, tPrice, tShop);
         // assert
-        verify(mockShopProductsCollection.add(shopProductDto.toJson()))
-            .called(1);
+        verify(mockShopProductDocument.set(shopProductDto.toJson())).called(1);
       },
     );
     test('should return a failure if connection timed out', () async {
       // arrange
-      when(mockShopProductsCollection.add(shopProductDto.toJson()))
+      when(mockShopProductDocument.set(shopProductDto.toJson()))
           .thenAnswer((_) async {
         await Future.delayed(timeoutDuration);
         await Future.delayed(const Duration(seconds: 1));
-        return mockProductDocument;
       });
       // assert later
       expectLater(
-          mockShopProductsCollection
-              .add(shopProductDto.toJson())
+          mockShopProductDocument
+              .set(shopProductDto.toJson())
               .timeout(timeoutDuration),
           throwsA(isA<TimeoutException>()));
       // act
@@ -365,7 +464,7 @@ Future<void> main() async {
 
     test('should return a failure if firebase throws an exception', () async {
       // arrange
-      when(mockShopProductsCollection.add(shopProductDto.toJson())).thenThrow(
+      when(mockShopProductDocument.set(shopProductDto.toJson())).thenThrow(
           FirebaseException(plugin: 'plugin', code: 'permission-denied'));
       // act
       final result = await repository.addToShop(tProduct, tPrice, tShop);
@@ -436,6 +535,44 @@ Future<void> main() async {
         expect(result, left(const ProductFailure.noInternetConnection()));
       },
     );
+
+    test('should return a failure if connection timed out', () async {
+      // arrange
+
+      when(mockProductsCollection.where('barcode',
+              isEqualTo: tProduct.barcode.getOrCrash()))
+          .thenReturn(mockWhereQuery);
+      when(mockWhereQuery.get()).thenAnswer((_) async {
+        await Future.delayed(timeoutDuration);
+        await Future.delayed(const Duration(seconds: 1));
+        final query = fakeFirestore
+            .collection('products')
+            .where('barcode', isEqualTo: tProduct.barcode.getOrCrash());
+        return Future.value(query as QuerySnapshot<Map<String, dynamic>>);
+      });
+      // assert later
+      expectLater(mockWhereQuery.get().timeout(timeoutDuration),
+          throwsA(isA<TimeoutException>()));
+      // act
+      final result = await repository.getByBarcode(tProduct.barcode);
+      // assert
+      expect(result, left(const ProductFailure.timeout(timeoutDuration)));
+    });
+
+    test('should return a failure if firebase throws an exception', () async {
+      // arrange
+
+      when(mockProductsCollection.where('barcode',
+              isEqualTo: tProduct.barcode.getOrCrash()))
+          .thenReturn(mockWhereQuery);
+      when(mockWhereQuery.get()).thenThrow(
+          FirebaseException(plugin: 'plugin', code: 'permission-denied'));
+
+      // act
+      final result = await repository.getByBarcode(tProduct.barcode);
+      // assert
+      expect(result, left(const ProductFailure.insufficientPermission()));
+    });
   });
   group('addPhotosAndCreate', () {
     test(

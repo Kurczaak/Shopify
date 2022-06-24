@@ -1,3 +1,4 @@
+import 'package:algolia/algolia.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shopify_client/injection.dart';
@@ -22,6 +23,11 @@ void main() async {
       projectId: projectId,
     ),
   );
+
+  const Algolia _algoliaClient = Algolia.init(
+      applicationId: "7UL8NHCSW8", apiKey: "b34d020770f200190fe3ae5d4164e4c5");
+
+  getIt.registerLazySingleton<Algolia>(() => _algoliaClient);
   ShopifyDomain.initialize;
   ShopifyPresentation.initialize;
   configureInjection(Environment.prod);

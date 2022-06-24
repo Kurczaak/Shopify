@@ -8,17 +8,55 @@ part 'product_dtos.freezed.dart';
 part 'product_dtos.g.dart';
 
 @freezed
+class PricedProductDto with _$PricedProductDto {
+  const PricedProductDto._();
+
+  const factory PricedProductDto({
+    @Default('') @JsonKey(ignore: true) String id,
+    required String productId,
+    required String barcode,
+    required String name,
+    required String brand,
+    required String photo,
+    required String category,
+    required String shopId,
+    required WeightDto weight,
+    required PriceDto price,
+  }) = _PricedProductDto;
+
+  PricedProduct toDomain() => PricedProduct(
+        productId: UniqueId.fromUniqueString(productId),
+        barcode: Barcode(barcode),
+        category: Category.fromString(category),
+        name: ProductName(name),
+        brand: BrandName(brand),
+        photo: ShopifyUrl(photo),
+        weight: weight.toDomain(),
+        price: price.toDomain(),
+        shopId: UniqueId.fromUniqueString(shopId),
+      );
+
+  factory PricedProductDto.fromJson(Map<String, dynamic> json) =>
+      _$PricedProductDtoFromJson(json);
+
+  factory PricedProductDto.fromFirestore(DocumentSnapshot doc) {
+    return PricedProductDto.fromJson(doc.data() as Map<String, dynamic>);
+  }
+}
+
+@freezed
 class ShopProductDto with _$ShopProductDto {
   const factory ShopProductDto(
-      {required String productId, required PriceDto price}) = _ShopProductDto;
+      {required PriceDto price, required String productId}) = _ShopProductDto;
 
   factory ShopProductDto.fromDomain({
     required Product product,
     required Price price,
   }) =>
       ShopProductDto(
-          productId: product.id.getOrCrash(),
-          price: PriceDto.fromDomain(price));
+          price: PriceDto.fromDomain(price),
+          productId: product.id.getOrCrash());
+
   factory ShopProductDto.fromJson(Map<String, dynamic> json) =>
       _$ShopProductDtoFromJson(json);
 }
@@ -31,7 +69,7 @@ class ProductDto with _$ProductDto {
     @Default('') @JsonKey(ignore: true) String id,
     required String barcode,
     required WeightDto weight,
-    required NutrientFactsDto nutrientFacts,
+    NutrientFactsDto? nutrientFacts,
     required String category,
     required String name,
     required String brand,
@@ -68,7 +106,9 @@ class ProductDto with _$ProductDto {
       photos: NonEmptyList5(KtList.from(
           photosUrls.map((stringUrl) => ShopifyUrl(stringUrl)).toList())),
       weight: weight.toDomain(),
-      nutrientFacts: nutrientFacts.toDomain(),
+      nutrientFacts: nutrientFacts == null
+          ? NutrientFacts.empty()
+          : nutrientFacts!.toDomain(),
     );
   }
 
