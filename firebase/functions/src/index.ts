@@ -1,8 +1,9 @@
-import * as admin from "firebase-admin";
+import * as functions from "firebase-functions";
 
-/* eslint @typescript-eslint/no-var-requires: "off" */
-
-admin.initializeApp();
-
-exports.on_add_product_to_shop = require("./on_add_product_to_shop");
-exports.addItemToCart = require("./cart");
+// // Start writing Firebase Functions
+// // https://firebase.google.com/docs/functions/typescript
+//
+// export const helloWorld = functions.https.onRequest((request, response) => {
+//   functions.logger.info("Hello logs!", {structuredData: true});
+//   response.send("Hello from Firebase!");
+// });
