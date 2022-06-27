@@ -25,6 +25,7 @@ class PricedProductDto with _$PricedProductDto {
   }) = _PricedProductDto;
 
   PricedProduct toDomain() => PricedProduct(
+        pricedProductId: UniqueId.fromUniqueString(productId),
         productId: UniqueId.fromUniqueString(productId),
         barcode: Barcode(barcode),
         category: Category.fromString(category),
