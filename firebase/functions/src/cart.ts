@@ -1,14 +1,20 @@
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 
+
+
+
 exports.addToCart = functions.https.onCall(async (data, context) => {
   // Data passed to the function
-  const {pricedProductId} = data;
-  const {quantity} = data;
-  const {shopId} = data;
+  const { pricedProductId } = data;
+  const { quantity } = data;
+  const { shopId } = data;
+  functions.logger.log("pricedProductId", pricedProductId);
+  functions.logger.log("quantity", quantity);
+  functions.logger.log("shopId", shopId);
   // User info
   if (context.auth == null) return null;
-  const {uid} = context.auth;
+  const { uid } = context.auth;
   const db = admin.firestore();
   // Priced product
   const pricedProductDoc = db.collection("pricedProducts").doc(pricedProductId);
@@ -16,30 +22,55 @@ exports.addToCart = functions.https.onCall(async (data, context) => {
   const pricedProduct = pricedProductSnapshot.data();
 
   const cartQuery = db.collection("carts").where("shopId", "==", shopId).where("userId", "==", uid);
-  const cartSnapshot = await cartQuery.get();
 
-  if (cartSnapshot.docs.length > 1) {
-    throw new functions.https.HttpsError("failed-precondition", "Too many results");
-  } else if (cartSnapshot.docs.length == 0) {
-    const cart = await db.collection("carts").add({
+  const cartDocument = await getDocumentOrCrash(cartQuery);
+  if (cartDocument == null) { // User does not have a cart
+    const carts = await db.collection("carts").add({
       "shopId": shopId,
       "userId": uid,
+      "timestamp": admin.firestore.FieldValue.serverTimestamp()
     });
-    const doc = cart.collection("cartItems").add(
+    const cart = carts.collection("cartItems").add(
       {
         "pricedProduct": pricedProduct,
+        "pricedProductId": pricedProductId,
         "quantity": quantity,
       }
     );
-    return doc;
-  } else {
-    const cartDoc = cartSnapshot.docs[0];
-    if (!cartDoc.exists) {
-      throw new functions.https.HttpsError("failed-precondition", "Something went wrong");
-    }
-    const doc = cartDoc.ref.update({
-      "quantity": admin.firestore.FieldValue.increment(quantity),
+    return cart;
+  } else { // User has a cart for the shop
+    // Update the timestamp
+    cartDocument.update({
+      "timestamp": admin.firestore.FieldValue.serverTimestamp(),
     });
-    return doc;
+
+    // Check if the product has already been added
+    const itemQuery = cartDocument.collection('cartItems').where("pricedProductId", "==", pricedProductId);
+    const itemDoc = await getDocumentOrCrash(itemQuery);
+
+    if (itemDoc == null) // Add new item
+    {
+      const doc = cartDocument.collection("cartItems").add({
+        "pricedProduct": pricedProduct,
+        "pricedProductId": pricedProductId,
+        "quantity": quantity,
+      });
+      return doc;
+    } else {
+      const doc = itemDoc.update({
+        "quantity": admin.firestore.FieldValue.increment(quantity),
+      });
+      return doc;
+    }
   }
 });
+
+
+async function getDocumentOrCrash(query: admin.firestore.Query<admin.firestore.DocumentData>): Promise<admin.firestore.DocumentReference<admin.firestore.DocumentData> | null> {
+  const snapshots = await query.get();
+  if (snapshots.docs.length >= 1) {
+    return snapshots.docs[0].ref;
+  } else {
+    return null;
+  }
+}
