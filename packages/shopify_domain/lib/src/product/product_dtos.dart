@@ -40,6 +40,9 @@ class PricedProductDto with _$PricedProductDto {
   factory PricedProductDto.fromJson(Map<String, dynamic> json) =>
       _$PricedProductDtoFromJson(json);
 
+  factory PricedProductDto.fromAlgoliaJson(Map<String, dynamic> json) =>
+      PricedProductDto.fromJson(json).copyWith(id: json['objectID']);
+
   factory PricedProductDto.fromFirestore(DocumentSnapshot doc) {
     return PricedProductDto.fromJson(doc.data() as Map<String, dynamic>)
         .copyWith(id: doc.id);
