@@ -21,12 +21,18 @@ exports.addToCart = functions.https.onCall(async (data, context) => {
   const pricedProductSnapshot = await pricedProductDoc.get();
   const pricedProduct = pricedProductSnapshot.data();
 
+  // Shop
+  const shopDoc = db.collection("shops").doc(shopId);
+  const shopSnapshot = await shopDoc.get();
+  const shop = shopSnapshot.data();
+
   const cartQuery = db.collection("carts").where("shopId", "==", shopId).where("userId", "==", uid);
 
   const cartDocument = await getDocumentOrCrash(cartQuery);
   if (cartDocument == null) { // User does not have a cart
     const carts = await db.collection("carts").add({
       "shopId": shopId,
+      "shop": shop,
       "userId": uid,
       "timestamp": admin.firestore.FieldValue.serverTimestamp()
     });
