@@ -4,11 +4,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopify_client/application/product_watcher/product_watcher_bloc.dart';
 import 'package:shopify_client/injection.dart';
 import 'package:shopify_client/presentation/product/product_failure_widget.dart';
+import 'package:shopify_client/presentation/product/widgets/products_grid_view.dart';
+import 'package:shopify_client/presentation/routes/router.gr.dart';
+import 'package:shopify_domain/cart/cart_item.dart';
+import 'package:shopify_domain/cart/shopify_cart_facade.dart';
+import 'package:shopify_domain/core.dart';
 import 'package:shopify_domain/product.dart';
 import 'package:shopify_domain/shop.dart';
 import 'package:shopify_presentation/shopify_presentation.dart';
-
-import '../routes/router.gr.dart';
 
 class ShopProductsBrowserPage extends StatelessWidget {
   const ShopProductsBrowserPage({Key? key, required this.shop})
@@ -61,6 +64,23 @@ class ShopProductsBrowserPage extends StatelessWidget {
                                               Categories.values[index])));
                                 }),
                             (_) => ProductsGridView(
+                                  onTapFavorurite: (_) {},
+                                  onLongPressAddToCart: (product) {
+                                    showDialog(
+                                        context: context,
+                                        builder: (context) =>
+                                            ShopifyAlertDialog(
+                                              title: 'Select Number',
+                                              subtitle: 'XD',
+                                              onConfirm: () {},
+                                            ));
+                                  },
+                                  onTapAddToCart: (product) {
+                                    getIt<ShopifyCartFacade>().addItemToCart(
+                                        CartItem(
+                                            product: product,
+                                            quantity: NonnegativeInt(1)));
+                                  },
                                   productsOption: state.productsOption,
                                   shop: shop,
                                   onTap: (product) {
