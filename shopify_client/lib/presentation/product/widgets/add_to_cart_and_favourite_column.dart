@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopify_client/application/cart_and_favourite/cart_and_favourite_bloc.dart';
 import 'package:shopify_client/injection.dart';
 import 'package:shopify_domain/product/product_snippets.dart';
+import 'package:shopify_client/presentation/product/widgets/number_picker_dialog.dart';
 
 class AddToCartAndFavouriteColumn extends StatelessWidget {
   const AddToCartAndFavouriteColumn(
@@ -34,7 +35,8 @@ class AddToCartAndFavouriteColumn extends StatelessWidget {
               (failure) => FlushbarHelper.createError(
                     message: failure.map(
                         noInternetConnection: (_) => 'No internet connection',
-                        invalidProduct: (_) => 'Product error',
+                        timeout: (_) => 'Connection timed out',
+                        invalidCartItem: (_) => 'Product error',
                         unexpected: (_) => 'An unexpected error has occured'),
                   ).show(context));
         }),
@@ -56,7 +58,28 @@ class AddToCartAndFavouriteColumn extends StatelessWidget {
                               CartAndFavouriteEvent.addToCart(
                                   product: product, quantity: 1));
                         },
-                        onLongPress: () {},
+                        onLongPress: () async {
+                          final bloc = context.read<CartAndFavouriteBloc>();
+                          await showDialog(
+                              context: context,
+                              builder: (context) {
+                                return ShopifyNumberPickerDialog(
+                                  title: product.name.getOrCrash(),
+                                  subtitle:
+                                      "How many do you wish to add to the cart?",
+                                  confirmText: "Add",
+                                  cancelText: "Cancel",
+                                  onConfirm: (int quantity) {
+                                    bloc.add(CartAndFavouriteEvent.addToCart(
+                                        product: product, quantity: quantity));
+                                  },
+                                  onCancel: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                  imgUrl: product.photo.getOrCrash(),
+                                );
+                              });
+                        },
                         child: Icon(
                           Icons.add_shopping_cart,
                           color: Theme.of(context).primaryColor,
