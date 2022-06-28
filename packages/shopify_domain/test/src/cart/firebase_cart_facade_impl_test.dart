@@ -6,7 +6,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:shopify_domain/auth.dart';
-import 'package:shopify_domain/cart/cart_failure.dart';
 import 'package:shopify_domain/cart/cart_item.dart';
 import 'package:shopify_domain/core/network/network_info.dart';
 import 'package:shopify_domain/core/value_objects.dart';
@@ -95,97 +94,111 @@ void main() {
 
     _setUpUserMocks();
   });
+
   group('addItemToCart', () {
-    _setUpShopifyAuth();
     test(
-      'should check internet connection',
-      () async {
-        // act
-        await facade.addItemToCart(tCartItem);
-        // assert
-        verify(mockNetworkInfo.isConnected);
-      },
-    );
-    test(
-      'should return a failure if no internet connection is available',
-      () async {
-        // act
-        final result = await facade.addItemToCart(tCartItem);
-        // assert
-        expect(result, isA<Left<CartFailure, Unit>>());
-      },
-    );
-
-    test(
-      'should get the users collection',
-      () async {
-        // act
-        await facade.addItemToCart(tCartItem);
-        // assert
-        verify(mockFirebase.usersCollection);
-      },
-    );
-    test(
-      'should get the document of the user',
-      () async {
-        // act
-        await facade.addItemToCart(tCartItem);
-        // assert
-        verify(mockUsersCollection.doc(userId.getOrCrash()));
-      },
-    );
-
-    test(
-      'should get the user carts collection',
-      () async {
-        // act
-        await facade.addItemToCart(tCartItem);
-        // assert
-        verify(mockUserDocument.collection('carts'));
-      },
-    );
-    test(
-      'should get given shop cart',
-      () async {
-        // act
-        await facade.addItemToCart(tCartItem);
-        // assert
-        verify(mockUserCartsCollection.doc(tShop.id.getOrCrash()));
-      },
-    );
-
-    test(
-      'should get given shop cart\'s products collection',
-      () async {
-        // act
-        await facade.addItemToCart(tCartItem);
-        // assert
-        verify(mockUserCartDocument.collection('products'));
-      },
-    );
-
-    test(
-      'should get given the cart\'s product document',
-      () async {
-        // act
-        await facade.addItemToCart(tCartItem);
-        // assert
-        verify(mockUserCartProductCollection
-            .doc(pricedProduct.pricedProductId.getOrCrash()));
-      },
-    );
-
-    test(
-      'should set the data',
+      'should call firebase addToCartFunction',
       () async {
         // arrange
 
         // act
-        await facade.addItemToCart(tCartItem);
+
         // assert
-        verify(
-            mockUserCartProductDocument.set({'quantity': tCartItem.quantity}));
       },
     );
   });
+
+  // group('addItemToCart', () {
+  //   _setUpShopifyAuth();
+  //   test(
+  //     'should check internet connection',
+  //     () async {
+  //       // act
+  //       await facade.addItemToCart(tCartItem);
+  //       // assert
+  //       verify(mockNetworkInfo.isConnected);
+  //     },
+  //   );
+  //   test(
+  //     'should return a failure if no internet connection is available',
+  //     () async {
+  //       // act
+  //       final result = await facade.addItemToCart(tCartItem);
+  //       // assert
+  //       expect(result, isA<Left<CartFailure, Unit>>());
+  //     },
+  //   );
+
+  //   test(
+  //     'should get the users collection',
+  //     () async {
+  //       // act
+  //       await facade.addItemToCart(tCartItem);
+  //       // assert
+  //       verify(mockFirebase.usersCollection);
+  //     },
+  //   );
+  //   test(
+  //     'should get the document of the user',
+  //     () async {
+  //       // act
+  //       await facade.addItemToCart(tCartItem);
+  //       // assert
+  //       verify(mockUsersCollection.doc(userId.getOrCrash()));
+  //     },
+  //   );
+
+  //   test(
+  //     'should get the user carts collection',
+  //     () async {
+  //       // act
+  //       await facade.addItemToCart(tCartItem);
+  //       // assert
+  //       verify(mockUserDocument.collection('carts'));
+  //     },
+  //   );
+  //   test(
+  //     'should get given shop cart',
+  //     () async {
+  //       // act
+  //       await facade.addItemToCart(tCartItem);
+  //       // assert
+  //       verify(mockUserCartsCollection.doc(tShop.id.getOrCrash()));
+  //     },
+  //   );
+
+  //   test(
+  //     'should get given shop cart\'s products collection',
+  //     () async {
+  //       // act
+  //       await facade.addItemToCart(tCartItem);
+  //       // assert
+  //       verify(mockUserCartDocument.collection('products'));
+  //     },
+  //   );
+
+  //   test(
+  //     'should get given the cart\'s product document',
+  //     () async {
+  //       // act
+  //       await facade.addItemToCart(tCartItem);
+  //       // assert
+  //       verify(mockUserCartProductCollection
+  //           .doc(pricedProduct.pricedProductId.getOrCrash()));
+  //     },
+  //   );
+
+  //   test(
+  //     'should set the data',
+  //     () async {
+  //       // arrange
+
+  //       // act
+  //       await facade.addItemToCart(tCartItem);
+  //       // assert
+  //       verify(
+  //           mockUserCartProductDocument.set({'quantity': tCartItem.quantity}));
+  //     },
+  //   );
+  // });
 }
