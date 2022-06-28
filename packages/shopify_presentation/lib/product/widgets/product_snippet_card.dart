@@ -6,16 +6,24 @@ import 'package:shopify_presentation/product/widgets/product_snippet_info_widget
 
 class ProductSnippetCard extends StatelessWidget {
   const ProductSnippetCard(
-      {Key? key, required this.product, required this.onTap})
+      {Key? key,
+      required this.product,
+      required this.onTap,
+      required this.onTapAddToCart,
+      required this.onFavourite,
+      required this.onLongPressAddToCart})
       : super(key: key);
 
   final PricedProduct product;
-  final void Function() onTap;
+  final void Function(PricedProduct product) onTap;
+  final void Function(PricedProduct product) onTapAddToCart;
+  final void Function(PricedProduct product) onLongPressAddToCart;
+  final void Function(PricedProduct product) onFavourite;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: onTap,
+      onTap: () => onTap(product),
       child: Card(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -42,10 +50,14 @@ class ProductSnippetCard extends StatelessWidget {
                       child: ProductSnippetInfoWidget(product: product),
                     ),
                   ),
-                  const Flexible(
+                  Flexible(
                     fit: FlexFit.tight,
                     flex: 3,
-                    child: AddToCartAndFavouriteColumn(),
+                    child: AddToCartAndFavouriteColumn(
+                      onTapAddToCart: () => onTapAddToCart(product),
+                      onLongPressAddToCart: () => onLongPressAddToCart(product),
+                      onTapFavourite: (_) => onFavourite(product),
+                    ),
                   ),
                 ],
               ),

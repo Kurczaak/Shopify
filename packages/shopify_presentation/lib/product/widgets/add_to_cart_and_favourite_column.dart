@@ -5,9 +5,11 @@ class AddToCartAndFavouriteColumn extends StatelessWidget {
     Key? key,
     this.onTapFavourite,
     this.onTapAddToCart,
+    this.onLongPressAddToCart,
   }) : super(key: key);
   final void Function(bool isFavourite)? onTapFavourite;
   final void Function()? onTapAddToCart;
+  final void Function()? onLongPressAddToCart;
 
   @override
   Widget build(BuildContext context) {
@@ -18,9 +20,10 @@ class AddToCartAndFavouriteColumn extends StatelessWidget {
         Expanded(
           child: FittedBox(
             fit: BoxFit.contain,
-            child: IconButton(
-              onPressed: () {},
-              icon: Icon(
+            child: InkWell(
+              onTap: onTapAddToCart,
+              onLongPress: onLongPressAddToCart,
+              child: Icon(
                 Icons.add_shopping_cart,
                 color: Theme.of(context).primaryColor,
               ),
@@ -31,9 +34,9 @@ class AddToCartAndFavouriteColumn extends StatelessWidget {
         Expanded(
           child: FittedBox(
             fit: BoxFit.contain,
-            child: IconButton(
-              onPressed: () {},
-              icon: Icon(
+            child: InkWell(
+              onTap: () => onTapFavourite,
+              child: Icon(
                 Icons.favorite_border,
                 color: Theme.of(context).colorScheme.error,
               ),
