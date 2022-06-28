@@ -10,7 +10,7 @@ part of 'cart_and_favourite_bloc.dart';
 ///
 /// ([CartAndFavouriteEventAddToFavourite] addToFavourite){} with data equality
 ///
-/// ([CartAndFavouriteEventAddToCart] addToCart){[int] quantity} with data equality
+/// ([CartAndFavouriteEventAddToCart] addToCart){[PricedProduct] product, [int] quantity} with data equality
 ///
 /// }
 @SealedManifest(_CartAndFavouriteEvent)
@@ -21,6 +21,7 @@ abstract class CartAndFavouriteEvent {
       CartAndFavouriteEventAddToFavourite;
 
   const factory CartAndFavouriteEvent.addToCart({
+    required PricedProduct product,
     required int quantity,
   }) = CartAndFavouriteEventAddToCart;
 
@@ -50,13 +51,14 @@ abstract class CartAndFavouriteEvent {
 
   R when<R extends Object?>({
     required R Function() addToFavourite,
-    required R Function(int quantity) addToCart,
+    required R Function(PricedProduct product, int quantity) addToCart,
   }) {
     final cartAndFavouriteEvent = this;
     if (cartAndFavouriteEvent is CartAndFavouriteEventAddToFavourite) {
       return addToFavourite();
     } else if (cartAndFavouriteEvent is CartAndFavouriteEventAddToCart) {
-      return addToCart(cartAndFavouriteEvent.quantity);
+      return addToCart(
+          cartAndFavouriteEvent.product, cartAndFavouriteEvent.quantity);
     } else {
       throw AssertionError();
     }
@@ -64,7 +66,7 @@ abstract class CartAndFavouriteEvent {
 
   R maybeWhen<R extends Object?>({
     R Function()? addToFavourite,
-    R Function(int quantity)? addToCart,
+    R Function(PricedProduct product, int quantity)? addToCart,
     required R Function(CartAndFavouriteEvent cartAndFavouriteEvent) orElse,
   }) {
     final cartAndFavouriteEvent = this;
@@ -74,7 +76,8 @@ abstract class CartAndFavouriteEvent {
           : orElse(cartAndFavouriteEvent);
     } else if (cartAndFavouriteEvent is CartAndFavouriteEventAddToCart) {
       return addToCart != null
-          ? addToCart(cartAndFavouriteEvent.quantity)
+          ? addToCart(
+              cartAndFavouriteEvent.product, cartAndFavouriteEvent.quantity)
           : orElse(cartAndFavouriteEvent);
     } else {
       throw AssertionError();
@@ -84,7 +87,7 @@ abstract class CartAndFavouriteEvent {
   @Deprecated('Use `whenOrNull` instead. Will be removed by next release.')
   void partialWhen({
     void Function()? addToFavourite,
-    void Function(int quantity)? addToCart,
+    void Function(PricedProduct product, int quantity)? addToCart,
     void Function(CartAndFavouriteEvent cartAndFavouriteEvent)? orElse,
   }) {
     final cartAndFavouriteEvent = this;
@@ -96,7 +99,8 @@ abstract class CartAndFavouriteEvent {
       }
     } else if (cartAndFavouriteEvent is CartAndFavouriteEventAddToCart) {
       if (addToCart != null) {
-        addToCart(cartAndFavouriteEvent.quantity);
+        addToCart(
+            cartAndFavouriteEvent.product, cartAndFavouriteEvent.quantity);
       } else if (orElse != null) {
         orElse(cartAndFavouriteEvent);
       }
@@ -107,7 +111,7 @@ abstract class CartAndFavouriteEvent {
 
   R? whenOrNull<R extends Object?>({
     R Function()? addToFavourite,
-    R Function(int quantity)? addToCart,
+    R Function(PricedProduct product, int quantity)? addToCart,
     R Function(CartAndFavouriteEvent cartAndFavouriteEvent)? orElse,
   }) {
     final cartAndFavouriteEvent = this;
@@ -117,7 +121,8 @@ abstract class CartAndFavouriteEvent {
           : orElse?.call(cartAndFavouriteEvent);
     } else if (cartAndFavouriteEvent is CartAndFavouriteEventAddToCart) {
       return addToCart != null
-          ? addToCart(cartAndFavouriteEvent.quantity)
+          ? addToCart(
+              cartAndFavouriteEvent.product, cartAndFavouriteEvent.quantity)
           : orElse?.call(cartAndFavouriteEvent);
     } else {
       throw AssertionError();
@@ -219,22 +224,26 @@ class CartAndFavouriteEventAddToFavourite extends CartAndFavouriteEvent
   List<Object?> get props => [];
 }
 
-/// (([CartAndFavouriteEventAddToCart] : [CartAndFavouriteEvent]) addToCart){[int] quantity}
+/// (([CartAndFavouriteEventAddToCart] : [CartAndFavouriteEvent]) addToCart){[PricedProduct] product, [int] quantity}
 ///
 /// with data equality
 class CartAndFavouriteEventAddToCart extends CartAndFavouriteEvent
     with EquatableMixin {
   const CartAndFavouriteEventAddToCart({
+    required this.product,
     required this.quantity,
   }) : super._internal();
 
+  final PricedProduct product;
   final int quantity;
 
   @override
-  String toString() => 'CartAndFavouriteEvent.addToCart(quantity: $quantity)';
+  String toString() =>
+      'CartAndFavouriteEvent.addToCart(product: $product, quantity: $quantity)';
 
   @override
   List<Object?> get props => [
+        product,
         quantity,
       ];
 }
