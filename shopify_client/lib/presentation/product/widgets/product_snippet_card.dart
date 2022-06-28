@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shopify_domain/product.dart';
 import 'package:shopify_presentation/core/shopify_image.dart';
-import 'package:shopify_presentation/product/widgets/add_to_cart_and_favourite_column.dart';
+import 'package:shopify_client/presentation/product/widgets/add_to_cart_and_favourite_column.dart';
 import 'package:shopify_presentation/product/widgets/product_snippet_info_widget.dart';
 
 class ProductSnippetCard extends StatelessWidget {

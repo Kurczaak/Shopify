@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:kt_dart/kt.dart';
 import 'package:shopify_domain/product/product_snippets.dart';
 import 'package:shopify_domain/shop.dart';
-import 'package:shopify_presentation/product/widgets/product_snippet_card.dart';
+import 'package:shopify_client/presentation/product/widgets/product_snippet_card.dart';
 
 class ProductsGridView extends StatelessWidget {
   const ProductsGridView(
