@@ -5,5 +5,6 @@ part 'cart_failure.freezed.dart';
 class CartFailure with _$CartFailure {
   const factory CartFailure.unexpected() = _Unexpected;
   const factory CartFailure.invalidCartItem() = _InvalidCartItem;
-  const factory CartFailure.noInternetConnection() = _noInternetConnection;
+  const factory CartFailure.noInternetConnection() = _NoInternetConnection;
+  const factory CartFailure.timeout() = _Timeout;
 }

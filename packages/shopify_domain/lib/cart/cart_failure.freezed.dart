@@ -19,44 +19,50 @@ mixin _$CartFailure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() unexpected,
-    required TResult Function() invalidProduct,
+    required TResult Function() invalidCartItem,
     required TResult Function() noInternetConnection,
+    required TResult Function() timeout,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? unexpected,
-    TResult Function()? invalidProduct,
+    TResult Function()? invalidCartItem,
     TResult Function()? noInternetConnection,
+    TResult Function()? timeout,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unexpected,
-    TResult Function()? invalidProduct,
+    TResult Function()? invalidCartItem,
     TResult Function()? noInternetConnection,
+    TResult Function()? timeout,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Unexpected value) unexpected,
-    required TResult Function(_InvalidCartItem value) invalidProduct,
-    required TResult Function(_noInternetConnection value) noInternetConnection,
+    required TResult Function(_InvalidCartItem value) invalidCartItem,
+    required TResult Function(_NoInternetConnection value) noInternetConnection,
+    required TResult Function(_Timeout value) timeout,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Unexpected value)? unexpected,
-    TResult Function(_InvalidCartItem value)? invalidProduct,
-    TResult Function(_noInternetConnection value)? noInternetConnection,
+    TResult Function(_InvalidCartItem value)? invalidCartItem,
+    TResult Function(_NoInternetConnection value)? noInternetConnection,
+    TResult Function(_Timeout value)? timeout,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Unexpected value)? unexpected,
-    TResult Function(_InvalidCartItem value)? invalidProduct,
-    TResult Function(_noInternetConnection value)? noInternetConnection,
+    TResult Function(_InvalidCartItem value)? invalidCartItem,
+    TResult Function(_NoInternetConnection value)? noInternetConnection,
+    TResult Function(_Timeout value)? timeout,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -119,8 +125,9 @@ class _$_Unexpected implements _Unexpected {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() unexpected,
-    required TResult Function() invalidProduct,
+    required TResult Function() invalidCartItem,
     required TResult Function() noInternetConnection,
+    required TResult Function() timeout,
   }) {
     return unexpected();
   }
@@ -129,8 +136,9 @@ class _$_Unexpected implements _Unexpected {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? unexpected,
-    TResult Function()? invalidProduct,
+    TResult Function()? invalidCartItem,
     TResult Function()? noInternetConnection,
+    TResult Function()? timeout,
   }) {
     return unexpected?.call();
   }
@@ -139,8 +147,9 @@ class _$_Unexpected implements _Unexpected {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unexpected,
-    TResult Function()? invalidProduct,
+    TResult Function()? invalidCartItem,
     TResult Function()? noInternetConnection,
+    TResult Function()? timeout,
     required TResult orElse(),
   }) {
     if (unexpected != null) {
@@ -153,8 +162,9 @@ class _$_Unexpected implements _Unexpected {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Unexpected value) unexpected,
-    required TResult Function(_InvalidCartItem value) invalidProduct,
-    required TResult Function(_noInternetConnection value) noInternetConnection,
+    required TResult Function(_InvalidCartItem value) invalidCartItem,
+    required TResult Function(_NoInternetConnection value) noInternetConnection,
+    required TResult Function(_Timeout value) timeout,
   }) {
     return unexpected(this);
   }
@@ -163,8 +173,9 @@ class _$_Unexpected implements _Unexpected {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Unexpected value)? unexpected,
-    TResult Function(_InvalidCartItem value)? invalidProduct,
-    TResult Function(_noInternetConnection value)? noInternetConnection,
+    TResult Function(_InvalidCartItem value)? invalidCartItem,
+    TResult Function(_NoInternetConnection value)? noInternetConnection,
+    TResult Function(_Timeout value)? timeout,
   }) {
     return unexpected?.call(this);
   }
@@ -173,8 +184,9 @@ class _$_Unexpected implements _Unexpected {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Unexpected value)? unexpected,
-    TResult Function(_InvalidCartItem value)? invalidProduct,
-    TResult Function(_noInternetConnection value)? noInternetConnection,
+    TResult Function(_InvalidCartItem value)? invalidCartItem,
+    TResult Function(_NoInternetConnection value)? noInternetConnection,
+    TResult Function(_Timeout value)? timeout,
     required TResult orElse(),
   }) {
     if (unexpected != null) {
@@ -214,7 +226,7 @@ class _$_InvalidCartItem implements _InvalidCartItem {
 
   @override
   String toString() {
-    return 'CartFailure.invalidProduct()';
+    return 'CartFailure.invalidCartItem()';
   }
 
   @override
@@ -230,32 +242,35 @@ class _$_InvalidCartItem implements _InvalidCartItem {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() unexpected,
-    required TResult Function() invalidProduct,
+    required TResult Function() invalidCartItem,
     required TResult Function() noInternetConnection,
+    required TResult Function() timeout,
   }) {
-    return invalidProduct();
+    return invalidCartItem();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? unexpected,
-    TResult Function()? invalidProduct,
+    TResult Function()? invalidCartItem,
     TResult Function()? noInternetConnection,
+    TResult Function()? timeout,
   }) {
-    return invalidProduct?.call();
+    return invalidCartItem?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unexpected,
-    TResult Function()? invalidProduct,
+    TResult Function()? invalidCartItem,
     TResult Function()? noInternetConnection,
+    TResult Function()? timeout,
     required TResult orElse(),
   }) {
-    if (invalidProduct != null) {
-      return invalidProduct();
+    if (invalidCartItem != null) {
+      return invalidCartItem();
     }
     return orElse();
   }
@@ -264,32 +279,35 @@ class _$_InvalidCartItem implements _InvalidCartItem {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Unexpected value) unexpected,
-    required TResult Function(_InvalidCartItem value) invalidProduct,
-    required TResult Function(_noInternetConnection value) noInternetConnection,
+    required TResult Function(_InvalidCartItem value) invalidCartItem,
+    required TResult Function(_NoInternetConnection value) noInternetConnection,
+    required TResult Function(_Timeout value) timeout,
   }) {
-    return invalidProduct(this);
+    return invalidCartItem(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Unexpected value)? unexpected,
-    TResult Function(_InvalidCartItem value)? invalidProduct,
-    TResult Function(_noInternetConnection value)? noInternetConnection,
+    TResult Function(_InvalidCartItem value)? invalidCartItem,
+    TResult Function(_NoInternetConnection value)? noInternetConnection,
+    TResult Function(_Timeout value)? timeout,
   }) {
-    return invalidProduct?.call(this);
+    return invalidCartItem?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Unexpected value)? unexpected,
-    TResult Function(_InvalidCartItem value)? invalidProduct,
-    TResult Function(_noInternetConnection value)? noInternetConnection,
+    TResult Function(_InvalidCartItem value)? invalidCartItem,
+    TResult Function(_NoInternetConnection value)? noInternetConnection,
+    TResult Function(_Timeout value)? timeout,
     required TResult orElse(),
   }) {
-    if (invalidProduct != null) {
-      return invalidProduct(this);
+    if (invalidCartItem != null) {
+      return invalidCartItem(this);
     }
     return orElse();
   }
@@ -300,28 +318,28 @@ abstract class _InvalidCartItem implements CartFailure {
 }
 
 /// @nodoc
-abstract class _$$_noInternetConnectionCopyWith<$Res> {
-  factory _$$_noInternetConnectionCopyWith(_$_noInternetConnection value,
-          $Res Function(_$_noInternetConnection) then) =
-      __$$_noInternetConnectionCopyWithImpl<$Res>;
+abstract class _$$_NoInternetConnectionCopyWith<$Res> {
+  factory _$$_NoInternetConnectionCopyWith(_$_NoInternetConnection value,
+          $Res Function(_$_NoInternetConnection) then) =
+      __$$_NoInternetConnectionCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_noInternetConnectionCopyWithImpl<$Res>
+class __$$_NoInternetConnectionCopyWithImpl<$Res>
     extends _$CartFailureCopyWithImpl<$Res>
-    implements _$$_noInternetConnectionCopyWith<$Res> {
-  __$$_noInternetConnectionCopyWithImpl(_$_noInternetConnection _value,
-      $Res Function(_$_noInternetConnection) _then)
-      : super(_value, (v) => _then(v as _$_noInternetConnection));
+    implements _$$_NoInternetConnectionCopyWith<$Res> {
+  __$$_NoInternetConnectionCopyWithImpl(_$_NoInternetConnection _value,
+      $Res Function(_$_NoInternetConnection) _then)
+      : super(_value, (v) => _then(v as _$_NoInternetConnection));
 
   @override
-  _$_noInternetConnection get _value => super._value as _$_noInternetConnection;
+  _$_NoInternetConnection get _value => super._value as _$_NoInternetConnection;
 }
 
 /// @nodoc
 
-class _$_noInternetConnection implements _noInternetConnection {
-  const _$_noInternetConnection();
+class _$_NoInternetConnection implements _NoInternetConnection {
+  const _$_NoInternetConnection();
 
   @override
   String toString() {
@@ -331,7 +349,7 @@ class _$_noInternetConnection implements _noInternetConnection {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_noInternetConnection);
+        (other.runtimeType == runtimeType && other is _$_NoInternetConnection);
   }
 
   @override
@@ -341,8 +359,9 @@ class _$_noInternetConnection implements _noInternetConnection {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() unexpected,
-    required TResult Function() invalidProduct,
+    required TResult Function() invalidCartItem,
     required TResult Function() noInternetConnection,
+    required TResult Function() timeout,
   }) {
     return noInternetConnection();
   }
@@ -351,8 +370,9 @@ class _$_noInternetConnection implements _noInternetConnection {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? unexpected,
-    TResult Function()? invalidProduct,
+    TResult Function()? invalidCartItem,
     TResult Function()? noInternetConnection,
+    TResult Function()? timeout,
   }) {
     return noInternetConnection?.call();
   }
@@ -361,8 +381,9 @@ class _$_noInternetConnection implements _noInternetConnection {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unexpected,
-    TResult Function()? invalidProduct,
+    TResult Function()? invalidCartItem,
     TResult Function()? noInternetConnection,
+    TResult Function()? timeout,
     required TResult orElse(),
   }) {
     if (noInternetConnection != null) {
@@ -375,8 +396,9 @@ class _$_noInternetConnection implements _noInternetConnection {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Unexpected value) unexpected,
-    required TResult Function(_InvalidCartItem value) invalidProduct,
-    required TResult Function(_noInternetConnection value) noInternetConnection,
+    required TResult Function(_InvalidCartItem value) invalidCartItem,
+    required TResult Function(_NoInternetConnection value) noInternetConnection,
+    required TResult Function(_Timeout value) timeout,
   }) {
     return noInternetConnection(this);
   }
@@ -385,8 +407,9 @@ class _$_noInternetConnection implements _noInternetConnection {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Unexpected value)? unexpected,
-    TResult Function(_InvalidCartItem value)? invalidProduct,
-    TResult Function(_noInternetConnection value)? noInternetConnection,
+    TResult Function(_InvalidCartItem value)? invalidCartItem,
+    TResult Function(_NoInternetConnection value)? noInternetConnection,
+    TResult Function(_Timeout value)? timeout,
   }) {
     return noInternetConnection?.call(this);
   }
@@ -395,8 +418,9 @@ class _$_noInternetConnection implements _noInternetConnection {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Unexpected value)? unexpected,
-    TResult Function(_InvalidCartItem value)? invalidProduct,
-    TResult Function(_noInternetConnection value)? noInternetConnection,
+    TResult Function(_InvalidCartItem value)? invalidCartItem,
+    TResult Function(_NoInternetConnection value)? noInternetConnection,
+    TResult Function(_Timeout value)? timeout,
     required TResult orElse(),
   }) {
     if (noInternetConnection != null) {
@@ -406,6 +430,121 @@ class _$_noInternetConnection implements _noInternetConnection {
   }
 }
 
-abstract class _noInternetConnection implements CartFailure {
-  const factory _noInternetConnection() = _$_noInternetConnection;
+abstract class _NoInternetConnection implements CartFailure {
+  const factory _NoInternetConnection() = _$_NoInternetConnection;
+}
+
+/// @nodoc
+abstract class _$$_TimeoutCopyWith<$Res> {
+  factory _$$_TimeoutCopyWith(
+          _$_Timeout value, $Res Function(_$_Timeout) then) =
+      __$$_TimeoutCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_TimeoutCopyWithImpl<$Res> extends _$CartFailureCopyWithImpl<$Res>
+    implements _$$_TimeoutCopyWith<$Res> {
+  __$$_TimeoutCopyWithImpl(_$_Timeout _value, $Res Function(_$_Timeout) _then)
+      : super(_value, (v) => _then(v as _$_Timeout));
+
+  @override
+  _$_Timeout get _value => super._value as _$_Timeout;
+}
+
+/// @nodoc
+
+class _$_Timeout implements _Timeout {
+  const _$_Timeout();
+
+  @override
+  String toString() {
+    return 'CartFailure.timeout()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_Timeout);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() unexpected,
+    required TResult Function() invalidCartItem,
+    required TResult Function() noInternetConnection,
+    required TResult Function() timeout,
+  }) {
+    return timeout();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? unexpected,
+    TResult Function()? invalidCartItem,
+    TResult Function()? noInternetConnection,
+    TResult Function()? timeout,
+  }) {
+    return timeout?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? unexpected,
+    TResult Function()? invalidCartItem,
+    TResult Function()? noInternetConnection,
+    TResult Function()? timeout,
+    required TResult orElse(),
+  }) {
+    if (timeout != null) {
+      return timeout();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Unexpected value) unexpected,
+    required TResult Function(_InvalidCartItem value) invalidCartItem,
+    required TResult Function(_NoInternetConnection value) noInternetConnection,
+    required TResult Function(_Timeout value) timeout,
+  }) {
+    return timeout(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_InvalidCartItem value)? invalidCartItem,
+    TResult Function(_NoInternetConnection value)? noInternetConnection,
+    TResult Function(_Timeout value)? timeout,
+  }) {
+    return timeout?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_InvalidCartItem value)? invalidCartItem,
+    TResult Function(_NoInternetConnection value)? noInternetConnection,
+    TResult Function(_Timeout value)? timeout,
+    required TResult orElse(),
+  }) {
+    if (timeout != null) {
+      return timeout(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Timeout implements CartFailure {
+  const factory _Timeout() = _$_Timeout;
 }
