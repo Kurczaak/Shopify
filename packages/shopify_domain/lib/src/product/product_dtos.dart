@@ -25,7 +25,7 @@ class PricedProductDto with _$PricedProductDto {
   }) = _PricedProductDto;
 
   PricedProduct toDomain() => PricedProduct(
-        pricedProductId: UniqueId.fromUniqueString(productId),
+        pricedProductId: UniqueId.fromUniqueString(id),
         productId: UniqueId.fromUniqueString(productId),
         barcode: Barcode(barcode),
         category: Category.fromString(category),
@@ -41,7 +41,8 @@ class PricedProductDto with _$PricedProductDto {
       _$PricedProductDtoFromJson(json);
 
   factory PricedProductDto.fromFirestore(DocumentSnapshot doc) {
-    return PricedProductDto.fromJson(doc.data() as Map<String, dynamic>);
+    return PricedProductDto.fromJson(doc.data() as Map<String, dynamic>)
+        .copyWith(id: doc.id);
   }
 }
 

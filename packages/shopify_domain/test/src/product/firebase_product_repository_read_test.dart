@@ -76,7 +76,8 @@ void main() async {
   );
   final tPrice = Price.fromPrimitives(12.99, 'zl');
 
-  final tAddedProductDto = PricedProductDto(
+  final tPricedProductDto = PricedProductDto(
+    id: UniqueId().getOrCrash(),
     productId: tProduct.id.getOrCrash(),
     barcode: tProduct.barcode.getOrCrash(),
     category: tProduct.category.getOrCrash().name,
@@ -88,13 +89,13 @@ void main() async {
     shopId: tShop.id.getOrCrash(),
   );
 
-  final tPricedProduct = tAddedProductDto.toDomain();
+  final tPricedProduct = tPricedProductDto.toDomain();
 
   final fakeFirestore = FakeFirebaseFirestore();
   await fakeFirestore
       .collection('pricedProducts')
-      .doc(tProduct.id.getOrCrash())
-      .set(tAddedProductDto.toJson());
+      .doc(tPricedProduct.pricedProductId.getOrCrash())
+      .set(tPricedProductDto.toJson());
 
   setUp(() {
     mockStorage = MockFirebaseStorage();
