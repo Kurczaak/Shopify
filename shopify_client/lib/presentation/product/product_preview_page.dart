@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopify_client/application/product_preview/product_preview_bloc.dart';
 import 'package:shopify_client/injection.dart';
 import 'package:shopify_client/presentation/product/product_failure_widget.dart';
+import 'package:shopify_client/presentation/product/widgets/add_to_cart_and_favourite_column.dart';
 import 'package:shopify_domain/product/product_snippets.dart';
 import 'package:shopify_domain/shop.dart';
 import 'package:shopify_presentation/shopify_presentation.dart';
@@ -83,10 +84,11 @@ class ProductPreviewPage extends StatelessWidget {
                                                         ProductSnippetInfoWidget(
                                                             product: product),
                                                   ),
-                                                  const Flexible(
+                                                  Flexible(
                                                     flex: 3,
                                                     child:
-                                                        AddToCartAndFavouriteColumn(),
+                                                        AddToCartAndFavouriteColumn(
+                                                            product),
                                                   ),
                                                 ],
                                               ),

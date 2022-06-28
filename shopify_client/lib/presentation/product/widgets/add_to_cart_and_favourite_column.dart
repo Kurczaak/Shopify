@@ -1,49 +1,89 @@
+import 'package:another_flushbar/flushbar_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shopify_client/application/cart_and_favourite/cart_and_favourite_bloc.dart';
+import 'package:shopify_client/injection.dart';
+import 'package:shopify_domain/product/product_snippets.dart';
 
 class AddToCartAndFavouriteColumn extends StatelessWidget {
-  const AddToCartAndFavouriteColumn({
+  const AddToCartAndFavouriteColumn(
+    this.product, {
     Key? key,
-    this.onTapFavourite,
-    this.onTapAddToCart,
-    this.onLongPressAddToCart,
   }) : super(key: key);
-  final void Function(bool isFavourite)? onTapFavourite;
-  final void Function()? onTapAddToCart;
-  final void Function()? onLongPressAddToCart;
+  final PricedProduct product;
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.end,
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: [
-        Expanded(
-          child: FittedBox(
-            fit: BoxFit.contain,
-            child: InkWell(
-              onTap: onTapAddToCart,
-              onLongPress: onLongPressAddToCart,
-              child: Icon(
-                Icons.add_shopping_cart,
-                color: Theme.of(context).primaryColor,
+    return BlocProvider<CartAndFavouriteBloc>(
+      create: (context) => getIt<CartAndFavouriteBloc>(),
+      child: BlocConsumer<CartAndFavouriteBloc, CartAndFavouriteState>(
+        listenWhen: (previous, current) {
+          if (previous.isLoading && !current.isLoading) {
+            return true;
+          }
+          if (current.failureOption.isSome()) {
+            return true;
+          }
+          return false;
+        },
+        listener: ((context, state) {
+          state.failureOption.fold(
+              () => FlushbarHelper.createSuccess(
+                      message: "Added product to the cart!")
+                  .show(context),
+              (failure) => FlushbarHelper.createError(
+                    message: failure.map(
+                        noInternetConnection: (_) => 'No internet connection',
+                        invalidProduct: (_) => 'Product error',
+                        unexpected: (_) => 'An unexpected error has occured'),
+                  ).show(context));
+        }),
+        builder: (context, state) => Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Expanded(
+              child: FittedBox(
+                fit: BoxFit.contain,
+                child: state.isLoading
+                    ? const Padding(
+                        padding: EdgeInsets.all(20.0),
+                        child: Center(child: CircularProgressIndicator()),
+                      )
+                    : InkWell(
+                        onTap: () {
+                          context.read<CartAndFavouriteBloc>().add(
+                              CartAndFavouriteEvent.addToCart(
+                                  product: product, quantity: 1));
+                        },
+                        onLongPress: () {},
+                        child: Icon(
+                          Icons.add_shopping_cart,
+                          color: Theme.of(context).primaryColor,
+                        ),
+                      ),
               ),
             ),
-          ),
+            const SizedBox(height: 10),
+            Expanded(
+              child: FittedBox(
+                fit: BoxFit.contain,
+                child: InkWell(
+                  onTap: () {
+                    context
+                        .read<CartAndFavouriteBloc>()
+                        .add(const CartAndFavouriteEvent.addToFavourite());
+                  },
+                  child: Icon(
+                    Icons.favorite_border,
+                    color: Theme.of(context).colorScheme.error,
+                  ),
+                ),
+              ),
+            )
+          ],
         ),
-        const SizedBox(height: 10),
-        Expanded(
-          child: FittedBox(
-            fit: BoxFit.contain,
-            child: InkWell(
-              onTap: () => onTapFavourite,
-              child: Icon(
-                Icons.favorite_border,
-                color: Theme.of(context).colorScheme.error,
-              ),
-            ),
-          ),
-        )
-      ],
+      ),
     );
   }
 }

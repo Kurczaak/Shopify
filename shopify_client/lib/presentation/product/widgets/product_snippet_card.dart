@@ -54,9 +54,7 @@ class ProductSnippetCard extends StatelessWidget {
                     fit: FlexFit.tight,
                     flex: 3,
                     child: AddToCartAndFavouriteColumn(
-                      onTapAddToCart: () => onTapAddToCart(product),
-                      onLongPressAddToCart: () => onLongPressAddToCart(product),
-                      onTapFavourite: (_) => onFavourite(product),
+                      product,
                     ),
                   ),
                 ],
