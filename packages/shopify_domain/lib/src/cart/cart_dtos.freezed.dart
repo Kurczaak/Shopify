@@ -240,6 +240,7 @@ mixin _$CartDto {
   @JsonKey(ignore: true)
   String get id => throw _privateConstructorUsedError;
   ShopDto get shop => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
   List<CartItemDto> get cartItems => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -254,7 +255,7 @@ abstract class $CartDtoCopyWith<$Res> {
   $Res call(
       {@JsonKey(ignore: true) String id,
       ShopDto shop,
-      List<CartItemDto> cartItems});
+      @JsonKey(ignore: true) List<CartItemDto> cartItems});
 
   $ShopDtoCopyWith<$Res> get shop;
 }
@@ -306,7 +307,7 @@ abstract class _$$_CartDtoCopyWith<$Res> implements $CartDtoCopyWith<$Res> {
   $Res call(
       {@JsonKey(ignore: true) String id,
       ShopDto shop,
-      List<CartItemDto> cartItems});
+      @JsonKey(ignore: true) List<CartItemDto> cartItems});
 
   @override
   $ShopDtoCopyWith<$Res> get shop;
@@ -350,7 +351,7 @@ class _$_CartDto extends _CartDto {
   const _$_CartDto(
       {@JsonKey(ignore: true) this.id = '',
       required this.shop,
-      required final List<CartItemDto> cartItems})
+      @JsonKey(ignore: true) final List<CartItemDto> cartItems = const []})
       : _cartItems = cartItems,
         super._();
 
@@ -364,6 +365,7 @@ class _$_CartDto extends _CartDto {
   final ShopDto shop;
   final List<CartItemDto> _cartItems;
   @override
+  @JsonKey(ignore: true)
   List<CartItemDto> get cartItems {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_cartItems);
@@ -408,7 +410,7 @@ abstract class _CartDto extends CartDto {
   const factory _CartDto(
       {@JsonKey(ignore: true) final String id,
       required final ShopDto shop,
-      required final List<CartItemDto> cartItems}) = _$_CartDto;
+      @JsonKey(ignore: true) final List<CartItemDto> cartItems}) = _$_CartDto;
   const _CartDto._() : super._();
 
   factory _CartDto.fromJson(Map<String, dynamic> json) = _$_CartDto.fromJson;
@@ -419,6 +421,7 @@ abstract class _CartDto extends CartDto {
   @override
   ShopDto get shop => throw _privateConstructorUsedError;
   @override
+  @JsonKey(ignore: true)
   List<CartItemDto> get cartItems => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
@@ -434,6 +437,7 @@ UserCartsDto _$UserCartsDtoFromJson(Map<String, dynamic> json) {
 mixin _$UserCartsDto {
   @JsonKey(ignore: true)
   String get id => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
   List<CartDto> get carts => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -447,7 +451,9 @@ abstract class $UserCartsDtoCopyWith<$Res> {
   factory $UserCartsDtoCopyWith(
           UserCartsDto value, $Res Function(UserCartsDto) then) =
       _$UserCartsDtoCopyWithImpl<$Res>;
-  $Res call({@JsonKey(ignore: true) String id, List<CartDto> carts});
+  $Res call(
+      {@JsonKey(ignore: true) String id,
+      @JsonKey(ignore: true) List<CartDto> carts});
 }
 
 /// @nodoc
@@ -483,7 +489,9 @@ abstract class _$$_UserCartsDtoCopyWith<$Res>
           _$_UserCartsDto value, $Res Function(_$_UserCartsDto) then) =
       __$$_UserCartsDtoCopyWithImpl<$Res>;
   @override
-  $Res call({@JsonKey(ignore: true) String id, List<CartDto> carts});
+  $Res call(
+      {@JsonKey(ignore: true) String id,
+      @JsonKey(ignore: true) List<CartDto> carts});
 }
 
 /// @nodoc
@@ -519,7 +527,8 @@ class __$$_UserCartsDtoCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_UserCartsDto extends _UserCartsDto {
   const _$_UserCartsDto(
-      {@JsonKey(ignore: true) this.id = '', required final List<CartDto> carts})
+      {@JsonKey(ignore: true) this.id = '',
+      @JsonKey(ignore: true) final List<CartDto> carts = const []})
       : _carts = carts,
         super._();
 
@@ -531,6 +540,7 @@ class _$_UserCartsDto extends _UserCartsDto {
   final String id;
   final List<CartDto> _carts;
   @override
+  @JsonKey(ignore: true)
   List<CartDto> get carts {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_carts);
@@ -571,7 +581,7 @@ class _$_UserCartsDto extends _UserCartsDto {
 abstract class _UserCartsDto extends UserCartsDto {
   const factory _UserCartsDto(
       {@JsonKey(ignore: true) final String id,
-      required final List<CartDto> carts}) = _$_UserCartsDto;
+      @JsonKey(ignore: true) final List<CartDto> carts}) = _$_UserCartsDto;
   const _UserCartsDto._() : super._();
 
   factory _UserCartsDto.fromJson(Map<String, dynamic> json) =
@@ -581,6 +591,7 @@ abstract class _UserCartsDto extends UserCartsDto {
   @JsonKey(ignore: true)
   String get id => throw _privateConstructorUsedError;
   @override
+  @JsonKey(ignore: true)
   List<CartDto> get carts => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
