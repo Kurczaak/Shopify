@@ -8,4 +8,5 @@ class CartFailure with _$CartFailure {
   const factory CartFailure.noInternetConnection() = _NoInternetConnection;
   const factory CartFailure.timeout() = _Timeout;
   const factory CartFailure.emptyCart() = _EmptyCart;
+  const factory CartFailure.insufficientPermission() = _InsufficientPermission;
 }

@@ -23,6 +23,7 @@ mixin _$CartFailure {
     required TResult Function() noInternetConnection,
     required TResult Function() timeout,
     required TResult Function() emptyCart,
+    required TResult Function() insufficientPermission,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -32,6 +33,7 @@ mixin _$CartFailure {
     TResult Function()? noInternetConnection,
     TResult Function()? timeout,
     TResult Function()? emptyCart,
+    TResult Function()? insufficientPermission,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -41,6 +43,7 @@ mixin _$CartFailure {
     TResult Function()? noInternetConnection,
     TResult Function()? timeout,
     TResult Function()? emptyCart,
+    TResult Function()? insufficientPermission,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -51,6 +54,8 @@ mixin _$CartFailure {
     required TResult Function(_NoInternetConnection value) noInternetConnection,
     required TResult Function(_Timeout value) timeout,
     required TResult Function(_EmptyCart value) emptyCart,
+    required TResult Function(_InsufficientPermission value)
+        insufficientPermission,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -60,6 +65,7 @@ mixin _$CartFailure {
     TResult Function(_NoInternetConnection value)? noInternetConnection,
     TResult Function(_Timeout value)? timeout,
     TResult Function(_EmptyCart value)? emptyCart,
+    TResult Function(_InsufficientPermission value)? insufficientPermission,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -69,6 +75,7 @@ mixin _$CartFailure {
     TResult Function(_NoInternetConnection value)? noInternetConnection,
     TResult Function(_Timeout value)? timeout,
     TResult Function(_EmptyCart value)? emptyCart,
+    TResult Function(_InsufficientPermission value)? insufficientPermission,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -135,6 +142,7 @@ class _$_Unexpected implements _Unexpected {
     required TResult Function() noInternetConnection,
     required TResult Function() timeout,
     required TResult Function() emptyCart,
+    required TResult Function() insufficientPermission,
   }) {
     return unexpected();
   }
@@ -147,6 +155,7 @@ class _$_Unexpected implements _Unexpected {
     TResult Function()? noInternetConnection,
     TResult Function()? timeout,
     TResult Function()? emptyCart,
+    TResult Function()? insufficientPermission,
   }) {
     return unexpected?.call();
   }
@@ -159,6 +168,7 @@ class _$_Unexpected implements _Unexpected {
     TResult Function()? noInternetConnection,
     TResult Function()? timeout,
     TResult Function()? emptyCart,
+    TResult Function()? insufficientPermission,
     required TResult orElse(),
   }) {
     if (unexpected != null) {
@@ -175,6 +185,8 @@ class _$_Unexpected implements _Unexpected {
     required TResult Function(_NoInternetConnection value) noInternetConnection,
     required TResult Function(_Timeout value) timeout,
     required TResult Function(_EmptyCart value) emptyCart,
+    required TResult Function(_InsufficientPermission value)
+        insufficientPermission,
   }) {
     return unexpected(this);
   }
@@ -187,6 +199,7 @@ class _$_Unexpected implements _Unexpected {
     TResult Function(_NoInternetConnection value)? noInternetConnection,
     TResult Function(_Timeout value)? timeout,
     TResult Function(_EmptyCart value)? emptyCart,
+    TResult Function(_InsufficientPermission value)? insufficientPermission,
   }) {
     return unexpected?.call(this);
   }
@@ -199,6 +212,7 @@ class _$_Unexpected implements _Unexpected {
     TResult Function(_NoInternetConnection value)? noInternetConnection,
     TResult Function(_Timeout value)? timeout,
     TResult Function(_EmptyCart value)? emptyCart,
+    TResult Function(_InsufficientPermission value)? insufficientPermission,
     required TResult orElse(),
   }) {
     if (unexpected != null) {
@@ -258,6 +272,7 @@ class _$_InvalidCartItem implements _InvalidCartItem {
     required TResult Function() noInternetConnection,
     required TResult Function() timeout,
     required TResult Function() emptyCart,
+    required TResult Function() insufficientPermission,
   }) {
     return invalidCartItem();
   }
@@ -270,6 +285,7 @@ class _$_InvalidCartItem implements _InvalidCartItem {
     TResult Function()? noInternetConnection,
     TResult Function()? timeout,
     TResult Function()? emptyCart,
+    TResult Function()? insufficientPermission,
   }) {
     return invalidCartItem?.call();
   }
@@ -282,6 +298,7 @@ class _$_InvalidCartItem implements _InvalidCartItem {
     TResult Function()? noInternetConnection,
     TResult Function()? timeout,
     TResult Function()? emptyCart,
+    TResult Function()? insufficientPermission,
     required TResult orElse(),
   }) {
     if (invalidCartItem != null) {
@@ -298,6 +315,8 @@ class _$_InvalidCartItem implements _InvalidCartItem {
     required TResult Function(_NoInternetConnection value) noInternetConnection,
     required TResult Function(_Timeout value) timeout,
     required TResult Function(_EmptyCart value) emptyCart,
+    required TResult Function(_InsufficientPermission value)
+        insufficientPermission,
   }) {
     return invalidCartItem(this);
   }
@@ -310,6 +329,7 @@ class _$_InvalidCartItem implements _InvalidCartItem {
     TResult Function(_NoInternetConnection value)? noInternetConnection,
     TResult Function(_Timeout value)? timeout,
     TResult Function(_EmptyCart value)? emptyCart,
+    TResult Function(_InsufficientPermission value)? insufficientPermission,
   }) {
     return invalidCartItem?.call(this);
   }
@@ -322,6 +342,7 @@ class _$_InvalidCartItem implements _InvalidCartItem {
     TResult Function(_NoInternetConnection value)? noInternetConnection,
     TResult Function(_Timeout value)? timeout,
     TResult Function(_EmptyCart value)? emptyCart,
+    TResult Function(_InsufficientPermission value)? insufficientPermission,
     required TResult orElse(),
   }) {
     if (invalidCartItem != null) {
@@ -381,6 +402,7 @@ class _$_NoInternetConnection implements _NoInternetConnection {
     required TResult Function() noInternetConnection,
     required TResult Function() timeout,
     required TResult Function() emptyCart,
+    required TResult Function() insufficientPermission,
   }) {
     return noInternetConnection();
   }
@@ -393,6 +415,7 @@ class _$_NoInternetConnection implements _NoInternetConnection {
     TResult Function()? noInternetConnection,
     TResult Function()? timeout,
     TResult Function()? emptyCart,
+    TResult Function()? insufficientPermission,
   }) {
     return noInternetConnection?.call();
   }
@@ -405,6 +428,7 @@ class _$_NoInternetConnection implements _NoInternetConnection {
     TResult Function()? noInternetConnection,
     TResult Function()? timeout,
     TResult Function()? emptyCart,
+    TResult Function()? insufficientPermission,
     required TResult orElse(),
   }) {
     if (noInternetConnection != null) {
@@ -421,6 +445,8 @@ class _$_NoInternetConnection implements _NoInternetConnection {
     required TResult Function(_NoInternetConnection value) noInternetConnection,
     required TResult Function(_Timeout value) timeout,
     required TResult Function(_EmptyCart value) emptyCart,
+    required TResult Function(_InsufficientPermission value)
+        insufficientPermission,
   }) {
     return noInternetConnection(this);
   }
@@ -433,6 +459,7 @@ class _$_NoInternetConnection implements _NoInternetConnection {
     TResult Function(_NoInternetConnection value)? noInternetConnection,
     TResult Function(_Timeout value)? timeout,
     TResult Function(_EmptyCart value)? emptyCart,
+    TResult Function(_InsufficientPermission value)? insufficientPermission,
   }) {
     return noInternetConnection?.call(this);
   }
@@ -445,6 +472,7 @@ class _$_NoInternetConnection implements _NoInternetConnection {
     TResult Function(_NoInternetConnection value)? noInternetConnection,
     TResult Function(_Timeout value)? timeout,
     TResult Function(_EmptyCart value)? emptyCart,
+    TResult Function(_InsufficientPermission value)? insufficientPermission,
     required TResult orElse(),
   }) {
     if (noInternetConnection != null) {
@@ -502,6 +530,7 @@ class _$_Timeout implements _Timeout {
     required TResult Function() noInternetConnection,
     required TResult Function() timeout,
     required TResult Function() emptyCart,
+    required TResult Function() insufficientPermission,
   }) {
     return timeout();
   }
@@ -514,6 +543,7 @@ class _$_Timeout implements _Timeout {
     TResult Function()? noInternetConnection,
     TResult Function()? timeout,
     TResult Function()? emptyCart,
+    TResult Function()? insufficientPermission,
   }) {
     return timeout?.call();
   }
@@ -526,6 +556,7 @@ class _$_Timeout implements _Timeout {
     TResult Function()? noInternetConnection,
     TResult Function()? timeout,
     TResult Function()? emptyCart,
+    TResult Function()? insufficientPermission,
     required TResult orElse(),
   }) {
     if (timeout != null) {
@@ -542,6 +573,8 @@ class _$_Timeout implements _Timeout {
     required TResult Function(_NoInternetConnection value) noInternetConnection,
     required TResult Function(_Timeout value) timeout,
     required TResult Function(_EmptyCart value) emptyCart,
+    required TResult Function(_InsufficientPermission value)
+        insufficientPermission,
   }) {
     return timeout(this);
   }
@@ -554,6 +587,7 @@ class _$_Timeout implements _Timeout {
     TResult Function(_NoInternetConnection value)? noInternetConnection,
     TResult Function(_Timeout value)? timeout,
     TResult Function(_EmptyCart value)? emptyCart,
+    TResult Function(_InsufficientPermission value)? insufficientPermission,
   }) {
     return timeout?.call(this);
   }
@@ -566,6 +600,7 @@ class _$_Timeout implements _Timeout {
     TResult Function(_NoInternetConnection value)? noInternetConnection,
     TResult Function(_Timeout value)? timeout,
     TResult Function(_EmptyCart value)? emptyCart,
+    TResult Function(_InsufficientPermission value)? insufficientPermission,
     required TResult orElse(),
   }) {
     if (timeout != null) {
@@ -624,6 +659,7 @@ class _$_EmptyCart implements _EmptyCart {
     required TResult Function() noInternetConnection,
     required TResult Function() timeout,
     required TResult Function() emptyCart,
+    required TResult Function() insufficientPermission,
   }) {
     return emptyCart();
   }
@@ -636,6 +672,7 @@ class _$_EmptyCart implements _EmptyCart {
     TResult Function()? noInternetConnection,
     TResult Function()? timeout,
     TResult Function()? emptyCart,
+    TResult Function()? insufficientPermission,
   }) {
     return emptyCart?.call();
   }
@@ -648,6 +685,7 @@ class _$_EmptyCart implements _EmptyCart {
     TResult Function()? noInternetConnection,
     TResult Function()? timeout,
     TResult Function()? emptyCart,
+    TResult Function()? insufficientPermission,
     required TResult orElse(),
   }) {
     if (emptyCart != null) {
@@ -664,6 +702,8 @@ class _$_EmptyCart implements _EmptyCart {
     required TResult Function(_NoInternetConnection value) noInternetConnection,
     required TResult Function(_Timeout value) timeout,
     required TResult Function(_EmptyCart value) emptyCart,
+    required TResult Function(_InsufficientPermission value)
+        insufficientPermission,
   }) {
     return emptyCart(this);
   }
@@ -676,6 +716,7 @@ class _$_EmptyCart implements _EmptyCart {
     TResult Function(_NoInternetConnection value)? noInternetConnection,
     TResult Function(_Timeout value)? timeout,
     TResult Function(_EmptyCart value)? emptyCart,
+    TResult Function(_InsufficientPermission value)? insufficientPermission,
   }) {
     return emptyCart?.call(this);
   }
@@ -688,6 +729,7 @@ class _$_EmptyCart implements _EmptyCart {
     TResult Function(_NoInternetConnection value)? noInternetConnection,
     TResult Function(_Timeout value)? timeout,
     TResult Function(_EmptyCart value)? emptyCart,
+    TResult Function(_InsufficientPermission value)? insufficientPermission,
     required TResult orElse(),
   }) {
     if (emptyCart != null) {
@@ -699,4 +741,136 @@ class _$_EmptyCart implements _EmptyCart {
 
 abstract class _EmptyCart implements CartFailure {
   const factory _EmptyCart() = _$_EmptyCart;
+}
+
+/// @nodoc
+abstract class _$$_InsufficientPermissionCopyWith<$Res> {
+  factory _$$_InsufficientPermissionCopyWith(_$_InsufficientPermission value,
+          $Res Function(_$_InsufficientPermission) then) =
+      __$$_InsufficientPermissionCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_InsufficientPermissionCopyWithImpl<$Res>
+    extends _$CartFailureCopyWithImpl<$Res>
+    implements _$$_InsufficientPermissionCopyWith<$Res> {
+  __$$_InsufficientPermissionCopyWithImpl(_$_InsufficientPermission _value,
+      $Res Function(_$_InsufficientPermission) _then)
+      : super(_value, (v) => _then(v as _$_InsufficientPermission));
+
+  @override
+  _$_InsufficientPermission get _value =>
+      super._value as _$_InsufficientPermission;
+}
+
+/// @nodoc
+
+class _$_InsufficientPermission implements _InsufficientPermission {
+  const _$_InsufficientPermission();
+
+  @override
+  String toString() {
+    return 'CartFailure.insufficientPermission()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_InsufficientPermission);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() unexpected,
+    required TResult Function() invalidCartItem,
+    required TResult Function() noInternetConnection,
+    required TResult Function() timeout,
+    required TResult Function() emptyCart,
+    required TResult Function() insufficientPermission,
+  }) {
+    return insufficientPermission();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? unexpected,
+    TResult Function()? invalidCartItem,
+    TResult Function()? noInternetConnection,
+    TResult Function()? timeout,
+    TResult Function()? emptyCart,
+    TResult Function()? insufficientPermission,
+  }) {
+    return insufficientPermission?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? unexpected,
+    TResult Function()? invalidCartItem,
+    TResult Function()? noInternetConnection,
+    TResult Function()? timeout,
+    TResult Function()? emptyCart,
+    TResult Function()? insufficientPermission,
+    required TResult orElse(),
+  }) {
+    if (insufficientPermission != null) {
+      return insufficientPermission();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Unexpected value) unexpected,
+    required TResult Function(_InvalidCartItem value) invalidCartItem,
+    required TResult Function(_NoInternetConnection value) noInternetConnection,
+    required TResult Function(_Timeout value) timeout,
+    required TResult Function(_EmptyCart value) emptyCart,
+    required TResult Function(_InsufficientPermission value)
+        insufficientPermission,
+  }) {
+    return insufficientPermission(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_InvalidCartItem value)? invalidCartItem,
+    TResult Function(_NoInternetConnection value)? noInternetConnection,
+    TResult Function(_Timeout value)? timeout,
+    TResult Function(_EmptyCart value)? emptyCart,
+    TResult Function(_InsufficientPermission value)? insufficientPermission,
+  }) {
+    return insufficientPermission?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_InvalidCartItem value)? invalidCartItem,
+    TResult Function(_NoInternetConnection value)? noInternetConnection,
+    TResult Function(_Timeout value)? timeout,
+    TResult Function(_EmptyCart value)? emptyCart,
+    TResult Function(_InsufficientPermission value)? insufficientPermission,
+    required TResult orElse(),
+  }) {
+    if (insufficientPermission != null) {
+      return insufficientPermission(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _InsufficientPermission implements CartFailure {
+  const factory _InsufficientPermission() = _$_InsufficientPermission;
 }
