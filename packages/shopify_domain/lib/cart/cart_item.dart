@@ -9,6 +9,7 @@ part 'cart_item.freezed.dart';
 class CartItem with _$CartItem {
   const CartItem._();
   const factory CartItem({
+    required UniqueId id,
     required PricedProduct product,
     required NonnegativeInt quantity,
   }) = _CartItem;

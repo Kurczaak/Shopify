@@ -16,6 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$CartItem {
+  UniqueId get id => throw _privateConstructorUsedError;
   PricedProduct get product => throw _privateConstructorUsedError;
   NonnegativeInt get quantity => throw _privateConstructorUsedError;
 
@@ -28,7 +29,7 @@ mixin _$CartItem {
 abstract class $CartItemCopyWith<$Res> {
   factory $CartItemCopyWith(CartItem value, $Res Function(CartItem) then) =
       _$CartItemCopyWithImpl<$Res>;
-  $Res call({PricedProduct product, NonnegativeInt quantity});
+  $Res call({UniqueId id, PricedProduct product, NonnegativeInt quantity});
 
   $PricedProductCopyWith<$Res> get product;
 }
@@ -43,10 +44,15 @@ class _$CartItemCopyWithImpl<$Res> implements $CartItemCopyWith<$Res> {
 
   @override
   $Res call({
+    Object? id = freezed,
     Object? product = freezed,
     Object? quantity = freezed,
   }) {
     return _then(_value.copyWith(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as UniqueId,
       product: product == freezed
           ? _value.product
           : product // ignore: cast_nullable_to_non_nullable
@@ -72,7 +78,7 @@ abstract class _$$_CartItemCopyWith<$Res> implements $CartItemCopyWith<$Res> {
           _$_CartItem value, $Res Function(_$_CartItem) then) =
       __$$_CartItemCopyWithImpl<$Res>;
   @override
-  $Res call({PricedProduct product, NonnegativeInt quantity});
+  $Res call({UniqueId id, PricedProduct product, NonnegativeInt quantity});
 
   @override
   $PricedProductCopyWith<$Res> get product;
@@ -90,10 +96,15 @@ class __$$_CartItemCopyWithImpl<$Res> extends _$CartItemCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? id = freezed,
     Object? product = freezed,
     Object? quantity = freezed,
   }) {
     return _then(_$_CartItem(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as UniqueId,
       product: product == freezed
           ? _value.product
           : product // ignore: cast_nullable_to_non_nullable
@@ -109,9 +120,12 @@ class __$$_CartItemCopyWithImpl<$Res> extends _$CartItemCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_CartItem extends _CartItem {
-  const _$_CartItem({required this.product, required this.quantity})
+  const _$_CartItem(
+      {required this.id, required this.product, required this.quantity})
       : super._();
 
+  @override
+  final UniqueId id;
   @override
   final PricedProduct product;
   @override
@@ -119,7 +133,7 @@ class _$_CartItem extends _CartItem {
 
   @override
   String toString() {
-    return 'CartItem(product: $product, quantity: $quantity)';
+    return 'CartItem(id: $id, product: $product, quantity: $quantity)';
   }
 
   @override
@@ -127,6 +141,7 @@ class _$_CartItem extends _CartItem {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_CartItem &&
+            const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.product, product) &&
             const DeepCollectionEquality().equals(other.quantity, quantity));
   }
@@ -134,6 +149,7 @@ class _$_CartItem extends _CartItem {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(product),
       const DeepCollectionEquality().hash(quantity));
 
@@ -145,10 +161,13 @@ class _$_CartItem extends _CartItem {
 
 abstract class _CartItem extends CartItem {
   const factory _CartItem(
-      {required final PricedProduct product,
+      {required final UniqueId id,
+      required final PricedProduct product,
       required final NonnegativeInt quantity}) = _$_CartItem;
   const _CartItem._() : super._();
 
+  @override
+  UniqueId get id => throw _privateConstructorUsedError;
   @override
   PricedProduct get product => throw _privateConstructorUsedError;
   @override

@@ -16,6 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$Cart {
+  UniqueId get id => throw _privateConstructorUsedError;
   Shop get shop => throw _privateConstructorUsedError;
   CartItemsList get cartItems => throw _privateConstructorUsedError;
 
@@ -27,7 +28,7 @@ mixin _$Cart {
 abstract class $CartCopyWith<$Res> {
   factory $CartCopyWith(Cart value, $Res Function(Cart) then) =
       _$CartCopyWithImpl<$Res>;
-  $Res call({Shop shop, CartItemsList cartItems});
+  $Res call({UniqueId id, Shop shop, CartItemsList cartItems});
 
   $ShopCopyWith<$Res> get shop;
 }
@@ -42,10 +43,15 @@ class _$CartCopyWithImpl<$Res> implements $CartCopyWith<$Res> {
 
   @override
   $Res call({
+    Object? id = freezed,
     Object? shop = freezed,
     Object? cartItems = freezed,
   }) {
     return _then(_value.copyWith(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as UniqueId,
       shop: shop == freezed
           ? _value.shop
           : shop // ignore: cast_nullable_to_non_nullable
@@ -70,7 +76,7 @@ abstract class _$$_CartCopyWith<$Res> implements $CartCopyWith<$Res> {
   factory _$$_CartCopyWith(_$_Cart value, $Res Function(_$_Cart) then) =
       __$$_CartCopyWithImpl<$Res>;
   @override
-  $Res call({Shop shop, CartItemsList cartItems});
+  $Res call({UniqueId id, Shop shop, CartItemsList cartItems});
 
   @override
   $ShopCopyWith<$Res> get shop;
@@ -87,10 +93,15 @@ class __$$_CartCopyWithImpl<$Res> extends _$CartCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? id = freezed,
     Object? shop = freezed,
     Object? cartItems = freezed,
   }) {
     return _then(_$_Cart(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as UniqueId,
       shop: shop == freezed
           ? _value.shop
           : shop // ignore: cast_nullable_to_non_nullable
@@ -106,8 +117,11 @@ class __$$_CartCopyWithImpl<$Res> extends _$CartCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Cart extends _Cart {
-  const _$_Cart({required this.shop, required this.cartItems}) : super._();
+  const _$_Cart({required this.id, required this.shop, required this.cartItems})
+      : super._();
 
+  @override
+  final UniqueId id;
   @override
   final Shop shop;
   @override
@@ -115,7 +129,7 @@ class _$_Cart extends _Cart {
 
   @override
   String toString() {
-    return 'Cart(shop: $shop, cartItems: $cartItems)';
+    return 'Cart(id: $id, shop: $shop, cartItems: $cartItems)';
   }
 
   @override
@@ -123,6 +137,7 @@ class _$_Cart extends _Cart {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Cart &&
+            const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.shop, shop) &&
             const DeepCollectionEquality().equals(other.cartItems, cartItems));
   }
@@ -130,6 +145,7 @@ class _$_Cart extends _Cart {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(shop),
       const DeepCollectionEquality().hash(cartItems));
 
@@ -141,10 +157,13 @@ class _$_Cart extends _Cart {
 
 abstract class _Cart extends Cart {
   const factory _Cart(
-      {required final Shop shop,
+      {required final UniqueId id,
+      required final Shop shop,
       required final CartItemsList cartItems}) = _$_Cart;
   const _Cart._() : super._();
 
+  @override
+  UniqueId get id => throw _privateConstructorUsedError;
   @override
   Shop get shop => throw _privateConstructorUsedError;
   @override
@@ -156,6 +175,7 @@ abstract class _Cart extends Cart {
 
 /// @nodoc
 mixin _$UserCarts {
+  UniqueId get id => throw _privateConstructorUsedError;
   NonEmptyList<Cart> get carts => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -167,7 +187,7 @@ mixin _$UserCarts {
 abstract class $UserCartsCopyWith<$Res> {
   factory $UserCartsCopyWith(UserCarts value, $Res Function(UserCarts) then) =
       _$UserCartsCopyWithImpl<$Res>;
-  $Res call({NonEmptyList<Cart> carts});
+  $Res call({UniqueId id, NonEmptyList<Cart> carts});
 }
 
 /// @nodoc
@@ -180,9 +200,14 @@ class _$UserCartsCopyWithImpl<$Res> implements $UserCartsCopyWith<$Res> {
 
   @override
   $Res call({
+    Object? id = freezed,
     Object? carts = freezed,
   }) {
     return _then(_value.copyWith(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as UniqueId,
       carts: carts == freezed
           ? _value.carts
           : carts // ignore: cast_nullable_to_non_nullable
@@ -197,7 +222,7 @@ abstract class _$$_UserCartsCopyWith<$Res> implements $UserCartsCopyWith<$Res> {
           _$_UserCarts value, $Res Function(_$_UserCarts) then) =
       __$$_UserCartsCopyWithImpl<$Res>;
   @override
-  $Res call({NonEmptyList<Cart> carts});
+  $Res call({UniqueId id, NonEmptyList<Cart> carts});
 }
 
 /// @nodoc
@@ -212,9 +237,14 @@ class __$$_UserCartsCopyWithImpl<$Res> extends _$UserCartsCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? id = freezed,
     Object? carts = freezed,
   }) {
     return _then(_$_UserCarts(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as UniqueId,
       carts: carts == freezed
           ? _value.carts
           : carts // ignore: cast_nullable_to_non_nullable
@@ -226,14 +256,16 @@ class __$$_UserCartsCopyWithImpl<$Res> extends _$UserCartsCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_UserCarts extends _UserCarts {
-  const _$_UserCarts({required this.carts}) : super._();
+  const _$_UserCarts({required this.id, required this.carts}) : super._();
 
+  @override
+  final UniqueId id;
   @override
   final NonEmptyList<Cart> carts;
 
   @override
   String toString() {
-    return 'UserCarts(carts: $carts)';
+    return 'UserCarts(id: $id, carts: $carts)';
   }
 
   @override
@@ -241,12 +273,15 @@ class _$_UserCarts extends _UserCarts {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_UserCarts &&
+            const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.carts, carts));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(carts));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(carts));
 
   @JsonKey(ignore: true)
   @override
@@ -255,10 +290,13 @@ class _$_UserCarts extends _UserCarts {
 }
 
 abstract class _UserCarts extends UserCarts {
-  const factory _UserCarts({required final NonEmptyList<Cart> carts}) =
-      _$_UserCarts;
+  const factory _UserCarts(
+      {required final UniqueId id,
+      required final NonEmptyList<Cart> carts}) = _$_UserCarts;
   const _UserCarts._() : super._();
 
+  @override
+  UniqueId get id => throw _privateConstructorUsedError;
   @override
   NonEmptyList<Cart> get carts => throw _privateConstructorUsedError;
   @override
