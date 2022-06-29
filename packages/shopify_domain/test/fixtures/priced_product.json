@@ -4,7 +4,7 @@
     "name": "priced product name",
     "brand": "priced product brand",
     "photo": "https://www.photo.com/1",
-    "category": "diary",
+    "category": "dairy",
     "shopId": "test shop id",
     "weight": {
         "weightUnit": "gram",

@@ -7,79 +7,79 @@
         "postalCode": "99-400",
         "city": "Łowicz"
     },
-    "position":{
-        "geopoint":{
+    "position": {
+        "geopoint": {
             "latitude": 37.421764,
-            "longitude":  -122.084614
+            "longitude": -122.084614
         },
         "geohash": "9q9hvuktw"
     },
     "logoUrl": "https://www.example.com",
     "week": {
-        "monday":{
+        "monday": {
             "day": "Monday",
             "isOpen": true,
-            "timeInterval":{
+            "timeInterval": {
                 "openingHour": 8,
                 "openingMinutes": 0,
                 "closingHour": 22,
                 "closingMinutes": 0
             }
         },
-        "tuesday":{
+        "tuesday": {
             "day": "Tuesday",
             "isOpen": true,
-            "timeInterval":{
+            "timeInterval": {
                 "openingHour": 8,
                 "openingMinutes": 0,
                 "closingHour": 22,
                 "closingMinutes": 0
             }
         },
-        "wednesday":{
+        "wednesday": {
             "day": "Wednesday",
             "isOpen": true,
-            "timeInterval":{
+            "timeInterval": {
                 "openingHour": 8,
                 "openingMinutes": 0,
                 "closingHour": 22,
                 "closingMinutes": 0
             }
         },
-        "thursday":{
+        "thursday": {
             "day": "Thursday",
             "isOpen": true,
-            "timeInterval":{
+            "timeInterval": {
                 "openingHour": 8,
                 "openingMinutes": 0,
                 "closingHour": 22,
                 "closingMinutes": 0
             }
         },
-        "friday":{
+        "friday": {
             "day": "Friday",
             "isOpen": true,
-            "timeInterval":{
+            "timeInterval": {
                 "openingHour": 8,
                 "openingMinutes": 0,
                 "closingHour": 22,
                 "closingMinutes": 0
             }
         },
-        "saturday":{
+        "saturday": {
             "day": "Saturday",
             "isOpen": true,
-            "timeInterval":{
+            "timeInterval": {
                 "openingHour": 8,
                 "openingMinutes": 0,
                 "closingHour": 22,
                 "closingMinutes": 0
             }
         },
-        "sunday":{
+        "sunday": {
             "day": "Sunday",
             "isOpen": true,
-            "timeInterval":{
+            "timeInterval": {
                 "openingHour": 8,
                 "openingMinutes": 0,
                 "closingHour": 22,
@@ -89,6 +89,3 @@
     },
     "serverTimeStamp": "January 18, 2022 at 10:51:38 AM UTC+1"
 }
-
-
-

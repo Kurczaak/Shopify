@@ -31,15 +31,18 @@ void main() {
     tProduct = PricedProductDto.fromJson(jsonPricedProduct).toDomain();
     correctQuantity = NonnegativeInt(5);
     incorrectQuantity = NonnegativeInt(0);
-    tCorrectCartItem2 = CartItem(product: tProduct, quantity: correctQuantity);
-    tCorrectCartItem1 = CartItem(product: tProduct, quantity: correctQuantity);
-    tCorrectCartItem3 = CartItem(product: tProduct, quantity: correctQuantity);
-    tIncorrectCartItem1 =
-        CartItem(product: tProduct, quantity: incorrectQuantity);
-    tIncorrectCartItem2 =
-        CartItem(product: tProduct, quantity: incorrectQuantity);
-    tIncorrectCartItem3 =
-        CartItem(product: tProduct, quantity: incorrectQuantity);
+    tCorrectCartItem2 =
+        CartItem(id: UniqueId(), product: tProduct, quantity: correctQuantity);
+    tCorrectCartItem1 =
+        CartItem(id: UniqueId(), product: tProduct, quantity: correctQuantity);
+    tCorrectCartItem3 =
+        CartItem(id: UniqueId(), product: tProduct, quantity: correctQuantity);
+    tIncorrectCartItem1 = CartItem(
+        id: UniqueId(), product: tProduct, quantity: incorrectQuantity);
+    tIncorrectCartItem2 = CartItem(
+        id: UniqueId(), product: tProduct, quantity: incorrectQuantity);
+    tIncorrectCartItem3 = CartItem(
+        id: UniqueId(), product: tProduct, quantity: incorrectQuantity);
     tOnlyCorrectCartItems =
         KtList.from([tCorrectCartItem1, tCorrectCartItem2, tCorrectCartItem3]);
     tOnlyIncorrectCartItems = KtList.from(
