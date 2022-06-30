@@ -10,6 +10,9 @@ abstract class ShopifyCartFacade {
   Stream<Either<CartFailure, UserCarts>> getUserCarts();
   // Update
   Future<Either<CartFailure, Unit>> updateItemInCart(CartItem item);
+  Future<Either<CartFailure, Unit>> incrementItemQuantity(CartItem item);
+  Future<Either<CartFailure, Unit>> decrementItemQuantity(CartItem item);
   // Delete
   Future<Either<CartFailure, Unit>> removeItemFromCart(CartItem item);
+  Future<Either<CartFailure, Unit>> removeCart(Cart cart);
 }
