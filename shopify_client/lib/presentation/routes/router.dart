@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:shopify_client/presentation/cart/cart_page.dart';
 import 'package:shopify_client/presentation/core/debug_page.dart';
 import 'package:shopify_client/presentation/product/product_preview_page.dart';
 import 'package:shopify_client/presentation/shop/shop_products_browser_page.dart';
@@ -15,6 +16,9 @@ import 'package:shopify_client/presentation/splash/splash_page.dart';
       AutoRoute(
         page: ShopPickerPage,
         initial: true,
+      ),
+      AutoRoute(
+        page: CartPage,
       ),
       AutoRoute(
         page: DebugPage,
