@@ -78,6 +78,7 @@ class ShopProductsBrowserPage extends StatelessWidget {
                                   onTapAddToCart: (product) {
                                     getIt<ShopifyCartFacade>().addItemToCart(
                                         CartItem(
+                                            id: UniqueId(),
                                             product: product,
                                             quantity: NonnegativeInt(1)));
                                   },
