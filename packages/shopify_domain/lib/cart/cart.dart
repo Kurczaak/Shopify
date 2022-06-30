@@ -23,6 +23,14 @@ class Cart with _$Cart {
     return total;
   }
 
+  int get numOfItems {
+    int total = 0;
+    for (final item in cartItems.getOrCrash().iter) {
+      total += item.quantity.getOrCrash();
+    }
+    return total;
+  }
+
   Either<ValueFailure, Unit> get failureOrUnit =>
       shop.failureOrUnit.andThen(cartItems.failureOrUnit);
 }
