@@ -9,7 +9,6 @@ import 'package:shopify_domain/cart/cart_failure.dart';
 import 'package:shopify_domain/cart/cart.dart';
 import 'package:dartz/dartz.dart';
 import 'package:shopify_domain/cart/shopify_cart_facade.dart';
-import 'package:shopify_domain/core/config.dart';
 import 'package:shopify_domain/core/network/network_info.dart';
 import 'package:cloud_functions/cloud_functions.dart';
 import 'package:shopify_domain/core/value_objects.dart';
@@ -28,7 +27,7 @@ class FirebaseCartFacadeImpl implements ShopifyCartFacade {
   Future<Either<CartFailure, Unit>> addItemToCart(CartItem item) async {
     final callable = FirebaseFunctions.instance.httpsCallable(
       'addItemToCart-addToCart',
-      options: HttpsCallableOptions(timeout: timeoutDuration),
+      options: HttpsCallableOptions(timeout: const Duration(seconds: 10)),
     );
 
     try {
@@ -104,14 +103,89 @@ class FirebaseCartFacadeImpl implements ShopifyCartFacade {
   }
 
   @override
-  Future<Either<CartFailure, Unit>> removeItemFromCart(CartItem item) {
-    // TODO: implement removeItemFromCart
-    throw UnimplementedError();
+  Future<Either<CartFailure, Unit>> removeItemFromCart(CartItem item) async {
+    final callable = FirebaseFunctions.instance.httpsCallable(
+      'addItemToCart-deleteCartItem',
+      options: HttpsCallableOptions(timeout: const Duration(seconds: 10)),
+    );
+
+    try {
+      await callable.call({
+        "cartItemId": item.id.getOrCrash(),
+        "shopId": item.product.shopId.getOrCrash()
+      });
+
+      return right(unit);
+    } on FirebaseFunctionsException {
+      return left(const CartFailure.unexpected());
+    } on TimeoutException {
+      return left(const CartFailure.noInternetConnection());
+    }
   }
 
   @override
   Future<Either<CartFailure, Unit>> updateItemInCart(CartItem item) {
     // TODO: implement updateItemInCart
     throw UnimplementedError();
+  }
+
+  @override
+  Future<Either<CartFailure, Unit>> decrementItemQuantity(CartItem item) async {
+    final callable = FirebaseFunctions.instance.httpsCallable(
+      'addItemToCart-decrementCartItem',
+      options: HttpsCallableOptions(timeout: const Duration(seconds: 10)),
+    );
+
+    try {
+      await callable.call({
+        "cartItemId": item.id.getOrCrash(),
+        "shopId": item.product.shopId.getOrCrash()
+      });
+
+      return right(unit);
+    } on FirebaseFunctionsException {
+      return left(const CartFailure.unexpected());
+    } on TimeoutException {
+      return left(const CartFailure.noInternetConnection());
+    }
+  }
+
+  @override
+  Future<Either<CartFailure, Unit>> incrementItemQuantity(CartItem item) async {
+    final callable = FirebaseFunctions.instance.httpsCallable(
+      'addItemToCart-incrementCartItem',
+      options: HttpsCallableOptions(timeout: const Duration(seconds: 10)),
+    );
+
+    try {
+      await callable.call({
+        "cartItemId": item.id.getOrCrash(),
+        "shopId": item.product.shopId.getOrCrash()
+      });
+
+      return right(unit);
+    } on FirebaseFunctionsException {
+      return left(const CartFailure.unexpected());
+    } on TimeoutException {
+      return left(const CartFailure.noInternetConnection());
+    }
+  }
+
+  @override
+  Future<Either<CartFailure, Unit>> removeCart(Cart cart) async {
+    final callable = FirebaseFunctions.instance.httpsCallable(
+      'addItemToCart-decrementCartItem',
+      options: HttpsCallableOptions(timeout: const Duration(seconds: 10)),
+    );
+
+    try {
+      await callable.call({"shopId": cart.shop.id.getOrCrash()});
+
+      return right(unit);
+    } on FirebaseFunctionsException {
+      return left(const CartFailure.unexpected());
+    } on TimeoutException {
+      return left(const CartFailure.noInternetConnection());
+    }
   }
 }
