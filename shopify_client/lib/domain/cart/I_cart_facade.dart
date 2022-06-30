@@ -6,6 +6,8 @@ import 'package:shopify_domain/core/value_objects.dart';
 import 'package:shopify_domain/product/product_snippets.dart';
 
 abstract class ICartFacade {
+  Stream<Either<CartFailure, UserCarts>> getUserCarts();
+
   Future<Either<CartFailure, Unit>> addProductToCart(PricedProduct product,
       {int quantity = 1});
 

@@ -52,4 +52,9 @@ class CartFacadeImpl implements ICartFacade {
     // TODO: implement sendOrder
     throw UnimplementedError();
   }
+
+  @override
+  Stream<Either<CartFailure, UserCarts>> getUserCarts() {
+    return cartFacade.getUserCarts();
+  }
 }
