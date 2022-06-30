@@ -7,8 +7,10 @@ import 'dart:async' as _i4;
 import 'package:dartz/dartz.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:shopify_client/domain/cart/I_cart_facade.dart' as _i3;
+import 'package:shopify_domain/cart/cart.dart' as _i8;
 import 'package:shopify_domain/cart/cart_failure.dart' as _i5;
-import 'package:shopify_domain/core/value_objects.dart' as _i7;
+import 'package:shopify_domain/cart/cart_item.dart' as _i7;
+import 'package:shopify_domain/core/value_objects.dart' as _i9;
 import 'package:shopify_domain/product/product_snippets.dart' as _i6;
 
 // ignore_for_file: type=lint
@@ -42,8 +44,42 @@ class MockICartFacade extends _i1.Mock implements _i3.ICartFacade {
                   _FakeEither_0<_i5.CartFailure, _i2.Unit>()))
           as _i4.Future<_i2.Either<_i5.CartFailure, _i2.Unit>>);
   @override
+  _i4.Future<_i2.Either<_i5.CartFailure, _i2.Unit>> incrementCartItem(
+          _i7.CartItem? cartItem) =>
+      (super.noSuchMethod(Invocation.method(#incrementCartItem, [cartItem]),
+              returnValue: Future<_i2.Either<_i5.CartFailure, _i2.Unit>>.value(
+                  _FakeEither_0<_i5.CartFailure, _i2.Unit>()))
+          as _i4.Future<_i2.Either<_i5.CartFailure, _i2.Unit>>);
+  @override
+  _i4.Future<_i2.Either<_i5.CartFailure, _i2.Unit>> decrementCartItem(
+          _i7.CartItem? cartItem) =>
+      (super.noSuchMethod(Invocation.method(#decrementCartItem, [cartItem]),
+              returnValue: Future<_i2.Either<_i5.CartFailure, _i2.Unit>>.value(
+                  _FakeEither_0<_i5.CartFailure, _i2.Unit>()))
+          as _i4.Future<_i2.Either<_i5.CartFailure, _i2.Unit>>);
+  @override
+  _i4.Future<_i2.Either<_i5.CartFailure, _i2.Unit>> deleteCartItem(
+          _i7.CartItem? cartItem) =>
+      (super.noSuchMethod(Invocation.method(#deleteCartItem, [cartItem]),
+              returnValue: Future<_i2.Either<_i5.CartFailure, _i2.Unit>>.value(
+                  _FakeEither_0<_i5.CartFailure, _i2.Unit>()))
+          as _i4.Future<_i2.Either<_i5.CartFailure, _i2.Unit>>);
+  @override
+  _i4.Future<_i2.Either<_i5.CartFailure, _i2.Unit>> deleteCart(
+          _i8.Cart? cart) =>
+      (super.noSuchMethod(Invocation.method(#deleteCart, [cart]),
+              returnValue: Future<_i2.Either<_i5.CartFailure, _i2.Unit>>.value(
+                  _FakeEither_0<_i5.CartFailure, _i2.Unit>()))
+          as _i4.Future<_i2.Either<_i5.CartFailure, _i2.Unit>>);
+  @override
+  _i4.Future<_i2.Either<_i5.CartFailure, _i2.Unit>> sendOrder(_i8.Cart? cart) =>
+      (super.noSuchMethod(Invocation.method(#sendOrder, [cart]),
+              returnValue: Future<_i2.Either<_i5.CartFailure, _i2.Unit>>.value(
+                  _FakeEither_0<_i5.CartFailure, _i2.Unit>()))
+          as _i4.Future<_i2.Either<_i5.CartFailure, _i2.Unit>>);
+  @override
   _i4.Future<_i2.Either<_i5.CartFailure, _i2.Unit>> addProductToFavourites(
-          _i7.UniqueId? id) =>
+          _i9.UniqueId? id) =>
       (super.noSuchMethod(Invocation.method(#addProductToFavourites, [id]),
               returnValue: Future<_i2.Either<_i5.CartFailure, _i2.Unit>>.value(
                   _FakeEither_0<_i5.CartFailure, _i2.Unit>()))
