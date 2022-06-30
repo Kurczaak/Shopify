@@ -1,7 +1,139 @@
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
+import { HttpsError } from 'firebase-functions/v1/auth';
 
 
+exports.onCartItemChanged = functions.firestore.document("carts/{cartId}/cartItems/{cartItemId}").onWrite(async (snapshot, context) => {
+  const { cartId } = context.params;
+  const cartItem = snapshot.after.data();
+  const cartItemDoc = snapshot.after.ref;
+  const db = admin.firestore();
+  const cartDocument = db.collection('carts').doc(cartId);
+  if (cartDocument == null) {
+    throw new HttpsError("not-found", 'cart document not found');
+  }
+  if (cartItem == null) {
+    return null;
+  }
+  if (cartItem.quantity <= 0) {
+    await cartDocument.update({
+      "timestamp": admin.firestore.FieldValue.serverTimestamp(),
+    });
+    await cartItemDoc.delete();
+    const cartItemsCollection = await cartDocument.collection('cartItems').get();
+    if (cartItemsCollection.size == 0) {
+      await cartDocument.delete();
+    }
+  }
+  return null;
+});
+
+exports.deleteCartItem = functions.https.onCall(async (data, context) => {
+  const { shopId } = data;
+  const { cartItemId } = data;
+  if (context.auth == null) return null;
+  const { uid } = context.auth;
+  const db = admin.firestore();
+
+  const cartQuery = db.collection("carts").where("shopId", "==", shopId).where("userId", "==", uid);
+
+  const cartDocument = await getDocumentOrCrash(cartQuery);
+  if (cartDocument == null) { // User does not have a cart
+    throw new HttpsError("not-found", 'cart not found');
+  } else {
+    // Check if the product has already been added
+    const itemDocReference = cartDocument.collection('cartItems').doc(cartItemId);
+    const itemDoc = await itemDocReference.get();
+
+    if (!itemDoc.exists) {
+      throw new HttpsError("not-found", 'cart item not found');
+    } else {
+      const doc = await itemDocReference.delete();
+      await cartDocument.update({
+        "timestamp": admin.firestore.FieldValue.serverTimestamp(),
+      });
+      return doc;
+    }
+  }
+});
+
+exports.deleteCart = functions.https.onCall(async (data, context) => {
+  const { shopId } = data;
+  if (context.auth == null) return null;
+  const { uid } = context.auth;
+  const db = admin.firestore();
+
+  const cartQuery = db.collection("carts").where("shopId", "==", shopId).where("userId", "==", uid);
+
+  const cartDocument = await getDocumentOrCrash(cartQuery);
+  if (cartDocument == null) { // User does not have a cart
+    throw new HttpsError("not-found", 'cart not found');
+  } else {
+    return await cartDocument.delete();
+  }
+});
+
+exports.incrementCartItem = functions.https.onCall(async (data, context) => {
+  const { shopId } = data;
+  const { cartItemId } = data;
+  if (context.auth == null) return null;
+  const { uid } = context.auth;
+  const db = admin.firestore();
+
+  const cartQuery = db.collection("carts").where("shopId", "==", shopId).where("userId", "==", uid);
+
+  const cartDocument = await getDocumentOrCrash(cartQuery);
+  if (cartDocument == null) { // User does not have a cart
+    throw new HttpsError("not-found", 'cart not found');
+  } else {
+    // Check if the product has already been added
+    const itemDocReference = cartDocument.collection('cartItems').doc(cartItemId);
+    const itemDoc = await itemDocReference.get();
+
+    if (!itemDoc.exists) {
+      throw new HttpsError("not-found", 'cart item not found');
+    } else {
+      const doc = await itemDocReference.update({
+        "quantity": admin.firestore.FieldValue.increment(1),
+      });
+      await cartDocument.update({
+        "timestamp": admin.firestore.FieldValue.serverTimestamp(),
+      });
+      return doc;
+    }
+  }
+});
+
+exports.decrementCartItem = functions.https.onCall(async (data, context) => {
+  const { shopId } = data;
+  const { cartItemId } = data;
+  if (context.auth == null) return null;
+  const { uid } = context.auth;
+  const db = admin.firestore();
+
+  const cartQuery = db.collection("carts").where("shopId", "==", shopId).where("userId", "==", uid);
+
+  const cartDocument = await getDocumentOrCrash(cartQuery);
+  if (cartDocument == null) { // User does not have a cart
+    throw new HttpsError("not-found", 'cart not found');
+  } else {
+    // Check if the product has already been added
+    const itemDocReference = cartDocument.collection('cartItems').doc(cartItemId);
+    const itemDoc = await itemDocReference.get();
+
+    if (!itemDoc.exists) {
+      throw new HttpsError("not-found", 'cart item not found');
+    } else {
+      const doc = await itemDocReference.update({
+        "quantity": admin.firestore.FieldValue.increment(-1),
+      });
+      await cartDocument.update({
+        "timestamp": admin.firestore.FieldValue.serverTimestamp(),
+      });
+      return doc;
+    }
+  }
+});
 
 
 exports.addToCart = functions.https.onCall(async (data, context) => {
@@ -9,9 +141,6 @@ exports.addToCart = functions.https.onCall(async (data, context) => {
   const { pricedProductId } = data;
   const { quantity } = data;
   const { shopId } = data;
-  functions.logger.log("pricedProductId", pricedProductId);
-  functions.logger.log("quantity", quantity);
-  functions.logger.log("shopId", shopId);
   // User info
   if (context.auth == null) return null;
   const { uid } = context.auth;
