@@ -24,8 +24,10 @@ class CartAndFavouriteBloc
       await event.when(
           addToFavourite: () async {},
           addToCart: (PricedProduct product, int quantity) async {
-            final cartItem =
-                CartItem(product: product, quantity: NonnegativeInt(quantity));
+            final cartItem = CartItem(
+                id: UniqueId(),
+                product: product,
+                quantity: NonnegativeInt(quantity));
             await cartItem.failureOrUnit.fold(
                 (failure) async => emit(state.copyWith(
                     failureOption: some(const CartFailure.invalidCartItem()))),
