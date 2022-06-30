@@ -174,7 +174,7 @@ class FirebaseCartFacadeImpl implements ShopifyCartFacade {
   @override
   Future<Either<CartFailure, Unit>> removeCart(Cart cart) async {
     final callable = FirebaseFunctions.instance.httpsCallable(
-      'addItemToCart-decrementCartItem',
+      'addItemToCart-deleteCart',
       options: HttpsCallableOptions(timeout: const Duration(seconds: 10)),
     );
 

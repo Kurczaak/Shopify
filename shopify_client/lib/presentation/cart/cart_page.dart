@@ -61,7 +61,10 @@ class CartPage extends StatelessWidget {
 
                                                 // A pane can dismiss the Slidable.
                                                 dismissible: DismissiblePane(
-                                                    onDismissed: () {}),
+                                                    onDismissed: () {
+                                                  getIt<ShopifyCartFacade>()
+                                                      .removeCart(cart);
+                                                }),
 
                                                 // All actions are defined in the children parameter.
                                                 children: [
@@ -206,7 +209,9 @@ class CartItemWidget extends StatelessWidget {
         motion: const ScrollMotion(),
 
         // A pane can dismiss the Slidable.
-        dismissible: DismissiblePane(onDismissed: () {}),
+        dismissible: DismissiblePane(onDismissed: () {
+          getIt<ShopifyCartFacade>().removeItemFromCart(cartItem);
+        }),
 
         // All actions are defined in the children parameter.
         children: [
