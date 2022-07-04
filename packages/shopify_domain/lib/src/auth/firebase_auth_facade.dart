@@ -106,13 +106,13 @@ class FirebaseAuthFacade implements ShopifyAuth {
       } else {
         return left(const AuthFailure.cancelledByUser());
       }
-    } on FirebaseAuthException catch (_) {
+    } on FirebaseAuthException {
       return left(const AuthFailure.serverSerror());
     } on TimeoutException catch (_) {
       return left(const AuthFailure.timeOut(timeoutDuration));
     } on PlatformException catch (e) {
       if (e.code == GoogleSignIn.kNetworkError) {
-        return left(const AuthFailure.serverSerror());
+        return left(const AuthFailure.noInternetConnection());
       } else if (e.code == GoogleSignIn.kSignInRequiredError) {
         await _googleSignIn.signOut();
       } else if (e.code == GoogleSignIn.kSignInFailedError) {

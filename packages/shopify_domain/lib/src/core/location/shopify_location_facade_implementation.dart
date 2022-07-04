@@ -57,6 +57,30 @@ class ShopifyLocationFacadeImpl implements ShopifyLocationFacade {
         return left(const LocationFailure.noLocationFound());
       } else {
         final location = locations.first;
+
+        return right(Location.fromLatLang(
+            latitude: location.latitude, longitude: location.longitude));
+      }
+    } on PlatformException catch (_) {
+      //TODO LOG THIS ERROR
+      return left(const LocationFailure.unexpected());
+    } on TimeoutException catch (_) {
+      return left(const LocationFailure.timeout());
+    }
+  }
+
+  @override
+  Future<Either<LocationFailure, Location>> getLocationFromString(
+      String input) async {
+    try {
+      final locations = await geocodingPlatform
+          .locationFromAddress(input)
+          .timeout(timeoutDuration);
+      if (locations.isEmpty) {
+        return left(const LocationFailure.noLocationFound());
+      } else {
+        final location = locations.first;
+
         return right(Location.fromLatLang(
             latitude: location.latitude, longitude: location.longitude));
       }

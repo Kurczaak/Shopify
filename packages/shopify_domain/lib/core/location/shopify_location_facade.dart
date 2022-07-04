@@ -9,6 +9,8 @@ abstract class ShopifyLocationFacade {
   Future<Either<LocationFailure, Location>> getUserLocation();
   Future<Either<LocationFailure, Location>> getLocationFromAddress(
       Address address);
+
+  Future<Either<LocationFailure, Location>> getLocationFromString(String input);
   Future<Either<LocationFailure, Unit>> setUserAddress(Address address);
   static ShopifyLocationFacade get instance => getIt<ShopifyLocationFacade>();
 }
