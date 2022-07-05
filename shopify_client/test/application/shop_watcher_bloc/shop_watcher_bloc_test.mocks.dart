@@ -42,6 +42,14 @@ class MockILocationFacade extends _i1.Mock implements _i3.ILocationFacade {
                       _FakeEither_0<_i5.LocationFailure, _i5.Location>()))
           as _i4.Future<_i2.Either<_i5.LocationFailure, _i5.Location>>);
   @override
+  _i4.Future<_i2.Either<_i5.LocationFailure, _i5.Location>>
+      getLocationFromString(String? input) => (super.noSuchMethod(
+              Invocation.method(#getLocationFromString, [input]),
+              returnValue:
+                  Future<_i2.Either<_i5.LocationFailure, _i5.Location>>.value(
+                      _FakeEither_0<_i5.LocationFailure, _i5.Location>()))
+          as _i4.Future<_i2.Either<_i5.LocationFailure, _i5.Location>>);
+  @override
   _i4.Future<_i2.Either<_i5.LocationFailure, _i5.Location>> getUserLocation() =>
       (super.noSuchMethod(Invocation.method(#getUserLocation, []),
               returnValue:
