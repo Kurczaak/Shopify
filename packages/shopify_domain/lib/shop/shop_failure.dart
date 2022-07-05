@@ -9,6 +9,7 @@ class ShopFailure with _$ShopFailure {
   const factory ShopFailure.timeout(Duration timeout) = _Timeout;
   const factory ShopFailure.noShopFound() = _NoShopFound;
   const factory ShopFailure.incorrectLocationGiven() = _IncorrectLocationGiven;
+  const factory ShopFailure.noInternetConnection() = _NoInternetConnection;
   const factory ShopFailure.locationPermissionDenied() =
       _LocationPermissionDenied;
 }
