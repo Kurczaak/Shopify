@@ -49,6 +49,7 @@ dependencies:
   numberpicker: ^2.1.1
   responsive_framework: ^0.2.0
   rxdart: ^0.27.4
+  salomon_bottom_bar: ^3.3.1
   scrollable_positioned_list: ^0.3.2
   sealed_annotations: ^1.13.0
   shopify_domain:
