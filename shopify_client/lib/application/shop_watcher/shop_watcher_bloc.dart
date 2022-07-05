@@ -32,7 +32,8 @@ class ShopWatcherBloc extends Bloc<ShopWatcherEvent, ShopWatcherState> {
               (failure) async => emit(const ShopWatcherState.error(
                   failure: ShopFailure.incorrectLocationGiven())),
               (location) async {
-                emit(ShopWatcherstate)
+            emit(const ShopWatcherState.error(
+                failure: ShopFailure.incorrectLocationGiven()));
             await emit.forEach(
                 _shopRepository.watchNearby(location, radius.toDouble()),
                 onData: (Either<ShopFailure, KtList<Shop>> data) => data.fold(
