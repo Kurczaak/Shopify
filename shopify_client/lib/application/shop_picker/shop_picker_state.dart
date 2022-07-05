@@ -22,7 +22,7 @@ class ShopPickerState with _$ShopPickerState {
   factory ShopPickerState.loading(ShopPickerState previousState) =>
       ShopPickerState(
           location: previousState.location,
-          locationFailureOption: previousState.locationFailureOption,
+          locationFailureOption: none(),
           shops: previousState.shops,
           radius: previousState.radius,
           shopFailureOption: none(),

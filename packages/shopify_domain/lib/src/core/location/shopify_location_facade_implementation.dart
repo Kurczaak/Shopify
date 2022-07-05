@@ -31,6 +31,8 @@ class ShopifyLocationFacadeImpl implements ShopifyLocationFacade {
       return left(const LocationFailure.unexpected());
     } on PlatformException catch (_) {
       return left(const LocationFailure.unexpected());
+    } on g.NoResultFoundException {
+      return left(const LocationFailure.noLocationFound());
     }
   }
 
@@ -51,7 +53,7 @@ class ShopifyLocationFacadeImpl implements ShopifyLocationFacade {
       Address address) async {
     try {
       final locations = await geocodingPlatform
-          .locationFromAddress(address.toString())
+          .locationFromAddress(address.toString(), localeIdentifier: 'pl_PL')
           .timeout(timeoutDuration);
       if (locations.isEmpty) {
         return left(const LocationFailure.noLocationFound());
@@ -66,6 +68,8 @@ class ShopifyLocationFacadeImpl implements ShopifyLocationFacade {
       return left(const LocationFailure.unexpected());
     } on TimeoutException catch (_) {
       return left(const LocationFailure.timeout());
+    } on g.NoResultFoundException {
+      return left(const LocationFailure.noLocationFound());
     }
   }
 
@@ -74,7 +78,7 @@ class ShopifyLocationFacadeImpl implements ShopifyLocationFacade {
       String input) async {
     try {
       final locations = await geocodingPlatform
-          .locationFromAddress(input)
+          .locationFromAddress(input, localeIdentifier: 'pl_PL')
           .timeout(timeoutDuration);
       if (locations.isEmpty) {
         return left(const LocationFailure.noLocationFound());
@@ -89,6 +93,8 @@ class ShopifyLocationFacadeImpl implements ShopifyLocationFacade {
       return left(const LocationFailure.unexpected());
     } on TimeoutException catch (_) {
       return left(const LocationFailure.timeout());
+    } on g.NoResultFoundException {
+      return left(const LocationFailure.noLocationFound());
     }
   }
 }

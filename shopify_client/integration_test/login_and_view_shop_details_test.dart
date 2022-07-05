@@ -6,11 +6,12 @@ import 'package:kt_dart/kt.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:shopify_client/application/auth/auth_bloc.dart';
 import 'package:shopify_client/application/auth/sign_in_form/sign_in_form_bloc.dart';
-import 'package:shopify_client/application/shop_watcher/shop_watcher_bloc.dart';
+import 'package:shopify_client/application/shop_picker/shop_picker_bloc.dart';
 import 'package:shopify_client/domain/auth/i_auth_facade.dart';
 import 'package:shopify_client/domain/core/i_location_facade.dart';
 import 'package:shopify_client/domain/shop/i_shop_repository.dart';
 import 'package:shopify_client/injection.dart';
+import 'package:shopify_domain/core/network/network_info.dart';
 import 'package:shopify_presentation/shopify_presentation.dart';
 import 'package:shopify_domain/auth/user.dart';
 import 'package:shopify_domain/auth/value_objects.dart';
@@ -28,6 +29,8 @@ class MockAuthFacade extends Mock implements IAuthFacade {}
 class MockShopRepository extends Mock implements IShopRepository {}
 
 class MockLocationFacade extends Mock implements ILocationFacade {}
+
+class MockNetworkInfo extends Mock implements NetworkInfo {}
 
 void main() {
   final testWidget = createWidgetUnderTest();
@@ -57,6 +60,7 @@ void main() {
   final mockAuthFacade = MockAuthFacade();
   final mockShopRepository = MockShopRepository();
   final mockLocationFacade = MockLocationFacade();
+  final mockNetworkInfo = MockNetworkInfo();
 
   // Setup
   void setUpUserLoggedOut() {
@@ -73,7 +77,7 @@ void main() {
   }
 
   void setUpShopRepository() {
-    when(() => mockShopRepository.watchNearby(tLocation, .5))
+    when(() => mockShopRepository.watchNearby(tLocation, NonnegativeNumber(.5)))
         .thenAnswer((invocation) => Stream.fromIterable([
               right(KtList.from([tShop]))
             ]));
@@ -87,12 +91,14 @@ void main() {
   // Blocs
   final authBloc = AuthBloc(mockAuthFacade);
   final signInFormBloc = SignInFormBloc(mockAuthFacade, authBloc);
-  final shopWatcherBloc =
-      ShopWatcherBloc(mockShopRepository, mockLocationFacade);
+  final shopPickerBloc = ShopPickerBloc(
+      shopRepository: mockShopRepository,
+      location: mockLocationFacade,
+      networkInfo: mockNetworkInfo);
 
   getIt.registerFactory<AuthBloc>(() => authBloc);
   getIt.registerFactory<SignInFormBloc>(() => signInFormBloc);
-  getIt.registerFactory<ShopWatcherBloc>(() => shopWatcherBloc);
+  getIt.registerFactory<ShopPickerBloc>(() => shopPickerBloc);
 
   testWidgets('should login and view shop details',
       (WidgetTester tester) async {

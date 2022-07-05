@@ -1,15 +1,15 @@
 import 'dart:async';
+import 'dart:math';
 
+import 'package:another_flushbar/flushbar_helper.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:kt_dart/kt.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:shopify_client/application/auth/auth_bloc.dart';
-import 'package:shopify_client/application/shop_watcher/shop_watcher_bloc.dart';
+import 'package:shopify_client/application/shop_picker/shop_picker_bloc.dart';
 import 'package:shopify_client/presentation/routes/router.gr.dart';
-import 'package:shopify_domain/core.dart';
 import 'package:shopify_domain/shop.dart';
 import 'package:shopify_client/injection.dart';
 import 'package:shopify_presentation/shopify_presentation.dart';
@@ -25,25 +25,49 @@ class _ShopPickerPageState extends State<ShopPickerPage> {
   Completer<GoogleMapController> _controller = Completer();
   GoogleMapController? mapController;
   final double minDistance = .1;
-  final double maxDistance = 20;
+  final double maxDistance = 5;
   double radius = .5;
   Shop? selectedShop;
 
   final itemController = ItemScrollController();
 
+  double getZoomLevel(double radius) {
+    double zoomLevel = 11;
+    if (radius > 0) {
+      double radiusElevated = radius + radius / 2;
+      double scale = radiusElevated / 500;
+      zoomLevel = 15.8 - log(scale) / log(2);
+    }
+    zoomLevel = double.parse(zoomLevel.toStringAsFixed(2));
+    return zoomLevel;
+  }
+
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<ShopWatcherBloc>(
-      create: (context) => getIt<ShopWatcherBloc>()
-        ..add(ShopWatcherEvent.watchNearbyShops(
-          radius: radius,
-        )),
-      child: BlocConsumer<ShopWatcherBloc, ShopWatcherState>(
+    return BlocProvider<ShopPickerBloc>(
+      create: (context) {
+        radius = getIt<ShopPickerBloc>().state.radius;
+        return getIt<ShopPickerBloc>()
+          ..add(const ShopPickerEvent.getYourLocation());
+      },
+      child: BlocConsumer<ShopPickerBloc, ShopPickerState>(
         listener: (context, state) {
-          if (state.isLoaded) {
-            mapController?.animateCamera(
-                CameraUpdate.newLatLng(state.asLoaded.location.latLng));
+          if (!state.isLoading) {
+            mapController?.animateCamera(CameraUpdate.newLatLngZoom(
+                state.location.latLng, getZoomLevel(radius * 1000)));
           }
+          state.locationFailureOption.fold(
+            () => null,
+            (failure) => FlushbarHelper.createError(
+                message: failure.map(
+                    unexpected: (_) => 'An unexpected failure occured!',
+                    noLocationFound: (_) =>
+                        'Given location could not be found!',
+                    timeout: (_) => 'Connection timed out!',
+                    permissionDenied: (_) =>
+                        'Permission denied. Try again later')).show(context),
+          );
+
           setState(() {
             selectedShop = null;
           });
@@ -87,11 +111,105 @@ class _ShopPickerPageState extends State<ShopPickerPage> {
                     },
                   )
                 : null,
-            body: state.whenOrNull(
-              initial: () => const Center(
-                child: CircularProgressIndicator(),
+            body: state.shopFailureOption.fold(
+              () => Column(
+                children: [
+                  const SizedBox(height: 10),
+                  Padding(
+                    padding: const EdgeInsets.all(18),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Expanded(
+                          child: Slider(
+                            min: minDistance,
+                            max: maxDistance,
+                            value: radius,
+                            onChanged: (value) {
+                              setState(() {
+                                radius = value;
+                              });
+                            },
+                            onChangeEnd: (_) => context
+                                .read<ShopPickerBloc>()
+                                .add(ShopPickerEvent.radiusChanged(
+                                    radius: radius)),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 130,
+                          child: Text(
+                            'Less than ${radius < 1 ? radius.toStringAsFixed(1) : radius.toInt()} km',
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 90,
+                    child: ShopsLogosScrollableList(
+                      shops: state.shops,
+                      itemController: itemController,
+                      selectedShop: selectedShop,
+                      onTap: (shop) {
+                        itemController.scrollTo(
+                          duration: const Duration(milliseconds: 250),
+                          index: state.shops.indexOf(shop),
+                          alignment: .25,
+                        );
+                        mapController?.showMarkerInfoWindow(
+                            MarkerId(shop.id.getOrCrash()));
+                        mapController?.animateCamera(
+                            CameraUpdate.newLatLng(shop.location.latLng));
+                        setState(() {
+                          selectedShop = shop;
+                        });
+                      },
+                    ),
+                  ),
+                  const SizedBox(height: 14),
+                  LocationTextField(
+                    onLocationTap: () => context
+                        .read<ShopPickerBloc>()
+                        .add(const ShopPickerEvent.getYourLocation()),
+                    onSaved: (String input) {
+                      context.read<ShopPickerBloc>().add(
+                          ShopPickerEvent.searchLocation(
+                              stringLocation: input));
+                    },
+                  ),
+                  const SizedBox(height: 14),
+                  Expanded(
+                    child: ShopsMapWidget(
+                      center: state.location,
+                      shops: state.shops,
+                      onMapCreated: (GoogleMapController controller) {
+                        _controller = Completer<GoogleMapController>();
+                        _controller.complete(controller);
+                        setState(() {
+                          mapController = controller;
+                        });
+                      },
+                      radius: radius,
+                      isLoading: state.isLoading,
+                      onTap: !state.isLoading
+                          ? (Shop shop) {
+                              itemController.scrollTo(
+                                duration: const Duration(milliseconds: 500),
+                                index: state.shops.indexOf(shop),
+                                alignment: .25,
+                              );
+                              setState(() {
+                                selectedShop = shop;
+                              });
+                            }
+                          : (_) {},
+                    ),
+                  ),
+                ],
               ),
-              error: (failure) => Center(
+              (failure) => Center(
                 child: Padding(
                   padding: const EdgeInsets.all(28.0),
                   child: Column(
@@ -100,6 +218,8 @@ class _ShopPickerPageState extends State<ShopPickerPage> {
                     children: [
                       Text(
                         failure.map(
+                            noInternetConnection: (_) =>
+                                'No internet connection',
                             incorrectLocationGiven: (_) =>
                                 'Could not find place with given location',
                             locationPermissionDenied: (_) =>
@@ -123,115 +243,14 @@ class _ShopPickerPageState extends State<ShopPickerPage> {
                       ElevatedButton(
                         child: const Icon(Icons.refresh),
                         onPressed: () {
-                          context.read<ShopWatcherBloc>().add(
-                              ShopWatcherEvent.watchNearbyShops(
-                                  radius: radius));
+                          context
+                              .read<ShopPickerBloc>()
+                              .add(const ShopPickerEvent.getYourLocation());
                         },
                       ),
                     ],
                   ),
                 ),
-              ),
-              orElse: (orElseState) => Column(
-                children: [
-                  const SizedBox(height: 10),
-                  Padding(
-                    padding: const EdgeInsets.all(18),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Expanded(
-                          child: Slider(
-                            min: minDistance,
-                            max: maxDistance,
-                            value: radius,
-                            onChanged: (value) {
-                              setState(() {
-                                radius = value;
-                              });
-                            },
-                            onChangeEnd: (_) => context
-                                .read<ShopWatcherBloc>()
-                                .add(ShopWatcherEvent.watchNearbyShops(
-                                    radius: radius)),
-                          ),
-                        ),
-                        SizedBox(
-                          width: 130,
-                          child: Text(
-                            'Less than ${radius < 1 ? radius.toStringAsFixed(1) : radius.toInt()} km',
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: 90,
-                    child: !state.isLoaded
-                        ? Container()
-                        : ShopsLogosScrollableList(
-                            shops: state.isLoaded
-                                ? state.asLoaded.shops
-                                : const KtList.empty(),
-                            itemController: itemController,
-                            selectedShop: selectedShop,
-                            onTap: (shop) {
-                              itemController.scrollTo(
-                                duration: const Duration(milliseconds: 250),
-                                index: state.asLoaded.shops.indexOf(shop),
-                                alignment: .25,
-                              );
-                              mapController?.showMarkerInfoWindow(
-                                  MarkerId(shop.id.getOrCrash()));
-                              mapController?.animateCamera(
-                                  CameraUpdate.newLatLng(shop.location.latLng));
-                              setState(() {
-                                selectedShop = shop;
-                              });
-                            },
-                          ),
-                  ),
-                  const SizedBox(height: 28),
-                  LocationTextField(
-                    onSaved: (String input) {
-                      context.read<ShopWatcherBloc>().add(
-                          ShopWatcherEvent.watchShopsByLocation(
-                              radius: radius, location: input));
-                    },
-                  ),
-                  Expanded(
-                    child: ShopsMapWidget(
-                      center: state.isLoaded
-                          ? state.asLoaded.location
-                          : Location.empty(),
-                      shops: state.isLoaded
-                          ? state.asLoaded.shops
-                          : const KtList.empty(),
-                      onMapCreated: (GoogleMapController controller) {
-                        _controller = Completer<GoogleMapController>();
-                        _controller.complete(controller);
-                        setState(() {
-                          mapController = controller;
-                        });
-                      },
-                      radius: radius,
-                      isLoading: state.isLoading,
-                      onTap: state.isLoaded
-                          ? (Shop shop) {
-                              itemController.scrollTo(
-                                duration: const Duration(milliseconds: 500),
-                                index: state.asLoaded.shops.indexOf(shop),
-                                alignment: .25,
-                              );
-                              setState(() {
-                                selectedShop = shop;
-                              });
-                            }
-                          : (_) {},
-                    ),
-                  ),
-                ],
               ),
             ),
           );
@@ -242,8 +261,11 @@ class _ShopPickerPageState extends State<ShopPickerPage> {
 }
 
 class LocationTextField extends StatefulWidget {
-  const LocationTextField({Key? key, required this.onSaved}) : super(key: key);
+  const LocationTextField(
+      {Key? key, required this.onSaved, required this.onLocationTap})
+      : super(key: key);
   final Function(String input) onSaved;
+  final Function() onLocationTap;
 
   @override
   State<LocationTextField> createState() => _LocationTextFieldState();
@@ -255,16 +277,28 @@ class _LocationTextFieldState extends State<LocationTextField> {
   Widget build(BuildContext context) {
     return Row(
       children: [
+        IconButton(
+            onPressed: widget.onLocationTap, icon: const Icon(Icons.gps_fixed)),
         Expanded(
           child: ShopifyTextFormField(
-              fieldName: 'Inser you address',
+              fieldName: 'Search in given location',
               onChanged: (newValue) {
                 input = newValue;
                 setState(() {});
               }),
         ),
+        const SizedBox(
+          width: 10,
+        ),
         ShopifySecondaryButton(
-            onPressed: () => widget.onSaved(input), text: "Search"),
+            onPressed: () {
+              FocusManager.instance.primaryFocus?.unfocus();
+              widget.onSaved(input);
+            },
+            text: "Search"),
+        const SizedBox(
+          width: 10,
+        ),
       ],
     );
   }

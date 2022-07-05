@@ -21,28 +21,41 @@ class ShopsLogosScrollableList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ScrollablePositionedList.builder(
-      padding: const EdgeInsets.symmetric(horizontal: 28),
-      itemScrollController: itemController,
-      itemCount: shops.size,
-      scrollDirection: Axis.horizontal,
-      itemBuilder: (context, index) => SizedBox(
-        key: Key(shops[index].id.getOrCrash()),
-        height: 92,
-        width: 184,
-        child: Card(
-          elevation:
-              (selectedShop != null && selectedShop == shops[index]) ? 10 : 1,
-          child: InkWell(
-            onTap: () => onTap(shops[index]),
-            child: CachedNetworkImage(
-              imageUrl: shops[index].logoUrl.getOrCrash(),
-              placeholder: (context, url) => Image.asset('images/logo.png'),
-              errorWidget: (context, url, error) => const Icon(Icons.error),
+    return shops.isEmpty()
+        ? Center(
+            child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const [
+              Icon(Icons.store),
+              Text('No shops could be found.'),
+            ],
+          ))
+        : ScrollablePositionedList.builder(
+            padding: const EdgeInsets.symmetric(horizontal: 28),
+            itemScrollController: itemController,
+            itemCount: shops.size,
+            scrollDirection: Axis.horizontal,
+            itemBuilder: (context, index) => SizedBox(
+              key: Key(shops[index].id.getOrCrash()),
+              height: 92,
+              width: 184,
+              child: Card(
+                elevation:
+                    (selectedShop != null && selectedShop == shops[index])
+                        ? 10
+                        : 1,
+                child: InkWell(
+                  onTap: () => onTap(shops[index]),
+                  child: CachedNetworkImage(
+                    imageUrl: shops[index].logoUrl.getOrCrash(),
+                    placeholder: (context, url) =>
+                        Image.asset('images/logo.png'),
+                    errorWidget: (context, url, error) =>
+                        const Icon(Icons.error),
+                  ),
+                ),
+              ),
             ),
-          ),
-        ),
-      ),
-    );
+          );
   }
 }

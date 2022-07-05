@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
 import 'package:sealed_annotations/sealed_annotations.dart';
 import 'package:shopify_client/domain/core/i_location_facade.dart';
@@ -14,6 +15,7 @@ part 'shop_picker_state.dart';
 part 'shop_picker_bloc.freezed.dart';
 part 'shop_picker_bloc.sealed.dart';
 
+@Injectable()
 class ShopPickerBloc extends Bloc<ShopPickerEvent, ShopPickerState> {
   final ILocationFacade location;
   final IShopRepository shopRepository;
