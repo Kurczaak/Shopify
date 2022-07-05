@@ -114,37 +114,36 @@ class _ShopPickerPageState extends State<ShopPickerPage> {
             body: state.shopFailureOption.fold(
               () => Column(
                 children: [
-                  const SizedBox(height: 10),
-                  Padding(
-                    padding: const EdgeInsets.all(18),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Expanded(
-                          child: Slider(
-                            min: minDistance,
-                            max: maxDistance,
-                            value: radius,
-                            onChanged: (value) {
-                              setState(() {
-                                radius = value;
-                              });
-                            },
-                            onChangeEnd: (_) => context
-                                .read<ShopPickerBloc>()
-                                .add(ShopPickerEvent.radiusChanged(
-                                    radius: radius)),
-                          ),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Expanded(
+                        child: Slider(
+                          min: minDistance,
+                          max: maxDistance,
+                          value: radius,
+                          onChanged: (value) {
+                            setState(() {
+                              radius = value;
+                            });
+                          },
+                          onChangeEnd: (_) => context
+                              .read<ShopPickerBloc>()
+                              .add(ShopPickerEvent.radiusChanged(
+                                  radius: radius)),
                         ),
-                        SizedBox(
-                          width: 130,
-                          child: Text(
-                            'Less than ${radius < 1 ? radius.toStringAsFixed(1) : radius.toInt()} km',
-                          ),
+                      ),
+                      SizedBox(
+                        width: 130,
+                        child: Text(
+                          'Less than ${radius < 1 ? radius.toStringAsFixed(1) : radius.toInt()} km',
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                   SizedBox(
                     height: 90,
