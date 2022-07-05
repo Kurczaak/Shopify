@@ -153,12 +153,15 @@ void main() {
       () async {
         // arrange
 
-        when(mockShopifyShopRepository.watchNearby(mockLocation, tRadius))
+        when(mockShopifyShopRepository.watchNearby(
+                mockLocation, NonnegativeNumber(tRadius)))
             .thenAnswer((_) => callOutput);
         // act
-        shopRepositoryImpl.watchNearby(mockLocation, tRadius);
+        shopRepositoryImpl.watchNearby(
+            mockLocation, NonnegativeNumber(tRadius));
         // assert
-        verify(mockShopifyShopRepository.watchNearby(mockLocation, tRadius))
+        verify(mockShopifyShopRepository.watchNearby(
+                mockLocation, NonnegativeNumber(tRadius)))
             .called(1);
       },
     );
@@ -166,10 +169,12 @@ void main() {
       'should return the result of ShopifyShopRepository.watchNearby',
       () async {
         // arrange
-        when(mockShopifyShopRepository.watchNearby(mockLocation, tRadius))
+        when(mockShopifyShopRepository.watchNearby(
+                mockLocation, NonnegativeNumber(tRadius)))
             .thenAnswer((_) => callOutput);
         // act
-        final result = shopRepositoryImpl.watchNearby(mockLocation, tRadius);
+        final result = shopRepositoryImpl.watchNearby(
+            mockLocation, NonnegativeNumber(tRadius));
         // assert
         expect(result, callOutput);
       },

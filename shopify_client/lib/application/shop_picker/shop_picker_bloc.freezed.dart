@@ -16,9 +16,12 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$ShopPickerState {
-  Option<Location> get locationOpiton => throw _privateConstructorUsedError;
+  KtList<Shop> get shops => throw _privateConstructorUsedError;
+  Location get location => throw _privateConstructorUsedError;
   double get radius => throw _privateConstructorUsedError;
   Option<ShopFailure> get shopFailureOption =>
+      throw _privateConstructorUsedError;
+  Option<LocationFailure> get locationFailureOption =>
       throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
 
@@ -33,10 +36,14 @@ abstract class $ShopPickerStateCopyWith<$Res> {
           ShopPickerState value, $Res Function(ShopPickerState) then) =
       _$ShopPickerStateCopyWithImpl<$Res>;
   $Res call(
-      {Option<Location> locationOpiton,
+      {KtList<Shop> shops,
+      Location location,
       double radius,
       Option<ShopFailure> shopFailureOption,
+      Option<LocationFailure> locationFailureOption,
       bool isLoading});
+
+  $LocationCopyWith<$Res> get location;
 }
 
 /// @nodoc
@@ -50,16 +57,22 @@ class _$ShopPickerStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? locationOpiton = freezed,
+    Object? shops = freezed,
+    Object? location = freezed,
     Object? radius = freezed,
     Object? shopFailureOption = freezed,
+    Object? locationFailureOption = freezed,
     Object? isLoading = freezed,
   }) {
     return _then(_value.copyWith(
-      locationOpiton: locationOpiton == freezed
-          ? _value.locationOpiton
-          : locationOpiton // ignore: cast_nullable_to_non_nullable
-              as Option<Location>,
+      shops: shops == freezed
+          ? _value.shops
+          : shops // ignore: cast_nullable_to_non_nullable
+              as KtList<Shop>,
+      location: location == freezed
+          ? _value.location
+          : location // ignore: cast_nullable_to_non_nullable
+              as Location,
       radius: radius == freezed
           ? _value.radius
           : radius // ignore: cast_nullable_to_non_nullable
@@ -68,11 +81,22 @@ class _$ShopPickerStateCopyWithImpl<$Res>
           ? _value.shopFailureOption
           : shopFailureOption // ignore: cast_nullable_to_non_nullable
               as Option<ShopFailure>,
+      locationFailureOption: locationFailureOption == freezed
+          ? _value.locationFailureOption
+          : locationFailureOption // ignore: cast_nullable_to_non_nullable
+              as Option<LocationFailure>,
       isLoading: isLoading == freezed
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
     ));
+  }
+
+  @override
+  $LocationCopyWith<$Res> get location {
+    return $LocationCopyWith<$Res>(_value.location, (value) {
+      return _then(_value.copyWith(location: value));
+    });
   }
 }
 
@@ -84,10 +108,15 @@ abstract class _$$_ShopPickerStateCopyWith<$Res>
       __$$_ShopPickerStateCopyWithImpl<$Res>;
   @override
   $Res call(
-      {Option<Location> locationOpiton,
+      {KtList<Shop> shops,
+      Location location,
       double radius,
       Option<ShopFailure> shopFailureOption,
+      Option<LocationFailure> locationFailureOption,
       bool isLoading});
+
+  @override
+  $LocationCopyWith<$Res> get location;
 }
 
 /// @nodoc
@@ -103,16 +132,22 @@ class __$$_ShopPickerStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? locationOpiton = freezed,
+    Object? shops = freezed,
+    Object? location = freezed,
     Object? radius = freezed,
     Object? shopFailureOption = freezed,
+    Object? locationFailureOption = freezed,
     Object? isLoading = freezed,
   }) {
     return _then(_$_ShopPickerState(
-      locationOpiton: locationOpiton == freezed
-          ? _value.locationOpiton
-          : locationOpiton // ignore: cast_nullable_to_non_nullable
-              as Option<Location>,
+      shops: shops == freezed
+          ? _value.shops
+          : shops // ignore: cast_nullable_to_non_nullable
+              as KtList<Shop>,
+      location: location == freezed
+          ? _value.location
+          : location // ignore: cast_nullable_to_non_nullable
+              as Location,
       radius: radius == freezed
           ? _value.radius
           : radius // ignore: cast_nullable_to_non_nullable
@@ -121,6 +156,10 @@ class __$$_ShopPickerStateCopyWithImpl<$Res>
           ? _value.shopFailureOption
           : shopFailureOption // ignore: cast_nullable_to_non_nullable
               as Option<ShopFailure>,
+      locationFailureOption: locationFailureOption == freezed
+          ? _value.locationFailureOption
+          : locationFailureOption // ignore: cast_nullable_to_non_nullable
+              as Option<LocationFailure>,
       isLoading: isLoading == freezed
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
@@ -133,23 +172,29 @@ class __$$_ShopPickerStateCopyWithImpl<$Res>
 
 class _$_ShopPickerState implements _ShopPickerState {
   const _$_ShopPickerState(
-      {required this.locationOpiton,
+      {required this.shops,
+      required this.location,
       required this.radius,
       required this.shopFailureOption,
+      required this.locationFailureOption,
       required this.isLoading});
 
   @override
-  final Option<Location> locationOpiton;
+  final KtList<Shop> shops;
+  @override
+  final Location location;
   @override
   final double radius;
   @override
   final Option<ShopFailure> shopFailureOption;
   @override
+  final Option<LocationFailure> locationFailureOption;
+  @override
   final bool isLoading;
 
   @override
   String toString() {
-    return 'ShopPickerState(locationOpiton: $locationOpiton, radius: $radius, shopFailureOption: $shopFailureOption, isLoading: $isLoading)';
+    return 'ShopPickerState(shops: $shops, location: $location, radius: $radius, shopFailureOption: $shopFailureOption, locationFailureOption: $locationFailureOption, isLoading: $isLoading)';
   }
 
   @override
@@ -157,20 +202,24 @@ class _$_ShopPickerState implements _ShopPickerState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ShopPickerState &&
-            const DeepCollectionEquality()
-                .equals(other.locationOpiton, locationOpiton) &&
+            const DeepCollectionEquality().equals(other.shops, shops) &&
+            const DeepCollectionEquality().equals(other.location, location) &&
             const DeepCollectionEquality().equals(other.radius, radius) &&
             const DeepCollectionEquality()
                 .equals(other.shopFailureOption, shopFailureOption) &&
+            const DeepCollectionEquality()
+                .equals(other.locationFailureOption, locationFailureOption) &&
             const DeepCollectionEquality().equals(other.isLoading, isLoading));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(locationOpiton),
+      const DeepCollectionEquality().hash(shops),
+      const DeepCollectionEquality().hash(location),
       const DeepCollectionEquality().hash(radius),
       const DeepCollectionEquality().hash(shopFailureOption),
+      const DeepCollectionEquality().hash(locationFailureOption),
       const DeepCollectionEquality().hash(isLoading));
 
   @JsonKey(ignore: true)
@@ -181,17 +230,24 @@ class _$_ShopPickerState implements _ShopPickerState {
 
 abstract class _ShopPickerState implements ShopPickerState {
   const factory _ShopPickerState(
-      {required final Option<Location> locationOpiton,
+      {required final KtList<Shop> shops,
+      required final Location location,
       required final double radius,
       required final Option<ShopFailure> shopFailureOption,
+      required final Option<LocationFailure> locationFailureOption,
       required final bool isLoading}) = _$_ShopPickerState;
 
   @override
-  Option<Location> get locationOpiton => throw _privateConstructorUsedError;
+  KtList<Shop> get shops => throw _privateConstructorUsedError;
+  @override
+  Location get location => throw _privateConstructorUsedError;
   @override
   double get radius => throw _privateConstructorUsedError;
   @override
   Option<ShopFailure> get shopFailureOption =>
+      throw _privateConstructorUsedError;
+  @override
+  Option<LocationFailure> get locationFailureOption =>
       throw _privateConstructorUsedError;
   @override
   bool get isLoading => throw _privateConstructorUsedError;
