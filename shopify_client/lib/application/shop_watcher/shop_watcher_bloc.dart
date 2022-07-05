@@ -23,15 +23,23 @@ class ShopWatcherBloc extends Bloc<ShopWatcherEvent, ShopWatcherState> {
       : super(const ShopWatcherState.initial()) {
     on<ShopWatcherEvent>((event, emit) async {
       await event.when(
-        watchShopsByLocation: (radius, location) async {
+        watchShopsByLocation: (radius, locationString) async {
           emit(const ShopWatcherState.loading());
+          final locationOrFailure =
+              await _locationFacade.getLocationFromString(locationString);
 
-          await emit.forEach(
-              _shopRepository.watchNearby(location, radius.toDouble()),
-              onData: (Either<ShopFailure, KtList<Shop>> data) => data.fold(
-                  (f) => ShopWatcherState.error(failure: f),
-                  (shopList) => ShopWatcherState.loaded(
-                      shops: shopList, location: location, radius: radius)));
+          await locationOrFailure.fold(
+              (failure) async => emit(const ShopWatcherState.error(
+                  failure: ShopFailure.incorrectLocationGiven())),
+              (location) async {
+                emit(ShopWatcherstate)
+            await emit.forEach(
+                _shopRepository.watchNearby(location, radius.toDouble()),
+                onData: (Either<ShopFailure, KtList<Shop>> data) => data.fold(
+                    (f) => ShopWatcherState.error(failure: f),
+                    (shopList) => ShopWatcherState.loaded(
+                        shops: shopList, location: location, radius: radius)));
+          });
         },
         watchNearbyShops: (double radius) async {
           emit(const ShopWatcherState.loading());

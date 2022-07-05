@@ -100,6 +100,8 @@ class _ShopPickerPageState extends State<ShopPickerPage> {
                     children: [
                       Text(
                         failure.map(
+                            incorrectLocationGiven: (_) =>
+                                'Could not find place with given location',
                             locationPermissionDenied: (_) =>
                                 'Location permission denied',
                             unexpected: (_) =>
@@ -149,14 +151,10 @@ class _ShopPickerPageState extends State<ShopPickerPage> {
                                 radius = value;
                               });
                             },
-                            onChangeEnd: (_) => orElseState.isLoaded
-                                ? context.read<ShopWatcherBloc>().add(
-                                    ShopWatcherEvent.watchShopsByLocation(
-                                        radius: radius,
-                                        location: state.asLoaded.location))
-                                : context.read<ShopWatcherBloc>().add(
-                                    ShopWatcherEvent.watchNearbyShops(
-                                        radius: radius)),
+                            onChangeEnd: (_) => context
+                                .read<ShopWatcherBloc>()
+                                .add(ShopWatcherEvent.watchNearbyShops(
+                                    radius: radius)),
                           ),
                         ),
                         SizedBox(
@@ -195,6 +193,13 @@ class _ShopPickerPageState extends State<ShopPickerPage> {
                           ),
                   ),
                   const SizedBox(height: 28),
+                  LocationTextField(
+                    onSaved: (String input) {
+                      context.read<ShopWatcherBloc>().add(
+                          ShopWatcherEvent.watchShopsByLocation(
+                              radius: radius, location: input));
+                    },
+                  ),
                   Expanded(
                     child: ShopsMapWidget(
                       center: state.isLoaded
@@ -232,6 +237,35 @@ class _ShopPickerPageState extends State<ShopPickerPage> {
           );
         },
       ),
+    );
+  }
+}
+
+class LocationTextField extends StatefulWidget {
+  const LocationTextField({Key? key, required this.onSaved}) : super(key: key);
+  final Function(String input) onSaved;
+
+  @override
+  State<LocationTextField> createState() => _LocationTextFieldState();
+}
+
+class _LocationTextFieldState extends State<LocationTextField> {
+  String input = '';
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Expanded(
+          child: ShopifyTextFormField(
+              fieldName: 'Inser you address',
+              onChanged: (newValue) {
+                input = newValue;
+                setState(() {});
+              }),
+        ),
+        ShopifySecondaryButton(
+            onPressed: () => widget.onSaved(input), text: "Search"),
+      ],
     );
   }
 }

@@ -16,7 +16,7 @@ class AuthWrapperPage extends StatelessWidget {
         state.when(
             initial: () {},
             authenticated: () {
-              context.router.replace(const CartRoute());
+              context.router.replace(const ShopPickerRoute());
             },
             unauthenticated: () {
               context.router.replace(const SignInRoute());

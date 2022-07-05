@@ -25,4 +25,10 @@ class LocationFacadeImpl implements ILocationFacade {
   Future<Either<LocationFailure, Unit>> setUserAddress(Address address) {
     return shopifyLocation.setUserAddress(address);
   }
+
+  @override
+  Future<Either<LocationFailure, Location>> getLocationFromString(
+      String input) {
+    return shopifyLocation.getLocationFromString(input);
+  }
 }
