@@ -17,8 +17,8 @@ part 'cart_item_bloc.sealed.dart';
 class CartItemBloc extends Bloc<CartItemEvent, CartItemState> {
   final ICartFacade cartFacade;
   CartItemBloc(this.cartFacade) : super(CartItemState.initial()) {
-    on<CartItemEvent>((event, emit) {
-      event.when(remove: () async {
+    on<CartItemEvent>((event, emit) async {
+      await event.when(remove: () async {
         await state.cartItemOption.fold(
             () async => emit(CartItemState.failure(
                 previousState: state,

@@ -1,7 +1,9 @@
 import 'package:dartz/dartz.dart';
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:shopify_client/application/cart_item/cart_item_bloc.dart';
 import 'package:shopify_client/injection.dart';
 import 'package:shopify_domain/cart/cart.dart';
 import 'package:shopify_domain/cart/cart_failure.dart';
@@ -189,126 +191,144 @@ class CartItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Slidable(
-      key: Key(cartItem.id.getOrCrash()),
-      startActionPane: ActionPane(
-        // A motion is a widget used to control how the pane animates.
-        motion: const ScrollMotion(),
-
-        // A pane can dismiss the Slidable.
-        dismissible: DismissiblePane(onDismissed: () {
-          getIt<ShopifyCartFacade>().removeItemFromCart(cartItem);
-        }),
-
-        // All actions are defined in the children parameter.
-        children: [
-          // A SlidableAction can have an icon and/or a label.
-          SlidableAction(
-            onPressed: (context) {},
-            backgroundColor: const Color(0xFFFE4A49),
-            foregroundColor: Colors.white,
-            icon: Icons.delete,
-            label: 'Delete',
-          ),
-          SlidableAction(
-            onPressed: (context) {},
-            backgroundColor: Theme.of(context).primaryColor,
-            foregroundColor: Colors.white,
-            icon: Icons.share,
-            label: 'Share',
-          ),
-        ],
-      ),
-
-      // The end action pane is the one at the right or the bottom side.
-      endActionPane: ActionPane(
-        motion: const ScrollMotion(),
-        children: [
-          SlidableAction(
-            // An action can be bigger than the others.
-
-            onPressed: (context) {},
-            backgroundColor: Theme.of(context).errorColor,
-            foregroundColor: Colors.white,
-            icon: Icons.favorite,
-            label: 'Favourite',
-          ),
-          SlidableAction(
-            onPressed: (context) {},
-            backgroundColor: Theme.of(context).colorScheme.secondary,
-            foregroundColor: Colors.white,
-            icon: Icons.public,
-            label: 'Nearby offers',
-          ),
-        ],
-      ),
-      child: Column(
-        children: [
-          const Divider(),
-          Row(
-            children: [
-              SizedBox(
-                  height: 50,
-                  width: 50,
-                  child: FittedBox(
-                      fit: BoxFit.contain,
-                      child: ShopifyNetworkImage(
-                          cartItem.product.photo.getOrCrash()))),
-              Flexible(
-                fit: FlexFit.tight,
-                flex: 3,
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(cartItem.product.name.getOrCrash()),
-                    Text(cartItem.product.brand.getOrCrash()),
-                  ],
+    return BlocProvider<CartItemBloc>(
+      create: (context) => getIt<CartItemBloc>()
+        ..add(CartItemEvent.initialize(cartItem: cartItem)),
+      child: BlocConsumer<CartItemBloc, CartItemState>(
+          listener: (context, state) {},
+          builder: (context, state) => state.cartItemOption.fold(
+                () => const Center(
+                  child: Text('Could not load cart item'),
                 ),
-              ),
-              Flexible(
-                  fit: FlexFit.tight,
-                  flex: 1,
-                  child: Text('${cartItem.cost.toStringAsFixed(2)} zł')),
-              Flexible(
-                fit: FlexFit.tight,
-                flex: 1,
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Material(
-                      child: InkWell(
-                          onTap: () {
-                            getIt<ShopifyCartFacade>()
-                                .incrementItemQuantity(cartItem);
-                          },
-                          child: Icon(
-                            Icons.add_box_outlined,
-                            size: 40,
-                            color: Theme.of(context).primaryColor,
-                          )),
-                    ),
-                    Text(cartItem.quantity.getOrCrash().toString()),
-                    Material(
-                      child: InkWell(
-                          onTap: () {
-                            getIt<ShopifyCartFacade>()
-                                .decrementItemQuantity(cartItem);
-                          },
-                          child: Icon(
-                            Icons.indeterminate_check_box_outlined,
-                            size: 40,
-                            color: Theme.of(context).primaryColor,
-                          )),
-                    ),
-                  ],
+                (_) => Slidable(
+                  key: Key(cartItem.id.getOrCrash()),
+                  startActionPane: ActionPane(
+                    // A motion is a widget used to control how the pane animates.
+                    motion: const ScrollMotion(),
+
+                    // All actions are defined in the children parameter.
+                    children: [
+                      // A SlidableAction can have an icon and/or a label.
+                      SlidableAction(
+                        onPressed: (context) {
+                          context
+                              .read<CartItemBloc>()
+                              .add(const CartItemEvent.remove());
+                        },
+                        backgroundColor: const Color(0xFFFE4A49),
+                        foregroundColor: Colors.white,
+                        icon: Icons.delete,
+                        label: 'Delete',
+                      ),
+                      SlidableAction(
+                        onPressed: (context) {},
+                        backgroundColor: Theme.of(context).primaryColor,
+                        foregroundColor: Colors.white,
+                        icon: Icons.share,
+                        label: 'Share',
+                      ),
+                    ],
+                  ),
+
+                  // The end action pane is the one at the right or the bottom side.
+                  endActionPane: ActionPane(
+                    motion: const ScrollMotion(),
+                    children: [
+                      SlidableAction(
+                        // An action can be bigger than the others.
+
+                        onPressed: (context) {},
+                        backgroundColor: Theme.of(context).errorColor,
+                        foregroundColor: Colors.white,
+                        icon: Icons.favorite,
+                        label: 'Favourite',
+                      ),
+                      SlidableAction(
+                        onPressed: (context) {},
+                        backgroundColor:
+                            Theme.of(context).colorScheme.secondary,
+                        foregroundColor: Colors.white,
+                        icon: Icons.public,
+                        label: 'Nearby offers',
+                      ),
+                    ],
+                  ),
+                  child: Column(
+                    children: [
+                      const Divider(),
+                      Row(
+                        children: [
+                          SizedBox(
+                              height: 50,
+                              width: 50,
+                              child: FittedBox(
+                                  fit: BoxFit.contain,
+                                  child: ShopifyNetworkImage(
+                                      cartItem.product.photo.getOrCrash()))),
+                          Flexible(
+                            fit: FlexFit.tight,
+                            flex: 3,
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text(cartItem.product.name.getOrCrash()),
+                                Text(cartItem.product.brand.getOrCrash()),
+                              ],
+                            ),
+                          ),
+                          Flexible(
+                              fit: FlexFit.tight,
+                              flex: 1,
+                              child: Text(
+                                  '${cartItem.cost.toStringAsFixed(2)} zł')),
+                          Flexible(
+                            fit: FlexFit.tight,
+                            flex: 1,
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Material(
+                                  child: InkWell(
+                                      onTap: () {
+                                        context.read<CartItemBloc>().add(
+                                            const CartItemEvent.increment());
+                                      },
+                                      child: Icon(
+                                        Icons.add_box_outlined,
+                                        size: 40,
+                                        color: Theme.of(context).primaryColor,
+                                      )),
+                                ),
+                                state.isLoading
+                                    ? const Center(
+                                        child: CircularProgressIndicator(),
+                                      )
+                                    : Text(cartItem.quantity
+                                        .getOrCrash()
+                                        .toString()),
+                                Material(
+                                  child: InkWell(
+                                      onTap: () {
+                                        context.read<CartItemBloc>().add(
+                                            const CartItemEvent.decrement());
+                                      },
+                                      child: Icon(
+                                        Icons.indeterminate_check_box_outlined,
+                                        size: 40,
+                                        color: Theme.of(context).primaryColor,
+                                      )),
+                                ),
+                              ],
+                            ),
+                          ),
+                          const Icon(Icons.chevron_left_outlined)
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              const Icon(Icons.chevron_left_outlined)
-            ],
-          ),
-        ],
-      ),
+              )),
     );
   }
 }
