@@ -8,17 +8,18 @@ import 'package:shopify_domain/cart/cart.dart';
 import 'package:shopify_domain/cart/cart_failure.dart';
 import 'package:shopify_domain/core/network/network_info.dart';
 
-part 'cart_event.dart';
-part 'cart_state.dart';
-part 'cart_bloc.sealed.dart';
-part 'cart_bloc.freezed.dart';
+part 'user_carts_event.dart';
+part 'user_carts_state.dart';
+part 'user_carts_bloc.sealed.dart';
+part 'user_carts_bloc.freezed.dart';
 
 @Injectable()
-class CartBloc extends Bloc<CartEvent, CartState> {
+class UserCartsBloc extends Bloc<UserCartsEvent, UserCartsState> {
   final ICartFacade cartFacade;
   final NetworkInfo networkInfo;
-  CartBloc(this.cartFacade, this.networkInfo) : super(CartState.initial()) {
-    on<CartEvent>((event, emit) async {
+  UserCartsBloc(this.cartFacade, this.networkInfo)
+      : super(UserCartsState.initial()) {
+    on<UserCartsEvent>((event, emit) async {
       await event.when(
           watchAllCarts: () async {
             if (await networkInfo.isConnected) {

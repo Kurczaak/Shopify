@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'cart_bloc.dart';
+part of 'user_carts_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,20 +15,21 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$CartState {
+mixin _$UserCartsState {
   Option<UserCarts> get userCartsOption => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
   Option<CartFailure> get failureOption => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $CartStateCopyWith<CartState> get copyWith =>
+  $UserCartsStateCopyWith<UserCartsState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $CartStateCopyWith<$Res> {
-  factory $CartStateCopyWith(CartState value, $Res Function(CartState) then) =
-      _$CartStateCopyWithImpl<$Res>;
+abstract class $UserCartsStateCopyWith<$Res> {
+  factory $UserCartsStateCopyWith(
+          UserCartsState value, $Res Function(UserCartsState) then) =
+      _$UserCartsStateCopyWithImpl<$Res>;
   $Res call(
       {Option<UserCarts> userCartsOption,
       bool isLoading,
@@ -36,12 +37,13 @@ abstract class $CartStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$CartStateCopyWithImpl<$Res> implements $CartStateCopyWith<$Res> {
-  _$CartStateCopyWithImpl(this._value, this._then);
+class _$UserCartsStateCopyWithImpl<$Res>
+    implements $UserCartsStateCopyWith<$Res> {
+  _$UserCartsStateCopyWithImpl(this._value, this._then);
 
-  final CartState _value;
+  final UserCartsState _value;
   // ignore: unused_field
-  final $Res Function(CartState) _then;
+  final $Res Function(UserCartsState) _then;
 
   @override
   $Res call({
@@ -67,7 +69,8 @@ class _$CartStateCopyWithImpl<$Res> implements $CartStateCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$$_CartStateCopyWith<$Res> implements $CartStateCopyWith<$Res> {
+abstract class _$$_CartStateCopyWith<$Res>
+    implements $UserCartsStateCopyWith<$Res> {
   factory _$$_CartStateCopyWith(
           _$_CartState value, $Res Function(_$_CartState) then) =
       __$$_CartStateCopyWithImpl<$Res>;
@@ -79,7 +82,8 @@ abstract class _$$_CartStateCopyWith<$Res> implements $CartStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_CartStateCopyWithImpl<$Res> extends _$CartStateCopyWithImpl<$Res>
+class __$$_CartStateCopyWithImpl<$Res>
+    extends _$UserCartsStateCopyWithImpl<$Res>
     implements _$$_CartStateCopyWith<$Res> {
   __$$_CartStateCopyWithImpl(
       _$_CartState _value, $Res Function(_$_CartState) _then)
@@ -128,7 +132,7 @@ class _$_CartState implements _CartState {
 
   @override
   String toString() {
-    return 'CartState(userCartsOption: $userCartsOption, isLoading: $isLoading, failureOption: $failureOption)';
+    return 'UserCartsState(userCartsOption: $userCartsOption, isLoading: $isLoading, failureOption: $failureOption)';
   }
 
   @override
@@ -156,7 +160,7 @@ class _$_CartState implements _CartState {
       __$$_CartStateCopyWithImpl<_$_CartState>(this, _$identity);
 }
 
-abstract class _CartState implements CartState {
+abstract class _CartState implements UserCartsState {
   const factory _CartState(
       {required final Option<UserCarts> userCartsOption,
       required final bool isLoading,

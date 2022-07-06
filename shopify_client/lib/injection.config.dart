@@ -15,13 +15,13 @@ import 'package:shopify_domain/product.dart' as _i14;
 import 'package:shopify_domain/product/shopify_product_searcher.dart' as _i15;
 import 'package:shopify_domain/shop/shopify_shop_repository.dart' as _i18;
 
-import 'application/auth/auth_bloc.dart' as _i23;
+import 'application/auth/auth_bloc.dart' as _i24;
 import 'application/auth/sign_in_form/sign_in_form_bloc.dart' as _i26;
-import 'application/cart/cart_bloc.dart' as _i25;
-import 'application/cart_and_favourite/cart_and_favourite_bloc.dart' as _i24;
+import 'application/cart_and_favourite/cart_and_favourite_bloc.dart' as _i25;
 import 'application/product_preview/product_preview_bloc.dart' as _i19;
 import 'application/product_watcher/product_watcher_bloc.dart' as _i20;
 import 'application/shop_picker/shop_picker_bloc.dart' as _i21;
+import 'application/user_carts/user_carts_bloc.dart' as _i23;
 import 'domain/auth/i_auth_facade.dart' as _i3;
 import 'domain/cart/I_cart_facade.dart' as _i6;
 import 'domain/core/i_location_facade.dart' as _i9;
@@ -58,12 +58,12 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       networkInfo: get<_i22.NetworkInfo>(),
       location: get<_i9.ILocationFacade>(),
       shopRepository: get<_i16.IShopRepository>()));
-  gh.lazySingleton<_i23.AuthBloc>(() => _i23.AuthBloc(get<_i3.IAuthFacade>()));
-  gh.factory<_i24.CartAndFavouriteBloc>(
-      () => _i24.CartAndFavouriteBloc(get<_i6.ICartFacade>()));
-  gh.factory<_i25.CartBloc>(
-      () => _i25.CartBloc(get<_i6.ICartFacade>(), get<_i22.NetworkInfo>()));
+  gh.factory<_i23.UserCartsBloc>(() =>
+      _i23.UserCartsBloc(get<_i6.ICartFacade>(), get<_i22.NetworkInfo>()));
+  gh.lazySingleton<_i24.AuthBloc>(() => _i24.AuthBloc(get<_i3.IAuthFacade>()));
+  gh.factory<_i25.CartAndFavouriteBloc>(
+      () => _i25.CartAndFavouriteBloc(get<_i6.ICartFacade>()));
   gh.factory<_i26.SignInFormBloc>(
-      () => _i26.SignInFormBloc(get<_i3.IAuthFacade>(), get<_i23.AuthBloc>()));
+      () => _i26.SignInFormBloc(get<_i3.IAuthFacade>(), get<_i24.AuthBloc>()));
   return get;
 }
