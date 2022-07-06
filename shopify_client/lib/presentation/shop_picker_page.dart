@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
-import 'package:shopify_client/application/auth/auth_bloc.dart';
 import 'package:shopify_client/application/shop_picker/shop_picker_bloc.dart';
 import 'package:shopify_client/presentation/routes/router.gr.dart';
 import 'package:shopify_domain/shop.dart';
@@ -74,21 +73,6 @@ class _ShopPickerPageState extends State<ShopPickerPage> {
         },
         builder: (context, state) {
           return Scaffold(
-            drawer: Drawer(
-              child: ListView(children: [
-                Card(
-                  child: TextButton(
-                      onPressed: () {
-                        getIt<AuthBloc>().add(const AuthEvent.signedOut());
-                      },
-                      child: const Text('log out')),
-                )
-              ]),
-            ),
-            appBar: ShopifyAppBar(
-              appBar: AppBar(),
-              title: 'Shopify Client',
-            ),
             floatingActionButtonLocation:
                 FloatingActionButtonLocation.centerFloat,
             floatingActionButton: selectedShop != null
@@ -274,31 +258,35 @@ class _LocationTextFieldState extends State<LocationTextField> {
   String input = '';
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        IconButton(
-            onPressed: widget.onLocationTap, icon: const Icon(Icons.gps_fixed)),
-        Expanded(
-          child: ShopifyTextFormField(
-              fieldName: 'Search in given location',
-              onChanged: (newValue) {
-                input = newValue;
-                setState(() {});
-              }),
-        ),
-        const SizedBox(
-          width: 10,
-        ),
-        ShopifySecondaryButton(
-            onPressed: () {
-              FocusManager.instance.primaryFocus?.unfocus();
-              widget.onSaved(input);
-            },
-            text: "Search"),
-        const SizedBox(
-          width: 10,
-        ),
-      ],
+    return SizedBox(
+      height: 50,
+      child: Row(
+        children: [
+          IconButton(
+              onPressed: widget.onLocationTap,
+              icon: const Icon(Icons.gps_fixed)),
+          Expanded(
+            child: ShopifyTextFormField(
+                fieldName: 'Search in given location',
+                onChanged: (newValue) {
+                  input = newValue;
+                  setState(() {});
+                }),
+          ),
+          const SizedBox(
+            width: 10,
+          ),
+          ShopifySecondaryButton(
+              onPressed: () {
+                FocusManager.instance.primaryFocus?.unfocus();
+                widget.onSaved(input);
+              },
+              text: "Search"),
+          const SizedBox(
+            width: 10,
+          ),
+        ],
+      ),
     );
   }
 }

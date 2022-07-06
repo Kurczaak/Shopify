@@ -8,7 +8,6 @@ import 'package:shopify_domain/cart/cart_failure.dart';
 import 'package:shopify_domain/cart/cart_item.dart';
 import 'package:shopify_domain/cart/shopify_cart_facade.dart';
 import 'package:shopify_domain/shop.dart';
-import 'package:shopify_presentation/core/shopify_appbar.dart';
 import 'package:shopify_presentation/core/shopify_image.dart';
 
 class CartPage extends StatelessWidget {
@@ -16,126 +15,114 @@ class CartPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: ShopifyAppBar(
-        appBar: AppBar(),
-        title: 'Your Carts',
-      ),
-      body: StreamBuilder(
-          stream: getIt<ShopifyCartFacade>().getUserCarts(),
-          builder: (BuildContext context,
-                  AsyncSnapshot<Either<CartFailure, UserCarts>> snapshot) =>
-              snapshot.data == null
-                  ? Container(
-                      width: 50,
-                      height: 100,
-                      color: Colors.red,
-                      child: ElevatedButton(
-                        child: const Text('Click Me'),
-                        onPressed: () {
-                          getIt<ShopifyCartFacade>().getUserCarts();
-                        },
-                      ),
-                    )
-                  : snapshot.data!.fold(
-                      (failure) => Center(
-                            child: Text(failure.toString()),
-                          ),
-                      (userCarts) => ListView(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 0, vertical: 30),
-                            children: userCarts.carts
-                                .getOrCrash()
-                                .iter
-                                .map((cart) => cart.failureOrUnit.fold(
-                                    (failure) => Expanded(
-                                        child: Center(
-                                            child: Text(failure.toString()))),
-                                    (_) => Column(
-                                          children: [
-                                            Slidable(
-                                              key: Key(cart.id.getOrCrash()),
-                                              startActionPane: ActionPane(
-                                                // A motion is a widget used to control how the pane animates.
-                                                motion: const ScrollMotion(),
+    return StreamBuilder(
+      stream: getIt<ShopifyCartFacade>().getUserCarts(),
+      builder: (BuildContext context,
+              AsyncSnapshot<Either<CartFailure, UserCarts>> snapshot) =>
+          snapshot.data == null
+              ? Container(
+                  width: 50,
+                  height: 100,
+                  color: Colors.red,
+                  child: ElevatedButton(
+                    child: const Text('Click Me'),
+                    onPressed: () {
+                      getIt<ShopifyCartFacade>().getUserCarts();
+                    },
+                  ),
+                )
+              : snapshot.data!.fold(
+                  (failure) => Center(
+                    child: Text(failure.toString()),
+                  ),
+                  (userCarts) => ListView(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 0, vertical: 30),
+                    children: userCarts.carts
+                        .getOrCrash()
+                        .iter
+                        .map((cart) => cart.failureOrUnit.fold(
+                            (failure) => Expanded(
+                                child: Center(child: Text(failure.toString()))),
+                            (_) => Column(
+                                  children: [
+                                    Slidable(
+                                      key: Key(cart.id.getOrCrash()),
+                                      startActionPane: ActionPane(
+                                        // A motion is a widget used to control how the pane animates.
+                                        motion: const ScrollMotion(),
 
-                                                // A pane can dismiss the Slidable.
-                                                dismissible: DismissiblePane(
-                                                    onDismissed: () {
-                                                  getIt<ShopifyCartFacade>()
-                                                      .removeCart(cart);
-                                                }),
+                                        // A pane can dismiss the Slidable.
+                                        dismissible:
+                                            DismissiblePane(onDismissed: () {
+                                          getIt<ShopifyCartFacade>()
+                                              .removeCart(cart);
+                                        }),
 
-                                                // All actions are defined in the children parameter.
-                                                children: [
-                                                  // A SlidableAction can have an icon and/or a label.
-                                                  SlidableAction(
-                                                    onPressed: (context) {},
-                                                    backgroundColor:
-                                                        const Color(0xFFFE4A49),
-                                                    foregroundColor:
-                                                        Colors.white,
-                                                    icon: Icons.delete,
-                                                    label: 'Delete',
-                                                  ),
-                                                  SlidableAction(
-                                                    onPressed: (context) {},
-                                                    backgroundColor:
-                                                        Theme.of(context)
-                                                            .primaryColor,
-                                                    foregroundColor:
-                                                        Colors.white,
-                                                    icon: Icons.share,
-                                                    label: 'Share',
-                                                  ),
-                                                ],
-                                              ),
+                                        // All actions are defined in the children parameter.
+                                        children: [
+                                          // A SlidableAction can have an icon and/or a label.
+                                          SlidableAction(
+                                            onPressed: (context) {},
+                                            backgroundColor:
+                                                const Color(0xFFFE4A49),
+                                            foregroundColor: Colors.white,
+                                            icon: Icons.delete,
+                                            label: 'Delete',
+                                          ),
+                                          SlidableAction(
+                                            onPressed: (context) {},
+                                            backgroundColor:
+                                                Theme.of(context).primaryColor,
+                                            foregroundColor: Colors.white,
+                                            icon: Icons.share,
+                                            label: 'Share',
+                                          ),
+                                        ],
+                                      ),
 
-                                              // The end action pane is the one at the right or the bottom side.
-                                              endActionPane: ActionPane(
-                                                motion: const ScrollMotion(),
-                                                children: [
-                                                  SlidableAction(
-                                                    // An action can be bigger than the others.
+                                      // The end action pane is the one at the right or the bottom side.
+                                      endActionPane: ActionPane(
+                                        motion: const ScrollMotion(),
+                                        children: [
+                                          SlidableAction(
+                                            // An action can be bigger than the others.
 
-                                                    onPressed: (context) {},
-                                                    backgroundColor:
-                                                        Theme.of(context)
-                                                            .errorColor,
-                                                    foregroundColor:
-                                                        Colors.white,
-                                                    icon: Icons.favorite,
-                                                    label: 'Favourite',
-                                                  ),
-                                                  SlidableAction(
-                                                    onPressed: (context) {},
-                                                    backgroundColor:
-                                                        Theme.of(context)
-                                                            .colorScheme
-                                                            .secondary,
-                                                    foregroundColor:
-                                                        Colors.white,
-                                                    icon: Icons.public,
-                                                    label: 'Nearby offers',
-                                                  ),
-                                                ],
-                                              ),
-                                              child: Column(children: [
-                                                ShopDetails(shop: cart.shop),
-                                                CartDetailsWidget(
-                                                  cart: cart,
-                                                ),
-                                              ]),
-                                            ),
-                                            const Divider(
-                                              thickness: 2,
-                                              height: 2,
-                                            ),
-                                            const SizedBox(height: 10),
-                                          ],
-                                        )))
-                                .toList(),
-                          ))),
+                                            onPressed: (context) {},
+                                            backgroundColor:
+                                                Theme.of(context).errorColor,
+                                            foregroundColor: Colors.white,
+                                            icon: Icons.favorite,
+                                            label: 'Favourite',
+                                          ),
+                                          SlidableAction(
+                                            onPressed: (context) {},
+                                            backgroundColor: Theme.of(context)
+                                                .colorScheme
+                                                .secondary,
+                                            foregroundColor: Colors.white,
+                                            icon: Icons.public,
+                                            label: 'Nearby offers',
+                                          ),
+                                        ],
+                                      ),
+                                      child: Column(children: [
+                                        ShopDetails(shop: cart.shop),
+                                        CartDetailsWidget(
+                                          cart: cart,
+                                        ),
+                                      ]),
+                                    ),
+                                    const Divider(
+                                      thickness: 2,
+                                      height: 2,
+                                    ),
+                                    const SizedBox(height: 10),
+                                  ],
+                                )))
+                        .toList(),
+                  ),
+                ),
     );
   }
 }
