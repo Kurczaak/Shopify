@@ -12,19 +12,19 @@
 
 import 'package:auto_route/auto_route.dart' as _i4;
 import 'package:flutter/material.dart' as _i15;
-import 'package:shopify_domain/product.dart' as _i17;
+import 'package:shopify_domain/product/product_snippets.dart' as _i17;
 import 'package:shopify_domain/shop.dart' as _i16;
 
 import '../../home_page.dart' as _i3;
 import '../best_offers/best_offers_page.dart' as _i12;
-import '../cart/cart_page.dart' as _i11;
-import '../core/debug_page.dart' as _i5;
+import '../cart/cart_page.dart' as _i5;
+import '../core/debug_page.dart' as _i6;
 import '../favourites/favourites_page.dart' as _i13;
-import '../product/product_preview_page.dart' as _i10;
-import '../shop/shop_products_browser_page.dart' as _i9;
-import '../shop_picker_page.dart' as _i8;
-import '../sign_in/sign_in_page.dart' as _i6;
-import '../sign_in/sign_up_page.dart' as _i7;
+import '../product/product_preview_page.dart' as _i11;
+import '../shop/shop_products_browser_page.dart' as _i10;
+import '../shop_picker_page.dart' as _i9;
+import '../sign_in/sign_in_page.dart' as _i7;
+import '../sign_in/sign_up_page.dart' as _i8;
 import '../splash/splash_page.dart' as _i2;
 import '../your_lists/your_lists_page.dart' as _i14;
 import 'auth_wrapper.dart' as _i1;
@@ -53,7 +53,7 @@ class AppRouter extends _i4.RootStackRouter {
     },
     CartRouter.name: (routeData) {
       return _i4.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i4.EmptyRouterPage());
+          routeData: routeData, child: const _i5.CartPage());
     },
     BestOffersRouter.name: (routeData) {
       return _i4.MaterialPageX<dynamic>(
@@ -69,40 +69,36 @@ class AppRouter extends _i4.RootStackRouter {
     },
     DebugRoute.name: (routeData) {
       return _i4.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i5.DebugPage());
+          routeData: routeData, child: const _i6.DebugPage());
     },
     SignInRoute.name: (routeData) {
       return _i4.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i6.SignInPage());
+          routeData: routeData, child: const _i7.SignInPage());
     },
     SignUpRoute.name: (routeData) {
       return _i4.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i7.SignUpPage());
+          routeData: routeData, child: const _i8.SignUpPage());
     },
     ShopPickerRoute.name: (routeData) {
       return _i4.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i8.ShopPickerPage());
+          routeData: routeData, child: const _i9.ShopPickerPage());
     },
     ShopProductsBrowserRoute.name: (routeData) {
       final args = routeData.argsAs<ShopProductsBrowserRouteArgs>();
       return _i4.MaterialPageX<dynamic>(
           routeData: routeData,
-          child: _i9.ShopProductsBrowserPage(
+          child: _i10.ShopProductsBrowserPage(
               key: args.key, shop: args.shop, title: args.title));
     },
     ProductPreviewRoute.name: (routeData) {
       final args = routeData.argsAs<ProductPreviewRouteArgs>();
       return _i4.MaterialPageX<dynamic>(
           routeData: routeData,
-          child: _i10.ProductPreviewPage(
+          child: _i11.ProductPreviewPage(
               key: args.key,
               product: args.product,
               shop: args.shop,
               title: args.title));
-    },
-    CartRoute.name: (routeData) {
-      return _i4.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i11.CartPage());
     },
     BestOffersRoute.name: (routeData) {
       return _i4.MaterialPageX<dynamic>(
@@ -125,13 +121,8 @@ class AppRouter extends _i4.RootStackRouter {
               path: 'home',
               parent: AuthWrapperRoute.name,
               children: [
-                _i4.RouteConfig('#redirect',
-                    path: '',
-                    parent: HomeRouter.name,
-                    redirectTo: 'Shop Picker',
-                    fullMatch: true),
                 _i4.RouteConfig(ShopPickerRouter.name,
-                    path: 'Shop Picker',
+                    path: '',
                     parent: HomeRouter.name,
                     children: [
                       _i4.RouteConfig(ShopPickerRoute.name,
@@ -142,17 +133,7 @@ class AppRouter extends _i4.RootStackRouter {
                           path: ':title', parent: ShopPickerRouter.name)
                     ]),
                 _i4.RouteConfig(CartRouter.name,
-                    path: 'Cart',
-                    parent: HomeRouter.name,
-                    children: [
-                      _i4.RouteConfig('#redirect',
-                          path: '',
-                          parent: CartRouter.name,
-                          redirectTo: 'Your Carts',
-                          fullMatch: true),
-                      _i4.RouteConfig(CartRoute.name,
-                          path: 'Your Carts', parent: CartRouter.name)
-                    ]),
+                    path: 'Cart', parent: HomeRouter.name),
                 _i4.RouteConfig(BestOffersRouter.name,
                     path: 'Best Offers',
                     parent: HomeRouter.name,
@@ -218,17 +199,15 @@ class HomeRouter extends _i4.PageRouteInfo<void> {
 /// [_i4.EmptyRouterPage]
 class ShopPickerRouter extends _i4.PageRouteInfo<void> {
   const ShopPickerRouter({List<_i4.PageRouteInfo>? children})
-      : super(ShopPickerRouter.name,
-            path: 'Shop Picker', initialChildren: children);
+      : super(ShopPickerRouter.name, path: '', initialChildren: children);
 
   static const String name = 'ShopPickerRouter';
 }
 
 /// generated route for
-/// [_i4.EmptyRouterPage]
+/// [_i5.CartPage]
 class CartRouter extends _i4.PageRouteInfo<void> {
-  const CartRouter({List<_i4.PageRouteInfo>? children})
-      : super(CartRouter.name, path: 'Cart', initialChildren: children);
+  const CartRouter() : super(CartRouter.name, path: 'Cart');
 
   static const String name = 'CartRouter';
 }
@@ -264,7 +243,7 @@ class YourListsRouter extends _i4.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i5.DebugPage]
+/// [_i6.DebugPage]
 class DebugRoute extends _i4.PageRouteInfo<void> {
   const DebugRoute() : super(DebugRoute.name, path: 'debug-page');
 
@@ -272,7 +251,7 @@ class DebugRoute extends _i4.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i6.SignInPage]
+/// [_i7.SignInPage]
 class SignInRoute extends _i4.PageRouteInfo<void> {
   const SignInRoute() : super(SignInRoute.name, path: 'sign-in-page');
 
@@ -280,7 +259,7 @@ class SignInRoute extends _i4.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i7.SignUpPage]
+/// [_i8.SignUpPage]
 class SignUpRoute extends _i4.PageRouteInfo<void> {
   const SignUpRoute() : super(SignUpRoute.name, path: 'sign-up-page');
 
@@ -288,7 +267,7 @@ class SignUpRoute extends _i4.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i8.ShopPickerPage]
+/// [_i9.ShopPickerPage]
 class ShopPickerRoute extends _i4.PageRouteInfo<void> {
   const ShopPickerRoute() : super(ShopPickerRoute.name, path: '');
 
@@ -296,7 +275,7 @@ class ShopPickerRoute extends _i4.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i9.ShopProductsBrowserPage]
+/// [_i10.ShopProductsBrowserPage]
 class ShopProductsBrowserRoute
     extends _i4.PageRouteInfo<ShopProductsBrowserRouteArgs> {
   ShopProductsBrowserRoute(
@@ -327,7 +306,7 @@ class ShopProductsBrowserRouteArgs {
 }
 
 /// generated route for
-/// [_i10.ProductPreviewPage]
+/// [_i11.ProductPreviewPage]
 class ProductPreviewRoute extends _i4.PageRouteInfo<ProductPreviewRouteArgs> {
   ProductPreviewRoute(
       {_i15.Key? key,
@@ -362,14 +341,6 @@ class ProductPreviewRouteArgs {
   String toString() {
     return 'ProductPreviewRouteArgs{key: $key, product: $product, shop: $shop, title: $title}';
   }
-}
-
-/// generated route for
-/// [_i11.CartPage]
-class CartRoute extends _i4.PageRouteInfo<void> {
-  const CartRoute() : super(CartRoute.name, path: 'Your Carts');
-
-  static const String name = 'CartRoute';
 }
 
 /// generated route for

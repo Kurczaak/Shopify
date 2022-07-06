@@ -20,7 +20,6 @@ import 'package:shopify_client/presentation/your_lists/your_lists_page.dart';
       AutoRoute(path: 'home', name: 'homeRouter', page: HomePage, children: [
         AutoRoute(
             initial: true,
-            path: 'Shop Picker',
             name: 'shopPickerRouter',
             page: EmptyRouterPage,
             children: [
@@ -38,16 +37,10 @@ import 'package:shopify_client/presentation/your_lists/your_lists_page.dart';
               ),
             ]),
         AutoRoute(
-            path: 'Cart',
-            name: 'cartRouter',
-            page: EmptyRouterPage,
-            children: [
-              AutoRoute(
-                path: 'Your Carts',
-                initial: true,
-                page: CartPage,
-              ),
-            ]),
+          path: 'Cart',
+          name: 'cartRouter',
+          page: CartPage,
+        ),
         AutoRoute(
             path: 'Best Offers',
             name: 'bestOffersRouter',
