@@ -18,8 +18,6 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$CartItemState {
   bool get isLoading => throw _privateConstructorUsedError;
   Option<CartItem> get cartItemOption => throw _privateConstructorUsedError;
-  Option<ValueFailure> get cartItemValueFailureOption =>
-      throw _privateConstructorUsedError;
   Option<CartFailure> get failureOption => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -35,7 +33,6 @@ abstract class $CartItemStateCopyWith<$Res> {
   $Res call(
       {bool isLoading,
       Option<CartItem> cartItemOption,
-      Option<ValueFailure> cartItemValueFailureOption,
       Option<CartFailure> failureOption});
 }
 
@@ -52,7 +49,6 @@ class _$CartItemStateCopyWithImpl<$Res>
   $Res call({
     Object? isLoading = freezed,
     Object? cartItemOption = freezed,
-    Object? cartItemValueFailureOption = freezed,
     Object? failureOption = freezed,
   }) {
     return _then(_value.copyWith(
@@ -64,10 +60,6 @@ class _$CartItemStateCopyWithImpl<$Res>
           ? _value.cartItemOption
           : cartItemOption // ignore: cast_nullable_to_non_nullable
               as Option<CartItem>,
-      cartItemValueFailureOption: cartItemValueFailureOption == freezed
-          ? _value.cartItemValueFailureOption
-          : cartItemValueFailureOption // ignore: cast_nullable_to_non_nullable
-              as Option<ValueFailure>,
       failureOption: failureOption == freezed
           ? _value.failureOption
           : failureOption // ignore: cast_nullable_to_non_nullable
@@ -86,7 +78,6 @@ abstract class _$$_CartItemStateCopyWith<$Res>
   $Res call(
       {bool isLoading,
       Option<CartItem> cartItemOption,
-      Option<ValueFailure> cartItemValueFailureOption,
       Option<CartFailure> failureOption});
 }
 
@@ -105,7 +96,6 @@ class __$$_CartItemStateCopyWithImpl<$Res>
   $Res call({
     Object? isLoading = freezed,
     Object? cartItemOption = freezed,
-    Object? cartItemValueFailureOption = freezed,
     Object? failureOption = freezed,
   }) {
     return _then(_$_CartItemState(
@@ -117,10 +107,6 @@ class __$$_CartItemStateCopyWithImpl<$Res>
           ? _value.cartItemOption
           : cartItemOption // ignore: cast_nullable_to_non_nullable
               as Option<CartItem>,
-      cartItemValueFailureOption: cartItemValueFailureOption == freezed
-          ? _value.cartItemValueFailureOption
-          : cartItemValueFailureOption // ignore: cast_nullable_to_non_nullable
-              as Option<ValueFailure>,
       failureOption: failureOption == freezed
           ? _value.failureOption
           : failureOption // ignore: cast_nullable_to_non_nullable
@@ -135,7 +121,6 @@ class _$_CartItemState implements _CartItemState {
   const _$_CartItemState(
       {required this.isLoading,
       required this.cartItemOption,
-      required this.cartItemValueFailureOption,
       required this.failureOption});
 
   @override
@@ -143,13 +128,11 @@ class _$_CartItemState implements _CartItemState {
   @override
   final Option<CartItem> cartItemOption;
   @override
-  final Option<ValueFailure> cartItemValueFailureOption;
-  @override
   final Option<CartFailure> failureOption;
 
   @override
   String toString() {
-    return 'CartItemState(isLoading: $isLoading, cartItemOption: $cartItemOption, cartItemValueFailureOption: $cartItemValueFailureOption, failureOption: $failureOption)';
+    return 'CartItemState(isLoading: $isLoading, cartItemOption: $cartItemOption, failureOption: $failureOption)';
   }
 
   @override
@@ -160,8 +143,6 @@ class _$_CartItemState implements _CartItemState {
             const DeepCollectionEquality().equals(other.isLoading, isLoading) &&
             const DeepCollectionEquality()
                 .equals(other.cartItemOption, cartItemOption) &&
-            const DeepCollectionEquality().equals(
-                other.cartItemValueFailureOption, cartItemValueFailureOption) &&
             const DeepCollectionEquality()
                 .equals(other.failureOption, failureOption));
   }
@@ -171,7 +152,6 @@ class _$_CartItemState implements _CartItemState {
       runtimeType,
       const DeepCollectionEquality().hash(isLoading),
       const DeepCollectionEquality().hash(cartItemOption),
-      const DeepCollectionEquality().hash(cartItemValueFailureOption),
       const DeepCollectionEquality().hash(failureOption));
 
   @JsonKey(ignore: true)
@@ -184,16 +164,12 @@ abstract class _CartItemState implements CartItemState {
   const factory _CartItemState(
       {required final bool isLoading,
       required final Option<CartItem> cartItemOption,
-      required final Option<ValueFailure> cartItemValueFailureOption,
       required final Option<CartFailure> failureOption}) = _$_CartItemState;
 
   @override
   bool get isLoading => throw _privateConstructorUsedError;
   @override
   Option<CartItem> get cartItemOption => throw _privateConstructorUsedError;
-  @override
-  Option<ValueFailure> get cartItemValueFailureOption =>
-      throw _privateConstructorUsedError;
   @override
   Option<CartFailure> get failureOption => throw _privateConstructorUsedError;
   @override

@@ -5,13 +5,22 @@ class CartItemState with _$CartItemState {
   const factory CartItemState({
     required bool isLoading,
     required Option<CartItem> cartItemOption,
-    required Option<ValueFailure> cartItemValueFailureOption,
     required Option<CartFailure> failureOption,
   }) = _CartItemState;
 
   factory CartItemState.initial() => CartItemState(
-      isLoading: false,
-      cartItemOption: none(),
-      failureOption: none(),
-      cartItemValueFailureOption: none());
+        isLoading: false,
+        cartItemOption: none(),
+        failureOption: none(),
+      );
+
+  factory CartItemState.failure({
+    required CartItemState previousState,
+    required CartFailure failure,
+  }) =>
+      CartItemState(
+        isLoading: false,
+        cartItemOption: previousState.cartItemOption,
+        failureOption: some(failure),
+      );
 }

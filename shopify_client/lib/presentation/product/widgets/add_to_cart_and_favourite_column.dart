@@ -34,6 +34,7 @@ class AddToCartAndFavouriteColumn extends StatelessWidget {
                   .show(context),
               (failure) => FlushbarHelper.createError(
                     message: failure.map(
+                        itemDoesNotExist: (_) => 'This item does not exists',
                         insufficientPermission: (_) =>
                             'Insufficient permission',
                         emptyCart: (_) => '',
