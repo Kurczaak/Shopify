@@ -12,7 +12,7 @@
 
 import 'package:auto_route/auto_route.dart' as _i4;
 import 'package:flutter/material.dart' as _i15;
-import 'package:shopify_domain/product/product_snippets.dart' as _i17;
+import 'package:shopify_domain/product.dart' as _i17;
 import 'package:shopify_domain/shop.dart' as _i16;
 
 import '../../home_page.dart' as _i3;
@@ -87,14 +87,18 @@ class AppRouter extends _i4.RootStackRouter {
       final args = routeData.argsAs<ShopProductsBrowserRouteArgs>();
       return _i4.MaterialPageX<dynamic>(
           routeData: routeData,
-          child: _i9.ShopProductsBrowserPage(key: args.key, shop: args.shop));
+          child: _i9.ShopProductsBrowserPage(
+              key: args.key, shop: args.shop, title: args.title));
     },
     ProductPreviewRoute.name: (routeData) {
       final args = routeData.argsAs<ProductPreviewRouteArgs>();
       return _i4.MaterialPageX<dynamic>(
           routeData: routeData,
           child: _i10.ProductPreviewPage(
-              key: args.key, product: args.product, shop: args.shop));
+              key: args.key,
+              product: args.product,
+              shop: args.shop,
+              title: args.title));
     },
     CartRoute.name: (routeData) {
       return _i4.MaterialPageX<dynamic>(
@@ -124,29 +128,33 @@ class AppRouter extends _i4.RootStackRouter {
                 _i4.RouteConfig('#redirect',
                     path: '',
                     parent: HomeRouter.name,
-                    redirectTo: 'shopPicker',
+                    redirectTo: 'Shop Picker',
                     fullMatch: true),
                 _i4.RouteConfig(ShopPickerRouter.name,
-                    path: 'shopPicker',
+                    path: 'Shop Picker',
                     parent: HomeRouter.name,
                     children: [
                       _i4.RouteConfig(ShopPickerRoute.name,
                           path: '', parent: ShopPickerRouter.name),
                       _i4.RouteConfig(ShopProductsBrowserRoute.name,
-                          path: 'shops/:shopId', parent: ShopPickerRouter.name),
+                          path: ':title', parent: ShopPickerRouter.name),
                       _i4.RouteConfig(ProductPreviewRoute.name,
-                          path: 'products/:productId',
-                          parent: ShopPickerRouter.name)
+                          path: ':title', parent: ShopPickerRouter.name)
                     ]),
                 _i4.RouteConfig(CartRouter.name,
-                    path: 'cart',
+                    path: 'Cart',
                     parent: HomeRouter.name,
                     children: [
+                      _i4.RouteConfig('#redirect',
+                          path: '',
+                          parent: CartRouter.name,
+                          redirectTo: 'Your Carts',
+                          fullMatch: true),
                       _i4.RouteConfig(CartRoute.name,
-                          path: '', parent: CartRouter.name)
+                          path: 'Your Carts', parent: CartRouter.name)
                     ]),
                 _i4.RouteConfig(BestOffersRouter.name,
-                    path: 'bestOffers',
+                    path: 'Best Offers',
                     parent: HomeRouter.name,
                     children: [
                       _i4.RouteConfig(BestOffersRoute.name,
@@ -154,7 +162,7 @@ class AppRouter extends _i4.RootStackRouter {
                           parent: BestOffersRouter.name)
                     ]),
                 _i4.RouteConfig(FavouritesRouter.name,
-                    path: 'favourites',
+                    path: 'Favourites',
                     parent: HomeRouter.name,
                     children: [
                       _i4.RouteConfig(FavouritesRoute.name,
@@ -162,7 +170,7 @@ class AppRouter extends _i4.RootStackRouter {
                           parent: FavouritesRouter.name)
                     ]),
                 _i4.RouteConfig(YourListsRouter.name,
-                    path: 'yourLists',
+                    path: 'Your Lists',
                     parent: HomeRouter.name,
                     children: [
                       _i4.RouteConfig(YourListsRoute.name,
@@ -211,7 +219,7 @@ class HomeRouter extends _i4.PageRouteInfo<void> {
 class ShopPickerRouter extends _i4.PageRouteInfo<void> {
   const ShopPickerRouter({List<_i4.PageRouteInfo>? children})
       : super(ShopPickerRouter.name,
-            path: 'shopPicker', initialChildren: children);
+            path: 'Shop Picker', initialChildren: children);
 
   static const String name = 'ShopPickerRouter';
 }
@@ -220,7 +228,7 @@ class ShopPickerRouter extends _i4.PageRouteInfo<void> {
 /// [_i4.EmptyRouterPage]
 class CartRouter extends _i4.PageRouteInfo<void> {
   const CartRouter({List<_i4.PageRouteInfo>? children})
-      : super(CartRouter.name, path: 'cart', initialChildren: children);
+      : super(CartRouter.name, path: 'Cart', initialChildren: children);
 
   static const String name = 'CartRouter';
 }
@@ -230,7 +238,7 @@ class CartRouter extends _i4.PageRouteInfo<void> {
 class BestOffersRouter extends _i4.PageRouteInfo<void> {
   const BestOffersRouter({List<_i4.PageRouteInfo>? children})
       : super(BestOffersRouter.name,
-            path: 'bestOffers', initialChildren: children);
+            path: 'Best Offers', initialChildren: children);
 
   static const String name = 'BestOffersRouter';
 }
@@ -240,7 +248,7 @@ class BestOffersRouter extends _i4.PageRouteInfo<void> {
 class FavouritesRouter extends _i4.PageRouteInfo<void> {
   const FavouritesRouter({List<_i4.PageRouteInfo>? children})
       : super(FavouritesRouter.name,
-            path: 'favourites', initialChildren: children);
+            path: 'Favourites', initialChildren: children);
 
   static const String name = 'FavouritesRouter';
 }
@@ -250,7 +258,7 @@ class FavouritesRouter extends _i4.PageRouteInfo<void> {
 class YourListsRouter extends _i4.PageRouteInfo<void> {
   const YourListsRouter({List<_i4.PageRouteInfo>? children})
       : super(YourListsRouter.name,
-            path: 'yourLists', initialChildren: children);
+            path: 'Your Lists', initialChildren: children);
 
   static const String name = 'YourListsRouter';
 }
@@ -291,24 +299,30 @@ class ShopPickerRoute extends _i4.PageRouteInfo<void> {
 /// [_i9.ShopProductsBrowserPage]
 class ShopProductsBrowserRoute
     extends _i4.PageRouteInfo<ShopProductsBrowserRouteArgs> {
-  ShopProductsBrowserRoute({_i15.Key? key, required _i16.Shop shop})
+  ShopProductsBrowserRoute(
+      {_i15.Key? key, required _i16.Shop shop, required String title})
       : super(ShopProductsBrowserRoute.name,
-            path: 'shops/:shopId',
-            args: ShopProductsBrowserRouteArgs(key: key, shop: shop));
+            path: ':title',
+            args: ShopProductsBrowserRouteArgs(
+                key: key, shop: shop, title: title),
+            rawPathParams: {'title': title});
 
   static const String name = 'ShopProductsBrowserRoute';
 }
 
 class ShopProductsBrowserRouteArgs {
-  const ShopProductsBrowserRouteArgs({this.key, required this.shop});
+  const ShopProductsBrowserRouteArgs(
+      {this.key, required this.shop, required this.title});
 
   final _i15.Key? key;
 
   final _i16.Shop shop;
 
+  final String title;
+
   @override
   String toString() {
-    return 'ShopProductsBrowserRouteArgs{key: $key, shop: $shop}';
+    return 'ShopProductsBrowserRouteArgs{key: $key, shop: $shop, title: $title}';
   }
 }
 
@@ -318,18 +332,23 @@ class ProductPreviewRoute extends _i4.PageRouteInfo<ProductPreviewRouteArgs> {
   ProductPreviewRoute(
       {_i15.Key? key,
       required _i17.PricedProduct product,
-      required _i16.Shop shop})
+      required _i16.Shop shop,
+      required String title})
       : super(ProductPreviewRoute.name,
-            path: 'products/:productId',
+            path: ':title',
             args: ProductPreviewRouteArgs(
-                key: key, product: product, shop: shop));
+                key: key, product: product, shop: shop, title: title),
+            rawPathParams: {'title': title});
 
   static const String name = 'ProductPreviewRoute';
 }
 
 class ProductPreviewRouteArgs {
   const ProductPreviewRouteArgs(
-      {this.key, required this.product, required this.shop});
+      {this.key,
+      required this.product,
+      required this.shop,
+      required this.title});
 
   final _i15.Key? key;
 
@@ -337,16 +356,18 @@ class ProductPreviewRouteArgs {
 
   final _i16.Shop shop;
 
+  final String title;
+
   @override
   String toString() {
-    return 'ProductPreviewRouteArgs{key: $key, product: $product, shop: $shop}';
+    return 'ProductPreviewRouteArgs{key: $key, product: $product, shop: $shop, title: $title}';
   }
 }
 
 /// generated route for
 /// [_i11.CartPage]
 class CartRoute extends _i4.PageRouteInfo<void> {
-  const CartRoute() : super(CartRoute.name, path: '');
+  const CartRoute() : super(CartRoute.name, path: 'Your Carts');
 
   static const String name = 'CartRoute';
 }

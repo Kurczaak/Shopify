@@ -20,42 +20,46 @@ import 'package:shopify_client/presentation/your_lists/your_lists_page.dart';
       AutoRoute(path: 'home', name: 'homeRouter', page: HomePage, children: [
         AutoRoute(
             initial: true,
-            path: 'shopPicker',
+            path: 'Shop Picker',
             name: 'shopPickerRouter',
             page: EmptyRouterPage,
             children: [
-              AutoRoute(page: ShopPickerPage, initial: true),
               AutoRoute(
-                path: 'shops/:shopId',
+                page: ShopPickerPage,
+                initial: true,
+              ),
+              AutoRoute(
+                path: ':title',
                 page: ShopProductsBrowserPage,
               ),
               AutoRoute(
-                path: 'products/:productId',
+                path: ':title',
                 page: ProductPreviewPage,
               ),
             ]),
         AutoRoute(
-            path: 'cart',
+            path: 'Cart',
             name: 'cartRouter',
             page: EmptyRouterPage,
             children: [
               AutoRoute(
+                path: 'Your Carts',
                 initial: true,
                 page: CartPage,
               ),
             ]),
         AutoRoute(
-            path: 'bestOffers',
+            path: 'Best Offers',
             name: 'bestOffersRouter',
             page: EmptyRouterPage,
             children: [AutoRoute(page: BestOffersPage)]),
         AutoRoute(
-            path: 'favourites',
+            path: 'Favourites',
             name: 'favouritesRouter',
             page: EmptyRouterPage,
             children: [AutoRoute(page: FavouritesPage)]),
         AutoRoute(
-            path: 'yourLists',
+            path: 'Your Lists',
             name: 'yourListsRouter',
             page: EmptyRouterPage,
             children: [AutoRoute(page: YourListsPage)]),

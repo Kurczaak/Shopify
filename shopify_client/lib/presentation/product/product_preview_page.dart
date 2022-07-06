@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopify_client/application/product_preview/product_preview_bloc.dart';
@@ -9,10 +10,14 @@ import 'package:shopify_domain/shop.dart';
 import 'package:shopify_presentation/shopify_presentation.dart';
 
 class ProductPreviewPage extends StatelessWidget {
-  const ProductPreviewPage(
-      {Key? key, required this.product, required this.shop})
-      : super(key: key);
+  const ProductPreviewPage({
+    Key? key,
+    required this.product,
+    required this.shop,
+    @PathParam() required this.title,
+  }) : super(key: key);
   final PricedProduct product;
+  final String title;
   final Shop shop;
 
   @override

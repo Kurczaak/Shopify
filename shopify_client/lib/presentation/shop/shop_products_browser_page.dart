@@ -14,8 +14,12 @@ import 'package:shopify_domain/shop.dart';
 import 'package:shopify_presentation/shopify_presentation.dart';
 
 class ShopProductsBrowserPage extends StatelessWidget {
-  const ShopProductsBrowserPage({Key? key, required this.shop})
-      : super(key: key);
+  const ShopProductsBrowserPage({
+    Key? key,
+    required this.shop,
+    @PathParam() required this.title,
+  }) : super(key: key);
+  final String title;
   final Shop shop;
   @override
   Widget build(BuildContext context) {
@@ -80,7 +84,9 @@ class ShopProductsBrowserPage extends StatelessWidget {
                                       shop: shop,
                                       onTap: (product) {
                                         context.router.push(ProductPreviewRoute(
-                                            product: product, shop: shop));
+                                            product: product,
+                                            shop: shop,
+                                            title: product.name.getOrCrash()));
                                       },
                                     )),
                         (failure) => FailureWidget(

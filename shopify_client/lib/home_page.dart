@@ -25,7 +25,7 @@ class HomePage extends StatelessWidget {
           ]),
         ),
         appBarBuilder: (context, tabsRouter) => ShopifyAppBar(
-              title: 'Shopify',
+              title: context.topRoute.pathParams.getString('title', 'Shopify'),
               appBar: AppBar(),
               onTapBack: tabsRouter.canPopSelfOrChildren
                   ? () async {
@@ -43,6 +43,7 @@ class HomePage extends StatelessWidget {
           YourListsRouter(),
         ],
         bottomNavigationBuilder: (_, tabsRouter) {
+          // tabsRouter.setActiveIndex(2);
           return SalomonBottomBar(
             currentIndex: tabsRouter.activeIndex,
             onTap: tabsRouter.setActiveIndex,

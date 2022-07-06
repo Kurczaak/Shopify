@@ -90,6 +90,8 @@ class _ShopPickerPageState extends State<ShopPickerPage> {
                               onConfirm: () {
                                 context.router.popAndPush(
                                     ShopProductsBrowserRoute(
+                                        title:
+                                            selectedShop!.shopName.getOrCrash(),
                                         shop: selectedShop!));
                               }));
                     },
