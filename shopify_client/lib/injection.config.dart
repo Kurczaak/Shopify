@@ -16,8 +16,9 @@ import 'package:shopify_domain/product/shopify_product_searcher.dart' as _i15;
 import 'package:shopify_domain/shop/shopify_shop_repository.dart' as _i18;
 
 import 'application/auth/auth_bloc.dart' as _i24;
-import 'application/auth/sign_in_form/sign_in_form_bloc.dart' as _i26;
+import 'application/auth/sign_in_form/sign_in_form_bloc.dart' as _i27;
 import 'application/cart_and_favourite/cart_and_favourite_bloc.dart' as _i25;
+import 'application/cart_item/cart_item_bloc.dart' as _i26;
 import 'application/product_preview/product_preview_bloc.dart' as _i19;
 import 'application/product_watcher/product_watcher_bloc.dart' as _i20;
 import 'application/shop_picker/shop_picker_bloc.dart' as _i21;
@@ -63,7 +64,9 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.lazySingleton<_i24.AuthBloc>(() => _i24.AuthBloc(get<_i3.IAuthFacade>()));
   gh.factory<_i25.CartAndFavouriteBloc>(
       () => _i25.CartAndFavouriteBloc(get<_i6.ICartFacade>()));
-  gh.factory<_i26.SignInFormBloc>(
-      () => _i26.SignInFormBloc(get<_i3.IAuthFacade>(), get<_i24.AuthBloc>()));
+  gh.factory<_i26.CartItemBloc>(
+      () => _i26.CartItemBloc(get<_i6.ICartFacade>()));
+  gh.factory<_i27.SignInFormBloc>(
+      () => _i27.SignInFormBloc(get<_i3.IAuthFacade>(), get<_i24.AuthBloc>()));
   return get;
 }

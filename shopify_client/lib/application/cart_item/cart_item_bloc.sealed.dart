@@ -14,6 +14,8 @@ part of 'cart_item_bloc.dart';
 ///
 /// ([CartItemEventDecrement] decrement){} with data equality
 ///
+/// ([CartItemEventInitialize] initialize){[CartItem] cartItem} with data equality
+///
 /// }
 @SealedManifest(_CartItemEvent)
 abstract class CartItemEvent {
@@ -25,17 +27,25 @@ abstract class CartItemEvent {
 
   const factory CartItemEvent.decrement() = CartItemEventDecrement;
 
+  const factory CartItemEvent.initialize({
+    required CartItem cartItem,
+  }) = CartItemEventInitialize;
+
   bool get isRemove => this is CartItemEventRemove;
 
   bool get isIncrement => this is CartItemEventIncrement;
 
   bool get isDecrement => this is CartItemEventDecrement;
 
+  bool get isInitialize => this is CartItemEventInitialize;
+
   CartItemEventRemove get asRemove => this as CartItemEventRemove;
 
   CartItemEventIncrement get asIncrement => this as CartItemEventIncrement;
 
   CartItemEventDecrement get asDecrement => this as CartItemEventDecrement;
+
+  CartItemEventInitialize get asInitialize => this as CartItemEventInitialize;
 
   CartItemEventRemove? get asRemoveOrNull {
     final cartItemEvent = this;
@@ -52,10 +62,16 @@ abstract class CartItemEvent {
     return cartItemEvent is CartItemEventDecrement ? cartItemEvent : null;
   }
 
+  CartItemEventInitialize? get asInitializeOrNull {
+    final cartItemEvent = this;
+    return cartItemEvent is CartItemEventInitialize ? cartItemEvent : null;
+  }
+
   R when<R extends Object?>({
     required R Function() remove,
     required R Function() increment,
     required R Function() decrement,
+    required R Function(CartItem cartItem) initialize,
   }) {
     final cartItemEvent = this;
     if (cartItemEvent is CartItemEventRemove) {
@@ -64,6 +80,8 @@ abstract class CartItemEvent {
       return increment();
     } else if (cartItemEvent is CartItemEventDecrement) {
       return decrement();
+    } else if (cartItemEvent is CartItemEventInitialize) {
+      return initialize(cartItemEvent.cartItem);
     } else {
       throw AssertionError();
     }
@@ -73,6 +91,7 @@ abstract class CartItemEvent {
     R Function()? remove,
     R Function()? increment,
     R Function()? decrement,
+    R Function(CartItem cartItem)? initialize,
     required R Function(CartItemEvent cartItemEvent) orElse,
   }) {
     final cartItemEvent = this;
@@ -82,6 +101,10 @@ abstract class CartItemEvent {
       return increment != null ? increment() : orElse(cartItemEvent);
     } else if (cartItemEvent is CartItemEventDecrement) {
       return decrement != null ? decrement() : orElse(cartItemEvent);
+    } else if (cartItemEvent is CartItemEventInitialize) {
+      return initialize != null
+          ? initialize(cartItemEvent.cartItem)
+          : orElse(cartItemEvent);
     } else {
       throw AssertionError();
     }
@@ -92,6 +115,7 @@ abstract class CartItemEvent {
     void Function()? remove,
     void Function()? increment,
     void Function()? decrement,
+    void Function(CartItem cartItem)? initialize,
     void Function(CartItemEvent cartItemEvent)? orElse,
   }) {
     final cartItemEvent = this;
@@ -113,6 +137,12 @@ abstract class CartItemEvent {
       } else if (orElse != null) {
         orElse(cartItemEvent);
       }
+    } else if (cartItemEvent is CartItemEventInitialize) {
+      if (initialize != null) {
+        initialize(cartItemEvent.cartItem);
+      } else if (orElse != null) {
+        orElse(cartItemEvent);
+      }
     } else {
       throw AssertionError();
     }
@@ -122,6 +152,7 @@ abstract class CartItemEvent {
     R Function()? remove,
     R Function()? increment,
     R Function()? decrement,
+    R Function(CartItem cartItem)? initialize,
     R Function(CartItemEvent cartItemEvent)? orElse,
   }) {
     final cartItemEvent = this;
@@ -131,6 +162,10 @@ abstract class CartItemEvent {
       return increment != null ? increment() : orElse?.call(cartItemEvent);
     } else if (cartItemEvent is CartItemEventDecrement) {
       return decrement != null ? decrement() : orElse?.call(cartItemEvent);
+    } else if (cartItemEvent is CartItemEventInitialize) {
+      return initialize != null
+          ? initialize(cartItemEvent.cartItem)
+          : orElse?.call(cartItemEvent);
     } else {
       throw AssertionError();
     }
@@ -140,6 +175,7 @@ abstract class CartItemEvent {
     required R Function(CartItemEventRemove remove) remove,
     required R Function(CartItemEventIncrement increment) increment,
     required R Function(CartItemEventDecrement decrement) decrement,
+    required R Function(CartItemEventInitialize initialize) initialize,
   }) {
     final cartItemEvent = this;
     if (cartItemEvent is CartItemEventRemove) {
@@ -148,6 +184,8 @@ abstract class CartItemEvent {
       return increment(cartItemEvent);
     } else if (cartItemEvent is CartItemEventDecrement) {
       return decrement(cartItemEvent);
+    } else if (cartItemEvent is CartItemEventInitialize) {
+      return initialize(cartItemEvent);
     } else {
       throw AssertionError();
     }
@@ -157,6 +195,7 @@ abstract class CartItemEvent {
     R Function(CartItemEventRemove remove)? remove,
     R Function(CartItemEventIncrement increment)? increment,
     R Function(CartItemEventDecrement decrement)? decrement,
+    R Function(CartItemEventInitialize initialize)? initialize,
     required R Function(CartItemEvent cartItemEvent) orElse,
   }) {
     final cartItemEvent = this;
@@ -170,6 +209,10 @@ abstract class CartItemEvent {
       return decrement != null
           ? decrement(cartItemEvent)
           : orElse(cartItemEvent);
+    } else if (cartItemEvent is CartItemEventInitialize) {
+      return initialize != null
+          ? initialize(cartItemEvent)
+          : orElse(cartItemEvent);
     } else {
       throw AssertionError();
     }
@@ -180,6 +223,7 @@ abstract class CartItemEvent {
     void Function(CartItemEventRemove remove)? remove,
     void Function(CartItemEventIncrement increment)? increment,
     void Function(CartItemEventDecrement decrement)? decrement,
+    void Function(CartItemEventInitialize initialize)? initialize,
     void Function(CartItemEvent cartItemEvent)? orElse,
   }) {
     final cartItemEvent = this;
@@ -201,6 +245,12 @@ abstract class CartItemEvent {
       } else if (orElse != null) {
         orElse(cartItemEvent);
       }
+    } else if (cartItemEvent is CartItemEventInitialize) {
+      if (initialize != null) {
+        initialize(cartItemEvent);
+      } else if (orElse != null) {
+        orElse(cartItemEvent);
+      }
     } else {
       throw AssertionError();
     }
@@ -210,6 +260,7 @@ abstract class CartItemEvent {
     R Function(CartItemEventRemove remove)? remove,
     R Function(CartItemEventIncrement increment)? increment,
     R Function(CartItemEventDecrement decrement)? decrement,
+    R Function(CartItemEventInitialize initialize)? initialize,
     R Function(CartItemEvent cartItemEvent)? orElse,
   }) {
     final cartItemEvent = this;
@@ -224,6 +275,10 @@ abstract class CartItemEvent {
     } else if (cartItemEvent is CartItemEventDecrement) {
       return decrement != null
           ? decrement(cartItemEvent)
+          : orElse?.call(cartItemEvent);
+    } else if (cartItemEvent is CartItemEventInitialize) {
+      return initialize != null
+          ? initialize(cartItemEvent)
           : orElse?.call(cartItemEvent);
     } else {
       throw AssertionError();
@@ -268,4 +323,23 @@ class CartItemEventDecrement extends CartItemEvent with EquatableMixin {
 
   @override
   List<Object?> get props => [];
+}
+
+/// (([CartItemEventInitialize] : [CartItemEvent]) initialize){[CartItem] cartItem}
+///
+/// with data equality
+class CartItemEventInitialize extends CartItemEvent with EquatableMixin {
+  const CartItemEventInitialize({
+    required this.cartItem,
+  }) : super._internal();
+
+  final CartItem cartItem;
+
+  @override
+  String toString() => 'CartItemEvent.initialize(cartItem: $cartItem)';
+
+  @override
+  List<Object?> get props => [
+        cartItem,
+      ];
 }

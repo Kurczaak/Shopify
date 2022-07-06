@@ -5,4 +5,5 @@ abstract class _CartItemEvent {
   void remove();
   void increment();
   void decrement();
+  void initialize(CartItem cartItem);
 }

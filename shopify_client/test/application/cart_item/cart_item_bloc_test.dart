@@ -1,7 +1,7 @@
-import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
+import 'package:shopify_client/domain/cart/I_cart_facade.dart';
 
+@GenerateMocks([ICartFacade])
 void main() {
-  testWidgets('cart item bloc ...', (tester) async {
-    // TODO: Implement test
-  });
+  //group(description, body)
 }
