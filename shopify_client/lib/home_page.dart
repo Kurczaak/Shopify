@@ -43,7 +43,6 @@ class HomePage extends StatelessWidget {
           YourListsRouter(),
         ],
         bottomNavigationBuilder: (_, tabsRouter) {
-          // tabsRouter.setActiveIndex(2);
           return SalomonBottomBar(
             currentIndex: tabsRouter.activeIndex,
             onTap: tabsRouter.setActiveIndex,
