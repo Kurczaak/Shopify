@@ -32,6 +32,64 @@ void main() {
         CartItemState.initial().copyWith(cartItemOption: some(cartItem));
     when(mockCartFacade.deleteCartItem(any))
         .thenAnswer((_) async => right(unit));
+    when(mockCartFacade.incrementCartItem(any))
+        .thenAnswer((_) async => right(unit));
+  });
+  group('increment', () {
+    blocTest('should call facade.incrementCartItem',
+        build: () => bloc,
+        seed: () => initializedState,
+        act: (CartItemBloc bloc) => bloc.add(const CartItemEvent.increment()),
+        verify: (_) {
+          verify(mockCartFacade.incrementCartItem(cartItem));
+        });
+
+    blocTest('should emit [LOADING] and [LOADED]',
+        build: () => bloc,
+        seed: () => initializedState,
+        act: (CartItemBloc bloc) => bloc.add(const CartItemEvent.increment()),
+        expect: () => [
+              initializedState.copyWith(isLoading: true),
+              initializedState.copyWith(
+                isLoading: false,
+                cartItemOption:
+                    some(cartItem.copyWith(quantity: NonnegativeInt(6))),
+              ),
+            ]);
+    blocTest('should emit [LOADING] and [ERROR] if failed to increment',
+        build: () => bloc,
+        seed: () => initializedState,
+        setUp: () => when(mockCartFacade.incrementCartItem(any)).thenAnswer(
+            (_) async => left(const CartFailure.noInternetConnection())),
+        act: (CartItemBloc bloc) => bloc.add(const CartItemEvent.increment()),
+        expect: () => [
+              initializedState.copyWith(isLoading: true),
+              initializedState.copyWith(
+                  isLoading: false,
+                  failureOption:
+                      some(const CartFailure.noInternetConnection())),
+            ]);
+
+    blocTest('should emit  [ERROR] if the cart item is invalid',
+        build: () => bloc,
+        seed: () => initializedState.copyWith(
+            cartItemOption:
+                some(cartItem.copyWith(quantity: NonnegativeInt(-1)))),
+        act: (CartItemBloc bloc) => bloc.add(const CartItemEvent.increment()),
+        expect: () => [
+              initializedState.copyWith(
+                  cartItemOption:
+                      some(cartItem.copyWith(quantity: NonnegativeInt(-1))),
+                  isLoading: false,
+                  failureOption: some(const CartFailure.invalidCartItem()))
+            ]);
+    blocTest('should emit  [ERROR] if cart item is none',
+        build: () => bloc,
+        act: (CartItemBloc bloc) => bloc.add(const CartItemEvent.increment()),
+        expect: () => [
+              CartItemState.initial().copyWith(
+                  failureOption: some(const CartFailure.itemDoesNotExist()))
+            ]);
   });
   group('remove', () {
     blocTest('should call facade.deleteCartItem',
