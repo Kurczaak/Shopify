@@ -9,4 +9,5 @@ class CartFailure with _$CartFailure {
   const factory CartFailure.timeout() = _Timeout;
   const factory CartFailure.emptyCart() = _EmptyCart;
   const factory CartFailure.insufficientPermission() = _InsufficientPermission;
+  const factory CartFailure.itemDoesNotExist() = _ItemDoesNotExist;
 }
