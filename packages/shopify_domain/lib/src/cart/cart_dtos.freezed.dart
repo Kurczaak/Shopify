@@ -240,6 +240,7 @@ mixin _$CartDto {
   @JsonKey(ignore: true)
   String get id => throw _privateConstructorUsedError;
   ShopDto get shop => throw _privateConstructorUsedError;
+  String get shopId => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   List<CartItemDto> get cartItems => throw _privateConstructorUsedError;
 
@@ -255,6 +256,7 @@ abstract class $CartDtoCopyWith<$Res> {
   $Res call(
       {@JsonKey(ignore: true) String id,
       ShopDto shop,
+      String shopId,
       @JsonKey(ignore: true) List<CartItemDto> cartItems});
 
   $ShopDtoCopyWith<$Res> get shop;
@@ -272,6 +274,7 @@ class _$CartDtoCopyWithImpl<$Res> implements $CartDtoCopyWith<$Res> {
   $Res call({
     Object? id = freezed,
     Object? shop = freezed,
+    Object? shopId = freezed,
     Object? cartItems = freezed,
   }) {
     return _then(_value.copyWith(
@@ -283,6 +286,10 @@ class _$CartDtoCopyWithImpl<$Res> implements $CartDtoCopyWith<$Res> {
           ? _value.shop
           : shop // ignore: cast_nullable_to_non_nullable
               as ShopDto,
+      shopId: shopId == freezed
+          ? _value.shopId
+          : shopId // ignore: cast_nullable_to_non_nullable
+              as String,
       cartItems: cartItems == freezed
           ? _value.cartItems
           : cartItems // ignore: cast_nullable_to_non_nullable
@@ -307,6 +314,7 @@ abstract class _$$_CartDtoCopyWith<$Res> implements $CartDtoCopyWith<$Res> {
   $Res call(
       {@JsonKey(ignore: true) String id,
       ShopDto shop,
+      String shopId,
       @JsonKey(ignore: true) List<CartItemDto> cartItems});
 
   @override
@@ -326,6 +334,7 @@ class __$$_CartDtoCopyWithImpl<$Res> extends _$CartDtoCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? shop = freezed,
+    Object? shopId = freezed,
     Object? cartItems = freezed,
   }) {
     return _then(_$_CartDto(
@@ -337,6 +346,10 @@ class __$$_CartDtoCopyWithImpl<$Res> extends _$CartDtoCopyWithImpl<$Res>
           ? _value.shop
           : shop // ignore: cast_nullable_to_non_nullable
               as ShopDto,
+      shopId: shopId == freezed
+          ? _value.shopId
+          : shopId // ignore: cast_nullable_to_non_nullable
+              as String,
       cartItems: cartItems == freezed
           ? _value._cartItems
           : cartItems // ignore: cast_nullable_to_non_nullable
@@ -351,6 +364,7 @@ class _$_CartDto extends _CartDto {
   const _$_CartDto(
       {@JsonKey(ignore: true) this.id = '',
       required this.shop,
+      required this.shopId,
       @JsonKey(ignore: true) final List<CartItemDto> cartItems = const []})
       : _cartItems = cartItems,
         super._();
@@ -363,6 +377,8 @@ class _$_CartDto extends _CartDto {
   final String id;
   @override
   final ShopDto shop;
+  @override
+  final String shopId;
   final List<CartItemDto> _cartItems;
   @override
   @JsonKey(ignore: true)
@@ -373,7 +389,7 @@ class _$_CartDto extends _CartDto {
 
   @override
   String toString() {
-    return 'CartDto(id: $id, shop: $shop, cartItems: $cartItems)';
+    return 'CartDto(id: $id, shop: $shop, shopId: $shopId, cartItems: $cartItems)';
   }
 
   @override
@@ -383,6 +399,7 @@ class _$_CartDto extends _CartDto {
             other is _$_CartDto &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.shop, shop) &&
+            const DeepCollectionEquality().equals(other.shopId, shopId) &&
             const DeepCollectionEquality()
                 .equals(other._cartItems, _cartItems));
   }
@@ -393,6 +410,7 @@ class _$_CartDto extends _CartDto {
       runtimeType,
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(shop),
+      const DeepCollectionEquality().hash(shopId),
       const DeepCollectionEquality().hash(_cartItems));
 
   @JsonKey(ignore: true)
@@ -410,6 +428,7 @@ abstract class _CartDto extends CartDto {
   const factory _CartDto(
       {@JsonKey(ignore: true) final String id,
       required final ShopDto shop,
+      required final String shopId,
       @JsonKey(ignore: true) final List<CartItemDto> cartItems}) = _$_CartDto;
   const _CartDto._() : super._();
 
@@ -420,6 +439,8 @@ abstract class _CartDto extends CartDto {
   String get id => throw _privateConstructorUsedError;
   @override
   ShopDto get shop => throw _privateConstructorUsedError;
+  @override
+  String get shopId => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   List<CartItemDto> get cartItems => throw _privateConstructorUsedError;

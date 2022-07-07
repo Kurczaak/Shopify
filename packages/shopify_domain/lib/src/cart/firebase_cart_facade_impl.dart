@@ -179,6 +179,7 @@ class FirebaseCartFacadeImpl implements ShopifyCartFacade {
     );
 
     try {
+      print(cart.shop.id.getOrCrash());
       await callable.call({"shopId": cart.shop.id.getOrCrash()});
 
       return right(unit);

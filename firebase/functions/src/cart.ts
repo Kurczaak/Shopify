@@ -28,6 +28,22 @@ exports.onCartItemChanged = functions.firestore.document("carts/{cartId}/cartIte
   return null;
 });
 
+exports.onCartChanged = functions.firestore.document("carts/{cartId}").onWrite(async (snapshot, context) => {
+  const { cartId } = context.params;
+
+  const db = admin.firestore();
+  const cartDocument = db.collection('carts').doc(cartId);
+  if (cartDocument == null) {
+    throw new HttpsError("not-found", 'cart document not found');
+  }
+  const cartItemsCollectionReference = cartDocument.collection('cartItems');
+  const cartItesmCollection = await cartItemsCollectionReference.get();
+  if (cartItesmCollection.size <= 0) {
+    await cartDocument.delete();
+  }
+  return null;
+});
+
 exports.deleteCartItem = functions.https.onCall(async (data, context) => {
   const { shopId } = data;
   const { cartItemId } = data;
@@ -69,9 +85,16 @@ exports.deleteCart = functions.https.onCall(async (data, context) => {
   if (cartDocument == null) { // User does not have a cart
     throw new HttpsError("not-found", 'cart not found');
   } else {
+    const cartItemsCollection = await cartDocument.collection('cartItems').get();
+    await deleteSnapshotBatch(db, cartItemsCollection);
+
     return await cartDocument.delete();
   }
 });
+
+
+
+
 
 exports.incrementCartItem = functions.https.onCall(async (data, context) => {
   const { shopId } = data;
@@ -208,4 +231,29 @@ async function getDocumentOrCrash(query: admin.firestore.Query<admin.firestore.D
   } else {
     return null;
   }
+}
+
+async function deleteSnapshotBatch(db: admin.firestore.Firestore, snapshot: admin.firestore.QuerySnapshot<admin.firestore.DocumentData>) {
+  admin.database
+
+
+  const batchSize = snapshot.size;
+  if (batchSize === 0) {
+    // When there are no documents left, we are done
+
+    return;
+  }
+
+  // Delete documents in a batch
+  const batch = db.batch();
+  snapshot.docs.forEach((doc) => {
+    batch.delete(doc.ref);
+  });
+  await batch.commit();
+
+  // Recurse on the next process tick, to avoid
+  // exploding the stack.
+  process.nextTick(() => {
+    deleteSnapshotBatch(db, snapshot);
+  });
 }

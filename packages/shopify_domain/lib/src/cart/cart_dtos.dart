@@ -43,11 +43,13 @@ class CartDto with _$CartDto {
   const factory CartDto({
     @Default('') @JsonKey(ignore: true) String id,
     required ShopDto shop,
+    required String shopId,
     @Default([]) @JsonKey(ignore: true) List<CartItemDto> cartItems,
   }) = _CartDto;
 
   factory CartDto.fromDomain(Cart cart) => CartDto(
         shop: ShopDto.fromDomain(cart.shop),
+        shopId: cart.shop.id.getOrCrash(),
         cartItems: cart.cartItems
             .getOrCrash()
             .iter
@@ -57,7 +59,7 @@ class CartDto with _$CartDto {
 
   Cart toDomain() => Cart(
         id: UniqueId.fromUniqueString(id),
-        shop: shop.toDomain(),
+        shop: shop.toDomain().copyWith(id: UniqueId.fromUniqueString(shopId)),
         cartItems: CartItemsList(
           KtList.from(
             cartItems.map((cartItemDto) => cartItemDto.toDomain()).toList(),
@@ -70,8 +72,10 @@ class CartDto with _$CartDto {
   factory CartDto.fromFirestore(
           {required DocumentSnapshot doc,
           required List<CartItemDto> cartItems}) =>
-      CartDto.fromJson(doc.data() as Map<String, dynamic>)
-          .copyWith(id: doc.id, cartItems: cartItems);
+      CartDto.fromJson(doc.data() as Map<String, dynamic>).copyWith(
+        id: doc.id,
+        cartItems: cartItems,
+      );
 }
 
 @freezed
