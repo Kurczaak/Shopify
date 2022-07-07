@@ -11,6 +11,7 @@ import 'package:shopify_domain/cart/cart.dart';
 import 'package:shopify_domain/cart/cart_item.dart';
 import 'package:shopify_domain/shop.dart';
 import 'package:shopify_presentation/core/shopify_image.dart';
+import 'package:shopify_presentation/shopify_presentation.dart';
 
 class CartPage extends StatelessWidget {
   const CartPage({Key? key}) : super(key: key);
@@ -22,110 +23,194 @@ class CartPage extends StatelessWidget {
           getIt<UserCartsBloc>()..add(const UserCartsEvent.watchAllCarts()),
       child: BlocConsumer<UserCartsBloc, UserCartsState>(
         listener: (context, state) {},
-        builder: (context, state) => state.userCartsOption.fold(
-          () => const Center(
-            child: Text('No carts'),
-          ),
-          (userCarts) => RefreshIndicator(
-            onRefresh: () async {
-              context
-                  .read<UserCartsBloc>()
-                  .add(const UserCartsEvent.watchAllCarts());
-            },
-            child: LoadingOverlay(
-              isLoading: state.isLoading,
-              child: ListView(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 0, vertical: 30),
-                children: userCarts.carts
-                    .getOrCrash()
-                    .iter
-                    .map((cart) => cart.failureOrUnit.fold(
-                        (failure) => Container(),
-                        (_) => Column(
-                              children: [
-                                Slidable(
-                                  key: Key(cart.id.getOrCrash()),
-                                  startActionPane: ActionPane(
-                                    // A motion is a widget used to control how the pane animates.
-                                    motion: const ScrollMotion(),
-
-                                    // All actions are defined in the children parameter.
-                                    children: [
-                                      // A SlidableAction can have an icon and/or a label.
-                                      SlidableAction(
-                                        onPressed: (context) async {
-                                          print('XDDDDDDDDDDDDDDD');
-                                          print('KURWAAAASDASDASD');
-                                          final result =
-                                              await getIt<ICartFacade>()
-                                                  .deleteCart(cart);
-                                          print(result);
-                                          print('XDDDDDDDDDDDDDDD');
-                                          print('KURWAAAASDASDASD');
-                                        },
-                                        backgroundColor:
-                                            const Color(0xFFFE4A49),
-                                        foregroundColor: Colors.white,
-                                        icon: Icons.delete,
-                                        label: 'Delete',
-                                      ),
-                                      SlidableAction(
-                                        onPressed: (context) {},
-                                        backgroundColor:
-                                            Theme.of(context).primaryColor,
-                                        foregroundColor: Colors.white,
-                                        icon: Icons.share,
-                                        label: 'Share',
-                                      ),
-                                    ],
-                                  ),
-
-                                  // The end action pane is the one at the right or the bottom side.
-                                  endActionPane: ActionPane(
-                                    motion: const ScrollMotion(),
-                                    children: [
-                                      SlidableAction(
-                                        // An action can be bigger than the others.
-
-                                        onPressed: (context) {},
-                                        backgroundColor:
-                                            Theme.of(context).errorColor,
-                                        foregroundColor: Colors.white,
-                                        icon: Icons.favorite,
-                                        label: 'Favourite',
-                                      ),
-                                      SlidableAction(
-                                        onPressed: (context) {},
-                                        backgroundColor: Theme.of(context)
-                                            .colorScheme
-                                            .secondary,
-                                        foregroundColor: Colors.white,
-                                        icon: Icons.public,
-                                        label: 'Nearby offers',
-                                      ),
-                                    ],
-                                  ),
-                                  child: Column(children: [
-                                    ShopDetails(shop: cart.shop),
-                                    CartDetailsWidget(
-                                      cart: cart,
-                                    ),
-                                  ]),
-                                ),
-                                const Divider(
-                                  thickness: 2,
-                                  height: 2,
-                                ),
-                                const SizedBox(height: 10),
-                              ],
-                            )))
-                    .toList(),
-              ),
-            ),
-          ),
+        builder: (context, state) => RefreshIndicator(
+          onRefresh: () async {
+            context
+                .read<UserCartsBloc>()
+                .add(const UserCartsEvent.watchAllCarts());
+          },
+          child: state.isLoading
+              ? const Center(
+                  child: CircularProgressIndicator(),
+                )
+              : state.userCartsOption.fold(
+                  () => const CustomScrollView(
+                    physics: AlwaysScrollableScrollPhysics(),
+                    slivers: [
+                      SliverFillRemaining(
+                        hasScrollBody: false,
+                        child: Center(
+                          child: NoCartsWidget(),
+                        ),
+                      )
+                    ],
+                  ),
+                  (userCarts) => LoadingOverlay(
+                    isLoading: state.isLoading,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        Text(
+                          'Total sum: ${userCarts.totalSum.toStringAsFixed(2)} zł',
+                          style: Theme.of(context).textTheme.headline5,
+                        ),
+                        const Divider(
+                          height: 1,
+                        ),
+                        Expanded(
+                          child: ListView(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 0, vertical: 10),
+                            children: userCarts.carts
+                                .getOrCrash()
+                                .iter
+                                .map((cart) => cart.failureOrUnit.fold(
+                                    (failure) => Container(),
+                                    (_) => CartWidget(
+                                          key: Key(cart.id.getOrCrash()),
+                                          cart: cart,
+                                        )))
+                                .toList(),
+                          ),
+                        ),
+                        Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 28),
+                          height: 60,
+                          child: ShopifyPrimaryButton(
+                              onPressed: () {
+                                context
+                                    .read<UserCartsBloc>()
+                                    .add(const UserCartsEvent.createOrders());
+                              },
+                              text: 'Order'),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
         ),
       ),
+    );
+  }
+}
+
+class CartWidget extends StatefulWidget {
+  const CartWidget({
+    Key? key,
+    required this.cart,
+  }) : super(key: key);
+  final Cart cart;
+
+  @override
+  State<CartWidget> createState() => _CartWidgetState();
+}
+
+class _CartWidgetState extends State<CartWidget> {
+  bool isLoading = false;
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Slidable(
+          key: Key(widget.cart.id.getOrCrash()),
+          startActionPane: ActionPane(
+            // A motion is a widget used to control how the pane animates.
+            motion: const ScrollMotion(),
+
+            // All actions are defined in the children parameter.
+            children: [
+              // A SlidableAction can have an icon and/or a label.
+              SlidableAction(
+                onPressed: (context) async {
+                  isLoading = true;
+                  setState(() {});
+
+                  await getIt<ICartFacade>().deleteCart(widget.cart);
+                },
+                backgroundColor: const Color(0xFFFE4A49),
+                foregroundColor: Colors.white,
+                icon: Icons.delete,
+                label: 'Delete',
+              ),
+              SlidableAction(
+                onPressed: (context) {},
+                backgroundColor: Theme.of(context).primaryColor,
+                foregroundColor: Colors.white,
+                icon: Icons.share,
+                label: 'Share',
+              ),
+            ],
+          ),
+
+          // The end action pane is the one at the right or the bottom side.
+          endActionPane: ActionPane(
+            motion: const ScrollMotion(),
+            children: [
+              SlidableAction(
+                // An action can be bigger than the others.
+
+                onPressed: (context) {},
+                backgroundColor: Theme.of(context).errorColor,
+                foregroundColor: Colors.white,
+                icon: Icons.favorite,
+                label: 'Favourite',
+              ),
+              SlidableAction(
+                onPressed: (context) {},
+                backgroundColor: Theme.of(context).colorScheme.secondary,
+                foregroundColor: Colors.white,
+                icon: Icons.public,
+                label: 'Nearby offers',
+              ),
+            ],
+          ),
+          child: Column(children: [
+            SizedBox(
+              height: 100,
+              child: LoadingOverlay(
+                  isLoading: isLoading,
+                  child: ShopDetails(
+                      key: Key(widget.cart.shop.id.getOrCrash()),
+                      shop: widget.cart.shop)),
+            ),
+            CartDetailsWidget(
+              cart: widget.cart,
+            ),
+          ]),
+        ),
+        const Divider(
+          thickness: 2,
+          height: 2,
+        ),
+        const SizedBox(height: 10),
+      ],
+    );
+  }
+}
+
+class NoCartsWidget extends StatelessWidget {
+  const NoCartsWidget({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        const Icon(
+          Icons.shopping_cart_outlined,
+          size: 50,
+        ),
+        Text(
+          'Your cart is empty',
+          style: Theme.of(context).textTheme.headline5,
+        ),
+        Text(
+          'Start shopping now!',
+          style: Theme.of(context).textTheme.titleLarge,
+        ),
+      ],
     );
   }
 }
@@ -137,6 +222,7 @@ class ShopDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: Theme.of(context).primaryColor.withOpacity(.1),
+      padding: const EdgeInsets.symmetric(horizontal: 10),
       child: Row(
         children: [
           SizedBox(
@@ -169,18 +255,20 @@ class CartDetailsWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return ExpandablePanel(
         collapsed: Container(),
-        header:
-            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-          Text(
-              '${cart.numOfItems.toString()} product${(cart.numOfItems != 1) ? 's' : ''}'),
-          Text('Total: ${cart.totalCost.toString()} zł'),
-        ]),
+        header: Padding(
+          padding: const EdgeInsets.only(left: 10),
+          child:
+              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+            Text(
+                '${cart.numOfItems.toString()} product${(cart.numOfItems != 1) ? 's' : ''}'),
+            Text('Total: ${cart.totalCost.toStringAsFixed(2)} zł'),
+          ]),
+        ),
         expanded: Column(
           children: [
-            ...cart.cartItems
-                .getOrCrash()
-                .iter
-                .map((cartItem) => CartItemWidget(cartItem: cartItem))
+            ...cart.cartItems.getOrCrash().iter.map((cartItem) =>
+                CartItemWidget(
+                    key: Key(cartItem.id.getOrCrash()), cartItem: cartItem))
           ],
         ));
   }
@@ -301,13 +389,20 @@ class CartItemWidget extends StatelessWidget {
                                         color: Theme.of(context).primaryColor,
                                       )),
                                 ),
-                                state.isLoading
-                                    ? const Center(
-                                        child: CircularProgressIndicator(),
-                                      )
-                                    : Text(cartItem.quantity
-                                        .getOrCrash()
-                                        .toString()),
+                                Container(
+                                  padding: const EdgeInsets.all(3),
+                                  height: 30,
+                                  width: 30,
+                                  child: Center(
+                                      child: state.isLoading
+                                          ? const FittedBox(
+                                              fit: BoxFit.scaleDown,
+                                              child:
+                                                  CircularProgressIndicator())
+                                          : Text(cartItem.quantity
+                                              .getOrCrash()
+                                              .toString())),
+                                ),
                                 Material(
                                   child: InkWell(
                                       onTap: () {
@@ -323,7 +418,6 @@ class CartItemWidget extends StatelessWidget {
                               ],
                             ),
                           ),
-                          const Icon(Icons.chevron_left_outlined)
                         ],
                       ),
                     ],
