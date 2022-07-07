@@ -24,14 +24,18 @@ class UserCartsBloc extends Bloc<UserCartsEvent, UserCartsState> {
           watchAllCarts: () async {
             if (await networkInfo.isConnected) {
               emit(state.copyWith(
-                failureOption: none(),
-                isLoading: true,
-              ));
+                  failureOption: none(),
+                  isLoading: true,
+                  userCartsOption: none()));
 
               await emit.forEach(cartFacade.getUserCarts(),
+                  onError: (error, stackTrace) =>
+                      state.copyWith(userCartsOption: none(), isLoading: false),
                   onData: ((Either<CartFailure, UserCarts> data) => data.fold(
                       (failure) => state.copyWith(
-                          isLoading: false, failureOption: some(failure)),
+                          isLoading: false,
+                          failureOption: some(failure),
+                          userCartsOption: none()),
                       (userCarts) => state.copyWith(
                             isLoading: false,
                             userCartsOption: some(userCarts),
