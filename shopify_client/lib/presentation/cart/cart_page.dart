@@ -1,3 +1,4 @@
+import 'package:another_flushbar/flushbar_helper.dart';
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,7 +23,26 @@ class CartPage extends StatelessWidget {
       create: (context) =>
           getIt<UserCartsBloc>()..add(const UserCartsEvent.watchAllCarts()),
       child: BlocConsumer<UserCartsBloc, UserCartsState>(
-        listener: (context, state) {},
+        listener: (context, state) {
+          state.sendOrderFailureOrUnitOption.fold(
+              () => null,
+              (failureOrUnit) => failureOrUnit.fold(
+                  (failure) => FlushbarHelper.createError(
+                          message: failure.map(
+                              unexpected: (_) => 'Unexpected error',
+                              invalidCartItem: (_) => 'Invalid cart item',
+                              noInternetConnection: (_) =>
+                                  'Internet connection problem',
+                              timeout: (_) => 'Connection has timed out',
+                              emptyCart: (_) => 'Empty Cart',
+                              insufficientPermission: (_) =>
+                                  'Insufficient permission',
+                              itemDoesNotExist: (_) => 'Item does not exists'))
+                      .show(context),
+                  (_) => FlushbarHelper.createSuccess(
+                          message: 'Your order has been sent successfully!')
+                      .show(context)));
+        },
         builder: (context, state) => RefreshIndicator(
           onRefresh: () async {
             context

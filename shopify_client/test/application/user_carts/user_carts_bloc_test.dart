@@ -30,6 +30,65 @@ void main() {
     when(mockNetworkInfo.isConnected).thenAnswer((_) async => true);
     when(mockCartFacade.getUserCarts())
         .thenAnswer((_) => Stream.fromFuture(Future.value((right(userCarts)))));
+    when(mockCartFacade.sendOrder(any)).thenAnswer((_) async => right(unit));
+  });
+
+  group('createOrders', () {
+    blocTest('should call cartFacade.sendOrder for each cart in user carts',
+        build: () => bloc,
+        seed: () =>
+            UserCartsState.initial().copyWith(userCartsOption: some(userCarts)),
+        act: (UserCartsBloc bloc) =>
+            bloc.add(const UserCartsEvent.createOrders()),
+        verify: (_) {
+          for (final cart in userCarts.carts.getOrCrash().iter) {
+            verify(mockCartFacade.sendOrder(cart));
+          }
+        });
+
+    blocTest('should emit [LOADING] and [LOADED]',
+        build: () => bloc,
+        seed: () =>
+            UserCartsState.initial().copyWith(userCartsOption: some(userCarts)),
+        act: (UserCartsBloc bloc) =>
+            bloc.add(const UserCartsEvent.createOrders()),
+        expect: () => [
+              UserCartsState.initial()
+                  .copyWith(userCartsOption: some(userCarts), isLoading: true),
+              UserCartsState.initial().copyWith(
+                  userCartsOption: none(),
+                  isLoading: false,
+                  sendOrderFailureOrUnitOption: some(right(unit))),
+            ]);
+
+    blocTest('should emit [LOADING] and [ERROR] if sending an order failed',
+        build: () => bloc,
+        seed: () =>
+            UserCartsState.initial().copyWith(userCartsOption: some(userCarts)),
+        act: (UserCartsBloc bloc) =>
+            bloc.add(const UserCartsEvent.createOrders()),
+        setUp: () => when(mockCartFacade.sendOrder(any))
+            .thenAnswer((_) async => left(const CartFailure.unexpected())),
+        expect: () => [
+              UserCartsState.initial()
+                  .copyWith(userCartsOption: some(userCarts), isLoading: true),
+              UserCartsState.initial().copyWith(
+                  userCartsOption: some(userCarts),
+                  isLoading: false,
+                  sendOrderFailureOrUnitOption:
+                      some(left(const CartFailure.unexpected()))),
+            ]);
+    blocTest('should emit[ERROR] if userCartsOption is none',
+        build: () => bloc,
+        act: (UserCartsBloc bloc) =>
+            bloc.add(const UserCartsEvent.createOrders()),
+        setUp: () => when(mockCartFacade.sendOrder(any))
+            .thenAnswer((_) async => left(const CartFailure.unexpected())),
+        expect: () => [
+              UserCartsState.initial().copyWith(
+                  sendOrderFailureOrUnitOption:
+                      some(left(const CartFailure.emptyCart()))),
+            ]);
   });
   group('watchAllCarts', () {
     blocTest('should check internet connection status',

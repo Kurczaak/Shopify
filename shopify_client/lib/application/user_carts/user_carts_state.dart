@@ -6,11 +6,13 @@ class UserCartsState with _$UserCartsState {
     required Option<UserCarts> userCartsOption,
     required bool isLoading,
     required Option<CartFailure> failureOption,
+    required Option<Either<CartFailure, Unit>> sendOrderFailureOrUnitOption,
   }) = _CartState;
 
   factory UserCartsState.initial() => UserCartsState(
         userCartsOption: none(),
         isLoading: false,
         failureOption: none(),
+        sendOrderFailureOrUnitOption: none(),
       );
 }

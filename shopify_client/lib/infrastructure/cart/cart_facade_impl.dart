@@ -49,8 +49,7 @@ class CartFacadeImpl implements ICartFacade {
 
   @override
   Future<Either<CartFailure, Unit>> sendOrder(Cart cart) {
-    // TODO: implement sendOrder
-    throw UnimplementedError();
+    return cartFacade.createOrder(cart);
   }
 
   @override
