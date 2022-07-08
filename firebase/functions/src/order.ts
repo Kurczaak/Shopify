@@ -30,13 +30,14 @@ exports.createOrder = functions.https.onCall(async (data, context) => {
     const cartItemsCollectionSnapshot = await cartItemsCollectionReference.get();
     cartItemsCollectionSnapshot.docs.forEach(
         async (doc) => {
-            await orderItemsCollectionReference.add(doc);
+            await orderItemsCollectionReference.add(doc.data());
         }
     );
     // delete cart items
     await deleteSnapshotBatch(db, cartItemsCollectionSnapshot);
     // delete cart
     await cartDocumentReference.delete();
+    await orderDocumentReference.update({ "timestamp": admin.firestore.FieldValue.serverTimestamp() });
     return orderDocumentReference;
 });
 
@@ -49,7 +50,6 @@ async function deleteSnapshotBatch(db: admin.firestore.Firestore, snapshot: admi
     const batchSize = snapshot.size;
     if (batchSize === 0) {
         // When there are no documents left, we are done
-
         return;
     }
 
