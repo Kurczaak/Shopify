@@ -179,7 +179,6 @@ class FirebaseCartFacadeImpl implements ShopifyCartFacade {
     );
 
     try {
-      print(cart.shop.id.getOrCrash());
       await callable.call({"shopId": cart.shop.id.getOrCrash()});
 
       return right(unit);
@@ -188,5 +187,11 @@ class FirebaseCartFacadeImpl implements ShopifyCartFacade {
     } on TimeoutException {
       return left(const CartFailure.noInternetConnection());
     }
+  }
+
+  @override
+  Future<Either<CartFailure, Unit>> createOrder(Cart cart) {
+    // TODO: implement createOrder
+    throw UnimplementedError();
   }
 }
