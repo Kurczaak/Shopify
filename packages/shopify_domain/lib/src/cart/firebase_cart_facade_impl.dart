@@ -190,8 +190,20 @@ class FirebaseCartFacadeImpl implements ShopifyCartFacade {
   }
 
   @override
-  Future<Either<CartFailure, Unit>> createOrder(Cart cart) {
-    // TODO: implement createOrder
-    throw UnimplementedError();
+  Future<Either<CartFailure, Unit>> createOrder(Cart cart) async {
+    final callable = FirebaseFunctions.instance.httpsCallable(
+      'order-createOrder',
+      options: HttpsCallableOptions(timeout: const Duration(seconds: 15)),
+    );
+
+    try {
+      await callable.call({"cartId": cart.id.getOrCrash()});
+
+      return right(unit);
+    } on FirebaseFunctionsException {
+      return left(const CartFailure.unexpected());
+    } on TimeoutException {
+      return left(const CartFailure.noInternetConnection());
+    }
   }
 }

@@ -6,6 +6,7 @@ import 'package:shopify_domain/cart/cart_item.dart';
 abstract class ShopifyCartFacade {
   // Create
   Future<Either<CartFailure, Unit>> addItemToCart(CartItem item);
+  Future<Either<CartFailure, Unit>> createOrder(Cart cart);
   // Read
   Stream<Either<CartFailure, UserCarts>> getUserCarts();
   // Update
