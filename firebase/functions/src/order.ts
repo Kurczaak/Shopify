@@ -37,7 +37,10 @@ exports.createOrder = functions.https.onCall(async (data, context) => {
     await deleteSnapshotBatch(db, cartItemsCollectionSnapshot);
     // delete cart
     await cartDocumentReference.delete();
-    await orderDocumentReference.update({ "timestamp": admin.firestore.FieldValue.serverTimestamp() });
+    await orderDocumentReference.update({
+        "timestamp": admin.firestore.FieldValue.serverTimestamp(),
+        "isCompleted": false,
+    });
     return orderDocumentReference;
 });
 
