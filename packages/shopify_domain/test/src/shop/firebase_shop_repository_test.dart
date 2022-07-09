@@ -177,8 +177,8 @@ void main() async {
       'should call geoflutterfire functions',
       () async {
         // act
-        final result =
-            firebaseShopRepository.watchNearby(Location.empty(), 10.0);
+        final result = firebaseShopRepository.watchNearby(
+            Location.empty(), NonnegativeNumber(10.0));
         result.listen((event) {});
 
         // assert
@@ -198,8 +198,8 @@ void main() async {
       'should emit a stream of matching shops',
       () async {
         // act
-        final result =
-            firebaseShopRepository.watchNearby(Location.empty(), 10.0);
+        final result = firebaseShopRepository.watchNearby(
+            Location.empty(), NonnegativeNumber(10.0));
         // assert
         expectLater(
             result.asBroadcastStream(),

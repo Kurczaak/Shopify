@@ -63,7 +63,7 @@ class AlgoliaProductSearcher implements ShopifyProductSearcher {
         final List<PricedProduct> products = [];
         final rawHits = snapshot.toMap()['hits'] as List;
         for (final hit in rawHits) {
-          final product = PricedProductDto.fromJson(hit).toDomain();
+          final product = PricedProductDto.fromAlgoliaJson(hit).toDomain();
           products.add(product);
         }
 
@@ -99,7 +99,7 @@ class AlgoliaProductSearcher implements ShopifyProductSearcher {
         final List<PricedProduct> products = [];
         final rawHits = snapshot.toMap()['hits'] as List;
         for (final hit in rawHits) {
-          final product = PricedProductDto.fromJson(hit).toDomain();
+          final product = PricedProductDto.fromAlgoliaJson(hit).toDomain();
           products.add(product);
         }
 

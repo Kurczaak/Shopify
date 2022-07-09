@@ -107,6 +107,31 @@ class NonnegativeNumber extends ValueObject<double> {
   const NonnegativeNumber._(this.value);
 }
 
+class NonnegativeInt extends ValueObject<int> {
+  static const int max = 999999;
+  static const int min = 0;
+
+  @override
+  final Either<ValueFailure<int>, int> value;
+  factory NonnegativeInt(int input) {
+    return NonnegativeInt._(
+      validateIntegerRange(input, min, max),
+    );
+  }
+
+  factory NonnegativeInt.fromString(String input) {
+    final parsedNum = int.tryParse(input);
+    if (parsedNum == null) {
+      return NonnegativeInt._(
+          left(const ValueFailure.core(CoreValueFailure.empty())));
+    } else {
+      return NonnegativeInt(parsedNum);
+    }
+  }
+
+  const NonnegativeInt._(this.value);
+}
+
 class ShopifyUrl extends ValueObject<String> {
   @override
   final Either<ValueFailure<String>, String> value;
@@ -210,6 +235,29 @@ class NonEmptyList5<T> extends ValueObject<KtList<T>> {
   }
 
   const NonEmptyList5._(this.value);
+
+  int get length {
+    return value.getOrElse(() => emptyList()).size;
+  }
+
+  bool get isFull {
+    return length == maxLength;
+  }
+}
+
+class NonEmptyList<T> extends ValueObject<KtList<T>> {
+  @override
+  final Either<ValueFailure<KtList<T>>, KtList<T>> value;
+
+  static const maxLength = 999;
+
+  factory NonEmptyList.empty() => NonEmptyList(KtList<T>.empty());
+
+  factory NonEmptyList(KtList<T> input) {
+    return NonEmptyList._(validateListLength(input, maxLength, minLength: 1));
+  }
+
+  const NonEmptyList._(this.value);
 
   int get length {
     return value.getOrElse(() => emptyList()).size;

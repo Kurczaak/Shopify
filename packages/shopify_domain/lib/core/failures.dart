@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:shopify_domain/auth/value_objects.dart';
+import 'package:shopify_domain/cart/value_failures.dart';
 import 'package:shopify_domain/core/value_failures.dart';
 import 'package:shopify_domain/product/value_failures.dart';
 import 'package:shopify_domain/auth/value_failures.dart';
@@ -14,9 +15,12 @@ class ValueFailure<T> with _$ValueFailure<T> {
   const factory ValueFailure.shop(ShopValueFailure<T> f) = _Shop<T>;
   const factory ValueFailure.product(ProductValueFailure<T> f) = _Product<T>;
   const factory ValueFailure.core(CoreValueFailure<T> f) = _Core<T>;
+  const factory ValueFailure.cart(CartValueFailure<T> f) = _Cart<T>;
 
   String stringifyValueFailure({String? fieldName}) {
     return when(
+      cart: (cartFailure) =>
+          cartFailure.when(emptyyCartItemsList: () => 'Empty cart'),
       auth: (authFailure) => authFailure.when(
           invalidEmail: (_) => EmailAddress.incorrectEmailStr,
           incorrectPassword: (_) => Password.incorrectPasswordStr),

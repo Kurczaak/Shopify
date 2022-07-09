@@ -61,7 +61,8 @@ class _ShopsMapWidgetState extends State<ShopsMapWidget> {
             center: widget.center.latLng,
             radius: widget.radius * 1000,
             fillColor: Theme.of(context).primaryColor.withOpacity(.2),
-            strokeWidth: 0,
+            strokeColor: Colors.white,
+            strokeWidth: 1,
             visible: true,
           )
         },

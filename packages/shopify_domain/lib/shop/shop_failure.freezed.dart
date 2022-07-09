@@ -23,6 +23,8 @@ mixin _$ShopFailure {
     required TResult Function() unableToUpdate,
     required TResult Function(Duration timeout) timeout,
     required TResult Function() noShopFound,
+    required TResult Function() incorrectLocationGiven,
+    required TResult Function() noInternetConnection,
     required TResult Function() locationPermissionDenied,
   }) =>
       throw _privateConstructorUsedError;
@@ -33,6 +35,8 @@ mixin _$ShopFailure {
     TResult Function()? unableToUpdate,
     TResult Function(Duration timeout)? timeout,
     TResult Function()? noShopFound,
+    TResult Function()? incorrectLocationGiven,
+    TResult Function()? noInternetConnection,
     TResult Function()? locationPermissionDenied,
   }) =>
       throw _privateConstructorUsedError;
@@ -43,6 +47,8 @@ mixin _$ShopFailure {
     TResult Function()? unableToUpdate,
     TResult Function(Duration timeout)? timeout,
     TResult Function()? noShopFound,
+    TResult Function()? incorrectLocationGiven,
+    TResult Function()? noInternetConnection,
     TResult Function()? locationPermissionDenied,
     required TResult orElse(),
   }) =>
@@ -55,6 +61,9 @@ mixin _$ShopFailure {
     required TResult Function(_UnableToUpdate value) unableToUpdate,
     required TResult Function(_Timeout value) timeout,
     required TResult Function(_NoShopFound value) noShopFound,
+    required TResult Function(_IncorrectLocationGiven value)
+        incorrectLocationGiven,
+    required TResult Function(_NoInternetConnection value) noInternetConnection,
     required TResult Function(_LocationPermissionDenied value)
         locationPermissionDenied,
   }) =>
@@ -66,6 +75,8 @@ mixin _$ShopFailure {
     TResult Function(_UnableToUpdate value)? unableToUpdate,
     TResult Function(_Timeout value)? timeout,
     TResult Function(_NoShopFound value)? noShopFound,
+    TResult Function(_IncorrectLocationGiven value)? incorrectLocationGiven,
+    TResult Function(_NoInternetConnection value)? noInternetConnection,
     TResult Function(_LocationPermissionDenied value)? locationPermissionDenied,
   }) =>
       throw _privateConstructorUsedError;
@@ -76,6 +87,8 @@ mixin _$ShopFailure {
     TResult Function(_UnableToUpdate value)? unableToUpdate,
     TResult Function(_Timeout value)? timeout,
     TResult Function(_NoShopFound value)? noShopFound,
+    TResult Function(_IncorrectLocationGiven value)? incorrectLocationGiven,
+    TResult Function(_NoInternetConnection value)? noInternetConnection,
     TResult Function(_LocationPermissionDenied value)? locationPermissionDenied,
     required TResult orElse(),
   }) =>
@@ -143,6 +156,8 @@ class _$_Unexpected implements _Unexpected {
     required TResult Function() unableToUpdate,
     required TResult Function(Duration timeout) timeout,
     required TResult Function() noShopFound,
+    required TResult Function() incorrectLocationGiven,
+    required TResult Function() noInternetConnection,
     required TResult Function() locationPermissionDenied,
   }) {
     return unexpected();
@@ -156,6 +171,8 @@ class _$_Unexpected implements _Unexpected {
     TResult Function()? unableToUpdate,
     TResult Function(Duration timeout)? timeout,
     TResult Function()? noShopFound,
+    TResult Function()? incorrectLocationGiven,
+    TResult Function()? noInternetConnection,
     TResult Function()? locationPermissionDenied,
   }) {
     return unexpected?.call();
@@ -169,6 +186,8 @@ class _$_Unexpected implements _Unexpected {
     TResult Function()? unableToUpdate,
     TResult Function(Duration timeout)? timeout,
     TResult Function()? noShopFound,
+    TResult Function()? incorrectLocationGiven,
+    TResult Function()? noInternetConnection,
     TResult Function()? locationPermissionDenied,
     required TResult orElse(),
   }) {
@@ -187,6 +206,9 @@ class _$_Unexpected implements _Unexpected {
     required TResult Function(_UnableToUpdate value) unableToUpdate,
     required TResult Function(_Timeout value) timeout,
     required TResult Function(_NoShopFound value) noShopFound,
+    required TResult Function(_IncorrectLocationGiven value)
+        incorrectLocationGiven,
+    required TResult Function(_NoInternetConnection value) noInternetConnection,
     required TResult Function(_LocationPermissionDenied value)
         locationPermissionDenied,
   }) {
@@ -201,6 +223,8 @@ class _$_Unexpected implements _Unexpected {
     TResult Function(_UnableToUpdate value)? unableToUpdate,
     TResult Function(_Timeout value)? timeout,
     TResult Function(_NoShopFound value)? noShopFound,
+    TResult Function(_IncorrectLocationGiven value)? incorrectLocationGiven,
+    TResult Function(_NoInternetConnection value)? noInternetConnection,
     TResult Function(_LocationPermissionDenied value)? locationPermissionDenied,
   }) {
     return unexpected?.call(this);
@@ -214,6 +238,8 @@ class _$_Unexpected implements _Unexpected {
     TResult Function(_UnableToUpdate value)? unableToUpdate,
     TResult Function(_Timeout value)? timeout,
     TResult Function(_NoShopFound value)? noShopFound,
+    TResult Function(_IncorrectLocationGiven value)? incorrectLocationGiven,
+    TResult Function(_NoInternetConnection value)? noInternetConnection,
     TResult Function(_LocationPermissionDenied value)? locationPermissionDenied,
     required TResult orElse(),
   }) {
@@ -276,6 +302,8 @@ class _$_InsufficientPermission implements _InsufficientPermission {
     required TResult Function() unableToUpdate,
     required TResult Function(Duration timeout) timeout,
     required TResult Function() noShopFound,
+    required TResult Function() incorrectLocationGiven,
+    required TResult Function() noInternetConnection,
     required TResult Function() locationPermissionDenied,
   }) {
     return insufficientPermission();
@@ -289,6 +317,8 @@ class _$_InsufficientPermission implements _InsufficientPermission {
     TResult Function()? unableToUpdate,
     TResult Function(Duration timeout)? timeout,
     TResult Function()? noShopFound,
+    TResult Function()? incorrectLocationGiven,
+    TResult Function()? noInternetConnection,
     TResult Function()? locationPermissionDenied,
   }) {
     return insufficientPermission?.call();
@@ -302,6 +332,8 @@ class _$_InsufficientPermission implements _InsufficientPermission {
     TResult Function()? unableToUpdate,
     TResult Function(Duration timeout)? timeout,
     TResult Function()? noShopFound,
+    TResult Function()? incorrectLocationGiven,
+    TResult Function()? noInternetConnection,
     TResult Function()? locationPermissionDenied,
     required TResult orElse(),
   }) {
@@ -320,6 +352,9 @@ class _$_InsufficientPermission implements _InsufficientPermission {
     required TResult Function(_UnableToUpdate value) unableToUpdate,
     required TResult Function(_Timeout value) timeout,
     required TResult Function(_NoShopFound value) noShopFound,
+    required TResult Function(_IncorrectLocationGiven value)
+        incorrectLocationGiven,
+    required TResult Function(_NoInternetConnection value) noInternetConnection,
     required TResult Function(_LocationPermissionDenied value)
         locationPermissionDenied,
   }) {
@@ -334,6 +369,8 @@ class _$_InsufficientPermission implements _InsufficientPermission {
     TResult Function(_UnableToUpdate value)? unableToUpdate,
     TResult Function(_Timeout value)? timeout,
     TResult Function(_NoShopFound value)? noShopFound,
+    TResult Function(_IncorrectLocationGiven value)? incorrectLocationGiven,
+    TResult Function(_NoInternetConnection value)? noInternetConnection,
     TResult Function(_LocationPermissionDenied value)? locationPermissionDenied,
   }) {
     return insufficientPermission?.call(this);
@@ -347,6 +384,8 @@ class _$_InsufficientPermission implements _InsufficientPermission {
     TResult Function(_UnableToUpdate value)? unableToUpdate,
     TResult Function(_Timeout value)? timeout,
     TResult Function(_NoShopFound value)? noShopFound,
+    TResult Function(_IncorrectLocationGiven value)? incorrectLocationGiven,
+    TResult Function(_NoInternetConnection value)? noInternetConnection,
     TResult Function(_LocationPermissionDenied value)? locationPermissionDenied,
     required TResult orElse(),
   }) {
@@ -407,6 +446,8 @@ class _$_UnableToUpdate implements _UnableToUpdate {
     required TResult Function() unableToUpdate,
     required TResult Function(Duration timeout) timeout,
     required TResult Function() noShopFound,
+    required TResult Function() incorrectLocationGiven,
+    required TResult Function() noInternetConnection,
     required TResult Function() locationPermissionDenied,
   }) {
     return unableToUpdate();
@@ -420,6 +461,8 @@ class _$_UnableToUpdate implements _UnableToUpdate {
     TResult Function()? unableToUpdate,
     TResult Function(Duration timeout)? timeout,
     TResult Function()? noShopFound,
+    TResult Function()? incorrectLocationGiven,
+    TResult Function()? noInternetConnection,
     TResult Function()? locationPermissionDenied,
   }) {
     return unableToUpdate?.call();
@@ -433,6 +476,8 @@ class _$_UnableToUpdate implements _UnableToUpdate {
     TResult Function()? unableToUpdate,
     TResult Function(Duration timeout)? timeout,
     TResult Function()? noShopFound,
+    TResult Function()? incorrectLocationGiven,
+    TResult Function()? noInternetConnection,
     TResult Function()? locationPermissionDenied,
     required TResult orElse(),
   }) {
@@ -451,6 +496,9 @@ class _$_UnableToUpdate implements _UnableToUpdate {
     required TResult Function(_UnableToUpdate value) unableToUpdate,
     required TResult Function(_Timeout value) timeout,
     required TResult Function(_NoShopFound value) noShopFound,
+    required TResult Function(_IncorrectLocationGiven value)
+        incorrectLocationGiven,
+    required TResult Function(_NoInternetConnection value) noInternetConnection,
     required TResult Function(_LocationPermissionDenied value)
         locationPermissionDenied,
   }) {
@@ -465,6 +513,8 @@ class _$_UnableToUpdate implements _UnableToUpdate {
     TResult Function(_UnableToUpdate value)? unableToUpdate,
     TResult Function(_Timeout value)? timeout,
     TResult Function(_NoShopFound value)? noShopFound,
+    TResult Function(_IncorrectLocationGiven value)? incorrectLocationGiven,
+    TResult Function(_NoInternetConnection value)? noInternetConnection,
     TResult Function(_LocationPermissionDenied value)? locationPermissionDenied,
   }) {
     return unableToUpdate?.call(this);
@@ -478,6 +528,8 @@ class _$_UnableToUpdate implements _UnableToUpdate {
     TResult Function(_UnableToUpdate value)? unableToUpdate,
     TResult Function(_Timeout value)? timeout,
     TResult Function(_NoShopFound value)? noShopFound,
+    TResult Function(_IncorrectLocationGiven value)? incorrectLocationGiven,
+    TResult Function(_NoInternetConnection value)? noInternetConnection,
     TResult Function(_LocationPermissionDenied value)? locationPermissionDenied,
     required TResult orElse(),
   }) {
@@ -560,6 +612,8 @@ class _$_Timeout implements _Timeout {
     required TResult Function() unableToUpdate,
     required TResult Function(Duration timeout) timeout,
     required TResult Function() noShopFound,
+    required TResult Function() incorrectLocationGiven,
+    required TResult Function() noInternetConnection,
     required TResult Function() locationPermissionDenied,
   }) {
     return timeout(this.timeout);
@@ -573,6 +627,8 @@ class _$_Timeout implements _Timeout {
     TResult Function()? unableToUpdate,
     TResult Function(Duration timeout)? timeout,
     TResult Function()? noShopFound,
+    TResult Function()? incorrectLocationGiven,
+    TResult Function()? noInternetConnection,
     TResult Function()? locationPermissionDenied,
   }) {
     return timeout?.call(this.timeout);
@@ -586,6 +642,8 @@ class _$_Timeout implements _Timeout {
     TResult Function()? unableToUpdate,
     TResult Function(Duration timeout)? timeout,
     TResult Function()? noShopFound,
+    TResult Function()? incorrectLocationGiven,
+    TResult Function()? noInternetConnection,
     TResult Function()? locationPermissionDenied,
     required TResult orElse(),
   }) {
@@ -604,6 +662,9 @@ class _$_Timeout implements _Timeout {
     required TResult Function(_UnableToUpdate value) unableToUpdate,
     required TResult Function(_Timeout value) timeout,
     required TResult Function(_NoShopFound value) noShopFound,
+    required TResult Function(_IncorrectLocationGiven value)
+        incorrectLocationGiven,
+    required TResult Function(_NoInternetConnection value) noInternetConnection,
     required TResult Function(_LocationPermissionDenied value)
         locationPermissionDenied,
   }) {
@@ -618,6 +679,8 @@ class _$_Timeout implements _Timeout {
     TResult Function(_UnableToUpdate value)? unableToUpdate,
     TResult Function(_Timeout value)? timeout,
     TResult Function(_NoShopFound value)? noShopFound,
+    TResult Function(_IncorrectLocationGiven value)? incorrectLocationGiven,
+    TResult Function(_NoInternetConnection value)? noInternetConnection,
     TResult Function(_LocationPermissionDenied value)? locationPermissionDenied,
   }) {
     return timeout?.call(this);
@@ -631,6 +694,8 @@ class _$_Timeout implements _Timeout {
     TResult Function(_UnableToUpdate value)? unableToUpdate,
     TResult Function(_Timeout value)? timeout,
     TResult Function(_NoShopFound value)? noShopFound,
+    TResult Function(_IncorrectLocationGiven value)? incorrectLocationGiven,
+    TResult Function(_NoInternetConnection value)? noInternetConnection,
     TResult Function(_LocationPermissionDenied value)? locationPermissionDenied,
     required TResult orElse(),
   }) {
@@ -695,6 +760,8 @@ class _$_NoShopFound implements _NoShopFound {
     required TResult Function() unableToUpdate,
     required TResult Function(Duration timeout) timeout,
     required TResult Function() noShopFound,
+    required TResult Function() incorrectLocationGiven,
+    required TResult Function() noInternetConnection,
     required TResult Function() locationPermissionDenied,
   }) {
     return noShopFound();
@@ -708,6 +775,8 @@ class _$_NoShopFound implements _NoShopFound {
     TResult Function()? unableToUpdate,
     TResult Function(Duration timeout)? timeout,
     TResult Function()? noShopFound,
+    TResult Function()? incorrectLocationGiven,
+    TResult Function()? noInternetConnection,
     TResult Function()? locationPermissionDenied,
   }) {
     return noShopFound?.call();
@@ -721,6 +790,8 @@ class _$_NoShopFound implements _NoShopFound {
     TResult Function()? unableToUpdate,
     TResult Function(Duration timeout)? timeout,
     TResult Function()? noShopFound,
+    TResult Function()? incorrectLocationGiven,
+    TResult Function()? noInternetConnection,
     TResult Function()? locationPermissionDenied,
     required TResult orElse(),
   }) {
@@ -739,6 +810,9 @@ class _$_NoShopFound implements _NoShopFound {
     required TResult Function(_UnableToUpdate value) unableToUpdate,
     required TResult Function(_Timeout value) timeout,
     required TResult Function(_NoShopFound value) noShopFound,
+    required TResult Function(_IncorrectLocationGiven value)
+        incorrectLocationGiven,
+    required TResult Function(_NoInternetConnection value) noInternetConnection,
     required TResult Function(_LocationPermissionDenied value)
         locationPermissionDenied,
   }) {
@@ -753,6 +827,8 @@ class _$_NoShopFound implements _NoShopFound {
     TResult Function(_UnableToUpdate value)? unableToUpdate,
     TResult Function(_Timeout value)? timeout,
     TResult Function(_NoShopFound value)? noShopFound,
+    TResult Function(_IncorrectLocationGiven value)? incorrectLocationGiven,
+    TResult Function(_NoInternetConnection value)? noInternetConnection,
     TResult Function(_LocationPermissionDenied value)? locationPermissionDenied,
   }) {
     return noShopFound?.call(this);
@@ -766,6 +842,8 @@ class _$_NoShopFound implements _NoShopFound {
     TResult Function(_UnableToUpdate value)? unableToUpdate,
     TResult Function(_Timeout value)? timeout,
     TResult Function(_NoShopFound value)? noShopFound,
+    TResult Function(_IncorrectLocationGiven value)? incorrectLocationGiven,
+    TResult Function(_NoInternetConnection value)? noInternetConnection,
     TResult Function(_LocationPermissionDenied value)? locationPermissionDenied,
     required TResult orElse(),
   }) {
@@ -778,6 +856,296 @@ class _$_NoShopFound implements _NoShopFound {
 
 abstract class _NoShopFound implements ShopFailure {
   const factory _NoShopFound() = _$_NoShopFound;
+}
+
+/// @nodoc
+abstract class _$$_IncorrectLocationGivenCopyWith<$Res> {
+  factory _$$_IncorrectLocationGivenCopyWith(_$_IncorrectLocationGiven value,
+          $Res Function(_$_IncorrectLocationGiven) then) =
+      __$$_IncorrectLocationGivenCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_IncorrectLocationGivenCopyWithImpl<$Res>
+    extends _$ShopFailureCopyWithImpl<$Res>
+    implements _$$_IncorrectLocationGivenCopyWith<$Res> {
+  __$$_IncorrectLocationGivenCopyWithImpl(_$_IncorrectLocationGiven _value,
+      $Res Function(_$_IncorrectLocationGiven) _then)
+      : super(_value, (v) => _then(v as _$_IncorrectLocationGiven));
+
+  @override
+  _$_IncorrectLocationGiven get _value =>
+      super._value as _$_IncorrectLocationGiven;
+}
+
+/// @nodoc
+
+class _$_IncorrectLocationGiven implements _IncorrectLocationGiven {
+  const _$_IncorrectLocationGiven();
+
+  @override
+  String toString() {
+    return 'ShopFailure.incorrectLocationGiven()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_IncorrectLocationGiven);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() unexpected,
+    required TResult Function() insufficientPermission,
+    required TResult Function() unableToUpdate,
+    required TResult Function(Duration timeout) timeout,
+    required TResult Function() noShopFound,
+    required TResult Function() incorrectLocationGiven,
+    required TResult Function() noInternetConnection,
+    required TResult Function() locationPermissionDenied,
+  }) {
+    return incorrectLocationGiven();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? unexpected,
+    TResult Function()? insufficientPermission,
+    TResult Function()? unableToUpdate,
+    TResult Function(Duration timeout)? timeout,
+    TResult Function()? noShopFound,
+    TResult Function()? incorrectLocationGiven,
+    TResult Function()? noInternetConnection,
+    TResult Function()? locationPermissionDenied,
+  }) {
+    return incorrectLocationGiven?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? unexpected,
+    TResult Function()? insufficientPermission,
+    TResult Function()? unableToUpdate,
+    TResult Function(Duration timeout)? timeout,
+    TResult Function()? noShopFound,
+    TResult Function()? incorrectLocationGiven,
+    TResult Function()? noInternetConnection,
+    TResult Function()? locationPermissionDenied,
+    required TResult orElse(),
+  }) {
+    if (incorrectLocationGiven != null) {
+      return incorrectLocationGiven();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Unexpected value) unexpected,
+    required TResult Function(_InsufficientPermission value)
+        insufficientPermission,
+    required TResult Function(_UnableToUpdate value) unableToUpdate,
+    required TResult Function(_Timeout value) timeout,
+    required TResult Function(_NoShopFound value) noShopFound,
+    required TResult Function(_IncorrectLocationGiven value)
+        incorrectLocationGiven,
+    required TResult Function(_NoInternetConnection value) noInternetConnection,
+    required TResult Function(_LocationPermissionDenied value)
+        locationPermissionDenied,
+  }) {
+    return incorrectLocationGiven(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_InsufficientPermission value)? insufficientPermission,
+    TResult Function(_UnableToUpdate value)? unableToUpdate,
+    TResult Function(_Timeout value)? timeout,
+    TResult Function(_NoShopFound value)? noShopFound,
+    TResult Function(_IncorrectLocationGiven value)? incorrectLocationGiven,
+    TResult Function(_NoInternetConnection value)? noInternetConnection,
+    TResult Function(_LocationPermissionDenied value)? locationPermissionDenied,
+  }) {
+    return incorrectLocationGiven?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_InsufficientPermission value)? insufficientPermission,
+    TResult Function(_UnableToUpdate value)? unableToUpdate,
+    TResult Function(_Timeout value)? timeout,
+    TResult Function(_NoShopFound value)? noShopFound,
+    TResult Function(_IncorrectLocationGiven value)? incorrectLocationGiven,
+    TResult Function(_NoInternetConnection value)? noInternetConnection,
+    TResult Function(_LocationPermissionDenied value)? locationPermissionDenied,
+    required TResult orElse(),
+  }) {
+    if (incorrectLocationGiven != null) {
+      return incorrectLocationGiven(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _IncorrectLocationGiven implements ShopFailure {
+  const factory _IncorrectLocationGiven() = _$_IncorrectLocationGiven;
+}
+
+/// @nodoc
+abstract class _$$_NoInternetConnectionCopyWith<$Res> {
+  factory _$$_NoInternetConnectionCopyWith(_$_NoInternetConnection value,
+          $Res Function(_$_NoInternetConnection) then) =
+      __$$_NoInternetConnectionCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_NoInternetConnectionCopyWithImpl<$Res>
+    extends _$ShopFailureCopyWithImpl<$Res>
+    implements _$$_NoInternetConnectionCopyWith<$Res> {
+  __$$_NoInternetConnectionCopyWithImpl(_$_NoInternetConnection _value,
+      $Res Function(_$_NoInternetConnection) _then)
+      : super(_value, (v) => _then(v as _$_NoInternetConnection));
+
+  @override
+  _$_NoInternetConnection get _value => super._value as _$_NoInternetConnection;
+}
+
+/// @nodoc
+
+class _$_NoInternetConnection implements _NoInternetConnection {
+  const _$_NoInternetConnection();
+
+  @override
+  String toString() {
+    return 'ShopFailure.noInternetConnection()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_NoInternetConnection);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() unexpected,
+    required TResult Function() insufficientPermission,
+    required TResult Function() unableToUpdate,
+    required TResult Function(Duration timeout) timeout,
+    required TResult Function() noShopFound,
+    required TResult Function() incorrectLocationGiven,
+    required TResult Function() noInternetConnection,
+    required TResult Function() locationPermissionDenied,
+  }) {
+    return noInternetConnection();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? unexpected,
+    TResult Function()? insufficientPermission,
+    TResult Function()? unableToUpdate,
+    TResult Function(Duration timeout)? timeout,
+    TResult Function()? noShopFound,
+    TResult Function()? incorrectLocationGiven,
+    TResult Function()? noInternetConnection,
+    TResult Function()? locationPermissionDenied,
+  }) {
+    return noInternetConnection?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? unexpected,
+    TResult Function()? insufficientPermission,
+    TResult Function()? unableToUpdate,
+    TResult Function(Duration timeout)? timeout,
+    TResult Function()? noShopFound,
+    TResult Function()? incorrectLocationGiven,
+    TResult Function()? noInternetConnection,
+    TResult Function()? locationPermissionDenied,
+    required TResult orElse(),
+  }) {
+    if (noInternetConnection != null) {
+      return noInternetConnection();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Unexpected value) unexpected,
+    required TResult Function(_InsufficientPermission value)
+        insufficientPermission,
+    required TResult Function(_UnableToUpdate value) unableToUpdate,
+    required TResult Function(_Timeout value) timeout,
+    required TResult Function(_NoShopFound value) noShopFound,
+    required TResult Function(_IncorrectLocationGiven value)
+        incorrectLocationGiven,
+    required TResult Function(_NoInternetConnection value) noInternetConnection,
+    required TResult Function(_LocationPermissionDenied value)
+        locationPermissionDenied,
+  }) {
+    return noInternetConnection(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_InsufficientPermission value)? insufficientPermission,
+    TResult Function(_UnableToUpdate value)? unableToUpdate,
+    TResult Function(_Timeout value)? timeout,
+    TResult Function(_NoShopFound value)? noShopFound,
+    TResult Function(_IncorrectLocationGiven value)? incorrectLocationGiven,
+    TResult Function(_NoInternetConnection value)? noInternetConnection,
+    TResult Function(_LocationPermissionDenied value)? locationPermissionDenied,
+  }) {
+    return noInternetConnection?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_InsufficientPermission value)? insufficientPermission,
+    TResult Function(_UnableToUpdate value)? unableToUpdate,
+    TResult Function(_Timeout value)? timeout,
+    TResult Function(_NoShopFound value)? noShopFound,
+    TResult Function(_IncorrectLocationGiven value)? incorrectLocationGiven,
+    TResult Function(_NoInternetConnection value)? noInternetConnection,
+    TResult Function(_LocationPermissionDenied value)? locationPermissionDenied,
+    required TResult orElse(),
+  }) {
+    if (noInternetConnection != null) {
+      return noInternetConnection(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _NoInternetConnection implements ShopFailure {
+  const factory _NoInternetConnection() = _$_NoInternetConnection;
 }
 
 /// @nodoc
@@ -829,6 +1197,8 @@ class _$_LocationPermissionDenied implements _LocationPermissionDenied {
     required TResult Function() unableToUpdate,
     required TResult Function(Duration timeout) timeout,
     required TResult Function() noShopFound,
+    required TResult Function() incorrectLocationGiven,
+    required TResult Function() noInternetConnection,
     required TResult Function() locationPermissionDenied,
   }) {
     return locationPermissionDenied();
@@ -842,6 +1212,8 @@ class _$_LocationPermissionDenied implements _LocationPermissionDenied {
     TResult Function()? unableToUpdate,
     TResult Function(Duration timeout)? timeout,
     TResult Function()? noShopFound,
+    TResult Function()? incorrectLocationGiven,
+    TResult Function()? noInternetConnection,
     TResult Function()? locationPermissionDenied,
   }) {
     return locationPermissionDenied?.call();
@@ -855,6 +1227,8 @@ class _$_LocationPermissionDenied implements _LocationPermissionDenied {
     TResult Function()? unableToUpdate,
     TResult Function(Duration timeout)? timeout,
     TResult Function()? noShopFound,
+    TResult Function()? incorrectLocationGiven,
+    TResult Function()? noInternetConnection,
     TResult Function()? locationPermissionDenied,
     required TResult orElse(),
   }) {
@@ -873,6 +1247,9 @@ class _$_LocationPermissionDenied implements _LocationPermissionDenied {
     required TResult Function(_UnableToUpdate value) unableToUpdate,
     required TResult Function(_Timeout value) timeout,
     required TResult Function(_NoShopFound value) noShopFound,
+    required TResult Function(_IncorrectLocationGiven value)
+        incorrectLocationGiven,
+    required TResult Function(_NoInternetConnection value) noInternetConnection,
     required TResult Function(_LocationPermissionDenied value)
         locationPermissionDenied,
   }) {
@@ -887,6 +1264,8 @@ class _$_LocationPermissionDenied implements _LocationPermissionDenied {
     TResult Function(_UnableToUpdate value)? unableToUpdate,
     TResult Function(_Timeout value)? timeout,
     TResult Function(_NoShopFound value)? noShopFound,
+    TResult Function(_IncorrectLocationGiven value)? incorrectLocationGiven,
+    TResult Function(_NoInternetConnection value)? noInternetConnection,
     TResult Function(_LocationPermissionDenied value)? locationPermissionDenied,
   }) {
     return locationPermissionDenied?.call(this);
@@ -900,6 +1279,8 @@ class _$_LocationPermissionDenied implements _LocationPermissionDenied {
     TResult Function(_UnableToUpdate value)? unableToUpdate,
     TResult Function(_Timeout value)? timeout,
     TResult Function(_NoShopFound value)? noShopFound,
+    TResult Function(_IncorrectLocationGiven value)? incorrectLocationGiven,
+    TResult Function(_NoInternetConnection value)? noInternetConnection,
     TResult Function(_LocationPermissionDenied value)? locationPermissionDenied,
     required TResult orElse(),
   }) {

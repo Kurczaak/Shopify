@@ -31,6 +31,8 @@ class ShopifyLocationFacadeImpl implements ShopifyLocationFacade {
       return left(const LocationFailure.unexpected());
     } on PlatformException catch (_) {
       return left(const LocationFailure.unexpected());
+    } on g.NoResultFoundException {
+      return left(const LocationFailure.noLocationFound());
     }
   }
 
@@ -51,12 +53,13 @@ class ShopifyLocationFacadeImpl implements ShopifyLocationFacade {
       Address address) async {
     try {
       final locations = await geocodingPlatform
-          .locationFromAddress(address.toString())
+          .locationFromAddress(address.toString(), localeIdentifier: 'pl_PL')
           .timeout(timeoutDuration);
       if (locations.isEmpty) {
         return left(const LocationFailure.noLocationFound());
       } else {
         final location = locations.first;
+
         return right(Location.fromLatLang(
             latitude: location.latitude, longitude: location.longitude));
       }
@@ -65,6 +68,33 @@ class ShopifyLocationFacadeImpl implements ShopifyLocationFacade {
       return left(const LocationFailure.unexpected());
     } on TimeoutException catch (_) {
       return left(const LocationFailure.timeout());
+    } on g.NoResultFoundException {
+      return left(const LocationFailure.noLocationFound());
+    }
+  }
+
+  @override
+  Future<Either<LocationFailure, Location>> getLocationFromString(
+      String input) async {
+    try {
+      final locations = await geocodingPlatform
+          .locationFromAddress(input, localeIdentifier: 'pl_PL')
+          .timeout(timeoutDuration);
+      if (locations.isEmpty) {
+        return left(const LocationFailure.noLocationFound());
+      } else {
+        final location = locations.first;
+
+        return right(Location.fromLatLang(
+            latitude: location.latitude, longitude: location.longitude));
+      }
+    } on PlatformException catch (_) {
+      //TODO LOG THIS ERROR
+      return left(const LocationFailure.unexpected());
+    } on TimeoutException catch (_) {
+      return left(const LocationFailure.timeout());
+    } on g.NoResultFoundException {
+      return left(const LocationFailure.noLocationFound());
     }
   }
 }

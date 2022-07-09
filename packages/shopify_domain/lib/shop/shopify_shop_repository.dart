@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:shopify_domain/auth/user.dart';
 import 'package:shopify_domain/core/images/photo.dart';
 import 'package:shopify_domain/core/location/location.dart';
+import 'package:shopify_domain/core/value_objects.dart';
 import 'package:shopify_domain/src/injection.dart';
 import 'package:shopify_domain/shop/shop.dart';
 
@@ -14,7 +15,7 @@ abstract class ShopifyShopRepository {
   // CUD
   Stream<Either<ShopFailure, KtList<Shop>>> watchAll();
   Stream<Either<ShopFailure, KtList<Shop>>> watchNearby(
-      Location location, double radius);
+      Location location, NonnegativeNumber radius);
   Stream<Either<ShopFailure, KtList<Shop>>> watchYours();
   Future<Either<ShopFailure, Unit>> create(
       Shop shop, ShopLogo logo, ShopifyUser user);

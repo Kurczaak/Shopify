@@ -63,6 +63,14 @@ class MockShopifyLocationFacade extends _i1.Mock
                       _FakeEither_0<_i7.LocationFailure, _i4.Location>()))
           as _i6.Future<_i2.Either<_i7.LocationFailure, _i4.Location>>);
   @override
+  _i6.Future<_i2.Either<_i7.LocationFailure, _i4.Location>>
+      getLocationFromString(String? input) => (super.noSuchMethod(
+              Invocation.method(#getLocationFromString, [input]),
+              returnValue:
+                  Future<_i2.Either<_i7.LocationFailure, _i4.Location>>.value(
+                      _FakeEither_0<_i7.LocationFailure, _i4.Location>()))
+          as _i6.Future<_i2.Either<_i7.LocationFailure, _i4.Location>>);
+  @override
   _i6.Future<_i2.Either<_i7.LocationFailure, _i2.Unit>> setUserAddress(
           _i8.Address? address) =>
       (super.noSuchMethod(Invocation.method(#setUserAddress, [address]),

@@ -16,15 +16,22 @@ extension FirestoreX on FirebaseFirestore {
     return userDoc.shopCollection;
   }
 
+  Future<CollectionReference> userCarts() async {
+    final userDoc = await userDocument();
+    return userDoc.cartsCollection;
+  }
+
   CollectionReference get usersCollection => collection('users');
   CollectionReference get shopsCollection => collection('shops');
   CollectionReference get productsCollection => collection('products');
+  CollectionReference get cartsCollection => collection('carts');
   CollectionReference get pricedProductsCollection =>
       collection('pricedProducts');
 }
 
 extension DocumentReferenceX on DocumentReference {
   CollectionReference get shopCollection => collection('shops');
+  CollectionReference get cartsCollection => collection('carts');
 }
 
 extension StorageX on FirebaseStorage {

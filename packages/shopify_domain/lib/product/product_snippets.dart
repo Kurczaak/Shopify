@@ -24,6 +24,7 @@ class PricedProduct with _$PricedProduct {
   const PricedProduct._();
 
   const factory PricedProduct({
+    required UniqueId pricedProductId,
     required UniqueId productId,
     required Barcode barcode,
     required ProductName name,

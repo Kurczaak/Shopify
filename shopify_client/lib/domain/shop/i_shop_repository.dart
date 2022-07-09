@@ -10,7 +10,7 @@ abstract class IShopRepository {
   // CUD
   Stream<Either<ShopFailure, KtList<Shop>>> watchAll();
   Stream<Either<ShopFailure, KtList<Shop>>> watchNearby(
-      Location location, double radius);
+      Location location, NonnegativeNumber radius);
   Future<Either<ShopFailure, Unit>> create(
       Shop shop, ShopLogo logo, ShopifyUser user);
 

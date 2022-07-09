@@ -4,15 +4,22 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopify_client/application/product_watcher/product_watcher_bloc.dart';
 import 'package:shopify_client/injection.dart';
 import 'package:shopify_client/presentation/product/product_failure_widget.dart';
+import 'package:shopify_client/presentation/product/widgets/products_grid_view.dart';
+import 'package:shopify_client/presentation/routes/router.gr.dart';
+import 'package:shopify_domain/cart/cart_item.dart';
+import 'package:shopify_domain/cart/shopify_cart_facade.dart';
+import 'package:shopify_domain/core.dart';
 import 'package:shopify_domain/product.dart';
 import 'package:shopify_domain/shop.dart';
 import 'package:shopify_presentation/shopify_presentation.dart';
 
-import '../routes/router.gr.dart';
-
 class ShopProductsBrowserPage extends StatelessWidget {
-  const ShopProductsBrowserPage({Key? key, required this.shop})
-      : super(key: key);
+  const ShopProductsBrowserPage({
+    Key? key,
+    required this.shop,
+    @PathParam() required this.title,
+  }) : super(key: key);
+  final String title;
   final Shop shop;
   @override
   Widget build(BuildContext context) {
@@ -20,59 +27,73 @@ class ShopProductsBrowserPage extends StatelessWidget {
         create: (context) => getIt<ProductWatcherBloc>()
           ..add(ProductWatcherEvent.initialize(shop: shop)),
         child: BlocBuilder<ProductWatcherBloc, ProductWatcherState>(
-          builder: (context, state) => Scaffold(
-              appBar: ShopifyAppBar(
-                appBar: AppBar(),
-                onTapBack: () {
-                  state.productsAndCategoryOption.fold(
-                      () => context.router.pop(),
-                      (a) => context.read<ProductWatcherBloc>().add(
-                          const ProductWatcherEvent
-                              .clearCategoryAndProducts()));
-                },
-                title: state.categoryOption.fold(
-                    () => shop.shopName.getOrCrash(),
-                    (category) => category.getOrCrash().stringifiedName),
-              ),
-              body: ShopifySearchBar(
-                onClear: () {},
-                onQueryChanged: (_) {},
-                onSubmitted: (String query) {
-                  context
-                      .read<ProductWatcherBloc>()
-                      .add(ProductWatcherEvent.searchedForProduct(term: query));
-                },
-                onHistoryChanged: (_) {},
-                searchHistory: const ['mascarpone', 'haribo', 'cola'],
-                child: state.failureOption.fold(
-                    () => state.isLoading
-                        ? const Center(
-                            child: ShopifyProgressIndicator(),
-                          )
-                        : state.productsAndCategoryOption.fold(
-                            () => CategoriesGridView(onAllProductsTap: () {
-                                  context.read<ProductWatcherBloc>().add(
-                                      const ProductWatcherEvent
-                                          .watchAllProductsSelected());
-                                }, onTap: (int index) {
-                                  context.read<ProductWatcherBloc>().add(
-                                      ProductWatcherEvent.categoryChosen(
-                                          category: Category(
-                                              Categories.values[index])));
-                                }),
-                            (_) => ProductsGridView(
-                                  productsOption: state.productsOption,
-                                  shop: shop,
-                                  onTap: (product) {
-                                    context.router.push(ProductPreviewRoute(
-                                        product: product, shop: shop));
-                                  },
-                                )),
-                    (failure) => FailureWidget(
-                          failure: failure,
-                          onRetry: context.read<ProductWatcherBloc>().retry,
-                        )),
-              )),
-        ));
+            builder: (context, state) => WillPopScope(
+                  onWillPop: () async {
+                    return await state.productsAndCategoryOption
+                        .fold(() async => true, (_) async {
+                      context.read<ProductWatcherBloc>().add(
+                          const ProductWatcherEvent.clearCategoryAndProducts());
+                      return false;
+                    });
+                  },
+                  child: ShopifySearchBar(
+                    onClear: () {},
+                    onQueryChanged: (_) {},
+                    onSubmitted: (String query) {
+                      context.read<ProductWatcherBloc>().add(
+                          ProductWatcherEvent.searchedForProduct(term: query));
+                    },
+                    onHistoryChanged: (_) {},
+                    searchHistory: const ['mascarpone', 'haribo', 'cola'],
+                    child: state.failureOption.fold(
+                        () => state.isLoading
+                            ? const Center(
+                                child: ShopifyProgressIndicator(),
+                              )
+                            : state.productsAndCategoryOption.fold(
+                                () => CategoriesGridView(onAllProductsTap: () {
+                                      context.read<ProductWatcherBloc>().add(
+                                          const ProductWatcherEvent
+                                              .watchAllProductsSelected());
+                                    }, onTap: (int index) {
+                                      context.read<ProductWatcherBloc>().add(
+                                          ProductWatcherEvent.categoryChosen(
+                                              category: Category(
+                                                  Categories.values[index])));
+                                    }),
+                                (_) => ProductsGridView(
+                                      onTapFavorurite: (_) {},
+                                      onLongPressAddToCart: (product) {
+                                        showDialog(
+                                            context: context,
+                                            builder: (context) =>
+                                                ShopifyAlertDialog(
+                                                  title: 'Select Number',
+                                                  subtitle: 'XD',
+                                                  onConfirm: () {},
+                                                ));
+                                      },
+                                      onTapAddToCart: (product) {
+                                        getIt<ShopifyCartFacade>()
+                                            .addItemToCart(CartItem(
+                                                id: UniqueId(),
+                                                product: product,
+                                                quantity: NonnegativeInt(1)));
+                                      },
+                                      productsOption: state.productsOption,
+                                      shop: shop,
+                                      onTap: (product) {
+                                        context.router.push(ProductPreviewRoute(
+                                            product: product,
+                                            shop: shop,
+                                            title: product.name.getOrCrash()));
+                                      },
+                                    )),
+                        (failure) => FailureWidget(
+                              failure: failure,
+                              onRetry: context.read<ProductWatcherBloc>().retry,
+                            )),
+                  ),
+                )));
   }
 }

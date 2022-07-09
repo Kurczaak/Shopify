@@ -162,7 +162,8 @@ void main() {
         expect(
             result,
             right(KtList.from([
-              PricedProductDto.fromJson(algoliaJsonPricedProduct['hits'][0])
+              PricedProductDto.fromAlgoliaJson(
+                      algoliaJsonPricedProduct['hits'][0])
                   .toDomain()
             ])));
       },

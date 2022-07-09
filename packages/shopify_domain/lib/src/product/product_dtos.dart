@@ -24,7 +24,20 @@ class PricedProductDto with _$PricedProductDto {
     required PriceDto price,
   }) = _PricedProductDto;
 
+  factory PricedProductDto.fromDomain(PricedProduct pricedProduct) =>
+      PricedProductDto(
+          productId: pricedProduct.pricedProductId.getOrCrash(),
+          barcode: pricedProduct.barcode.getOrCrash(),
+          name: pricedProduct.name.getOrCrash(),
+          brand: pricedProduct.brand.getOrCrash(),
+          photo: pricedProduct.photo.getOrCrash(),
+          category: pricedProduct.category.getOrCrash().name,
+          shopId: pricedProduct.shopId.getOrCrash(),
+          weight: WeightDto.fromDomain(pricedProduct.weight),
+          price: PriceDto.fromDomain(pricedProduct.price));
+
   PricedProduct toDomain() => PricedProduct(
+        pricedProductId: UniqueId.fromUniqueString(id),
         productId: UniqueId.fromUniqueString(productId),
         barcode: Barcode(barcode),
         category: Category.fromString(category),
@@ -39,8 +52,12 @@ class PricedProductDto with _$PricedProductDto {
   factory PricedProductDto.fromJson(Map<String, dynamic> json) =>
       _$PricedProductDtoFromJson(json);
 
+  factory PricedProductDto.fromAlgoliaJson(Map<String, dynamic> json) =>
+      PricedProductDto.fromJson(json).copyWith(id: json['objectID']);
+
   factory PricedProductDto.fromFirestore(DocumentSnapshot doc) {
-    return PricedProductDto.fromJson(doc.data() as Map<String, dynamic>);
+    return PricedProductDto.fromJson(doc.data() as Map<String, dynamic>)
+        .copyWith(id: doc.id);
   }
 }
 

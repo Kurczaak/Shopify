@@ -1,10 +1,11 @@
 {
     "hits": [
         {
+            "objectID": "asd-bcd-gef",
             "id": "ABC-123",
             "barcode": "123456789",
             "brand": "test_brand",
-            "category": "diary",
+            "category": "dairy",
             "description": "",
             "ingredients": "test ingredients",
             "photosUrls": [

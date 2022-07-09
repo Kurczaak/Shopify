@@ -2,6 +2,7 @@ import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
 import 'package:dartz/dartz.dart';
 import 'package:shopify_client/domain/shop/i_shop_repository.dart';
+import 'package:shopify_domain/core/value_objects.dart';
 import 'package:shopify_domain/shop/shop_failure.dart';
 import 'package:shopify_domain/shop/shop.dart';
 import 'package:shopify_domain/core/location/location.dart';
@@ -37,7 +38,7 @@ class ShopRepositoryImpl implements IShopRepository {
 
   @override
   Stream<Either<ShopFailure, KtList<Shop>>> watchNearby(
-      Location location, double radius) {
+      Location location, NonnegativeNumber radius) {
     return shopRepository.watchNearby(location, radius);
   }
 }

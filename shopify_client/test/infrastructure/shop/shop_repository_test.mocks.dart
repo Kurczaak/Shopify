@@ -74,7 +74,7 @@ class MockShopifyShopRepository extends _i1.Mock
           as _i12.Stream<_i2.Either<_i13.ShopFailure, _i14.KtList<_i8.Shop>>>);
   @override
   _i12.Stream<_i2.Either<_i13.ShopFailure, _i14.KtList<_i8.Shop>>> watchNearby(
-          _i6.Location? location, double? radius) =>
+          _i6.Location? location, _i3.NonnegativeNumber? radius) =>
       (super.noSuchMethod(Invocation.method(#watchNearby, [location, radius]),
               returnValue: Stream<
                   _i2.Either<_i13.ShopFailure, _i14.KtList<_i8.Shop>>>.empty())

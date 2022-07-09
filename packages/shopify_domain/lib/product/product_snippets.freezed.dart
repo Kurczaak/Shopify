@@ -16,6 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$PricedProduct {
+  UniqueId get pricedProductId => throw _privateConstructorUsedError;
   UniqueId get productId => throw _privateConstructorUsedError;
   Barcode get barcode => throw _privateConstructorUsedError;
   ProductName get name => throw _privateConstructorUsedError;
@@ -37,7 +38,8 @@ abstract class $PricedProductCopyWith<$Res> {
           PricedProduct value, $Res Function(PricedProduct) then) =
       _$PricedProductCopyWithImpl<$Res>;
   $Res call(
-      {UniqueId productId,
+      {UniqueId pricedProductId,
+      UniqueId productId,
       Barcode barcode,
       ProductName name,
       BrandName brand,
@@ -62,6 +64,7 @@ class _$PricedProductCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? pricedProductId = freezed,
     Object? productId = freezed,
     Object? barcode = freezed,
     Object? name = freezed,
@@ -73,6 +76,10 @@ class _$PricedProductCopyWithImpl<$Res>
     Object? price = freezed,
   }) {
     return _then(_value.copyWith(
+      pricedProductId: pricedProductId == freezed
+          ? _value.pricedProductId
+          : pricedProductId // ignore: cast_nullable_to_non_nullable
+              as UniqueId,
       productId: productId == freezed
           ? _value.productId
           : productId // ignore: cast_nullable_to_non_nullable
@@ -135,7 +142,8 @@ abstract class _$$_PricedProductCopyWith<$Res>
       __$$_PricedProductCopyWithImpl<$Res>;
   @override
   $Res call(
-      {UniqueId productId,
+      {UniqueId pricedProductId,
+      UniqueId productId,
       Barcode barcode,
       ProductName name,
       BrandName brand,
@@ -164,6 +172,7 @@ class __$$_PricedProductCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? pricedProductId = freezed,
     Object? productId = freezed,
     Object? barcode = freezed,
     Object? name = freezed,
@@ -175,6 +184,10 @@ class __$$_PricedProductCopyWithImpl<$Res>
     Object? price = freezed,
   }) {
     return _then(_$_PricedProduct(
+      pricedProductId: pricedProductId == freezed
+          ? _value.pricedProductId
+          : pricedProductId // ignore: cast_nullable_to_non_nullable
+              as UniqueId,
       productId: productId == freezed
           ? _value.productId
           : productId // ignore: cast_nullable_to_non_nullable
@@ -219,7 +232,8 @@ class __$$_PricedProductCopyWithImpl<$Res>
 
 class _$_PricedProduct extends _PricedProduct {
   const _$_PricedProduct(
-      {required this.productId,
+      {required this.pricedProductId,
+      required this.productId,
       required this.barcode,
       required this.name,
       required this.brand,
@@ -230,6 +244,8 @@ class _$_PricedProduct extends _PricedProduct {
       required this.price})
       : super._();
 
+  @override
+  final UniqueId pricedProductId;
   @override
   final UniqueId productId;
   @override
@@ -251,7 +267,7 @@ class _$_PricedProduct extends _PricedProduct {
 
   @override
   String toString() {
-    return 'PricedProduct(productId: $productId, barcode: $barcode, name: $name, brand: $brand, photo: $photo, category: $category, shopId: $shopId, weight: $weight, price: $price)';
+    return 'PricedProduct(pricedProductId: $pricedProductId, productId: $productId, barcode: $barcode, name: $name, brand: $brand, photo: $photo, category: $category, shopId: $shopId, weight: $weight, price: $price)';
   }
 
   @override
@@ -259,6 +275,8 @@ class _$_PricedProduct extends _PricedProduct {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_PricedProduct &&
+            const DeepCollectionEquality()
+                .equals(other.pricedProductId, pricedProductId) &&
             const DeepCollectionEquality().equals(other.productId, productId) &&
             const DeepCollectionEquality().equals(other.barcode, barcode) &&
             const DeepCollectionEquality().equals(other.name, name) &&
@@ -273,6 +291,7 @@ class _$_PricedProduct extends _PricedProduct {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      const DeepCollectionEquality().hash(pricedProductId),
       const DeepCollectionEquality().hash(productId),
       const DeepCollectionEquality().hash(barcode),
       const DeepCollectionEquality().hash(name),
@@ -291,7 +310,8 @@ class _$_PricedProduct extends _PricedProduct {
 
 abstract class _PricedProduct extends PricedProduct {
   const factory _PricedProduct(
-      {required final UniqueId productId,
+      {required final UniqueId pricedProductId,
+      required final UniqueId productId,
       required final Barcode barcode,
       required final ProductName name,
       required final BrandName brand,
@@ -302,6 +322,8 @@ abstract class _PricedProduct extends PricedProduct {
       required final Price price}) = _$_PricedProduct;
   const _PricedProduct._() : super._();
 
+  @override
+  UniqueId get pricedProductId => throw _privateConstructorUsedError;
   @override
   UniqueId get productId => throw _privateConstructorUsedError;
   @override
