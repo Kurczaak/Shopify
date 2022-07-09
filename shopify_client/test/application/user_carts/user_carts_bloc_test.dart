@@ -59,6 +59,10 @@ void main() {
                   userCartsOption: none(),
                   isLoading: false,
                   sendOrderFailureOrUnitOption: some(right(unit))),
+              UserCartsState.initial().copyWith(
+                  userCartsOption: none(),
+                  isLoading: false,
+                  sendOrderFailureOrUnitOption: none()),
             ]);
 
     blocTest('should emit [LOADING] and [ERROR] if sending an order failed',
@@ -77,6 +81,10 @@ void main() {
                   isLoading: false,
                   sendOrderFailureOrUnitOption:
                       some(left(const CartFailure.unexpected()))),
+              UserCartsState.initial().copyWith(
+                  userCartsOption: some(userCarts),
+                  isLoading: false,
+                  sendOrderFailureOrUnitOption: none()),
             ]);
     blocTest('should emit[ERROR] if userCartsOption is none',
         build: () => bloc,
@@ -88,6 +96,9 @@ void main() {
               UserCartsState.initial().copyWith(
                   sendOrderFailureOrUnitOption:
                       some(left(const CartFailure.emptyCart()))),
+              UserCartsState.initial().copyWith(
+                sendOrderFailureOrUnitOption: none(),
+              ),
             ]);
   });
   group('watchAllCarts', () {
