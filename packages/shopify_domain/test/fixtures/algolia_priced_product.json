@@ -1,11 +1,12 @@
 {
   "hits": [
     {
+      "objectID": "asd-bcd-gef",
       "productId": "ABC-123",
       "photo": "https://www.photo.com/1",
       "barcode": "123456789",
       "brand": "test_brand",
-      "category": "diary",
+      "category": "dairy",
       "name": "prduct_name",
       "shopId": "shop-id-123",
       "weight": {
