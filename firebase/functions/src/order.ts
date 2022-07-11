@@ -21,26 +21,32 @@ exports.createOrder = functions.https.onCall(async (data, context) => {
 
     // Create order
     const orderDocumentReference = await db.collection('orders').add(
-        cartData
+        {
+            "status": "pending",
+            "cart": cartData,
+            "timestamp": admin.firestore.FieldValue.serverTimestamp()
+        }
     );
 
     // Copy cart items
     const orderItemsCollectionReference = orderDocumentReference.collection('orderItems');
     const cartItemsCollectionReference = cartDocumentReference.collection('cartItems')
     const cartItemsCollectionSnapshot = await cartItemsCollectionReference.get();
-    cartItemsCollectionSnapshot.docs.forEach(
-        async (doc) => {
-            await orderItemsCollectionReference.add(doc.data());
-        }
-    );
+    try {
+        cartItemsCollectionSnapshot.docs.forEach(
+            async (doc) => {
+                await orderItemsCollectionReference.add(doc.data());
+            }
+        );
+    } catch (_) {
+        await deleteSnapshotBatch(db, cartItemsCollectionSnapshot);
+        await orderDocumentReference.delete();
+    }
     // delete cart items
     await deleteSnapshotBatch(db, cartItemsCollectionSnapshot);
     // delete cart
     await cartDocumentReference.delete();
-    await orderDocumentReference.update({
-        "timestamp": admin.firestore.FieldValue.serverTimestamp(),
-        "status": "pending",
-    });
+
     return orderDocumentReference;
 });
 

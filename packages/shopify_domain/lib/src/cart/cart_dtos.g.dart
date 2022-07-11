@@ -22,12 +22,14 @@ Map<String, dynamic> _$$_CartItemDtoToJson(_$_CartItemDto instance) =>
     };
 
 _$_CartDto _$$_CartDtoFromJson(Map<String, dynamic> json) => _$_CartDto(
+      userId: json['userId'] as String,
       shop: ShopDto.fromJson(json['shop'] as Map<String, dynamic>),
       shopId: json['shopId'] as String,
     );
 
 Map<String, dynamic> _$$_CartDtoToJson(_$_CartDto instance) =>
     <String, dynamic>{
+      'userId': instance.userId,
       'shop': instance.shop.toJson(),
       'shopId': instance.shopId,
     };
