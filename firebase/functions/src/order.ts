@@ -39,7 +39,7 @@ exports.createOrder = functions.https.onCall(async (data, context) => {
     await cartDocumentReference.delete();
     await orderDocumentReference.update({
         "timestamp": admin.firestore.FieldValue.serverTimestamp(),
-        "isCompleted": false,
+        "status": "pending",
     });
     return orderDocumentReference;
 });
