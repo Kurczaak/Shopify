@@ -14,8 +14,8 @@ class OrderDto with _$OrderDto {
     required String status,
   }) = _OrderDto;
 
-  Order toDomain() =>
-      Order(cart: cart.toDomain(), orderStatus: OrderStatus.fromString(status));
+  ShopifyOrder toDomain() => ShopifyOrder(
+      cart: cart.toDomain(), orderStatus: OrderStatus.fromString(status));
 
   factory OrderDto.fromJson(Map<String, dynamic> json) =>
       _$OrderDtoFromJson(json);

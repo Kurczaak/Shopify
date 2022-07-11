@@ -15,30 +15,32 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$Order {
+mixin _$ShopifyOrder {
   Cart get cart => throw _privateConstructorUsedError;
   OrderStatus get orderStatus => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $OrderCopyWith<Order> get copyWith => throw _privateConstructorUsedError;
+  $ShopifyOrderCopyWith<ShopifyOrder> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $OrderCopyWith<$Res> {
-  factory $OrderCopyWith(Order value, $Res Function(Order) then) =
-      _$OrderCopyWithImpl<$Res>;
+abstract class $ShopifyOrderCopyWith<$Res> {
+  factory $ShopifyOrderCopyWith(
+          ShopifyOrder value, $Res Function(ShopifyOrder) then) =
+      _$ShopifyOrderCopyWithImpl<$Res>;
   $Res call({Cart cart, OrderStatus orderStatus});
 
   $CartCopyWith<$Res> get cart;
 }
 
 /// @nodoc
-class _$OrderCopyWithImpl<$Res> implements $OrderCopyWith<$Res> {
-  _$OrderCopyWithImpl(this._value, this._then);
+class _$ShopifyOrderCopyWithImpl<$Res> implements $ShopifyOrderCopyWith<$Res> {
+  _$ShopifyOrderCopyWithImpl(this._value, this._then);
 
-  final Order _value;
+  final ShopifyOrder _value;
   // ignore: unused_field
-  final $Res Function(Order) _then;
+  final $Res Function(ShopifyOrder) _then;
 
   @override
   $Res call({
@@ -66,7 +68,7 @@ class _$OrderCopyWithImpl<$Res> implements $OrderCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$$_OrderCopyWith<$Res> implements $OrderCopyWith<$Res> {
+abstract class _$$_OrderCopyWith<$Res> implements $ShopifyOrderCopyWith<$Res> {
   factory _$$_OrderCopyWith(_$_Order value, $Res Function(_$_Order) then) =
       __$$_OrderCopyWithImpl<$Res>;
   @override
@@ -77,7 +79,7 @@ abstract class _$$_OrderCopyWith<$Res> implements $OrderCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_OrderCopyWithImpl<$Res> extends _$OrderCopyWithImpl<$Res>
+class __$$_OrderCopyWithImpl<$Res> extends _$ShopifyOrderCopyWithImpl<$Res>
     implements _$$_OrderCopyWith<$Res> {
   __$$_OrderCopyWithImpl(_$_Order _value, $Res Function(_$_Order) _then)
       : super(_value, (v) => _then(v as _$_Order));
@@ -115,7 +117,7 @@ class _$_Order implements _Order {
 
   @override
   String toString() {
-    return 'Order(cart: $cart, orderStatus: $orderStatus)';
+    return 'ShopifyOrder(cart: $cart, orderStatus: $orderStatus)';
   }
 
   @override
@@ -140,7 +142,7 @@ class _$_Order implements _Order {
       __$$_OrderCopyWithImpl<_$_Order>(this, _$identity);
 }
 
-abstract class _Order implements Order {
+abstract class _Order implements ShopifyOrder {
   const factory _Order(
       {required final Cart cart,
       required final OrderStatus orderStatus}) = _$_Order;

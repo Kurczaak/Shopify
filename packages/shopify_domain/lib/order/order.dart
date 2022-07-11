@@ -8,8 +8,8 @@ import 'package:shopify_domain/order/value_failures.dart';
 part 'order.freezed.dart';
 
 @freezed
-class Order with _$Order {
-  const factory Order({
+class ShopifyOrder with _$ShopifyOrder {
+  const factory ShopifyOrder({
     required Cart cart,
     required OrderStatus orderStatus,
   }) = _Order;
@@ -21,7 +21,7 @@ enum OrderStatusEnum {
   collected,
 }
 
-class OrderStatus extends ValueObject {
+class OrderStatus extends ValueObject<OrderStatusEnum> {
   const OrderStatus._(this.value);
   @override
   final Either<ValueFailure<OrderStatusEnum>, OrderStatusEnum> value;

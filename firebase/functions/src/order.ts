@@ -7,6 +7,7 @@ exports.createOrder = functions.https.onCall(async (data, context) => {
     if (context.auth == null) return null;
     const { uid } = context.auth;
 
+
     const db = admin.firestore();
     const cartDocumentReference = db.collection('carts').doc(cartId);
     const cartDocumentSnapshot = await cartDocumentReference.get();

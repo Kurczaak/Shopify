@@ -8,5 +8,6 @@ class OrderFailure with _$OrderFailure {
   const factory OrderFailure.invalidCart() = _InvalidCart;
   const factory OrderFailure.noInternetConnection() = _NoInternetConnection;
   const factory OrderFailure.timeout() = _Timeout;
+  const factory OrderFailure.empty() = _Empty;
   const factory OrderFailure.insufficientPermission() = _InsufficientPermission;
 }
