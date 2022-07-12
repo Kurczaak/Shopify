@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ShopifyOrder {
   Cart get cart => throw _privateConstructorUsedError;
   OrderStatus get orderStatus => throw _privateConstructorUsedError;
+  DateTime get date => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ShopifyOrderCopyWith<ShopifyOrder> get copyWith =>
@@ -29,7 +30,7 @@ abstract class $ShopifyOrderCopyWith<$Res> {
   factory $ShopifyOrderCopyWith(
           ShopifyOrder value, $Res Function(ShopifyOrder) then) =
       _$ShopifyOrderCopyWithImpl<$Res>;
-  $Res call({Cart cart, OrderStatus orderStatus});
+  $Res call({Cart cart, OrderStatus orderStatus, DateTime date});
 
   $CartCopyWith<$Res> get cart;
 }
@@ -46,6 +47,7 @@ class _$ShopifyOrderCopyWithImpl<$Res> implements $ShopifyOrderCopyWith<$Res> {
   $Res call({
     Object? cart = freezed,
     Object? orderStatus = freezed,
+    Object? date = freezed,
   }) {
     return _then(_value.copyWith(
       cart: cart == freezed
@@ -56,6 +58,10 @@ class _$ShopifyOrderCopyWithImpl<$Res> implements $ShopifyOrderCopyWith<$Res> {
           ? _value.orderStatus
           : orderStatus // ignore: cast_nullable_to_non_nullable
               as OrderStatus,
+      date: date == freezed
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ));
   }
 
@@ -72,7 +78,7 @@ abstract class _$$_OrderCopyWith<$Res> implements $ShopifyOrderCopyWith<$Res> {
   factory _$$_OrderCopyWith(_$_Order value, $Res Function(_$_Order) then) =
       __$$_OrderCopyWithImpl<$Res>;
   @override
-  $Res call({Cart cart, OrderStatus orderStatus});
+  $Res call({Cart cart, OrderStatus orderStatus, DateTime date});
 
   @override
   $CartCopyWith<$Res> get cart;
@@ -91,6 +97,7 @@ class __$$_OrderCopyWithImpl<$Res> extends _$ShopifyOrderCopyWithImpl<$Res>
   $Res call({
     Object? cart = freezed,
     Object? orderStatus = freezed,
+    Object? date = freezed,
   }) {
     return _then(_$_Order(
       cart: cart == freezed
@@ -101,6 +108,10 @@ class __$$_OrderCopyWithImpl<$Res> extends _$ShopifyOrderCopyWithImpl<$Res>
           ? _value.orderStatus
           : orderStatus // ignore: cast_nullable_to_non_nullable
               as OrderStatus,
+      date: date == freezed
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ));
   }
 }
@@ -108,16 +119,19 @@ class __$$_OrderCopyWithImpl<$Res> extends _$ShopifyOrderCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Order implements _Order {
-  const _$_Order({required this.cart, required this.orderStatus});
+  const _$_Order(
+      {required this.cart, required this.orderStatus, required this.date});
 
   @override
   final Cart cart;
   @override
   final OrderStatus orderStatus;
+  @override
+  final DateTime date;
 
   @override
   String toString() {
-    return 'ShopifyOrder(cart: $cart, orderStatus: $orderStatus)';
+    return 'ShopifyOrder(cart: $cart, orderStatus: $orderStatus, date: $date)';
   }
 
   @override
@@ -127,14 +141,16 @@ class _$_Order implements _Order {
             other is _$_Order &&
             const DeepCollectionEquality().equals(other.cart, cart) &&
             const DeepCollectionEquality()
-                .equals(other.orderStatus, orderStatus));
+                .equals(other.orderStatus, orderStatus) &&
+            const DeepCollectionEquality().equals(other.date, date));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(cart),
-      const DeepCollectionEquality().hash(orderStatus));
+      const DeepCollectionEquality().hash(orderStatus),
+      const DeepCollectionEquality().hash(date));
 
   @JsonKey(ignore: true)
   @override
@@ -145,12 +161,15 @@ class _$_Order implements _Order {
 abstract class _Order implements ShopifyOrder {
   const factory _Order(
       {required final Cart cart,
-      required final OrderStatus orderStatus}) = _$_Order;
+      required final OrderStatus orderStatus,
+      required final DateTime date}) = _$_Order;
 
   @override
   Cart get cart => throw _privateConstructorUsedError;
   @override
   OrderStatus get orderStatus => throw _privateConstructorUsedError;
+  @override
+  DateTime get date => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$$_OrderCopyWith<_$_Order> get copyWith =>

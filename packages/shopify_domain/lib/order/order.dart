@@ -12,6 +12,7 @@ class ShopifyOrder with _$ShopifyOrder {
   const factory ShopifyOrder({
     required Cart cart,
     required OrderStatus orderStatus,
+    required DateTime date,
   }) = _Order;
 }
 

@@ -22,6 +22,8 @@ OrderDto _$OrderDtoFromJson(Map<String, dynamic> json) {
 mixin _$OrderDto {
   @JsonKey(ignore: true)
   String get id => throw _privateConstructorUsedError;
+  @ServerTimestampConverter()
+  DateTime get timestamp => throw _privateConstructorUsedError;
   CartDto get cart => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
 
@@ -35,7 +37,11 @@ mixin _$OrderDto {
 abstract class $OrderDtoCopyWith<$Res> {
   factory $OrderDtoCopyWith(OrderDto value, $Res Function(OrderDto) then) =
       _$OrderDtoCopyWithImpl<$Res>;
-  $Res call({@JsonKey(ignore: true) String id, CartDto cart, String status});
+  $Res call(
+      {@JsonKey(ignore: true) String id,
+      @ServerTimestampConverter() DateTime timestamp,
+      CartDto cart,
+      String status});
 
   $CartDtoCopyWith<$Res> get cart;
 }
@@ -51,6 +57,7 @@ class _$OrderDtoCopyWithImpl<$Res> implements $OrderDtoCopyWith<$Res> {
   @override
   $Res call({
     Object? id = freezed,
+    Object? timestamp = freezed,
     Object? cart = freezed,
     Object? status = freezed,
   }) {
@@ -59,6 +66,10 @@ class _$OrderDtoCopyWithImpl<$Res> implements $OrderDtoCopyWith<$Res> {
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
+      timestamp: timestamp == freezed
+          ? _value.timestamp
+          : timestamp // ignore: cast_nullable_to_non_nullable
+              as DateTime,
       cart: cart == freezed
           ? _value.cart
           : cart // ignore: cast_nullable_to_non_nullable
@@ -84,7 +95,11 @@ abstract class _$$_OrderDtoCopyWith<$Res> implements $OrderDtoCopyWith<$Res> {
           _$_OrderDto value, $Res Function(_$_OrderDto) then) =
       __$$_OrderDtoCopyWithImpl<$Res>;
   @override
-  $Res call({@JsonKey(ignore: true) String id, CartDto cart, String status});
+  $Res call(
+      {@JsonKey(ignore: true) String id,
+      @ServerTimestampConverter() DateTime timestamp,
+      CartDto cart,
+      String status});
 
   @override
   $CartDtoCopyWith<$Res> get cart;
@@ -103,6 +118,7 @@ class __$$_OrderDtoCopyWithImpl<$Res> extends _$OrderDtoCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
+    Object? timestamp = freezed,
     Object? cart = freezed,
     Object? status = freezed,
   }) {
@@ -111,6 +127,10 @@ class __$$_OrderDtoCopyWithImpl<$Res> extends _$OrderDtoCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
+      timestamp: timestamp == freezed
+          ? _value.timestamp
+          : timestamp // ignore: cast_nullable_to_non_nullable
+              as DateTime,
       cart: cart == freezed
           ? _value.cart
           : cart // ignore: cast_nullable_to_non_nullable
@@ -124,10 +144,12 @@ class __$$_OrderDtoCopyWithImpl<$Res> extends _$OrderDtoCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 @JsonSerializable()
 class _$_OrderDto extends _OrderDto {
   const _$_OrderDto(
       {@JsonKey(ignore: true) this.id = '',
+      @ServerTimestampConverter() required this.timestamp,
       required this.cart,
       required this.status})
       : super._();
@@ -139,13 +161,16 @@ class _$_OrderDto extends _OrderDto {
   @JsonKey(ignore: true)
   final String id;
   @override
+  @ServerTimestampConverter()
+  final DateTime timestamp;
+  @override
   final CartDto cart;
   @override
   final String status;
 
   @override
   String toString() {
-    return 'OrderDto(id: $id, cart: $cart, status: $status)';
+    return 'OrderDto(id: $id, timestamp: $timestamp, cart: $cart, status: $status)';
   }
 
   @override
@@ -154,6 +179,7 @@ class _$_OrderDto extends _OrderDto {
         (other.runtimeType == runtimeType &&
             other is _$_OrderDto &&
             const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.timestamp, timestamp) &&
             const DeepCollectionEquality().equals(other.cart, cart) &&
             const DeepCollectionEquality().equals(other.status, status));
   }
@@ -163,6 +189,7 @@ class _$_OrderDto extends _OrderDto {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(timestamp),
       const DeepCollectionEquality().hash(cart),
       const DeepCollectionEquality().hash(status));
 
@@ -180,6 +207,7 @@ class _$_OrderDto extends _OrderDto {
 abstract class _OrderDto extends OrderDto {
   const factory _OrderDto(
       {@JsonKey(ignore: true) final String id,
+      @ServerTimestampConverter() required final DateTime timestamp,
       required final CartDto cart,
       required final String status}) = _$_OrderDto;
   const _OrderDto._() : super._();
@@ -189,6 +217,9 @@ abstract class _OrderDto extends OrderDto {
   @override
   @JsonKey(ignore: true)
   String get id => throw _privateConstructorUsedError;
+  @override
+  @ServerTimestampConverter()
+  DateTime get timestamp => throw _privateConstructorUsedError;
   @override
   CartDto get cart => throw _privateConstructorUsedError;
   @override
