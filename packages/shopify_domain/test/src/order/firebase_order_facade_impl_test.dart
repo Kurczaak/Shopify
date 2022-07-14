@@ -4,6 +4,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:shopify_domain/auth/shopify_auth.dart';
+import 'package:shopify_domain/auth/user.dart';
+import 'package:shopify_domain/core.dart';
 import 'package:shopify_domain/core/network/network_info.dart';
 import 'package:shopify_domain/order/order.dart';
 import 'package:shopify_domain/order/order_failure.dart';
@@ -32,6 +34,9 @@ void main() {
   late MockDocumentReference<Map<String, dynamic>> orderDocumentReference;
   late MockDocumentSnapshot<Map<String, dynamic>> orderDocumentSnapshot;
 
+  // auth
+  final user = ShopifyUser(id: UniqueId());
+
   void setUpFirestore() {
     ordersCollection = MockCollectionReference();
     orderDocumentReference = MockDocumentReference();
@@ -50,6 +55,7 @@ void main() {
         networkInfo: mockNetworkInfo, firebase: mockFirebase, auth: mockAuth);
 
     when(mockNetworkInfo.isConnected).thenAnswer((_) async => true);
+    when(mockAuth.getSignedInUser()).thenAnswer((_) async => some(user));
   });
 
   group('watchUserOrders', () {
