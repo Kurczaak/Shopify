@@ -30,15 +30,21 @@ exports.createOrder = functions.https.onCall(async (data, context) => {
     );
 
     // Copy cart items
-    const orderItemsCollectionReference = orderDocumentReference.collection('orderItems');
+    // const orderItemsCollectionReference = orderDocumentReference.collection('cartItems');
     const cartItemsCollectionReference = cartDocumentReference.collection('cartItems')
     const cartItemsCollectionSnapshot = await cartItemsCollectionReference.get();
+
     try {
+        let cartItems: Array<admin.firestore.DocumentData>;
+        cartItems = [];
         cartItemsCollectionSnapshot.docs.forEach(
             async (doc) => {
-                await orderItemsCollectionReference.add(doc.data());
+                cartItems.push(doc.data());
             }
         );
+        orderDocumentReference.update({
+            "cartItems": cartItems
+        })
     } catch (_) {
         await deleteSnapshotBatch(db, cartItemsCollectionSnapshot);
         await orderDocumentReference.delete();

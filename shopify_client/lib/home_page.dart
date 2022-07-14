@@ -15,12 +15,41 @@ class HomePage extends StatelessWidget {
     return AutoTabsScaffold(
         drawer: Drawer(
           child: ListView(children: [
+            const SizedBox(
+              height: 10,
+            ),
+            const SizedBox(
+              height: 100,
+              width: 100,
+              child: CircleAvatar(
+                child: Icon(
+                  Icons.account_circle,
+                  size: 100,
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
             Card(
               child: TextButton(
                   onPressed: () {
                     getIt<AuthBloc>().add(const AuthEvent.signedOut());
                   },
-                  child: const Text('log out')),
+                  child: const Text(
+                    'log out',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  )),
+            ),
+            Card(
+              child: TextButton(
+                  onPressed: () {
+                    context.router.push(const UserOrdersRoute());
+                  },
+                  child: const Text(
+                    'Your orders',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  )),
             )
           ]),
         ),

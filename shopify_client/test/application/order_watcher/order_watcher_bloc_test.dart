@@ -18,11 +18,11 @@ void main() {
   final order = ShopifyOrder(
       cart: tCart,
       date: DateTime.now(),
-      orderStatus: OrderStatus(OrderStatusEnum.pednding));
+      orderStatus: OrderStatus(OrderStatusEnum.pending));
   setUp(() {
     mockOrderFacade = MockIOrderFacade();
     bloc = OrderWatcherBloc(mockOrderFacade);
-    when(mockOrderFacade.watchYourOrders(OrderStatus(OrderStatusEnum.pednding)))
+    when(mockOrderFacade.watchYourOrders(OrderStatus(OrderStatusEnum.pending)))
         .thenAnswer((_) =>
             Stream.fromFuture(Future.value(right(KtList.from([order])))));
   });
@@ -33,7 +33,7 @@ void main() {
             bloc.add(const OrderWatcherEvent.watchPendingOrders()),
         verify: (_) {
           verify(mockOrderFacade
-              .watchYourOrders(OrderStatus(OrderStatusEnum.pednding)));
+              .watchYourOrders(OrderStatus(OrderStatusEnum.pending)));
         });
 
     blocTest('should emit [LOADING] and [LOADED]',
@@ -52,7 +52,7 @@ void main() {
             bloc.add(const OrderWatcherEvent.watchPendingOrders()),
         setUp: () {
           when(mockOrderFacade
-                  .watchYourOrders(OrderStatus(OrderStatusEnum.pednding)))
+                  .watchYourOrders(OrderStatus(OrderStatusEnum.pending)))
               .thenAnswer((_) => Stream.fromFuture(
                   Future.value(left(const OrderFailure.empty()))));
         },

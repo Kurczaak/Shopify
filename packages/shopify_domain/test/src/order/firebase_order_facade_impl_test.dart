@@ -53,7 +53,7 @@ void main() {
   });
 
   group('watchUserOrders', () {
-    final OrderStatus status = OrderStatus(OrderStatusEnum.pednding);
+    final OrderStatus status = OrderStatus(OrderStatusEnum.pending);
     test(
       'should check internet connection',
       () async {

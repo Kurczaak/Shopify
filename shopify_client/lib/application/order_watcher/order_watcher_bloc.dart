@@ -23,7 +23,7 @@ class OrderWatcherBloc extends Bloc<OrderWatcherEvent, OrderWatcherState> {
             emit(state.copyWith(isLoading: true, failureOption: none()));
             await emit.forEach(
                 orderFacade
-                    .watchYourOrders(OrderStatus(OrderStatusEnum.pednding)),
+                    .watchYourOrders(OrderStatus(OrderStatusEnum.pending)),
                 onData: (Either<OrderFailure, KtList<ShopifyOrder>>
                     ordersOrFailure) {
               return ordersOrFailure.fold(

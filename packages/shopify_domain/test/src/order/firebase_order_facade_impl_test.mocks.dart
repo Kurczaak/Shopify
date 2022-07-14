@@ -63,14 +63,12 @@ class _FakeDocumentSnapshot_11<T extends Object?> extends _i1.Fake
 class _FakeSnapshotMetadata_12 extends _i1.Fake
     implements _i4.SnapshotMetadata {}
 
-class _FakeDateTime_13 extends _i1.Fake implements DateTime {}
+class _FakeCartDto_13 extends _i1.Fake implements _i6.CartDto {}
 
-class _FakeCartDto_14 extends _i1.Fake implements _i6.CartDto {}
-
-class _Fake$OrderDtoCopyWith_15<$Res> extends _i1.Fake
+class _Fake$OrderDtoCopyWith_14<$Res> extends _i1.Fake
     implements _i7.$OrderDtoCopyWith<$Res> {}
 
-class _FakeShopifyOrder_16 extends _i1.Fake implements _i8.ShopifyOrder {}
+class _FakeShopifyOrder_15 extends _i1.Fake implements _i8.ShopifyOrder {}
 
 /// A class which mocks [NetworkInfo].
 ///
@@ -501,24 +499,25 @@ class MockOrderDto extends _i1.Mock implements _i7.OrderDto {
   String get id =>
       (super.noSuchMethod(Invocation.getter(#id), returnValue: '') as String);
   @override
-  DateTime get timestamp => (super.noSuchMethod(Invocation.getter(#timestamp),
-      returnValue: _FakeDateTime_13()) as DateTime);
-  @override
   _i6.CartDto get cart => (super.noSuchMethod(Invocation.getter(#cart),
-      returnValue: _FakeCartDto_14()) as _i6.CartDto);
+      returnValue: _FakeCartDto_13()) as _i6.CartDto);
   @override
   String get status =>
       (super.noSuchMethod(Invocation.getter(#status), returnValue: '')
           as String);
   @override
+  List<_i6.CartItemDto> get cartItems =>
+      (super.noSuchMethod(Invocation.getter(#cartItems),
+          returnValue: <_i6.CartItemDto>[]) as List<_i6.CartItemDto>);
+  @override
   _i7.$OrderDtoCopyWith<_i7.OrderDto> get copyWith =>
       (super.noSuchMethod(Invocation.getter(#copyWith),
-              returnValue: _Fake$OrderDtoCopyWith_15<_i7.OrderDto>())
+              returnValue: _Fake$OrderDtoCopyWith_14<_i7.OrderDto>())
           as _i7.$OrderDtoCopyWith<_i7.OrderDto>);
   @override
   _i8.ShopifyOrder toDomain() =>
       (super.noSuchMethod(Invocation.method(#toDomain, []),
-          returnValue: _FakeShopifyOrder_16()) as _i8.ShopifyOrder);
+          returnValue: _FakeShopifyOrder_15()) as _i8.ShopifyOrder);
   @override
   Map<String, dynamic> toJson() =>
       (super.noSuchMethod(Invocation.method(#toJson, []),

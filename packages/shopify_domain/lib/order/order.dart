@@ -17,7 +17,7 @@ class ShopifyOrder with _$ShopifyOrder {
 }
 
 enum OrderStatusEnum {
-  pednding,
+  pending,
   completed,
   collected,
 }
@@ -33,7 +33,7 @@ class OrderStatus extends ValueObject<OrderStatusEnum> {
     final normalizedString = statusString.toLowerCase();
     switch (normalizedString) {
       case 'pending':
-        return OrderStatus._(right(OrderStatusEnum.pednding));
+        return OrderStatus._(right(OrderStatusEnum.pending));
       case 'completed':
         return OrderStatus._(right(OrderStatusEnum.completed));
       case 'collected':
