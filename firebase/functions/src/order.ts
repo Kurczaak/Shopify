@@ -7,6 +7,7 @@ exports.createOrder = functions.https.onCall(async (data, context) => {
     if (context.auth == null) return null;
     const { uid } = context.auth;
 
+
     const db = admin.firestore();
     const cartDocumentReference = db.collection('carts').doc(cartId);
     const cartDocumentSnapshot = await cartDocumentReference.get();
@@ -21,26 +22,38 @@ exports.createOrder = functions.https.onCall(async (data, context) => {
 
     // Create order
     const orderDocumentReference = await db.collection('orders').add(
-        cartData
+        {
+            "status": "pending",
+            "cart": cartData,
+            "timestamp": admin.firestore.FieldValue.serverTimestamp()
+        }
     );
 
     // Copy cart items
-    const orderItemsCollectionReference = orderDocumentReference.collection('orderItems');
+    // const orderItemsCollectionReference = orderDocumentReference.collection('cartItems');
     const cartItemsCollectionReference = cartDocumentReference.collection('cartItems')
     const cartItemsCollectionSnapshot = await cartItemsCollectionReference.get();
-    cartItemsCollectionSnapshot.docs.forEach(
-        async (doc) => {
-            await orderItemsCollectionReference.add(doc.data());
-        }
-    );
+
+    try {
+        let cartItems: Array<admin.firestore.DocumentData>;
+        cartItems = [];
+        cartItemsCollectionSnapshot.docs.forEach(
+            async (doc) => {
+                cartItems.push(doc.data());
+            }
+        );
+        orderDocumentReference.update({
+            "cartItems": cartItems
+        })
+    } catch (_) {
+        await deleteSnapshotBatch(db, cartItemsCollectionSnapshot);
+        await orderDocumentReference.delete();
+    }
     // delete cart items
     await deleteSnapshotBatch(db, cartItemsCollectionSnapshot);
     // delete cart
     await cartDocumentReference.delete();
-    await orderDocumentReference.update({
-        "timestamp": admin.firestore.FieldValue.serverTimestamp(),
-        "isCompleted": false,
-    });
+
     return orderDocumentReference;
 });
 

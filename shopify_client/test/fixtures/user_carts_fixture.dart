@@ -44,6 +44,7 @@ final tMixedCartItems = KtList.from([
 ]);
 
 final tCart = Cart(
+    userId: UniqueId(),
     id: UniqueId(),
     shop: Shop.empty(),
     cartItems: CartItemsList(tOnlyCorrectCartItems));

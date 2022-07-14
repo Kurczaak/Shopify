@@ -42,6 +42,7 @@ class CartDto with _$CartDto {
   const CartDto._();
   const factory CartDto({
     @Default('') @JsonKey(ignore: true) String id,
+    required String userId,
     required ShopDto shop,
     required String shopId,
     @Default([]) @JsonKey(ignore: true) List<CartItemDto> cartItems,
@@ -50,6 +51,7 @@ class CartDto with _$CartDto {
   factory CartDto.fromDomain(Cart cart) => CartDto(
         shop: ShopDto.fromDomain(cart.shop),
         shopId: cart.shop.id.getOrCrash(),
+        userId: cart.userId.getOrCrash(),
         cartItems: cart.cartItems
             .getOrCrash()
             .iter
@@ -58,6 +60,7 @@ class CartDto with _$CartDto {
       );
 
   Cart toDomain() => Cart(
+        userId: UniqueId.fromUniqueString(userId),
         id: UniqueId.fromUniqueString(id),
         shop: shop.toDomain().copyWith(id: UniqueId.fromUniqueString(shopId)),
         cartItems: CartItemsList(

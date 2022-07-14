@@ -4,7 +4,7 @@
 // InjectableConfigGenerator
 // **************************************************************************
 
-import 'package:algolia/algolia.dart' as _i28;
+import 'package:algolia/algolia.dart' as _i30;
 import 'package:cloud_firestore/cloud_firestore.dart' as _i6;
 import 'package:firebase_auth/firebase_auth.dart' as _i5;
 import 'package:firebase_storage/firebase_storage.dart' as _i7;
@@ -23,25 +23,27 @@ import '../auth/shopify_auth.dart' as _i23;
 import '../cart/shopify_cart_facade.dart' as _i21;
 import '../core.dart' as _i17;
 import '../core/location/location_info.dart' as _i14;
-import '../core/location/location_injectable_module.dart' as _i32;
+import '../core/location/location_injectable_module.dart' as _i34;
 import '../core/network/network_info.dart' as _i15;
+import '../order/shopify_order_facade.dart' as _i25;
 import '../product.dart' as _i3;
-import '../product/shopify_product_searcher.dart' as _i26;
-import '../shop.dart' as _i29;
+import '../product/shopify_product_searcher.dart' as _i28;
+import '../shop.dart' as _i31;
 import 'auth/firebase_auth_facade.dart' as _i20;
 import 'cart/firebase_cart_facade_impl.dart' as _i22;
-import 'core/images/image_picker_injectable_module.dart' as _i33;
+import 'core/images/image_picker_injectable_module.dart' as _i35;
 import 'core/images/image_picker_photo_picker_implementation.dart' as _i18;
-import 'core/injectable_module.dart' as _i31;
-import 'core/location/location_injectable_module.dart' as _i34;
+import 'core/injectable_module.dart' as _i33;
+import 'core/location/location_injectable_module.dart' as _i36;
 import 'core/location/shopify_location_facade_implementation.dart' as _i24;
-import 'product/algolia_product_searcher_impl.dart' as _i27;
+import 'order/firebase_order_facade_impl.dart' as _i26;
+import 'product/algolia_product_searcher_impl.dart' as _i29;
 import 'product/barcode_scanner/mobile_scanner_barcode_scanner_facade_impl.dart'
     as _i4;
-import 'product/firebase_product_repository.dart' as _i25;
+import 'product/firebase_product_repository.dart' as _i27;
 import 'product/open_food_facts/open_food_facts_repository_impl.dart' as _i16;
 import 'shop/firebase_shop_repository.dart'
-    as _i30; // ignore_for_file: unnecessary_lambdas
+    as _i32; // ignore_for_file: unnecessary_lambdas
 
 // ignore_for_file: lines_longer_than_80_chars
 /// initializes the registration of provided dependencies inside of [GetIt]
@@ -89,23 +91,27 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.lazySingleton<_i17.ShopifyLocationFacade>(() =>
       _i24.ShopifyLocationFacadeImpl(
           get<_i13.Location>(), get<_i8.GeocodingPlatform>()));
+  gh.factory<_i25.ShopifyOrderFacade>(() => _i26.FirebaseOrderFacadeImpl(
+      networkInfo: get<_i15.NetworkInfo>(),
+      firebase: get<_i6.FirebaseFirestore>(),
+      auth: get<_i23.ShopifyAuth>()));
   gh.lazySingleton<_i3.ShopifyProductRepository>(() =>
-      _i25.FirebaseProductRepositoryImpl(
+      _i27.FirebaseProductRepositoryImpl(
           firestore: get<_i6.FirebaseFirestore>(),
           storage: get<_i7.FirebaseStorage>(),
           networkInfo: get<_i15.NetworkInfo>()));
-  gh.factory<_i26.ShopifyProductSearcher>(() => _i27.AlgoliaProductSearcher(
-      algolia: get<_i28.Algolia>(), networkInfo: get<_i15.NetworkInfo>()));
-  gh.lazySingleton<_i29.ShopifyShopRepository>(() =>
-      _i30.FirebaseShopRepositoryImpl(get<_i6.FirebaseFirestore>(),
+  gh.factory<_i28.ShopifyProductSearcher>(() => _i29.AlgoliaProductSearcher(
+      algolia: get<_i30.Algolia>(), networkInfo: get<_i15.NetworkInfo>()));
+  gh.lazySingleton<_i31.ShopifyShopRepository>(() =>
+      _i32.FirebaseShopRepositoryImpl(get<_i6.FirebaseFirestore>(),
           get<_i7.FirebaseStorage>(), get<_i9.Geoflutterfire>()));
   return get;
 }
 
-class _$FirebaseInjectableModule extends _i31.FirebaseInjectableModule {}
+class _$FirebaseInjectableModule extends _i33.FirebaseInjectableModule {}
 
-class _$GeocodingInjectableModule extends _i32.GeocodingInjectableModule {}
+class _$GeocodingInjectableModule extends _i34.GeocodingInjectableModule {}
 
-class _$ImagePikcerInjectableModule extends _i33.ImagePikcerInjectableModule {}
+class _$ImagePikcerInjectableModule extends _i35.ImagePikcerInjectableModule {}
 
-class _$LocationInjectableModule extends _i34.LocationInjectableModule {}
+class _$LocationInjectableModule extends _i36.LocationInjectableModule {}

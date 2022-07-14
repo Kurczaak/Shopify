@@ -4,6 +4,8 @@ import 'package:shopify_client/presentation/best_offers/best_offers_page.dart';
 import 'package:shopify_client/presentation/cart/cart_page.dart';
 import 'package:shopify_client/presentation/core/debug_page.dart';
 import 'package:shopify_client/presentation/favourites/favourites_page.dart';
+import 'package:shopify_client/presentation/order/order_page.dart';
+import 'package:shopify_client/presentation/order/user_orders_page.dart';
 import 'package:shopify_client/presentation/product/product_preview_page.dart';
 import 'package:shopify_client/presentation/shop/shop_products_browser_page.dart';
 import 'package:shopify_client/presentation/routes/auth_wrapper.dart';
@@ -16,7 +18,11 @@ import 'package:shopify_client/presentation/your_lists/your_lists_page.dart';
 @MaterialAutoRouter(
   replaceInRouteName: 'Page,Route',
   routes: <AutoRoute>[
-    AutoRoute(page: AuthWrapperPage, initial: true, children: [
+    AutoRoute(page: AuthWrapperPage, children: [
+      AutoRoute(
+        page: UserOrdersPage,
+      ),
+      AutoRoute(page: OrderPage),
       AutoRoute(path: 'home', name: 'homeRouter', page: HomePage, children: [
         AutoRoute(
             initial: true,
@@ -59,16 +65,17 @@ import 'package:shopify_client/presentation/your_lists/your_lists_page.dart';
         AutoRoute(
           page: DebugPage,
         ),
-        AutoRoute(
-          page: SignInPage,
-        ),
-        AutoRoute(
-          page: SignUpPage,
-        ),
-      ])
+      ]),
+      AutoRoute(
+        page: SignInPage,
+      ),
+      AutoRoute(
+        page: SignUpPage,
+      ),
     ]),
     AutoRoute(
       page: SplashPage,
+      initial: true,
     ),
   ],
 )

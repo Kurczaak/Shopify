@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$Cart {
   UniqueId get id => throw _privateConstructorUsedError;
+  UniqueId get userId => throw _privateConstructorUsedError;
   Shop get shop => throw _privateConstructorUsedError;
   CartItemsList get cartItems => throw _privateConstructorUsedError;
 
@@ -28,7 +29,7 @@ mixin _$Cart {
 abstract class $CartCopyWith<$Res> {
   factory $CartCopyWith(Cart value, $Res Function(Cart) then) =
       _$CartCopyWithImpl<$Res>;
-  $Res call({UniqueId id, Shop shop, CartItemsList cartItems});
+  $Res call({UniqueId id, UniqueId userId, Shop shop, CartItemsList cartItems});
 
   $ShopCopyWith<$Res> get shop;
 }
@@ -44,6 +45,7 @@ class _$CartCopyWithImpl<$Res> implements $CartCopyWith<$Res> {
   @override
   $Res call({
     Object? id = freezed,
+    Object? userId = freezed,
     Object? shop = freezed,
     Object? cartItems = freezed,
   }) {
@@ -51,6 +53,10 @@ class _$CartCopyWithImpl<$Res> implements $CartCopyWith<$Res> {
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as UniqueId,
+      userId: userId == freezed
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
               as UniqueId,
       shop: shop == freezed
           ? _value.shop
@@ -76,7 +82,7 @@ abstract class _$$_CartCopyWith<$Res> implements $CartCopyWith<$Res> {
   factory _$$_CartCopyWith(_$_Cart value, $Res Function(_$_Cart) then) =
       __$$_CartCopyWithImpl<$Res>;
   @override
-  $Res call({UniqueId id, Shop shop, CartItemsList cartItems});
+  $Res call({UniqueId id, UniqueId userId, Shop shop, CartItemsList cartItems});
 
   @override
   $ShopCopyWith<$Res> get shop;
@@ -94,6 +100,7 @@ class __$$_CartCopyWithImpl<$Res> extends _$CartCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
+    Object? userId = freezed,
     Object? shop = freezed,
     Object? cartItems = freezed,
   }) {
@@ -101,6 +108,10 @@ class __$$_CartCopyWithImpl<$Res> extends _$CartCopyWithImpl<$Res>
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as UniqueId,
+      userId: userId == freezed
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
               as UniqueId,
       shop: shop == freezed
           ? _value.shop
@@ -117,11 +128,17 @@ class __$$_CartCopyWithImpl<$Res> extends _$CartCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Cart extends _Cart {
-  const _$_Cart({required this.id, required this.shop, required this.cartItems})
+  const _$_Cart(
+      {required this.id,
+      required this.userId,
+      required this.shop,
+      required this.cartItems})
       : super._();
 
   @override
   final UniqueId id;
+  @override
+  final UniqueId userId;
   @override
   final Shop shop;
   @override
@@ -129,7 +146,7 @@ class _$_Cart extends _Cart {
 
   @override
   String toString() {
-    return 'Cart(id: $id, shop: $shop, cartItems: $cartItems)';
+    return 'Cart(id: $id, userId: $userId, shop: $shop, cartItems: $cartItems)';
   }
 
   @override
@@ -138,6 +155,7 @@ class _$_Cart extends _Cart {
         (other.runtimeType == runtimeType &&
             other is _$_Cart &&
             const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.userId, userId) &&
             const DeepCollectionEquality().equals(other.shop, shop) &&
             const DeepCollectionEquality().equals(other.cartItems, cartItems));
   }
@@ -146,6 +164,7 @@ class _$_Cart extends _Cart {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(userId),
       const DeepCollectionEquality().hash(shop),
       const DeepCollectionEquality().hash(cartItems));
 
@@ -158,12 +177,15 @@ class _$_Cart extends _Cart {
 abstract class _Cart extends Cart {
   const factory _Cart(
       {required final UniqueId id,
+      required final UniqueId userId,
       required final Shop shop,
       required final CartItemsList cartItems}) = _$_Cart;
   const _Cart._() : super._();
 
   @override
   UniqueId get id => throw _privateConstructorUsedError;
+  @override
+  UniqueId get userId => throw _privateConstructorUsedError;
   @override
   Shop get shop => throw _privateConstructorUsedError;
   @override

@@ -11,6 +11,7 @@ class Cart with _$Cart {
 
   const factory Cart({
     required UniqueId id,
+    required UniqueId userId,
     required Shop shop,
     required CartItemsList cartItems,
   }) = _Cart;
