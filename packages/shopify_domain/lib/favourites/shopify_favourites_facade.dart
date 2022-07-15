@@ -5,7 +5,7 @@ import 'package:shopify_domain/favourites/favourite_failure.dart';
 import 'package:shopify_domain/favourites/favourite_product.dart';
 
 abstract class IShopifyFavouritesFacade {
-  Future<Either<FavouriteFailure, Unit>> addToFavoruites(UniqueId productId);
+  Future<Either<FavouriteFailure, Unit>> addToFavourites(UniqueId productId);
   Future<Either<FavouriteFailure, Unit>> removeFromFavourites(
       UniqueId productId);
 

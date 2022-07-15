@@ -41,12 +41,6 @@ class FirebaseOrderFacadeImpl implements ShopifyOrderFacade {
       final user = userOption.getOrElse(() {
         throw UnimplementedError('User is not signed in!');
       });
-      print('KURWAAAAAAAAAAAAAAAAA');
-      print(user.id.getOrCrash());
-      print('KURWAAAAAAAAAAAAAAAAA');
-      print('KURWAAAAAAAAAAAAAAAAA2');
-      print(status.getOrCrash().name);
-      print('KURWAAAAAAAAAAAAAAAAA2');
       final userOrdersQuery = firebase.ordersCollection
           .where(FieldPath(const ['cart', 'userId']),
               isEqualTo: user.id.getOrCrash())
@@ -58,14 +52,8 @@ class FirebaseOrderFacadeImpl implements ShopifyOrderFacade {
             .asyncMap<Either<OrderFailure, KtList<ShopifyOrder>>>(
                 (ordersSnapshot) async {
           if (ordersSnapshot.docs.isEmpty) {
-            print('KURWAAAAAAAAAAAAAAAAA');
-            print('Empty');
-            print('KURWAAAAAAAAAAAAAAAAA');
             return left(const OrderFailure.empty());
           } else {
-            print('KURWAAAAAAAAAAAAAAAAA');
-            print('COŚ JEST KURWO');
-            print('KURWAAAAAAAAAAAAAAAAA');
             final List<ShopifyOrder> orders = [];
             for (final orderSnapshot in ordersSnapshot.docs) {
               orders.add(OrderDto.fromFirestore(orderSnapshot).toDomain());

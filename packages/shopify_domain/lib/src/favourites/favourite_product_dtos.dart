@@ -20,6 +20,18 @@ class FavouriteProductDto with _$FavouriteProductDto {
       required String photoUrl,
       required String userId}) = _FavouriteProductDto;
 
+  factory FavouriteProductDto.fromDomain(
+          FavouriteProduct product, UniqueId userId) =>
+      FavouriteProductDto(
+          barcode: product.barcode.getOrCrash(),
+          brand: product.brand.getOrCrash(),
+          category: product.category.getOrCrash().name,
+          id: product.id.getOrCrash(),
+          photoUrl: product.photoUrl.getOrCrash(),
+          productId: product.productId.getOrCrash(),
+          productName: product.productName.getOrCrash(),
+          userId: userId.getOrCrash());
+
   FavouriteProduct toDomain() => FavouriteProduct(
       id: UniqueId.fromUniqueString(id),
       barcode: Barcode(barcode),
