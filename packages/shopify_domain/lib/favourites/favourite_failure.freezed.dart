@@ -19,6 +19,8 @@ mixin _$FavouriteFailure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() unexpected,
+    required TResult Function() alreadyInFavoruites,
+    required TResult Function() notInFavourites,
     required TResult Function() indalidProduct,
     required TResult Function() noInternetConnection,
     required TResult Function() timeout,
@@ -28,6 +30,8 @@ mixin _$FavouriteFailure {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? unexpected,
+    TResult Function()? alreadyInFavoruites,
+    TResult Function()? notInFavourites,
     TResult Function()? indalidProduct,
     TResult Function()? noInternetConnection,
     TResult Function()? timeout,
@@ -37,6 +41,8 @@ mixin _$FavouriteFailure {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unexpected,
+    TResult Function()? alreadyInFavoruites,
+    TResult Function()? notInFavourites,
     TResult Function()? indalidProduct,
     TResult Function()? noInternetConnection,
     TResult Function()? timeout,
@@ -47,6 +53,8 @@ mixin _$FavouriteFailure {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Unexpected value) unexpected,
+    required TResult Function(_AlreadyInFavoruites value) alreadyInFavoruites,
+    required TResult Function(_NotInFavoruites value) notInFavourites,
     required TResult Function(_IndalidProduct value) indalidProduct,
     required TResult Function(_NoInternetConnection value) noInternetConnection,
     required TResult Function(_Timeout value) timeout,
@@ -57,6 +65,8 @@ mixin _$FavouriteFailure {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_AlreadyInFavoruites value)? alreadyInFavoruites,
+    TResult Function(_NotInFavoruites value)? notInFavourites,
     TResult Function(_IndalidProduct value)? indalidProduct,
     TResult Function(_NoInternetConnection value)? noInternetConnection,
     TResult Function(_Timeout value)? timeout,
@@ -66,6 +76,8 @@ mixin _$FavouriteFailure {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_AlreadyInFavoruites value)? alreadyInFavoruites,
+    TResult Function(_NotInFavoruites value)? notInFavourites,
     TResult Function(_IndalidProduct value)? indalidProduct,
     TResult Function(_NoInternetConnection value)? noInternetConnection,
     TResult Function(_Timeout value)? timeout,
@@ -134,6 +146,8 @@ class _$_Unexpected implements _Unexpected {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() unexpected,
+    required TResult Function() alreadyInFavoruites,
+    required TResult Function() notInFavourites,
     required TResult Function() indalidProduct,
     required TResult Function() noInternetConnection,
     required TResult Function() timeout,
@@ -146,6 +160,8 @@ class _$_Unexpected implements _Unexpected {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? unexpected,
+    TResult Function()? alreadyInFavoruites,
+    TResult Function()? notInFavourites,
     TResult Function()? indalidProduct,
     TResult Function()? noInternetConnection,
     TResult Function()? timeout,
@@ -158,6 +174,8 @@ class _$_Unexpected implements _Unexpected {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unexpected,
+    TResult Function()? alreadyInFavoruites,
+    TResult Function()? notInFavourites,
     TResult Function()? indalidProduct,
     TResult Function()? noInternetConnection,
     TResult Function()? timeout,
@@ -174,6 +192,8 @@ class _$_Unexpected implements _Unexpected {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Unexpected value) unexpected,
+    required TResult Function(_AlreadyInFavoruites value) alreadyInFavoruites,
+    required TResult Function(_NotInFavoruites value) notInFavourites,
     required TResult Function(_IndalidProduct value) indalidProduct,
     required TResult Function(_NoInternetConnection value) noInternetConnection,
     required TResult Function(_Timeout value) timeout,
@@ -187,6 +207,8 @@ class _$_Unexpected implements _Unexpected {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_AlreadyInFavoruites value)? alreadyInFavoruites,
+    TResult Function(_NotInFavoruites value)? notInFavourites,
     TResult Function(_IndalidProduct value)? indalidProduct,
     TResult Function(_NoInternetConnection value)? noInternetConnection,
     TResult Function(_Timeout value)? timeout,
@@ -199,6 +221,8 @@ class _$_Unexpected implements _Unexpected {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_AlreadyInFavoruites value)? alreadyInFavoruites,
+    TResult Function(_NotInFavoruites value)? notInFavourites,
     TResult Function(_IndalidProduct value)? indalidProduct,
     TResult Function(_NoInternetConnection value)? noInternetConnection,
     TResult Function(_Timeout value)? timeout,
@@ -214,6 +238,278 @@ class _$_Unexpected implements _Unexpected {
 
 abstract class _Unexpected implements FavouriteFailure {
   const factory _Unexpected() = _$_Unexpected;
+}
+
+/// @nodoc
+abstract class _$$_AlreadyInFavoruitesCopyWith<$Res> {
+  factory _$$_AlreadyInFavoruitesCopyWith(_$_AlreadyInFavoruites value,
+          $Res Function(_$_AlreadyInFavoruites) then) =
+      __$$_AlreadyInFavoruitesCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_AlreadyInFavoruitesCopyWithImpl<$Res>
+    extends _$FavouriteFailureCopyWithImpl<$Res>
+    implements _$$_AlreadyInFavoruitesCopyWith<$Res> {
+  __$$_AlreadyInFavoruitesCopyWithImpl(_$_AlreadyInFavoruites _value,
+      $Res Function(_$_AlreadyInFavoruites) _then)
+      : super(_value, (v) => _then(v as _$_AlreadyInFavoruites));
+
+  @override
+  _$_AlreadyInFavoruites get _value => super._value as _$_AlreadyInFavoruites;
+}
+
+/// @nodoc
+
+class _$_AlreadyInFavoruites implements _AlreadyInFavoruites {
+  const _$_AlreadyInFavoruites();
+
+  @override
+  String toString() {
+    return 'FavouriteFailure.alreadyInFavoruites()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_AlreadyInFavoruites);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() unexpected,
+    required TResult Function() alreadyInFavoruites,
+    required TResult Function() notInFavourites,
+    required TResult Function() indalidProduct,
+    required TResult Function() noInternetConnection,
+    required TResult Function() timeout,
+    required TResult Function() insufficientPermission,
+  }) {
+    return alreadyInFavoruites();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? unexpected,
+    TResult Function()? alreadyInFavoruites,
+    TResult Function()? notInFavourites,
+    TResult Function()? indalidProduct,
+    TResult Function()? noInternetConnection,
+    TResult Function()? timeout,
+    TResult Function()? insufficientPermission,
+  }) {
+    return alreadyInFavoruites?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? unexpected,
+    TResult Function()? alreadyInFavoruites,
+    TResult Function()? notInFavourites,
+    TResult Function()? indalidProduct,
+    TResult Function()? noInternetConnection,
+    TResult Function()? timeout,
+    TResult Function()? insufficientPermission,
+    required TResult orElse(),
+  }) {
+    if (alreadyInFavoruites != null) {
+      return alreadyInFavoruites();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Unexpected value) unexpected,
+    required TResult Function(_AlreadyInFavoruites value) alreadyInFavoruites,
+    required TResult Function(_NotInFavoruites value) notInFavourites,
+    required TResult Function(_IndalidProduct value) indalidProduct,
+    required TResult Function(_NoInternetConnection value) noInternetConnection,
+    required TResult Function(_Timeout value) timeout,
+    required TResult Function(_InsufficientPermission value)
+        insufficientPermission,
+  }) {
+    return alreadyInFavoruites(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_AlreadyInFavoruites value)? alreadyInFavoruites,
+    TResult Function(_NotInFavoruites value)? notInFavourites,
+    TResult Function(_IndalidProduct value)? indalidProduct,
+    TResult Function(_NoInternetConnection value)? noInternetConnection,
+    TResult Function(_Timeout value)? timeout,
+    TResult Function(_InsufficientPermission value)? insufficientPermission,
+  }) {
+    return alreadyInFavoruites?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_AlreadyInFavoruites value)? alreadyInFavoruites,
+    TResult Function(_NotInFavoruites value)? notInFavourites,
+    TResult Function(_IndalidProduct value)? indalidProduct,
+    TResult Function(_NoInternetConnection value)? noInternetConnection,
+    TResult Function(_Timeout value)? timeout,
+    TResult Function(_InsufficientPermission value)? insufficientPermission,
+    required TResult orElse(),
+  }) {
+    if (alreadyInFavoruites != null) {
+      return alreadyInFavoruites(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _AlreadyInFavoruites implements FavouriteFailure {
+  const factory _AlreadyInFavoruites() = _$_AlreadyInFavoruites;
+}
+
+/// @nodoc
+abstract class _$$_NotInFavoruitesCopyWith<$Res> {
+  factory _$$_NotInFavoruitesCopyWith(
+          _$_NotInFavoruites value, $Res Function(_$_NotInFavoruites) then) =
+      __$$_NotInFavoruitesCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_NotInFavoruitesCopyWithImpl<$Res>
+    extends _$FavouriteFailureCopyWithImpl<$Res>
+    implements _$$_NotInFavoruitesCopyWith<$Res> {
+  __$$_NotInFavoruitesCopyWithImpl(
+      _$_NotInFavoruites _value, $Res Function(_$_NotInFavoruites) _then)
+      : super(_value, (v) => _then(v as _$_NotInFavoruites));
+
+  @override
+  _$_NotInFavoruites get _value => super._value as _$_NotInFavoruites;
+}
+
+/// @nodoc
+
+class _$_NotInFavoruites implements _NotInFavoruites {
+  const _$_NotInFavoruites();
+
+  @override
+  String toString() {
+    return 'FavouriteFailure.notInFavourites()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_NotInFavoruites);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() unexpected,
+    required TResult Function() alreadyInFavoruites,
+    required TResult Function() notInFavourites,
+    required TResult Function() indalidProduct,
+    required TResult Function() noInternetConnection,
+    required TResult Function() timeout,
+    required TResult Function() insufficientPermission,
+  }) {
+    return notInFavourites();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? unexpected,
+    TResult Function()? alreadyInFavoruites,
+    TResult Function()? notInFavourites,
+    TResult Function()? indalidProduct,
+    TResult Function()? noInternetConnection,
+    TResult Function()? timeout,
+    TResult Function()? insufficientPermission,
+  }) {
+    return notInFavourites?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? unexpected,
+    TResult Function()? alreadyInFavoruites,
+    TResult Function()? notInFavourites,
+    TResult Function()? indalidProduct,
+    TResult Function()? noInternetConnection,
+    TResult Function()? timeout,
+    TResult Function()? insufficientPermission,
+    required TResult orElse(),
+  }) {
+    if (notInFavourites != null) {
+      return notInFavourites();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Unexpected value) unexpected,
+    required TResult Function(_AlreadyInFavoruites value) alreadyInFavoruites,
+    required TResult Function(_NotInFavoruites value) notInFavourites,
+    required TResult Function(_IndalidProduct value) indalidProduct,
+    required TResult Function(_NoInternetConnection value) noInternetConnection,
+    required TResult Function(_Timeout value) timeout,
+    required TResult Function(_InsufficientPermission value)
+        insufficientPermission,
+  }) {
+    return notInFavourites(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_AlreadyInFavoruites value)? alreadyInFavoruites,
+    TResult Function(_NotInFavoruites value)? notInFavourites,
+    TResult Function(_IndalidProduct value)? indalidProduct,
+    TResult Function(_NoInternetConnection value)? noInternetConnection,
+    TResult Function(_Timeout value)? timeout,
+    TResult Function(_InsufficientPermission value)? insufficientPermission,
+  }) {
+    return notInFavourites?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_AlreadyInFavoruites value)? alreadyInFavoruites,
+    TResult Function(_NotInFavoruites value)? notInFavourites,
+    TResult Function(_IndalidProduct value)? indalidProduct,
+    TResult Function(_NoInternetConnection value)? noInternetConnection,
+    TResult Function(_Timeout value)? timeout,
+    TResult Function(_InsufficientPermission value)? insufficientPermission,
+    required TResult orElse(),
+  }) {
+    if (notInFavourites != null) {
+      return notInFavourites(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _NotInFavoruites implements FavouriteFailure {
+  const factory _NotInFavoruites() = _$_NotInFavoruites;
 }
 
 /// @nodoc
@@ -258,6 +554,8 @@ class _$_IndalidProduct implements _IndalidProduct {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() unexpected,
+    required TResult Function() alreadyInFavoruites,
+    required TResult Function() notInFavourites,
     required TResult Function() indalidProduct,
     required TResult Function() noInternetConnection,
     required TResult Function() timeout,
@@ -270,6 +568,8 @@ class _$_IndalidProduct implements _IndalidProduct {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? unexpected,
+    TResult Function()? alreadyInFavoruites,
+    TResult Function()? notInFavourites,
     TResult Function()? indalidProduct,
     TResult Function()? noInternetConnection,
     TResult Function()? timeout,
@@ -282,6 +582,8 @@ class _$_IndalidProduct implements _IndalidProduct {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unexpected,
+    TResult Function()? alreadyInFavoruites,
+    TResult Function()? notInFavourites,
     TResult Function()? indalidProduct,
     TResult Function()? noInternetConnection,
     TResult Function()? timeout,
@@ -298,6 +600,8 @@ class _$_IndalidProduct implements _IndalidProduct {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Unexpected value) unexpected,
+    required TResult Function(_AlreadyInFavoruites value) alreadyInFavoruites,
+    required TResult Function(_NotInFavoruites value) notInFavourites,
     required TResult Function(_IndalidProduct value) indalidProduct,
     required TResult Function(_NoInternetConnection value) noInternetConnection,
     required TResult Function(_Timeout value) timeout,
@@ -311,6 +615,8 @@ class _$_IndalidProduct implements _IndalidProduct {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_AlreadyInFavoruites value)? alreadyInFavoruites,
+    TResult Function(_NotInFavoruites value)? notInFavourites,
     TResult Function(_IndalidProduct value)? indalidProduct,
     TResult Function(_NoInternetConnection value)? noInternetConnection,
     TResult Function(_Timeout value)? timeout,
@@ -323,6 +629,8 @@ class _$_IndalidProduct implements _IndalidProduct {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_AlreadyInFavoruites value)? alreadyInFavoruites,
+    TResult Function(_NotInFavoruites value)? notInFavourites,
     TResult Function(_IndalidProduct value)? indalidProduct,
     TResult Function(_NoInternetConnection value)? noInternetConnection,
     TResult Function(_Timeout value)? timeout,
@@ -382,6 +690,8 @@ class _$_NoInternetConnection implements _NoInternetConnection {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() unexpected,
+    required TResult Function() alreadyInFavoruites,
+    required TResult Function() notInFavourites,
     required TResult Function() indalidProduct,
     required TResult Function() noInternetConnection,
     required TResult Function() timeout,
@@ -394,6 +704,8 @@ class _$_NoInternetConnection implements _NoInternetConnection {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? unexpected,
+    TResult Function()? alreadyInFavoruites,
+    TResult Function()? notInFavourites,
     TResult Function()? indalidProduct,
     TResult Function()? noInternetConnection,
     TResult Function()? timeout,
@@ -406,6 +718,8 @@ class _$_NoInternetConnection implements _NoInternetConnection {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unexpected,
+    TResult Function()? alreadyInFavoruites,
+    TResult Function()? notInFavourites,
     TResult Function()? indalidProduct,
     TResult Function()? noInternetConnection,
     TResult Function()? timeout,
@@ -422,6 +736,8 @@ class _$_NoInternetConnection implements _NoInternetConnection {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Unexpected value) unexpected,
+    required TResult Function(_AlreadyInFavoruites value) alreadyInFavoruites,
+    required TResult Function(_NotInFavoruites value) notInFavourites,
     required TResult Function(_IndalidProduct value) indalidProduct,
     required TResult Function(_NoInternetConnection value) noInternetConnection,
     required TResult Function(_Timeout value) timeout,
@@ -435,6 +751,8 @@ class _$_NoInternetConnection implements _NoInternetConnection {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_AlreadyInFavoruites value)? alreadyInFavoruites,
+    TResult Function(_NotInFavoruites value)? notInFavourites,
     TResult Function(_IndalidProduct value)? indalidProduct,
     TResult Function(_NoInternetConnection value)? noInternetConnection,
     TResult Function(_Timeout value)? timeout,
@@ -447,6 +765,8 @@ class _$_NoInternetConnection implements _NoInternetConnection {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_AlreadyInFavoruites value)? alreadyInFavoruites,
+    TResult Function(_NotInFavoruites value)? notInFavourites,
     TResult Function(_IndalidProduct value)? indalidProduct,
     TResult Function(_NoInternetConnection value)? noInternetConnection,
     TResult Function(_Timeout value)? timeout,
@@ -505,6 +825,8 @@ class _$_Timeout implements _Timeout {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() unexpected,
+    required TResult Function() alreadyInFavoruites,
+    required TResult Function() notInFavourites,
     required TResult Function() indalidProduct,
     required TResult Function() noInternetConnection,
     required TResult Function() timeout,
@@ -517,6 +839,8 @@ class _$_Timeout implements _Timeout {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? unexpected,
+    TResult Function()? alreadyInFavoruites,
+    TResult Function()? notInFavourites,
     TResult Function()? indalidProduct,
     TResult Function()? noInternetConnection,
     TResult Function()? timeout,
@@ -529,6 +853,8 @@ class _$_Timeout implements _Timeout {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unexpected,
+    TResult Function()? alreadyInFavoruites,
+    TResult Function()? notInFavourites,
     TResult Function()? indalidProduct,
     TResult Function()? noInternetConnection,
     TResult Function()? timeout,
@@ -545,6 +871,8 @@ class _$_Timeout implements _Timeout {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Unexpected value) unexpected,
+    required TResult Function(_AlreadyInFavoruites value) alreadyInFavoruites,
+    required TResult Function(_NotInFavoruites value) notInFavourites,
     required TResult Function(_IndalidProduct value) indalidProduct,
     required TResult Function(_NoInternetConnection value) noInternetConnection,
     required TResult Function(_Timeout value) timeout,
@@ -558,6 +886,8 @@ class _$_Timeout implements _Timeout {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_AlreadyInFavoruites value)? alreadyInFavoruites,
+    TResult Function(_NotInFavoruites value)? notInFavourites,
     TResult Function(_IndalidProduct value)? indalidProduct,
     TResult Function(_NoInternetConnection value)? noInternetConnection,
     TResult Function(_Timeout value)? timeout,
@@ -570,6 +900,8 @@ class _$_Timeout implements _Timeout {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_AlreadyInFavoruites value)? alreadyInFavoruites,
+    TResult Function(_NotInFavoruites value)? notInFavourites,
     TResult Function(_IndalidProduct value)? indalidProduct,
     TResult Function(_NoInternetConnection value)? noInternetConnection,
     TResult Function(_Timeout value)? timeout,
@@ -631,6 +963,8 @@ class _$_InsufficientPermission implements _InsufficientPermission {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() unexpected,
+    required TResult Function() alreadyInFavoruites,
+    required TResult Function() notInFavourites,
     required TResult Function() indalidProduct,
     required TResult Function() noInternetConnection,
     required TResult Function() timeout,
@@ -643,6 +977,8 @@ class _$_InsufficientPermission implements _InsufficientPermission {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? unexpected,
+    TResult Function()? alreadyInFavoruites,
+    TResult Function()? notInFavourites,
     TResult Function()? indalidProduct,
     TResult Function()? noInternetConnection,
     TResult Function()? timeout,
@@ -655,6 +991,8 @@ class _$_InsufficientPermission implements _InsufficientPermission {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unexpected,
+    TResult Function()? alreadyInFavoruites,
+    TResult Function()? notInFavourites,
     TResult Function()? indalidProduct,
     TResult Function()? noInternetConnection,
     TResult Function()? timeout,
@@ -671,6 +1009,8 @@ class _$_InsufficientPermission implements _InsufficientPermission {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Unexpected value) unexpected,
+    required TResult Function(_AlreadyInFavoruites value) alreadyInFavoruites,
+    required TResult Function(_NotInFavoruites value) notInFavourites,
     required TResult Function(_IndalidProduct value) indalidProduct,
     required TResult Function(_NoInternetConnection value) noInternetConnection,
     required TResult Function(_Timeout value) timeout,
@@ -684,6 +1024,8 @@ class _$_InsufficientPermission implements _InsufficientPermission {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_AlreadyInFavoruites value)? alreadyInFavoruites,
+    TResult Function(_NotInFavoruites value)? notInFavourites,
     TResult Function(_IndalidProduct value)? indalidProduct,
     TResult Function(_NoInternetConnection value)? noInternetConnection,
     TResult Function(_Timeout value)? timeout,
@@ -696,6 +1038,8 @@ class _$_InsufficientPermission implements _InsufficientPermission {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_AlreadyInFavoruites value)? alreadyInFavoruites,
+    TResult Function(_NotInFavoruites value)? notInFavourites,
     TResult Function(_IndalidProduct value)? indalidProduct,
     TResult Function(_NoInternetConnection value)? noInternetConnection,
     TResult Function(_Timeout value)? timeout,
