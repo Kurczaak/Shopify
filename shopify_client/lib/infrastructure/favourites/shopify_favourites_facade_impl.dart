@@ -26,4 +26,9 @@ class ShopifyFavouritesFacadeImpl implements IFavouritesFacade {
   Stream<Either<FavouriteFailure, KtList<FavouriteProduct>>> watchFavourites() {
     return favouritesFacade.watchFavourites();
   }
+
+  @override
+  Future<Either<FavouriteFailure, bool>> isFavourite(UniqueId productId) {
+    return favouritesFacade.isFavourite(productId);
+  }
 }

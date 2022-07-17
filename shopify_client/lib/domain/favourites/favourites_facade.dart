@@ -9,5 +9,6 @@ abstract class IFavouritesFacade {
   Future<Either<FavouriteFailure, Unit>> removeFromFavourites(
       UniqueId productId);
 
+  Future<Either<FavouriteFailure, bool>> isFavourite(UniqueId productId);
   Stream<Either<FavouriteFailure, KtList<FavouriteProduct>>> watchFavourites();
 }
