@@ -4,6 +4,7 @@ import 'package:injectable/injectable.dart';
 import 'package:sealed_annotations/sealed_annotations.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:shopify_client/domain/cart/I_cart_facade.dart';
+import 'package:shopify_client/domain/favourites/favourites_facade.dart';
 import 'package:shopify_domain/cart/cart_failure.dart';
 import 'package:shopify_domain/cart/cart_item.dart';
 import 'package:shopify_domain/core/value_objects.dart';
@@ -18,7 +19,9 @@ part 'cart_and_favourite_bloc.sealed.dart';
 class CartAndFavouriteBloc
     extends Bloc<CartAndFavouriteEvent, CartAndFavouriteState> {
   final ICartFacade cartFacade;
-  CartAndFavouriteBloc(this.cartFacade)
+  final IFavouritesFacade favouritesFacade;
+  CartAndFavouriteBloc(
+      {required this.cartFacade, required this.favouritesFacade})
       : super(CartAndFavouriteState.initial()) {
     on<CartAndFavouriteEvent>((event, emit) async {
       await event.when(
