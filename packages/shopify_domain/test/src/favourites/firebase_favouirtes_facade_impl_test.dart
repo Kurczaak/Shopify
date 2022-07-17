@@ -95,6 +95,49 @@ void main() {
     await setUpFirestore(fakeFirestore);
   });
 
+  group('isFavourite', () {
+    test(
+      'should check the internet connection',
+      () async {
+        // act
+        await facade.isFavourite(productId);
+        // assert
+        verify(mockNetworkInfo.isConnected);
+      },
+    );
+
+    test(
+      'should return a failure if no internet connection is present',
+      () async {
+        // arrange
+        when(mockNetworkInfo.isConnected).thenAnswer((_) async => false);
+        // act
+        final result = await facade.isFavourite(productId);
+        // assert
+        expect(result, isA<Left<FavouriteFailure, bool>>());
+      },
+    );
+
+    test(
+      'should return true if the product is in favourites',
+      () async {
+        // act
+        final result = await facade.isFavourite(productId);
+        // assert
+        expect(result, right(true));
+      },
+    );
+    test(
+      'should return false if the product is not in favourites',
+      () async {
+        // act
+        final result = await facade.isFavourite(UniqueId());
+        // assert
+        expect(result, right(false));
+      },
+    );
+  });
+
   group('watchFavourites', () {
     test(
       'should check the internet connection',

@@ -99,4 +99,23 @@ class FirebaseFavouritesFacadeImpl implements IShopifyFavouritesFacade {
       yield const Left(FavouriteFailure.noInternetConnection());
     }
   }
+
+  @override
+  Future<Either<FavouriteFailure, bool>> isFavourite(UniqueId productId) async {
+    if (await networkInfo.isConnected) {
+      final query = firebase.favouritesCollection
+          .where('productId', isEqualTo: productId.getOrCrash());
+
+      final snapshot = await query.get();
+      if (snapshot.docs.isEmpty) {
+        return right(false);
+      } else if (snapshot.docs.length == 1) {
+        return right(true);
+      } else {
+        return left(const FavouriteFailure.unexpected());
+      }
+    } else {
+      return left(const FavouriteFailure.noInternetConnection());
+    }
+  }
 }
