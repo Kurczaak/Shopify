@@ -25,7 +25,17 @@ class CartAndFavouriteBloc
       : super(CartAndFavouriteState.initial()) {
     on<CartAndFavouriteEvent>((event, emit) async {
       await event.when(
-          addToFavourite: () async {},
+          initialize: (UniqueId productId) async {
+            final isFavOrFailure =
+                await favouritesFacade.isFavourite(productId);
+            isFavOrFailure.fold(
+                (failure) => emit(state.copyWith(
+                    failureOption:
+                        some(const CartFailure.couldNotInitialize()))),
+                (isFavourite) => emit(state.copyWith(
+                    failureOption: none(), isFavouirte: some(isFavourite))));
+          },
+          toggleFavourite: (UniqueId productId) async {},
           addToCart: (PricedProduct product, int quantity) async {
             final cartItem = CartItem(
                 id: UniqueId(),

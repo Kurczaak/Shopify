@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$CartAndFavouriteState {
-  bool get isFavouirte => throw _privateConstructorUsedError;
+  Option<bool> get isFavouirte => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
   Option<CartFailure> get failureOption => throw _privateConstructorUsedError;
 
@@ -31,7 +31,9 @@ abstract class $CartAndFavouriteStateCopyWith<$Res> {
           $Res Function(CartAndFavouriteState) then) =
       _$CartAndFavouriteStateCopyWithImpl<$Res>;
   $Res call(
-      {bool isFavouirte, bool isLoading, Option<CartFailure> failureOption});
+      {Option<bool> isFavouirte,
+      bool isLoading,
+      Option<CartFailure> failureOption});
 }
 
 /// @nodoc
@@ -53,7 +55,7 @@ class _$CartAndFavouriteStateCopyWithImpl<$Res>
       isFavouirte: isFavouirte == freezed
           ? _value.isFavouirte
           : isFavouirte // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as Option<bool>,
       isLoading: isLoading == freezed
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
@@ -74,7 +76,9 @@ abstract class _$$_CartAndFavouriteStateCopyWith<$Res>
       __$$_CartAndFavouriteStateCopyWithImpl<$Res>;
   @override
   $Res call(
-      {bool isFavouirte, bool isLoading, Option<CartFailure> failureOption});
+      {Option<bool> isFavouirte,
+      bool isLoading,
+      Option<CartFailure> failureOption});
 }
 
 /// @nodoc
@@ -99,7 +103,7 @@ class __$$_CartAndFavouriteStateCopyWithImpl<$Res>
       isFavouirte: isFavouirte == freezed
           ? _value.isFavouirte
           : isFavouirte // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as Option<bool>,
       isLoading: isLoading == freezed
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
@@ -121,7 +125,7 @@ class _$_CartAndFavouriteState implements _CartAndFavouriteState {
       required this.failureOption});
 
   @override
-  final bool isFavouirte;
+  final Option<bool> isFavouirte;
   @override
   final bool isLoading;
   @override
@@ -160,13 +164,13 @@ class _$_CartAndFavouriteState implements _CartAndFavouriteState {
 
 abstract class _CartAndFavouriteState implements CartAndFavouriteState {
   const factory _CartAndFavouriteState(
-          {required final bool isFavouirte,
+          {required final Option<bool> isFavouirte,
           required final bool isLoading,
           required final Option<CartFailure> failureOption}) =
       _$_CartAndFavouriteState;
 
   @override
-  bool get isFavouirte => throw _privateConstructorUsedError;
+  Option<bool> get isFavouirte => throw _privateConstructorUsedError;
   @override
   bool get isLoading => throw _privateConstructorUsedError;
   @override

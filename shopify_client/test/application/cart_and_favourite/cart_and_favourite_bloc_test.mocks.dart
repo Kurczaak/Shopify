@@ -122,6 +122,13 @@ class MockIFavouritesFacade extends _i1.Mock implements _i10.IFavouritesFacade {
                       _FakeEither_0<_i11.FavouriteFailure, _i2.Unit>()))
           as _i4.Future<_i2.Either<_i11.FavouriteFailure, _i2.Unit>>);
   @override
+  _i4.Future<_i2.Either<_i11.FavouriteFailure, bool>> isFavourite(
+          _i9.UniqueId? productId) =>
+      (super.noSuchMethod(Invocation.method(#isFavourite, [productId]),
+          returnValue: Future<_i2.Either<_i11.FavouriteFailure, bool>>.value(
+              _FakeEither_0<_i11.FavouriteFailure, bool>())) as _i4
+          .Future<_i2.Either<_i11.FavouriteFailure, bool>>);
+  @override
   _i4.Stream<_i2.Either<_i11.FavouriteFailure, _i12.KtList<_i13.FavouriteProduct>>>
       watchFavourites() =>
           (super.noSuchMethod(Invocation.method(#watchFavourites, []),
