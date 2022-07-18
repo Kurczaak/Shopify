@@ -5,8 +5,12 @@ class CartAndFavouriteState with _$CartAndFavouriteState {
   const factory CartAndFavouriteState({
     required Option<bool> isFavouirte,
     required bool isLoading,
-    required Option<CartFailure> failureOption,
+    required Option<CartFailure> cartFailureOption,
+    required Option<FavouriteFailure> favouriteFailureOption,
   }) = _CartAndFavouriteState;
   factory CartAndFavouriteState.initial() => CartAndFavouriteState(
-      isFavouirte: none(), isLoading: false, failureOption: none());
+      isFavouirte: none(),
+      isLoading: false,
+      cartFailureOption: none(),
+      favouriteFailureOption: none());
 }

@@ -14,7 +14,7 @@ import 'package:auto_route/auto_route.dart' as _i8;
 import 'package:flutter/material.dart' as _i17;
 import 'package:kt_dart/collection.dart' as _i18;
 import 'package:shopify_domain/cart/cart_item.dart' as _i19;
-import 'package:shopify_domain/product.dart' as _i21;
+import 'package:shopify_domain/product/product_snippets.dart' as _i21;
 import 'package:shopify_domain/shop.dart' as _i20;
 
 import '../../home_page.dart' as _i5;

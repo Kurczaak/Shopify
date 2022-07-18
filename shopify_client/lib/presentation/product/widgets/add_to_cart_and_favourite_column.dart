@@ -16,24 +16,43 @@ class AddToCartAndFavouriteColumn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<CartAndFavouriteBloc>(
-      create: (context) => getIt<CartAndFavouriteBloc>(),
+      create: (context) => getIt<CartAndFavouriteBloc>()
+        ..add(CartAndFavouriteEvent.initialize(productId: product.productId)),
       child: BlocConsumer<CartAndFavouriteBloc, CartAndFavouriteState>(
         listenWhen: (previous, current) {
           if (previous.isLoading && !current.isLoading) {
             return true;
           }
-          if (current.failureOption.isSome()) {
+          if (current.cartFailureOption.isSome()) {
+            return true;
+          }
+          if (current.favouriteFailureOption.isSome()) {
             return true;
           }
           return false;
         },
         listener: ((context, state) {
-          state.failureOption.fold(
-              () => FlushbarHelper.createSuccess(
-                      message: "Added product to the cart!")
-                  .show(context),
+          state.favouriteFailureOption.fold(
+              () => null,
               (failure) => FlushbarHelper.createError(
                     message: failure.map(
+                        alreadyInFavoruites: (_) =>
+                            'Product already in favourites!',
+                        indalidProduct: (_) => 'Invalid product!',
+                        notInFavourites: (_) => 'Product is not in favourites.',
+                        insufficientPermission: (_) =>
+                            'Insufficient permission',
+                        noInternetConnection: (_) => 'No internet connection',
+                        timeout: (_) => 'Connection timed out',
+                        unexpected: (_) => 'An unexpected error has occured'),
+                  ).show(context));
+
+          state.cartFailureOption.fold(
+              () => null,
+              (failure) => FlushbarHelper.createError(
+                    message: failure.map(
+                        couldNotInitialize: (_) =>
+                            'Could not initialize your liked items',
                         itemDoesNotExist: (_) => 'This item does not exists',
                         insufficientPermission: (_) =>
                             'Insufficient permission',
@@ -97,12 +116,16 @@ class AddToCartAndFavouriteColumn extends StatelessWidget {
                 fit: BoxFit.contain,
                 child: InkWell(
                   onTap: () {
-                    context
-                        .read<CartAndFavouriteBloc>()
-                        .add(const CartAndFavouriteEvent.addToFavourite());
+                    context.read<CartAndFavouriteBloc>().add(
+                        CartAndFavouriteEvent.toggleFavourite(
+                            productId: product.productId));
                   },
                   child: Icon(
-                    Icons.favorite_border,
+                    state.isFavouirte.fold(
+                      () => Icons.favorite_border,
+                      (isFavourite) =>
+                          isFavourite ? Icons.favorite : Icons.favorite_border,
+                    ),
                     color: Theme.of(context).colorScheme.error,
                   ),
                 ),

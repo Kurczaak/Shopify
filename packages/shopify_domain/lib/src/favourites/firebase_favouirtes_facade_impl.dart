@@ -43,6 +43,7 @@ class FirebaseFavouritesFacadeImpl implements IShopifyFavouritesFacade {
         if (e.code.contains('not-found')) {
           return left(const FavouriteFailure.alreadyInFavoruites());
         }
+        print(e);
         return left(const FavouriteFailure.unexpected());
       } on TimeoutException {
         return left(const FavouriteFailure.timeout());

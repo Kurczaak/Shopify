@@ -18,7 +18,10 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$CartAndFavouriteState {
   Option<bool> get isFavouirte => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
-  Option<CartFailure> get failureOption => throw _privateConstructorUsedError;
+  Option<CartFailure> get cartFailureOption =>
+      throw _privateConstructorUsedError;
+  Option<FavouriteFailure> get favouriteFailureOption =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $CartAndFavouriteStateCopyWith<CartAndFavouriteState> get copyWith =>
@@ -33,7 +36,8 @@ abstract class $CartAndFavouriteStateCopyWith<$Res> {
   $Res call(
       {Option<bool> isFavouirte,
       bool isLoading,
-      Option<CartFailure> failureOption});
+      Option<CartFailure> cartFailureOption,
+      Option<FavouriteFailure> favouriteFailureOption});
 }
 
 /// @nodoc
@@ -49,7 +53,8 @@ class _$CartAndFavouriteStateCopyWithImpl<$Res>
   $Res call({
     Object? isFavouirte = freezed,
     Object? isLoading = freezed,
-    Object? failureOption = freezed,
+    Object? cartFailureOption = freezed,
+    Object? favouriteFailureOption = freezed,
   }) {
     return _then(_value.copyWith(
       isFavouirte: isFavouirte == freezed
@@ -60,10 +65,14 @@ class _$CartAndFavouriteStateCopyWithImpl<$Res>
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
-      failureOption: failureOption == freezed
-          ? _value.failureOption
-          : failureOption // ignore: cast_nullable_to_non_nullable
+      cartFailureOption: cartFailureOption == freezed
+          ? _value.cartFailureOption
+          : cartFailureOption // ignore: cast_nullable_to_non_nullable
               as Option<CartFailure>,
+      favouriteFailureOption: favouriteFailureOption == freezed
+          ? _value.favouriteFailureOption
+          : favouriteFailureOption // ignore: cast_nullable_to_non_nullable
+              as Option<FavouriteFailure>,
     ));
   }
 }
@@ -78,7 +87,8 @@ abstract class _$$_CartAndFavouriteStateCopyWith<$Res>
   $Res call(
       {Option<bool> isFavouirte,
       bool isLoading,
-      Option<CartFailure> failureOption});
+      Option<CartFailure> cartFailureOption,
+      Option<FavouriteFailure> favouriteFailureOption});
 }
 
 /// @nodoc
@@ -97,7 +107,8 @@ class __$$_CartAndFavouriteStateCopyWithImpl<$Res>
   $Res call({
     Object? isFavouirte = freezed,
     Object? isLoading = freezed,
-    Object? failureOption = freezed,
+    Object? cartFailureOption = freezed,
+    Object? favouriteFailureOption = freezed,
   }) {
     return _then(_$_CartAndFavouriteState(
       isFavouirte: isFavouirte == freezed
@@ -108,10 +119,14 @@ class __$$_CartAndFavouriteStateCopyWithImpl<$Res>
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
-      failureOption: failureOption == freezed
-          ? _value.failureOption
-          : failureOption // ignore: cast_nullable_to_non_nullable
+      cartFailureOption: cartFailureOption == freezed
+          ? _value.cartFailureOption
+          : cartFailureOption // ignore: cast_nullable_to_non_nullable
               as Option<CartFailure>,
+      favouriteFailureOption: favouriteFailureOption == freezed
+          ? _value.favouriteFailureOption
+          : favouriteFailureOption // ignore: cast_nullable_to_non_nullable
+              as Option<FavouriteFailure>,
     ));
   }
 }
@@ -122,18 +137,21 @@ class _$_CartAndFavouriteState implements _CartAndFavouriteState {
   const _$_CartAndFavouriteState(
       {required this.isFavouirte,
       required this.isLoading,
-      required this.failureOption});
+      required this.cartFailureOption,
+      required this.favouriteFailureOption});
 
   @override
   final Option<bool> isFavouirte;
   @override
   final bool isLoading;
   @override
-  final Option<CartFailure> failureOption;
+  final Option<CartFailure> cartFailureOption;
+  @override
+  final Option<FavouriteFailure> favouriteFailureOption;
 
   @override
   String toString() {
-    return 'CartAndFavouriteState(isFavouirte: $isFavouirte, isLoading: $isLoading, failureOption: $failureOption)';
+    return 'CartAndFavouriteState(isFavouirte: $isFavouirte, isLoading: $isLoading, cartFailureOption: $cartFailureOption, favouriteFailureOption: $favouriteFailureOption)';
   }
 
   @override
@@ -145,7 +163,9 @@ class _$_CartAndFavouriteState implements _CartAndFavouriteState {
                 .equals(other.isFavouirte, isFavouirte) &&
             const DeepCollectionEquality().equals(other.isLoading, isLoading) &&
             const DeepCollectionEquality()
-                .equals(other.failureOption, failureOption));
+                .equals(other.cartFailureOption, cartFailureOption) &&
+            const DeepCollectionEquality()
+                .equals(other.favouriteFailureOption, favouriteFailureOption));
   }
 
   @override
@@ -153,7 +173,8 @@ class _$_CartAndFavouriteState implements _CartAndFavouriteState {
       runtimeType,
       const DeepCollectionEquality().hash(isFavouirte),
       const DeepCollectionEquality().hash(isLoading),
-      const DeepCollectionEquality().hash(failureOption));
+      const DeepCollectionEquality().hash(cartFailureOption),
+      const DeepCollectionEquality().hash(favouriteFailureOption));
 
   @JsonKey(ignore: true)
   @override
@@ -166,7 +187,8 @@ abstract class _CartAndFavouriteState implements CartAndFavouriteState {
   const factory _CartAndFavouriteState(
           {required final Option<bool> isFavouirte,
           required final bool isLoading,
-          required final Option<CartFailure> failureOption}) =
+          required final Option<CartFailure> cartFailureOption,
+          required final Option<FavouriteFailure> favouriteFailureOption}) =
       _$_CartAndFavouriteState;
 
   @override
@@ -174,7 +196,11 @@ abstract class _CartAndFavouriteState implements CartAndFavouriteState {
   @override
   bool get isLoading => throw _privateConstructorUsedError;
   @override
-  Option<CartFailure> get failureOption => throw _privateConstructorUsedError;
+  Option<CartFailure> get cartFailureOption =>
+      throw _privateConstructorUsedError;
+  @override
+  Option<FavouriteFailure> get favouriteFailureOption =>
+      throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$$_CartAndFavouriteStateCopyWith<_$_CartAndFavouriteState> get copyWith =>
