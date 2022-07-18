@@ -11,11 +11,12 @@
 // ignore_for_file: type=lint
 
 import 'package:auto_route/auto_route.dart' as _i8;
+import 'package:flutter/cupertino.dart' as _i18;
 import 'package:flutter/material.dart' as _i17;
-import 'package:kt_dart/collection.dart' as _i18;
-import 'package:shopify_domain/cart/cart_item.dart' as _i19;
-import 'package:shopify_domain/product/product_snippets.dart' as _i21;
-import 'package:shopify_domain/shop.dart' as _i20;
+import 'package:kt_dart/collection.dart' as _i19;
+import 'package:shopify_domain/cart/cart_item.dart' as _i20;
+import 'package:shopify_domain/product.dart' as _i22;
+import 'package:shopify_domain/shop.dart' as _i21;
 
 import '../../home_page.dart' as _i5;
 import '../best_offers/best_offers_page.dart' as _i14;
@@ -222,8 +223,8 @@ class UserOrdersRoute extends _i8.PageRouteInfo<void> {
 /// [_i4.OrderPage]
 class OrderRoute extends _i8.PageRouteInfo<OrderRouteArgs> {
   OrderRoute(
-      {_i17.Key? key,
-      required _i18.KtList<_i19.CartItem> orderItems,
+      {_i18.Key? key,
+      required _i19.KtList<_i20.CartItem> orderItems,
       required String title})
       : super(OrderRoute.name,
             path: 'order-page',
@@ -237,9 +238,9 @@ class OrderRouteArgs {
   const OrderRouteArgs(
       {this.key, required this.orderItems, required this.title});
 
-  final _i17.Key? key;
+  final _i18.Key? key;
 
-  final _i18.KtList<_i19.CartItem> orderItems;
+  final _i19.KtList<_i20.CartItem> orderItems;
 
   final String title;
 
@@ -342,7 +343,7 @@ class ShopPickerRoute extends _i8.PageRouteInfo<void> {
 class ShopProductsBrowserRoute
     extends _i8.PageRouteInfo<ShopProductsBrowserRouteArgs> {
   ShopProductsBrowserRoute(
-      {_i17.Key? key, required _i20.Shop shop, required String title})
+      {_i18.Key? key, required _i21.Shop shop, required String title})
       : super(ShopProductsBrowserRoute.name,
             path: ':title',
             args: ShopProductsBrowserRouteArgs(
@@ -356,9 +357,9 @@ class ShopProductsBrowserRouteArgs {
   const ShopProductsBrowserRouteArgs(
       {this.key, required this.shop, required this.title});
 
-  final _i17.Key? key;
+  final _i18.Key? key;
 
-  final _i20.Shop shop;
+  final _i21.Shop shop;
 
   final String title;
 
@@ -372,9 +373,9 @@ class ShopProductsBrowserRouteArgs {
 /// [_i13.ProductPreviewPage]
 class ProductPreviewRoute extends _i8.PageRouteInfo<ProductPreviewRouteArgs> {
   ProductPreviewRoute(
-      {_i17.Key? key,
-      required _i21.PricedProduct product,
-      required _i20.Shop shop,
+      {_i18.Key? key,
+      required _i22.PricedProduct product,
+      required _i21.Shop shop,
       required String title})
       : super(ProductPreviewRoute.name,
             path: ':title',
@@ -392,11 +393,11 @@ class ProductPreviewRouteArgs {
       required this.shop,
       required this.title});
 
-  final _i17.Key? key;
+  final _i18.Key? key;
 
-  final _i21.PricedProduct product;
+  final _i22.PricedProduct product;
 
-  final _i20.Shop shop;
+  final _i21.Shop shop;
 
   final String title;
 
