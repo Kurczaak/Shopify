@@ -20,12 +20,16 @@ FavouriteProductDto _$FavouriteProductDtoFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$FavouriteProductDto {
+  @JsonKey(ignore: true)
   String get id => throw _privateConstructorUsedError;
   String get barcode => throw _privateConstructorUsedError;
   String get productId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'name')
   String get productName => throw _privateConstructorUsedError;
   String get category => throw _privateConstructorUsedError;
   String get brand => throw _privateConstructorUsedError;
+  WeightDto get weight => throw _privateConstructorUsedError;
+  @JsonKey(name: 'photo')
   String get photoUrl => throw _privateConstructorUsedError;
   String get userId => throw _privateConstructorUsedError;
 
@@ -41,14 +45,17 @@ abstract class $FavouriteProductDtoCopyWith<$Res> {
           FavouriteProductDto value, $Res Function(FavouriteProductDto) then) =
       _$FavouriteProductDtoCopyWithImpl<$Res>;
   $Res call(
-      {String id,
+      {@JsonKey(ignore: true) String id,
       String barcode,
       String productId,
-      String productName,
+      @JsonKey(name: 'name') String productName,
       String category,
       String brand,
-      String photoUrl,
+      WeightDto weight,
+      @JsonKey(name: 'photo') String photoUrl,
       String userId});
+
+  $WeightDtoCopyWith<$Res> get weight;
 }
 
 /// @nodoc
@@ -68,6 +75,7 @@ class _$FavouriteProductDtoCopyWithImpl<$Res>
     Object? productName = freezed,
     Object? category = freezed,
     Object? brand = freezed,
+    Object? weight = freezed,
     Object? photoUrl = freezed,
     Object? userId = freezed,
   }) {
@@ -96,6 +104,10 @@ class _$FavouriteProductDtoCopyWithImpl<$Res>
           ? _value.brand
           : brand // ignore: cast_nullable_to_non_nullable
               as String,
+      weight: weight == freezed
+          ? _value.weight
+          : weight // ignore: cast_nullable_to_non_nullable
+              as WeightDto,
       photoUrl: photoUrl == freezed
           ? _value.photoUrl
           : photoUrl // ignore: cast_nullable_to_non_nullable
@@ -105,6 +117,13 @@ class _$FavouriteProductDtoCopyWithImpl<$Res>
           : userId // ignore: cast_nullable_to_non_nullable
               as String,
     ));
+  }
+
+  @override
+  $WeightDtoCopyWith<$Res> get weight {
+    return $WeightDtoCopyWith<$Res>(_value.weight, (value) {
+      return _then(_value.copyWith(weight: value));
+    });
   }
 }
 
@@ -116,14 +135,18 @@ abstract class _$$_FavouriteProductDtoCopyWith<$Res>
       __$$_FavouriteProductDtoCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String id,
+      {@JsonKey(ignore: true) String id,
       String barcode,
       String productId,
-      String productName,
+      @JsonKey(name: 'name') String productName,
       String category,
       String brand,
-      String photoUrl,
+      WeightDto weight,
+      @JsonKey(name: 'photo') String photoUrl,
       String userId});
+
+  @override
+  $WeightDtoCopyWith<$Res> get weight;
 }
 
 /// @nodoc
@@ -145,6 +168,7 @@ class __$$_FavouriteProductDtoCopyWithImpl<$Res>
     Object? productName = freezed,
     Object? category = freezed,
     Object? brand = freezed,
+    Object? weight = freezed,
     Object? photoUrl = freezed,
     Object? userId = freezed,
   }) {
@@ -173,6 +197,10 @@ class __$$_FavouriteProductDtoCopyWithImpl<$Res>
           ? _value.brand
           : brand // ignore: cast_nullable_to_non_nullable
               as String,
+      weight: weight == freezed
+          ? _value.weight
+          : weight // ignore: cast_nullable_to_non_nullable
+              as WeightDto,
       photoUrl: photoUrl == freezed
           ? _value.photoUrl
           : photoUrl // ignore: cast_nullable_to_non_nullable
@@ -189,13 +217,14 @@ class __$$_FavouriteProductDtoCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_FavouriteProductDto extends _FavouriteProductDto {
   const _$_FavouriteProductDto(
-      {required this.id,
+      {@JsonKey(ignore: true) this.id = '',
       required this.barcode,
       required this.productId,
-      required this.productName,
+      @JsonKey(name: 'name') required this.productName,
       required this.category,
       required this.brand,
-      required this.photoUrl,
+      required this.weight,
+      @JsonKey(name: 'photo') required this.photoUrl,
       required this.userId})
       : super._();
 
@@ -203,25 +232,30 @@ class _$_FavouriteProductDto extends _FavouriteProductDto {
       _$$_FavouriteProductDtoFromJson(json);
 
   @override
+  @JsonKey(ignore: true)
   final String id;
   @override
   final String barcode;
   @override
   final String productId;
   @override
+  @JsonKey(name: 'name')
   final String productName;
   @override
   final String category;
   @override
   final String brand;
   @override
+  final WeightDto weight;
+  @override
+  @JsonKey(name: 'photo')
   final String photoUrl;
   @override
   final String userId;
 
   @override
   String toString() {
-    return 'FavouriteProductDto(id: $id, barcode: $barcode, productId: $productId, productName: $productName, category: $category, brand: $brand, photoUrl: $photoUrl, userId: $userId)';
+    return 'FavouriteProductDto(id: $id, barcode: $barcode, productId: $productId, productName: $productName, category: $category, brand: $brand, weight: $weight, photoUrl: $photoUrl, userId: $userId)';
   }
 
   @override
@@ -236,6 +270,7 @@ class _$_FavouriteProductDto extends _FavouriteProductDto {
                 .equals(other.productName, productName) &&
             const DeepCollectionEquality().equals(other.category, category) &&
             const DeepCollectionEquality().equals(other.brand, brand) &&
+            const DeepCollectionEquality().equals(other.weight, weight) &&
             const DeepCollectionEquality().equals(other.photoUrl, photoUrl) &&
             const DeepCollectionEquality().equals(other.userId, userId));
   }
@@ -250,6 +285,7 @@ class _$_FavouriteProductDto extends _FavouriteProductDto {
       const DeepCollectionEquality().hash(productName),
       const DeepCollectionEquality().hash(category),
       const DeepCollectionEquality().hash(brand),
+      const DeepCollectionEquality().hash(weight),
       const DeepCollectionEquality().hash(photoUrl),
       const DeepCollectionEquality().hash(userId));
 
@@ -267,13 +303,14 @@ class _$_FavouriteProductDto extends _FavouriteProductDto {
 
 abstract class _FavouriteProductDto extends FavouriteProductDto {
   const factory _FavouriteProductDto(
-      {required final String id,
+      {@JsonKey(ignore: true) final String id,
       required final String barcode,
       required final String productId,
-      required final String productName,
+      @JsonKey(name: 'name') required final String productName,
       required final String category,
       required final String brand,
-      required final String photoUrl,
+      required final WeightDto weight,
+      @JsonKey(name: 'photo') required final String photoUrl,
       required final String userId}) = _$_FavouriteProductDto;
   const _FavouriteProductDto._() : super._();
 
@@ -281,18 +318,23 @@ abstract class _FavouriteProductDto extends FavouriteProductDto {
       _$_FavouriteProductDto.fromJson;
 
   @override
+  @JsonKey(ignore: true)
   String get id => throw _privateConstructorUsedError;
   @override
   String get barcode => throw _privateConstructorUsedError;
   @override
   String get productId => throw _privateConstructorUsedError;
   @override
+  @JsonKey(name: 'name')
   String get productName => throw _privateConstructorUsedError;
   @override
   String get category => throw _privateConstructorUsedError;
   @override
   String get brand => throw _privateConstructorUsedError;
   @override
+  WeightDto get weight => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(name: 'photo')
   String get photoUrl => throw _privateConstructorUsedError;
   @override
   String get userId => throw _privateConstructorUsedError;

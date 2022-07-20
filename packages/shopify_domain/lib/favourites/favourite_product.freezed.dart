@@ -23,6 +23,7 @@ mixin _$FavouriteProduct {
   Category get category => throw _privateConstructorUsedError;
   BrandName get brand => throw _privateConstructorUsedError;
   ShopifyUrl get photoUrl => throw _privateConstructorUsedError;
+  Weight get weight => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $FavouriteProductCopyWith<FavouriteProduct> get copyWith =>
@@ -41,7 +42,10 @@ abstract class $FavouriteProductCopyWith<$Res> {
       ProductName productName,
       Category category,
       BrandName brand,
-      ShopifyUrl photoUrl});
+      ShopifyUrl photoUrl,
+      Weight weight});
+
+  $WeightCopyWith<$Res> get weight;
 }
 
 /// @nodoc
@@ -62,6 +66,7 @@ class _$FavouriteProductCopyWithImpl<$Res>
     Object? category = freezed,
     Object? brand = freezed,
     Object? photoUrl = freezed,
+    Object? weight = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -92,7 +97,18 @@ class _$FavouriteProductCopyWithImpl<$Res>
           ? _value.photoUrl
           : photoUrl // ignore: cast_nullable_to_non_nullable
               as ShopifyUrl,
+      weight: weight == freezed
+          ? _value.weight
+          : weight // ignore: cast_nullable_to_non_nullable
+              as Weight,
     ));
+  }
+
+  @override
+  $WeightCopyWith<$Res> get weight {
+    return $WeightCopyWith<$Res>(_value.weight, (value) {
+      return _then(_value.copyWith(weight: value));
+    });
   }
 }
 
@@ -110,7 +126,11 @@ abstract class _$$_FavouriteProductCopyWith<$Res>
       ProductName productName,
       Category category,
       BrandName brand,
-      ShopifyUrl photoUrl});
+      ShopifyUrl photoUrl,
+      Weight weight});
+
+  @override
+  $WeightCopyWith<$Res> get weight;
 }
 
 /// @nodoc
@@ -133,6 +153,7 @@ class __$$_FavouriteProductCopyWithImpl<$Res>
     Object? category = freezed,
     Object? brand = freezed,
     Object? photoUrl = freezed,
+    Object? weight = freezed,
   }) {
     return _then(_$_FavouriteProduct(
       id: id == freezed
@@ -163,6 +184,10 @@ class __$$_FavouriteProductCopyWithImpl<$Res>
           ? _value.photoUrl
           : photoUrl // ignore: cast_nullable_to_non_nullable
               as ShopifyUrl,
+      weight: weight == freezed
+          ? _value.weight
+          : weight // ignore: cast_nullable_to_non_nullable
+              as Weight,
     ));
   }
 }
@@ -177,7 +202,8 @@ class _$_FavouriteProduct implements _FavouriteProduct {
       required this.productName,
       required this.category,
       required this.brand,
-      required this.photoUrl});
+      required this.photoUrl,
+      required this.weight});
 
   @override
   final UniqueId id;
@@ -193,10 +219,12 @@ class _$_FavouriteProduct implements _FavouriteProduct {
   final BrandName brand;
   @override
   final ShopifyUrl photoUrl;
+  @override
+  final Weight weight;
 
   @override
   String toString() {
-    return 'FavouriteProduct(id: $id, barcode: $barcode, productId: $productId, productName: $productName, category: $category, brand: $brand, photoUrl: $photoUrl)';
+    return 'FavouriteProduct(id: $id, barcode: $barcode, productId: $productId, productName: $productName, category: $category, brand: $brand, photoUrl: $photoUrl, weight: $weight)';
   }
 
   @override
@@ -211,7 +239,8 @@ class _$_FavouriteProduct implements _FavouriteProduct {
                 .equals(other.productName, productName) &&
             const DeepCollectionEquality().equals(other.category, category) &&
             const DeepCollectionEquality().equals(other.brand, brand) &&
-            const DeepCollectionEquality().equals(other.photoUrl, photoUrl));
+            const DeepCollectionEquality().equals(other.photoUrl, photoUrl) &&
+            const DeepCollectionEquality().equals(other.weight, weight));
   }
 
   @override
@@ -223,7 +252,8 @@ class _$_FavouriteProduct implements _FavouriteProduct {
       const DeepCollectionEquality().hash(productName),
       const DeepCollectionEquality().hash(category),
       const DeepCollectionEquality().hash(brand),
-      const DeepCollectionEquality().hash(photoUrl));
+      const DeepCollectionEquality().hash(photoUrl),
+      const DeepCollectionEquality().hash(weight));
 
   @JsonKey(ignore: true)
   @override
@@ -239,7 +269,8 @@ abstract class _FavouriteProduct implements FavouriteProduct {
       required final ProductName productName,
       required final Category category,
       required final BrandName brand,
-      required final ShopifyUrl photoUrl}) = _$_FavouriteProduct;
+      required final ShopifyUrl photoUrl,
+      required final Weight weight}) = _$_FavouriteProduct;
 
   @override
   UniqueId get id => throw _privateConstructorUsedError;
@@ -255,6 +286,8 @@ abstract class _FavouriteProduct implements FavouriteProduct {
   BrandName get brand => throw _privateConstructorUsedError;
   @override
   ShopifyUrl get photoUrl => throw _privateConstructorUsedError;
+  @override
+  Weight get weight => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$$_FavouriteProductCopyWith<_$_FavouriteProduct> get copyWith =>

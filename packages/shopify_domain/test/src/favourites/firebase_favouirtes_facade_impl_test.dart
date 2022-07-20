@@ -46,6 +46,7 @@ void main() {
   final category = Category(Categories.bio);
   final photoUrl = ShopifyUrl('https://www.shopify.com/1');
   final favouriteProduct = FavouriteProduct(
+      weight: Weight.zero(),
       id: favouriteProductId,
       barcode: barcode,
       productId: productId,

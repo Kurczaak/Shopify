@@ -10,19 +10,22 @@ part 'favourite_product_dtos.g.dart';
 @freezed
 class FavouriteProductDto with _$FavouriteProductDto {
   const FavouriteProductDto._();
-  const factory FavouriteProductDto(
-      {required String id,
-      required String barcode,
-      required String productId,
-      required String productName,
-      required String category,
-      required String brand,
-      required String photoUrl,
-      required String userId}) = _FavouriteProductDto;
+  const factory FavouriteProductDto({
+    @Default('') @JsonKey(ignore: true) String id,
+    required String barcode,
+    required String productId,
+    @JsonKey(name: 'name') required String productName,
+    required String category,
+    required String brand,
+    required WeightDto weight,
+    @JsonKey(name: 'photo') required String photoUrl,
+    required String userId,
+  }) = _FavouriteProductDto;
 
   factory FavouriteProductDto.fromDomain(
           FavouriteProduct product, UniqueId userId) =>
       FavouriteProductDto(
+          weight: WeightDto.fromDomain(product.weight),
           barcode: product.barcode.getOrCrash(),
           brand: product.brand.getOrCrash(),
           category: product.category.getOrCrash().name,
@@ -33,6 +36,7 @@ class FavouriteProductDto with _$FavouriteProductDto {
           userId: userId.getOrCrash());
 
   FavouriteProduct toDomain() => FavouriteProduct(
+      weight: weight.toDomain(),
       id: UniqueId.fromUniqueString(id),
       barcode: Barcode(barcode),
       productId: UniqueId.fromUniqueString(productId),
