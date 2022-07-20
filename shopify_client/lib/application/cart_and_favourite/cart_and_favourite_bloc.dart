@@ -34,6 +34,7 @@ class CartAndFavouriteBloc
                 favouriteFailureOption: none(),
                 isFavouirte: some(isFavourite))));
       }, toggleFavourite: (UniqueId productId) async {
+        emit(state.copyWith(favouriteFailureOption: none()));
         await state.isFavouirte.fold(() async {
           final isFavOrFailure = await favouritesFacade.isFavourite(productId);
           await isFavOrFailure.fold(
