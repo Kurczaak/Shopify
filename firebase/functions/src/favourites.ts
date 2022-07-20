@@ -30,6 +30,7 @@ exports.addToFavourites = functions.https.onCall(async (data, context) => {
         const favourite = await db.collection("favourites").add({
             "productId": productSnapshot.id,
             "barcode": productData.barcode,
+            "weight": productData.weight,
             "name": productData.name,
             "brand": productData.brand,
             "category": productData.category,
