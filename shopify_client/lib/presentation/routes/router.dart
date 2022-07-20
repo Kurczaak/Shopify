@@ -53,10 +53,10 @@ import 'package:shopify_client/presentation/your_lists/your_lists_page.dart';
             page: EmptyRouterPage,
             children: [AutoRoute(page: BestOffersPage)]),
         AutoRoute(
-            path: 'Favourites',
-            name: 'favouritesRouter',
-            page: EmptyRouterPage,
-            children: [AutoRoute(page: FavouritesPage)]),
+          path: 'Favourites',
+          name: 'favouritesRouter',
+          page: FavouritesPage,
+        ),
         AutoRoute(
             path: 'Your Lists',
             name: 'yourListsRouter',

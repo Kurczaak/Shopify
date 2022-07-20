@@ -29,6 +29,8 @@ class CartPage extends StatelessWidget {
               (failureOrUnit) => failureOrUnit.fold(
                   (failure) => FlushbarHelper.createError(
                           message: failure.map(
+                              couldNotInitialize: (_) =>
+                                  'Could not initialize your liked items',
                               unexpected: (_) => 'Unexpected error',
                               invalidCartItem: (_) => 'Invalid cart item',
                               noInternetConnection: (_) =>

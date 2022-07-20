@@ -15,33 +15,29 @@ part 'cart_and_favourite_bloc.freezed.dart';
 part 'cart_and_favourite_bloc.sealed.dart';
 
 @injectable
-class CartAndFavouriteBloc
-    extends Bloc<CartAndFavouriteEvent, CartAndFavouriteState> {
+class CartActorBloc extends Bloc<CartActorEvent, CartActorState> {
   final ICartFacade cartFacade;
-  CartAndFavouriteBloc(this.cartFacade)
-      : super(CartAndFavouriteState.initial()) {
-    on<CartAndFavouriteEvent>((event, emit) async {
-      await event.when(
-          addToFavourite: () async {},
-          addToCart: (PricedProduct product, int quantity) async {
-            final cartItem = CartItem(
-                id: UniqueId(),
-                product: product,
-                quantity: NonnegativeInt(quantity));
-            await cartItem.failureOrUnit.fold(
-                (failure) async => emit(state.copyWith(
-                    failureOption: some(const CartFailure.invalidCartItem()))),
-                (_) async {
-              emit(state.copyWith(isLoading: true, failureOption: none()));
+  CartActorBloc(this.cartFacade) : super(CartActorState.initial()) {
+    on<CartActorEvent>((event, emit) async {
+      await event.when(addToCart: (PricedProduct product, int quantity) async {
+        final cartItem = CartItem(
+            id: UniqueId(),
+            product: product,
+            quantity: NonnegativeInt(quantity));
+        await cartItem.failureOrUnit.fold(
+            (failure) async => emit(state.copyWith(
+                cartFailureOption: some(const CartFailure.invalidCartItem()))),
+            (_) async {
+          emit(state.copyWith(isLoading: true, cartFailureOption: none()));
 
-              final failureOrUnit = await cartFacade.addProductToCart(product,
-                  quantity: quantity);
-              failureOrUnit.fold(
-                  (failure) => emit(state.copyWith(
-                      isLoading: false, failureOption: some(failure))),
-                  (_) => emit(state.copyWith(isLoading: false)));
-            });
-          });
+          final failureOrUnit =
+              await cartFacade.addProductToCart(product, quantity: quantity);
+          failureOrUnit.fold(
+              (failure) => emit(state.copyWith(
+                  isLoading: false, cartFailureOption: some(failure))),
+              (_) => emit(state.copyWith(isLoading: false)));
+        });
+      });
     });
   }
 }

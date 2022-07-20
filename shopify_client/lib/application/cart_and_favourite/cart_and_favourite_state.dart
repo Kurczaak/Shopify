@@ -1,12 +1,13 @@
 part of 'cart_and_favourite_bloc.dart';
 
 @freezed
-class CartAndFavouriteState with _$CartAndFavouriteState {
-  const factory CartAndFavouriteState({
-    required bool isFavouirte,
+class CartActorState with _$CartActorState {
+  const factory CartActorState({
     required bool isLoading,
-    required Option<CartFailure> failureOption,
-  }) = _CartAndFavouriteState;
-  factory CartAndFavouriteState.initial() => CartAndFavouriteState(
-      isFavouirte: false, isLoading: false, failureOption: none());
+    required Option<CartFailure> cartFailureOption,
+  }) = _CartActorState;
+  factory CartActorState.initial() => CartActorState(
+        isLoading: false,
+        cartFailureOption: none(),
+      );
 }

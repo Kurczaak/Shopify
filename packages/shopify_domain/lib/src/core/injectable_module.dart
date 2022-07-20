@@ -1,3 +1,4 @@
+import 'package:cloud_functions/cloud_functions.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:geoflutterfire/geoflutterfire.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -21,4 +22,6 @@ abstract class FirebaseInjectableModule {
       InternetConnectionChecker();
   @LazySingleton()
   Geoflutterfire get geoFlutterFire => Geoflutterfire();
+  @LazySingleton()
+  FirebaseFunctions get firebaseFunctions => FirebaseFunctions.instance;
 }

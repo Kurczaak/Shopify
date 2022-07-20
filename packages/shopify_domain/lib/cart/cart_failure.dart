@@ -10,4 +10,5 @@ class CartFailure with _$CartFailure {
   const factory CartFailure.emptyCart() = _EmptyCart;
   const factory CartFailure.insufficientPermission() = _InsufficientPermission;
   const factory CartFailure.itemDoesNotExist() = _ItemDoesNotExist;
+  const factory CartFailure.couldNotInitialize() = _CouldNotInitialize;
 }

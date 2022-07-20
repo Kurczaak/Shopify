@@ -25,6 +25,7 @@ mixin _$CartFailure {
     required TResult Function() emptyCart,
     required TResult Function() insufficientPermission,
     required TResult Function() itemDoesNotExist,
+    required TResult Function() couldNotInitialize,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -36,6 +37,7 @@ mixin _$CartFailure {
     TResult Function()? emptyCart,
     TResult Function()? insufficientPermission,
     TResult Function()? itemDoesNotExist,
+    TResult Function()? couldNotInitialize,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -47,6 +49,7 @@ mixin _$CartFailure {
     TResult Function()? emptyCart,
     TResult Function()? insufficientPermission,
     TResult Function()? itemDoesNotExist,
+    TResult Function()? couldNotInitialize,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -60,6 +63,7 @@ mixin _$CartFailure {
     required TResult Function(_InsufficientPermission value)
         insufficientPermission,
     required TResult Function(_ItemDoesNotExist value) itemDoesNotExist,
+    required TResult Function(_CouldNotInitialize value) couldNotInitialize,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -71,6 +75,7 @@ mixin _$CartFailure {
     TResult Function(_EmptyCart value)? emptyCart,
     TResult Function(_InsufficientPermission value)? insufficientPermission,
     TResult Function(_ItemDoesNotExist value)? itemDoesNotExist,
+    TResult Function(_CouldNotInitialize value)? couldNotInitialize,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -82,6 +87,7 @@ mixin _$CartFailure {
     TResult Function(_EmptyCart value)? emptyCart,
     TResult Function(_InsufficientPermission value)? insufficientPermission,
     TResult Function(_ItemDoesNotExist value)? itemDoesNotExist,
+    TResult Function(_CouldNotInitialize value)? couldNotInitialize,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -150,6 +156,7 @@ class _$_Unexpected implements _Unexpected {
     required TResult Function() emptyCart,
     required TResult Function() insufficientPermission,
     required TResult Function() itemDoesNotExist,
+    required TResult Function() couldNotInitialize,
   }) {
     return unexpected();
   }
@@ -164,6 +171,7 @@ class _$_Unexpected implements _Unexpected {
     TResult Function()? emptyCart,
     TResult Function()? insufficientPermission,
     TResult Function()? itemDoesNotExist,
+    TResult Function()? couldNotInitialize,
   }) {
     return unexpected?.call();
   }
@@ -178,6 +186,7 @@ class _$_Unexpected implements _Unexpected {
     TResult Function()? emptyCart,
     TResult Function()? insufficientPermission,
     TResult Function()? itemDoesNotExist,
+    TResult Function()? couldNotInitialize,
     required TResult orElse(),
   }) {
     if (unexpected != null) {
@@ -197,6 +206,7 @@ class _$_Unexpected implements _Unexpected {
     required TResult Function(_InsufficientPermission value)
         insufficientPermission,
     required TResult Function(_ItemDoesNotExist value) itemDoesNotExist,
+    required TResult Function(_CouldNotInitialize value) couldNotInitialize,
   }) {
     return unexpected(this);
   }
@@ -211,6 +221,7 @@ class _$_Unexpected implements _Unexpected {
     TResult Function(_EmptyCart value)? emptyCart,
     TResult Function(_InsufficientPermission value)? insufficientPermission,
     TResult Function(_ItemDoesNotExist value)? itemDoesNotExist,
+    TResult Function(_CouldNotInitialize value)? couldNotInitialize,
   }) {
     return unexpected?.call(this);
   }
@@ -225,6 +236,7 @@ class _$_Unexpected implements _Unexpected {
     TResult Function(_EmptyCart value)? emptyCart,
     TResult Function(_InsufficientPermission value)? insufficientPermission,
     TResult Function(_ItemDoesNotExist value)? itemDoesNotExist,
+    TResult Function(_CouldNotInitialize value)? couldNotInitialize,
     required TResult orElse(),
   }) {
     if (unexpected != null) {
@@ -286,6 +298,7 @@ class _$_InvalidCartItem implements _InvalidCartItem {
     required TResult Function() emptyCart,
     required TResult Function() insufficientPermission,
     required TResult Function() itemDoesNotExist,
+    required TResult Function() couldNotInitialize,
   }) {
     return invalidCartItem();
   }
@@ -300,6 +313,7 @@ class _$_InvalidCartItem implements _InvalidCartItem {
     TResult Function()? emptyCart,
     TResult Function()? insufficientPermission,
     TResult Function()? itemDoesNotExist,
+    TResult Function()? couldNotInitialize,
   }) {
     return invalidCartItem?.call();
   }
@@ -314,6 +328,7 @@ class _$_InvalidCartItem implements _InvalidCartItem {
     TResult Function()? emptyCart,
     TResult Function()? insufficientPermission,
     TResult Function()? itemDoesNotExist,
+    TResult Function()? couldNotInitialize,
     required TResult orElse(),
   }) {
     if (invalidCartItem != null) {
@@ -333,6 +348,7 @@ class _$_InvalidCartItem implements _InvalidCartItem {
     required TResult Function(_InsufficientPermission value)
         insufficientPermission,
     required TResult Function(_ItemDoesNotExist value) itemDoesNotExist,
+    required TResult Function(_CouldNotInitialize value) couldNotInitialize,
   }) {
     return invalidCartItem(this);
   }
@@ -347,6 +363,7 @@ class _$_InvalidCartItem implements _InvalidCartItem {
     TResult Function(_EmptyCart value)? emptyCart,
     TResult Function(_InsufficientPermission value)? insufficientPermission,
     TResult Function(_ItemDoesNotExist value)? itemDoesNotExist,
+    TResult Function(_CouldNotInitialize value)? couldNotInitialize,
   }) {
     return invalidCartItem?.call(this);
   }
@@ -361,6 +378,7 @@ class _$_InvalidCartItem implements _InvalidCartItem {
     TResult Function(_EmptyCart value)? emptyCart,
     TResult Function(_InsufficientPermission value)? insufficientPermission,
     TResult Function(_ItemDoesNotExist value)? itemDoesNotExist,
+    TResult Function(_CouldNotInitialize value)? couldNotInitialize,
     required TResult orElse(),
   }) {
     if (invalidCartItem != null) {
@@ -422,6 +440,7 @@ class _$_NoInternetConnection implements _NoInternetConnection {
     required TResult Function() emptyCart,
     required TResult Function() insufficientPermission,
     required TResult Function() itemDoesNotExist,
+    required TResult Function() couldNotInitialize,
   }) {
     return noInternetConnection();
   }
@@ -436,6 +455,7 @@ class _$_NoInternetConnection implements _NoInternetConnection {
     TResult Function()? emptyCart,
     TResult Function()? insufficientPermission,
     TResult Function()? itemDoesNotExist,
+    TResult Function()? couldNotInitialize,
   }) {
     return noInternetConnection?.call();
   }
@@ -450,6 +470,7 @@ class _$_NoInternetConnection implements _NoInternetConnection {
     TResult Function()? emptyCart,
     TResult Function()? insufficientPermission,
     TResult Function()? itemDoesNotExist,
+    TResult Function()? couldNotInitialize,
     required TResult orElse(),
   }) {
     if (noInternetConnection != null) {
@@ -469,6 +490,7 @@ class _$_NoInternetConnection implements _NoInternetConnection {
     required TResult Function(_InsufficientPermission value)
         insufficientPermission,
     required TResult Function(_ItemDoesNotExist value) itemDoesNotExist,
+    required TResult Function(_CouldNotInitialize value) couldNotInitialize,
   }) {
     return noInternetConnection(this);
   }
@@ -483,6 +505,7 @@ class _$_NoInternetConnection implements _NoInternetConnection {
     TResult Function(_EmptyCart value)? emptyCart,
     TResult Function(_InsufficientPermission value)? insufficientPermission,
     TResult Function(_ItemDoesNotExist value)? itemDoesNotExist,
+    TResult Function(_CouldNotInitialize value)? couldNotInitialize,
   }) {
     return noInternetConnection?.call(this);
   }
@@ -497,6 +520,7 @@ class _$_NoInternetConnection implements _NoInternetConnection {
     TResult Function(_EmptyCart value)? emptyCart,
     TResult Function(_InsufficientPermission value)? insufficientPermission,
     TResult Function(_ItemDoesNotExist value)? itemDoesNotExist,
+    TResult Function(_CouldNotInitialize value)? couldNotInitialize,
     required TResult orElse(),
   }) {
     if (noInternetConnection != null) {
@@ -556,6 +580,7 @@ class _$_Timeout implements _Timeout {
     required TResult Function() emptyCart,
     required TResult Function() insufficientPermission,
     required TResult Function() itemDoesNotExist,
+    required TResult Function() couldNotInitialize,
   }) {
     return timeout();
   }
@@ -570,6 +595,7 @@ class _$_Timeout implements _Timeout {
     TResult Function()? emptyCart,
     TResult Function()? insufficientPermission,
     TResult Function()? itemDoesNotExist,
+    TResult Function()? couldNotInitialize,
   }) {
     return timeout?.call();
   }
@@ -584,6 +610,7 @@ class _$_Timeout implements _Timeout {
     TResult Function()? emptyCart,
     TResult Function()? insufficientPermission,
     TResult Function()? itemDoesNotExist,
+    TResult Function()? couldNotInitialize,
     required TResult orElse(),
   }) {
     if (timeout != null) {
@@ -603,6 +630,7 @@ class _$_Timeout implements _Timeout {
     required TResult Function(_InsufficientPermission value)
         insufficientPermission,
     required TResult Function(_ItemDoesNotExist value) itemDoesNotExist,
+    required TResult Function(_CouldNotInitialize value) couldNotInitialize,
   }) {
     return timeout(this);
   }
@@ -617,6 +645,7 @@ class _$_Timeout implements _Timeout {
     TResult Function(_EmptyCart value)? emptyCart,
     TResult Function(_InsufficientPermission value)? insufficientPermission,
     TResult Function(_ItemDoesNotExist value)? itemDoesNotExist,
+    TResult Function(_CouldNotInitialize value)? couldNotInitialize,
   }) {
     return timeout?.call(this);
   }
@@ -631,6 +660,7 @@ class _$_Timeout implements _Timeout {
     TResult Function(_EmptyCart value)? emptyCart,
     TResult Function(_InsufficientPermission value)? insufficientPermission,
     TResult Function(_ItemDoesNotExist value)? itemDoesNotExist,
+    TResult Function(_CouldNotInitialize value)? couldNotInitialize,
     required TResult orElse(),
   }) {
     if (timeout != null) {
@@ -691,6 +721,7 @@ class _$_EmptyCart implements _EmptyCart {
     required TResult Function() emptyCart,
     required TResult Function() insufficientPermission,
     required TResult Function() itemDoesNotExist,
+    required TResult Function() couldNotInitialize,
   }) {
     return emptyCart();
   }
@@ -705,6 +736,7 @@ class _$_EmptyCart implements _EmptyCart {
     TResult Function()? emptyCart,
     TResult Function()? insufficientPermission,
     TResult Function()? itemDoesNotExist,
+    TResult Function()? couldNotInitialize,
   }) {
     return emptyCart?.call();
   }
@@ -719,6 +751,7 @@ class _$_EmptyCart implements _EmptyCart {
     TResult Function()? emptyCart,
     TResult Function()? insufficientPermission,
     TResult Function()? itemDoesNotExist,
+    TResult Function()? couldNotInitialize,
     required TResult orElse(),
   }) {
     if (emptyCart != null) {
@@ -738,6 +771,7 @@ class _$_EmptyCart implements _EmptyCart {
     required TResult Function(_InsufficientPermission value)
         insufficientPermission,
     required TResult Function(_ItemDoesNotExist value) itemDoesNotExist,
+    required TResult Function(_CouldNotInitialize value) couldNotInitialize,
   }) {
     return emptyCart(this);
   }
@@ -752,6 +786,7 @@ class _$_EmptyCart implements _EmptyCart {
     TResult Function(_EmptyCart value)? emptyCart,
     TResult Function(_InsufficientPermission value)? insufficientPermission,
     TResult Function(_ItemDoesNotExist value)? itemDoesNotExist,
+    TResult Function(_CouldNotInitialize value)? couldNotInitialize,
   }) {
     return emptyCart?.call(this);
   }
@@ -766,6 +801,7 @@ class _$_EmptyCart implements _EmptyCart {
     TResult Function(_EmptyCart value)? emptyCart,
     TResult Function(_InsufficientPermission value)? insufficientPermission,
     TResult Function(_ItemDoesNotExist value)? itemDoesNotExist,
+    TResult Function(_CouldNotInitialize value)? couldNotInitialize,
     required TResult orElse(),
   }) {
     if (emptyCart != null) {
@@ -829,6 +865,7 @@ class _$_InsufficientPermission implements _InsufficientPermission {
     required TResult Function() emptyCart,
     required TResult Function() insufficientPermission,
     required TResult Function() itemDoesNotExist,
+    required TResult Function() couldNotInitialize,
   }) {
     return insufficientPermission();
   }
@@ -843,6 +880,7 @@ class _$_InsufficientPermission implements _InsufficientPermission {
     TResult Function()? emptyCart,
     TResult Function()? insufficientPermission,
     TResult Function()? itemDoesNotExist,
+    TResult Function()? couldNotInitialize,
   }) {
     return insufficientPermission?.call();
   }
@@ -857,6 +895,7 @@ class _$_InsufficientPermission implements _InsufficientPermission {
     TResult Function()? emptyCart,
     TResult Function()? insufficientPermission,
     TResult Function()? itemDoesNotExist,
+    TResult Function()? couldNotInitialize,
     required TResult orElse(),
   }) {
     if (insufficientPermission != null) {
@@ -876,6 +915,7 @@ class _$_InsufficientPermission implements _InsufficientPermission {
     required TResult Function(_InsufficientPermission value)
         insufficientPermission,
     required TResult Function(_ItemDoesNotExist value) itemDoesNotExist,
+    required TResult Function(_CouldNotInitialize value) couldNotInitialize,
   }) {
     return insufficientPermission(this);
   }
@@ -890,6 +930,7 @@ class _$_InsufficientPermission implements _InsufficientPermission {
     TResult Function(_EmptyCart value)? emptyCart,
     TResult Function(_InsufficientPermission value)? insufficientPermission,
     TResult Function(_ItemDoesNotExist value)? itemDoesNotExist,
+    TResult Function(_CouldNotInitialize value)? couldNotInitialize,
   }) {
     return insufficientPermission?.call(this);
   }
@@ -904,6 +945,7 @@ class _$_InsufficientPermission implements _InsufficientPermission {
     TResult Function(_EmptyCart value)? emptyCart,
     TResult Function(_InsufficientPermission value)? insufficientPermission,
     TResult Function(_ItemDoesNotExist value)? itemDoesNotExist,
+    TResult Function(_CouldNotInitialize value)? couldNotInitialize,
     required TResult orElse(),
   }) {
     if (insufficientPermission != null) {
@@ -965,6 +1007,7 @@ class _$_ItemDoesNotExist implements _ItemDoesNotExist {
     required TResult Function() emptyCart,
     required TResult Function() insufficientPermission,
     required TResult Function() itemDoesNotExist,
+    required TResult Function() couldNotInitialize,
   }) {
     return itemDoesNotExist();
   }
@@ -979,6 +1022,7 @@ class _$_ItemDoesNotExist implements _ItemDoesNotExist {
     TResult Function()? emptyCart,
     TResult Function()? insufficientPermission,
     TResult Function()? itemDoesNotExist,
+    TResult Function()? couldNotInitialize,
   }) {
     return itemDoesNotExist?.call();
   }
@@ -993,6 +1037,7 @@ class _$_ItemDoesNotExist implements _ItemDoesNotExist {
     TResult Function()? emptyCart,
     TResult Function()? insufficientPermission,
     TResult Function()? itemDoesNotExist,
+    TResult Function()? couldNotInitialize,
     required TResult orElse(),
   }) {
     if (itemDoesNotExist != null) {
@@ -1012,6 +1057,7 @@ class _$_ItemDoesNotExist implements _ItemDoesNotExist {
     required TResult Function(_InsufficientPermission value)
         insufficientPermission,
     required TResult Function(_ItemDoesNotExist value) itemDoesNotExist,
+    required TResult Function(_CouldNotInitialize value) couldNotInitialize,
   }) {
     return itemDoesNotExist(this);
   }
@@ -1026,6 +1072,7 @@ class _$_ItemDoesNotExist implements _ItemDoesNotExist {
     TResult Function(_EmptyCart value)? emptyCart,
     TResult Function(_InsufficientPermission value)? insufficientPermission,
     TResult Function(_ItemDoesNotExist value)? itemDoesNotExist,
+    TResult Function(_CouldNotInitialize value)? couldNotInitialize,
   }) {
     return itemDoesNotExist?.call(this);
   }
@@ -1040,6 +1087,7 @@ class _$_ItemDoesNotExist implements _ItemDoesNotExist {
     TResult Function(_EmptyCart value)? emptyCart,
     TResult Function(_InsufficientPermission value)? insufficientPermission,
     TResult Function(_ItemDoesNotExist value)? itemDoesNotExist,
+    TResult Function(_CouldNotInitialize value)? couldNotInitialize,
     required TResult orElse(),
   }) {
     if (itemDoesNotExist != null) {
@@ -1051,4 +1099,146 @@ class _$_ItemDoesNotExist implements _ItemDoesNotExist {
 
 abstract class _ItemDoesNotExist implements CartFailure {
   const factory _ItemDoesNotExist() = _$_ItemDoesNotExist;
+}
+
+/// @nodoc
+abstract class _$$_CouldNotInitializeCopyWith<$Res> {
+  factory _$$_CouldNotInitializeCopyWith(_$_CouldNotInitialize value,
+          $Res Function(_$_CouldNotInitialize) then) =
+      __$$_CouldNotInitializeCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_CouldNotInitializeCopyWithImpl<$Res>
+    extends _$CartFailureCopyWithImpl<$Res>
+    implements _$$_CouldNotInitializeCopyWith<$Res> {
+  __$$_CouldNotInitializeCopyWithImpl(
+      _$_CouldNotInitialize _value, $Res Function(_$_CouldNotInitialize) _then)
+      : super(_value, (v) => _then(v as _$_CouldNotInitialize));
+
+  @override
+  _$_CouldNotInitialize get _value => super._value as _$_CouldNotInitialize;
+}
+
+/// @nodoc
+
+class _$_CouldNotInitialize implements _CouldNotInitialize {
+  const _$_CouldNotInitialize();
+
+  @override
+  String toString() {
+    return 'CartFailure.couldNotInitialize()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_CouldNotInitialize);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() unexpected,
+    required TResult Function() invalidCartItem,
+    required TResult Function() noInternetConnection,
+    required TResult Function() timeout,
+    required TResult Function() emptyCart,
+    required TResult Function() insufficientPermission,
+    required TResult Function() itemDoesNotExist,
+    required TResult Function() couldNotInitialize,
+  }) {
+    return couldNotInitialize();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? unexpected,
+    TResult Function()? invalidCartItem,
+    TResult Function()? noInternetConnection,
+    TResult Function()? timeout,
+    TResult Function()? emptyCart,
+    TResult Function()? insufficientPermission,
+    TResult Function()? itemDoesNotExist,
+    TResult Function()? couldNotInitialize,
+  }) {
+    return couldNotInitialize?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? unexpected,
+    TResult Function()? invalidCartItem,
+    TResult Function()? noInternetConnection,
+    TResult Function()? timeout,
+    TResult Function()? emptyCart,
+    TResult Function()? insufficientPermission,
+    TResult Function()? itemDoesNotExist,
+    TResult Function()? couldNotInitialize,
+    required TResult orElse(),
+  }) {
+    if (couldNotInitialize != null) {
+      return couldNotInitialize();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Unexpected value) unexpected,
+    required TResult Function(_InvalidCartItem value) invalidCartItem,
+    required TResult Function(_NoInternetConnection value) noInternetConnection,
+    required TResult Function(_Timeout value) timeout,
+    required TResult Function(_EmptyCart value) emptyCart,
+    required TResult Function(_InsufficientPermission value)
+        insufficientPermission,
+    required TResult Function(_ItemDoesNotExist value) itemDoesNotExist,
+    required TResult Function(_CouldNotInitialize value) couldNotInitialize,
+  }) {
+    return couldNotInitialize(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_InvalidCartItem value)? invalidCartItem,
+    TResult Function(_NoInternetConnection value)? noInternetConnection,
+    TResult Function(_Timeout value)? timeout,
+    TResult Function(_EmptyCart value)? emptyCart,
+    TResult Function(_InsufficientPermission value)? insufficientPermission,
+    TResult Function(_ItemDoesNotExist value)? itemDoesNotExist,
+    TResult Function(_CouldNotInitialize value)? couldNotInitialize,
+  }) {
+    return couldNotInitialize?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_InvalidCartItem value)? invalidCartItem,
+    TResult Function(_NoInternetConnection value)? noInternetConnection,
+    TResult Function(_Timeout value)? timeout,
+    TResult Function(_EmptyCart value)? emptyCart,
+    TResult Function(_InsufficientPermission value)? insufficientPermission,
+    TResult Function(_ItemDoesNotExist value)? itemDoesNotExist,
+    TResult Function(_CouldNotInitialize value)? couldNotInitialize,
+    required TResult orElse(),
+  }) {
+    if (couldNotInitialize != null) {
+      return couldNotInitialize(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _CouldNotInitialize implements CartFailure {
+  const factory _CouldNotInitialize() = _$_CouldNotInitialize;
 }
