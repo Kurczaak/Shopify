@@ -75,15 +75,25 @@ class BrandAndWeightRow extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(
-          brand,
-          style: TextStyle(
-              color: Theme.of(context).primaryColor,
-              fontWeight: FontWeight.bold),
+        Expanded(
+          child: FittedBox(
+            fit: BoxFit.contain,
+            child: Text(
+              brand,
+              style: TextStyle(
+                  color: Theme.of(context).primaryColor,
+                  fontWeight: FontWeight.bold),
+            ),
+          ),
         ),
-        Text(
-          weight,
-          style: const TextStyle(fontWeight: FontWeight.w400),
+        Expanded(
+          child: FittedBox(
+            fit: BoxFit.contain,
+            child: Text(
+              weight,
+              style: const TextStyle(fontWeight: FontWeight.w400),
+            ),
+          ),
         ),
       ],
     );
