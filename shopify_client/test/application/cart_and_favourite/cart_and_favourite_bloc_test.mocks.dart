@@ -5,17 +5,12 @@
 import 'dart:async' as _i4;
 
 import 'package:dartz/dartz.dart' as _i2;
-import 'package:kt_dart/kt.dart' as _i12;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:shopify_client/domain/cart/I_cart_facade.dart' as _i3;
-import 'package:shopify_client/domain/favourites/favourites_facade.dart'
-    as _i10;
 import 'package:shopify_domain/cart/cart.dart' as _i6;
 import 'package:shopify_domain/cart/cart_failure.dart' as _i5;
 import 'package:shopify_domain/cart/cart_item.dart' as _i8;
 import 'package:shopify_domain/core/value_objects.dart' as _i9;
-import 'package:shopify_domain/favourites/favourite_failure.dart' as _i11;
-import 'package:shopify_domain/favourites/favourite_product.dart' as _i13;
 import 'package:shopify_domain/product/product_snippets.dart' as _i7;
 
 // ignore_for_file: type=lint
@@ -95,45 +90,4 @@ class MockICartFacade extends _i1.Mock implements _i3.ICartFacade {
               returnValue: Future<_i2.Either<_i5.CartFailure, _i2.Unit>>.value(
                   _FakeEither_0<_i5.CartFailure, _i2.Unit>()))
           as _i4.Future<_i2.Either<_i5.CartFailure, _i2.Unit>>);
-}
-
-/// A class which mocks [IFavouritesFacade].
-///
-/// See the documentation for Mockito's code generation for more information.
-class MockIFavouritesFacade extends _i1.Mock implements _i10.IFavouritesFacade {
-  MockIFavouritesFacade() {
-    _i1.throwOnMissingStub(this);
-  }
-
-  @override
-  _i4.Future<_i2.Either<_i11.FavouriteFailure, _i2.Unit>> addToFavourites(
-          _i9.UniqueId? productId) =>
-      (super.noSuchMethod(Invocation.method(#addToFavourites, [productId]),
-              returnValue:
-                  Future<_i2.Either<_i11.FavouriteFailure, _i2.Unit>>.value(
-                      _FakeEither_0<_i11.FavouriteFailure, _i2.Unit>()))
-          as _i4.Future<_i2.Either<_i11.FavouriteFailure, _i2.Unit>>);
-  @override
-  _i4.Future<_i2.Either<_i11.FavouriteFailure, _i2.Unit>> removeFromFavourites(
-          _i9.UniqueId? productId) =>
-      (super.noSuchMethod(Invocation.method(#removeFromFavourites, [productId]),
-              returnValue:
-                  Future<_i2.Either<_i11.FavouriteFailure, _i2.Unit>>.value(
-                      _FakeEither_0<_i11.FavouriteFailure, _i2.Unit>()))
-          as _i4.Future<_i2.Either<_i11.FavouriteFailure, _i2.Unit>>);
-  @override
-  _i4.Future<_i2.Either<_i11.FavouriteFailure, bool>> isFavourite(
-          _i9.UniqueId? productId) =>
-      (super.noSuchMethod(Invocation.method(#isFavourite, [productId]),
-          returnValue: Future<_i2.Either<_i11.FavouriteFailure, bool>>.value(
-              _FakeEither_0<_i11.FavouriteFailure, bool>())) as _i4
-          .Future<_i2.Either<_i11.FavouriteFailure, bool>>);
-  @override
-  _i4.Stream<_i2.Either<_i11.FavouriteFailure, _i12.KtList<_i13.FavouriteProduct>>>
-      watchFavourites() =>
-          (super.noSuchMethod(Invocation.method(#watchFavourites, []),
-                  returnValue: Stream<
-                      _i2.Either<_i11.FavouriteFailure,
-                          _i12.KtList<_i13.FavouriteProduct>>>.empty())
-              as _i4.Stream<_i2.Either<_i11.FavouriteFailure, _i12.KtList<_i13.FavouriteProduct>>>);
 }

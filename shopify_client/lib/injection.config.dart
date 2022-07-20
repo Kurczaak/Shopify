@@ -78,9 +78,8 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.factory<_i30.UserCartsBloc>(() =>
       _i30.UserCartsBloc(get<_i6.ICartFacade>(), get<_i29.NetworkInfo>()));
   gh.lazySingleton<_i31.AuthBloc>(() => _i31.AuthBloc(get<_i3.IAuthFacade>()));
-  gh.factory<_i32.CartAndFavouriteBloc>(() => _i32.CartAndFavouriteBloc(
-      cartFacade: get<_i6.ICartFacade>(),
-      favouritesFacade: get<_i9.IFavouritesFacade>()));
+  gh.factory<_i32.CartActorBloc>(
+      () => _i32.CartActorBloc(get<_i6.ICartFacade>()));
   gh.factory<_i33.CartItemBloc>(
       () => _i33.CartItemBloc(get<_i6.ICartFacade>()));
   gh.factory<_i34.FavouritesActorBloc>(

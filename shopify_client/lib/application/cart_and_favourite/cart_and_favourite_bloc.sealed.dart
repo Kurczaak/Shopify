@@ -6,106 +6,49 @@ part of 'cart_and_favourite_bloc.dart';
 // Generator: sealed_generators
 // **************************************************************************
 
-/// [CartAndFavouriteEvent] {
+/// [CartActorEvent] {
 ///
-/// ([CartAndFavouriteEventInitialize] initialize){[UniqueId] productId} with data equality
-///
-/// ([CartAndFavouriteEventToggleFavourite] toggleFavourite){[UniqueId] productId} with data equality
-///
-/// ([CartAndFavouriteEventAddToCart] addToCart){[PricedProduct] product, [int] quantity} with data equality
+/// ([CartActorEventAddToCart] addToCart){[PricedProduct] product, [int] quantity} with data equality
 ///
 /// }
-@SealedManifest(_CartAndFavouriteEvent)
-abstract class CartAndFavouriteEvent {
-  const CartAndFavouriteEvent._internal();
+@SealedManifest(_CartActorEvent)
+abstract class CartActorEvent {
+  const CartActorEvent._internal();
 
-  const factory CartAndFavouriteEvent.initialize({
-    required UniqueId productId,
-  }) = CartAndFavouriteEventInitialize;
-
-  const factory CartAndFavouriteEvent.toggleFavourite({
-    required UniqueId productId,
-  }) = CartAndFavouriteEventToggleFavourite;
-
-  const factory CartAndFavouriteEvent.addToCart({
+  const factory CartActorEvent.addToCart({
     required PricedProduct product,
     required int quantity,
-  }) = CartAndFavouriteEventAddToCart;
+  }) = CartActorEventAddToCart;
 
-  bool get isInitialize => this is CartAndFavouriteEventInitialize;
+  bool get isAddToCart => this is CartActorEventAddToCart;
 
-  bool get isToggleFavourite => this is CartAndFavouriteEventToggleFavourite;
+  CartActorEventAddToCart get asAddToCart => this as CartActorEventAddToCart;
 
-  bool get isAddToCart => this is CartAndFavouriteEventAddToCart;
-
-  CartAndFavouriteEventInitialize get asInitialize =>
-      this as CartAndFavouriteEventInitialize;
-
-  CartAndFavouriteEventToggleFavourite get asToggleFavourite =>
-      this as CartAndFavouriteEventToggleFavourite;
-
-  CartAndFavouriteEventAddToCart get asAddToCart =>
-      this as CartAndFavouriteEventAddToCart;
-
-  CartAndFavouriteEventInitialize? get asInitializeOrNull {
-    final cartAndFavouriteEvent = this;
-    return cartAndFavouriteEvent is CartAndFavouriteEventInitialize
-        ? cartAndFavouriteEvent
-        : null;
-  }
-
-  CartAndFavouriteEventToggleFavourite? get asToggleFavouriteOrNull {
-    final cartAndFavouriteEvent = this;
-    return cartAndFavouriteEvent is CartAndFavouriteEventToggleFavourite
-        ? cartAndFavouriteEvent
-        : null;
-  }
-
-  CartAndFavouriteEventAddToCart? get asAddToCartOrNull {
-    final cartAndFavouriteEvent = this;
-    return cartAndFavouriteEvent is CartAndFavouriteEventAddToCart
-        ? cartAndFavouriteEvent
-        : null;
+  CartActorEventAddToCart? get asAddToCartOrNull {
+    final cartActorEvent = this;
+    return cartActorEvent is CartActorEventAddToCart ? cartActorEvent : null;
   }
 
   R when<R extends Object?>({
-    required R Function(UniqueId productId) initialize,
-    required R Function(UniqueId productId) toggleFavourite,
     required R Function(PricedProduct product, int quantity) addToCart,
   }) {
-    final cartAndFavouriteEvent = this;
-    if (cartAndFavouriteEvent is CartAndFavouriteEventInitialize) {
-      return initialize(cartAndFavouriteEvent.productId);
-    } else if (cartAndFavouriteEvent is CartAndFavouriteEventToggleFavourite) {
-      return toggleFavourite(cartAndFavouriteEvent.productId);
-    } else if (cartAndFavouriteEvent is CartAndFavouriteEventAddToCart) {
-      return addToCart(
-          cartAndFavouriteEvent.product, cartAndFavouriteEvent.quantity);
+    final cartActorEvent = this;
+    if (cartActorEvent is CartActorEventAddToCart) {
+      return addToCart(cartActorEvent.product, cartActorEvent.quantity);
     } else {
       throw AssertionError();
     }
   }
 
   R maybeWhen<R extends Object?>({
-    R Function(UniqueId productId)? initialize,
-    R Function(UniqueId productId)? toggleFavourite,
     R Function(PricedProduct product, int quantity)? addToCart,
-    required R Function(CartAndFavouriteEvent cartAndFavouriteEvent) orElse,
+    required R Function(CartActorEvent cartActorEvent) orElse,
   }) {
-    final cartAndFavouriteEvent = this;
-    if (cartAndFavouriteEvent is CartAndFavouriteEventInitialize) {
-      return initialize != null
-          ? initialize(cartAndFavouriteEvent.productId)
-          : orElse(cartAndFavouriteEvent);
-    } else if (cartAndFavouriteEvent is CartAndFavouriteEventToggleFavourite) {
-      return toggleFavourite != null
-          ? toggleFavourite(cartAndFavouriteEvent.productId)
-          : orElse(cartAndFavouriteEvent);
-    } else if (cartAndFavouriteEvent is CartAndFavouriteEventAddToCart) {
+    final cartActorEvent = this;
+    if (cartActorEvent is CartActorEventAddToCart) {
       return addToCart != null
-          ? addToCart(
-              cartAndFavouriteEvent.product, cartAndFavouriteEvent.quantity)
-          : orElse(cartAndFavouriteEvent);
+          ? addToCart(cartActorEvent.product, cartActorEvent.quantity)
+          : orElse(cartActorEvent);
     } else {
       throw AssertionError();
     }
@@ -113,30 +56,15 @@ abstract class CartAndFavouriteEvent {
 
   @Deprecated('Use `whenOrNull` instead. Will be removed by next release.')
   void partialWhen({
-    void Function(UniqueId productId)? initialize,
-    void Function(UniqueId productId)? toggleFavourite,
     void Function(PricedProduct product, int quantity)? addToCart,
-    void Function(CartAndFavouriteEvent cartAndFavouriteEvent)? orElse,
+    void Function(CartActorEvent cartActorEvent)? orElse,
   }) {
-    final cartAndFavouriteEvent = this;
-    if (cartAndFavouriteEvent is CartAndFavouriteEventInitialize) {
-      if (initialize != null) {
-        initialize(cartAndFavouriteEvent.productId);
-      } else if (orElse != null) {
-        orElse(cartAndFavouriteEvent);
-      }
-    } else if (cartAndFavouriteEvent is CartAndFavouriteEventToggleFavourite) {
-      if (toggleFavourite != null) {
-        toggleFavourite(cartAndFavouriteEvent.productId);
-      } else if (orElse != null) {
-        orElse(cartAndFavouriteEvent);
-      }
-    } else if (cartAndFavouriteEvent is CartAndFavouriteEventAddToCart) {
+    final cartActorEvent = this;
+    if (cartActorEvent is CartActorEventAddToCart) {
       if (addToCart != null) {
-        addToCart(
-            cartAndFavouriteEvent.product, cartAndFavouriteEvent.quantity);
+        addToCart(cartActorEvent.product, cartActorEvent.quantity);
       } else if (orElse != null) {
-        orElse(cartAndFavouriteEvent);
+        orElse(cartActorEvent);
       }
     } else {
       throw AssertionError();
@@ -144,68 +72,39 @@ abstract class CartAndFavouriteEvent {
   }
 
   R? whenOrNull<R extends Object?>({
-    R Function(UniqueId productId)? initialize,
-    R Function(UniqueId productId)? toggleFavourite,
     R Function(PricedProduct product, int quantity)? addToCart,
-    R Function(CartAndFavouriteEvent cartAndFavouriteEvent)? orElse,
+    R Function(CartActorEvent cartActorEvent)? orElse,
   }) {
-    final cartAndFavouriteEvent = this;
-    if (cartAndFavouriteEvent is CartAndFavouriteEventInitialize) {
-      return initialize != null
-          ? initialize(cartAndFavouriteEvent.productId)
-          : orElse?.call(cartAndFavouriteEvent);
-    } else if (cartAndFavouriteEvent is CartAndFavouriteEventToggleFavourite) {
-      return toggleFavourite != null
-          ? toggleFavourite(cartAndFavouriteEvent.productId)
-          : orElse?.call(cartAndFavouriteEvent);
-    } else if (cartAndFavouriteEvent is CartAndFavouriteEventAddToCart) {
+    final cartActorEvent = this;
+    if (cartActorEvent is CartActorEventAddToCart) {
       return addToCart != null
-          ? addToCart(
-              cartAndFavouriteEvent.product, cartAndFavouriteEvent.quantity)
-          : orElse?.call(cartAndFavouriteEvent);
+          ? addToCart(cartActorEvent.product, cartActorEvent.quantity)
+          : orElse?.call(cartActorEvent);
     } else {
       throw AssertionError();
     }
   }
 
   R map<R extends Object?>({
-    required R Function(CartAndFavouriteEventInitialize initialize) initialize,
-    required R Function(CartAndFavouriteEventToggleFavourite toggleFavourite)
-        toggleFavourite,
-    required R Function(CartAndFavouriteEventAddToCart addToCart) addToCart,
+    required R Function(CartActorEventAddToCart addToCart) addToCart,
   }) {
-    final cartAndFavouriteEvent = this;
-    if (cartAndFavouriteEvent is CartAndFavouriteEventInitialize) {
-      return initialize(cartAndFavouriteEvent);
-    } else if (cartAndFavouriteEvent is CartAndFavouriteEventToggleFavourite) {
-      return toggleFavourite(cartAndFavouriteEvent);
-    } else if (cartAndFavouriteEvent is CartAndFavouriteEventAddToCart) {
-      return addToCart(cartAndFavouriteEvent);
+    final cartActorEvent = this;
+    if (cartActorEvent is CartActorEventAddToCart) {
+      return addToCart(cartActorEvent);
     } else {
       throw AssertionError();
     }
   }
 
   R maybeMap<R extends Object?>({
-    R Function(CartAndFavouriteEventInitialize initialize)? initialize,
-    R Function(CartAndFavouriteEventToggleFavourite toggleFavourite)?
-        toggleFavourite,
-    R Function(CartAndFavouriteEventAddToCart addToCart)? addToCart,
-    required R Function(CartAndFavouriteEvent cartAndFavouriteEvent) orElse,
+    R Function(CartActorEventAddToCart addToCart)? addToCart,
+    required R Function(CartActorEvent cartActorEvent) orElse,
   }) {
-    final cartAndFavouriteEvent = this;
-    if (cartAndFavouriteEvent is CartAndFavouriteEventInitialize) {
-      return initialize != null
-          ? initialize(cartAndFavouriteEvent)
-          : orElse(cartAndFavouriteEvent);
-    } else if (cartAndFavouriteEvent is CartAndFavouriteEventToggleFavourite) {
-      return toggleFavourite != null
-          ? toggleFavourite(cartAndFavouriteEvent)
-          : orElse(cartAndFavouriteEvent);
-    } else if (cartAndFavouriteEvent is CartAndFavouriteEventAddToCart) {
+    final cartActorEvent = this;
+    if (cartActorEvent is CartActorEventAddToCart) {
       return addToCart != null
-          ? addToCart(cartAndFavouriteEvent)
-          : orElse(cartAndFavouriteEvent);
+          ? addToCart(cartActorEvent)
+          : orElse(cartActorEvent);
     } else {
       throw AssertionError();
     }
@@ -213,30 +112,15 @@ abstract class CartAndFavouriteEvent {
 
   @Deprecated('Use `mapOrNull` instead. Will be removed by next release.')
   void partialMap({
-    void Function(CartAndFavouriteEventInitialize initialize)? initialize,
-    void Function(CartAndFavouriteEventToggleFavourite toggleFavourite)?
-        toggleFavourite,
-    void Function(CartAndFavouriteEventAddToCart addToCart)? addToCart,
-    void Function(CartAndFavouriteEvent cartAndFavouriteEvent)? orElse,
+    void Function(CartActorEventAddToCart addToCart)? addToCart,
+    void Function(CartActorEvent cartActorEvent)? orElse,
   }) {
-    final cartAndFavouriteEvent = this;
-    if (cartAndFavouriteEvent is CartAndFavouriteEventInitialize) {
-      if (initialize != null) {
-        initialize(cartAndFavouriteEvent);
-      } else if (orElse != null) {
-        orElse(cartAndFavouriteEvent);
-      }
-    } else if (cartAndFavouriteEvent is CartAndFavouriteEventToggleFavourite) {
-      if (toggleFavourite != null) {
-        toggleFavourite(cartAndFavouriteEvent);
-      } else if (orElse != null) {
-        orElse(cartAndFavouriteEvent);
-      }
-    } else if (cartAndFavouriteEvent is CartAndFavouriteEventAddToCart) {
+    final cartActorEvent = this;
+    if (cartActorEvent is CartActorEventAddToCart) {
       if (addToCart != null) {
-        addToCart(cartAndFavouriteEvent);
+        addToCart(cartActorEvent);
       } else if (orElse != null) {
-        orElse(cartAndFavouriteEvent);
+        orElse(cartActorEvent);
       }
     } else {
       throw AssertionError();
@@ -244,79 +128,25 @@ abstract class CartAndFavouriteEvent {
   }
 
   R? mapOrNull<R extends Object?>({
-    R Function(CartAndFavouriteEventInitialize initialize)? initialize,
-    R Function(CartAndFavouriteEventToggleFavourite toggleFavourite)?
-        toggleFavourite,
-    R Function(CartAndFavouriteEventAddToCart addToCart)? addToCart,
-    R Function(CartAndFavouriteEvent cartAndFavouriteEvent)? orElse,
+    R Function(CartActorEventAddToCart addToCart)? addToCart,
+    R Function(CartActorEvent cartActorEvent)? orElse,
   }) {
-    final cartAndFavouriteEvent = this;
-    if (cartAndFavouriteEvent is CartAndFavouriteEventInitialize) {
-      return initialize != null
-          ? initialize(cartAndFavouriteEvent)
-          : orElse?.call(cartAndFavouriteEvent);
-    } else if (cartAndFavouriteEvent is CartAndFavouriteEventToggleFavourite) {
-      return toggleFavourite != null
-          ? toggleFavourite(cartAndFavouriteEvent)
-          : orElse?.call(cartAndFavouriteEvent);
-    } else if (cartAndFavouriteEvent is CartAndFavouriteEventAddToCart) {
+    final cartActorEvent = this;
+    if (cartActorEvent is CartActorEventAddToCart) {
       return addToCart != null
-          ? addToCart(cartAndFavouriteEvent)
-          : orElse?.call(cartAndFavouriteEvent);
+          ? addToCart(cartActorEvent)
+          : orElse?.call(cartActorEvent);
     } else {
       throw AssertionError();
     }
   }
 }
 
-/// (([CartAndFavouriteEventInitialize] : [CartAndFavouriteEvent]) initialize){[UniqueId] productId}
+/// (([CartActorEventAddToCart] : [CartActorEvent]) addToCart){[PricedProduct] product, [int] quantity}
 ///
 /// with data equality
-class CartAndFavouriteEventInitialize extends CartAndFavouriteEvent
-    with EquatableMixin {
-  const CartAndFavouriteEventInitialize({
-    required this.productId,
-  }) : super._internal();
-
-  final UniqueId productId;
-
-  @override
-  String toString() =>
-      'CartAndFavouriteEvent.initialize(productId: $productId)';
-
-  @override
-  List<Object?> get props => [
-        productId,
-      ];
-}
-
-/// (([CartAndFavouriteEventToggleFavourite] : [CartAndFavouriteEvent]) toggleFavourite){[UniqueId] productId}
-///
-/// with data equality
-class CartAndFavouriteEventToggleFavourite extends CartAndFavouriteEvent
-    with EquatableMixin {
-  const CartAndFavouriteEventToggleFavourite({
-    required this.productId,
-  }) : super._internal();
-
-  final UniqueId productId;
-
-  @override
-  String toString() =>
-      'CartAndFavouriteEvent.toggleFavourite(productId: $productId)';
-
-  @override
-  List<Object?> get props => [
-        productId,
-      ];
-}
-
-/// (([CartAndFavouriteEventAddToCart] : [CartAndFavouriteEvent]) addToCart){[PricedProduct] product, [int] quantity}
-///
-/// with data equality
-class CartAndFavouriteEventAddToCart extends CartAndFavouriteEvent
-    with EquatableMixin {
-  const CartAndFavouriteEventAddToCart({
+class CartActorEventAddToCart extends CartActorEvent with EquatableMixin {
+  const CartActorEventAddToCart({
     required this.product,
     required this.quantity,
   }) : super._internal();
@@ -326,7 +156,7 @@ class CartAndFavouriteEventAddToCart extends CartAndFavouriteEvent
 
   @override
   String toString() =>
-      'CartAndFavouriteEvent.addToCart(product: $product, quantity: $quantity)';
+      'CartActorEvent.addToCart(product: $product, quantity: $quantity)';
 
   @override
   List<Object?> get props => [
