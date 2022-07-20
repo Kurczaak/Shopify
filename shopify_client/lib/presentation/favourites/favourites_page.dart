@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopify_client/application/favourites_watcher/favourites_watcher_bloc.dart';
 import 'package:shopify_client/injection.dart';
+import 'package:shopify_client/presentation/product/widgets/toggle_favourite_widget.dart';
 import 'package:shopify_domain/favourites/favourite_product.dart';
 import 'package:shopify_presentation/core/shopify_image.dart';
 
@@ -105,10 +106,10 @@ class ProductPreviewWidget extends StatelessWidget {
                     child: ProductSnippetInfoWidget(product: product),
                   ),
                 ),
-                const Flexible(
+                Flexible(
                   fit: FlexFit.tight,
                   flex: 3,
-                  child: Icon(Icons.favorite),
+                  child: ToggleFavouriteWidget(productId: product.productId),
                 ),
               ],
             ),
