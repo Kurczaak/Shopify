@@ -19,10 +19,11 @@ import 'package:shopify_domain/product/shopify_product_searcher.dart' as _i21;
 import 'package:shopify_domain/shop/shopify_shop_repository.dart' as _i24;
 
 import 'application/auth/auth_bloc.dart' as _i31;
-import 'application/auth/sign_in_form/sign_in_form_bloc.dart' as _i35;
+import 'application/auth/sign_in_form/sign_in_form_bloc.dart' as _i36;
 import 'application/cart_and_favourite/cart_and_favourite_bloc.dart' as _i32;
 import 'application/cart_item/cart_item_bloc.dart' as _i33;
-import 'application/favourites_watcher/favourites_watcher_bloc.dart' as _i34;
+import 'application/favouirtes_actor/favourites_actor_bloc.dart' as _i34;
+import 'application/favourites_watcher/favourites_watcher_bloc.dart' as _i35;
 import 'application/order_watcher/order_watcher_bloc.dart' as _i25;
 import 'application/product_preview/product_preview_bloc.dart' as _i26;
 import 'application/product_watcher/product_watcher_bloc.dart' as _i27;
@@ -82,9 +83,11 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       favouritesFacade: get<_i9.IFavouritesFacade>()));
   gh.factory<_i33.CartItemBloc>(
       () => _i33.CartItemBloc(get<_i6.ICartFacade>()));
-  gh.factory<_i34.FavouritesWatcherBloc>(
-      () => _i34.FavouritesWatcherBloc(get<_i9.IFavouritesFacade>()));
-  gh.factory<_i35.SignInFormBloc>(
-      () => _i35.SignInFormBloc(get<_i3.IAuthFacade>(), get<_i31.AuthBloc>()));
+  gh.factory<_i34.FavouritesActorBloc>(
+      () => _i34.FavouritesActorBloc(get<_i9.IFavouritesFacade>()));
+  gh.factory<_i35.FavouritesWatcherBloc>(
+      () => _i35.FavouritesWatcherBloc(get<_i9.IFavouritesFacade>()));
+  gh.factory<_i36.SignInFormBloc>(
+      () => _i36.SignInFormBloc(get<_i3.IAuthFacade>(), get<_i31.AuthBloc>()));
   return get;
 }
