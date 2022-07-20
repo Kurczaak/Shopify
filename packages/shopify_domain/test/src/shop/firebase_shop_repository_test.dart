@@ -319,7 +319,7 @@ void main() async {
         _setUpStorage();
         _setUpFirestore();
         when(shopDocument.set(any)).thenAnswer((_) {
-          return Future.delayed(const Duration(seconds: 10));
+          return Future.delayed(const Duration(seconds: 15));
         });
         // act
         final result =
