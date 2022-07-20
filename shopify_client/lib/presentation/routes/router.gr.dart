@@ -11,23 +11,22 @@
 // ignore_for_file: type=lint
 
 import 'package:auto_route/auto_route.dart' as _i8;
-import 'package:flutter/cupertino.dart' as _i18;
 import 'package:flutter/material.dart' as _i17;
-import 'package:kt_dart/collection.dart' as _i19;
-import 'package:shopify_domain/cart/cart_item.dart' as _i20;
-import 'package:shopify_domain/product.dart' as _i22;
-import 'package:shopify_domain/shop.dart' as _i21;
+import 'package:kt_dart/collection.dart' as _i18;
+import 'package:shopify_domain/cart/cart_item.dart' as _i19;
+import 'package:shopify_domain/product.dart' as _i21;
+import 'package:shopify_domain/shop.dart' as _i20;
 
 import '../../home_page.dart' as _i5;
-import '../best_offers/best_offers_page.dart' as _i14;
+import '../best_offers/best_offers_page.dart' as _i15;
 import '../cart/cart_page.dart' as _i9;
-import '../core/debug_page.dart' as _i10;
-import '../favourites/favourites_page.dart' as _i15;
+import '../core/debug_page.dart' as _i11;
+import '../favourites/favourites_page.dart' as _i10;
 import '../order/order_page.dart' as _i4;
 import '../order/user_orders_page.dart' as _i3;
-import '../product/product_preview_page.dart' as _i13;
-import '../shop/shop_products_browser_page.dart' as _i12;
-import '../shop_picker_page.dart' as _i11;
+import '../product/product_preview_page.dart' as _i14;
+import '../shop/shop_products_browser_page.dart' as _i13;
+import '../shop_picker_page.dart' as _i12;
 import '../sign_in/sign_in_page.dart' as _i6;
 import '../sign_in/sign_up_page.dart' as _i7;
 import '../splash/splash_page.dart' as _i2;
@@ -85,7 +84,7 @@ class AppRouter extends _i8.RootStackRouter {
     },
     FavouritesRouter.name: (routeData) {
       return _i8.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i8.EmptyRouterPage());
+          routeData: routeData, child: const _i10.FavouritesPage());
     },
     YourListsRouter.name: (routeData) {
       return _i8.MaterialPageX<dynamic>(
@@ -93,24 +92,24 @@ class AppRouter extends _i8.RootStackRouter {
     },
     DebugRoute.name: (routeData) {
       return _i8.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i10.DebugPage());
+          routeData: routeData, child: const _i11.DebugPage());
     },
     ShopPickerRoute.name: (routeData) {
       return _i8.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i11.ShopPickerPage());
+          routeData: routeData, child: const _i12.ShopPickerPage());
     },
     ShopProductsBrowserRoute.name: (routeData) {
       final args = routeData.argsAs<ShopProductsBrowserRouteArgs>();
       return _i8.MaterialPageX<dynamic>(
           routeData: routeData,
-          child: _i12.ShopProductsBrowserPage(
+          child: _i13.ShopProductsBrowserPage(
               key: args.key, shop: args.shop, title: args.title));
     },
     ProductPreviewRoute.name: (routeData) {
       final args = routeData.argsAs<ProductPreviewRouteArgs>();
       return _i8.MaterialPageX<dynamic>(
           routeData: routeData,
-          child: _i13.ProductPreviewPage(
+          child: _i14.ProductPreviewPage(
               key: args.key,
               product: args.product,
               shop: args.shop,
@@ -118,11 +117,7 @@ class AppRouter extends _i8.RootStackRouter {
     },
     BestOffersRoute.name: (routeData) {
       return _i8.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i14.BestOffersPage());
-    },
-    FavouritesRoute.name: (routeData) {
-      return _i8.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i15.FavouritesPage());
+          routeData: routeData, child: const _i15.BestOffersPage());
     },
     YourListsRoute.name: (routeData) {
       return _i8.MaterialPageX<dynamic>(
@@ -165,13 +160,7 @@ class AppRouter extends _i8.RootStackRouter {
                               parent: BestOffersRouter.name)
                         ]),
                     _i8.RouteConfig(FavouritesRouter.name,
-                        path: 'Favourites',
-                        parent: HomeRouter.name,
-                        children: [
-                          _i8.RouteConfig(FavouritesRoute.name,
-                              path: 'favourites-page',
-                              parent: FavouritesRouter.name)
-                        ]),
+                        path: 'Favourites', parent: HomeRouter.name),
                     _i8.RouteConfig(YourListsRouter.name,
                         path: 'Your Lists',
                         parent: HomeRouter.name,
@@ -223,8 +212,8 @@ class UserOrdersRoute extends _i8.PageRouteInfo<void> {
 /// [_i4.OrderPage]
 class OrderRoute extends _i8.PageRouteInfo<OrderRouteArgs> {
   OrderRoute(
-      {_i18.Key? key,
-      required _i19.KtList<_i20.CartItem> orderItems,
+      {_i17.Key? key,
+      required _i18.KtList<_i19.CartItem> orderItems,
       required String title})
       : super(OrderRoute.name,
             path: 'order-page',
@@ -238,9 +227,9 @@ class OrderRouteArgs {
   const OrderRouteArgs(
       {this.key, required this.orderItems, required this.title});
 
-  final _i18.Key? key;
+  final _i17.Key? key;
 
-  final _i19.KtList<_i20.CartItem> orderItems;
+  final _i18.KtList<_i19.CartItem> orderItems;
 
   final String title;
 
@@ -303,11 +292,9 @@ class BestOffersRouter extends _i8.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i8.EmptyRouterPage]
+/// [_i10.FavouritesPage]
 class FavouritesRouter extends _i8.PageRouteInfo<void> {
-  const FavouritesRouter({List<_i8.PageRouteInfo>? children})
-      : super(FavouritesRouter.name,
-            path: 'Favourites', initialChildren: children);
+  const FavouritesRouter() : super(FavouritesRouter.name, path: 'Favourites');
 
   static const String name = 'FavouritesRouter';
 }
@@ -323,7 +310,7 @@ class YourListsRouter extends _i8.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i10.DebugPage]
+/// [_i11.DebugPage]
 class DebugRoute extends _i8.PageRouteInfo<void> {
   const DebugRoute() : super(DebugRoute.name, path: 'debug-page');
 
@@ -331,7 +318,7 @@ class DebugRoute extends _i8.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i11.ShopPickerPage]
+/// [_i12.ShopPickerPage]
 class ShopPickerRoute extends _i8.PageRouteInfo<void> {
   const ShopPickerRoute() : super(ShopPickerRoute.name, path: '');
 
@@ -339,11 +326,11 @@ class ShopPickerRoute extends _i8.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i12.ShopProductsBrowserPage]
+/// [_i13.ShopProductsBrowserPage]
 class ShopProductsBrowserRoute
     extends _i8.PageRouteInfo<ShopProductsBrowserRouteArgs> {
   ShopProductsBrowserRoute(
-      {_i18.Key? key, required _i21.Shop shop, required String title})
+      {_i17.Key? key, required _i20.Shop shop, required String title})
       : super(ShopProductsBrowserRoute.name,
             path: ':title',
             args: ShopProductsBrowserRouteArgs(
@@ -357,9 +344,9 @@ class ShopProductsBrowserRouteArgs {
   const ShopProductsBrowserRouteArgs(
       {this.key, required this.shop, required this.title});
 
-  final _i18.Key? key;
+  final _i17.Key? key;
 
-  final _i21.Shop shop;
+  final _i20.Shop shop;
 
   final String title;
 
@@ -370,12 +357,12 @@ class ShopProductsBrowserRouteArgs {
 }
 
 /// generated route for
-/// [_i13.ProductPreviewPage]
+/// [_i14.ProductPreviewPage]
 class ProductPreviewRoute extends _i8.PageRouteInfo<ProductPreviewRouteArgs> {
   ProductPreviewRoute(
-      {_i18.Key? key,
-      required _i22.PricedProduct product,
-      required _i21.Shop shop,
+      {_i17.Key? key,
+      required _i21.PricedProduct product,
+      required _i20.Shop shop,
       required String title})
       : super(ProductPreviewRoute.name,
             path: ':title',
@@ -393,11 +380,11 @@ class ProductPreviewRouteArgs {
       required this.shop,
       required this.title});
 
-  final _i18.Key? key;
+  final _i17.Key? key;
 
-  final _i22.PricedProduct product;
+  final _i21.PricedProduct product;
 
-  final _i21.Shop shop;
+  final _i20.Shop shop;
 
   final String title;
 
@@ -408,21 +395,12 @@ class ProductPreviewRouteArgs {
 }
 
 /// generated route for
-/// [_i14.BestOffersPage]
+/// [_i15.BestOffersPage]
 class BestOffersRoute extends _i8.PageRouteInfo<void> {
   const BestOffersRoute()
       : super(BestOffersRoute.name, path: 'best-offers-page');
 
   static const String name = 'BestOffersRoute';
-}
-
-/// generated route for
-/// [_i15.FavouritesPage]
-class FavouritesRoute extends _i8.PageRouteInfo<void> {
-  const FavouritesRoute()
-      : super(FavouritesRoute.name, path: 'favourites-page');
-
-  static const String name = 'FavouritesRoute';
 }
 
 /// generated route for
