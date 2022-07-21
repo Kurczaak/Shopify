@@ -21,8 +21,6 @@ mixin _$ShopPickerState {
   double get radius => throw _privateConstructorUsedError;
   Option<ShopFailure> get shopFailureOption =>
       throw _privateConstructorUsedError;
-  Option<LocationFailure> get locationFailureOption =>
-      throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -40,7 +38,6 @@ abstract class $ShopPickerStateCopyWith<$Res> {
       Location location,
       double radius,
       Option<ShopFailure> shopFailureOption,
-      Option<LocationFailure> locationFailureOption,
       bool isLoading});
 
   $LocationCopyWith<$Res> get location;
@@ -61,7 +58,6 @@ class _$ShopPickerStateCopyWithImpl<$Res>
     Object? location = freezed,
     Object? radius = freezed,
     Object? shopFailureOption = freezed,
-    Object? locationFailureOption = freezed,
     Object? isLoading = freezed,
   }) {
     return _then(_value.copyWith(
@@ -81,10 +77,6 @@ class _$ShopPickerStateCopyWithImpl<$Res>
           ? _value.shopFailureOption
           : shopFailureOption // ignore: cast_nullable_to_non_nullable
               as Option<ShopFailure>,
-      locationFailureOption: locationFailureOption == freezed
-          ? _value.locationFailureOption
-          : locationFailureOption // ignore: cast_nullable_to_non_nullable
-              as Option<LocationFailure>,
       isLoading: isLoading == freezed
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
@@ -112,7 +104,6 @@ abstract class _$$_ShopPickerStateCopyWith<$Res>
       Location location,
       double radius,
       Option<ShopFailure> shopFailureOption,
-      Option<LocationFailure> locationFailureOption,
       bool isLoading});
 
   @override
@@ -136,7 +127,6 @@ class __$$_ShopPickerStateCopyWithImpl<$Res>
     Object? location = freezed,
     Object? radius = freezed,
     Object? shopFailureOption = freezed,
-    Object? locationFailureOption = freezed,
     Object? isLoading = freezed,
   }) {
     return _then(_$_ShopPickerState(
@@ -156,10 +146,6 @@ class __$$_ShopPickerStateCopyWithImpl<$Res>
           ? _value.shopFailureOption
           : shopFailureOption // ignore: cast_nullable_to_non_nullable
               as Option<ShopFailure>,
-      locationFailureOption: locationFailureOption == freezed
-          ? _value.locationFailureOption
-          : locationFailureOption // ignore: cast_nullable_to_non_nullable
-              as Option<LocationFailure>,
       isLoading: isLoading == freezed
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
@@ -176,7 +162,6 @@ class _$_ShopPickerState implements _ShopPickerState {
       required this.location,
       required this.radius,
       required this.shopFailureOption,
-      required this.locationFailureOption,
       required this.isLoading});
 
   @override
@@ -188,13 +173,11 @@ class _$_ShopPickerState implements _ShopPickerState {
   @override
   final Option<ShopFailure> shopFailureOption;
   @override
-  final Option<LocationFailure> locationFailureOption;
-  @override
   final bool isLoading;
 
   @override
   String toString() {
-    return 'ShopPickerState(shops: $shops, location: $location, radius: $radius, shopFailureOption: $shopFailureOption, locationFailureOption: $locationFailureOption, isLoading: $isLoading)';
+    return 'ShopPickerState(shops: $shops, location: $location, radius: $radius, shopFailureOption: $shopFailureOption, isLoading: $isLoading)';
   }
 
   @override
@@ -207,8 +190,6 @@ class _$_ShopPickerState implements _ShopPickerState {
             const DeepCollectionEquality().equals(other.radius, radius) &&
             const DeepCollectionEquality()
                 .equals(other.shopFailureOption, shopFailureOption) &&
-            const DeepCollectionEquality()
-                .equals(other.locationFailureOption, locationFailureOption) &&
             const DeepCollectionEquality().equals(other.isLoading, isLoading));
   }
 
@@ -219,7 +200,6 @@ class _$_ShopPickerState implements _ShopPickerState {
       const DeepCollectionEquality().hash(location),
       const DeepCollectionEquality().hash(radius),
       const DeepCollectionEquality().hash(shopFailureOption),
-      const DeepCollectionEquality().hash(locationFailureOption),
       const DeepCollectionEquality().hash(isLoading));
 
   @JsonKey(ignore: true)
@@ -234,7 +214,6 @@ abstract class _ShopPickerState implements ShopPickerState {
       required final Location location,
       required final double radius,
       required final Option<ShopFailure> shopFailureOption,
-      required final Option<LocationFailure> locationFailureOption,
       required final bool isLoading}) = _$_ShopPickerState;
 
   @override
@@ -245,9 +224,6 @@ abstract class _ShopPickerState implements ShopPickerState {
   double get radius => throw _privateConstructorUsedError;
   @override
   Option<ShopFailure> get shopFailureOption =>
-      throw _privateConstructorUsedError;
-  @override
-  Option<LocationFailure> get locationFailureOption =>
       throw _privateConstructorUsedError;
   @override
   bool get isLoading => throw _privateConstructorUsedError;

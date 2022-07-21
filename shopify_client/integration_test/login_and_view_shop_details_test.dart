@@ -92,9 +92,7 @@ void main() {
   final authBloc = AuthBloc(mockAuthFacade);
   final signInFormBloc = SignInFormBloc(mockAuthFacade, authBloc);
   final shopPickerBloc = ShopPickerBloc(
-      shopRepository: mockShopRepository,
-      location: mockLocationFacade,
-      networkInfo: mockNetworkInfo);
+      shopRepository: mockShopRepository, networkInfo: mockNetworkInfo);
 
   getIt.registerFactory<AuthBloc>(() => authBloc);
   getIt.registerFactory<SignInFormBloc>(() => signInFormBloc);

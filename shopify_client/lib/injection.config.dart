@@ -77,7 +77,6 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       _i29.ProductWatcherBloc(repository: get<_i18.IProductRepository>()));
   gh.factory<_i30.ShopPickerBloc>(() => _i30.ShopPickerBloc(
       networkInfo: get<_i26.NetworkInfo>(),
-      location: get<_i12.ILocationFacade>(),
       shopRepository: get<_i22.IShopRepository>()));
   gh.factory<_i31.UserCartsBloc>(() =>
       _i31.UserCartsBloc(get<_i6.ICartFacade>(), get<_i26.NetworkInfo>()));

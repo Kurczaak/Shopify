@@ -10,11 +10,9 @@ part of 'shop_picker_bloc.dart';
 ///
 /// ([ShopPickerEventRadiusChanged] radiusChanged){[double] radius} with data equality
 ///
+/// ([ShopPickerEventLocationChanged] locationChanged){[Location] location} with data equality
+///
 /// ([ShopPickerEventWatchNearbyShops] watchNearbyShops){} with data equality
-///
-/// ([ShopPickerEventSearchLocation] searchLocation){[String] stringLocation} with data equality
-///
-/// ([ShopPickerEventGetYourLocation] getYourLocation){} with data equality
 ///
 /// }
 @SealedManifest(_ShopPickerEvent)
@@ -25,39 +23,38 @@ abstract class ShopPickerEvent {
     required double radius,
   }) = ShopPickerEventRadiusChanged;
 
+  const factory ShopPickerEvent.locationChanged({
+    required Location location,
+  }) = ShopPickerEventLocationChanged;
+
   const factory ShopPickerEvent.watchNearbyShops() =
       ShopPickerEventWatchNearbyShops;
 
-  const factory ShopPickerEvent.searchLocation({
-    required String stringLocation,
-  }) = ShopPickerEventSearchLocation;
-
-  const factory ShopPickerEvent.getYourLocation() =
-      ShopPickerEventGetYourLocation;
-
   bool get isRadiusChanged => this is ShopPickerEventRadiusChanged;
 
+  bool get isLocationChanged => this is ShopPickerEventLocationChanged;
+
   bool get isWatchNearbyShops => this is ShopPickerEventWatchNearbyShops;
-
-  bool get isSearchLocation => this is ShopPickerEventSearchLocation;
-
-  bool get isGetYourLocation => this is ShopPickerEventGetYourLocation;
 
   ShopPickerEventRadiusChanged get asRadiusChanged =>
       this as ShopPickerEventRadiusChanged;
 
+  ShopPickerEventLocationChanged get asLocationChanged =>
+      this as ShopPickerEventLocationChanged;
+
   ShopPickerEventWatchNearbyShops get asWatchNearbyShops =>
       this as ShopPickerEventWatchNearbyShops;
-
-  ShopPickerEventSearchLocation get asSearchLocation =>
-      this as ShopPickerEventSearchLocation;
-
-  ShopPickerEventGetYourLocation get asGetYourLocation =>
-      this as ShopPickerEventGetYourLocation;
 
   ShopPickerEventRadiusChanged? get asRadiusChangedOrNull {
     final shopPickerEvent = this;
     return shopPickerEvent is ShopPickerEventRadiusChanged
+        ? shopPickerEvent
+        : null;
+  }
+
+  ShopPickerEventLocationChanged? get asLocationChangedOrNull {
+    final shopPickerEvent = this;
+    return shopPickerEvent is ShopPickerEventLocationChanged
         ? shopPickerEvent
         : null;
   }
@@ -69,35 +66,18 @@ abstract class ShopPickerEvent {
         : null;
   }
 
-  ShopPickerEventSearchLocation? get asSearchLocationOrNull {
-    final shopPickerEvent = this;
-    return shopPickerEvent is ShopPickerEventSearchLocation
-        ? shopPickerEvent
-        : null;
-  }
-
-  ShopPickerEventGetYourLocation? get asGetYourLocationOrNull {
-    final shopPickerEvent = this;
-    return shopPickerEvent is ShopPickerEventGetYourLocation
-        ? shopPickerEvent
-        : null;
-  }
-
   R when<R extends Object?>({
     required R Function(double radius) radiusChanged,
+    required R Function(Location location) locationChanged,
     required R Function() watchNearbyShops,
-    required R Function(String stringLocation) searchLocation,
-    required R Function() getYourLocation,
   }) {
     final shopPickerEvent = this;
     if (shopPickerEvent is ShopPickerEventRadiusChanged) {
       return radiusChanged(shopPickerEvent.radius);
+    } else if (shopPickerEvent is ShopPickerEventLocationChanged) {
+      return locationChanged(shopPickerEvent.location);
     } else if (shopPickerEvent is ShopPickerEventWatchNearbyShops) {
       return watchNearbyShops();
-    } else if (shopPickerEvent is ShopPickerEventSearchLocation) {
-      return searchLocation(shopPickerEvent.stringLocation);
-    } else if (shopPickerEvent is ShopPickerEventGetYourLocation) {
-      return getYourLocation();
     } else {
       throw AssertionError();
     }
@@ -105,9 +85,8 @@ abstract class ShopPickerEvent {
 
   R maybeWhen<R extends Object?>({
     R Function(double radius)? radiusChanged,
+    R Function(Location location)? locationChanged,
     R Function()? watchNearbyShops,
-    R Function(String stringLocation)? searchLocation,
-    R Function()? getYourLocation,
     required R Function(ShopPickerEvent shopPickerEvent) orElse,
   }) {
     final shopPickerEvent = this;
@@ -115,17 +94,13 @@ abstract class ShopPickerEvent {
       return radiusChanged != null
           ? radiusChanged(shopPickerEvent.radius)
           : orElse(shopPickerEvent);
+    } else if (shopPickerEvent is ShopPickerEventLocationChanged) {
+      return locationChanged != null
+          ? locationChanged(shopPickerEvent.location)
+          : orElse(shopPickerEvent);
     } else if (shopPickerEvent is ShopPickerEventWatchNearbyShops) {
       return watchNearbyShops != null
           ? watchNearbyShops()
-          : orElse(shopPickerEvent);
-    } else if (shopPickerEvent is ShopPickerEventSearchLocation) {
-      return searchLocation != null
-          ? searchLocation(shopPickerEvent.stringLocation)
-          : orElse(shopPickerEvent);
-    } else if (shopPickerEvent is ShopPickerEventGetYourLocation) {
-      return getYourLocation != null
-          ? getYourLocation()
           : orElse(shopPickerEvent);
     } else {
       throw AssertionError();
@@ -135,9 +110,8 @@ abstract class ShopPickerEvent {
   @Deprecated('Use `whenOrNull` instead. Will be removed by next release.')
   void partialWhen({
     void Function(double radius)? radiusChanged,
+    void Function(Location location)? locationChanged,
     void Function()? watchNearbyShops,
-    void Function(String stringLocation)? searchLocation,
-    void Function()? getYourLocation,
     void Function(ShopPickerEvent shopPickerEvent)? orElse,
   }) {
     final shopPickerEvent = this;
@@ -147,21 +121,15 @@ abstract class ShopPickerEvent {
       } else if (orElse != null) {
         orElse(shopPickerEvent);
       }
+    } else if (shopPickerEvent is ShopPickerEventLocationChanged) {
+      if (locationChanged != null) {
+        locationChanged(shopPickerEvent.location);
+      } else if (orElse != null) {
+        orElse(shopPickerEvent);
+      }
     } else if (shopPickerEvent is ShopPickerEventWatchNearbyShops) {
       if (watchNearbyShops != null) {
         watchNearbyShops();
-      } else if (orElse != null) {
-        orElse(shopPickerEvent);
-      }
-    } else if (shopPickerEvent is ShopPickerEventSearchLocation) {
-      if (searchLocation != null) {
-        searchLocation(shopPickerEvent.stringLocation);
-      } else if (orElse != null) {
-        orElse(shopPickerEvent);
-      }
-    } else if (shopPickerEvent is ShopPickerEventGetYourLocation) {
-      if (getYourLocation != null) {
-        getYourLocation();
       } else if (orElse != null) {
         orElse(shopPickerEvent);
       }
@@ -172,9 +140,8 @@ abstract class ShopPickerEvent {
 
   R? whenOrNull<R extends Object?>({
     R Function(double radius)? radiusChanged,
+    R Function(Location location)? locationChanged,
     R Function()? watchNearbyShops,
-    R Function(String stringLocation)? searchLocation,
-    R Function()? getYourLocation,
     R Function(ShopPickerEvent shopPickerEvent)? orElse,
   }) {
     final shopPickerEvent = this;
@@ -182,17 +149,13 @@ abstract class ShopPickerEvent {
       return radiusChanged != null
           ? radiusChanged(shopPickerEvent.radius)
           : orElse?.call(shopPickerEvent);
+    } else if (shopPickerEvent is ShopPickerEventLocationChanged) {
+      return locationChanged != null
+          ? locationChanged(shopPickerEvent.location)
+          : orElse?.call(shopPickerEvent);
     } else if (shopPickerEvent is ShopPickerEventWatchNearbyShops) {
       return watchNearbyShops != null
           ? watchNearbyShops()
-          : orElse?.call(shopPickerEvent);
-    } else if (shopPickerEvent is ShopPickerEventSearchLocation) {
-      return searchLocation != null
-          ? searchLocation(shopPickerEvent.stringLocation)
-          : orElse?.call(shopPickerEvent);
-    } else if (shopPickerEvent is ShopPickerEventGetYourLocation) {
-      return getYourLocation != null
-          ? getYourLocation()
           : orElse?.call(shopPickerEvent);
     } else {
       throw AssertionError();
@@ -202,22 +165,18 @@ abstract class ShopPickerEvent {
   R map<R extends Object?>({
     required R Function(ShopPickerEventRadiusChanged radiusChanged)
         radiusChanged,
+    required R Function(ShopPickerEventLocationChanged locationChanged)
+        locationChanged,
     required R Function(ShopPickerEventWatchNearbyShops watchNearbyShops)
         watchNearbyShops,
-    required R Function(ShopPickerEventSearchLocation searchLocation)
-        searchLocation,
-    required R Function(ShopPickerEventGetYourLocation getYourLocation)
-        getYourLocation,
   }) {
     final shopPickerEvent = this;
     if (shopPickerEvent is ShopPickerEventRadiusChanged) {
       return radiusChanged(shopPickerEvent);
+    } else if (shopPickerEvent is ShopPickerEventLocationChanged) {
+      return locationChanged(shopPickerEvent);
     } else if (shopPickerEvent is ShopPickerEventWatchNearbyShops) {
       return watchNearbyShops(shopPickerEvent);
-    } else if (shopPickerEvent is ShopPickerEventSearchLocation) {
-      return searchLocation(shopPickerEvent);
-    } else if (shopPickerEvent is ShopPickerEventGetYourLocation) {
-      return getYourLocation(shopPickerEvent);
     } else {
       throw AssertionError();
     }
@@ -225,10 +184,9 @@ abstract class ShopPickerEvent {
 
   R maybeMap<R extends Object?>({
     R Function(ShopPickerEventRadiusChanged radiusChanged)? radiusChanged,
+    R Function(ShopPickerEventLocationChanged locationChanged)? locationChanged,
     R Function(ShopPickerEventWatchNearbyShops watchNearbyShops)?
         watchNearbyShops,
-    R Function(ShopPickerEventSearchLocation searchLocation)? searchLocation,
-    R Function(ShopPickerEventGetYourLocation getYourLocation)? getYourLocation,
     required R Function(ShopPickerEvent shopPickerEvent) orElse,
   }) {
     final shopPickerEvent = this;
@@ -236,17 +194,13 @@ abstract class ShopPickerEvent {
       return radiusChanged != null
           ? radiusChanged(shopPickerEvent)
           : orElse(shopPickerEvent);
+    } else if (shopPickerEvent is ShopPickerEventLocationChanged) {
+      return locationChanged != null
+          ? locationChanged(shopPickerEvent)
+          : orElse(shopPickerEvent);
     } else if (shopPickerEvent is ShopPickerEventWatchNearbyShops) {
       return watchNearbyShops != null
           ? watchNearbyShops(shopPickerEvent)
-          : orElse(shopPickerEvent);
-    } else if (shopPickerEvent is ShopPickerEventSearchLocation) {
-      return searchLocation != null
-          ? searchLocation(shopPickerEvent)
-          : orElse(shopPickerEvent);
-    } else if (shopPickerEvent is ShopPickerEventGetYourLocation) {
-      return getYourLocation != null
-          ? getYourLocation(shopPickerEvent)
           : orElse(shopPickerEvent);
     } else {
       throw AssertionError();
@@ -256,11 +210,10 @@ abstract class ShopPickerEvent {
   @Deprecated('Use `mapOrNull` instead. Will be removed by next release.')
   void partialMap({
     void Function(ShopPickerEventRadiusChanged radiusChanged)? radiusChanged,
+    void Function(ShopPickerEventLocationChanged locationChanged)?
+        locationChanged,
     void Function(ShopPickerEventWatchNearbyShops watchNearbyShops)?
         watchNearbyShops,
-    void Function(ShopPickerEventSearchLocation searchLocation)? searchLocation,
-    void Function(ShopPickerEventGetYourLocation getYourLocation)?
-        getYourLocation,
     void Function(ShopPickerEvent shopPickerEvent)? orElse,
   }) {
     final shopPickerEvent = this;
@@ -270,21 +223,15 @@ abstract class ShopPickerEvent {
       } else if (orElse != null) {
         orElse(shopPickerEvent);
       }
+    } else if (shopPickerEvent is ShopPickerEventLocationChanged) {
+      if (locationChanged != null) {
+        locationChanged(shopPickerEvent);
+      } else if (orElse != null) {
+        orElse(shopPickerEvent);
+      }
     } else if (shopPickerEvent is ShopPickerEventWatchNearbyShops) {
       if (watchNearbyShops != null) {
         watchNearbyShops(shopPickerEvent);
-      } else if (orElse != null) {
-        orElse(shopPickerEvent);
-      }
-    } else if (shopPickerEvent is ShopPickerEventSearchLocation) {
-      if (searchLocation != null) {
-        searchLocation(shopPickerEvent);
-      } else if (orElse != null) {
-        orElse(shopPickerEvent);
-      }
-    } else if (shopPickerEvent is ShopPickerEventGetYourLocation) {
-      if (getYourLocation != null) {
-        getYourLocation(shopPickerEvent);
       } else if (orElse != null) {
         orElse(shopPickerEvent);
       }
@@ -295,10 +242,9 @@ abstract class ShopPickerEvent {
 
   R? mapOrNull<R extends Object?>({
     R Function(ShopPickerEventRadiusChanged radiusChanged)? radiusChanged,
+    R Function(ShopPickerEventLocationChanged locationChanged)? locationChanged,
     R Function(ShopPickerEventWatchNearbyShops watchNearbyShops)?
         watchNearbyShops,
-    R Function(ShopPickerEventSearchLocation searchLocation)? searchLocation,
-    R Function(ShopPickerEventGetYourLocation getYourLocation)? getYourLocation,
     R Function(ShopPickerEvent shopPickerEvent)? orElse,
   }) {
     final shopPickerEvent = this;
@@ -306,17 +252,13 @@ abstract class ShopPickerEvent {
       return radiusChanged != null
           ? radiusChanged(shopPickerEvent)
           : orElse?.call(shopPickerEvent);
+    } else if (shopPickerEvent is ShopPickerEventLocationChanged) {
+      return locationChanged != null
+          ? locationChanged(shopPickerEvent)
+          : orElse?.call(shopPickerEvent);
     } else if (shopPickerEvent is ShopPickerEventWatchNearbyShops) {
       return watchNearbyShops != null
           ? watchNearbyShops(shopPickerEvent)
-          : orElse?.call(shopPickerEvent);
-    } else if (shopPickerEvent is ShopPickerEventSearchLocation) {
-      return searchLocation != null
-          ? searchLocation(shopPickerEvent)
-          : orElse?.call(shopPickerEvent);
-    } else if (shopPickerEvent is ShopPickerEventGetYourLocation) {
-      return getYourLocation != null
-          ? getYourLocation(shopPickerEvent)
           : orElse?.call(shopPickerEvent);
     } else {
       throw AssertionError();
@@ -343,6 +285,26 @@ class ShopPickerEventRadiusChanged extends ShopPickerEvent with EquatableMixin {
       ];
 }
 
+/// (([ShopPickerEventLocationChanged] : [ShopPickerEvent]) locationChanged){[Location] location}
+///
+/// with data equality
+class ShopPickerEventLocationChanged extends ShopPickerEvent
+    with EquatableMixin {
+  const ShopPickerEventLocationChanged({
+    required this.location,
+  }) : super._internal();
+
+  final Location location;
+
+  @override
+  String toString() => 'ShopPickerEvent.locationChanged(location: $location)';
+
+  @override
+  List<Object?> get props => [
+        location,
+      ];
+}
+
 /// (([ShopPickerEventWatchNearbyShops] : [ShopPickerEvent]) watchNearbyShops){}
 ///
 /// with data equality
@@ -352,41 +314,6 @@ class ShopPickerEventWatchNearbyShops extends ShopPickerEvent
 
   @override
   String toString() => 'ShopPickerEvent.watchNearbyShops()';
-
-  @override
-  List<Object?> get props => [];
-}
-
-/// (([ShopPickerEventSearchLocation] : [ShopPickerEvent]) searchLocation){[String] stringLocation}
-///
-/// with data equality
-class ShopPickerEventSearchLocation extends ShopPickerEvent
-    with EquatableMixin {
-  const ShopPickerEventSearchLocation({
-    required this.stringLocation,
-  }) : super._internal();
-
-  final String stringLocation;
-
-  @override
-  String toString() =>
-      'ShopPickerEvent.searchLocation(stringLocation: $stringLocation)';
-
-  @override
-  List<Object?> get props => [
-        stringLocation,
-      ];
-}
-
-/// (([ShopPickerEventGetYourLocation] : [ShopPickerEvent]) getYourLocation){}
-///
-/// with data equality
-class ShopPickerEventGetYourLocation extends ShopPickerEvent
-    with EquatableMixin {
-  const ShopPickerEventGetYourLocation() : super._internal();
-
-  @override
-  String toString() => 'ShopPickerEvent.getYourLocation()';
 
   @override
   List<Object?> get props => [];
