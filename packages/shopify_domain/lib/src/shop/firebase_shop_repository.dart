@@ -158,6 +158,7 @@ class FirebaseShopRepositoryImpl implements ShopifyShopRepository {
     final GeoFirePoint center =
         _geo.point(latitude: location.latitude, longitude: location.longitude);
     final collection = _geo.collection(collectionRef: shopsCollectionRef);
+
     Stream<List<DocumentSnapshot>> stream = collection.within(
         center: center,
         radius: radius.getOrCrash(),

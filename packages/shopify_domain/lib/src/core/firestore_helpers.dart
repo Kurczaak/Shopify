@@ -21,13 +21,19 @@ extension FirestoreX on FirebaseFirestore {
     return userDoc.cartsCollection;
   }
 
-  CollectionReference get usersCollection => collection('users');
-  CollectionReference get shopsCollection => collection('shops');
-  CollectionReference get productsCollection => collection('products');
-  CollectionReference get cartsCollection => collection('carts');
-  CollectionReference get ordersCollection => collection('orders');
-  CollectionReference get favouritesCollection => collection('favourites');
-  CollectionReference get pricedProductsCollection =>
+  CollectionReference<Map<String, dynamic>> get usersCollection =>
+      collection('users');
+  CollectionReference<Map<String, dynamic>> get shopsCollection =>
+      collection('shops');
+  CollectionReference<Map<String, dynamic>> get productsCollection =>
+      collection('products');
+  CollectionReference<Map<String, dynamic>> get cartsCollection =>
+      collection('carts');
+  CollectionReference<Map<String, dynamic>> get ordersCollection =>
+      collection('orders');
+  CollectionReference<Map<String, dynamic>> get favouritesCollection =>
+      collection('favourites');
+  CollectionReference<Map<String, dynamic>> get pricedProductsCollection =>
       collection('pricedProducts');
 }
 
