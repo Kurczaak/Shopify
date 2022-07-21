@@ -16,6 +16,8 @@ part of 'location_failure.dart';
 ///
 /// ([LocationFailurePermissionDenied] permissionDenied){} with data equality
 ///
+/// ([LocationFailureNoInternetConnection] noInternetConnection){} with data equality
+///
 /// }
 @SealedManifest(_LocationFailure)
 abstract class LocationFailure {
@@ -31,6 +33,9 @@ abstract class LocationFailure {
   const factory LocationFailure.permissionDenied() =
       LocationFailurePermissionDenied;
 
+  const factory LocationFailure.noInternetConnection() =
+      LocationFailureNoInternetConnection;
+
   bool get isUnexpected => this is LocationFailureUnexpected;
 
   bool get isNoLocationFound => this is LocationFailureNoLocationFound;
@@ -38,6 +43,9 @@ abstract class LocationFailure {
   bool get isTimeout => this is LocationFailureTimeout;
 
   bool get isPermissionDenied => this is LocationFailurePermissionDenied;
+
+  bool get isNoInternetConnection =>
+      this is LocationFailureNoInternetConnection;
 
   LocationFailureUnexpected get asUnexpected =>
       this as LocationFailureUnexpected;
@@ -49,6 +57,9 @@ abstract class LocationFailure {
 
   LocationFailurePermissionDenied get asPermissionDenied =>
       this as LocationFailurePermissionDenied;
+
+  LocationFailureNoInternetConnection get asNoInternetConnection =>
+      this as LocationFailureNoInternetConnection;
 
   LocationFailureUnexpected? get asUnexpectedOrNull {
     final locationFailure = this;
@@ -76,11 +87,19 @@ abstract class LocationFailure {
         : null;
   }
 
+  LocationFailureNoInternetConnection? get asNoInternetConnectionOrNull {
+    final locationFailure = this;
+    return locationFailure is LocationFailureNoInternetConnection
+        ? locationFailure
+        : null;
+  }
+
   R when<R extends Object?>({
     required R Function() unexpected,
     required R Function() noLocationFound,
     required R Function() timeout,
     required R Function() permissionDenied,
+    required R Function() noInternetConnection,
   }) {
     final locationFailure = this;
     if (locationFailure is LocationFailureUnexpected) {
@@ -91,6 +110,8 @@ abstract class LocationFailure {
       return timeout();
     } else if (locationFailure is LocationFailurePermissionDenied) {
       return permissionDenied();
+    } else if (locationFailure is LocationFailureNoInternetConnection) {
+      return noInternetConnection();
     } else {
       throw AssertionError();
     }
@@ -101,6 +122,7 @@ abstract class LocationFailure {
     R Function()? noLocationFound,
     R Function()? timeout,
     R Function()? permissionDenied,
+    R Function()? noInternetConnection,
     required R Function(LocationFailure locationFailure) orElse,
   }) {
     final locationFailure = this;
@@ -116,6 +138,10 @@ abstract class LocationFailure {
       return permissionDenied != null
           ? permissionDenied()
           : orElse(locationFailure);
+    } else if (locationFailure is LocationFailureNoInternetConnection) {
+      return noInternetConnection != null
+          ? noInternetConnection()
+          : orElse(locationFailure);
     } else {
       throw AssertionError();
     }
@@ -127,6 +153,7 @@ abstract class LocationFailure {
     void Function()? noLocationFound,
     void Function()? timeout,
     void Function()? permissionDenied,
+    void Function()? noInternetConnection,
     void Function(LocationFailure locationFailure)? orElse,
   }) {
     final locationFailure = this;
@@ -154,6 +181,12 @@ abstract class LocationFailure {
       } else if (orElse != null) {
         orElse(locationFailure);
       }
+    } else if (locationFailure is LocationFailureNoInternetConnection) {
+      if (noInternetConnection != null) {
+        noInternetConnection();
+      } else if (orElse != null) {
+        orElse(locationFailure);
+      }
     } else {
       throw AssertionError();
     }
@@ -164,6 +197,7 @@ abstract class LocationFailure {
     R Function()? noLocationFound,
     R Function()? timeout,
     R Function()? permissionDenied,
+    R Function()? noInternetConnection,
     R Function(LocationFailure locationFailure)? orElse,
   }) {
     final locationFailure = this;
@@ -179,6 +213,10 @@ abstract class LocationFailure {
       return permissionDenied != null
           ? permissionDenied()
           : orElse?.call(locationFailure);
+    } else if (locationFailure is LocationFailureNoInternetConnection) {
+      return noInternetConnection != null
+          ? noInternetConnection()
+          : orElse?.call(locationFailure);
     } else {
       throw AssertionError();
     }
@@ -191,6 +229,9 @@ abstract class LocationFailure {
     required R Function(LocationFailureTimeout timeout) timeout,
     required R Function(LocationFailurePermissionDenied permissionDenied)
         permissionDenied,
+    required R Function(
+            LocationFailureNoInternetConnection noInternetConnection)
+        noInternetConnection,
   }) {
     final locationFailure = this;
     if (locationFailure is LocationFailureUnexpected) {
@@ -201,6 +242,8 @@ abstract class LocationFailure {
       return timeout(locationFailure);
     } else if (locationFailure is LocationFailurePermissionDenied) {
       return permissionDenied(locationFailure);
+    } else if (locationFailure is LocationFailureNoInternetConnection) {
+      return noInternetConnection(locationFailure);
     } else {
       throw AssertionError();
     }
@@ -212,6 +255,8 @@ abstract class LocationFailure {
     R Function(LocationFailureTimeout timeout)? timeout,
     R Function(LocationFailurePermissionDenied permissionDenied)?
         permissionDenied,
+    R Function(LocationFailureNoInternetConnection noInternetConnection)?
+        noInternetConnection,
     required R Function(LocationFailure locationFailure) orElse,
   }) {
     final locationFailure = this;
@@ -231,6 +276,10 @@ abstract class LocationFailure {
       return permissionDenied != null
           ? permissionDenied(locationFailure)
           : orElse(locationFailure);
+    } else if (locationFailure is LocationFailureNoInternetConnection) {
+      return noInternetConnection != null
+          ? noInternetConnection(locationFailure)
+          : orElse(locationFailure);
     } else {
       throw AssertionError();
     }
@@ -244,6 +293,8 @@ abstract class LocationFailure {
     void Function(LocationFailureTimeout timeout)? timeout,
     void Function(LocationFailurePermissionDenied permissionDenied)?
         permissionDenied,
+    void Function(LocationFailureNoInternetConnection noInternetConnection)?
+        noInternetConnection,
     void Function(LocationFailure locationFailure)? orElse,
   }) {
     final locationFailure = this;
@@ -271,6 +322,12 @@ abstract class LocationFailure {
       } else if (orElse != null) {
         orElse(locationFailure);
       }
+    } else if (locationFailure is LocationFailureNoInternetConnection) {
+      if (noInternetConnection != null) {
+        noInternetConnection(locationFailure);
+      } else if (orElse != null) {
+        orElse(locationFailure);
+      }
     } else {
       throw AssertionError();
     }
@@ -282,6 +339,8 @@ abstract class LocationFailure {
     R Function(LocationFailureTimeout timeout)? timeout,
     R Function(LocationFailurePermissionDenied permissionDenied)?
         permissionDenied,
+    R Function(LocationFailureNoInternetConnection noInternetConnection)?
+        noInternetConnection,
     R Function(LocationFailure locationFailure)? orElse,
   }) {
     final locationFailure = this;
@@ -300,6 +359,10 @@ abstract class LocationFailure {
     } else if (locationFailure is LocationFailurePermissionDenied) {
       return permissionDenied != null
           ? permissionDenied(locationFailure)
+          : orElse?.call(locationFailure);
+    } else if (locationFailure is LocationFailureNoInternetConnection) {
+      return noInternetConnection != null
+          ? noInternetConnection(locationFailure)
           : orElse?.call(locationFailure);
     } else {
       throw AssertionError();
@@ -356,6 +419,20 @@ class LocationFailurePermissionDenied extends LocationFailure
 
   @override
   String toString() => 'LocationFailure.permissionDenied()';
+
+  @override
+  List<Object?> get props => [];
+}
+
+/// (([LocationFailureNoInternetConnection] : [LocationFailure]) noInternetConnection){}
+///
+/// with data equality
+class LocationFailureNoInternetConnection extends LocationFailure
+    with EquatableMixin {
+  const LocationFailureNoInternetConnection() : super._internal();
+
+  @override
+  String toString() => 'LocationFailure.noInternetConnection()';
 
   @override
   List<Object?> get props => [];

@@ -7,4 +7,5 @@ abstract class _LocationFailure {
   void noLocationFound();
   void timeout();
   void permissionDenied();
+  void noInternetConnection();
 }
