@@ -21,7 +21,7 @@ class BestOfferDto with _$BestOfferDto {
     required String shopName,
     required PriceDto price,
     required WeekDto week,
-    required double distance,
+    @Default(0) @JsonKey(ignore: true) double distance,
   }) = _BestOfferDto;
 
   BestOffer toDomain() => BestOffer(

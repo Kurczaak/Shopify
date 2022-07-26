@@ -56,14 +56,14 @@ class FirebaseBestOffersFacadeImpl implements ShopifyBestOffersFacade {
 
       yield* stream
           .map((documents) => right<BestOfferFailure, KtList<BestOffer>>(
-              documents
-                  .map((snapshot) =>
-                      BestOfferDto.fromFirestore(snapshot).toDomain())
-                  .toImmutableList()))
+                  documents.map((snapshot) {
+                return BestOfferDto.fromFirestore(snapshot).toDomain();
+              }).toImmutableList()))
           .onErrorReturnWith((error, _) {
         if (error is FirebaseException) {
           return left(const BestOfferFailure.insufficientPermission());
         }
+        print(error);
         return const Left(BestOfferFailure.unexpected());
       });
     } else {

@@ -28,6 +28,7 @@ mixin _$BestOfferDto {
   String get shopName => throw _privateConstructorUsedError;
   PriceDto get price => throw _privateConstructorUsedError;
   WeekDto get week => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
   double get distance => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -49,7 +50,7 @@ abstract class $BestOfferDtoCopyWith<$Res> {
       String shopName,
       PriceDto price,
       WeekDto week,
-      double distance});
+      @JsonKey(ignore: true) double distance});
 
   $AddressDtoCopyWith<$Res> get address;
   $LocationDtoCopyWith<$Res> get position;
@@ -156,7 +157,7 @@ abstract class _$$_BestOfferDtoCopyWith<$Res>
       String shopName,
       PriceDto price,
       WeekDto week,
-      double distance});
+      @JsonKey(ignore: true) double distance});
 
   @override
   $AddressDtoCopyWith<$Res> get address;
@@ -238,7 +239,7 @@ class _$_BestOfferDto extends _BestOfferDto {
       required this.shopName,
       required this.price,
       required this.week,
-      required this.distance})
+      @JsonKey(ignore: true) this.distance = 0})
       : super._();
 
   factory _$_BestOfferDto.fromJson(Map<String, dynamic> json) =>
@@ -260,6 +261,7 @@ class _$_BestOfferDto extends _BestOfferDto {
   @override
   final WeekDto week;
   @override
+  @JsonKey(ignore: true)
   final double distance;
 
   @override
@@ -315,7 +317,7 @@ abstract class _BestOfferDto extends BestOfferDto {
       required final String shopName,
       required final PriceDto price,
       required final WeekDto week,
-      required final double distance}) = _$_BestOfferDto;
+      @JsonKey(ignore: true) final double distance}) = _$_BestOfferDto;
   const _BestOfferDto._() : super._();
 
   factory _BestOfferDto.fromJson(Map<String, dynamic> json) =
@@ -337,6 +339,7 @@ abstract class _BestOfferDto extends BestOfferDto {
   @override
   WeekDto get week => throw _privateConstructorUsedError;
   @override
+  @JsonKey(ignore: true)
   double get distance => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)

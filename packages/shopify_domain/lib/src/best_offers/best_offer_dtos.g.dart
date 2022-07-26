@@ -14,7 +14,6 @@ _$_BestOfferDto _$$_BestOfferDtoFromJson(Map<String, dynamic> json) =>
       shopName: json['shopName'] as String,
       price: PriceDto.fromJson(json['price'] as Map<String, dynamic>),
       week: WeekDto.fromJson(json['week'] as Map<String, dynamic>),
-      distance: (json['distance'] as num).toDouble(),
     );
 
 Map<String, dynamic> _$$_BestOfferDtoToJson(_$_BestOfferDto instance) =>
@@ -25,5 +24,4 @@ Map<String, dynamic> _$$_BestOfferDtoToJson(_$_BestOfferDto instance) =>
       'shopName': instance.shopName,
       'price': instance.price.toJson(),
       'week': instance.week.toJson(),
-      'distance': instance.distance,
     };
