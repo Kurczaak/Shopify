@@ -1,8 +1,10 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopify_client/application/favourites_watcher/favourites_watcher_bloc.dart';
 import 'package:shopify_client/injection.dart';
 import 'package:shopify_client/presentation/product/widgets/toggle_favourite_widget.dart';
+import 'package:shopify_client/presentation/routes/router.gr.dart';
 import 'package:shopify_domain/favourites/favourite_product.dart';
 import 'package:shopify_presentation/core/shopify_image.dart';
 
@@ -80,41 +82,47 @@ class ProductPreviewWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Flexible(
-            fit: FlexFit.tight,
-            flex: 5,
-            child: ShopifyNetworkImage(product.photoUrl.getOrCrash(),
-                fit: BoxFit.cover, height: 80, width: 120),
-          ),
-          const SizedBox(height: 5),
-          Flexible(
-            fit: FlexFit.tight,
-            flex: 3,
-            child: Row(
-              children: [
-                Flexible(
-                  fit: FlexFit.tight,
-                  flex: 10,
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: ProductSnippetInfoWidget(product: product),
-                  ),
-                ),
-                Flexible(
-                  fit: FlexFit.tight,
-                  flex: 3,
-                  child: ToggleFavouriteWidget(productId: product.productId),
-                ),
-              ],
+    return InkWell(
+      onTap: () {
+        context.router
+            .push(BestProductOffersRoute(productId: product.productId));
+      },
+      child: Card(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Flexible(
+              fit: FlexFit.tight,
+              flex: 5,
+              child: ShopifyNetworkImage(product.photoUrl.getOrCrash(),
+                  fit: BoxFit.cover, height: 80, width: 120),
             ),
-          )
-        ],
+            const SizedBox(height: 5),
+            Flexible(
+              fit: FlexFit.tight,
+              flex: 3,
+              child: Row(
+                children: [
+                  Flexible(
+                    fit: FlexFit.tight,
+                    flex: 10,
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: ProductSnippetInfoWidget(product: product),
+                    ),
+                  ),
+                  Flexible(
+                    fit: FlexFit.tight,
+                    flex: 3,
+                    child: ToggleFavouriteWidget(productId: product.productId),
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

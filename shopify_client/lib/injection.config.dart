@@ -21,11 +21,13 @@ import 'package:shopify_domain/product/shopify_product_searcher.dart' as _i24;
 import 'package:shopify_domain/shop/shopify_shop_repository.dart' as _i27;
 
 import 'application/auth/auth_bloc.dart' as _i35;
-import 'application/auth/sign_in_form/sign_in_form_bloc.dart' as _i40;
-import 'application/cart_and_favourite/cart_and_favourite_bloc.dart' as _i36;
-import 'application/cart_item/cart_item_bloc.dart' as _i37;
-import 'application/favouirtes_actor/favourites_actor_bloc.dart' as _i38;
-import 'application/favourites_watcher/favourites_watcher_bloc.dart' as _i39;
+import 'application/auth/sign_in_form/sign_in_form_bloc.dart' as _i41;
+import 'application/best_product_offer_watcher/best_product_offer_watcher_bloc.dart'
+    as _i36;
+import 'application/cart_and_favourite/cart_and_favourite_bloc.dart' as _i37;
+import 'application/cart_item/cart_item_bloc.dart' as _i38;
+import 'application/favouirtes_actor/favourites_actor_bloc.dart' as _i39;
+import 'application/favourites_watcher/favourites_watcher_bloc.dart' as _i40;
 import 'application/location/location_bloc.dart' as _i28;
 import 'application/order_watcher/order_watcher_bloc.dart' as _i30;
 import 'application/product_preview/product_preview_bloc.dart' as _i31;
@@ -87,15 +89,17 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.factory<_i34.UserCartsBloc>(() =>
       _i34.UserCartsBloc(get<_i9.ICartFacade>(), get<_i29.NetworkInfo>()));
   gh.lazySingleton<_i35.AuthBloc>(() => _i35.AuthBloc(get<_i3.IAuthFacade>()));
-  gh.factory<_i36.CartActorBloc>(
-      () => _i36.CartActorBloc(get<_i9.ICartFacade>()));
-  gh.factory<_i37.CartItemBloc>(
-      () => _i37.CartItemBloc(get<_i9.ICartFacade>()));
-  gh.factory<_i38.FavouritesActorBloc>(
-      () => _i38.FavouritesActorBloc(get<_i12.IFavouritesFacade>()));
-  gh.factory<_i39.FavouritesWatcherBloc>(
-      () => _i39.FavouritesWatcherBloc(get<_i12.IFavouritesFacade>()));
-  gh.factory<_i40.SignInFormBloc>(
-      () => _i40.SignInFormBloc(get<_i3.IAuthFacade>(), get<_i35.AuthBloc>()));
+  gh.factory<_i36.BestProductOfferWatcherBloc>(
+      () => _i36.BestProductOfferWatcherBloc(get<_i6.IBestOffersFacade>()));
+  gh.factory<_i37.CartActorBloc>(
+      () => _i37.CartActorBloc(get<_i9.ICartFacade>()));
+  gh.factory<_i38.CartItemBloc>(
+      () => _i38.CartItemBloc(get<_i9.ICartFacade>()));
+  gh.factory<_i39.FavouritesActorBloc>(
+      () => _i39.FavouritesActorBloc(get<_i12.IFavouritesFacade>()));
+  gh.factory<_i40.FavouritesWatcherBloc>(
+      () => _i40.FavouritesWatcherBloc(get<_i12.IFavouritesFacade>()));
+  gh.factory<_i41.SignInFormBloc>(
+      () => _i41.SignInFormBloc(get<_i3.IAuthFacade>(), get<_i35.AuthBloc>()));
   return get;
 }

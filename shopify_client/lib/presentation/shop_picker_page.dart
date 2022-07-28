@@ -122,8 +122,8 @@ class _ShopPickerPageState extends State<ShopPickerPage> {
                               });
                             },
                             onChangeEnd: (_) => context
-                                .read<ShopPickerBloc>()
-                                .add(ShopPickerEvent.radiusChanged(
+                                .read<LocationBloc>()
+                                .add(LocationEvent.radiusChanged(
                                     radius: radius)),
                           ),
                         ),

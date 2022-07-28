@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:shopify_client/home_page.dart';
-import 'package:shopify_client/presentation/best_offers/best_offers_page.dart';
+import 'package:shopify_client/presentation/best_offers/best_product_offers_page.dart';
+import 'package:shopify_client/presentation/best_offers/best_products_page.dart';
 import 'package:shopify_client/presentation/cart/cart_page.dart';
 import 'package:shopify_client/presentation/core/debug_page.dart';
 import 'package:shopify_client/presentation/favourites/favourites_page.dart';
@@ -51,12 +52,15 @@ import 'package:shopify_client/presentation/your_lists/your_lists_page.dart';
             path: 'Best Offers',
             name: 'bestOffersRouter',
             page: EmptyRouterPage,
-            children: [AutoRoute(page: BestOffersPage)]),
+            children: [AutoRoute(page: BestProductsPage)]),
         AutoRoute(
-          path: 'Favourites',
-          name: 'favouritesRouter',
-          page: FavouritesPage,
-        ),
+            path: 'Favourites',
+            name: 'favouritesRouter',
+            page: EmptyRouterPage,
+            children: [
+              AutoRoute(page: FavouritesPage, initial: true),
+              AutoRoute(page: BestProductOffersPage),
+            ]),
         AutoRoute(
             path: 'Your Lists',
             name: 'yourListsRouter',
