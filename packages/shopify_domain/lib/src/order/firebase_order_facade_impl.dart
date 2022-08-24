@@ -21,9 +21,25 @@ class FirebaseOrderFacadeImpl implements ShopifyOrderFacade {
       {required this.networkInfo, required this.firebase, required this.auth});
 
   @override
-  Future<Either<OrderFailure, Unit>> changeOrderStatus(bool isCompleted) {
-    // TODO: implement changeOrderStatus
-    throw UnimplementedError();
+  Future<Either<OrderFailure, Unit>> changeOrderStatus(
+      UniqueId orderId, OrderStatus status) async {
+    if (await networkInfo.isConnected) {
+      final orderDocument =
+          await firebase.ordersCollection.doc(orderId.getOrCrash()).get();
+      if (!orderDocument.exists) {
+        return left(const OrderFailure.unexpectd());
+      }
+      return status.value.fold((failure) {
+        return left(const OrderFailure.unexpectd());
+      }, (status) {
+        firebase.ordersCollection
+            .doc(orderId.getOrCrash())
+            .update({'status': status.name});
+        return right(unit);
+      });
+    } else {
+      return left(const OrderFailure.noInternetConnection());
+    }
   }
 
   @override

@@ -9,5 +9,6 @@ abstract class ShopifyOrderFacade {
       UniqueId shopId);
   Stream<Either<OrderFailure, KtList<ShopifyOrder>>> watchUserOrders(
       OrderStatus status);
-  Future<Either<OrderFailure, Unit>> changeOrderStatus(bool isCompleted);
+  Future<Either<OrderFailure, Unit>> changeOrderStatus(
+      UniqueId orderId, OrderStatus status);
 }
