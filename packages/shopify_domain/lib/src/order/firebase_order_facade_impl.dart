@@ -44,9 +44,38 @@ class FirebaseOrderFacadeImpl implements ShopifyOrderFacade {
 
   @override
   Stream<Either<OrderFailure, KtList<ShopifyOrder>>> watchShopOrders(
-      UniqueId shopId) {
-    // TODO: implement watchShopOrders
-    throw UnimplementedError();
+      UniqueId shopId, OrderStatus status) async* {
+    if (await networkInfo.isConnected) {
+      final shopOrdersQuery = firebase.ordersCollection
+          .where(FieldPath(const ['cart', 'shopId']),
+              isEqualTo: shopId.getOrCrash())
+          .where('status', isEqualTo: status.getOrCrash().name);
+
+      try {
+        yield* shopOrdersQuery
+            .snapshots()
+            .asyncMap<Either<OrderFailure, KtList<ShopifyOrder>>>(
+                (ordersSnapshot) async {
+          if (ordersSnapshot.docs.isEmpty) {
+            return left(const OrderFailure.empty());
+          } else {
+            final List<ShopifyOrder> orders = [];
+            for (final orderSnapshot in ordersSnapshot.docs) {
+              orders.add(OrderDto.fromFirestore(orderSnapshot).toDomain());
+            }
+            return right(KtList.from(orders));
+          }
+        });
+      } on FirebaseException catch (e) {
+        if (e.code.contains('permission-denied')) {
+          yield left(const OrderFailure.insufficientPermission());
+        } else {
+          yield left(const OrderFailure.unexpectd());
+        }
+      }
+    } else {
+      yield left(const OrderFailure.noInternetConnection());
+    }
   }
 
   @override
