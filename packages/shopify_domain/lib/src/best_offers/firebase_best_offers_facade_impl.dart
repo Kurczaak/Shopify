@@ -23,14 +23,60 @@ class FirebaseBestOffersFacadeImpl implements ShopifyBestOffersFacade {
   const FirebaseBestOffersFacadeImpl(this.networkInfo, this.firebase, this.geo);
 
   @override
-  Future<Either<BestOfferFailure, KtList<ProductBestOffers>>>
+  Stream<Either<BestOfferFailure, KtList<ProductBestOffers>>>
       bestProductsByCategoryWithinDistance(
           {required Category category,
           required Location location,
           required NonnegativeNumber distance,
-          required NonnegativeInt page}) {
-    // TODO: implement bestProductsByCategoryWithinDistance
-    throw UnimplementedError();
+          required NonnegativeInt page}) async* {
+    if (await networkInfo.isConnected) {
+      final categoryProducts = await firebase.productsCollection
+          .where('category', isEqualTo: category.getOrCrash().name)
+          .get();
+
+      final center =
+          geo.point(latitude: location.latitude, longitude: location.longitude);
+      final radius = distance.getOrCrash();
+      const String field = 'position';
+
+      final xd = categoryProducts.docs.map((productSnapshot) {
+        final productReference = productSnapshot.reference;
+        final productShopsCollection = productReference.shopCollection;
+        final collection = geo.collection(
+            collectionRef: productShopsCollection
+                as CollectionReference<Map<String, dynamic>>);
+
+        Stream<List<DistanceDocSnapshot>> stream = collection
+            .withinWithDistance(center: center, radius: radius, field: field);
+
+        final bestOffersForTheProduct = stream
+            .map((documents) => right<BestOfferFailure, KtList<BestOffer>>(
+                    documents.map((snapshot) {
+                  return BestOfferDto.fromFirestore(snapshot).toDomain();
+                }).toImmutableList()))
+            .onErrorReturnWith((error, _) {
+          if (error is FirebaseException) {
+            return left(const BestOfferFailure.insufficientPermission());
+          }
+          return const Left(BestOfferFailure.unexpected());
+        });
+
+        return bestOffersForTheProduct
+            .map((Either<BestOfferFailure, KtList<BestOffer>> failureOrOffers) {
+          return failureOrOffers.fold(
+              (failure) => left<BestOfferFailure, KtList<BestOffer>>(failure),
+              (bestOffers) {
+            return right<BestOfferFailure, KtList<BestOffer>>(bestOffers
+              ..sortedBy((offer) => offer.price.price.getOrCrash())
+                  .subList(0, 2));
+          });
+        });
+      });
+
+      yield left(const BestOfferFailure.unexpected());
+    } else {
+      yield left(const BestOfferFailure.noInternetConnection());
+    }
   }
 
   @override
@@ -63,7 +109,6 @@ class FirebaseBestOffersFacadeImpl implements ShopifyBestOffersFacade {
         if (error is FirebaseException) {
           return left(const BestOfferFailure.insufficientPermission());
         }
-        print(error);
         return const Left(BestOfferFailure.unexpected());
       });
     } else {

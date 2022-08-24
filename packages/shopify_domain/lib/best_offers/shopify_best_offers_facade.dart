@@ -13,7 +13,7 @@ abstract class ShopifyBestOffersFacade {
     required NonnegativeNumber distance,
   });
 
-  Future<Either<BestOfferFailure, KtList<ProductBestOffers>>>
+  Stream<Either<BestOfferFailure, KtList<ProductBestOffers>>>
       bestProductsByCategoryWithinDistance({
     required Category category,
     required Location location,

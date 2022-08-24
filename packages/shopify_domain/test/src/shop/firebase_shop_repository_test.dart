@@ -72,6 +72,8 @@ void main() async {
   const logoUrlStr =
       'https://firebasestorage.googleapis.com/v0/b/shopify-app-6d29d.appspot.com/o/images/1';
 
+  final tLocation = Location.empty();
+
   final tShop = Shop(
     id: UniqueId.fromUniqueString(shopDocumentIdStr),
     shopName: ShopName(shopNameStr),
@@ -82,13 +84,12 @@ void main() async {
       postalCode: PostalCode(postalCodeStr),
       streetName: StreetName(streetNameStr),
     ),
-    location: Location.empty(),
+    location: tLocation,
     logoUrl: ShopifyUrl(logoUrlStr),
     workingWeek: Week.empty(),
   );
 
-  final geoPoint =
-      GeoFirePoint(Location.empty().latitude, Location.empty().longitude);
+  final geoPoint = GeoFirePoint(tLocation.latitude, tLocation.longitude);
   double radius = 10;
   String field = 'position';
 
@@ -114,8 +115,7 @@ void main() async {
     when(mockGeo.collection(collectionRef: shopsCollection))
         .thenReturn(mockGeoFireCollectionRef);
     when(mockGeo.point(
-            latitude: Location.empty().latitude,
-            longitude: Location.empty().longitude))
+            latitude: tLocation.latitude, longitude: tLocation.longitude))
         .thenReturn(geoPoint);
 
     when(mockGeoFireCollectionRef.within(
@@ -178,16 +178,14 @@ void main() async {
       () async {
         // act
         final result = firebaseShopRepository.watchNearby(
-            Location.empty(), NonnegativeNumber(10.0));
+            tLocation, NonnegativeNumber(10.0));
         result.listen((event) {});
 
         // assert
         await untilCalled(mockGeo.point(
-            latitude: Location.empty().latitude,
-            longitude: Location.empty().longitude));
+            latitude: tLocation.latitude, longitude: tLocation.longitude));
         verify(mockGeo.point(
-            latitude: Location.empty().latitude,
-            longitude: Location.empty().longitude));
+            latitude: tLocation.latitude, longitude: tLocation.longitude));
         verify(mockGeo.collection(collectionRef: shopsCollection));
         verify(mockGeoFireCollectionRef.within(
             center: geoPoint, radius: radius, field: field, strictMode: true));
@@ -199,7 +197,7 @@ void main() async {
       () async {
         // act
         final result = firebaseShopRepository.watchNearby(
-            Location.empty(), NonnegativeNumber(10.0));
+            tLocation, NonnegativeNumber(10.0));
         // assert
         expectLater(
             result.asBroadcastStream(),
@@ -266,9 +264,6 @@ void main() async {
 
     test('should return right(unit) when succesfully added a new shop',
         () async {
-      // arrange
-      _setUpStorage();
-      _setUpFirestore();
       // act
       final result =
           await firebaseShopRepository.create(tShop, tShopLogo, tUser);
@@ -319,7 +314,8 @@ void main() async {
         _setUpStorage();
         _setUpFirestore();
         when(shopDocument.set(any)).thenAnswer((_) {
-          return Future.delayed(const Duration(seconds: 15));
+          return Future.delayed(timeoutDuration);
+          return Future.delayed(const Duration(seconds: 1));
         });
         // act
         final result =
