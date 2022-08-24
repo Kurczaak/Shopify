@@ -21,8 +21,9 @@ class ShopifyBestOffersFacadeImpl implements IBestOffersFacade {
           required Location location,
           required NonnegativeNumber distance,
           required NonnegativeInt page}) {
-    return bestOffersFacade.bestProductsByCategoryWithinDistance(
-        category: category, location: location, distance: distance, page: page);
+    throw UnimplementedError();
+    // return bestOffersFacade.bestProductsByCategoryWithinDistance(
+    //     category: category, location: location, distance: distance, page: page);
   }
 
   @override
