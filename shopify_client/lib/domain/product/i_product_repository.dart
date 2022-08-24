@@ -25,4 +25,6 @@ abstract class IProductRepository {
           {int page = 0});
   // Getters
   Future<Either<ProductFailure, Product>> getProductById(UniqueId id);
+  Future<Either<ProductFailure, PricedProduct>> getPricedProductById(
+      UniqueId productId, UniqueId shopId);
 }

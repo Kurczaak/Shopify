@@ -60,6 +60,10 @@ import 'package:shopify_client/presentation/your_lists/your_lists_page.dart';
             children: [
               AutoRoute(page: FavouritesPage, initial: true),
               AutoRoute(page: BestProductOffersPage),
+              AutoRoute(
+                path: ':title',
+                page: ProductPreviewPage,
+              ),
             ]),
         AutoRoute(
             path: 'Your Lists',

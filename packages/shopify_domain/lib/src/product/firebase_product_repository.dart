@@ -333,4 +333,33 @@ class FirebaseProductRepositoryImpl implements ShopifyProductRepository {
       return left(const ProductFailure.noInternetConnection());
     }
   }
+
+  @override
+  Future<Either<ProductFailure, PricedProduct>> getFromShopById(
+      UniqueId productId, UniqueId shopId) async {
+    if (await networkInfo.isConnected) {
+      try {
+        final query = firestore.pricedProductsCollection
+            .where('productId', isEqualTo: productId.getOrCrash())
+            .where('shopId', isEqualTo: shopId.getOrCrash());
+
+        final snapshot = await query.get();
+        final product = snapshot.docs.first;
+        if (!product.exists) {
+          return left(const ProductFailure.productNotFound());
+        } else {
+          return right(PricedProductDto.fromFirestore(product).toDomain());
+        }
+      } on TimeoutException {
+        return left(const ProductFailure.timeout(timeoutDuration));
+      } on FirebaseException catch (e) {
+        if (e.code.contains('permission-denied')) {
+          return left(const ProductFailure.insufficientPermission());
+        }
+        return left(const ProductFailure.unexpected());
+      }
+    } else {
+      return left(const ProductFailure.noInternetConnection());
+    }
+  }
 }

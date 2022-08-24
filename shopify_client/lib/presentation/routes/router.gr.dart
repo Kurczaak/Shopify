@@ -180,7 +180,9 @@ class AppRouter extends _i8.RootStackRouter {
                               path: '', parent: FavouritesRouter.name),
                           _i8.RouteConfig(BestProductOffersRoute.name,
                               path: 'best-product-offers-page',
-                              parent: FavouritesRouter.name)
+                              parent: FavouritesRouter.name),
+                          _i8.RouteConfig(ProductPreviewRoute.name,
+                              path: ':title', parent: FavouritesRouter.name)
                         ]),
                     _i8.RouteConfig(YourListsRouter.name,
                         path: 'Your Lists',

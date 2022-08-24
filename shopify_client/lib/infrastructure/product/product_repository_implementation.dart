@@ -65,4 +65,10 @@ class ProductRepositoryImpl implements IProductRepository {
   Future<Either<ProductFailure, Product>> getProductById(UniqueId id) {
     return productRepository.getById(id);
   }
+
+  @override
+  Future<Either<ProductFailure, PricedProduct>> getPricedProductById(
+      UniqueId productId, UniqueId shopId) {
+    return productRepository.getFromShopById(productId, shopId);
+  }
 }

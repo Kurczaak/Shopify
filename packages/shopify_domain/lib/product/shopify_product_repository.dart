@@ -20,6 +20,8 @@ abstract class ShopifyProductRepository {
   Future<Either<ProductFailure, Product>> getById(UniqueId id);
   Future<Either<ProductFailure, PricedProduct>> getFromShopByBarcode(
       Barcode barcode, Shop shop);
+  Future<Either<ProductFailure, PricedProduct>> getFromShopById(
+      UniqueId productId, UniqueId shopId);
   // Update
   Future<Either<ProductFailure, Unit>> update(Product product);
   Future<Either<ProductFailure, Unit>> addToShop(

@@ -100,4 +100,14 @@ class MockIProductRepository extends _i1.Mock
                   Future<_i2.Either<_i5.ProductFailure, _i5.Product>>.value(
                       _FakeEither_0<_i5.ProductFailure, _i5.Product>()))
           as _i4.Future<_i2.Either<_i5.ProductFailure, _i5.Product>>);
+  @override
+  _i4.Future<
+      _i2.Either<_i5.ProductFailure, _i5.PricedProduct>> getPricedProductById(
+          _i7.UniqueId? productId, _i7.UniqueId? shopId) =>
+      (super.noSuchMethod(
+          Invocation.method(#getPricedProductById, [productId, shopId]),
+          returnValue:
+              Future<_i2.Either<_i5.ProductFailure, _i5.PricedProduct>>.value(
+                  _FakeEither_0<_i5.ProductFailure, _i5.PricedProduct>())) as _i4
+          .Future<_i2.Either<_i5.ProductFailure, _i5.PricedProduct>>);
 }
