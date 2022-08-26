@@ -7,4 +7,6 @@ import 'package:shopify_domain/order/order_failure.dart';
 abstract class IOrderFacade {
   Stream<Either<OrderFailure, KtList<ShopifyOrder>>> watchShopOrders(
       UniqueId shopId, OrderStatus status);
+  Future<Either<OrderFailure, Unit>> changeOrderStatus(
+      UniqueId orderId, OrderStatus status);
 }

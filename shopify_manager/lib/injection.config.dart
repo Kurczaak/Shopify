@@ -7,27 +7,28 @@
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 import 'package:shopify_domain/auth.dart' as _i5;
-import 'package:shopify_domain/core.dart' as _i36;
+import 'package:shopify_domain/core.dart' as _i37;
 import 'package:shopify_domain/core/images/photo_picker.dart' as _i11;
-import 'package:shopify_domain/core/network/network_info.dart' as _i24;
+import 'package:shopify_domain/core/network/network_info.dart' as _i25;
 import 'package:shopify_domain/order/shopify_order_facade.dart' as _i16;
 import 'package:shopify_domain/product.dart' as _i8;
 import 'package:shopify_domain/shop/shopify_shop_repository.dart' as _i21;
 
-import 'application/auth/auth_bloc.dart' as _i34;
-import 'application/auth/sign_in_form/sign_in_form_bloc.dart' as _i33;
-import 'application/order_watcher/order_watcher_bloc.dart' as _i22;
-import 'application/product/product_adder/product_adder_bloc.dart' as _i23;
-import 'application/product/product_form/product_form_bloc.dart' as _i25;
-import 'application/product/search_product/search_product_bloc.dart' as _i26;
-import 'application/shop/shop_actor/shop_actor_bloc.dart' as _i31;
-import 'application/shop/shop_form/shop_form_bloc.dart' as _i27;
+import 'application/auth/auth_bloc.dart' as _i35;
+import 'application/auth/sign_in_form/sign_in_form_bloc.dart' as _i34;
+import 'application/order_actor/order_actor_bloc.dart' as _i22;
+import 'application/order_watcher/order_watcher_bloc.dart' as _i23;
+import 'application/product/product_adder/product_adder_bloc.dart' as _i24;
+import 'application/product/product_form/product_form_bloc.dart' as _i26;
+import 'application/product/search_product/search_product_bloc.dart' as _i27;
+import 'application/shop/shop_actor/shop_actor_bloc.dart' as _i32;
+import 'application/shop/shop_form/shop_form_bloc.dart' as _i28;
 import 'application/shop/shop_location_picker/shop_location_picker_bloc.dart'
-    as _i28;
-import 'application/shop/shop_logo_picker/shop_logo_picker_bloc.dart' as _i29;
-import 'application/shop/shop_registration/shop_registration_bloc.dart' as _i35;
-import 'application/shop/shop_time_picker/shop_time_picker_bloc.dart' as _i30;
-import 'application/shop/shop_watcher/shop_watcher_bloc.dart' as _i32;
+    as _i29;
+import 'application/shop/shop_logo_picker/shop_logo_picker_bloc.dart' as _i30;
+import 'application/shop/shop_registration/shop_registration_bloc.dart' as _i36;
+import 'application/shop/shop_time_picker/shop_time_picker_bloc.dart' as _i31;
+import 'application/shop/shop_watcher/shop_watcher_bloc.dart' as _i33;
 import 'domain/auth/i_auth_facade.dart' as _i3;
 import 'domain/core/images/i_image_facade.dart' as _i9;
 import 'domain/order/i_order_facade.dart' as _i14;
@@ -64,42 +65,44 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => _i18.ProductRepostioryImpl(get<_i8.ShopifyProductRepository>()));
   gh.lazySingleton<_i19.IShopRepository>(
       () => _i20.FirebaseShopRepositoryImpl(get<_i21.ShopifyShopRepository>()));
-  gh.factory<_i22.OrderWatcherBloc>(
-      () => _i22.OrderWatcherBloc(get<_i14.IOrderFacade>()));
-  gh.factory<_i23.ProductAdderBloc>(() => _i23.ProductAdderBloc(
+  gh.factory<_i22.OrderActorBloc>(
+      () => _i22.OrderActorBloc(get<_i14.IOrderFacade>()));
+  gh.factory<_i23.OrderWatcherBloc>(
+      () => _i23.OrderWatcherBloc(get<_i14.IOrderFacade>()));
+  gh.factory<_i24.ProductAdderBloc>(() => _i24.ProductAdderBloc(
       productRepository: get<_i17.IProductRepository>(),
-      networkInfo: get<_i24.NetworkInfo>()));
-  gh.factory<_i25.ProductFormBloc>(() => _i25.ProductFormBloc(
+      networkInfo: get<_i25.NetworkInfo>()));
+  gh.factory<_i26.ProductFormBloc>(() => _i26.ProductFormBloc(
       imageFacade: get<_i9.IImageFacade>(),
-      networkInfo: get<_i24.NetworkInfo>(),
+      networkInfo: get<_i25.NetworkInfo>(),
       productRepository: get<_i17.IProductRepository>(),
       shopRepository: get<_i19.IShopRepository>(),
       authFacade: get<_i3.IAuthFacade>()));
-  gh.factory<_i26.SearchProductBloc>(() => _i26.SearchProductBloc(
+  gh.factory<_i27.SearchProductBloc>(() => _i27.SearchProductBloc(
       openFoodFactsRepository: get<_i12.IOpenFoodFactsRepository>(),
       shopifyProductsRepository: get<_i17.IProductRepository>()));
-  gh.lazySingleton<_i27.ShopFormBloc>(() => _i27.ShopFormBloc());
-  gh.lazySingleton<_i28.ShopLocationPickerBloc>(
-      () => _i28.ShopLocationPickerBloc());
-  gh.lazySingleton<_i29.ShopLogoPickerBloc>(
-      () => _i29.ShopLogoPickerBloc(get<_i9.IImageFacade>()));
-  gh.lazySingleton<_i30.ShopTimePickerBloc>(() => _i30.ShopTimePickerBloc());
-  gh.factory<_i31.ShoppingActorBloc>(
-      () => _i31.ShoppingActorBloc(get<_i19.IShopRepository>()));
-  gh.factory<_i32.ShoppingWatcherBloc>(
-      () => _i32.ShoppingWatcherBloc(get<_i19.IShopRepository>()));
-  gh.factory<_i33.SignInFormBloc>(
-      () => _i33.SignInFormBloc(get<_i3.IAuthFacade>()));
-  gh.factory<_i34.AuthBloc>(() => _i34.AuthBloc(get<_i3.IAuthFacade>()));
-  gh.lazySingleton<_i35.ShopRegistrationBloc>(
-      () => _i35.ShopRegistrationBloc(
+  gh.lazySingleton<_i28.ShopFormBloc>(() => _i28.ShopFormBloc());
+  gh.lazySingleton<_i29.ShopLocationPickerBloc>(
+      () => _i29.ShopLocationPickerBloc());
+  gh.lazySingleton<_i30.ShopLogoPickerBloc>(
+      () => _i30.ShopLogoPickerBloc(get<_i9.IImageFacade>()));
+  gh.lazySingleton<_i31.ShopTimePickerBloc>(() => _i31.ShopTimePickerBloc());
+  gh.factory<_i32.ShoppingActorBloc>(
+      () => _i32.ShoppingActorBloc(get<_i19.IShopRepository>()));
+  gh.factory<_i33.ShoppingWatcherBloc>(
+      () => _i33.ShoppingWatcherBloc(get<_i19.IShopRepository>()));
+  gh.factory<_i34.SignInFormBloc>(
+      () => _i34.SignInFormBloc(get<_i3.IAuthFacade>()));
+  gh.factory<_i35.AuthBloc>(() => _i35.AuthBloc(get<_i3.IAuthFacade>()));
+  gh.lazySingleton<_i36.ShopRegistrationBloc>(
+      () => _i36.ShopRegistrationBloc(
           authFacade: get<_i3.IAuthFacade>(),
-          shopFormBloc: get<_i27.ShopFormBloc>(),
-          shopLocationPickerBloc: get<_i28.ShopLocationPickerBloc>(),
-          shopTimePickerBloc: get<_i30.ShopTimePickerBloc>(),
-          shopLogoPickerBloc: get<_i29.ShopLogoPickerBloc>(),
-          locationInfo: get<_i36.LocationInfo>(),
+          shopFormBloc: get<_i28.ShopFormBloc>(),
+          shopLocationPickerBloc: get<_i29.ShopLocationPickerBloc>(),
+          shopTimePickerBloc: get<_i31.ShopTimePickerBloc>(),
+          shopLogoPickerBloc: get<_i30.ShopLogoPickerBloc>(),
+          locationInfo: get<_i37.LocationInfo>(),
           shopRepository: get<_i19.IShopRepository>()),
-      dispose: _i35.disposeBloc);
+      dispose: _i36.disposeBloc);
   return get;
 }

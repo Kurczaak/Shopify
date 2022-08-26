@@ -10,6 +10,7 @@ part 'order.freezed.dart';
 @freezed
 class ShopifyOrder with _$ShopifyOrder {
   const factory ShopifyOrder({
+    required UniqueId id,
     required Cart cart,
     required OrderStatus orderStatus,
     required DateTime date,

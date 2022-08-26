@@ -50,6 +50,7 @@ class ShopOrdersPage extends StatelessWidget {
                                   itemBuilder: (context, index) => InkWell(
                                       onTap: () {
                                         context.router.navigate(OrderRoute(
+                                            orderId: state.orders[index].id,
                                             status:
                                                 state.orders[index].orderStatus,
                                             title: state.orders[index].cart.shop

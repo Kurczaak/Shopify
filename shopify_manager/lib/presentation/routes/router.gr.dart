@@ -14,9 +14,10 @@ import 'package:auto_route/auto_route.dart' as _i17;
 import 'package:flutter/material.dart' as _i18;
 import 'package:kt_dart/collection.dart' as _i20;
 import 'package:shopify_domain/cart/cart_item.dart' as _i21;
+import 'package:shopify_domain/core.dart' as _i23;
 import 'package:shopify_domain/order/order.dart' as _i22;
 import 'package:shopify_domain/product.dart' as _i19;
-import 'package:shopify_domain/shop.dart' as _i23;
+import 'package:shopify_domain/shop.dart' as _i24;
 
 import '../debug_dashboard_page.dart' as _i6;
 import '../orders/order_page.dart' as _i9;
@@ -88,7 +89,8 @@ class AppRouter extends _i17.RootStackRouter {
               key: args.key,
               orderItems: args.orderItems,
               title: args.title,
-              status: args.status));
+              status: args.status,
+              orderId: args.orderId));
     },
     ShopOrdersRoute.name: (routeData) {
       final args = routeData.argsAs<ShopOrdersRouteArgs>();
@@ -283,14 +285,16 @@ class OrderRoute extends _i17.PageRouteInfo<OrderRouteArgs> {
       {_i18.Key? key,
       required _i20.KtList<_i21.CartItem> orderItems,
       required String title,
-      required _i22.OrderStatus status})
+      required _i22.OrderStatus status,
+      required _i23.UniqueId orderId})
       : super(OrderRoute.name,
             path: '/order-page',
             args: OrderRouteArgs(
                 key: key,
                 orderItems: orderItems,
                 title: title,
-                status: status));
+                status: status,
+                orderId: orderId));
 
   static const String name = 'OrderRoute';
 }
@@ -300,7 +304,8 @@ class OrderRouteArgs {
       {this.key,
       required this.orderItems,
       required this.title,
-      required this.status});
+      required this.status,
+      required this.orderId});
 
   final _i18.Key? key;
 
@@ -310,16 +315,18 @@ class OrderRouteArgs {
 
   final _i22.OrderStatus status;
 
+  final _i23.UniqueId orderId;
+
   @override
   String toString() {
-    return 'OrderRouteArgs{key: $key, orderItems: $orderItems, title: $title, status: $status}';
+    return 'OrderRouteArgs{key: $key, orderItems: $orderItems, title: $title, status: $status, orderId: $orderId}';
   }
 }
 
 /// generated route for
 /// [_i10.ShopOrdersPage]
 class ShopOrdersRoute extends _i17.PageRouteInfo<ShopOrdersRouteArgs> {
-  ShopOrdersRoute({_i18.Key? key, required _i23.Shop shop})
+  ShopOrdersRoute({_i18.Key? key, required _i24.Shop shop})
       : super(ShopOrdersRoute.name,
             path: '/shop-orders-page',
             args: ShopOrdersRouteArgs(key: key, shop: shop));
@@ -332,7 +339,7 @@ class ShopOrdersRouteArgs {
 
   final _i18.Key? key;
 
-  final _i23.Shop shop;
+  final _i24.Shop shop;
 
   @override
   String toString() {

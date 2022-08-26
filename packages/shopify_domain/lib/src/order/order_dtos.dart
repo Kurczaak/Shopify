@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kt_dart/kt.dart';
 import 'package:shopify_domain/cart/value_objects.dart';
+import 'package:shopify_domain/core/value_objects.dart';
 import 'package:shopify_domain/order/order.dart';
 import 'package:shopify_domain/src/cart/cart_dtos.dart';
 part 'order_dtos.freezed.dart';
@@ -20,6 +21,7 @@ class OrderDto with _$OrderDto {
   }) = _OrderDto;
 
   ShopifyOrder toDomain() => ShopifyOrder(
+      id: UniqueId.fromUniqueString(id),
       date: timestamp ?? DateTime.now(),
       cart: cart.toDomain().copyWith(
             cartItems: CartItemsList(KtList.from(

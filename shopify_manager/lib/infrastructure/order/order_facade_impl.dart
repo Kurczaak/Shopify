@@ -16,4 +16,10 @@ class OrderFacadeImpl implements IOrderFacade {
       UniqueId shopId, OrderStatus status) {
     return orderFacade.watchShopOrders(shopId, status);
   }
+
+  @override
+  Future<Either<OrderFailure, Unit>> changeOrderStatus(
+      UniqueId orderId, OrderStatus status) {
+    return orderFacade.changeOrderStatus(orderId, status);
+  }
 }

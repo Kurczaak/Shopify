@@ -16,6 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$ShopifyOrder {
+  UniqueId get id => throw _privateConstructorUsedError;
   Cart get cart => throw _privateConstructorUsedError;
   OrderStatus get orderStatus => throw _privateConstructorUsedError;
   DateTime get date => throw _privateConstructorUsedError;
@@ -30,7 +31,7 @@ abstract class $ShopifyOrderCopyWith<$Res> {
   factory $ShopifyOrderCopyWith(
           ShopifyOrder value, $Res Function(ShopifyOrder) then) =
       _$ShopifyOrderCopyWithImpl<$Res>;
-  $Res call({Cart cart, OrderStatus orderStatus, DateTime date});
+  $Res call({UniqueId id, Cart cart, OrderStatus orderStatus, DateTime date});
 
   $CartCopyWith<$Res> get cart;
 }
@@ -45,11 +46,16 @@ class _$ShopifyOrderCopyWithImpl<$Res> implements $ShopifyOrderCopyWith<$Res> {
 
   @override
   $Res call({
+    Object? id = freezed,
     Object? cart = freezed,
     Object? orderStatus = freezed,
     Object? date = freezed,
   }) {
     return _then(_value.copyWith(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as UniqueId,
       cart: cart == freezed
           ? _value.cart
           : cart // ignore: cast_nullable_to_non_nullable
@@ -78,7 +84,7 @@ abstract class _$$_OrderCopyWith<$Res> implements $ShopifyOrderCopyWith<$Res> {
   factory _$$_OrderCopyWith(_$_Order value, $Res Function(_$_Order) then) =
       __$$_OrderCopyWithImpl<$Res>;
   @override
-  $Res call({Cart cart, OrderStatus orderStatus, DateTime date});
+  $Res call({UniqueId id, Cart cart, OrderStatus orderStatus, DateTime date});
 
   @override
   $CartCopyWith<$Res> get cart;
@@ -95,11 +101,16 @@ class __$$_OrderCopyWithImpl<$Res> extends _$ShopifyOrderCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? id = freezed,
     Object? cart = freezed,
     Object? orderStatus = freezed,
     Object? date = freezed,
   }) {
     return _then(_$_Order(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as UniqueId,
       cart: cart == freezed
           ? _value.cart
           : cart // ignore: cast_nullable_to_non_nullable
@@ -120,8 +131,13 @@ class __$$_OrderCopyWithImpl<$Res> extends _$ShopifyOrderCopyWithImpl<$Res>
 
 class _$_Order implements _Order {
   const _$_Order(
-      {required this.cart, required this.orderStatus, required this.date});
+      {required this.id,
+      required this.cart,
+      required this.orderStatus,
+      required this.date});
 
+  @override
+  final UniqueId id;
   @override
   final Cart cart;
   @override
@@ -131,7 +147,7 @@ class _$_Order implements _Order {
 
   @override
   String toString() {
-    return 'ShopifyOrder(cart: $cart, orderStatus: $orderStatus, date: $date)';
+    return 'ShopifyOrder(id: $id, cart: $cart, orderStatus: $orderStatus, date: $date)';
   }
 
   @override
@@ -139,6 +155,7 @@ class _$_Order implements _Order {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Order &&
+            const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.cart, cart) &&
             const DeepCollectionEquality()
                 .equals(other.orderStatus, orderStatus) &&
@@ -148,6 +165,7 @@ class _$_Order implements _Order {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(cart),
       const DeepCollectionEquality().hash(orderStatus),
       const DeepCollectionEquality().hash(date));
@@ -160,10 +178,13 @@ class _$_Order implements _Order {
 
 abstract class _Order implements ShopifyOrder {
   const factory _Order(
-      {required final Cart cart,
+      {required final UniqueId id,
+      required final Cart cart,
       required final OrderStatus orderStatus,
       required final DateTime date}) = _$_Order;
 
+  @override
+  UniqueId get id => throw _privateConstructorUsedError;
   @override
   Cart get cart => throw _privateConstructorUsedError;
   @override
