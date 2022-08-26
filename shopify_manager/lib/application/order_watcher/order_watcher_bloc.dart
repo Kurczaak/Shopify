@@ -4,7 +4,8 @@ import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
 import 'package:sealed_annotations/sealed_annotations.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:shopify_client/domain/order/i_order_facade.dart';
+import 'package:shopify_domain/core/value_objects.dart';
+import 'package:shopify_manager/domain/order/i_order_facade.dart';
 import 'package:shopify_domain/order/order.dart';
 import 'package:shopify_domain/order/order_failure.dart';
 
@@ -22,7 +23,8 @@ class OrderWatcherBloc extends Bloc<OrderWatcherEvent, OrderWatcherState> {
         watchPendingOrders: () async {
           emit(state.copyWith(isLoading: true, failureOption: none()));
           await emit.forEach(
-              orderFacade.watchYourOrders(OrderStatus(OrderStatusEnum.pending)),
+              orderFacade.watchShopOrders(
+                  state.shopId, OrderStatus(OrderStatusEnum.pending)),
               onData:
                   (Either<OrderFailure, KtList<ShopifyOrder>> ordersOrFailure) {
             return ordersOrFailure.fold(
@@ -35,8 +37,8 @@ class OrderWatcherBloc extends Bloc<OrderWatcherEvent, OrderWatcherState> {
         watchCompletedOrders: () async {
           emit(state.copyWith(isLoading: true, failureOption: none()));
           await emit.forEach(
-              orderFacade
-                  .watchYourOrders(OrderStatus(OrderStatusEnum.completed)),
+              orderFacade.watchShopOrders(
+                  state.shopId, OrderStatus(OrderStatusEnum.completed)),
               onData:
                   (Either<OrderFailure, KtList<ShopifyOrder>> ordersOrFailure) {
             return ordersOrFailure.fold(
@@ -49,8 +51,8 @@ class OrderWatcherBloc extends Bloc<OrderWatcherEvent, OrderWatcherState> {
         watchCollectedOrders: () async {
           emit(state.copyWith(isLoading: true, failureOption: none()));
           await emit.forEach(
-              orderFacade
-                  .watchYourOrders(OrderStatus(OrderStatusEnum.collected)),
+              orderFacade.watchShopOrders(
+                  state.shopId, OrderStatus(OrderStatusEnum.collected)),
               onData:
                   (Either<OrderFailure, KtList<ShopifyOrder>> ordersOrFailure) {
             return ordersOrFailure.fold(
@@ -59,6 +61,9 @@ class OrderWatcherBloc extends Bloc<OrderWatcherEvent, OrderWatcherState> {
                 (orders) => state.copyWith(
                     isLoading: false, orders: orders, failureOption: none()));
           });
+        },
+        initialize: (UniqueId shopId) {
+          emit(state.copyWith(shopId: shopId));
         },
       );
     });

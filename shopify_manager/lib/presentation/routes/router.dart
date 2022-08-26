@@ -1,4 +1,7 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:shopify_manager/presentation/orders/order_page.dart';
+import 'package:shopify_manager/presentation/orders/shop_chooser.dart';
+import 'package:shopify_manager/presentation/orders/shop_orders_page.dart';
 import 'package:shopify_manager/presentation/product/product_adder_page.dart';
 import 'package:shopify_manager/presentation/debug_dashboard_page.dart';
 import 'package:shopify_manager/presentation/product/product_form_page.dart';
@@ -37,6 +40,13 @@ import 'package:shopify_manager/presentation/splash/splash_page.dart';
     ),
     AutoRoute(
       page: ProductSearchingScreen,
+    ),
+    AutoRoute(page: ShopChooserPage),
+    AutoRoute(
+      page: OrderPage,
+    ),
+    AutoRoute(
+      page: ShopOrdersPage,
     ),
     AutoRoute(
       page: RegistrationWrappingPage,

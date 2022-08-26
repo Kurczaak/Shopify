@@ -29,6 +29,11 @@ class DebugDashboardPage extends StatelessWidget {
                   });
                 },
                 child: const Text('Scan a barcode')),
+            ElevatedButton(
+                onPressed: () {
+                  context.router.push(const ShopChooserRoute());
+                },
+                child: const Text('Orders')),
           ],
         ),
       ),

@@ -31,6 +31,7 @@ dependencies:
   auto_route: ^4.0.1
   barcode_widget: ^2.0.2
   carousel_slider: ^4.1.1
+  custom_radio_grouped_button: ^2.1.2+2
   dartz: ^0.10.1
   flutter:
     sdk: flutter

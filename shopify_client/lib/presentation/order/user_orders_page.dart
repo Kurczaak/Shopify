@@ -25,6 +25,29 @@ class UserOrdersPage extends StatelessWidget {
               title: 'Your orders',
               appBar: AppBar(),
             ),
+            persistentFooterButtons: [
+              TextButton(
+                  onPressed: () {
+                    context
+                        .read<OrderWatcherBloc>()
+                        .add(const OrderWatcherEvent.watchPendingOrders());
+                  },
+                  child: const Text('Pending')),
+              TextButton(
+                  onPressed: () {
+                    context
+                        .read<OrderWatcherBloc>()
+                        .add(const OrderWatcherEvent.watchCompletedOrders());
+                  },
+                  child: const Text('Completed')),
+              TextButton(
+                  onPressed: () {
+                    context
+                        .read<OrderWatcherBloc>()
+                        .add(const OrderWatcherEvent.watchCompletedOrders());
+                  },
+                  child: const Text('Collected')),
+            ],
             body: state.failureOption.fold(
                 () => state.isLoading
                     ? const Center(
