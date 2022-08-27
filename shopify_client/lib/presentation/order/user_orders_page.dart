@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopify_client/application/order_watcher/order_watcher_bloc.dart';
 import 'package:shopify_client/injection.dart';
+import 'package:shopify_client/presentation/order/widgets/order_status_widget.dart';
 import 'package:shopify_domain/order/order.dart';
 import 'package:shopify_presentation/core/shopify_appbar.dart';
 import 'package:shopify_presentation/core/shopify_image.dart';
@@ -25,56 +26,57 @@ class UserOrdersPage extends StatelessWidget {
               title: 'Your orders',
               appBar: AppBar(),
             ),
-            persistentFooterButtons: [
-              TextButton(
-                  onPressed: () {
-                    context
-                        .read<OrderWatcherBloc>()
-                        .add(const OrderWatcherEvent.watchPendingOrders());
-                  },
-                  child: const Text('Pending')),
-              TextButton(
-                  onPressed: () {
-                    context
-                        .read<OrderWatcherBloc>()
-                        .add(const OrderWatcherEvent.watchCompletedOrders());
-                  },
-                  child: const Text('Completed')),
-              TextButton(
-                  onPressed: () {
-                    context
-                        .read<OrderWatcherBloc>()
-                        .add(const OrderWatcherEvent.watchCompletedOrders());
-                  },
-                  child: const Text('Collected')),
-            ],
-            body: state.failureOption.fold(
-                () => state.isLoading
-                    ? const Center(
-                        child: CircularProgressIndicator(),
-                      )
-                    : state.orders.size <= 0
-                        ? ElevatedButton(
-                            onPressed: () {
-                              context.read<OrderWatcherBloc>().add(
-                                  const OrderWatcherEvent.watchPendingOrders());
-                            },
-                            child: const Text('Click'))
-                        : ListView.builder(
-                            itemCount: state.orders.size,
-                            itemBuilder: (context, index) => InkWell(
-                                onTap: () {
-                                  context.router.navigate(OrderRoute(
-                                      title: state
-                                          .orders[index].cart.shop.shopName
-                                          .getOrCrash(),
-                                      orderItems: state
-                                          .orders[index].cart.cartItems
-                                          .getOrCrash()));
-                                },
-                                child: OrderPreviewTile(
-                                    order: state.orders[index]))),
-                (failure) => Text(failure.toString()))),
+            body: Column(
+              children: [
+                Expanded(
+                  child: state.failureOption.fold(
+                      () => state.isLoading
+                          ? const Center(
+                              child: CircularProgressIndicator(),
+                            )
+                          : state.orders.size <= 0
+                              ? ElevatedButton(
+                                  onPressed: () {
+                                    context.read<OrderWatcherBloc>().add(
+                                        const OrderWatcherEvent
+                                            .watchPendingOrders());
+                                  },
+                                  child: const Text('Click'))
+                              : ListView.builder(
+                                  itemCount: state.orders.size,
+                                  itemBuilder: (context, index) => InkWell(
+                                      onTap: () {
+                                        context.router.navigate(OrderRoute(
+                                            title: state.orders[index].cart.shop
+                                                .shopName
+                                                .getOrCrash(),
+                                            orderItems: state
+                                                .orders[index].cart.cartItems
+                                                .getOrCrash()));
+                                      },
+                                      child: OrderPreviewTile(
+                                          order: state.orders[index]))),
+                      (failure) => Text(failure.toString())),
+                ),
+                SizedBox(
+                    height: 50,
+                    width: double.maxFinite,
+                    child: OrderStatusWidget(
+                      onStatusChanged: (status) {
+                        if (status == OrderStatusEnum.pending) {
+                          context.read<OrderWatcherBloc>().add(
+                              const OrderWatcherEvent.watchPendingOrders());
+                        } else if (status == OrderStatusEnum.completed) {
+                          context.read<OrderWatcherBloc>().add(
+                              const OrderWatcherEvent.watchCompletedOrders());
+                        } else {
+                          context.read<OrderWatcherBloc>().add(
+                              const OrderWatcherEvent.watchCollectedOrders());
+                        }
+                      },
+                    ))
+              ],
+            )),
       ),
     );
   }
