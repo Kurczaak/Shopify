@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -42,8 +44,14 @@ class ProductAdderBloc extends Bloc<ProductAdderEvent, ProductAdderState> {
                 isLoading: true, saveFailureOrSuccessOption: none()));
             Either<ProductFailure, Unit> failureOrUnit = right(unit);
             for (final shop in state.selectedShops) {
+              // TODO Here is a random price generator
+              final rnd = Random().nextDouble() * 0.2 - 0.1;
+              final newPriceValue = state.price.price.getOrCrash() + rnd;
+
+              final newPrice = state.price
+                  .copyWith(price: PositiveNumber(newPriceValue.abs()));
               final result = await productRepository.addToShop(
-                  state.product, shop, state.price);
+                  state.product, shop, newPrice);
 
               if (result.isLeft()) failureOrUnit = result;
             }
